@@ -35,6 +35,7 @@
 		1829884B1E727DF200164F32 /* SweetNoticeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 182988491E727DF200164F32 /* SweetNoticeVC.m */; };
 		1829884C1E727DF200164F32 /* SweetNoticeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1829884A1E727DF200164F32 /* SweetNoticeVC.xib */; };
 		182E7D441EC5604D009CAC02 /* PayCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182E7D431EC5604D009CAC02 /* PayCustomView.m */; };
+		182F3C3E1F0CD70700540FAE /* XLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182F3C3D1F0CD70700540FAE /* XLAlertView.m */; };
 		182FAAA61D502FAD0018F872 /* custom3.png in Resources */ = {isa = PBXBuildFile; fileRef = 182FAAA51D502FAD0018F872 /* custom3.png */; };
 		18302A2D1DAC8B0E00E6EF8C /* CanPayCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18302A2C1DAC8B0E00E6EF8C /* CanPayCardViewController.m */; };
 		183577411EC40AFF00F321F1 /* CheckOldPassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 183577401EC40AFF00F321F1 /* CheckOldPassVC.m */; };
@@ -1057,6 +1058,8 @@
 		1829884A1E727DF200164F32 /* SweetNoticeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SweetNoticeVC.xib; path = BletcShop/SweetNoticeVC.xib; sourceTree = SOURCE_ROOT; };
 		182E7D421EC5604D009CAC02 /* PayCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayCustomView.h; sourceTree = "<group>"; };
 		182E7D431EC5604D009CAC02 /* PayCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayCustomView.m; sourceTree = "<group>"; };
+		182F3C3C1F0CD70700540FAE /* XLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLAlertView.h; sourceTree = "<group>"; };
+		182F3C3D1F0CD70700540FAE /* XLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLAlertView.m; sourceTree = "<group>"; };
 		182FAAA51D502FAD0018F872 /* custom3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom3.png; sourceTree = "<group>"; };
 		18302A2B1DAC8B0E00E6EF8C /* CanPayCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanPayCardViewController.h; sourceTree = "<group>"; };
 		18302A2C1DAC8B0E00E6EF8C /* CanPayCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanPayCardViewController.m; sourceTree = "<group>"; };
@@ -3639,8 +3642,6 @@
 				18D89C631D51CE1000717B11 /* GoShopViewController.m */,
 				18E3CA8B1D532C6000789065 /* EndOrBeginningViewController.h */,
 				18E3CA8C1D532C6000789065 /* EndOrBeginningViewController.m */,
-				D9C0E9591DCC81DD00FD1199 /* ShaperView.h */,
-				D9C0E95A1DCC81DD00FD1199 /* ShaperView.m */,
 				D985332F1DDE9A86004E1E6F /* NewBuyCardViewController.h */,
 				D98533301DDE9A86004E1E6F /* NewBuyCardViewController.m */,
 				18F0320F1E5EE02700ACD261 /* HolidayActivertyVC.h */,
@@ -5390,6 +5391,10 @@
 				D96AA13A1CB399CA00F2003B /* NIDropDown.m */,
 				D94DF23E1CAE0AA4000D5B69 /* DLStarRating */,
 				D9DEECF61CACED7C00ACDD00 /* SDWebImage */,
+				D9C0E9591DCC81DD00FD1199 /* ShaperView.h */,
+				D9C0E95A1DCC81DD00FD1199 /* ShaperView.m */,
+				182F3C3C1F0CD70700540FAE /* XLAlertView.h */,
+				182F3C3D1F0CD70700540FAE /* XLAlertView.m */,
 			);
 			name = otherSDK;
 			sourceTree = "<group>";
@@ -6427,6 +6432,7 @@
 				D97CD7E01EFB90C9000C49ED /* CALayer+LZDLayColor.m in Sources */,
 				D9026B221F0B758F005CA5F4 /* CardDetailShowProdictCell.m in Sources */,
 				182988411E723F4200164F32 /* TAAbstractDotView.m in Sources */,
+				182F3C3E1F0CD70700540FAE /* XLAlertView.m in Sources */,
 				189619441D92319D003BA40C /* ContactSeverViewController.m in Sources */,
 				D9AA10CD1F04914F00F7EDE8 /* MealAndExpCardManageVC.m in Sources */,
 				D97B70331E2CBBD400CEAFC1 /* CardmarketDetailVC.m in Sources */,

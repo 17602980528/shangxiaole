@@ -38,7 +38,7 @@
 
 
 #import "LZDRootViewController.h"
-
+#import "XLAlertView.h"
 
 
 #import "Database.h"
@@ -1829,55 +1829,69 @@
         if ([app_Version compare:result[@"version"] options:NSNumericSearch] < 0) {
             
             
-            LZDAleterView = [[CustomIOSAlertView alloc]init];
-            UIView *backView = [[UIView alloc]init];
-            backView.layer.cornerRadius =7;
-            backView.clipsToBounds = YES;
-            
-            [LZDAleterView setContainerView:backView];
-            
-            UIButton *titlebtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, kWeChatScreenWidth*0.8, 40)];
-            [titlebtn setTitle:@"下载更新" forState:0];
-            
-            [titlebtn setTitleColor:[UIColor colorWithRed:0.0f green:0.5f blue:1.0f alpha:1.0f] forState:UIControlStateNormal];
-            [backView addSubview:titlebtn];
+//            LZDAleterView = [[CustomIOSAlertView alloc]init];
+//            UIView *backView = [[UIView alloc]init];
+//            backView.layer.cornerRadius =7;
+//            backView.clipsToBounds = YES;
+//            
+//            [LZDAleterView setContainerView:backView];
+//            
+//            UIButton *titlebtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, kWeChatScreenWidth*0.8, 40)];
+//            [titlebtn setTitle:@"下载更新" forState:0];
+//            
+//            [titlebtn setTitleColor:[UIColor colorWithRed:0.0f green:0.5f blue:1.0f alpha:1.0f] forState:UIControlStateNormal];
+//            [backView addSubview:titlebtn];
+//            NSArray *update_content = result[@"update_content"];
+//            NSString *content_S = @"";
+//            for (NSString *str in update_content) {
+//                content_S = [NSString stringWithFormat:@"%@\n%@",content_S,str];
+//            }
+//            
+//            UILabel *contentLab = [[UILabel alloc]init];
+//            contentLab.text =content_S;
+//            contentLab.textColor =[UIColor blackColor];
+//            contentLab.numberOfLines= 0;
+//            contentLab.font = [UIFont systemFontOfSize:14];
+//            CGFloat hh = [contentLab.text boundingRectWithSize:CGSizeMake(kWeChatScreenWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:contentLab.font} context:nil].size.height;
+//            
+//            contentLab.frame = CGRectMake(kWeChatScreenWidth*0.1, 40, kWeChatScreenWidth*0.7, hh+50);
+//            [backView addSubview:contentLab];
+//            
+//            backView.frame= CGRectMake(0, 0, titlebtn.width, contentLab.bottom);
+//            [LZDAleterView setParentView:self.window];
+//            
+//            [LZDAleterView setButtonTitles:[NSMutableArray arrayWithObjects:@"取消",@"去更新",  nil]];
+//            
+//            
+//            [LZDAleterView setUseMotionEffects:YES];
+//            
+//            [LZDAleterView show];
+//            
+//            [LZDAleterView setOnButtonTouchUpInside:^(CustomIOSAlertView *alertView, int buttonIndex) {
+//                
+//                [alertView close];
+//                if (buttonIndex==1) {
+//                    
+//                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/cn/app/shang-xiao-le/id1130860710?mt=8"]];
+//                }
+//                
+//            }];
+//        }
             NSArray *update_content = result[@"update_content"];
             NSString *content_S = @"";
             for (NSString *str in update_content) {
+                if (content_S.length ==0) {
+                    content_S = str;
+                }else
                 content_S = [NSString stringWithFormat:@"%@\n%@",content_S,str];
             }
-            
-            UILabel *contentLab = [[UILabel alloc]init];
-            contentLab.text =content_S;
-            contentLab.textColor =[UIColor blackColor];
-            contentLab.numberOfLines= 0;
-            contentLab.font = [UIFont systemFontOfSize:14];
-            CGFloat hh = [contentLab.text boundingRectWithSize:CGSizeMake(kWeChatScreenWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:contentLab.font} context:nil].size.height;
-            
-            contentLab.frame = CGRectMake(kWeChatScreenWidth*0.1, 40, kWeChatScreenWidth*0.7, hh+50);
-            [backView addSubview:contentLab];
-            
-            backView.frame= CGRectMake(0, 0, titlebtn.width, contentLab.bottom);
-            [LZDAleterView setParentView:self.window];
-            
-            [LZDAleterView setButtonTitles:[NSMutableArray arrayWithObjects:@"取消",@"去更新",  nil]];
-            
-            
-            [LZDAleterView setUseMotionEffects:YES];
-            
-            [LZDAleterView show];
-            
-            [LZDAleterView setOnButtonTouchUpInside:^(CustomIOSAlertView *alertView, int buttonIndex) {
-                
-                [alertView close];
-                if (buttonIndex==1) {
-                    
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/cn/app/shang-xiao-le/id1130860710?mt=8"]];
-                }
-                
-            }];
+            XLAlertView *xlAlertView = [[XLAlertView alloc]initWithTitle:@"版本更新" message:content_S sureBtn:@"立即更新" cancleBtn:@"下次提醒" logo:@"圆形logo" bgImageView:@"主题背景"];
+            xlAlertView.resultIndex = ^(NSInteger index){
+                //回调---处理一系列动作
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/cn/app/shang-xiao-le/id1130860710?mt=8"]];
+            };
+            [xlAlertView showXLAlertView];
         }
-        
         
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
