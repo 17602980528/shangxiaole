@@ -34,18 +34,21 @@
 #import "ShareViewController.h"
 #import "LZDBASEViewController.h"
 
-#import "LZDUserInfoVC.h"
-
-
+//#import "LZDUserInfoVC.h"
+#import "PersonalEricCell.h"
+#import "LZDCenterViewController.h"
 //#import "UMSocial.h"
 #import <UMSocialCore/UMSocialCore.h>
 #import "QRcodeUIViewController.h"
-
+#import "MineInfoVCSecond.h"
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UIView *shareView;
     NSArray *array_p;
-
+    UIImageView *mom;
+    UIImageView *headImageView;
+    UILabel * signLabel;
+    
 }
 @property(nonatomic,weak)UITableView *Mytable;
 @property(nonatomic,strong)NSMutableArray *data;
@@ -62,16 +65,16 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor= [UIColor whiteColor];
+    self.view.backgroundColor= RGB(240, 240, 240);
     [self _initTable];
     //获取通知中心单例对象
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
     [center addObserver:self selector:@selector(notice:) name:@"signNotice" object:nil];
-   
+    
     [self getData];
     
-   
+    
     
 }
 -(void)getData{
@@ -105,7 +108,7 @@
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
     [params setObject:@"integral" forKey:@"type"];
-
+    
     
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         
@@ -127,14 +130,36 @@
     self.navigationController.navigationBarHidden = YES;
     self.allPoint = @"0";
     [self _loading];
+    if (mom) {
+        mom.frame=CGRectMake(0, 0, SCREENWIDTH, 166);
+        headImageView.center=mom.center;
+        headImageView.bounds=CGRectMake(0, 0, 70, 70);
+        headImageView.layer.cornerRadius=headImageView.width/2;
+        headImageView.clipsToBounds=YES;
+        signLabel.frame=CGRectMake((SCREENWIDTH-200)/2, headImageView.bottom+10, 200, 20);
+        signLabel.alpha=1.0f;
+    }
+    
+    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    if (appdelegate.IsLogin) {
+        NSString *string=[NSString stringWithFormat:@"%@%@",HEADIMAGE,[appdelegate.userInfoDic objectForKey:@"headimage"]];
+        
+        NSURL * nurl1=[NSURL URLWithString:[string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+        [headImageView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
+        signLabel.text = [NSString getTheNoNullStr:appdelegate.userInfoDic[@"nickname"] andRepalceStr:@"未设置"];
+        
+    }else{
+        headImageView.image=[UIImage imageNamed:@"头像"];
+        signLabel.text=@"未登录";
+    }
     
 }
 -(void)_loading
 {
-
+    
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     
-   
+    
     if (appdelegate.IsLogin) {
         [self postRequestPoints];
     }else{
@@ -142,75 +167,103 @@
         
         [self.Mytable reloadSections:indexset withRowAnimation:UITableViewRowAnimationNone];
     }
-      
-
+    
+    
 }
+//添加下部的TableView
 //添加下部的TableView
 -(void)_initTable
 {
-    UITableView *mytable = [[UITableView alloc]initWithFrame:CGRectMake(0, -20, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStyleGrouped];
+    UITableView *mytable = [[UITableView alloc]initWithFrame:CGRectMake(0, -20, SCREENWIDTH, SCREENHEIGHT - 49) style:UITableViewStyleGrouped];
+    mytable.backgroundColor=[UIColor clearColor];
     mytable.dataSource = self;
     mytable.delegate = self;
+    mytable.contentInset = UIEdgeInsetsMake(166, 0, 0, 0);
     mytable.showsVerticalScrollIndicator = NO;
     mytable.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.Mytable = mytable;
     [self.view addSubview:mytable];
     
+    mom=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 166)];
+    mom.userInteractionEnabled=YES;
+    mom.image=[UIImage imageNamed:@"bg(1)"];
+    mom.contentMode=UIViewContentModeScaleAspectFill;
+    [self.view addSubview:mom];
+    
+    headImageView=[[UIImageView alloc]init];
+    headImageView.contentMode=UIViewContentModeScaleAspectFill;
+    headImageView.bounds=CGRectMake(0, 0, 70, 70);
+    headImageView.center=mom.center;
+    headImageView.layer.cornerRadius=headImageView.width/2;
+    headImageView.clipsToBounds=YES;
+    headImageView.userInteractionEnabled=YES;
+    headImageView.image=[UIImage imageNamed:@"头像"];
+    [mom addSubview:headImageView];
+    
+    
+    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(HeadImageAction)];
+    [headImageView addGestureRecognizer:tap];
+    
+    
+    signLabel = [[UILabel alloc]initWithFrame:CGRectMake((mom.width-200)/2, headImageView.bottom+10, 200, 20)];
+    signLabel.text =@"未登录";
+    signLabel.textAlignment = NSTextAlignmentCenter;
+    signLabel.textColor = [UIColor whiteColor];
+    [mom addSubview:signLabel];
+    
+    AppDelegate *appdelegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    if (appdelegate.IsLogin) {
+        NSString *string=[NSString stringWithFormat:@"%@%@",HEADIMAGE,[appdelegate.userInfoDic objectForKey:@"headimage"]];
+        
+        NSURL * nurl1=[NSURL URLWithString:[string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+        [headImageView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
+        signLabel.text = [NSString getTheNoNullStr:appdelegate.userInfoDic[@"nickname"] andRepalceStr:@"未设置"];
+        
+    }else{
+        headImageView.image=[UIImage imageNamed:@"头像"];
+        signLabel.text=@"未登录";
+    }
+    
+    
 }
+
 -(NSMutableArray *)data{
     _data=nil;
     if (_data==nil) {
         _data = [NSMutableArray array];
         
         //创建cell模型
-        //零区
-        Mygroup *group_header = [[Mygroup alloc] init];
-        [_data addObject:group_header];
-
         
         //一区
-        Myitem *item10 = [Myitem itemsWithImg:@"mine_vip_n" title:@"我的会员卡" vcClass:[CardVipController class]];
-        Myitem *item11 = [Myitem itemsWithImg:@"mine_money_n" title:@"我的钱包" vcClass:[MyMoneybagController class]];
+        Myitem *item10 = [Myitem itemsWithImg:@"会员卡ss" title:@"我的会员卡" vcClass:[CardVipController class]];
+        Myitem *item11 = [Myitem itemsWithImg:@"钱包" title:@"我的钱包" vcClass:[MyMoneybagController class]];
+        Myitem *item13 = [Myitem itemsWithImg:@"优惠券ss" title:@"我的优惠券" vcClass:[MyCashCouponViewController class]];
+        Myitem *item14 = [Myitem itemsWithImg:@"消费" title:@"我的消费" vcClass:[MyOderController class]];
         
-//        NSString *jifen = [[NSString alloc]initWithFormat:@"我的乐点(%@)",self.allPoint];
-//
-//        Myitem *item12 = [Myitem itemsWithImg:@"mine_m_n" title:jifen vcClass:[PointRuleViewController class]];
-        
-        Myitem *item13 = [Myitem itemsWithImg:@"mine_vou_n" title:@"我的优惠券" vcClass:[MyCashCouponViewController class]];
-        Myitem *item14 = [Myitem itemsWithImg:@"mine_cust_n" title:@"我的消费" vcClass:[MyOderController class]];
-        
+        Myitem *item12=[Myitem itemsWithImg:@"积分商城" title:@"积分商城" vcClass:[LZDCenterViewController class]];
         Mygroup *group1 = [[Mygroup alloc] init];
-        group1.items = @[item10,item11,item13,item14];
+        group1.items = @[item10,item13,item11,item14,item12];
         [_data addObject:group1];
-
+        
         
         //二区
         
-        Myitem *item20 = [Myitem itemsWithImg:@"mine_collect_n" title:@"我的收藏" vcClass:[FavorateViewController class]];
-        
-        Myitem *item21 = [Myitem itemsWithImg:@"mine_ea_n" title:@"我的评价" vcClass:[NoEvaluateController class]];
-
+        Myitem *item20 = [Myitem itemsWithImg:@"收藏" title:@"我的收藏" vcClass:[FavorateViewController class]];
+        Myitem *item21 = [Myitem itemsWithImg:@"评价" title:@"我的评价" vcClass:[NoEvaluateController class]];
+        Myitem *item30 = [Myitem itemsWithImg:@"推荐" title:@"我的推荐" vcClass:[FriendController class]];
+        Myitem *item31 = [Myitem itemsWithImg:@"乐社区" title:@"乐社区" vcClass:[LZDBASEViewController class]];
+        Myitem *item32 = [Myitem itemsWithImg:@"邀请好友" title:@"邀请好友使用" vcClass:[ShareViewController class]];
         
         Mygroup *group2 = [[Mygroup alloc] init];
-        group2.items = @[item20,item21];
+        group2.items = @[item31,item20,item21,item30,item32];
         [_data addObject:group2];
         
-
-        //三区
-        
-        Myitem *item30 = [Myitem itemsWithImg:@"mine_re_n" title:@"我的推荐" vcClass:[FriendController class]];
-        Myitem *item31 = [Myitem itemsWithImg:@"mine_comm_n" title:@"我的好友" vcClass:[LZDBASEViewController class]];
-        Myitem *item32 = [Myitem itemsWithImg:@"mine_inva_n" title:@"邀请好友使用" vcClass:[ShareViewController class]];
-        Mygroup *group3 = [[Mygroup alloc]init];
-        group3.items = @[item30,item31,item32];
-        [_data addObject:group3];
-
-       
-      
     }
     
     return _data;
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
     return self.data.count;
@@ -219,146 +272,56 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section==0) {
-        return 1;
-    }else{
-        Mygroup *group = self.data[section];
-        return group.items.count;
- 
-    }
+    Mygroup *group = self.data[section];
+    return group.items.count;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    
-    return 10;
-    
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section==0) {
-        return 106+20;
-    }else{
-        return 44;
-    }
-}
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
+    return 10;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 45;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.section==0) {
-        static NSString *cellIndentifier = @"cellIndentifier";
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        
-        if (!cell) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIndentifier];
-//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.backgroundColor = [UIColor whiteColor];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        
-        for (UIView *view in cell.subviews) {
-            [view removeFromSuperview];
-        }
-        
-        UIView *HeadView0 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 20)];
-        HeadView0.backgroundColor = NavBackGroundColor;//[UIColor whiteColor];
-        [cell addSubview:HeadView0];
-        
-        UIView *HeadView = [[UIView alloc]initWithFrame:CGRectMake(0, 20, SCREENWIDTH, 106)];
-        HeadView.backgroundColor = NavBackGroundColor;//[UIColor whiteColor];
-        [cell addSubview:HeadView];
-        
-        //    头像 名 字
-        UIButton *headImage = [UIButton buttonWithType:UIButtonTypeCustom];
-        [headImage setImage:[UIImage imageNamed:@"头像"] forState:UIControlStateNormal];
-        headImage.frame = CGRectMake(12, 17, 72, 72);
-        headImage.imageView.layer.cornerRadius = headImage.width/2;
-        [headImage addTarget:self action:@selector(HeadImageAction) forControlEvents:UIControlEventTouchUpInside];
-        headImage.imageView.contentMode = UIViewContentModeScaleAspectFill;
-        
-        [HeadView addSubview:headImage];
-        
-        UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(95, 32, SCREENWIDTH-100, 20)];
-        nameLabel.text = @"未登录";
-        nameLabel.textColor = [UIColor whiteColor];
-        nameLabel.font  =[UIFont systemFontOfSize:18];
-        [HeadView addSubview:nameLabel];
-        
-//        UILabel *describe_lab = [[UILabel alloc]initWithFrame:CGRectMake(95, 62, SCREENWIDTH-100, 14)];
-//        describe_lab.textColor = RGB(51,51,51);
-//        describe_lab.font  =[UIFont systemFontOfSize:13];
-//        describe_lab.text = @"个性签名未设置";
-//
-//        [HeadView addSubview:describe_lab];
-        
-        UIImageView *user_levelImg = [[UIImageView alloc]initWithFrame:CGRectMake(95, 62, 36, 15)];
-      
-        [HeadView addSubview:user_levelImg];
-
-
-        AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-        
-        if (appdelegate.IsLogin) {
-            [headImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,[appdelegate.userInfoDic  objectForKey:@"headimage"]]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"头像.png"]];
-            
-            if ([[appdelegate.userInfoDic  objectForKey:@"user_level"] isEqualToString:@"VIP"]) {
-                user_levelImg.image = [UIImage imageNamed:@"my_vip_n"];
-
-            }else if ([[appdelegate.userInfoDic  objectForKey:@"user_level"] isEqualToString:@"SVIP"]){
-                user_levelImg.image = [UIImage imageNamed:@"my_svip_n"];
-
-            }
-                
-            nameLabel.text = [NSString getTheNoNullStr:appdelegate.userInfoDic[@"nickname"] andRepalceStr:@"未设置"];
-
-//            NSUserDefaults *df=[NSUserDefaults standardUserDefaults];
-//            NSString *sign=[NSString getTheNoNullStr:[df objectForKey:@"specialSign"] andRepalceStr:@"未设置"];
-//            describe_lab.text = sign;
-
-        }
-
-       
-        
-        
-        return cell;
-    }else{
-        
-    Mycell *cell = [Mycell cellForTableView:tableView];
+    
+    
+    PersonalEricCell *cell = [PersonalEricCell cellForTableView:tableView];
     Mygroup *group = self.data[indexPath.section];
     Myitem *myItem = group.items[indexPath.row];
     cell.cellItem = myItem;
-        
-        if (group.items.count>0) {
-            if (indexPath.row != group.items.count-1) {
-                UIView *line = [[UIView alloc]initWithFrame:CGRectMake(12, cell.height-1, SCREENWIDTH, 1)];
-                line.backgroundColor = RGB(234,234,234);
-                [cell addSubview:line];
-                
-            }
- 
-        }
-        
-       return cell;
-        
+    cell.bgImageView.backgroundColor=[UIColor clearColor];
+    if (indexPath.row==0) {
+        cell.bgImageView.image=[UIImage imageNamed:@"导角矩形上"];
+    }else if (indexPath.row==4){
+        cell.bgImageView.image=[UIImage imageNamed:@"导角矩形下"];
+    }else{
+        cell.bgImageView.image=[UIImage imageNamed:@""];
+        cell.bgImageView.backgroundColor=[UIColor whiteColor];
     }
-
+    if (indexPath.section==0&&indexPath.row==4) {
+        cell.desLale.hidden=NO;
+    }else{
+        cell.desLale.hidden=YES;
+    }
+    return cell;
+    
 }
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section ==0) {
-        
-        [self HeadImageAction];
-    }else{
-        
     
     Mygroup *group = self.data[indexPath.section];
     Myitem *item = group.items[indexPath.row];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
+    
     
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     if (!appdelegate.IsLogin) {
@@ -378,43 +341,39 @@
                 [self.navigationController pushViewController:PointRuleView animated:YES];
                 
             }else if([vc isKindOfClass:[ShareViewController class]]){
-
-                    shareView.hidden = NO;
-
+                
+                shareView.hidden = NO;
+                
             }else{
                 [self.navigationController pushViewController:vc animated:YES];
-
+                
             }
             
-            }
         }
     }
-        
-        
-
+    
 }
 
 //头像的点击事件
 -(void)HeadImageAction
 {
     NSLog(@"头像");
-
+    
     
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     if (appdelegate.IsLogin) {
         
-        LZDUserInfoVC *VC = [[LZDUserInfoVC alloc]init];
-        
-
-//        UserInfoViewController *userInfoVC = [[UserInfoViewController alloc]init];
-        
-        [self.navigationController pushViewController:VC animated:YES];;
+        //        LZDUserInfoVC *VC = [[LZDUserInfoVC alloc]init];
+        //
+        //        [self.navigationController pushViewController:VC animated:YES];
+        MineInfoVCSecond *vc=[[MineInfoVCSecond alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else{
         LandingController *LandVC = [[LandingController alloc]init];
         
-        [self.navigationController pushViewController:LandVC animated:YES];;
+        [self.navigationController pushViewController:LandVC animated:YES];
     }
 }
 
@@ -464,8 +423,8 @@
 -(void)creatShareView{
     
     
-//    array_p = [NSArray arrayWithObjects:UMShareToQQ,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina, nil];
-   
+    //    array_p = [NSArray arrayWithObjects:UMShareToQQ,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina, nil];
+    
     
     
     shareView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
@@ -499,7 +458,7 @@
             width = 50;
         }else{
             width = 63;
-
+            
         }
         CGFloat bod = (SCREENWIDTH-18*2-width*4)/3;
         
@@ -541,8 +500,8 @@
     
     NSString *share_text =[NSString getTheNoNullStr:_data_D[@"content"] andRepalceStr:@"分享的text"];
     
-            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_data_D[@"image"]]]];
-
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_data_D[@"image"]]]];
+    
     
     UMShareWebpageObject *shareObj = [UMShareWebpageObject shareObjectWithTitle:share_title descr:share_text thumImage:image];
     
@@ -554,8 +513,8 @@
     
     shareObj.webpageUrl = codeString;
     messageObj.shareObject = shareObj;
-   
-//    array_p = [[NSArray alloc]initWithObjects:@[[UMSocialPlatformType_QQ n]] count:4];
+    
+    //    array_p = [[NSArray alloc]initWithObjects:@[[UMSocialPlatformType_QQ n]] count:4];
     
     
     //   NSString *codeString = _data_D[0][0];
@@ -570,16 +529,16 @@
     }else  if (sender.tag == 1) {
         
         [self shareTo:UMSocialPlatformType_WechatSession withMessageObj:messageObj];
-
-
+        
+        
         
     }else if (sender.tag == 2) {
         
         
         
         [self shareTo:UMSocialPlatformType_WechatTimeLine withMessageObj:messageObj];
-
-
+        
+        
     }else if (sender.tag == 3) {
         
         
@@ -593,8 +552,8 @@
         
         [self shareTo:UMSocialPlatformType_Sina withMessageObj:messageObj];
         
-
-
+        
+        
     }
     
     
@@ -611,7 +570,7 @@
             NSLog(@"************Share fail with error %@*********",error);
         }else{
             NSLog(@"response data is %@",result);
-
+            
             if ([result isKindOfClass:[UMSocialShareResponse class]]) {
                 if (platforeType == UMSocialPlatformType_WechatTimeLine || platforeType == UMSocialPlatformType_Sina) {
                     
@@ -625,10 +584,10 @@
                     [paramer setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
                     if (platforeType == UMSocialPlatformType_WechatTimeLine) {
                         [paramer setObject:@"微信分享" forKey:@"tip"];
-
+                        
                     }else{
                         [paramer setObject:@"微博分享" forKey:@"tip"];
-
+                        
                     }
                     
                     [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
@@ -642,14 +601,14 @@
                     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
                         
                     }];
-
+                    
                 }
                 
                 
                 
             }else{
                 NSLog(@"response data is %@",result);
- 
+                
             }
         }
     }];
@@ -662,7 +621,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-   
+    
     self.navigationController.navigationBarHidden = NO;
     
 }
@@ -673,13 +632,64 @@
 }
 -(void)dealloc{
     [shareView removeFromSuperview];
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    CGFloat offset_Y = scrollView.contentOffset.y+186;
+    NSLog(@"======%f",offset_Y);
+    if  (offset_Y < 0) {
+        CGRect frame =mom.frame;
+        
+        CGFloat height=166 +ABS(offset_Y);
+        frame.size.height=height;
+        mom.frame=frame;
+        
+        headImageView.center=mom.center;
+        headImageView.bounds=CGRectMake(0, 0, 70+ABS(offset_Y), 70+ABS(offset_Y));
+        
+        headImageView.layer.cornerRadius=headImageView.width/2.0;
+        headImageView.clipsToBounds=YES;
+        CGRect frame2 = signLabel.frame;
+        frame2.origin.y=headImageView.bottom+10;
+        signLabel.frame=frame2;
+        
+    }else if(offset_Y > 0){
+        CGRect frame =mom.frame;
+        CGFloat height=166 -ABS(offset_Y);
+        signLabel.alpha=1*(66-ABS(offset_Y))/66.0;
+        headImageView.bounds=CGRectMake(0, 0, 70-ABS(offset_Y), 70-ABS(offset_Y));
+        
+        headImageView.layer.cornerRadius=headImageView.width/2.0;
+        headImageView.clipsToBounds=YES;
+        
+        if (ABS(offset_Y)>=26) {
+            headImageView.bounds=CGRectMake(0, 0, 40, 40);
+            headImageView.layer.cornerRadius=20;
+        }
+        if (height<=80) {
+            height=80;
+            signLabel.alpha=0;
+            
+        }
+        frame.size.height=height;
+        
+        mom.frame=frame;
+        headImageView.center=mom.center;
+        
+        CGRect frame2 = signLabel.frame;
+        frame2.origin.y=headImageView.bottom+10;
+        signLabel.frame=frame2;
+        
+    }else{
+        
+    }
+}
 
 
 @end

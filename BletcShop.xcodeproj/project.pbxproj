@@ -48,6 +48,13 @@
 		182F3C581F0CEDCA00540FAE /* CardBusinessTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182F3C561F0CEDCA00540FAE /* CardBusinessTableViewCell.xib */; };
 		182F3C5B1F0CEDD800540FAE /* 导航栏定位.png in Resources */ = {isa = PBXBuildFile; fileRef = 182F3C591F0CEDD800540FAE /* 导航栏定位.png */; };
 		182F3C5C1F0CEDD800540FAE /* 咨询.png in Resources */ = {isa = PBXBuildFile; fileRef = 182F3C5A1F0CEDD800540FAE /* 咨询.png */; };
+		182F3C611F0CEFB300540FAE /* PersonalEricCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182F3C5F1F0CEFB300540FAE /* PersonalEricCell.m */; };
+		182F3C621F0CEFB300540FAE /* PersonalEricCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182F3C601F0CEFB300540FAE /* PersonalEricCell.xib */; };
+		182F3C661F0CEFC600540FAE /* 导角矩形上.png in Resources */ = {isa = PBXBuildFile; fileRef = 182F3C631F0CEFC600540FAE /* 导角矩形上.png */; };
+		182F3C671F0CEFC600540FAE /* 导角矩形下.png in Resources */ = {isa = PBXBuildFile; fileRef = 182F3C641F0CEFC600540FAE /* 导角矩形下.png */; };
+		182F3C681F0CEFC600540FAE /* bg(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 182F3C651F0CEFC600540FAE /* bg(1).png */; };
+		182F3C6C1F0CEFD900540FAE /* MineInfoVCSecond.m in Sources */ = {isa = PBXBuildFile; fileRef = 182F3C6A1F0CEFD900540FAE /* MineInfoVCSecond.m */; };
+		182F3C6D1F0CEFD900540FAE /* MineInfoVCSecond.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182F3C6B1F0CEFD900540FAE /* MineInfoVCSecond.xib */; };
 		182FAAA61D502FAD0018F872 /* custom3.png in Resources */ = {isa = PBXBuildFile; fileRef = 182FAAA51D502FAD0018F872 /* custom3.png */; };
 		18302A2D1DAC8B0E00E6EF8C /* CanPayCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18302A2C1DAC8B0E00E6EF8C /* CanPayCardViewController.m */; };
 		183577411EC40AFF00F321F1 /* CheckOldPassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 183577401EC40AFF00F321F1 /* CheckOldPassVC.m */; };
@@ -1088,6 +1095,15 @@
 		182F3C561F0CEDCA00540FAE /* CardBusinessTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardBusinessTableViewCell.xib; sourceTree = "<group>"; };
 		182F3C591F0CEDD800540FAE /* 导航栏定位.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "导航栏定位.png"; sourceTree = "<group>"; };
 		182F3C5A1F0CEDD800540FAE /* 咨询.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "咨询.png"; sourceTree = "<group>"; };
+		182F3C5E1F0CEFB300540FAE /* PersonalEricCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalEricCell.h; sourceTree = "<group>"; };
+		182F3C5F1F0CEFB300540FAE /* PersonalEricCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalEricCell.m; sourceTree = "<group>"; };
+		182F3C601F0CEFB300540FAE /* PersonalEricCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalEricCell.xib; sourceTree = "<group>"; };
+		182F3C631F0CEFC600540FAE /* 导角矩形上.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "导角矩形上.png"; sourceTree = "<group>"; };
+		182F3C641F0CEFC600540FAE /* 导角矩形下.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "导角矩形下.png"; sourceTree = "<group>"; };
+		182F3C651F0CEFC600540FAE /* bg(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg(1).png"; sourceTree = "<group>"; };
+		182F3C691F0CEFD900540FAE /* MineInfoVCSecond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineInfoVCSecond.h; sourceTree = "<group>"; };
+		182F3C6A1F0CEFD900540FAE /* MineInfoVCSecond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineInfoVCSecond.m; sourceTree = "<group>"; };
+		182F3C6B1F0CEFD900540FAE /* MineInfoVCSecond.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineInfoVCSecond.xib; sourceTree = "<group>"; };
 		182FAAA51D502FAD0018F872 /* custom3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom3.png; sourceTree = "<group>"; };
 		18302A2B1DAC8B0E00E6EF8C /* CanPayCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanPayCardViewController.h; sourceTree = "<group>"; };
 		18302A2C1DAC8B0E00E6EF8C /* CanPayCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanPayCardViewController.m; sourceTree = "<group>"; };
@@ -2896,6 +2912,15 @@
 			children = (
 				079386C41C55BC310021B385 /* MineViewController.h */,
 				079386C51C55BC310021B385 /* MineViewController.m */,
+				182F3C5E1F0CEFB300540FAE /* PersonalEricCell.h */,
+				182F3C5F1F0CEFB300540FAE /* PersonalEricCell.m */,
+				182F3C601F0CEFB300540FAE /* PersonalEricCell.xib */,
+				182F3C631F0CEFC600540FAE /* 导角矩形上.png */,
+				182F3C641F0CEFC600540FAE /* 导角矩形下.png */,
+				182F3C651F0CEFC600540FAE /* bg(1).png */,
+				182F3C691F0CEFD900540FAE /* MineInfoVCSecond.h */,
+				182F3C6A1F0CEFD900540FAE /* MineInfoVCSecond.m */,
+				182F3C6B1F0CEFD900540FAE /* MineInfoVCSecond.xib */,
 				184C720A1EC3050D0065EE65 /* 密码管理 */,
 			);
 			name = "我的界面";
@@ -5683,6 +5708,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				182F3C6D1F0CEFD900540FAE /* MineInfoVCSecond.xib in Resources */,
 				1C9E82421C60557E0007BF02 /* 5(7)@2x.png in Resources */,
 				D93027E21CFEB641007447D2 /* star_default.png in Resources */,
 				D98FDF851E601C280057C206 /* AD_ad_is@3x.png in Resources */,
@@ -5738,6 +5764,7 @@
 				D9FF0D971D53304C00443312 /* 图标-09new.png in Resources */,
 				D9B3A5C81D74255700F3F27E /* MWPhotoBrowser.bundle in Resources */,
 				18EB36C41D4B5A7C0087CE1A /* 反1-03.png in Resources */,
+				182F3C661F0CEFC600540FAE /* 导角矩形上.png in Resources */,
 				D93C0D611D251E7B001A1AC1 /* 小标-16.png in Resources */,
 				D94DF2331CAE08AB000D5B69 /* colletc_default.png in Resources */,
 				182F3C511F0CEDA800540FAE /* 返回erci.png in Resources */,
@@ -5913,6 +5940,7 @@
 				1852FAD81D557DF2009CF1B2 /* wa-01.png in Resources */,
 				D93C0D5A1D251E7B001A1AC1 /* 小标-08.png in Resources */,
 				D924837E1D1A75CA00AE252C /* wechat_img.png in Resources */,
+				182F3C671F0CEFC600540FAE /* 导角矩形下.png in Resources */,
 				D923025B1D152443008FB9A9 /* user_es.png in Resources */,
 				D94DF23D1CAE08F7000D5B69 /* whitestar.png in Resources */,
 				18D7C4921D5B12BA00AEF545 /* mohu-14.png in Resources */,
@@ -5940,6 +5968,7 @@
 				D977C1461EC97BE800CA5AF5 /* WechatIMG16.png in Resources */,
 				D92302611D1528BB008FB9A9 /* entrance_selected.png in Resources */,
 				D9637DFF1D59BAF900C19D0B /* admin_p.png in Resources */,
+				182F3C681F0CEFC600540FAE /* bg(1).png in Resources */,
 				D95BAE4B1D542FD500ED0CDC /* award_01.png in Resources */,
 				D925D1861E7106EB0000B8B1 /* SelectAddressViewController.xib in Resources */,
 				D94DF2531CAE0AA4000D5B69 /* star_highlighted@2x.png in Resources */,
@@ -6125,6 +6154,7 @@
 				D9345E651E766EE6006B2AC1 /* DefaultAddressCell.xib in Resources */,
 				1A8312811D88544D001BC3B6 /* chat_sender_audio_playing_000@2x.png in Resources */,
 				1836B83B1E559D5000B587A6 /* Active_top1.jpg in Resources */,
+				182F3C621F0CEFB300540FAE /* PersonalEricCell.xib in Resources */,
 				D93C0D561D251E7B001A1AC1 /* 小标-03.png in Resources */,
 				1A83127A1D885444001BC3B6 /* chat_receiver_audio_playing001@2x.png in Resources */,
 				D981FD101E2616080026E4B2 /* README.txt in Resources */,
@@ -6432,6 +6462,7 @@
 				1828C7E51E272D4A00480DB9 /* CardEricShareViewController.m in Sources */,
 				D949EC2D1CE192970023B6D6 /* BHotCityCell.m in Sources */,
 				18E3DA151D82460A0089597B /* SoundPaly.m in Sources */,
+				182F3C6C1F0CEFD900540FAE /* MineInfoVCSecond.m in Sources */,
 				D94432C81D18FC9900B45135 /* TextStorage.m in Sources */,
 				D947E4731D7D4CB000F9FEE8 /* SDRefreshFooterView.m in Sources */,
 				D9A06B5B1D8679C30037795B /* EMAudioRecorderUtil.m in Sources */,
@@ -6599,6 +6630,7 @@
 				D9ABB1AF1EC9408E00FBE080 /* TableViewCell.m in Sources */,
 				1A4173C01D787C1500A70601 /* EMChooseViewController.m in Sources */,
 				D987BB361E792C8E008AE24D /* UserInfoEditVC.m in Sources */,
+				182F3C611F0CEFB300540FAE /* PersonalEricCell.m in Sources */,
 				D9BB4DDE1E05019400971BCC /* DelayScanVC.m in Sources */,
 				D98533341DDE9B21004E1E6F /* NameSignViewController.m in Sources */,
 				D9B3A5BA1D74255700F3F27E /* UIView+EMWebCacheOperation.m in Sources */,

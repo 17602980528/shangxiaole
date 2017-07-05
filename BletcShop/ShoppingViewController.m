@@ -22,9 +22,9 @@
 
 #import "ProvinceModel.h"
 #import "CityModel.h"
+#import "SDCycleScrollView.h"
 
-
-@interface ShoppingViewController ()<UITableViewDataSource,UITableViewDelegate,DOPDropDownMenuDataSource,DOPDropDownMenuDelegate,BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
+@interface ShoppingViewController ()<UITableViewDataSource,UITableViewDelegate,DOPDropDownMenuDataSource,DOPDropDownMenuDelegate,BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,SDCycleScrollViewDelegate>
 {
     BMKMapView* _mapView;
     BMKLocationService* _locService;
@@ -38,9 +38,13 @@
     NSDictionary *curentEare;
     
     NSDictionary *currentCityDic;
-
+    SDCycleScrollView *cycleScrollView2;
+    
+    UIScrollView *bottomView;
+    
 }
-
+@property(nonatomic,strong)NSMutableArray* adverImages;
+@property(nonatomic,strong)UIView *headerView;//头view
 @property(nonatomic,strong)DOPIndexPath *indexpathSelect;
 @property(nonatomic,weak)UILabel *GpsLabel;//地址的lable
 @property(nonatomic,weak)UITableView *shopTabel;//商户的列表
@@ -93,6 +97,8 @@
 {
     [super viewWillAppear:animated];
     
+    [cycleScrollView2 adjustWhenControllerViewWillAppera];
+    
     currentCityDic = [[NSUserDefaults standardUserDefaults]objectForKey:@"currentCityDic"] ? [[NSUserDefaults standardUserDefaults]objectForKey:@"currentCityDic"] :[[NSUserDefaults standardUserDefaults]objectForKey:@"locationCityDic"] ;
     
     _classifys = [[NSMutableArray alloc]initWithArray:@[@"全部分类",@"美容",@"美发",@"养发",@"美甲",@"足疗按摩",@"皮革养护",@"汽车服务",@"洗衣",@"瑜伽舞蹈",@"瘦身纤体",@"宠物店",@"电影院",@"运动健身",@"零售连锁",@"餐饮食品",@"医药",@"游乐场",@"娱乐KTV",@"婚纱摄影",@"游泳馆",@"超市购物",@"甜点饮品",@"酒店",@"教育培训",@"商务会所"]];
@@ -107,7 +113,7 @@
         
         
     }];
-
+    
     self.classifyString = [[NSString alloc]init];
     self.ereaString = [[NSString alloc]init];
     if ([appdelegate.menuString isEqualToString:@""]) {
@@ -179,7 +185,7 @@
         [self getData];
     }
     [_menu selectDefalutIndexPath];
-//     [self getIcons];
+    //     [self getIcons];
 }
 -(void)viewDidDisappear:(BOOL)animated
 {
@@ -201,12 +207,12 @@
     currentCityDic = [[NSUserDefaults standardUserDefaults]objectForKey:@"currentCityDic"] ? [[NSUserDefaults standardUserDefaults]objectForKey:@"currentCityDic"] :[[NSUserDefaults standardUserDefaults]objectForKey:@"locationCityDic"] ;
     
     [self getData];
-
+    
     
     [self _initView];
     [self _initTable];
     [self _initFootTab];
-   
+    
 }
 
 
@@ -222,7 +228,7 @@
     
     // 创建menu 第一次显示 不会调用点击代理，可以用这个手动调用
     [menu selectDefalutIndexPath];
-
+    
 }
 
 
@@ -264,9 +270,6 @@
 -(void)_initTable
 {
     UITableView *shopTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 155-60, SCREENWIDTH, SCREENHEIGHT-155-50+60) style:UITableViewStylePlain];
-    
-//    UITableView *shopTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 155-60, SCREENWIDTH, SCREENHEIGHT/2) style:UITableViewStylePlain];
-
     shopTable.delegate = self;
     shopTable.dataSource = self;
     shopTable.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -295,7 +298,7 @@
         [blockSelf postRequestShopWithAddress:blockSelf.ereaString];
         
     };
-
+    
 }
 
 /**
@@ -350,10 +353,10 @@
     [params setObject:address forKey:@"eare"];
     [params setObject:self.classifyString forKey:@"trade"];
     DebugLog(@"===url=%@\n===paramer==%@",url,params);
-  
+    
     
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
-//       NSLog(@"postRequestShop-----%@",result);
+        //       NSLog(@"postRequestShop-----%@",result);
         if ([result isKindOfClass:[NSArray class]]) {
             if (self.indexss==1) {
                 
@@ -369,11 +372,11 @@
             
             [self.shopTabel reloadData];
         }
-       
+        
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         [_refreshheader endRefreshing];
         [_refreshFooter endRefreshing];
-
+        
         NSLog(@"%@", error);
         
     }];
@@ -392,16 +395,16 @@
             if ([para[@"pay_type"] isEqualToString:@"click"]) {
                 
                 [self postRemainClickCount:para];
-
+                
             }
-
+            
         }
         
     }else{
         dic = [self.data1 objectAtIndex:indexPath.row];
-
+        
     }
-//    NSMutableDictionary *dic = [self.data1 objectAtIndex:indexPath.row];
+    //    NSMutableDictionary *dic = [self.data1 objectAtIndex:indexPath.row];
     
     NewShopDetailVC *vc= [self startSellerView:dic];
     vc.videoID=@"";
@@ -409,38 +412,38 @@
     vc.videoID=[NSString getTheNoNullStr:dic[@"video"] andRepalceStr:@""];
     [self.navigationController pushViewController:vc animated:YES];
     
-//    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/merchant/videoGet",BASEURL];
-//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    //获取商家手机号
-//    
-//    [params setObject:dic[@"muid"] forKey:@"muid"];
-//    
-//    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, NSArray* result)
-//     {
-//         NSLog(@"%@",result);
-//         if (result.count>0) {
-//             __block ShoppingViewController* tempSelf = self;
-//             if ([result[0][@"state"] isEqualToString:@"true"]) {
-//                 vc.videoID=result[0][@"video"];
-//                 
-//             }else{
-//                 vc.videoID=@"";
-//                 
-//             }
-//             [tempSelf.navigationController pushViewController:vc animated:YES];
-//         }else{
-//             __block ShoppingViewController* tempSelf = self;
-//             vc.videoID=@"";
-//             [tempSelf.navigationController pushViewController:vc animated:YES];
-//         }
-//         
-//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-//         NSLog(@"%@", error);
-//         __block ShoppingViewController* tempSelf = self;
-//         vc.videoID=@"";
-//         [tempSelf.navigationController pushViewController:vc animated:YES];
-//     }];
-//    
+    //    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/merchant/videoGet",BASEURL];
+    //    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    //    //获取商家手机号
+    //
+    //    [params setObject:dic[@"muid"] forKey:@"muid"];
+    //
+    //    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, NSArray* result)
+    //     {
+    //         NSLog(@"%@",result);
+    //         if (result.count>0) {
+    //             __block ShoppingViewController* tempSelf = self;
+    //             if ([result[0][@"state"] isEqualToString:@"true"]) {
+    //                 vc.videoID=result[0][@"video"];
+    //
+    //             }else{
+    //                 vc.videoID=@"";
+    //
+    //             }
+    //             [tempSelf.navigationController pushViewController:vc animated:YES];
+    //         }else{
+    //             __block ShoppingViewController* tempSelf = self;
+    //             vc.videoID=@"";
+    //             [tempSelf.navigationController pushViewController:vc animated:YES];
+    //         }
+    //
+    //     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+    //         NSLog(@"%@", error);
+    //         __block ShoppingViewController* tempSelf = self;
+    //         vc.videoID=@"";
+    //         [tempSelf.navigationController pushViewController:vc animated:YES];
+    //     }];
+    //
     
 }
 
@@ -493,7 +496,7 @@
     }else if (column == 1){
         
         return self.dataSourceProvinceArray.count;
-//        return self.areas.count;
+        //        return self.areas.count;
     }else {
         return self.sorts.count;
     }
@@ -507,9 +510,9 @@
         
         ProvinceModel *m = _dataSourceProvinceArray[indexPath.row];
         NSLog(@"titleForRowAtIndexPath=%@",m.name);
-
+        
         return m.name;
-//        return self.areas[indexPath.row];
+        //        return self.areas[indexPath.row];
     } else {
         return self.sorts[indexPath.row];
     }
@@ -522,12 +525,12 @@
 
 - (NSInteger)menu:(DOPDropDownMenu *)menu numberOfItemsInRow:(NSInteger)row column:(NSInteger)column
 {
-   
+    
     if (column==1) {
         NSLog(@"numberOfItemsInRow=====%ld",self.dataSourceCityArray.count);
         
-            return self.dataSourceCityArray.count;
-
+        return self.dataSourceCityArray.count;
+        
     }else return -1;
     
 }
@@ -541,8 +544,8 @@
         
         return m.name;
     }else
-    
-    return nil;
+        
+        return nil;
 }
 
 
@@ -552,16 +555,16 @@
     
     NSLog(@"currentSelectRowArray----%@",menu.currentSelectRowArray);
     NSLog(@"点击了 %ld - %ld - %ld 项目",indexPath.column,indexPath.row,indexPath.item);
-
-
+    
+    
     if (indexPath.item >= 0) {
         self.indexpathSelect =indexPath;
-
-
+        
+        
         [self getAdverListRequestWithIndePath:indexPath];
-       // [self postRequestShop];
+        // [self postRequestShop];
     }else {
-
+        
         if (indexPath.column == 0) {
             if([[self.classifys objectAtIndex:indexPath.row] isEqualToString:@"全部分类"]){
                 self.classifyString =@"";
@@ -569,7 +572,7 @@
                 self.classifyString = [self.classifys objectAtIndex:indexPath.row];
         }else if (indexPath.column == 1 ) {
             self.indexpathSelect =indexPath;
-
+            
             
             ProvinceModel *m = _dataSourceProvinceArray[indexPath.row];
             
@@ -580,11 +583,11 @@
         self.indexss=1;
         NSLog(@"点击了 %@ - %@",self.classifyString,self.ereaString);
         
-            [self getAdverListRequestWithIndePath:self.indexpathSelect];
-
-
+        [self getAdverListRequestWithIndePath:self.indexpathSelect];
+        
+        
     }
-   
+    
 }
 
 
@@ -693,9 +696,7 @@
         }
         
     }
-    cell.tradeLable.text=dic[@"trade"];
-    CGFloat width=[self calculateRowWidth: cell.tradeLable.text];
-    cell.tradeLable.frame=CGRectMake(76-width, 10, width, 12);
+    
     
     return cell;
     
@@ -705,25 +706,25 @@
 - (void)getData
 {
     self.indexpathSelect = [DOPIndexPath indexPathWithCol:1 row:0 item:-1];
-
+    
     //数据源数组:
     self.dataSourceProvinceArray = [NSMutableArray array];
     
     
-
+    
     arr = [[NSUserDefaults standardUserDefaults]objectForKey:@"currentEreaList"];
     
     
     
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-
+    
     NSString *currentEare = appdelegate.districtString.length>0?appdelegate.districtString:appdelegate.cityChoice;
     
     
     
     ProvinceModel *MM = [[ProvinceModel alloc]init];
     [MM setName:@"全城"];
-
+    
     for (int i = 0; i < arr.count; i ++) {
         NSDictionary *dic = arr[i];
         
@@ -734,7 +735,7 @@
             [self.dataSourceProvinceArray insertObject:model atIndex:0];
             if (i ==0) {
                 [self.dataSourceProvinceArray insertObject:MM atIndex:1];
-
+                
             }
             
         }else{
@@ -744,13 +745,13 @@
                 [self.dataSourceProvinceArray insertObject:MM atIndex:0];
                 
             }
-
+            
         }
-
+        
     }
     
     
-
+    
     
     
     
@@ -759,14 +760,14 @@
         
         
         [self getcityDataById:M.code AndIndexPath:nil];
-
+        
     }
 }
 
 //getcityDataById:这个方法里是网络请求数据的解析市数据信息
 - (void)getcityDataById:(NSString *)proID AndIndexPath:(DOPIndexPath*)indexPath
 {
-
+    
     
     NSString *url = [NSString stringWithFormat:@"%@Extra/address/getStreet",BASEURL];;
     
@@ -780,29 +781,29 @@
         //遍历当前数组给madel赋值
         [self.dataSourceCityArray removeAllObjects];
         
-
+        
         NSLog(@"indexPath-----%@=%ld=%ld=%ld",indexPath,indexPath.column ,indexPath.row,indexPath.item);
         
         if (!proID) {
             
             for (int i = 0; i <1; i ++) {
                 CityModel *mod = [[CityModel alloc] init];
-
+                
                 
                 if (i==0) {
-//                    [mod setName:@"全城"];
-
+                    //                    [mod setName:@"全城"];
+                    
                     [mod setName: currentCityDic[@"name"]];
-
+                    
                 }else{
-
+                    
                 }
                 
                 [self.dataSourceCityArray insertObject:mod atIndex:i];
-
+                
             }
-           
-        
+            
+            
         }else
         {
             for (NSDictionary *diction in result)
@@ -813,26 +814,26 @@
             }
         }
         
-     
         
         
         
-
+        
+        
         if (indexPath) {
             [self.menu reloadRightData:indexPath];
-
+            
         }else{
             
             
-
+            
             [_menu reloadData];
             
-
-            [self getAdverListRequestWithIndePath:self.indexpathSelect];
-
-//            [self performSelector:@selector(setdefaultTitle) withObject:nil afterDelay:0.2];
             
-               }
+            [self getAdverListRequestWithIndePath:self.indexpathSelect];
+            
+            //            [self performSelector:@selector(setdefaultTitle) withObject:nil afterDelay:0.2];
+            
+        }
         
         NSLog(@"=========%ld",self.dataSourceCityArray.count);
         
@@ -841,45 +842,45 @@
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error-----%@",error);
     }];
-
+    
     
     
     
 }
 //-(void)setdefaultTitle{
-//    
+//
 //    if ([_menu.dataSource respondsToSelector:@selector(menu:numberOfItemsInRow:column:)]) {
-//        
+//
 //        NSLog(@"setdefaultTitle======%ld===%ld===%ld",self.indexpathSelect.column,self.indexpathSelect.row,self.indexpathSelect.item);
-//        
+//
 //        [_menu selectIndexPath:self.indexpathSelect];
-//        
+//
 //    }
-//    
+//
 //
 //}
 //获取广告请求
 
 -(void)getAdverListRequestWithIndePath:(DOPIndexPath*)indexPath{
     
-
     
-//    ProvinceModel*provinceM =self.dataSourceProvinceArray[indexPath.row];
+    
+    //    ProvinceModel*provinceM =self.dataSourceProvinceArray[indexPath.row];
     ProvinceModel*provinceM;
     CityModel *cityM;
     if (_dataSourceProvinceArray.count!=0) {
         provinceM =self.dataSourceProvinceArray[indexPath.row];
         self.ereaString = provinceM.name;
-
+        
     }
     if (_dataSourceCityArray.count!=0 && indexPath.item>=0) {
-
+        
         cityM = self.dataSourceCityArray[indexPath.item];
         self.streetString = [NSString getTheNoNullStr:cityM.name andRepalceStr:@""];
-
+        
     }
-//    CityModel *cityM = self.dataSourceCityArray[indexPath.item];
-
+    //    CityModel *cityM = self.dataSourceCityArray[indexPath.item];
+    
     
     
     NSLog(@"----%ld==%ld==%ld",(long)indexPath.column,(long)indexPath.row,(long)indexPath.item);
@@ -890,7 +891,7 @@
     NSLog(@"=componentsSeparatedByString===%@==+%@",address,[address componentsSeparatedByString:@"全城"]);
     
     if ([address containsString:@"全城"]) {
-    
+        
         address = [[address componentsSeparatedByString:@"全城"] firstObject];
         
         
@@ -906,27 +907,27 @@
     DebugLog(@"===url=%@\n===paramer==%@",url,params);
     
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
-//                  NSLog(@"getAdverListRequestWithIndePath-----%@",result);
+        //                  NSLog(@"getAdverListRequestWithIndePath-----%@",result);
         if ([result isKindOfClass:[NSDictionary class]]) {
             
             
             NSArray *ad_A = result[@"advert"];
             
-           // NSArray *shop_A = result[@"merchant"];
+            // NSArray *shop_A = result[@"merchant"];
             
             [self.adverList removeAllObjects];
             
             
             for (NSDictionary *dic in ad_A) {
                 [self.adverList addObject:dic];
-
+                
                 
             }
-//            for (NSDictionary *dic in shop_A) {
-//                [self.adverList addObject:dic];
-//
-//                
-//            }
+            //            for (NSDictionary *dic in shop_A) {
+            //                [self.adverList addObject:dic];
+            //
+            //
+            //            }
             
             
             
@@ -984,23 +985,90 @@
          self.classifys=[[NSMutableArray alloc]initWithCapacity:0];
          for (NSDictionary *dic in result) {
              if (![dic[@"text"] isEqualToString:@"全部"]) {
-                  [self.classifys addObject:dic[@"text"]];
+                 [self.classifys addObject:dic[@"text"]];
              }
          }
          [self.classifys insertObject:@"全部分类" atIndex:0];
          [_menu reloadData];
-    
+         
      } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-       
+         
          NSLog(@"%@", error);
      }];
 }
-
-- (CGFloat)calculateRowWidth:(NSString *)string {
-    NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:10]};  //指定字号
-    CGRect rect = [string boundingRectWithSize:CGSizeMake(0, 12)/*计算宽度时要确定高度*/ options:NSStringDrawingUsesLineFragmentOrigin |
-                   NSStringDrawingUsesFontLeading attributes:dic context:nil];
-    return rect.size.width;
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section==0) {
+        return bottomView.bottom+5;
+    }else{
+        return 0.01;
+    }
+    
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (section==0) {
+        self.headerView=[self creatHeadView];
+        return self.headerView;
+    }else{
+        return nil;
+    }
+    
+}
+-(UIView *)creatHeadView{
+    UIView *bgView=[[UIView alloc]init];
+    bgView.backgroundColor=RGB(240, 240, 240);
+    
+    UIView *topView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, (SCREENWIDTH-24)*95/350+24)];
+    topView.backgroundColor=[UIColor whiteColor];
+    [bgView addSubview:topView];
+    
+    bottomView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, topView.bottom+5, SCREENWIDTH, 90)];
+    bottomView.backgroundColor=[UIColor whiteColor];
+    bottomView.showsHorizontalScrollIndicator=NO;
+    [bgView addSubview:bottomView];
+    
+    for (int i=0; i<3; i++) {
+        UIImageView *placeImageView=[[UIImageView alloc]initWithFrame:CGRectMake(10+i%3*(145+10), 10, 145, 70)];
+        placeImageView.image=[UIImage imageNamed:@"icon3.png"];
+        [bottomView addSubview:placeImageView];
+        bottomView.contentSize=CGSizeMake(placeImageView.right+10, 0);
+    }
+    [self.adverImages removeAllObjects];
+    [self.adverImages addObject:@"新店入住banner2 拷贝.jpg"];
+    [self.adverImages addObject:@"新店入住banner1 拷贝.jpg"];
+    
+    if (_adverImages.count !=0) {
+        cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(12, 12, SCREENWIDTH-24, (SCREENWIDTH-24)*95/350) delegate:self placeholderImage:[UIImage imageNamed:@""]];
+        cycleScrollView2.imageURLStringsGroup = _adverImages;
+        cycleScrollView2.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+        //           cycleScrollView2.titlesGroup = self.titles;
+        cycleScrollView2.currentPageDotColor = [UIColor whiteColor]; // 自定义分页控件小圆标颜色
+        cycleScrollView2.hidesForSinglePage = YES;
+        [topView addSubview:cycleScrollView2];
+        
+    }else{
+        
+        UIImageView *imgView = [[UIImageView alloc]initWithFrame:topView.frame];
+        imgView.image = [UIImage imageNamed:@"首页顶部海报"];
+        [topView addSubview:imgView];
+    }
+    
+    
+    
+    
+    return bgView;
+}
+-(NSMutableArray*)adverImages{
+    if (!_adverImages) {
+        _adverImages = [NSMutableArray array];
+    }
+    return _adverImages;
+}
+-(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    
+    
 }
 
 @end
