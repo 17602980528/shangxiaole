@@ -18,8 +18,8 @@
 
 #import "JFCityViewController.h"
 #import "BaseNavigationController.h"
-
-
+#import "CardBusinessTableViewCell.h"
+#import "AddFriendVC.h"
 @interface CardMarketViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SelectCityDelegate>
 
 {
@@ -38,7 +38,7 @@
     int currentIndex1;//请求页码
     
     NSString *address_old;//之前的地址
-
+    
 }
 @property(nonatomic,copy)NSString *cityChoice;//选择的地点
 @property (nonatomic,assign)BOOL ifOpen;
@@ -101,7 +101,7 @@
     [self initTableView];
     
     address_old = appdelegate.districtString.length>0?appdelegate.districtString:appdelegate.cityChoice;
-
+    
     
 }
 
@@ -191,28 +191,6 @@
     [topView addSubview:search_btn];
     
     
-    //    for (int i =0; i<1; i ++) {
-    //
-    //
-    //        UIButton *minePageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    //        minePageBtn.tag = i;
-    //        minePageBtn.frame = CGRectMake(CGRectGetMaxX(searchView.frame)+i*35, CGRectGetMinY(searchView.frame), 35, 35);
-    //        [minePageBtn addTarget:self action:@selector(goMineCenter:) forControlEvents:UIControlEventTouchUpInside];
-    //
-    //        [topView addSubview:minePageBtn];
-    //
-    //        UIImageView *img_mine = [[UIImageView alloc]initWithFrame:CGRectMake(7.5, 7.5, 20, 20)];
-    ////        img_mine.image = [UIImage imageNamed:@"扫描二维码"];
-    //        [minePageBtn addSubview:img_mine];
-    ////        if (i==1) {
-    //            img_mine.frame =CGRectMake(2.5, 5.5, 24, 24);
-    //            img_mine.image = [UIImage imageNamed:@"home_adress_choose_n"];
-    //
-    //
-    ////        }
-    //
-    //
-    //    }
     
     self.cityChoice = appdelegate.cityChoice;
     self.city_district = [NSString stringWithFormat:@"%@%@",appdelegate.cityChoice,[appdelegate.districtString isEqualToString:appdelegate.cityChoice] ? @"":appdelegate.districtString];
@@ -220,7 +198,7 @@
     
     
     NSLog(@"address_old------%@===%@",address_old,dingweiBtn.titleLabel.text);
-
+    
     
     if (![address_old isEqualToString:dingweiBtn.titleLabel.text]) {
         address_old = dingweiBtn.titleLabel.text;
@@ -469,7 +447,7 @@
     
     
     [self getDataWithMore:@""];
-
+    
     
     
 }
@@ -498,13 +476,20 @@
     
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CardMarketCell *cell = [CardMarketCell creatCellWithTableView:tableView];
+    //    CardMarketCell *cell = [CardMarketCell creatCellWithTableView:tableView];
+    //
+    //    if (self.data_A.count !=0) {
+    //        cell.model = self.data_A[indexPath.row];
+    //
+    //    }
+    CardBusinessTableViewCell *cell = [CardBusinessTableViewCell creatCellWithTableView:tableView];
     
     if (self.data_A.count !=0) {
         cell.model = self.data_A[indexPath.row];
         
     }
-    
+    [cell.addFriendBtn addTarget:self action:@selector(addFriendBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    cell.addFriendBtn.tag=indexPath.row;
     return cell;
 }
 
@@ -548,30 +533,6 @@
 //定位
 -(void)dingweiClick:(UIButton*)btn{
     NSLog(@"定位");
-    
-    //    {
-    //        btn.selected =! btn.selected;
-    //        self.ifOpen = !self.ifOpen;
-    //        if (btn.selected==NO) {
-    //            [self.areaView removeFromSuperview];
-    //        }else
-    //            [self choiceArea];
-    //        //    加动画旋转
-    //        [UIView beginAnimations:nil context:nil];
-    //        [UIView setAnimationDuration:0.3];
-    //        CGAffineTransform transform;
-    //        if (btn.selected) {
-    //            transform = CGAffineTransformRotate(dingwei_img.transform, M_PI);
-    //        } else {
-    //            transform = CGAffineTransformRotate(dingwei_img.transform, -270*M_PI/90);
-    //        }
-    //
-    //        dingwei_img.transform = transform;
-    //
-    //        [UIView commitAnimations];
-    //
-    //    }
-    
     
     
     JFCityViewController *cityViewController = [[JFCityViewController alloc] init];
@@ -724,7 +685,11 @@
     }];
     
 }
-
+//
+-(void)addFriendBtnClick:(UIButton *)sender{
+    AddFriendVC *vc=[[AddFriendVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 
 
