@@ -126,7 +126,7 @@
 #define tableViewBackgroundColor   [UIColor colorWithRed:225.0/255.0 green:229.0/255.0 blue:237.0/255.0 alpha:1]
 #define ButtonGreenColor  [UIColor colorWithRed:82.0f/255.0f green:206.0f/255.0f blue:165.f/255.0f alpha:1.0f]
 
-#define NavBackGroundColor  [UIColor colorWithRed:226.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f]
+#define NavBackGroundColor  [UIColor colorWithRed:237/255.0f green:72.0f/255.0f blue:77.0f/255.0f alpha:1.0f] //[UIColor colorWithRed:226.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f]
 
 //#define NavBackGroundColor  [UIColor colorWithRed:225/255.0f green:32/255.0f blue:49/255.0f alpha:1.0f]
 
