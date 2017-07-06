@@ -116,7 +116,6 @@
 		18D43E461ED6D4EC0077861A /* NSTimer+addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D43E411ED6D4EC0077861A /* NSTimer+addition.m */; };
 		18D43E471ED6D4EC0077861A /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D43E431ED6D4EC0077861A /* UIView+Frame.m */; };
 		18D43E481ED6D4EC0077861A /* WYWebProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D43E451ED6D4EC0077861A /* WYWebProgressLayer.m */; };
-		18D43E4E1ED6DC9C0077861A /* 帮助中心@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D43E4D1ED6DC9C0077861A /* 帮助中心@2x.png */; };
 		18D7C48A1D5B12BA00AEF545 /* mohu-06.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D7C4811D5B12BA00AEF545 /* mohu-06.png */; };
 		18D7C48B1D5B12BA00AEF545 /* mohu-07.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D7C4821D5B12BA00AEF545 /* mohu-07.png */; };
 		18D7C48C1D5B12BA00AEF545 /* mohu-08.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D7C4831D5B12BA00AEF545 /* mohu-08.png */; };
@@ -1200,7 +1199,6 @@
 		18D43E431ED6D4EC0077861A /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		18D43E441ED6D4EC0077861A /* WYWebProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYWebProgressLayer.h; sourceTree = "<group>"; };
 		18D43E451ED6D4EC0077861A /* WYWebProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYWebProgressLayer.m; sourceTree = "<group>"; };
-		18D43E4D1ED6DC9C0077861A /* 帮助中心@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "帮助中心@2x.png"; sourceTree = "<group>"; };
 		18D7C4811D5B12BA00AEF545 /* mohu-06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mohu-06.png"; sourceTree = "<group>"; };
 		18D7C4821D5B12BA00AEF545 /* mohu-07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mohu-07.png"; sourceTree = "<group>"; };
 		18D7C4831D5B12BA00AEF545 /* mohu-08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mohu-08.png"; sourceTree = "<group>"; };
@@ -2880,7 +2878,6 @@
 			children = (
 				D9026B1C1F0B7428005CA5F4 /* XieYiViewController.h */,
 				D9026B1D1F0B7428005CA5F4 /* XieYiViewController.m */,
-				18D43E4D1ED6DC9C0077861A /* 帮助中心@2x.png */,
 				D98011C91DF7AAE800CE09CA /* 5383.wav */,
 				D94B86E61D6BED5D00E15A70 /* app_icon3.png */,
 				D97F601F1D6306F4000EE794 /* 分享.jpg */,
@@ -5772,7 +5769,6 @@
 				D9345E6B1E769805006B2AC1 /* TopActiveListTableVC.xib in Resources */,
 				180D0D451F0DDFAC00A39790 /* 加好友——评价——店铺icon.png in Resources */,
 				180D0D4E1F0E291300A39790 /* 设置.png in Resources */,
-				18D43E4E1ED6DC9C0077861A /* 帮助中心@2x.png in Resources */,
 				18F4BF6A1D41BB21003F0F66 /* c_se.png in Resources */,
 				D95BAE511D542FD500ED0CDC /* award_07.png in Resources */,
 				D981FD0C1E2616080026E4B2 /* WeiboSDK.bundle in Resources */,

@@ -2,16 +2,15 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "个人信息7-6.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "more_re_n@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "more_re_n@3x.png",
       "scale" : "3x"
     }
   ],
