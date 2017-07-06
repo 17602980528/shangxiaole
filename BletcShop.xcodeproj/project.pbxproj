@@ -23,6 +23,11 @@
 		0793870D1C561D5E0021B385 /* Myitem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0793870C1C561D5E0021B385 /* Myitem.m */; };
 		079387101C561FBA0021B385 /* Mygroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 0793870F1C561FBA0021B385 /* Mygroup.m */; };
 		079387131C5620290021B385 /* Mycell.m in Sources */ = {isa = PBXBuildFile; fileRef = 079387121C5620290021B385 /* Mycell.m */; };
+		180D0D3C1F0DCE2F00A39790 /* ShopProductsDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D0D351F0DCE2F00A39790 /* ShopProductsDetailsVC.m */; };
+		180D0D3D1F0DCE2F00A39790 /* ShopProductsDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180D0D361F0DCE2F00A39790 /* ShopProductsDetailsVC.xib */; };
+		180D0D3E1F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D0D381F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.m */; };
+		180D0D3F1F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180D0D391F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.xib */; };
+		180D0D401F0DCE2F00A39790 /* XWScanImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D0D3B1F0DCE2F00A39790 /* XWScanImage.m */; };
 		1817FF591D405BE100AFC965 /* mhead_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1817FF581D405BE100AFC965 /* mhead_default.png */; };
 		1828C7E51E272D4A00480DB9 /* CardEricShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1828C7E41E272D4A00480DB9 /* CardEricShareViewController.m */; };
 		182988411E723F4200164F32 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182988341E723F4200164F32 /* TAAbstractDotView.m */; };
@@ -1055,6 +1060,14 @@
 		0793870F1C561FBA0021B385 /* Mygroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mygroup.m; sourceTree = "<group>"; };
 		079387111C5620290021B385 /* Mycell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mycell.h; sourceTree = "<group>"; };
 		079387121C5620290021B385 /* Mycell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mycell.m; sourceTree = "<group>"; };
+		180D0D341F0DCE2F00A39790 /* ShopProductsDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopProductsDetailsVC.h; sourceTree = "<group>"; };
+		180D0D351F0DCE2F00A39790 /* ShopProductsDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopProductsDetailsVC.m; sourceTree = "<group>"; };
+		180D0D361F0DCE2F00A39790 /* ShopProductsDetailsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopProductsDetailsVC.xib; sourceTree = "<group>"; };
+		180D0D371F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopProductsDetailsVCTableViewCell.h; sourceTree = "<group>"; };
+		180D0D381F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopProductsDetailsVCTableViewCell.m; sourceTree = "<group>"; };
+		180D0D391F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopProductsDetailsVCTableViewCell.xib; sourceTree = "<group>"; };
+		180D0D3A1F0DCE2F00A39790 /* XWScanImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWScanImage.h; sourceTree = "<group>"; };
+		180D0D3B1F0DCE2F00A39790 /* XWScanImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWScanImage.m; sourceTree = "<group>"; };
 		1817FF581D405BE100AFC965 /* mhead_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mhead_default.png; sourceTree = "<group>"; };
 		1828C7E31E272D4A00480DB9 /* CardEricShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardEricShareViewController.h; sourceTree = "<group>"; };
 		1828C7E41E272D4A00480DB9 /* CardEricShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardEricShareViewController.m; sourceTree = "<group>"; };
@@ -2747,6 +2760,8 @@
 			children = (
 				1CF283721C58C48900F3952A /* image */,
 				D9DEECF51CACEC5300ACDD00 /* otherSDK */,
+				180D0D3A1F0DCE2F00A39790 /* XWScanImage.h */,
+				180D0D3B1F0DCE2F00A39790 /* XWScanImage.m */,
 				D99760ED1E690575008E21FE /* SawtoothView.h */,
 				D99760EE1E690575008E21FE /* SawtoothView.m */,
 				D9C4CDEB1DE44587009C76C1 /* ValuePickerView.h */,
@@ -2964,6 +2979,19 @@
 			);
 			name = "优惠券介绍";
 			path = ../../../Desktop/MyBlect_2017/BletcShop;
+			sourceTree = "<group>";
+		};
+		180D0D411F0DCE4400A39790 /* 店内更多商品 */ = {
+			isa = PBXGroup;
+			children = (
+				180D0D341F0DCE2F00A39790 /* ShopProductsDetailsVC.h */,
+				180D0D351F0DCE2F00A39790 /* ShopProductsDetailsVC.m */,
+				180D0D361F0DCE2F00A39790 /* ShopProductsDetailsVC.xib */,
+				180D0D371F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.h */,
+				180D0D381F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.m */,
+				180D0D391F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.xib */,
+			);
+			name = "店内更多商品";
 			sourceTree = "<group>";
 		};
 		182988311E723F4200164F32 /* SDCycleScrollView */ = {
@@ -3708,6 +3736,7 @@
 				18D8464E1ED591C90048F010 /* 优惠券背景线上.png */,
 				D9ABB19F1EC93EF900FBE080 /* NewShopDetailVC.h */,
 				D9ABB1A01EC93EF900FBE080 /* NewShopDetailVC.m */,
+				180D0D411F0DCE4400A39790 /* 店内更多商品 */,
 				D9ABB1A61EC9406E00FBE080 /* 查看更多评价 */,
 				D9ABB1A21EC93F0500FBE080 /* 商铺信息Cell */,
 				D9CDFB671CC47F7C0054EBE3 /* BDMapViewController.h */,
@@ -5715,6 +5744,7 @@
 				18518D581E7945A000067D95 /* s_money_n@2x.png in Resources */,
 				D9FF0D9E1D53304C00443312 /* 图标-16new.png in Resources */,
 				D9637DFD1D59BAF900C19D0B /* register_p.png in Resources */,
+				180D0D3D1F0DCE2F00A39790 /* ShopProductsDetailsVC.xib in Resources */,
 				1C2ED1101C5B1827003EE93B /* 4-02@2x.png in Resources */,
 				189411431D8052FE00314E11 /* playvedio.jpg in Resources */,
 				D94C5F411D9133700063EB27 /* LLL.png in Resources */,
@@ -6140,6 +6170,7 @@
 				D949C1581CBF7E4D0091D8FC /* recharge.png in Resources */,
 				18F27EF71D640E84002DD03A /* 头像-15.png in Resources */,
 				D93027E41CFEBC82007447D2 /* checkbox_ture.png in Resources */,
+				180D0D3F1F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.xib in Resources */,
 				182F3C5B1F0CEDD800540FAE /* 导航栏定位.png in Resources */,
 				D986A1C31DE55EC0007B798B /* GetMoneyFailVC.xib in Resources */,
 				D94DF2611CAE0DB8000D5B69 /* result_small_star_highlight_iphone.png in Resources */,
@@ -6330,6 +6361,7 @@
 				D94DF24D1CAE0AA4000D5B69 /* DLStarView.m in Sources */,
 				D9D50DB41D87DE0E00A5E469 /* EmojiEmoticons.m in Sources */,
 				D941135C1CE9A3D7008E231F /* NSDataEx.m in Sources */,
+				180D0D401F0DCE2F00A39790 /* XWScanImage.m in Sources */,
 				D9E802D91DD16C1400758C00 /* GYChangeTextView.m in Sources */,
 				D9C206041D1D300E00761DC4 /* GraphicDetailsViewController.m in Sources */,
 				D9210BB91CC718D500010DF7 /* CardInfoViewController.m in Sources */,
@@ -6570,6 +6602,7 @@
 				D949EC2C1CE192970023B6D6 /* BRecentCityCell.m in Sources */,
 				D99C11A91DE2D3BF00E45B64 /* NewRechargeViewController.m in Sources */,
 				1CDCCD171C7594040094E70D /* AFHTTPRequestOperation.m in Sources */,
+				180D0D3C1F0DCE2F00A39790 /* ShopProductsDetailsVC.m in Sources */,
 				D98011D31DF7B0DD00CE09CA /* ErrorQRViewController.m in Sources */,
 				D949EC101CE1917E0023B6D6 /* BAddressPickerController.m in Sources */,
 				D9B3A5C21D74255700F3F27E /* PSTCollectionViewLayout.m in Sources */,
@@ -6593,6 +6626,7 @@
 				D9B3A5BB1D74255700F3F27E /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				D940403B1CBDEB7100EC98EA /* CardManagerViewController.m in Sources */,
 				D9F3A3C61D791DCA00F06E0C /* LZDBASEViewController.m in Sources */,
+				180D0D3E1F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.m in Sources */,
 				D980B6701D78066D00CC6637 /* AddFriendTableViewController.m in Sources */,
 				D9EE55681DC9CC090024C830 /* shareCardModel.m in Sources */,
 				D9B3A5A31D74255700F3F27E /* MWGridCell.m in Sources */,
