@@ -46,10 +46,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationItem.title = @"更多";
+    self.view.backgroundColor = RGB(240, 240, 240);
+    self.navigationItem.title = @"设置";
     
-
     [self _initTable];
     
     
@@ -58,7 +57,7 @@
 {
     if (_data == nil) {
 //        _data = @[@[@"联系共同会员",@"邀请好友使用"],@[@"退出",@"切换用户"],@[@"意见反馈"]];
-        _data = @[@[],@[@"清理缓存",@"意见反馈",@"联系客服",@"帮助中心"]];
+        _data = @[@"清理缓存",@"意见反馈",@"联系客服",@"帮助中心"];
 
     }
     return _data;
@@ -66,11 +65,12 @@
 -(void)_initTable
 {
     UITableView *setTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStyleGrouped];
+    setTable.backgroundColor=RGB(240, 240, 240);
     setTable.delegate = self;
     setTable.dataSource = self;
     setTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     setTable.showsVerticalScrollIndicator = NO;
-    setTable.bounces = NO;
+   // setTable.bounces = NO;
     self.setTable = setTable;
     [self.view addSubview:setTable];
     
@@ -78,54 +78,75 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     
-    return 4;
-    
+    return 78;
 }
-
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 78)];
+    view.backgroundColor=RGB(240, 240, 240);
+    
+    UIButton *loginOut=[UIButton buttonWithType:UIButtonTypeCustom];
+    loginOut.frame=CGRectMake(13, 16, SCREENWIDTH-26, 46);
+    loginOut.backgroundColor=[UIColor whiteColor];
+    [loginOut setTitle:@"退出登录" forState:UIControlStateNormal];
+    [loginOut setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    loginOut.layer.cornerRadius=5.0f;
+    loginOut.clipsToBounds=YES;
+    [loginOut addTarget:self action:@selector(loginOutBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    loginOut.titleLabel.font=[UIFont systemFontOfSize:14.0f];
+    [view addSubview:loginOut];
+    
+    return view;
+}
+//退出登录
+-(void)loginOutBtnClick{
+    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
+    [appdelegate loginOutBletcShop];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    if (section ==0) {
-        return 10;
-    }else
-    return 4;
-}
-
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return self.data.count;
+    return 14;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *arr = self.data[section];
-    return arr.count;
+    return self.data.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *iden = @"cell";
-    MoreViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
-    if (cell == nil) {
-        cell = [[MoreViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
-       
-        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(SCREENWIDTH-100-50, 7, 100, 30)];
-        label.tag=100;
-        label.font=[UIFont systemFontOfSize:15.0f];
-        label.textAlignment=1;
-        [cell addSubview:label];
-        cell.textLabel.font = [UIFont systemFontOfSize:15];
-
+    static NSString *resuseIdentify=@"moreViewCell";
+    MoreViewCell *cell=[tableView dequeueReusableCellWithIdentifier:resuseIdentify];
+    if (!cell) {
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"MoreViewCell" owner:self options:nil] lastObject];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor=[UIColor clearColor];
+        cell.contentView.backgroundColor=RGB(240, 240, 240);
     }
-
-    cell.data = self.data[indexPath.section][indexPath.row];
-    cell.imageView.image = [UIImage imageNamed:cell.data];
-
-    UILabel *lab=[cell viewWithTag:100];
-    if (indexPath.section==1&&indexPath.row==0) {
-        lab.text=[NSString stringWithFormat:@"%.2fM",folderSize];
+    if (indexPath.row==0) {
+        cell.bgImageView.image=[UIImage imageNamed:@"导角矩形上"];
+    }else if(indexPath.row==3){
+        cell.bgImageView.image=[UIImage imageNamed:@"导角矩形下"];
     }else{
-        lab.text=@"";
+        cell.bgImageView.image=[UIImage imageNamed:@"设置   矩形"];
+    }
+    cell.title.text = self.data[indexPath.row];
+    cell.headImageView.image = [UIImage imageNamed:self.data[indexPath.row]];
+
+    if (indexPath.row==0) {
+        cell.caches.text=[NSString stringWithFormat:@"%.2fM",folderSize];
+        cell.caches.hidden=NO;
+        cell.moreTip.hidden=YES;
+    }else{
+        cell.caches.hidden=YES;
+        cell.moreTip.hidden=NO;
+    }
+    if (indexPath.row==3) {
+        cell.line.hidden=YES;
+    }else{
+        cell.line.hidden=NO;
     }
     
     return cell;
@@ -134,16 +155,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section ==0) {
-        if (indexPath.row ==0) {
-         
-            
-        }
-        
-    }
-    else if (indexPath.section == 1)
-    {
-        if (indexPath.row==0) {
+           if (indexPath.row==0) {
             [[SDImageCache sharedImageCache] clearDisk];
             [[SDImageCache sharedImageCache] clearMemory];//可有可无
             folderSize=0;
@@ -173,7 +185,6 @@
             
         }
         
-    }
 }
 
 

@@ -70,7 +70,7 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *resuseIdentify=@"AddFriendTableCell";
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:resuseIdentify];
+    AddFriendTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:resuseIdentify];
     if (!cell) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"AddFriendTableViewCell" owner:self options:nil] lastObject];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

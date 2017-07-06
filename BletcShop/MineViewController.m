@@ -41,6 +41,7 @@
 #import <UMSocialCore/UMSocialCore.h>
 #import "QRcodeUIViewController.h"
 #import "MineInfoVCSecond.h"
+#import "MoreViewController.h"
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UIView *shareView;
@@ -48,7 +49,9 @@
     UIImageView *mom;
     UIImageView *headImageView;
     UILabel * signLabel;
-    
+    UIButton *setButton;
+    UIImageView *setImageView;
+    AppDelegate *appdelegate;
 }
 @property(nonatomic,weak)UITableView *Mytable;
 @property(nonatomic,strong)NSMutableArray *data;
@@ -66,6 +69,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor= RGB(240, 240, 240);
+    appdelegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
     [self _initTable];
     //获取通知中心单例对象
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
@@ -105,7 +109,7 @@
     
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
     [params setObject:@"integral" forKey:@"type"];
     
@@ -140,7 +144,7 @@
         signLabel.alpha=1.0f;
     }
     
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     if (appdelegate.IsLogin) {
         NSString *string=[NSString stringWithFormat:@"%@%@",HEADIMAGE,[appdelegate.userInfoDic objectForKey:@"headimage"]];
         
@@ -157,7 +161,7 @@
 -(void)_loading
 {
     
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     
     if (appdelegate.IsLogin) {
@@ -211,7 +215,15 @@
     signLabel.textColor = [UIColor whiteColor];
     [mom addSubview:signLabel];
     
-    AppDelegate *appdelegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
+    setImageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"设置"]];
+    setImageView.frame=CGRectMake(13, headImageView.center.y-10, 20, 20);
+    [mom addSubview:setImageView];
+    
+    setButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    setButton.frame=CGRectMake(0, headImageView.center.y-25, 50, 50);
+    [mom addSubview:setButton];
+    [setButton addTarget:self action:@selector(goSettingVC) forControlEvents:UIControlEventTouchUpInside];
+    
     
     if (appdelegate.IsLogin) {
         NSString *string=[NSString stringWithFormat:@"%@%@",HEADIMAGE,[appdelegate.userInfoDic objectForKey:@"headimage"]];
@@ -219,10 +231,13 @@
         NSURL * nurl1=[NSURL URLWithString:[string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
         [headImageView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
         signLabel.text = [NSString getTheNoNullStr:appdelegate.userInfoDic[@"nickname"] andRepalceStr:@"未设置"];
-        
+        setImageView.hidden=NO;
+        setButton.hidden=NO;
     }else{
         headImageView.image=[UIImage imageNamed:@"头像"];
         signLabel.text=@"未登录";
+        setImageView.hidden=YES;
+        setButton.hidden=YES;
     }
     
     
@@ -322,8 +337,6 @@
     Myitem *item = group.items[indexPath.row];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     if (!appdelegate.IsLogin) {
         LandingController *landVc = [[LandingController alloc]init];
         [self.navigationController pushViewController:landVc animated:YES];
@@ -359,9 +372,6 @@
 {
     NSLog(@"头像");
     
-    
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    
     if (appdelegate.IsLogin) {
         
         //        LZDUserInfoVC *VC = [[LZDUserInfoVC alloc]init];
@@ -381,7 +391,6 @@
 {
     
     NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/evaluate/listGet",BASEURL];
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
     
@@ -505,10 +514,6 @@
     
     UMShareWebpageObject *shareObj = [UMShareWebpageObject shareObjectWithTitle:share_title descr:share_text thumImage:image];
     
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    
-    
-    
     NSString *codeString = [NSString stringWithFormat:@"%@?phone=%@",_data_D[@"link_add"],appdelegate.userInfoDic[@"phone"]];
     
     shareObj.webpageUrl = codeString;
@@ -578,9 +583,6 @@
                     NSString *url = [NSString stringWithFormat:@"%@UserType/share/resolve",BASEURL];
                     NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
                     
-                    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-                    
-                    
                     [paramer setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
                     if (platforeType == UMSocialPlatformType_WechatTimeLine) {
                         [paramer setObject:@"微信分享" forKey:@"tip"];
@@ -594,7 +596,7 @@
                         
                         
                         if ([result[@"result_code"] integerValue]==1) {
-                            NSString *reward =result[@"reward"];
+                            //NSString *reward =result[@"reward"];
                         }
                         
                         
@@ -658,7 +660,8 @@
         CGRect frame2 = signLabel.frame;
         frame2.origin.y=headImageView.bottom+10;
         signLabel.frame=frame2;
-        
+        setButton.hidden=YES;
+        setImageView.hidden=YES;
     }else if(offset_Y > 0){
         CGRect frame =mom.frame;
         CGFloat height=166 -ABS(offset_Y);
@@ -685,11 +688,23 @@
         CGRect frame2 = signLabel.frame;
         frame2.origin.y=headImageView.bottom+10;
         signLabel.frame=frame2;
-        
+         setButton.hidden=YES;
+        setImageView.hidden=YES;
     }else{
-        
+         signLabel.alpha=1;
+        if (appdelegate.IsLogin) {
+            setButton.hidden=NO;
+            setImageView.hidden=NO;
+        }else{
+            setButton.hidden=YES;
+            setImageView.hidden=YES;
+        }
+
     }
 }
-
-
+//
+-(void)goSettingVC{
+    MoreViewController *vc=[[MoreViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 @end
