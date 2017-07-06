@@ -28,6 +28,8 @@
 		180D0D3E1F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D0D381F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.m */; };
 		180D0D3F1F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180D0D391F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.xib */; };
 		180D0D401F0DCE2F00A39790 /* XWScanImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D0D3B1F0DCE2F00A39790 /* XWScanImage.m */; };
+		180D0D431F0DDC5C00A39790 /* 店铺icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 180D0D421F0DDC5C00A39790 /* 店铺icon.png */; };
+		180D0D451F0DDFAC00A39790 /* 加好友——评价——店铺icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 180D0D441F0DDFAC00A39790 /* 加好友——评价——店铺icon.png */; };
 		1817FF591D405BE100AFC965 /* mhead_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1817FF581D405BE100AFC965 /* mhead_default.png */; };
 		1828C7E51E272D4A00480DB9 /* CardEricShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1828C7E41E272D4A00480DB9 /* CardEricShareViewController.m */; };
 		182988411E723F4200164F32 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182988341E723F4200164F32 /* TAAbstractDotView.m */; };
@@ -1068,6 +1070,8 @@
 		180D0D391F0DCE2F00A39790 /* ShopProductsDetailsVCTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopProductsDetailsVCTableViewCell.xib; sourceTree = "<group>"; };
 		180D0D3A1F0DCE2F00A39790 /* XWScanImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWScanImage.h; sourceTree = "<group>"; };
 		180D0D3B1F0DCE2F00A39790 /* XWScanImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWScanImage.m; sourceTree = "<group>"; };
+		180D0D421F0DDC5C00A39790 /* 店铺icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "店铺icon.png"; sourceTree = "<group>"; };
+		180D0D441F0DDFAC00A39790 /* 加好友——评价——店铺icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加好友——评价——店铺icon.png"; sourceTree = "<group>"; };
 		1817FF581D405BE100AFC965 /* mhead_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mhead_default.png; sourceTree = "<group>"; };
 		1828C7E31E272D4A00480DB9 /* CardEricShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardEricShareViewController.h; sourceTree = "<group>"; };
 		1828C7E41E272D4A00480DB9 /* CardEricShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardEricShareViewController.m; sourceTree = "<group>"; };
@@ -3059,6 +3063,8 @@
 				182F3C561F0CEDCA00540FAE /* CardBusinessTableViewCell.xib */,
 				182F3C591F0CEDD800540FAE /* 导航栏定位.png */,
 				182F3C5A1F0CEDD800540FAE /* 咨询.png */,
+				180D0D421F0DDC5C00A39790 /* 店铺icon.png */,
+				180D0D441F0DDFAC00A39790 /* 加好友——评价——店铺icon.png */,
 			);
 			name = "卡市新cell";
 			sourceTree = "<group>";
@@ -5755,6 +5761,7 @@
 				182F3C5C1F0CEDD800540FAE /* 咨询.png in Resources */,
 				D9FF0D911D53304C00443312 /* 图标-03new.png in Resources */,
 				D9345E6B1E769805006B2AC1 /* TopActiveListTableVC.xib in Resources */,
+				180D0D451F0DDFAC00A39790 /* 加好友——评价——店铺icon.png in Resources */,
 				18D43E4E1ED6DC9C0077861A /* 帮助中心@2x.png in Resources */,
 				18F4BF6A1D41BB21003F0F66 /* c_se.png in Resources */,
 				D95BAE511D542FD500ED0CDC /* award_07.png in Resources */,
@@ -6174,6 +6181,7 @@
 				182F3C5B1F0CEDD800540FAE /* 导航栏定位.png in Resources */,
 				D986A1C31DE55EC0007B798B /* GetMoneyFailVC.xib in Resources */,
 				D94DF2611CAE0DB8000D5B69 /* result_small_star_highlight_iphone.png in Resources */,
+				180D0D431F0DDC5C00A39790 /* 店铺icon.png in Resources */,
 				18EB36BE1D4B4B5B0087CE1A /* 未标题-1-09.png in Resources */,
 				D93027DE1CFEB26B007447D2 /* share_grade_star.png in Resources */,
 				1C9E82571C60AD390007BF02 /* 0-01.png in Resources */,

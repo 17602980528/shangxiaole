@@ -45,7 +45,7 @@
     return YES;
 }
 #pragma mark  - 把新浪微博的时间转化为刚刚、3分钟前。。等格式
-- (NSString *)sinaWeiboCreatedAtString
++ (NSString *)sinaWeiboCreatedAtString:(NSString *)date;
 {
     NSString *weiboDateStr = @"";
     
@@ -57,11 +57,11 @@
     formater.dateFormat = formaterStr;
     
     //用时间格式器把指定的时间字符串 转化为相应格式的时间
-    NSDate *weiboDate = [formater dateFromString:self];
+    NSDate *weiboDate = [formater dateFromString:date];
     
     //日历
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    
+    NSLog(@"=====%@",weiboDate);
     //根据日历判断 微博时间是否是在今天
     if ([calendar isDateInToday:weiboDate])
     {

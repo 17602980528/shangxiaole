@@ -13,7 +13,7 @@
 
 - (BOOL)isContainSubString:(NSString *)aSubstr;
 
-- (NSString *)sinaWeiboCreatedAtString;
++ (NSString *)sinaWeiboCreatedAtString:(NSString *)date;
 
 - (NSString *)sinaWeiboSourceString;
 

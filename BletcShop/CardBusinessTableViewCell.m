@@ -42,7 +42,7 @@
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,_model.headimage]] placeholderImage:[UIImage imageNamed:@"user.png"]];
     
     self.nickNamelab.text = _model.nickname;
-    self.timeLab.text = [_model.datetime sinaWeiboCreatedAtString];
+    self.timeLab.text = _model.datetime;
     self.shopLab.text = _model.store;
     
     NSString *type;
