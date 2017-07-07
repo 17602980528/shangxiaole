@@ -158,7 +158,6 @@
         
     }
 
-        [self autoAuth];
 
     
     [cycleScrollView2 adjustWhenControllerViewWillAppera];
@@ -461,12 +460,13 @@
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     if (section==0) {
+        NSLog(@"--viewForHeaderInSection---%@",self.headerView);
             return self.headerView;
         
     }else if(section ==1){
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 30)];
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 40)];
         view.backgroundColor = [UIColor whiteColor];
-        UILabel *like_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 30)];
+        UILabel *like_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, view.height)];
         like_lab.text = @"猜你喜欢";
         like_lab.textColor = RGB(102, 102, 102);
         like_lab.textAlignment = NSTextAlignmentCenter;
@@ -477,14 +477,21 @@
         CGFloat  WW = [like_lab.text boundingRectWithSize:CGSizeMake(200, 50) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:like_lab.font} context:nil].size.width;
         
         UIView *line1 = [[UIView alloc]init];
-        line1.frame = CGRectMake(50, 29/2+like_lab.top, SCREENWIDTH/2-50-WW/2-20, 1);
+        line1.frame = CGRectMake(95, (like_lab.height-2)/2+like_lab.top, SCREENWIDTH/2-95-WW/2-20, 2);
         line1.backgroundColor = RGB(221,221,221);
         [view addSubview:line1];
         
         UIView *line2 = [[UIView alloc]init];
-        line2.frame = CGRectMake( SCREENWIDTH/2+WW/2+20, line1.top, line1.width, 1);
+        line2.frame = CGRectMake( SCREENWIDTH/2+WW/2+20, line1.top, line1.width, line1.height);
         line2.backgroundColor = RGB(221,221,221);
         [view addSubview:line2];
+        
+        
+        UIView *line3 = [[UIView alloc]init];
+        line3.frame = CGRectMake(0, view.height-1, SCREENWIDTH, 1);
+        line3.backgroundColor = RGB(229,229,229);
+        [view addSubview:line3];
+
         
         return view;
     }else
@@ -495,8 +502,8 @@
 }
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     
-    
      if (section ==0) {
+         
        return   self.secondheaderView;
          
      }else
@@ -507,10 +514,11 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section==0) {
-        
-        return 2*(SCREENWIDTH/5+10)+66-10+150*LZDScale+10;
+        NSLog(@"self.headerView.height-----%lf",self.headerView.height);
+
+        return [self creatHeaderView].height;
     }else if(section==1){
-        return 30;
+        return 40;
     }else
         return 0.01;
 }
@@ -519,7 +527,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
      if (section==0){
         
-        return 261;
+        return [self creatSecondheardView].height;
     }else
         return 0.01;
 }
@@ -536,7 +544,7 @@
             
         }
         
-        return model.remark.length>0 ? 76:140;
+        return model.remark.length>0 ? 76:model.cellHight;
         
           }
 }
@@ -673,16 +681,11 @@
 -(UIView*)creatHeaderView{
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH/2+50)];
     
-    UIImageView *backImg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, (410-39)*LZDScale)];
-    backImg.backgroundColor =[UIColor whiteColor];
-//    backImg.image = [UIImage imageNamed:@"chunjie"];
-    [view addSubview:backImg];
-    
     
     //广告轮播
     UIView *slipBackView=[[UIView alloc]init];
     
-    slipBackView.frame = CGRectMake(0, 0, SCREENWIDTH, 150*LZDScale);
+    slipBackView.frame = CGRectMake(0, 0, SCREENWIDTH, 182*LZDScale);
 
     slipBackView.backgroundColor=RGB(240, 240, 240);
     [view addSubview:slipBackView];
@@ -713,7 +716,7 @@
     _smallSV.pagingEnabled=YES;
     _smallSV.bounces=NO;
     _smallSV.delegate=self;
-    _smallSV.backgroundColor = [UIColor clearColor];
+    _smallSV.backgroundColor = [UIColor whiteColor];
     _smallSV.showsVerticalScrollIndicator = NO;
     _smallSV.showsHorizontalScrollIndicator = NO;
     [view addSubview:_smallSV];
@@ -743,12 +746,12 @@
             btn.tag = i;
             [_smallSV addSubview:btn];
             
-            UIImageView *imag = [[UIImageView alloc]initWithFrame:CGRectMake(25/2, 5, btn.frame.size.width-25, btn.frame.size.width-25)];
+            UIImageView *imag = [[UIImageView alloc]initWithFrame:CGRectMake((btn.width-35)/2, (btn.width-35)/2, 35, 35)];
             [btn addSubview:imag];
             
-            UILabel *lable_S =[[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imag.frame), btn.frame.size.width, 25)];
-            lable_S.textColor = [UIColor blackColor];
-            lable_S.font = [UIFont systemFontOfSize:13];
+            UILabel *lable_S =[[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imag.frame)+5, btn.frame.size.width, 25)];
+            lable_S.textColor = RGB(51,51,51);
+            lable_S.font = [UIFont systemFontOfSize:12];
             lable_S.textAlignment = NSTextAlignmentCenter;
             [btn addSubview:lable_S];
             
@@ -763,13 +766,15 @@
 
 
     
-    _pc=[[UIPageControl alloc]initWithFrame:CGRectMake(SCREENWIDTH*0.2, 10+ 2*(SCREENWIDTH/5+10)+150*LZDScale, SCREENWIDTH*0.6, 10)];
+    _smallSV.frame  = CGRectMake(0, slipBackView.bottom, SCREENWIDTH, 10+ 2*(SCREENWIDTH/5+10)+10);
+
+    
+    _pc=[[UIPageControl alloc]initWithFrame:CGRectMake(SCREENWIDTH*0.2, _smallSV.bottom-20, SCREENWIDTH*0.6, 20)];
     _pc.currentPageIndicatorTintColor=NavBackGroundColor;
     _pc.pageIndicatorTintColor = [UIColor lightGrayColor];
     [_pc addTarget:self action:@selector(pcClick:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:_pc];
     
-    _smallSV.frame  = CGRectMake(0, 5+150*LZDScale, SCREENWIDTH, 10+ 2*(SCREENWIDTH/5+10)+10);
     if (self.icon_A.count%10==0) {
         _smallSV.contentSize = CGSizeMake(SCREENWIDTH*self.icon_A.count/10, 0);
         _pc.numberOfPages = self.icon_A.count/10;
@@ -779,14 +784,14 @@
 
     }
     
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, _smallSV.bottom, SCREENWIDTH, 1)];
-    line.backgroundColor =RGB(240, 240, 240);
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, _smallSV.bottom, SCREENWIDTH, 10)];
+    line.backgroundColor =RGB(239,239,244);
     [view addSubview:line];
     
-    UILabel *hot_label = [[UILabel alloc]initWithFrame:CGRectMake(0, _smallSV.bottom+1, SCREENWIDTH, 30+10)];
+    UILabel *hot_label = [[UILabel alloc]initWithFrame:CGRectMake(0, line.bottom, SCREENWIDTH, 32)];
     hot_label.text = @"   今日头条";
-    hot_label.font = [UIFont systemFontOfSize:14];
-    hot_label.textColor = [UIColor colorWithHexString:@"fe0000"];
+    hot_label.font = [UIFont systemFontOfSize:12];
+    hot_label.textColor = RGB(226,102,102);
     
     hot_label.backgroundColor = [UIColor whiteColor];
     [view addSubview:hot_label];
@@ -800,6 +805,8 @@
     
 //    GYChangeTextView *tView = [[GYChangeTextView alloc] initWithFrame:CGRectMake(hot_ww+5, hot_label.top+(hot_label.height-12)/2, SCREENWIDTH-hot_ww-20, 12)];
     GYChangeTextView *tView = [[GYChangeTextView alloc] initWithFrame:CGRectMake(hot_ww+5, hot_label.top, SCREENWIDTH-hot_ww-20, hot_label.height)];
+    [tView setValue:RGB(51, 51, 51) forKeyPath:@"textLabel.textColor"];
+    [tView setValue:[UIFont systemFontOfSize:12] forKeyPath:@"textLabel.font"];
 
     tView.delegate = self;
     [view addSubview:tView];
@@ -822,6 +829,9 @@
 
     view.frame = CGRectMake(0, 0, SCREENWIDTH, CGRectGetMaxY(hot_label.frame));
     
+    
+    NSLog(@"view.bottom-----%lf",view.bottom);
+
 
     return view;
 }
@@ -830,151 +840,221 @@
 -(UIView*)creatSecondheardView{
     UIView *back_view = [UIView new];
     
-    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button1.frame = CGRectMake(0, 10, SCREENWIDTH*0.4, 160);
-    button1.backgroundColor = [UIColor whiteColor];
-    [button1 addTarget:self action:@selector(advertiseClick:) forControlEvents:UIControlEventTouchUpInside];
-    [back_view addSubview:button1];
-    
-    UILabel *lab1_1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 25, button1.width, 15)];
-    lab1_1.text = @"新店入住";
-    button1.tag=0;
-    lab1_1.font = [UIFont systemFontOfSize:15];
-    lab1_1.textColor = [UIColor colorWithHexString:@"fe0000"];
-    lab1_1.textAlignment = NSTextAlignmentCenter;
-    [button1 addSubview:lab1_1];
-    
-    UILabel *lab1_2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 46, button1.width, 12)];
-    lab1_2.text = @"优惠停不下来";
-    lab1_2.font = [UIFont systemFontOfSize:12];
-    lab1_2.textColor = RGB(102,102,102);
-    lab1_2.textAlignment = NSTextAlignmentCenter;
-    [button1 addSubview:lab1_2];
-    
-    UIImageView *img_1 = [[UIImageView alloc]initWithFrame:CGRectMake((button1.width-119)/2, 87, 119, 49)];
-    img_1.contentMode = UIViewContentModeScaleAspectFit;
-    [button1 addSubview:img_1];
-    
-    
-    NSDictionary *dic ;
-    if (self.data_A2.count!=0) {
+    for (int i =0 ; i <4; i++) {
+       
         
-        dic = self.data_A2[0];
-        lab1_1.text = dic[@"theme"];
-        lab1_2.text = dic[@"content"];
-        NSString *img_str = [NSString stringWithFormat:@"%@%@",FOURADVERTIMAGE,dic[@"image_url"]];
-        [img_1 sd_setImageWithURL:[NSURL URLWithString:img_str] placeholderImage:[UIImage imageNamed:@"dfg"]];
+        UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+        button1.frame = CGRectMake(i%2*((SCREENWIDTH-1)/2+1), 10 +i/2*(81*LZDScale+1), (SCREENWIDTH-1)/2, 81*LZDScale);
+        button1.backgroundColor = [UIColor whiteColor];
+        [button1 addTarget:self action:@selector(advertiseClick:) forControlEvents:UIControlEventTouchUpInside];
+        button1.tag=i;
+
+        [back_view addSubview:button1];
+        
+        
+        UILabel *lab1_2 = [[UILabel alloc]initWithFrame:CGRectMake(13, (button1.height-12)/2, button1.width/2, 12)];
+        lab1_2.text = @"优惠停不下来";
+        lab1_2.font = [UIFont systemFontOfSize:12];
+        lab1_2.textColor = RGB(119,119,119);
+        lab1_2.textAlignment = NSTextAlignmentLeft;
+        [button1 addSubview:lab1_2];
+        
+        
+        UILabel *lab1_1 = [[UILabel alloc]initWithFrame:CGRectMake(13, lab1_2.top-11-14, button1.width/2, 14)];
+        lab1_1.text = @"新店入住";
+        lab1_1.font = [UIFont systemFontOfSize:14];
+        lab1_1.textColor = RGB(51,51,51);
+        lab1_1.textAlignment = NSTextAlignmentLeft;
+        
+        [button1 addSubview:lab1_1];
+        
+        
+        NSArray *arr = @[@"NEW",@"优惠",@"活动",@"VIP"];
+
+        UILabel *lab1_3 = [[UILabel alloc]initWithFrame:CGRectMake(13, lab1_2.bottom+11, button1.width/2, 13)];
+        lab1_3.text = arr[i];
+        lab1_3.font = [UIFont systemFontOfSize:10];
+        lab1_3.textColor = RGB(226,102,102);
+        lab1_3.layer.borderColor = RGB(226,102,102).CGColor;
+        lab1_3.layer.borderWidth = 1;
+        lab1_3.layer.cornerRadius = 2;
+        lab1_3.layer.masksToBounds = YES;
+        lab1_3.textAlignment = NSTextAlignmentCenter;
+        [button1 addSubview:lab1_3];
+
+        CGFloat ww = [lab1_3.text boundingRectWithSize:CGSizeMake(100, 100) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName :lab1_3.font} context:nil].size.width;
+        
+        lab1_3.frame = CGRectMake(13, lab1_2.bottom+11, ww+3, 13);
+        
+        
         
 
-    }
-    
-    
-    
-    
-    UIButton *button2 =[UIButton buttonWithType:UIButtonTypeCustom];
-    button2.frame = CGRectMake(button1.right+1, 10, SCREENWIDTH-button1.right-1, 79-5);
-    button2.backgroundColor = [UIColor whiteColor];
-    [button2 addTarget:self action:@selector(advertiseClick:) forControlEvents:UIControlEventTouchUpInside];
-    button2.tag=1;
-    [back_view addSubview:button2];
-    
-    UILabel *lab2_1 = [[UILabel alloc]initWithFrame:CGRectMake(13, 10, button2.width/2, 15)];
-    lab2_1.text = @"美发专区";
-    lab2_1.font = [UIFont systemFontOfSize:15];
-    lab2_1.textColor = [UIColor colorWithHexString:@"fe0000"];
-    lab2_1.textAlignment = NSTextAlignmentLeft;
-    [button2 addSubview:lab2_1];
-    
-    UILabel *lab2_2 = [[UILabel alloc]initWithFrame:CGRectMake(13, 31, button2.width/2-13, 12)];
-    lab2_2.text = @"办卡永享8折";
-    lab2_2.font = [UIFont systemFontOfSize:12];
-    lab2_2.textColor = RGB(102,102,102);
-    lab2_2.textAlignment = NSTextAlignmentLeft;
-    [button2 addSubview:lab2_2];
-    
-    
-    UIImageView *img_2 = [[UIImageView alloc]initWithFrame:CGRectMake(button2.width/2, 0, button2.height*230/124, button2.height)];
-    img_2.contentMode = UIViewContentModeScaleAspectFit;
-
-//    img_2.backgroundColor = RGB(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255));
-    [button2 addSubview:img_2];
-    
-    
-    if (self.data_A2.count!=0) {
         
-        dic = self.data_A2[1];
-        lab2_1.text = dic[@"theme"];
-        lab2_2.text = dic[@"content"];
-        NSString *img_str = [NSString stringWithFormat:@"%@%@",FOURADVERTIMAGE,dic[@"image_url"]];
-
-        [img_2 sd_setImageWithURL:[NSURL URLWithString:img_str] placeholderImage:[UIImage imageNamed:@"dasda.png"]];
-        
-        CGFloat hh = [lab2_2.text boundingRectWithSize:CGSizeMake(lab2_2.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName :lab2_2.font} context:nil].size.height;
+        UIImageView *img_1 = [[UIImageView alloc]initWithFrame:CGRectMake(lab1_1.right, (button1.height-(button1.width-(lab1_1.right+15)))/2, button1.width-(lab1_1.right+15), button1.width-(lab1_1.right+15))];
+        img_1.contentMode = UIViewContentModeScaleAspectFit;
+        [button1 addSubview:img_1];
         
         
-        if (hh>lab2_2.height) {
-            lab2_2.frame = CGRectMake(13, 31, button2.width/2-13, 25);
-            lab2_2.numberOfLines= 2;
-        }
-    }
-
-    
-    
-    for (int i = 0; i <2; i ++) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(button1.right+1+i*((button2.width-1)/2+1), button2.bottom+1, ((button2.width-1)/2), 80+5);
-        [btn addTarget:self action:@selector(advertiseClick:) forControlEvents:UIControlEventTouchUpInside];
-        btn.tag = i+2;
-        btn.backgroundColor = [UIColor whiteColor];
+       
         
-        UILabel *lab_1 = [[UILabel alloc]initWithFrame:CGRectMake(11, 10, btn.width, 15)];
-        lab_1.text = @"会员大放送";
-        lab_1.font = [UIFont systemFontOfSize:15];
-        lab_1.textColor = [UIColor colorWithHexString:@"fe0000"];
-        lab_1.textAlignment = NSTextAlignmentLeft;
-        [btn addSubview:lab_1];
-        
-        UILabel *lab_2 = [[UILabel alloc]initWithFrame:CGRectMake(11, 27, btn.width, 12)];
-        lab_2.text = @"优惠停不下来";
-        lab_2.font = [UIFont systemFontOfSize:12];
-        lab_2.textColor = RGB(102,102,102);
-        lab_2.textAlignment = NSTextAlignmentLeft;
-        [btn addSubview:lab_2];
-//btn.width-13-38, btn.height-38-2, 38, 38
-        UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake( (btn.width-38*224/110)/2, btn.height-38-2, 38*224/110, 38)];
-        img.contentMode = UIViewContentModeScaleAspectFit;
-
-        [btn addSubview:img];
-        
-              [back_view addSubview:btn];
-        
+        NSDictionary *dic ;
         if (self.data_A2.count!=0) {
             
-            dic = self.data_A2[i+2];
-            lab_1.text = dic[@"theme"];
-            lab_2.text = dic[@"content"];
-            
+            dic = self.data_A2[i];
+            lab1_1.text = dic[@"theme"];
+            lab1_2.text = dic[@"content"];
             NSString *img_str = [NSString stringWithFormat:@"%@%@",FOURADVERTIMAGE,dic[@"image_url"]];
-            
-            [img sd_setImageWithURL:[NSURL URLWithString:img_str] placeholderImage:[UIImage imageNamed:@"icon3.png"]];
-            
-            
-            if (i ==0) {
-                //img.frame = CGRectMake(13, btn.height-38-2, 38, 38);
-                [img sd_setImageWithURL:[NSURL URLWithString:img_str] placeholderImage:[UIImage imageNamed:@"icon3.png"]];
-//                lab_2.text = @"喜迎中国年!";(13, btn.height-38-2, 38, 38
-                
-            }
-
+            [img_1 sd_setImageWithURL:[NSURL URLWithString:img_str] placeholderImage:[UIImage imageNamed:@"dfg"]];
             
             
         }
-
     }
+    
+//    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+//    button1.frame = CGRectMake(0, 10, SCREENWIDTH/2, 81*LZDScale);
+//    button1.backgroundColor = [UIColor whiteColor];
+//    [button1 addTarget:self action:@selector(advertiseClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [back_view addSubview:button1];
+//    
+//    UILabel *lab1_1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 25, button1.width, 15)];
+//    lab1_1.text = @"新店入住";
+//    button1.tag=0;
+//    lab1_1.font = [UIFont systemFontOfSize:15];
+//    lab1_1.textColor = [UIColor colorWithHexString:@"fe0000"];
+//    lab1_1.textAlignment = NSTextAlignmentCenter;
+//    [button1 addSubview:lab1_1];
+//    
+//    UILabel *lab1_2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 46, button1.width, 12)];
+//    lab1_2.text = @"优惠停不下来";
+//    lab1_2.font = [UIFont systemFontOfSize:12];
+//    lab1_2.textColor = RGB(102,102,102);
+//    lab1_2.textAlignment = NSTextAlignmentCenter;
+//    [button1 addSubview:lab1_2];
+//    
+//    UIImageView *img_1 = [[UIImageView alloc]initWithFrame:CGRectMake((button1.width-119)/2, 87, 119, 49)];
+//    img_1.contentMode = UIViewContentModeScaleAspectFit;
+//    [button1 addSubview:img_1];
+//    
+//    
+//    NSDictionary *dic ;
+//    if (self.data_A2.count!=0) {
+//        
+//        dic = self.data_A2[0];
+//        lab1_1.text = dic[@"theme"];
+//        lab1_2.text = dic[@"content"];
+//        NSString *img_str = [NSString stringWithFormat:@"%@%@",FOURADVERTIMAGE,dic[@"image_url"]];
+//        [img_1 sd_setImageWithURL:[NSURL URLWithString:img_str] placeholderImage:[UIImage imageNamed:@"dfg"]];
+//        
+//        
+//    }
+//    
+//    
+//    
+//    
+//    UIButton *button2 =[UIButton buttonWithType:UIButtonTypeCustom];
+//    button2.frame = CGRectMake(button1.right+1, 10, SCREENWIDTH-button1.right-1, 79-5);
+//    button2.backgroundColor = [UIColor whiteColor];
+//    [button2 addTarget:self action:@selector(advertiseClick:) forControlEvents:UIControlEventTouchUpInside];
+//    button2.tag=1;
+//    [back_view addSubview:button2];
+//    
+//    UILabel *lab2_1 = [[UILabel alloc]initWithFrame:CGRectMake(13, 10, button2.width/2, 15)];
+//    lab2_1.text = @"美发专区";
+//    lab2_1.font = [UIFont systemFontOfSize:15];
+//    lab2_1.textColor = [UIColor colorWithHexString:@"fe0000"];
+//    lab2_1.textAlignment = NSTextAlignmentLeft;
+//    [button2 addSubview:lab2_1];
+//    
+//    UILabel *lab2_2 = [[UILabel alloc]initWithFrame:CGRectMake(13, 31, button2.width/2-13, 12)];
+//    lab2_2.text = @"办卡永享8折";
+//    lab2_2.font = [UIFont systemFontOfSize:12];
+//    lab2_2.textColor = RGB(102,102,102);
+//    lab2_2.textAlignment = NSTextAlignmentLeft;
+//    [button2 addSubview:lab2_2];
+//    
+//    
+//    UIImageView *img_2 = [[UIImageView alloc]initWithFrame:CGRectMake(button2.width/2, 0, button2.height*230/124, button2.height)];
+//    img_2.contentMode = UIViewContentModeScaleAspectFit;
+//
+////    img_2.backgroundColor = RGB(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255));
+//    [button2 addSubview:img_2];
+//    
+//    
+//    if (self.data_A2.count!=0) {
+//        
+//        dic = self.data_A2[1];
+//        lab2_1.text = dic[@"theme"];
+//        lab2_2.text = dic[@"content"];
+//        NSString *img_str = [NSString stringWithFormat:@"%@%@",FOURADVERTIMAGE,dic[@"image_url"]];
+//
+//        [img_2 sd_setImageWithURL:[NSURL URLWithString:img_str] placeholderImage:[UIImage imageNamed:@"dasda.png"]];
+//        
+//        CGFloat hh = [lab2_2.text boundingRectWithSize:CGSizeMake(lab2_2.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName :lab2_2.font} context:nil].size.height;
+//        
+//        
+//        if (hh>lab2_2.height) {
+//            lab2_2.frame = CGRectMake(13, 31, button2.width/2-13, 25);
+//            lab2_2.numberOfLines= 2;
+//        }
+//    }
+//
+//    
+//    
+//    for (int i = 0; i <2; i ++) {
+//        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        btn.frame = CGRectMake(button1.right+1+i*((button2.width-1)/2+1), button2.bottom+1, ((button2.width-1)/2), 80+5);
+//        [btn addTarget:self action:@selector(advertiseClick:) forControlEvents:UIControlEventTouchUpInside];
+//        btn.tag = i+2;
+//        btn.backgroundColor = [UIColor whiteColor];
+//        
+//        UILabel *lab_1 = [[UILabel alloc]initWithFrame:CGRectMake(11, 10, btn.width, 15)];
+//        lab_1.text = @"会员大放送";
+//        lab_1.font = [UIFont systemFontOfSize:15];
+//        lab_1.textColor = [UIColor colorWithHexString:@"fe0000"];
+//        lab_1.textAlignment = NSTextAlignmentLeft;
+//        [btn addSubview:lab_1];
+//        
+//        UILabel *lab_2 = [[UILabel alloc]initWithFrame:CGRectMake(11, 27, btn.width, 12)];
+//        lab_2.text = @"优惠停不下来";
+//        lab_2.font = [UIFont systemFontOfSize:12];
+//        lab_2.textColor = RGB(102,102,102);
+//        lab_2.textAlignment = NSTextAlignmentLeft;
+//        [btn addSubview:lab_2];
+////btn.width-13-38, btn.height-38-2, 38, 38
+//        UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake( (btn.width-38*224/110)/2, btn.height-38-2, 38*224/110, 38)];
+//        img.contentMode = UIViewContentModeScaleAspectFit;
+//
+//        [btn addSubview:img];
+//        
+//              [back_view addSubview:btn];
+//        
+//        if (self.data_A2.count!=0) {
+//            
+//            dic = self.data_A2[i+2];
+//            lab_1.text = dic[@"theme"];
+//            lab_2.text = dic[@"content"];
+//            
+//            NSString *img_str = [NSString stringWithFormat:@"%@%@",FOURADVERTIMAGE,dic[@"image_url"]];
+//            
+//            [img sd_setImageWithURL:[NSURL URLWithString:img_str] placeholderImage:[UIImage imageNamed:@"icon3.png"]];
+//            
+//            
+//            if (i ==0) {
+//                //img.frame = CGRectMake(13, btn.height-38-2, 38, 38);
+//                [img sd_setImageWithURL:[NSURL URLWithString:img_str] placeholderImage:[UIImage imageNamed:@"icon3.png"]];
+////                lab_2.text = @"喜迎中国年!";(13, btn.height-38-2, 38, 38
+//                
+//            }
+//
+//            
+//            
+//        }
+//
+//    }
     
     //长条广告
     _longAdvertise_btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _longAdvertise_btn.frame = CGRectMake(0, button1.bottom+10, SCREENWIDTH, 76);
+    _longAdvertise_btn.frame = CGRectMake(0, (81*LZDScale+1)*2+20, SCREENWIDTH, 76);
 //    _longAdvertise_btn.backgroundColor = [UIColor orangeColor];
     
     if (self.longAdvertise_dic) {
@@ -991,7 +1071,7 @@
 
 
     
-    back_view.frame = CGRectMake(0, 0, SCREENWIDTH, _longAdvertise_btn.bottom+5);
+    back_view.frame = CGRectMake(0, 0, SCREENWIDTH, _longAdvertise_btn.bottom+10);
     
     return back_view;
 }
@@ -1736,40 +1816,7 @@
 
 }
 
--(void)autoAuth{
-//    VCOPClient *client = [self VCOPClientInstance];
-//    client.accessToken=kQIYIAppKey;
-//    client.appSecret=kQIYIAppSecret;
-//    NSLog(@"%@",client.accessToken);
-//    __block HomeViewController* tempSelf = self;
-//    [client authorizeWithSuccess:^(NSString* queryKey, id responseObjct){
-//        NSLog(@"success!");
-//        NSLog(@"%@",responseObjct);
-//        client.accessToken=[responseObjct objectForKey:@"access_token"];
-//        client.expirationDate=[responseObjct objectForKey:@"expires_in"];
-//        client.refreshToken=[responseObjct objectForKey:@"refresh_token"];
-//        [tempSelf storeAuthData];
-//    }
-//                         failure:^(NSString* queryKey, NSError* error) {
-//                             NSLog(@"error.useinfo=%@",error.userInfo);
-//                             //[tempSelf alertViewShow:[tempSelf getAccessTokenInfo:client] andError:error];
-//                         }];
-//    return;
-}
 
-- (void)storeAuthData
-{
-//    VCOPClient *client = [self VCOPClientInstance];
-//    
-//    NSDictionary *authData = [NSDictionary dictionaryWithObjectsAndKeys:
-//                              client.accessToken, @"AccessTokenKey",
-//                              client.expirationDate, @"ExpirationDateKey",
-//                              client.refreshToken,@"FefreshTokenKey",
-//                              nil
-//                              ];
-//    [[NSUserDefaults standardUserDefaults] setObject:authData forKey:@"VCOPAuthData"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-}
 
 
 -(void)resetFrame{

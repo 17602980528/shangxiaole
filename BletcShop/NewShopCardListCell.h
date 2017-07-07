@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface NewShopCardListCell : UITableViewCell
+@property (nonatomic , weak) UIImageView *back_view;// <#Description#>
+
 @property (nonatomic , weak) UIImageView *cardImg;// <#Description#>
 @property (nonatomic , weak) UILabel *vipLab;// <#Description#>
 @property (nonatomic , weak) UILabel *content_lab;// <#Description#>
