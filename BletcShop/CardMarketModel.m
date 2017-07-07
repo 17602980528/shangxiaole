@@ -32,7 +32,8 @@
     self.card_code = [NSString getTheNoNullStr:dic[@"card_code"] andRepalceStr:@""];
     self.rule = [NSString getTheNoNullStr:dic[@"rule"] andRepalceStr:@""];
 
-    self.datetime = [NSString getTheNoNullStr:dic[@"datetime"] andRepalceStr:@""];
+    self.datetime = [NSString sinaWeiboCreatedAtString:[NSString getTheNoNullStr:dic[@"datetime"] andRepalceStr:@""]];
+    
     self.card_type = [NSString getTheNoNullStr:dic[@"card_type"] andRepalceStr:@""];
     self.rate = [NSString getTheNoNullStr:dic[@"rate"] andRepalceStr:@""];
     self.address = [NSString getTheNoNullStr:dic[@"address"] andRepalceStr:@""];

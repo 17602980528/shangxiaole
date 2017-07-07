@@ -1,18 +1,20 @@
 //
-//  MoreViewCell.m
+//  ShopProductsDetailsVCTableViewCell.m
 //  BletcShop
 //
-//  Created by apple on 2017/7/6.
+//  Created by apple on 2017/7/4.
 //  Copyright © 2017年 bletc. All rights reserved.
 //
 
-#import "MoreViewCell.h"
+#import "ShopProductsDetailsVCTableViewCell.h"
 
-@implementation MoreViewCell
+@implementation ShopProductsDetailsVCTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.productImage.layer.cornerRadius=3.0f;
+    self.productImage.clipsToBounds=YES;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

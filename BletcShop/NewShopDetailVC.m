@@ -16,6 +16,7 @@
 #import "SRVideoPlayer.h"
 #import "ApriseVC.h"
 #import "RailNameConfirmVC.h"
+#import "ShopProductsDetailsVC.h"
 @interface NewShopDetailVC ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIWebViewDelegate,LandingDelegate,UIScrollViewDelegate>
 {
     UIButton *collectBtn;
@@ -1174,6 +1175,10 @@
 -(void)productClick:(UITapGestureRecognizer*)tap{
     
     NSLog(@"productClick===%ld",tap.view.tag);
+    ShopProductsDetailsVC *vc=[[ShopProductsDetailsVC alloc]init];
+    vc.wholeInfoDic=wholeInfoDic;
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 -(void)scanMoreInfo{
     

@@ -8,7 +8,7 @@
 
 #import "MainTabBarController.h"
 #import "BaseNavigationController.h"
-#import "MoreViewController.h"
+//#import "MoreViewController.h"
 #import "MineViewController.h"
 #import "ShoppingViewController.h"
 
@@ -55,8 +55,8 @@
     MineViewController *mineVC = [[MineViewController alloc]init];
     [self addOneChindVC:mineVC title:@"我的" imageName:@"mine_my_n" selectedImageName:@"mine_my_s"];
     
-    MoreViewController *moreVC = [[MoreViewController alloc]init];
-    [self addOneChindVC:moreVC title:@"更多" imageName:@"mine_more_n" selectedImageName:@"mine_more_s"];
+//    MoreViewController *moreVC = [[MoreViewController alloc]init];
+//    [self addOneChindVC:moreVC title:@"更多" imageName:@"mine_more_n" selectedImageName:@"mine_more_s"];
     
     //self.viewControllers = @[firstVc,shopVC,mineVC,moreVC];
 }
