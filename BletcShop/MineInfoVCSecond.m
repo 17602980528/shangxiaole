@@ -10,6 +10,7 @@
 #import "LZDUserInfoVC.h"
 #import "ChangeLoginOrPayVC.h"
 @interface MineInfoVCSecond ()
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
 @end
 
@@ -43,7 +44,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.bgView.layer.cornerRadius=6.0f;
+    self.bgView.clipsToBounds=YES;
 }
 
 - (void)didReceiveMemoryWarning {
