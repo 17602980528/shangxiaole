@@ -33,17 +33,18 @@
 +(void)setUpNavigationBarTheme{
     //设置导航栏主题
     UINavigationBar *navBar = [UINavigationBar appearance];
-    UIColor *bgColor = NavBackGroundColor;
+    UIColor *bgColor = [UIColor whiteColor];
     [navBar setBarTintColor:bgColor];
     navBar.translucent = NO;
     
     //设置标题文字颜色
     NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
-    attrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
+    attrs[NSForegroundColorAttributeName] = RGB(61,61,61);
     attrs[NSFontAttributeName] = [UIFont systemFontOfSize:18];
     
     [navBar setTitleTextAttributes:attrs];
-    [navBar setTintColor:[UIColor whiteColor]];
+    [navBar setTintColor:RGB(61,61,61)];
+    [navBar setBackIndicatorImage:[UIImage imageNamed:@"返回箭头"]];
     
     
 }

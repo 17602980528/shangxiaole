@@ -703,6 +703,10 @@
 		D981FD121E2616080026E4B2 /* UMSocialNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D981FCFE1E2616080026E4B2 /* UMSocialNetwork.framework */; };
 		D981FD131E2616080026E4B2 /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D981FD001E2616080026E4B2 /* UMSocialSDKResources.bundle */; };
 		D981FD141E2616080026E4B2 /* UShareUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D981FD011E2616080026E4B2 /* UShareUI.framework */; };
+		D9824F4A1F13480500301076 /* PictureAndTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9824F481F13480500301076 /* PictureAndTextVC.m */; };
+		D9824F4B1F13480500301076 /* PictureAndTextVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9824F491F13480500301076 /* PictureAndTextVC.xib */; };
+		D9824F501F134B9600301076 /* InsureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9824F4E1F134B9600301076 /* InsureVC.m */; };
+		D9824F511F134B9600301076 /* InsureVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9824F4F1F134B9600301076 /* InsureVC.xib */; };
 		D98533311DDE9A86004E1E6F /* NewBuyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D98533301DDE9A86004E1E6F /* NewBuyCardViewController.m */; };
 		D98533341DDE9B21004E1E6F /* NameSignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D98533331DDE9B21004E1E6F /* NameSignViewController.m */; };
 		D9853F7B1DD463FA0028BF94 /* UILabel+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D9853F7A1DD463FA0028BF94 /* UILabel+extension.m */; };
@@ -2113,6 +2117,12 @@
 		D981FCFE1E2616080026E4B2 /* UMSocialNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMSocialNetwork.framework; sourceTree = "<group>"; };
 		D981FD001E2616080026E4B2 /* UMSocialSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResources.bundle; sourceTree = "<group>"; };
 		D981FD011E2616080026E4B2 /* UShareUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UShareUI.framework; sourceTree = "<group>"; };
+		D9824F471F13480500301076 /* PictureAndTextVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureAndTextVC.h; sourceTree = "<group>"; };
+		D9824F481F13480500301076 /* PictureAndTextVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureAndTextVC.m; sourceTree = "<group>"; };
+		D9824F491F13480500301076 /* PictureAndTextVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PictureAndTextVC.xib; sourceTree = "<group>"; };
+		D9824F4D1F134B9600301076 /* InsureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsureVC.h; sourceTree = "<group>"; };
+		D9824F4E1F134B9600301076 /* InsureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsureVC.m; sourceTree = "<group>"; };
+		D9824F4F1F134B9600301076 /* InsureVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InsureVC.xib; sourceTree = "<group>"; };
 		D985332F1DDE9A86004E1E6F /* NewBuyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewBuyCardViewController.h; sourceTree = "<group>"; };
 		D98533301DDE9A86004E1E6F /* NewBuyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewBuyCardViewController.m; sourceTree = "<group>"; };
 		D98533321DDE9B21004E1E6F /* NameSignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSignViewController.h; sourceTree = "<group>"; };
@@ -3751,14 +3761,7 @@
 				189411421D8052FE00314E11 /* playvedio.jpg */,
 				18D8464D1ED591C90048F010 /* 优惠券背景线下.png */,
 				18D8464E1ED591C90048F010 /* 优惠券背景线上.png */,
-				D9ABB19F1EC93EF900FBE080 /* NewShopDetailVC.h */,
-				D9ABB1A01EC93EF900FBE080 /* NewShopDetailVC.m */,
-				D92ACE041F0F341F00858727 /* ShopDetailCouponsCell.h */,
-				D92ACE051F0F341F00858727 /* ShopDetailCouponsCell.m */,
-				D92ACE061F0F341F00858727 /* ShopDetailCouponsCell.xib */,
-				180D0D411F0DCE4400A39790 /* 店内更多商品 */,
-				D9ABB1A61EC9406E00FBE080 /* 查看更多评价 */,
-				D9ABB1A21EC93F0500FBE080 /* 商铺信息Cell */,
+				D9824F461F1347BA00301076 /* 店铺信息 */,
 				D9CDFB671CC47F7C0054EBE3 /* BDMapViewController.h */,
 				D9CDFB681CC47F7C0054EBE3 /* BDMapViewController.m */,
 				D9210BB71CC718D500010DF7 /* CardInfoViewController.h */,
@@ -4755,6 +4758,51 @@
 				D981FD011E2616080026E4B2 /* UShareUI.framework */,
 			);
 			path = UMSocialUI;
+			sourceTree = "<group>";
+		};
+		D9824F441F13446E00301076 /* 商铺详情cell */ = {
+			isa = PBXGroup;
+			children = (
+				D92ACE041F0F341F00858727 /* ShopDetailCouponsCell.h */,
+				D92ACE051F0F341F00858727 /* ShopDetailCouponsCell.m */,
+				D92ACE061F0F341F00858727 /* ShopDetailCouponsCell.xib */,
+			);
+			name = "商铺详情cell";
+			sourceTree = "<group>";
+		};
+		D9824F451F13479600301076 /* 图文详情 */ = {
+			isa = PBXGroup;
+			children = (
+				D9824F471F13480500301076 /* PictureAndTextVC.h */,
+				D9824F481F13480500301076 /* PictureAndTextVC.m */,
+				D9824F491F13480500301076 /* PictureAndTextVC.xib */,
+			);
+			name = "图文详情";
+			sourceTree = "<group>";
+		};
+		D9824F461F1347BA00301076 /* 店铺信息 */ = {
+			isa = PBXGroup;
+			children = (
+				D9ABB19F1EC93EF900FBE080 /* NewShopDetailVC.h */,
+				D9ABB1A01EC93EF900FBE080 /* NewShopDetailVC.m */,
+				D9824F4C1F134B7600301076 /* 保障详情 */,
+				D9824F451F13479600301076 /* 图文详情 */,
+				D9824F441F13446E00301076 /* 商铺详情cell */,
+				180D0D411F0DCE4400A39790 /* 店内更多商品 */,
+				D9ABB1A61EC9406E00FBE080 /* 查看更多评价 */,
+				D9ABB1A21EC93F0500FBE080 /* 商铺信息Cell */,
+			);
+			name = "店铺信息";
+			sourceTree = "<group>";
+		};
+		D9824F4C1F134B7600301076 /* 保障详情 */ = {
+			isa = PBXGroup;
+			children = (
+				D9824F4D1F134B9600301076 /* InsureVC.h */,
+				D9824F4E1F134B9600301076 /* InsureVC.m */,
+				D9824F4F1F134B9600301076 /* InsureVC.xib */,
+			);
+			name = "保障详情";
 			sourceTree = "<group>";
 		};
 		D98533351DDE9B25004E1E6F /* 用户信息 */ = {
@@ -5785,6 +5833,7 @@
 				D949C1591CBF7E4D0091D8FC /* privi.png in Resources */,
 				D9AB25361D88E4ED000E9288 /* VoiceSearchFeedback008@2x.png in Resources */,
 				D9AB253D1D88E4ED000E9288 /* VoiceSearchFeedback015@2x.png in Resources */,
+				D9824F511F134B9600301076 /* InsureVC.xib in Resources */,
 				D92C632E1CC8DA08006768C6 /* delete.png in Resources */,
 				D9D50DBB1D87DE3200A5E469 /* lxh_beicui.png in Resources */,
 				D923D99C1D2B7F59009422EB /* data.png in Resources */,
@@ -6273,6 +6322,7 @@
 				D94DF24F1CAE0AA4000D5B69 /* star@2x.png in Resources */,
 				D95BAE541D542FD500ED0CDC /* award_10.png in Resources */,
 				D95BAE561D542FD500ED0CDC /* award_12.png in Resources */,
+				D9824F4B1F13480500301076 /* PictureAndTextVC.xib in Resources */,
 				D98FDF841E601C280057C206 /* AD_ad_is@2x.png in Resources */,
 				D9AA10C81F03B43400F7EDE8 /* NewBuyOptionsCell.xib in Resources */,
 				D9699E511D348EF7001DEC06 /* 小标-21.png in Resources */,
@@ -6555,12 +6605,14 @@
 				D9DEED271CACED7C00ACDD00 /* UIImage+WebP.m in Sources */,
 				D941135A1CE9A3D7008E231F /* DataVerifier.m in Sources */,
 				1CDCCD181C7594040094E70D /* AFHTTPRequestOperationManager.m in Sources */,
+				D9824F501F134B9600301076 /* InsureVC.m in Sources */,
 				18FA58D41EEA769C00F458F2 /* NewUserRegistVC.m in Sources */,
 				D925D1851E7106EB0000B8B1 /* SelectAddressViewController.m in Sources */,
 				D9699E541D34B88B001DEC06 /* MoneyBagChoiceTypeViewController.m in Sources */,
 				D98E5BFC1E515210009D56BF /* MASConstraint.m in Sources */,
 				1C0BEF871C7D56EF00519481 /* RegisterController.m in Sources */,
 				D95F03271DD9664900F9DC2F /* BankListViewController.m in Sources */,
+				D9824F4A1F13480500301076 /* PictureAndTextVC.m in Sources */,
 				D96503DA1CE02B21006907EF /* AsyncUdpSocket.m in Sources */,
 				18F05E6A1E263B6B002E4C10 /* CheckTransferStateAndEditOrRemoveCardViewController.m in Sources */,
 				D97B702C1E2C62AC00CEAFC1 /* CardMarketCell.m in Sources */,

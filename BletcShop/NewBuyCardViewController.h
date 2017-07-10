@@ -29,10 +29,10 @@ enum OrderTypes{
 @property (nonatomic , strong) NSDictionary *plat_coup_dic;// 平台优惠券信息
 
 @property (nonatomic , strong) NSDictionary *card_dic;// 卡的信息
-@property(nonatomic,strong)NSDictionary *cardList_Dic;
+@property(nonatomic,strong)NSArray *cardListArray;
 
 //@property(nonatomic,copy)NSString *pay_Type;
 
 @property (nonatomic,copy)NSString *shop_name;// 店名
-@property(nonatomic,copy) NSIndexPath* selectIndexPath;
+@property(nonatomic) NSInteger selectRow;
 @end

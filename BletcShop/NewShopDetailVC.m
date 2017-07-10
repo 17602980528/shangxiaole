@@ -17,8 +17,10 @@
 #import "ApriseVC.h"
 #import "RailNameConfirmVC.h"
 #import "ShopProductsDetailsVC.h"
-
+#import "PictureAndTextVC.h"
 #import "ShopDetailCouponsCell.h"
+
+#import "InsureVC.h"
 @interface NewShopDetailVC ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIWebViewDelegate,LandingDelegate,UIScrollViewDelegate>
 {
     UIButton *collectBtn;
@@ -100,7 +102,7 @@
 -(void)initTableView{
     
     
-    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64-49) style:UITableViewStylePlain];
+    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64-49-1) style:UITableViewStylePlain];
     table.delegate = self;
     table.dataSource = self;
     table.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -205,7 +207,11 @@
     }
     
     
-          else if(indexPath.section==6){
+    else if(indexPath.section==6){
+              
+              NSLog(@"-title_old_btn.tag---%ld",title_old_btn.tag);
+
+              
         if (title_old_btn.tag==1) {
             
             UIView *content_View = [self initcontentView];
@@ -213,7 +219,6 @@
             return content_View.height;
         }else if (title_old_btn.tag ==2){
            
-
             return SCREENWIDTH*2/3;
 
         
@@ -241,9 +246,20 @@
         
     }
     else if (indexPath.section ==7){
+        
+                if ((title_old_btn.tag==0 &&self.pictureAndTextArray.count>1) ||title_old_btn.tag==2) {
+        
+        
         return 44;
+                }else
+        
+                    NSLog(@"section==7");
+        
+          return 10;
+         
     }
-    else if (indexPath.section ==8){
+
+       else if (indexPath.section ==8){
         return 39;
     }
     else if(indexPath.section==9)
@@ -256,17 +272,21 @@
         }else{
             return 40;
         }
+    }    else if(indexPath.section==10){
+        return 10;
     }
+
     else return 0.01;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 9;
+    return 11;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (section==0) {
 
-        return 1;
+       
+        return self.card_arr.count? 1:0;
 
         
         
@@ -281,7 +301,7 @@
     }
 
     else if (section==3){
-        return 1;
+        return [wholeInfoDic[@"coupon_list"] count]? 1:0;
     }
     
     else if (section==4){
@@ -293,49 +313,37 @@
     
     
     else if (section==5){
-        return 1;
+        return [wholeInfoDic[@"commodity_list"] count]? 1:0;
     }
     
     
     else  if(section==6){
-        return 1;
+        if ((title_old_btn.tag==0 && self.pictureAndTextArray.count>0) ||(title_old_btn.tag==2 && self.insureImage_A.count>0) ||title_old_btn.tag==1) {
+            return 1;
+        }else
         
-//        if (title_old_btn.tag==1) {
-//            
-//            
-//            return 1;
-//        }else if (title_old_btn.tag ==2){
-//            return _insureImage_A.count;
-//        }else{
-//            return self.pictureAndTextArray.count? _pictureAndTextArray.count+1:1;
-// 
-//        }
+        return 0;
+        
+
     }
     
     else if (section==7){
         
-        if (title_old_btn.tag==0 &&self.pictureAndTextArray.count>1) {
-            
-            NSLog(@"title_old_btn.tag=%ld self.pictureAndTextArray.count=%ld",title_old_btn.tag,self.pictureAndTextArray.count);
-            
             return 1;
-        }else
-            
-            NSLog(@"section==7");
-
-            return 0;
  
         }
     
     else if (section==8){
-        return 1;
+        return [wholeInfoDic[@"evaluate_list"] count]? 1:0;
     }
     
     else if(section==9){
         NSArray *evaluate_list = wholeInfoDic[@"evaluate_list"];
         
-        return evaluate_list.count ?evaluate_list.count:1;
+        return evaluate_list.count;
 
+    }else if(section==10){
+        return 1;
     }else
     return 0;
 }
@@ -522,12 +530,14 @@
             
             UIImageView *imgView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH*2/3)];
             [cell addSubview:imgView];
-            if (_insureImage_A.count!=0) {
+            if (self.insureImage_A.count!=0) {
 
                 NSDictionary *dic = _insureImage_A[indexPath.row];
                 
                 NSURL * nurl1=[[NSURL alloc] initWithString:[[INSURE_IMAGE stringByAppendingString:dic[@"image_url"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
                 [imgView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
+                
+                NSLog(@"nurl1-------%@",nurl1);
             }
             
            
@@ -555,31 +565,46 @@
     } else if(indexPath.section==7){
         
         
-        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 33+11)];
-        [cell addSubview:backView];
+
         
-        
-        UILabel *lab = [[UILabel alloc]init];
-        lab.frame= CGRectMake(0, 0, SCREENWIDTH-17, 33);
-        lab.text = @"查看更多";
-        lab.textColor = RGB(51,51,51);
-        lab.textAlignment = NSTextAlignmentCenter;
-        lab.font = [UIFont systemFontOfSize:13];
-        
-        [backView addSubview:lab];
-        
-        UIImageView *imgVright = [[UIImageView alloc]initWithFrame:CGRectMake(lab.center.x+35, lab.center.y-6, 6, 12)];
-        imgVright.image = [UIImage imageNamed:@"youjiantou"];
-        [backView addSubview:imgVright];
-        
-        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 1)];
-        line.backgroundColor = RGB(240,240,240);
-        [backView addSubview:line];
-        
-        
-        UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(0, lab.bottom, SCREENWIDTH, 11)];
-        line1.backgroundColor = RGB(240,240,240);
-        [backView addSubview:line1];
+        if ((title_old_btn.tag==0 &&self.pictureAndTextArray.count>1) ||(title_old_btn.tag==2 &&_insureImage_A.count>1)) {
+            UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 33+11)];
+            [cell addSubview:backView];
+            
+            
+            
+            UILabel *lab = [[UILabel alloc]init];
+            lab.frame= CGRectMake(0, 0, SCREENWIDTH-17, 33);
+            lab.text = @"查看更多";
+            lab.textColor = RGB(51,51,51);
+            lab.textAlignment = NSTextAlignmentCenter;
+            lab.font = [UIFont systemFontOfSize:13];
+            
+            [backView addSubview:lab];
+            
+            UIImageView *imgVright = [[UIImageView alloc]initWithFrame:CGRectMake(lab.center.x+35, lab.center.y-6, 6, 12)];
+            imgVright.image = [UIImage imageNamed:@"youjiantou"];
+            [backView addSubview:imgVright];
+            
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 1)];
+            line.backgroundColor = RGB(240,240,240);
+            [backView addSubview:line];
+            
+            
+            UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(0, lab.bottom, SCREENWIDTH, 11)];
+            line1.backgroundColor = RGB(240,240,240);
+            [backView addSubview:line1];
+            
+            
+        }else{
+           
+            UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 10)];
+            line1.backgroundColor = RGB(240,240,240);
+            [cell addSubview:line1];
+  
+            
+        }
+            
         
         
         
@@ -645,6 +670,17 @@
                 nameLabel.font=[UIFont systemFontOfSize:14.0f];
                 nameLabel.textColor = RGB(51,51,51);
                 [cell addSubview:nameLabel];
+               
+                UILabel *starLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREENWIDTH-110, nameLabel.center.y-12, 110, 35)];
+                
+                DLStarRatingControl* dlCtrl = [[DLStarRatingControl alloc]initWithFrame:CGRectMake(0, 0, 110, 35) andStars:5 isFractional:YES star:[UIImage imageNamed:@"result_small_star_disable_iphone"] highlightStar:[UIImage imageNamed:@"redstar"]];
+                dlCtrl.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+                dlCtrl.userInteractionEnabled = NO;
+                
+                dlCtrl.rating = [[NSString getTheNoNullStr:[dic objectForKey:@"stars"] andRepalceStr:@"0"] floatValue];
+                
+                [starLabel addSubview:dlCtrl];
+                [cell addSubview:starLabel];
                 
                 
                 UILabel *timeLab = [[UILabel alloc]initWithFrame:CGRectMake(nameLabel.left, nameLabel.bottom+7, 200, 10)];
@@ -685,9 +721,14 @@
         
         
         return cell;
-    }else
+    }else {
+        UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 10)];
+        line1.backgroundColor = RGB(240,240,240);
+        [cell addSubview:line1];
+        return cell;
+
+    }
     
-    return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     
@@ -897,13 +938,13 @@
     
     NSArray* commodity_list = wholeInfoDic[@"commodity_list"];
     
-    if (commodity_list.count==0) {
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SCREENWIDTH, 40)];
-        label.font = [UIFont systemFontOfSize:14];
-        label.text = @"本店暂无商品";
-        
-        return label;
-    }else{
+//    if (commodity_list.count==0) {
+//        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SCREENWIDTH, 40)];
+//        label.font = [UIFont systemFontOfSize:14];
+//        label.text = @"本店暂无商品";
+//        
+//        return label;
+//    }else{
     
         UIView *back_view = [[UIView alloc]init];
         back_view.backgroundColor = RGB(240,240,240);
@@ -953,7 +994,7 @@
             b_v.tag = i;
             [commodity_scroView addSubview:b_v];
             
-            UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(productClick:)];
+            UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(productClick)];
             
             [b_v addGestureRecognizer:tap];
             
@@ -992,7 +1033,7 @@
         
         back_view.frame = CGRectMake(0, 0, SCREENWIDTH, commodity_scroView.bottom+5);
         return back_view;
-    }
+//    }
     
     
 }
@@ -1008,7 +1049,7 @@
     }
     
     NSDictionary *dic = self.card_arr[indexPath.row];
-    NSLog(@"creatCardListCell----%@",dic);
+//    NSLog(@"creatCardListCell----%@",dic);
 
     if (indexPath.row==0) {
         card_cell.back_view.image = [UIImage imageNamed:@"导角矩形上"];
@@ -1197,9 +1238,8 @@
     
 }
 
--(void)productClick:(UITapGestureRecognizer*)tap{
+-(void)productClick{
     
-    NSLog(@"productClick===%ld",tap.view.tag);
     ShopProductsDetailsVC *vc=[[ShopProductsDetailsVC alloc]init];
     vc.wholeInfoDic=wholeInfoDic;
     [self.navigationController pushViewController:vc animated:YES];
@@ -1312,6 +1352,46 @@
         [shopImageView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
         
         
+        
+        if ([wholeInfoDic[@"coupon_list"] count]!=0) {
+            UILabel *coup_lab = [[UILabel alloc]init];
+            [shopImageView addSubview:coup_lab];
+            coup_lab.text = @"优惠券";
+            coup_lab.textColor = [UIColor whiteColor];
+            coup_lab.backgroundColor = RGB(255,0,0);
+            coup_lab.layer.cornerRadius = 2;
+            coup_lab.layer.masksToBounds = YES;
+            coup_lab.textAlignment = NSTextAlignmentCenter;
+            coup_lab.font = [UIFont systemFontOfSize:13];
+
+            
+            coup_lab.frame = CGRectMake(13, shopImageView.height-26, 50, 16);
+            
+        }
+        
+        if (self.card_arr.count!=0) {
+            UILabel *card_lab = [[UILabel alloc]init];
+            [shopImageView addSubview:card_lab];
+            card_lab.font = [UIFont systemFontOfSize:13];
+
+            card_lab.backgroundColor = RGB(253,108,110);
+            card_lab.layer.cornerRadius = 2;
+            card_lab.textColor = [UIColor whiteColor];
+            card_lab.text = @"会员卡";
+            card_lab.textAlignment = NSTextAlignmentCenter;
+            card_lab.layer.masksToBounds = YES;
+            
+            if ([wholeInfoDic[@"coupon_list"] count]!=0) {
+                
+                card_lab.frame = CGRectMake(13 +60, shopImageView.height-26, 50, 16);
+
+            }else{
+                card_lab.frame = CGRectMake(13, shopImageView.height-26, 50, 16);
+                
+            }
+            
+        }
+        
     }else{
         UIView *playerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 221*LZDScale)];
         [backView addSubview:playerView];
@@ -1339,11 +1419,56 @@
     nameLabel.text = [wholeInfoDic objectForKey:@"store"];
     [backView addSubview:nameLabel];
     
-    CGFloat name_h = [UILabel getSizeWithLab:nameLabel andMaxSize:CGSizeMake(SCREENWIDTH-12, MAXFLOAT)].height;
+    CGFloat name_h = [UILabel getSizeWithLab:nameLabel andMaxSize:CGSizeMake(SCREENWIDTH-12-100, MAXFLOAT)].height;
     
-    nameLabel.frame=CGRectMake(13, 221*LZDScale+14, SCREENWIDTH-12, name_h);
+    CGFloat name_w = [UILabel getSizeWithLab:nameLabel andMaxSize:CGSizeMake(SCREENWIDTH-12-100, MAXFLOAT)].width;
+
+    
+    nameLabel.frame=CGRectMake(13, 221*LZDScale+14, MIN (SCREENWIDTH-12-100,name_w) , name_h);
     
 
+    if (![self.videoID isEqualToString:@""]) {
+        
+        if ([wholeInfoDic[@"coupon_list"] count]!=0) {
+            UILabel *coup_lab = [[UILabel alloc]init];
+            [backView addSubview:coup_lab];
+            coup_lab.font = [UIFont systemFontOfSize:13];
+            coup_lab.text = @"优惠券";
+            coup_lab.textColor = [UIColor whiteColor];
+            coup_lab.backgroundColor = RGB(255,0,0);
+            coup_lab.layer.cornerRadius = 2;
+            coup_lab.layer.masksToBounds = YES;
+            coup_lab.textAlignment = NSTextAlignmentCenter;
+            
+            
+            coup_lab.frame = CGRectMake(13 +nameLabel.width+10, nameLabel.top, 50, 16);
+
+        }
+        
+        if (self.card_arr.count!=0) {
+            UILabel *card_lab = [[UILabel alloc]init];
+            [backView addSubview:card_lab];
+            card_lab.font = [UIFont systemFontOfSize:13];
+
+            card_lab.backgroundColor = RGB(253,108,110);
+            card_lab.layer.cornerRadius = 2;
+            card_lab.textColor = [UIColor whiteColor];
+            card_lab.text = @"会员卡";
+            card_lab.textAlignment = NSTextAlignmentCenter;
+            card_lab.layer.masksToBounds = YES;
+            
+            
+            if ([wholeInfoDic[@"coupon_list"] count]!=0) {
+                
+                card_lab.frame = CGRectMake(13 +nameLabel.width+10+60, nameLabel.top, 50, 16);
+                
+            }else{
+                card_lab.frame = CGRectMake(13 +nameLabel.width+10, nameLabel.top, 50, 16);
+                
+            }        }
+
+    }
+    
     
     //评价星星
     UILabel *starLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, nameLabel.bottom+10, 110, 35)];
@@ -1382,9 +1507,12 @@
 
     addressLabel.userInteractionEnabled = YES;
     addressLabel.numberOfLines=0;
-    UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoMapView)];
-    [addressLabel addGestureRecognizer:tapGesture];
     [backView addSubview:addressLabel];
+
+    
+//    UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoMapView)];
+//    [addressLabel addGestureRecognizer:tapGesture];
+    
     
     CGSize address_size = [UILabel getSizeWithLab:addressLabel andMaxSize:CGSizeMake(addressLabel.width, MAXFLOAT)];
     
@@ -1397,7 +1525,12 @@
     addressLabel.frame = address_f;
     
     
-   
+    UIButton *gotomapBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    gotomapBtn.frame = CGRectMake(0, addressLabel.top, SCREENWIDTH, addressLabel.bottom+14- addressLabel.top);
+    [gotomapBtn addTarget:self action:@selector(gotoMapView) forControlEvents:UIControlEventTouchUpInside];
+    
+    [backView addSubview: gotomapBtn];
+
 
     UIImageView *imgV = [[UIImageView alloc]init];
     imgV.image = [UIImage imageNamed:@"youjiantou"];
@@ -1445,8 +1578,7 @@
     {
         if (self.card_arr.count) {
             
-            NSIndexPath *index = [NSIndexPath indexPathForRow:999 inSection:999];
-            [self postGetAuthStateindex:index];
+            [self postGetAuthStateindex:999];
             
            
         }else{
@@ -1679,6 +1811,27 @@ if (old_view !=tap.view) {
     
     if (indexPath.section==1) {
         
+        AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+        if (!appdelegate.IsLogin) {
+            LandingController *landVc = [[LandingController alloc]init];
+            [self.navigationController pushViewController:landVc animated:YES];
+        }else
+        {
+            if (self.card_arr.count>0) {
+
+                [self postGetAuthStateindex:indexPath.row];
+            }else{
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                hud.mode = MBProgressHUDModeText;
+
+                hud.label.text = NSLocalizedString(@"本店暂无卡出售", @"HUD message title");
+                hud.label.font = [UIFont systemFontOfSize:13];
+                hud.frame = CGRectMake(25, SCREENHEIGHT/2, SCREENWIDTH-50, 100);
+                [hud hideAnimated:YES afterDelay:2.f];
+            }
+            
+        }
+
         
     }else if (indexPath.section==2){
         if ([_foldMuta_dia[@"1"] intValue]==0) {
@@ -1689,10 +1842,11 @@ if (old_view !=tap.view) {
             
         }
         
-        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:1];
-        
-        [_shopTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
-        
+//        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:1];
+//        
+//        [_shopTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+
+        [_shopTableView reloadData];
         if ([_foldMuta_dia[@"1"] intValue]==0) {
             
             NSIndexPath *index_p = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -1714,11 +1868,31 @@ if (old_view !=tap.view) {
         
     }else if (indexPath.section==5){
         
+        [self productClick];
+        
     }else if (indexPath.section==6){
         
     }else if (indexPath.section==7){
         
+        if (title_old_btn.tag==0) {
+           
+            
+            PUSH(PictureAndTextVC)
+            vc.infoDic= self.infoDic;
+            vc.picAndText_A = self.pictureAndTextArray;
+            
+        }
+        
+        if (title_old_btn.tag==2) {
+            PUSH(InsureVC)
+            vc.insure_A = self.insureImage_A;
+            
+        }
+        
+        
     }else if (indexPath.section==8){
+        
+        [self scanMoreInfo];
         
     }else if (indexPath.section==9){
         
@@ -1726,39 +1900,12 @@ if (old_view !=tap.view) {
     
     
     
-//    
-//    if (indexPath.section>=2 && indexPath.section <=5) {
-//        
-//            
-//            
-//            AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-//            if (!appdelegate.IsLogin) {
-//                LandingController *landVc = [[LandingController alloc]init];
-//                [self.navigationController pushViewController:landVc animated:YES];
-//            }else
-//            {
-//                if (self.card_arr.count>0) {
-//                    NSIndexPath *lzdIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section-2];
-//                    
-//                    [self postGetAuthStateindex:lzdIndexPath];
-//                }else{
-//                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//                    hud.mode = MBProgressHUDModeText;
-//                    
-//                    hud.label.text = NSLocalizedString(@"本店暂无卡出售", @"HUD message title");
-//                    hud.label.font = [UIFont systemFontOfSize:13];
-//                    hud.frame = CGRectMake(25, SCREENHEIGHT/2, SCREENWIDTH-50, 100);
-//                    [hud hideAnimated:YES afterDelay:2.f];
-//                }
-//                
-//            }
-//
-//            
-//           
-//        }
+    
+
+
 }
 
--(void)postGetAuthStateindex:(NSIndexPath*)indexPath{
+-(void)postGetAuthStateindex:(NSInteger)selectRow{
     
     NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/info/getAuthResult",BASEURL];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -1773,11 +1920,11 @@ if (old_view !=tap.view) {
          if ([dic[@"state"] isEqualToString:@"access"]) {
              
              NewBuyCardViewController *buyVC=[[NewBuyCardViewController alloc]init];
-//             buyVC.cardList_Dic=self.card_arr_dic;
+             buyVC.cardListArray=self.card_arr;
              
              
              buyVC.shop_name =[wholeInfoDic objectForKey:@"store"];
-             buyVC.selectIndexPath=indexPath;
+             buyVC.selectRow=selectRow;
              [self.navigationController pushViewController:buyVC animated:YES];
              
 
