@@ -65,14 +65,24 @@
                                 <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w11-Km-svD">
+                                <rect key="frame" x="0.0" y="123" width="362" height="1"/>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="0Ju-ch-ymy"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="U9b-AB-mGE" firstAttribute="centerY" secondItem="1ec-RJ-OFw" secondAttribute="centerY" id="4IM-pt-q5Z"/>
                             <constraint firstItem="O7Y-HU-iTH" firstAttribute="centerY" secondItem="1ec-RJ-OFw" secondAttribute="centerY" id="7Gf-40-vol"/>
+                            <constraint firstItem="w11-Km-svD" firstAttribute="leading" secondItem="1ec-RJ-OFw" secondAttribute="leading" id="7P5-zT-dLU"/>
                             <constraint firstItem="U9b-AB-mGE" firstAttribute="leading" secondItem="Laz-M3-S3D" secondAttribute="trailing" constant="13" id="CzD-Ht-rtP"/>
                             <constraint firstItem="lsc-ub-yuk" firstAttribute="centerY" secondItem="1ec-RJ-OFw" secondAttribute="centerY" id="Ef1-5r-d0G"/>
+                            <constraint firstAttribute="trailing" secondItem="w11-Km-svD" secondAttribute="trailing" id="F4l-us-myl"/>
                             <constraint firstItem="O7Y-HU-iTH" firstAttribute="leading" secondItem="lsc-ub-yuk" secondAttribute="trailing" constant="13" id="FGY-Sh-saf"/>
+                            <constraint firstAttribute="bottom" secondItem="w11-Km-svD" secondAttribute="bottom" id="KU3-PA-1Xj"/>
                             <constraint firstItem="Laz-M3-S3D" firstAttribute="centerY" secondItem="1ec-RJ-OFw" secondAttribute="centerY" id="U9U-Kv-VNa"/>
                             <constraint firstItem="H7v-g8-t41" firstAttribute="leading" secondItem="1ec-RJ-OFw" secondAttribute="leading" constant="20" id="VWx-ID-TYa"/>
                             <constraint firstItem="H7v-g8-t41" firstAttribute="centerY" secondItem="1ec-RJ-OFw" secondAttribute="centerY" id="ZSz-Lg-CVV"/>
@@ -90,6 +100,8 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="bgView" destination="1ec-RJ-OFw" id="0B9-KM-E4Y"/>
+                <outlet property="sexImageLeft" destination="lsc-ub-yuk" id="9D5-6n-X44"/>
+                <outlet property="sexImageRight" destination="Laz-M3-S3D" id="GOa-sD-uwA"/>
             </connections>
             <point key="canvasLocation" x="-7" y="32"/>
         </tableViewCell>

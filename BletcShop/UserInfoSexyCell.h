@@ -10,5 +10,7 @@
 
 @interface UserInfoSexyCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UIImageView *sexImageLeft;
+@property (weak, nonatomic) IBOutlet UIImageView *sexImageRight;
 
 @end
