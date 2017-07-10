@@ -37,13 +37,14 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title=@"";
+    self.navigationItem.title=@"全部商品";
     XHStarRateView *view=[[XHStarRateView alloc] initWithFrame:self.aprise.frame];
     view.userInteractionEnabled=NO;
      view.isAnimation = YES;
      view.rateStyle = IncompleteStar;
     view.currentScore=[self.wholeInfoDic[@"stars"] floatValue];
     [self.headSectionView addSubview:view];
+    self.shopName.text = self.wholeInfoDic[@"store"];
     
     self.sell.text=[NSString stringWithFormat:@"已售%@笔",self.wholeInfoDic[@"sold"]];
     
