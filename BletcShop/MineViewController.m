@@ -52,6 +52,8 @@
     UIButton *setButton;
     UIImageView *setImageView;
     AppDelegate *appdelegate;
+    UIButton *signBtn;
+    NSDictionary *pointAndSign_dic;
 }
 @property(nonatomic,weak)UITableView *Mytable;
 @property(nonatomic,strong)NSMutableArray *data;
@@ -146,8 +148,10 @@
     
     appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     if (appdelegate.IsLogin) {
-        NSString *string=[NSString stringWithFormat:@"%@%@",HEADIMAGE,[appdelegate.userInfoDic objectForKey:@"headimage"]];
         
+        [self postRequestPointWithSign:appdelegate.userInfoDic[@"uuid"]];
+        
+        NSString *string=[NSString stringWithFormat:@"%@%@",HEADIMAGE,[appdelegate.userInfoDic objectForKey:@"headimage"]];
         NSURL * nurl1=[NSURL URLWithString:[string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
         [headImageView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
         signLabel.text = [NSString getTheNoNullStr:appdelegate.userInfoDic[@"nickname"] andRepalceStr:@"未设置"];
@@ -224,6 +228,18 @@
     [mom addSubview:setButton];
     [setButton addTarget:self action:@selector(goSettingVC) forControlEvents:UIControlEventTouchUpInside];
     
+    signBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    signBtn.frame=CGRectMake(SCREENWIDTH-63, headImageView.center.y-10, 50, 20);
+    signBtn.layer.borderWidth=1.0f;
+    signBtn.layer.borderColor=[[UIColor whiteColor]CGColor];
+    signBtn.layer.cornerRadius=5.0f;
+    signBtn.clipsToBounds=YES;
+    [signBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [signBtn setTitle:@"签到" forState:UIControlStateNormal];
+    signBtn.titleLabel.font=[UIFont systemFontOfSize:13.0f];
+    [mom addSubview:signBtn];
+    
+    
     
     if (appdelegate.IsLogin) {
         NSString *string=[NSString stringWithFormat:@"%@%@",HEADIMAGE,[appdelegate.userInfoDic objectForKey:@"headimage"]];
@@ -233,11 +249,13 @@
         signLabel.text = [NSString getTheNoNullStr:appdelegate.userInfoDic[@"nickname"] andRepalceStr:@"未设置"];
         setImageView.hidden=NO;
         setButton.hidden=NO;
+        signBtn.hidden=NO;
     }else{
         headImageView.image=[UIImage imageNamed:@"头像"];
         signLabel.text=@"未登录";
         setImageView.hidden=YES;
         setButton.hidden=YES;
+        signBtn.hidden=YES;
     }
     
     
@@ -662,6 +680,7 @@
         signLabel.frame=frame2;
         setButton.hidden=YES;
         setImageView.hidden=YES;
+        signBtn.hidden=YES;
     }else if(offset_Y > 0){
         CGRect frame =mom.frame;
         CGFloat height=166 -ABS(offset_Y);
@@ -690,14 +709,17 @@
         signLabel.frame=frame2;
          setButton.hidden=YES;
         setImageView.hidden=YES;
+        signBtn.hidden=YES;
     }else{
          signLabel.alpha=1;
         if (appdelegate.IsLogin) {
             setButton.hidden=NO;
             setImageView.hidden=NO;
+            signBtn.hidden=NO;
         }else{
             setButton.hidden=YES;
             setImageView.hidden=YES;
+            signBtn.hidden=YES;
         }
 
     }
@@ -707,4 +729,70 @@
     MoreViewController *vc=[[MoreViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+-(void)postRequestPointWithSign:(NSString *)uuid {
+    
+    //请求乐点数
+    NSString *url =[[NSString alloc]initWithFormat:@"%@Extra/mall/getIntegral",BASEURL ];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:uuid forKey:@"uuid"];
+    
+    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        
+        NSLog(@"result==%@", result);
+        if (result) {
+            
+            pointAndSign_dic = [NSDictionary dictionaryWithDictionary:result];
+            
+            if ([pointAndSign_dic[@"signed"]isEqualToString:@"yes"]) {
+                [signBtn setTitle:@"已签到" forState:UIControlStateNormal];
+                signBtn.enabled = NO;
+            }else{
+                signBtn.enabled = YES;
+                [signBtn setTitle:@"签到" forState:UIControlStateNormal];
+                [signBtn addTarget:self action:@selector(signBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            }
+            
+        }
+        
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"%@", error);
+        
+    }];
+    
+}
+-(void)signBtnClick:(UIButton*)sender{
+    
+    NSString *url =[[NSString alloc]initWithFormat:@"%@Extra/mall/sign",BASEURL ];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
+    
+    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        
+        NSLog(@"result==%@", result);
+        if ([result[@"result_code"] integerValue]==1) {
+            [signBtn setTitle:@"已签到" forState:UIControlStateNormal];
+            signBtn.enabled = NO;
+            [self tishiSting:@"签到成功，积分+20！"];
+        }
+        
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"%@", error);
+        
+    }];
+}
+-(void)tishiSting:(NSString*)tishi{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    
+    hud.label.text = NSLocalizedString(tishi, @"HUD message title");
+    hud.label.font = [UIFont systemFontOfSize:13];
+    hud.frame = CGRectMake(25, SCREENHEIGHT/2, SCREENWIDTH-50, 100);
+    [hud hideAnimated:YES afterDelay:3.f];
+    
+}
+
 @end
