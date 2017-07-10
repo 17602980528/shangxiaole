@@ -9,7 +9,7 @@
 #import "FavorateViewController.h"
 #import "UIImageView+WebCache.h"
 #import "NewShopDetailVC.h"
-
+#import "FavorateTableViewCell.h"
 
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 
@@ -56,7 +56,7 @@
      {
          NSLog(@"result===%@", result);
 
-         self.favorateShopArray = [result copy];
+         self.favorateShopArray = [result mutableCopy];
          [self _inittable];
      } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
          //         [self noIntenet];
@@ -73,51 +73,89 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    static NSString *cellIndentifier = @"cellIndentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
-    
-    for (UIView *view in cell.subviews) {
-        [view removeFromSuperview];
-    }
-    if(cell==nil)
-    {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
-        cell.backgroundColor = [UIColor whiteColor];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-    }
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    UIImageView *cardImageView = [[UIImageView alloc]initWithFrame:CGRectMake(12, 10, 105, 65)];
-      [cell addSubview:cardImageView];
-    
-    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(cardImageView.right+11, 15, SCREENWIDTH/3, 15)];
-    nameLabel.textAlignment = NSTextAlignmentLeft;
-    nameLabel.font = [UIFont systemFontOfSize:15];
-    nameLabel.tag = 1000;
-    nameLabel.textColor = RGB(51,51,51);
-    [cell addSubview:nameLabel];
-    UILabel *descripLabel = [[UILabel alloc]initWithFrame:CGRectMake(cardImageView.right+11, nameLabel.bottom+12, SCREENWIDTH/2, 40)];
-    descripLabel.textAlignment = NSTextAlignmentLeft;
-    descripLabel.font = [UIFont systemFontOfSize:13];
-    descripLabel.textColor = RGB(102,102,102);
-    descripLabel.numberOfLines=2;
-    descripLabel.tag = 1000;
-    [cell addSubview:descripLabel];
-    
-    UILabel *distanceLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 15, SCREENWIDTH-10, 10)];
-    distanceLabel.textAlignment = NSTextAlignmentRight;
-    distanceLabel.font = [UIFont systemFontOfSize:12];
-    descripLabel.textColor = RGB(102,102,102);
-    distanceLabel.tag = 1000;
-    [cell addSubview:distanceLabel];
-    
-    
+//    static NSString *cellIndentifier = @"cellIndentifier";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+//    
+//    for (UIView *view in cell.subviews) {
+//        [view removeFromSuperview];
+//    }
+//    if(cell==nil)
+//    {
+//        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+//        cell.backgroundColor = [UIColor whiteColor];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//
+//    }
+//    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+//    UIImageView *cardImageView = [[UIImageView alloc]initWithFrame:CGRectMake(12, 10, 105, 65)];
+//      [cell addSubview:cardImageView];
+//    
+//    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(cardImageView.right+11, 15, SCREENWIDTH/3, 15)];
+//    nameLabel.textAlignment = NSTextAlignmentLeft;
+//    nameLabel.font = [UIFont systemFontOfSize:15];
+//    nameLabel.tag = 1000;
+//    nameLabel.textColor = RGB(51,51,51);
+//    [cell addSubview:nameLabel];
+//    UILabel *descripLabel = [[UILabel alloc]initWithFrame:CGRectMake(cardImageView.right+11, nameLabel.bottom+12, SCREENWIDTH/2, 40)];
+//    descripLabel.textAlignment = NSTextAlignmentLeft;
+//    descripLabel.font = [UIFont systemFontOfSize:13];
+//    descripLabel.textColor = RGB(102,102,102);
+//    descripLabel.numberOfLines=2;
+//    descripLabel.tag = 1000;
+//    [cell addSubview:descripLabel];
+//    
+//    UILabel *distanceLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 15, SCREENWIDTH-10, 10)];
+//    distanceLabel.textAlignment = NSTextAlignmentRight;
+//    distanceLabel.font = [UIFont systemFontOfSize:12];
+//    descripLabel.textColor = RGB(102,102,102);
+//    distanceLabel.tag = 1000;
+//    [cell addSubview:distanceLabel];
+//    
+//    
     NSDictionary *dic = self.favorateShopArray[indexPath.row];
+//
+//    
+//    nameLabel.text =[NSString getTheNoNullStr:dic[@"store"] andRepalceStr:@""];
+//    descripLabel.text =[NSString getTheNoNullStr:dic[@"address"] andRepalceStr:@""];
+//    
+//    
+//    CLLocationCoordinate2D c1 = (CLLocationCoordinate2D){[[dic objectForKey:@"latitude"] doubleValue], [[dic objectForKey:@"longtitude"] doubleValue]};
+//    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+//    CLLocationCoordinate2D c2 = appdelegate.userLocation.location.coordinate;
+//    BMKMapPoint a=BMKMapPointForCoordinate(c1);
+//    BMKMapPoint b=BMKMapPointForCoordinate(c2);
+//    CLLocationDistance distance = BMKMetersBetweenMapPoints(a,b);
+//    
+//    
+//    int meter = (int)distance;
+//    if (meter>1000) {
+//        distanceLabel.text = [[NSString alloc]initWithFormat:@"%.1fkm",meter/1000.0];
+//    }else
+//        distanceLabel.text = [[NSString alloc]initWithFormat:@"%dm",meter];
 
+//    CGFloat distance_ww = [UILabel getSizeWithLab:distanceLabel andMaxSize:CGSizeMake(100, 100)].width;
+//
+//    CGRect oldFrame = nameLabel.frame;
+//    oldFrame.size.width = SCREENWIDTH-oldFrame.origin.x-distance_ww-15;
+//    nameLabel.frame = oldFrame;
+//    
+//    
+//    NSURL * nurl1=[[NSURL alloc] initWithString:[[SHOPIMAGE_ADDIMAGE stringByAppendingString:dic[@"image_url"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+//    [cardImageView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
+//    
+//    UIView *viewLine = [[UIView alloc]initWithFrame:CGRectMake(0, 85, SCREENWIDTH, 10)];
+//    viewLine.backgroundColor = RGB(240, 240, 240);
+//    [cell addSubview:viewLine];
+    FavorateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FavorateTableCell"];
+    if (!cell) {
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"FavorateTableViewCell" owner:self options:nil] lastObject];
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    }
+        NSURL * nurl1=[[NSURL alloc] initWithString:[[SHOPIMAGE_ADDIMAGE stringByAppendingString:dic[@"image_url"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+        [cell.cardImageView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
     
-    nameLabel.text =[NSString getTheNoNullStr:dic[@"store"] andRepalceStr:@""];
-    descripLabel.text =[NSString getTheNoNullStr:dic[@"address"] andRepalceStr:@""];
-    
+    cell.shopName.text=[NSString getTheNoNullStr:dic[@"store"] andRepalceStr:@""];
+    cell.address.text=[NSString getTheNoNullStr:dic[@"address"] andRepalceStr:@""];
     
     CLLocationCoordinate2D c1 = (CLLocationCoordinate2D){[[dic objectForKey:@"latitude"] doubleValue], [[dic objectForKey:@"longtitude"] doubleValue]};
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -126,26 +164,12 @@
     BMKMapPoint b=BMKMapPointForCoordinate(c2);
     CLLocationDistance distance = BMKMetersBetweenMapPoints(a,b);
     
-    
     int meter = (int)distance;
     if (meter>1000) {
-        distanceLabel.text = [[NSString alloc]initWithFormat:@"%.1fkm",meter/1000.0];
+        cell.distance.text = [[NSString alloc]initWithFormat:@"%.1fkm",meter/1000.0];
     }else
-        distanceLabel.text = [[NSString alloc]initWithFormat:@"%dm",meter];
-
-    CGFloat distance_ww = [UILabel getSizeWithLab:distanceLabel andMaxSize:CGSizeMake(100, 100)].width;
+        cell.distance.text = [[NSString alloc]initWithFormat:@"%dm",meter];
     
-    CGRect oldFrame = nameLabel.frame;
-    oldFrame.size.width = SCREENWIDTH-oldFrame.origin.x-distance_ww-15;
-    nameLabel.frame = oldFrame;
-    
-    
-    NSURL * nurl1=[[NSURL alloc] initWithString:[[SHOPIMAGE_ADDIMAGE stringByAppendingString:dic[@"image_url"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
-    [cardImageView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
-    
-    UIView *viewLine = [[UIView alloc]initWithFrame:CGRectMake(0, 85, SCREENWIDTH, 10)];
-    viewLine.backgroundColor = RGB(240, 240, 240);
-    [cell addSubview:viewLine];
     return cell;
 
 }
@@ -217,6 +241,37 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"BtnClick_%zd",indexPath.row);
+    [self removeFavorateState:self.favorateShopArray[indexPath.row][@"muid"] index:indexPath.row];
+}
+-(void)removeFavorateState:(NSString *)muid index:(NSInteger)index{
+    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/collect/stateSet",BASEURL];
+    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[appdelegate.userInfoDic objectForKey:@"uuid"] forKey:@"user"];
+    [params setObject:muid forKey:@"merchant"];
+    [params setObject:@"false" forKey:@"state"];
+   
+    NSLog(@"%@",params);
+    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
+     {
+         NSLog(@"%@", result);
+         NSDictionary *dic = [result copy];
+             if ([dic[@"result_code"] isEqualToString:@"false"])
+             {
+                 [self.favorateShopArray removeObjectAtIndex:index];
+                 [self.favorateTable reloadData];
+             }
+             else
+             {
+                
+             }
+        } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+         //         [self noIntenet];
+         NSLog(@"%@", error);
+     }];
 
-
+}
 @end

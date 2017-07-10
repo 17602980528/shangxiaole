@@ -95,6 +95,8 @@
 		185A45911F132F2A0033AFE3 /* UserInfoSexyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185A458B1F132F2A0033AFE3 /* UserInfoSexyCell.xib */; };
 		185A45951F132F5B0033AFE3 /* LZDUserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A45931F132F5B0033AFE3 /* LZDUserInfoVC.m */; };
 		185A45961F132F5B0033AFE3 /* LZDUserInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185A45941F132F5B0033AFE3 /* LZDUserInfoVC.xib */; };
+		185A459A1F134DDB0033AFE3 /* FavorateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A45981F134DDB0033AFE3 /* FavorateTableViewCell.m */; };
+		185A459B1F134DDB0033AFE3 /* FavorateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185A45991F134DDB0033AFE3 /* FavorateTableViewCell.xib */; };
 		185ABD621D8021B100BD8097 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185ABD611D8021B100BD8097 /* Foundation.framework */; };
 		185ABD641D8021C100BD8097 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185ABD631D8021C100BD8097 /* UIKit.framework */; };
 		185ABD661D8021EA00BD8097 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185ABD651D8021EA00BD8097 /* CoreVideo.framework */; };
@@ -1170,6 +1172,9 @@
 		185A45921F132F5B0033AFE3 /* LZDUserInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZDUserInfoVC.h; sourceTree = "<group>"; };
 		185A45931F132F5B0033AFE3 /* LZDUserInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZDUserInfoVC.m; sourceTree = "<group>"; };
 		185A45941F132F5B0033AFE3 /* LZDUserInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LZDUserInfoVC.xib; sourceTree = "<group>"; };
+		185A45971F134DDB0033AFE3 /* FavorateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavorateTableViewCell.h; sourceTree = "<group>"; };
+		185A45981F134DDB0033AFE3 /* FavorateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavorateTableViewCell.m; sourceTree = "<group>"; };
+		185A45991F134DDB0033AFE3 /* FavorateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavorateTableViewCell.xib; sourceTree = "<group>"; };
 		185ABD611D8021B100BD8097 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		185ABD631D8021C100BD8097 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		185ABD651D8021EA00BD8097 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -4124,6 +4129,9 @@
 			children = (
 				D93BE8651CFD6B6300000E0D /* FavorateViewController.h */,
 				D93BE8661CFD6B6300000E0D /* FavorateViewController.m */,
+				185A45971F134DDB0033AFE3 /* FavorateTableViewCell.h */,
+				185A45981F134DDB0033AFE3 /* FavorateTableViewCell.m */,
+				185A45991F134DDB0033AFE3 /* FavorateTableViewCell.xib */,
 			);
 			name = "我的收藏";
 			sourceTree = "<group>";
@@ -5957,6 +5965,7 @@
 				1835774B1EC437F900F321F1 /* AccessCodeVC.xib in Resources */,
 				1CF283911C58C48900F3952A /* health.png in Resources */,
 				D947E4661D7D3BBA00F9FEE8 /* 聊天键盘-icon-选择照片@3x.png in Resources */,
+				185A459B1F134DDB0033AFE3 /* FavorateTableViewCell.xib in Resources */,
 				D949C15A1CBF7E4D0091D8FC /* withdrawu.png in Resources */,
 				18F0320C1E5ED79300ACD261 /* tempProducts_07.jpg in Resources */,
 				D980B66A1D77FBAB00CC6637 /* ContactCell.xib in Resources */,
@@ -6693,6 +6702,7 @@
 				D987BB361E792C8E008AE24D /* UserInfoEditVC.m in Sources */,
 				182F3C611F0CEFB300540FAE /* PersonalEricCell.m in Sources */,
 				D9BB4DDE1E05019400971BCC /* DelayScanVC.m in Sources */,
+				185A459A1F134DDB0033AFE3 /* FavorateTableViewCell.m in Sources */,
 				D98533341DDE9B21004E1E6F /* NameSignViewController.m in Sources */,
 				D9B3A5BA1D74255700F3F27E /* UIView+EMWebCacheOperation.m in Sources */,
 				D9B3A4911D73CFE800F3F27E /* LZDToolView.m in Sources */,
