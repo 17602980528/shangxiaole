@@ -9,6 +9,7 @@
 #import "LZDUserInfoVC.h"
 #import "UserInfoCell.h"
 #import "UserInfoHeaderCell.h"
+#import "UserInfoSexyCell.h"
 #import "UIImageView+WebCache.h"
 #import "NewChangePsWordViewController.h"
 #import "ResetPhoneViewController.h"
@@ -30,7 +31,6 @@
 @property(nonatomic,strong)NSArray *title_headImage;
 @property (nonatomic,strong) UIImageView* imageView;
 @property long long int date;//发送图片的时间戳
-@property (strong, nonatomic) IBOutlet UIView *footView;
 
 @property (weak, nonatomic) IBOutlet UIView *tishiview;
 @property (weak, nonatomic) IBOutlet UIButton *cancleBtn;
@@ -42,16 +42,10 @@
 @implementation LZDUserInfoVC
 -(NSArray *)title_A{
     if (!_title_A) {
-        _title_A = @[@"实名认证",@"昵称",@"地址",@"手机号",@"邮箱",@"性别",@"生日",@"职业",@"教育",@"婚姻",@"爱好",@"密码管理"];
-        
+        _title_A = @[@[@"实名认证",@"昵称",@"地址",@"手机号",@"邮箱"]
+                     ,@[@"性别",@"生日",@"职业",@"教育",@"婚姻",@"爱好"]];
     }
     return _title_A;
-}
--(NSArray *)title_headImage{
-    if (!_title_headImage) {
-        _title_headImage=@[@"userInfo_confirm",@"userInfo_nick",@"userInfo_address",@"userInfo_phone",@"userInfo_mail",@"userInfo_sex",@"userInfo_birthday",@"userInfo_profession",@"userInfo_education",@"userInfo_marry",@"userInfo_love",@"userInfo_pass"];
-    }
-    return _title_headImage;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear: animated];
@@ -60,10 +54,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"资料";
-    
-    self.tabView.estimatedRowHeight = 100;
-    self.tabView.rowHeight = UITableViewAutomaticDimension;
-    self.tabView.tableFooterView = self.footView;
     
     self.tishiview.frame = CGRectMake(0, 0, SCREENWIDTH,SCREENHEIGHT);
     self.cancleBtn.layer.borderColor = NavBackGroundColor.CGColor;
@@ -80,14 +70,31 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
    return  0.01;
 }
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.title_A.count+1;
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section==0) {
+        return 127;
+    }else{
+        return 40;
+    }
 }
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (section==0) {
+        return 1;
+    }else if (section==1){
+        return [self.title_A[section-1]count];
+    }else{
+         return [self.title_A[section-1]count];
+    }
+    
+    return 0;
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 3;
+}
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    
-    if (indexPath.row==0) {
+    if (indexPath.section==0) {
         UserInfoHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userinfoHeadID"];
         if (!cell) {
             cell = [[[NSBundle mainBundle]loadNibNamed:@"UserInfoHeaderCell" owner:self options:nil] lastObject];
@@ -101,93 +108,142 @@
         [cell.headImg sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"头像.png"] options:SDWebImageRetryFailed];
         
         return cell;
-    
-    }else{
+
+    }else if (indexPath.section==1){
+         NSArray *key_A = @[@"state",@"nickname",@"address",@"phone",@"mail"];
         
-        UserInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userinfoID"];
-        if (!cell) {
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"UserInfoCell" owner:self options:nil] lastObject];
-        }
-        cell.title_lab.text = _title_A[indexPath.row-1];
-        
-        NSArray *key_A = @[@"state",@"nickname",@"address",@"phone",@"mail",@"sex",@"age",@"occupation",@"education",@"mate",@"hobby",@"",@"",@"",@"",@""];
-        
-        cell.content_lab.text = appdelegate.userInfoDic[key_A[indexPath.row-1]];
-        cell.headImageView.image=[UIImage imageNamed:self.title_headImage[indexPath.row-1]];
-        
-        if (indexPath.row==1) {
-            if ([appdelegate.userInfoDic[key_A[indexPath.row-1]] isEqualToString:@"not_auth"]) {
-                 cell.content_lab.text =@"未认证";
-            }else if ([appdelegate.userInfoDic[key_A[indexPath.row-1]] isEqualToString:@"access"]){
-                 cell.content_lab.text =@"认证通过";
-            }else if([appdelegate.userInfoDic[key_A[indexPath.row-1]] isEqualToString:@"auditing"]){
-                
-                 cell.content_lab.text =@"审核中";
-            }else{
-                 cell.content_lab.text =@"认证失败";
+        if (indexPath.row==2) {
+            
+            UserInfoSexyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userInfoSexyCell"];
+            if (!cell) {
+                cell = [[[NSBundle mainBundle]loadNibNamed:@"UserInfoSexyCell" owner:self options:nil] lastObject];
             }
+            return cell;
+            
+        }else{
+            
+            UserInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userinfoID"];
+            if (!cell) {
+                cell = [[[NSBundle mainBundle]loadNibNamed:@"UserInfoCell" owner:self options:nil] lastObject];
+            }
+            cell.title_lab.text = _title_A[0][indexPath.row];
+            
+           //,@[@"sex",@"age",@"occupation",@"education",@"mate",@"hobby",@"",@"",@"",@"",@""];
+            
+            cell.content_lab.text = appdelegate.userInfoDic[key_A[indexPath.row]];
+            
+            if (indexPath.row==0) {
+                if ([appdelegate.userInfoDic[key_A[indexPath.row]] isEqualToString:@"not_auth"]) {
+                    cell.content_lab.text =@"未认证";
+                }else if ([appdelegate.userInfoDic[key_A[indexPath.row]] isEqualToString:@"access"]){
+                    cell.content_lab.text =@"认证通过";
+                }else if([appdelegate.userInfoDic[key_A[indexPath.row]] isEqualToString:@"auditing"]){
+                    
+                    cell.content_lab.text =@"审核中";
+                }else{
+                    cell.content_lab.text =@"认证失败";
+                }
+            }
+            if (indexPath.row==0) {
+                cell.bgImageView.image=[UIImage imageNamed:@"导角矩形上"];
+            }else if (indexPath.row==4){
+                 cell.bgImageView.image=[UIImage imageNamed:@"导角矩形下"];
+            }else{
+                 cell.bgImageView.image=[UIImage imageNamed:@"设置   矩形"];
+            }
+            return cell;
         }
-         return cell;
-    }
-    
-  }
+        
+    }else if(indexPath.section==2){
+       
+            UserInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userinfoID"];
+            if (!cell) {
+                cell = [[[NSBundle mainBundle]loadNibNamed:@"UserInfoCell" owner:self options:nil] lastObject];
+            }
+            cell.title_lab.text = _title_A[1][indexPath.row];
+            
+//            NSArray *key_A = @[@"state",@"nickname",@"address",@"phone",@"mail",@"sex",@"age",@"occupation",@"education",@"mate",@"hobby",@"",@"",@"",@"",@""];
+         NSArray *key_A = @[@"sex",@"age",@"occupation",@"education",@"mate",@"hobby"];
+        
+            cell.content_lab.text = appdelegate.userInfoDic[key_A[indexPath.row]];
+        
+        if (indexPath.row==0) {
+             cell.bgImageView.image=[UIImage imageNamed:@"导角矩形上"];
+        }else if (indexPath.row==5){
+             cell.bgImageView.image=[UIImage imageNamed:@"导角矩形下"];
+        }else{
+             cell.bgImageView.image=[UIImage imageNamed:@"设置   矩形"];
+        }
+
+            return cell;
+        }
+  return nil;
+}
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (indexPath.row ==0) {
-        [self changeUserImg];
-    }
-    if (indexPath.row==1) {
-        NSLog(@"你好帅");
-        AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-        if ([appdelegate.userInfoDic[@"state"] isEqualToString:@"not_auth"]) {
-            RailNameConfirmVC *confirmVC=[[RailNameConfirmVC alloc]init];
-            confirmVC.title=_title_A[indexPath.row-1];
-            [self.navigationController pushViewController:confirmVC animated:YES];
-        }else if ([appdelegate.userInfoDic[@"state"] isEqualToString:@"fail"]){
-            [self postRequest];
-        }else{
-           NSLog(@"你好帅");
-        }
-       
-    }
-    
-    if (indexPath.row ==2 || indexPath.row ==3 || indexPath.row ==5 || indexPath.row ==6 || indexPath.row ==7 || indexPath.row ==9|| indexPath.row ==10|| indexPath.row ==11) {
-        UserInfoEditVC *VC = [[UserInfoEditVC alloc]init];
-        
-        VC.resultBlock=^(NSDictionary*result) {
-            
-            NSLog(@"UserInfoEditVC.block====%@",result);
-            
-            if (![result[@"award"] isEqualToString:@"false"]) {
-                self.tishiwenzi.text = [NSString stringWithFormat:@"恭喜你，完成个人信息获得 %@ 个积分，快去看看吧",[NSString getTheNoNullStr:result[@"award"] andRepalceStr:@"0"]];
-                self.tishiview.hidden = NO;
-
+    if (indexPath.section==0) {
+         [self changeUserImg];
+    }else if(indexPath.section==1){
+        if (indexPath.row==0) {
+            NSLog(@"你好帅");
+            AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+            if ([appdelegate.userInfoDic[@"state"] isEqualToString:@"not_auth"]) {
+                RailNameConfirmVC *confirmVC=[[RailNameConfirmVC alloc]init];
+                confirmVC.title=_title_A[0][indexPath.row];
+                [self.navigationController pushViewController:confirmVC animated:YES];
+            }else if ([appdelegate.userInfoDic[@"state"] isEqualToString:@"fail"]){
+                [self postRequest];
+            }else{
+                NSLog(@"你好帅");
             }
-          
-        };
-        VC.leibie = self.title_A[indexPath.row-1];
-        [self.navigationController pushViewController:VC animated:YES];    }
-    
-    
-    if (indexPath.row ==4) {
-        ResetPhoneViewController *VC = [[ResetPhoneViewController alloc]init];
+        }
         
-        [self.navigationController pushViewController:VC animated:YES];
-    }
-    
-    if (indexPath.row ==12) {
-        //ChangeLoginOrPayVC
-        ChangeLoginOrPayVC *passVC=[[ChangeLoginOrPayVC alloc]init];
-        [self.navigationController pushViewController:passVC animated:YES];
-//        NewChangePsWordViewController *passVC=[[NewChangePsWordViewController alloc]init];
-//        [self.navigationController pushViewController:passVC animated:YES];
+        if (indexPath.row ==1 || indexPath.row ==2 || indexPath.row ==4) {
+            UserInfoEditVC *VC = [[UserInfoEditVC alloc]init];
+            
+            VC.resultBlock=^(NSDictionary*result) {
+                
+                NSLog(@"UserInfoEditVC.block====%@",result);
+                
+                if (![result[@"award"] isEqualToString:@"false"]) {
+                    self.tishiwenzi.text = [NSString stringWithFormat:@"恭喜你，完成个人信息获得 %@ 个积分，快去看看吧",[NSString getTheNoNullStr:result[@"award"] andRepalceStr:@"0"]];
+                    self.tishiview.hidden = NO;
+                    
+                }
+                
+            };
+            VC.leibie = self.title_A[0][indexPath.row];
+            [self.navigationController pushViewController:VC animated:YES];
+        }
         
+        if (indexPath.row ==3) {
+            ResetPhoneViewController *VC = [[ResetPhoneViewController alloc]init];
+            
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+
+    }else if (indexPath.section==2){
+        if (indexPath.row ==0 || indexPath.row ==1 || indexPath.row ==3|| indexPath.row ==4|| indexPath.row ==5) {
+            UserInfoEditVC *VC = [[UserInfoEditVC alloc]init];
+            
+            VC.resultBlock=^(NSDictionary*result) {
+                
+                NSLog(@"UserInfoEditVC.block====%@",result);
+                
+                if (![result[@"award"] isEqualToString:@"false"]) {
+                    self.tishiwenzi.text = [NSString stringWithFormat:@"恭喜你，完成个人信息获得 %@ 个积分，快去看看吧",[NSString getTheNoNullStr:result[@"award"] andRepalceStr:@"0"]];
+                    self.tishiview.hidden = NO;
+                    
+                }
+                
+            };
+            VC.leibie = self.title_A[1][indexPath.row];
+            [self.navigationController pushViewController:VC animated:YES];
+        }
 
     }
-    
-    if (indexPath.row ==8) {
+    if (indexPath.row ==2) {
         ProfessionEditVC *VC=[[ProfessionEditVC alloc]init];
         VC.prodessionBlock=^(NSDictionary*result) {
             
@@ -199,11 +255,11 @@
                 self.tishiview.hidden = NO;
                 
             }
-
-          
+            
+            
             
         };
-
+        
         [self.navigationController pushViewController:VC animated:YES];
         
     }
@@ -515,14 +571,7 @@
     
     
 }
-- (IBAction)logOut:(id)sender {
-    
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    
-    [appdelegate loginOutBletcShop];
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 - (IBAction)cancleClick:(UIButton *)sender {
     
     self.tishiview.hidden = YES;
