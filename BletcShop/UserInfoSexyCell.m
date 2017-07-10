@@ -1,23 +1,17 @@
 //
-//  UserInfoHeaderCell.m
+//  UserInfoSexyCell.m
 //  BletcShop
 //
-//  Created by Bletc on 2017/3/15.
+//  Created by apple on 2017/7/7.
 //  Copyright © 2017年 bletc. All rights reserved.
 //
 
-#import "UserInfoHeaderCell.h"
+#import "UserInfoSexyCell.h"
 
-@implementation UserInfoHeaderCell
+@implementation UserInfoSexyCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    self.bgView.layer.cornerRadius=6.0f;
-    self.bgView.clipsToBounds=YES;
-    
-    self.headImg.layer.cornerRadius = self.headImg.width/2;
-    self.headImg.layer.masksToBounds = YES;
     self.contentView.backgroundColor=RGB(240, 240, 240);
 }
 

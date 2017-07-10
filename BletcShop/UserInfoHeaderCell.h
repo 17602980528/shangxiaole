@@ -10,5 +10,6 @@
 
 @interface UserInfoHeaderCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *headImg;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
 @end

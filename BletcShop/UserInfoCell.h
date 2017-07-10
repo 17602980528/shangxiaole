@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UserInfoCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (weak, nonatomic) IBOutlet UILabel *content_lab;
 @property (weak, nonatomic) IBOutlet UILabel *title_lab;
-@property (strong, nonatomic) IBOutlet UIImageView *headImageView;
-
 @end
