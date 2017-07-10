@@ -97,6 +97,9 @@
 		185A45961F132F5B0033AFE3 /* LZDUserInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185A45941F132F5B0033AFE3 /* LZDUserInfoVC.xib */; };
 		185A459A1F134DDB0033AFE3 /* FavorateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A45981F134DDB0033AFE3 /* FavorateTableViewCell.m */; };
 		185A459B1F134DDB0033AFE3 /* FavorateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185A45991F134DDB0033AFE3 /* FavorateTableViewCell.xib */; };
+		185A459F1F1371060033AFE3 /* 垃圾桶@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185A459C1F1371060033AFE3 /* 垃圾桶@2x.png */; };
+		185A45A01F1371060033AFE3 /* 默认sex.png in Resources */ = {isa = PBXBuildFile; fileRef = 185A459D1F1371060033AFE3 /* 默认sex.png */; };
+		185A45A11F1371060033AFE3 /* 选中sex.png in Resources */ = {isa = PBXBuildFile; fileRef = 185A459E1F1371060033AFE3 /* 选中sex.png */; };
 		185ABD621D8021B100BD8097 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185ABD611D8021B100BD8097 /* Foundation.framework */; };
 		185ABD641D8021C100BD8097 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185ABD631D8021C100BD8097 /* UIKit.framework */; };
 		185ABD661D8021EA00BD8097 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185ABD651D8021EA00BD8097 /* CoreVideo.framework */; };
@@ -1181,6 +1184,9 @@
 		185A45971F134DDB0033AFE3 /* FavorateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavorateTableViewCell.h; sourceTree = "<group>"; };
 		185A45981F134DDB0033AFE3 /* FavorateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavorateTableViewCell.m; sourceTree = "<group>"; };
 		185A45991F134DDB0033AFE3 /* FavorateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavorateTableViewCell.xib; sourceTree = "<group>"; };
+		185A459C1F1371060033AFE3 /* 垃圾桶@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "垃圾桶@2x.png"; sourceTree = "<group>"; };
+		185A459D1F1371060033AFE3 /* 默认sex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认sex.png"; sourceTree = "<group>"; };
+		185A459E1F1371060033AFE3 /* 选中sex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选中sex.png"; sourceTree = "<group>"; };
 		185ABD611D8021B100BD8097 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		185ABD631D8021C100BD8097 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		185ABD651D8021EA00BD8097 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -4841,6 +4847,9 @@
 				18FA58DA1EEA89C000F458F2 /* RailNameConfirmVC.xib */,
 				18FA58DD1EEA92C900F458F2 /* 姓名she@3x.png */,
 				18FA58DF1EEA92F500F458F2 /* 身份she@3x.png */,
+				185A459C1F1371060033AFE3 /* 垃圾桶@2x.png */,
+				185A459D1F1371060033AFE3 /* 默认sex.png */,
+				185A459E1F1371060033AFE3 /* 选中sex.png */,
 				D987BB321E792C3D008AE24D /* 修改编辑信息 */,
 				D987BB221E790B28008AE24D /* 用户信息cell */,
 			);
@@ -5973,6 +5982,7 @@
 				18D8464C1ED591630048F010 /* 线下角标.png in Resources */,
 				1CF283991C58C48900F3952A /* merchant_default.png in Resources */,
 				D94DF25E1CAE0DB8000D5B69 /* result_small_star_disable_iphone@2x.png in Resources */,
+				185A45A11F1371060033AFE3 /* 选中sex.png in Resources */,
 				D95869391E4DA4EE00E91A47 /* ResetPhoneNextVC.xib in Resources */,
 				18F032031E5ED79300ACD261 /* points.jpg in Resources */,
 				D9CACCFD1ED7BEBF002DC49A /* PlatCouponsVC.xib in Resources */,
@@ -6199,6 +6209,7 @@
 				D9D50D881D879B9900A5E469 /* emotion@2x.png in Resources */,
 				18EB36B81D4B4B5B0087CE1A /* 未标题-1-03.png in Resources */,
 				D9ED52061D2A467700267729 /* grey_add.png in Resources */,
+				185A459F1F1371060033AFE3 /* 垃圾桶@2x.png in Resources */,
 				18D846491ED570510048F010 /* 下角标.png in Resources */,
 				D981FD051E2616080026E4B2 /* UShare进阶.html in Resources */,
 				D9AB253E1D88E4ED000E9288 /* VoiceSearchFeedback016@2x.png in Resources */,
@@ -6240,6 +6251,7 @@
 				18518D591E7945A000067D95 /* s_money_n@3x.png in Resources */,
 				D947E4651D7D3BBA00F9FEE8 /* 聊天键盘-icon-选择照片@2x.png in Resources */,
 				1C9E82411C60557E0007BF02 /* 5(8)@2x.png in Resources */,
+				185A45A01F1371060033AFE3 /* 默认sex.png in Resources */,
 				1CF6E4881C61F1C90001159C /* huiyuanzhi.png in Resources */,
 				1CF6E47E1C61E4350001159C /* jici@2x.png in Resources */,
 				18EB36B91D4B4B5B0087CE1A /* 未标题-1-04.png in Resources */,

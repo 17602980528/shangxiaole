@@ -21,7 +21,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ec-RJ-OFw">
                         <rect key="frame" x="13" y="0.0" width="362" height="124"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon3.png" translatesAutoresizingMaskIntoConstraints="NO" id="lsc-ub-yuk">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="默认sex.png" translatesAutoresizingMaskIntoConstraints="NO" id="lsc-ub-yuk">
                                 <rect key="frame" x="94" y="54" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="KRc-e3-nFX"/>
@@ -38,14 +38,14 @@
                                 <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon3.png" translatesAutoresizingMaskIntoConstraints="NO" id="Laz-M3-S3D">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="默认sex.png" translatesAutoresizingMaskIntoConstraints="NO" id="Laz-M3-S3D">
                                 <rect key="frame" x="186" y="54" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="9Ze-Z1-0D7"/>
                                     <constraint firstAttribute="height" constant="16" id="hxf-iK-nF8"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实名认证" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7v-g8-t41">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性别" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7v-g8-t41">
                                 <rect key="frame" x="20" y="55" width="60" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="GG4-o2-A8d"/>
@@ -107,6 +107,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon3.png" width="227" height="152"/>
+        <image name="默认sex.png" width="30" height="30"/>
     </resources>
 </document>

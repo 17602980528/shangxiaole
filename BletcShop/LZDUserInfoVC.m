@@ -42,8 +42,8 @@
 @implementation LZDUserInfoVC
 -(NSArray *)title_A{
     if (!_title_A) {
-        _title_A = @[@[@"实名认证",@"昵称",@"地址",@"手机号",@"邮箱"]
-                     ,@[@"性别",@"生日",@"职业",@"教育",@"婚姻",@"爱好"]];
+        _title_A = @[@[@"实名认证",@"昵称",@"性别",@"手机号",@"邮箱"]
+                     ,@[@"地址",@"生日",@"职业",@"教育",@"婚姻",@"爱好"]];
     }
     return _title_A;
 }
@@ -110,13 +110,23 @@
         return cell;
 
     }else if (indexPath.section==1){
-         NSArray *key_A = @[@"state",@"nickname",@"address",@"phone",@"mail"];
+         NSArray *key_A = @[@"state",@"nickname",@"sex",@"phone",@"mail"];
         
         if (indexPath.row==2) {
             
             UserInfoSexyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userInfoSexyCell"];
             if (!cell) {
                 cell = [[[NSBundle mainBundle]loadNibNamed:@"UserInfoSexyCell" owner:self options:nil] lastObject];
+            }
+            if ([appdelegate.userInfoDic[key_A[indexPath.row]] isEqualToString:@"女"]) {
+                cell.sexImageLeft.image=[UIImage imageNamed:@"默认sex"];
+                cell.sexImageRight.image=[UIImage imageNamed:@"选中sex"];
+            }else if([appdelegate.userInfoDic[key_A[indexPath.row]] isEqualToString:@"男"]){
+                cell.sexImageLeft.image=[UIImage imageNamed:@"选中sex"];
+                cell.sexImageRight.image=[UIImage imageNamed:@"默认sex"];
+            }else{
+                cell.sexImageLeft.image=[UIImage imageNamed:@"默认sex"];
+                cell.sexImageRight.image=[UIImage imageNamed:@"默认sex"];
             }
             return cell;
             
@@ -163,7 +173,7 @@
             cell.title_lab.text = _title_A[1][indexPath.row];
             
 //            NSArray *key_A = @[@"state",@"nickname",@"address",@"phone",@"mail",@"sex",@"age",@"occupation",@"education",@"mate",@"hobby",@"",@"",@"",@"",@""];
-         NSArray *key_A = @[@"sex",@"age",@"occupation",@"education",@"mate",@"hobby"];
+         NSArray *key_A = @[@"address",@"age",@"occupation",@"education",@"mate",@"hobby"];
         
             cell.content_lab.text = appdelegate.userInfoDic[key_A[indexPath.row]];
         
