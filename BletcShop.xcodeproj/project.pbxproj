@@ -415,6 +415,8 @@
 		D925D1811E70F89C0000B8B1 /* OrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D925D17F1E70F89C0000B8B1 /* OrderDetailViewController.xib */; };
 		D925D1851E7106EB0000B8B1 /* SelectAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D925D1831E7106EB0000B8B1 /* SelectAddressViewController.m */; };
 		D925D1861E7106EB0000B8B1 /* SelectAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D925D1841E7106EB0000B8B1 /* SelectAddressViewController.xib */; };
+		D92ACE071F0F341F00858727 /* ShopDetailCouponsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D92ACE051F0F341F00858727 /* ShopDetailCouponsCell.m */; };
+		D92ACE081F0F341F00858727 /* ShopDetailCouponsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92ACE061F0F341F00858727 /* ShopDetailCouponsCell.xib */; };
 		D92C632E1CC8DA08006768C6 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = D92C632C1CC8DA08006768C6 /* delete.png */; };
 		D92C632F1CC8DA08006768C6 /* modify.png in Resources */ = {isa = PBXBuildFile; fileRef = D92C632D1CC8DA08006768C6 /* modify.png */; };
 		D93027DA1CFEA66C007447D2 /* AppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93027D91CFEA66C007447D2 /* AppraiseViewController.m */; };
@@ -1612,6 +1614,9 @@
 		D925D1821E7106EB0000B8B1 /* SelectAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectAddressViewController.h; sourceTree = "<group>"; };
 		D925D1831E7106EB0000B8B1 /* SelectAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectAddressViewController.m; sourceTree = "<group>"; };
 		D925D1841E7106EB0000B8B1 /* SelectAddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectAddressViewController.xib; sourceTree = "<group>"; };
+		D92ACE041F0F341F00858727 /* ShopDetailCouponsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopDetailCouponsCell.h; sourceTree = "<group>"; };
+		D92ACE051F0F341F00858727 /* ShopDetailCouponsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopDetailCouponsCell.m; sourceTree = "<group>"; };
+		D92ACE061F0F341F00858727 /* ShopDetailCouponsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopDetailCouponsCell.xib; sourceTree = "<group>"; };
 		D92C632C1CC8DA08006768C6 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		D92C632D1CC8DA08006768C6 /* modify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modify.png; sourceTree = "<group>"; };
 		D93027D81CFEA66C007447D2 /* AppraiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppraiseViewController.h; sourceTree = "<group>"; };
@@ -3748,6 +3753,9 @@
 				18D8464E1ED591C90048F010 /* 优惠券背景线上.png */,
 				D9ABB19F1EC93EF900FBE080 /* NewShopDetailVC.h */,
 				D9ABB1A01EC93EF900FBE080 /* NewShopDetailVC.m */,
+				D92ACE041F0F341F00858727 /* ShopDetailCouponsCell.h */,
+				D92ACE051F0F341F00858727 /* ShopDetailCouponsCell.m */,
+				D92ACE061F0F341F00858727 /* ShopDetailCouponsCell.xib */,
 				180D0D411F0DCE4400A39790 /* 店内更多商品 */,
 				D9ABB1A61EC9406E00FBE080 /* 查看更多评价 */,
 				D9ABB1A21EC93F0500FBE080 /* 商铺信息Cell */,
@@ -6177,6 +6185,7 @@
 				1CF6E4801C61E4350001159C /* guanggao@2x.png in Resources */,
 				D986A1C81DE57849007B798B /* PaySuccessVc.xib in Resources */,
 				D98E5C211E51525E009D56BF /* SRVideoPlayer.bundle in Resources */,
+				D92ACE081F0F341F00858727 /* ShopDetailCouponsCell.xib in Resources */,
 				D9FF0D9F1D53304C00443312 /* 图标-17new.png in Resources */,
 				18A7E3E51F0227B300C14C98 /* NewShopComeInTableViewCell.xib in Resources */,
 				D981FD131E2616080026E4B2 /* UMSocialSDKResources.bundle in Resources */,
@@ -6494,6 +6503,7 @@
 				D9B3A4901D73CFE800F3F27E /* LZDButton.m in Sources */,
 				182988421E723F4200164F32 /* TAAnimatedDotView.m in Sources */,
 				1C0BEF8A1C7DA14400519481 /* SuccessController.m in Sources */,
+				D92ACE071F0F341F00858727 /* ShopDetailCouponsCell.m in Sources */,
 				D947E4861D7D710200F9FEE8 /* FMDatabaseQueue.m in Sources */,
 				D9CDFBB51CC4CE5B0054EBE3 /* CustomIOSAlertView.m in Sources */,
 				D958AD6E1E654CF200B0776F /* JHTableChart.m in Sources */,

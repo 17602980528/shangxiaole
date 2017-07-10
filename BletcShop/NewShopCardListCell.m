@@ -22,7 +22,6 @@
 -(void)initSubviews{
    
     UIImageView *back_view = [[UIImageView alloc]initWithFrame:CGRectMake(13, 0, SCREENWIDTH-26, 90)];
-    back_view.backgroundColor = [UIColor whiteColor];
     [self addSubview:back_view];
     self.back_view = back_view;
     
@@ -117,6 +116,7 @@
     line.backgroundColor = RGB(210,210,210);
     [back_view addSubview:line];
     
+    self.line = line;
 }
 
 //-(void)setDiscountLable:(UILabel *)discountLable{
