@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eti-lz-Uwr">
                         <rect key="frame" x="13" y="10" width="367" height="318.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon3.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cla-Sg-lBb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="头像.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cla-Sg-lBb">
                                 <rect key="frame" x="10" y="15" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="l6i-ms-4gF"/>
@@ -36,7 +36,7 @@
                                     <constraint firstAttribute="height" constant="13" id="pjv-R7-kYo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017.10.1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RgU-Og-0k6">
@@ -51,7 +51,6 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDQ-YP-jr0">
                                 <rect key="frame" x="63" y="37" width="70" height="13"/>
-                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="13" id="3AB-XS-206"/>
                                     <constraint firstAttribute="width" constant="70" id="CK4-gA-z8u"/>
@@ -90,7 +89,7 @@
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="Lkd-Zl-PrT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTG-fV-TPQ">
@@ -111,11 +110,11 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="moumou美肌馆" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j63-DV-L4m">
                                         <rect key="frame" x="43" y="0.0" width="161" height="25"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.70867312410000005" green="1" blue="0.68270248639999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="j63-DV-L4m" firstAttribute="leading" secondItem="QeH-OJ-IaA" secondAttribute="trailing" constant="13" id="7nL-dF-uIV"/>
                                     <constraint firstItem="DUe-l8-VL6" firstAttribute="leading" secondItem="j63-DV-L4m" secondAttribute="trailing" constant="5" id="Apj-Sa-b2V"/>
@@ -167,7 +166,9 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="appriseStars" destination="zDQ-YP-jr0" id="teW-ul-SGv"/>
                 <outlet property="bgView" destination="Eti-lz-Uwr" id="vgv-pa-4pE"/>
+                <outlet property="shopNameBgView" destination="KTG-fV-TPQ" id="71e-Ac-ZkB"/>
             </connections>
             <point key="canvasLocation" x="-56.5" y="239"/>
         </tableViewCell>
@@ -176,5 +177,6 @@
         <image name="icon3.png" width="227" height="152"/>
         <image name="youjiantou" width="7" height="13"/>
         <image name="加好友——评价——店铺icon.png" width="30" height="30"/>
+        <image name="头像.png" width="178" height="178"/>
     </resources>
 </document>

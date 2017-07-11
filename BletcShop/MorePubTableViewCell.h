@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "XHStarRateView.h"
 @interface MorePubTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *bgView;
-
+@property (weak, nonatomic) IBOutlet UIView *shopNameBgView;
+@property (weak, nonatomic) IBOutlet UIView *appriseStars;
+@property (strong,nonatomic)XHStarRateView *starRateView;
 @end

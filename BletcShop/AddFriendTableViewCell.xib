@@ -71,9 +71,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="youjiantou" translatesAutoresizingMaskIntoConstraints="NO" id="bQL-X0-2B1">
-                                        <rect key="frame" x="181" y="5" width="7" height="14"/>
+                                        <rect key="frame" x="182" y="6" width="6" height="12"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="7" id="ak1-if-QUW"/>
+                                            <constraint firstAttribute="width" constant="6" id="ak1-if-QUW"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -84,10 +84,10 @@
                                     <constraint firstAttribute="width" constant="200" id="GG1-4j-z3H"/>
                                     <constraint firstItem="TAj-Fd-Me6" firstAttribute="top" secondItem="tv0-ZQ-Js8" secondAttribute="top" id="Rwo-1P-CUA"/>
                                     <constraint firstItem="TAj-Fd-Me6" firstAttribute="leading" secondItem="5rd-gm-kcb" secondAttribute="trailing" constant="5" id="VrH-ad-IAg"/>
-                                    <constraint firstItem="bQL-X0-2B1" firstAttribute="top" secondItem="tv0-ZQ-Js8" secondAttribute="top" constant="5" id="XmC-nV-Q59"/>
+                                    <constraint firstItem="bQL-X0-2B1" firstAttribute="top" secondItem="tv0-ZQ-Js8" secondAttribute="top" constant="6" id="XmC-nV-Q59"/>
                                     <constraint firstAttribute="height" constant="24" id="fHh-8P-2rW"/>
                                     <constraint firstItem="5rd-gm-kcb" firstAttribute="leading" secondItem="tv0-ZQ-Js8" secondAttribute="leading" constant="10" id="ifD-LK-hL1"/>
-                                    <constraint firstAttribute="bottom" secondItem="bQL-X0-2B1" secondAttribute="bottom" constant="5" id="oBn-FG-K4A"/>
+                                    <constraint firstAttribute="bottom" secondItem="bQL-X0-2B1" secondAttribute="bottom" constant="6" id="oBn-FG-K4A"/>
                                     <constraint firstAttribute="trailing" secondItem="bQL-X0-2B1" secondAttribute="trailing" constant="12" id="vRY-Ln-Qcz"/>
                                 </constraints>
                             </view>
