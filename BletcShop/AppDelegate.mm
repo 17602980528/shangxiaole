@@ -778,11 +778,6 @@
 -(void)jumpClick{
     [advise_back removeFromSuperview];
   
-        MainTabBarController *mainTB = [[MainTabBarController alloc]init];
-        self.window.rootViewController = mainTB;
-
-    
-    
     
     //获得版本号
     //倒计时结束，关闭
@@ -791,6 +786,7 @@
         
     }
     self.timer = nil;
+    
     
     [self getVersion_code];
     
