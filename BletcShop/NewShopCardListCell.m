@@ -52,7 +52,7 @@
     content_lab.numberOfLines =1;
     content_lab.textColor = RGB(51,51,51);
     
-    content_lab.frame = CGRectMake(imageView.right+8, 19, back_view.width-(imageView.right+8)-87, 14);
+    content_lab.frame = CGRectMake(imageView.right+8, 17, back_view.width-(imageView.right+8)-87, 14);
     [back_view addSubview:content_lab];
     
     
@@ -71,7 +71,9 @@
     shulabView.font = [UIFont systemFontOfSize:5];
     [back_view addSubview:shulabView];
     
-    UILabel *discountLable=[[UILabel alloc]initWithFrame:CGRectMake(content_lab.left, content_lab.bottom+22, 35, 14)];
+    self.shulabView =shulabView;
+    
+    UILabel *discountLable=[[UILabel alloc]initWithFrame:CGRectMake(content_lab.left, imageView.bottom-11-14, 35, 14)];
     discountLable.font=[UIFont systemFontOfSize:12.0f];
     discountLable.textColor=[UIColor whiteColor];
     discountLable.backgroundColor = RGB(253,108,110);
@@ -117,6 +119,27 @@
     [back_view addSubview:line];
     
     self.line = line;
+    
+    UILabel *detaillab = [[UILabel alloc]init];
+    detaillab.textColor = RGB(51,51,51);
+    detaillab.font = [UIFont systemFontOfSize:12];
+    detaillab.numberOfLines = 2;
+    
+    detaillab.frame = CGRectMake(7, _cardImg.bottom+9, back_view.width-7-43, 0);
+    [back_view addSubview:detaillab];
+    self.detaillab = detaillab;
+    
+    
+    
+    UILabel *old_pricelab = [[UILabel alloc]init];
+    old_pricelab.textColor = RGB(98,98,98);
+    old_pricelab.font = [UIFont systemFontOfSize:11];
+    
+    [back_view addSubview:old_pricelab];
+
+    self.old_pricelab = old_pricelab;
+
+
 }
 
 //-(void)setDiscountLable:(UILabel *)discountLable{

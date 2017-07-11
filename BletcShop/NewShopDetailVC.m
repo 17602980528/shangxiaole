@@ -19,7 +19,7 @@
 #import "ShopProductsDetailsVC.h"
 #import "PictureAndTextVC.h"
 #import "ShopDetailCouponsCell.h"
-
+#import "XHStarRateView.h"
 #import "InsureVC.h"
 @interface NewShopDetailVC ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIWebViewDelegate,LandingDelegate,UIScrollViewDelegate>
 {
@@ -185,10 +185,12 @@
         return 40;
 
     }else if (indexPath.section==1){
-        return 90;
+        UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+        
+        return cell.frame.size.height;
 
     }else if (indexPath.section==2){
-            return 32;
+            return 32+10;
             
     }else if (indexPath.section==3){
         return 40;
@@ -435,6 +437,12 @@
         imgVright.transform= CGAffineTransformMakeRotation(-M_PI/2);
         
         cell.backgroundColor = [UIColor clearColor];
+        
+        
+        UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(0, backimg.bottom, SCREENWIDTH, 10)];
+        line1.backgroundColor = RGB(240,240,240);
+        [cell addSubview:line1];
+
         
         
         return cell;
@@ -1122,6 +1130,102 @@
         card_cell.timeLable.text=[NSString stringWithFormat:@"有效期: %@(%@)",self.deadLine_dic[[NSString getTheNoNullStr:[dic objectForKey:@"indate"] andRepalceStr:@"0"]],[NSString getTheNoNullStr:[dic objectForKey:@"type"] andRepalceStr:@"---"]];
     }
     
+    
+    if ([dic[@"type"] isEqualToString:@"套餐卡"]) {
+        
+        
+        CGRect price_frame = card_cell.cardPriceLable.frame;
+        price_frame.origin.x = card_cell.content_lab.left;
+        price_frame.origin.y = card_cell.content_lab.bottom +9;
+        card_cell.cardPriceLable.frame = price_frame;
+        
+        
+        card_cell.old_pricelab.text = [NSString stringWithFormat:@"¥%@",dic[@"option_sum"]];
+        
+        CGFloat price_W = [card_cell.cardPriceLable.text boundingRectWithSize:CGSizeMake(1000, 100) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:card_cell.old_pricelab.font} context:nil].size.width;
+        
+        
+        card_cell.old_pricelab.frame = CGRectMake(card_cell.cardPriceLable.left+price_W+9, card_cell.cardPriceLable.center.y-6, 100, 10);
+    
+        NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:card_cell.old_pricelab.text];
+        
+        
+        [attributedString addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(0, card_cell.old_pricelab.text.length)];
+        
+        
+        card_cell.old_pricelab.attributedText = attributedString;
+        
+        card_cell.detaillab.text =[NSString getTheNoNullStr:[dic objectForKey:@"des"] andRepalceStr:@"暂无优惠!"];
+        
+        CGRect card_frame = card_cell.detaillab.frame;
+        
+        
+        CGFloat detail_h =[card_cell.detaillab.text boundingRectWithSize:CGSizeMake(SCREENWIDTH-13*2-7-43, 100) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName :card_cell.detaillab.font} context:nil].size.height;
+        
+        
+        card_frame.size.height = detail_h;
+        card_cell.detaillab.frame = card_frame;
+        
+        
+        CGRect back_fram = card_cell.back_view.frame;
+        
+        back_fram.size.height = card_cell.detaillab.bottom+10;
+        card_cell.back_view.frame = back_fram;
+        
+        
+        
+        
+        CGRect line_fram = card_cell.line.frame;
+        
+        line_fram.origin.y = card_cell.back_view.height-0.5;
+        card_cell.line.frame = line_fram;
+        
+        
+        CGRect shu_fram =  card_cell.shulabView.frame ;
+        
+        shu_fram.size.height = card_cell.back_view.height-26;
+        card_cell.shulabView.frame = shu_fram;
+        
+    }else{
+        
+        
+        card_cell.old_pricelab.text = @"";
+        
+         card_cell.old_pricelab.frame =CGRectZero;
+
+
+        CGRect price_frame = card_cell.cardPriceLable.frame;
+        price_frame = CGRectMake(card_cell.back_view.width-87, card_cell.content_lab.top, 50, 14);
+        
+        card_cell.cardPriceLable.frame = price_frame;
+        
+        card_cell.detaillab.text =@"";
+        
+        
+        CGRect back_fram = card_cell.back_view.frame;
+        
+        back_fram.size.height = card_cell.cardImg.bottom+10;
+        card_cell.back_view.frame = back_fram;
+        
+        CGRect line_fram = card_cell.line.frame;
+        
+        line_fram.origin.y = card_cell.back_view.height-0.5;
+        card_cell.line.frame = line_fram;
+  
+        CGRect shu_fram =  card_cell.shulabView.frame ;
+        
+        shu_fram.size.height = card_cell.back_view.height-26;
+        card_cell.shulabView.frame = shu_fram;
+
+    }
+    
+    
+    CGRect cell_fram =  card_cell.frame;
+    cell_fram.size.height = card_cell.back_view.bottom;
+    
+    card_cell.frame= cell_fram;
+    
+    
     return card_cell;
 }
 
@@ -1471,23 +1575,31 @@
     
     
     //评价星星
-    UILabel *starLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, nameLabel.bottom+10, 110, 35)];
+    
+    XHStarRateView *starView = [[XHStarRateView alloc]initWithFrame:CGRectMake(nameLabel.left, nameLabel.bottom+19, 77, 15)];
+    starView.userInteractionEnabled = NO;
+    starView.currentScore = [[NSString getTheNoNullStr:[wholeInfoDic objectForKey:@"stars"] andRepalceStr:@"0"] floatValue];
+    starView.rateStyle = IncompleteStar;
+    [backView addSubview:starView];
 
-    DLStarRatingControl* dlCtrl = [[DLStarRatingControl alloc]initWithFrame:CGRectMake(0, 0, 110, 35) andStars:5 isFractional:YES star:[UIImage imageNamed:@"result_small_star_disable_iphone"] highlightStar:[UIImage imageNamed:@"redstar"]];
-    dlCtrl.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-    dlCtrl.userInteractionEnabled = NO;
     
-    dlCtrl.rating = [[NSString getTheNoNullStr:[wholeInfoDic objectForKey:@"stars"] andRepalceStr:@"0"] floatValue];
+//    UILabel *starLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, nameLabel.bottom+10, 110, 35)];
+//
+//    DLStarRatingControl* dlCtrl = [[DLStarRatingControl alloc]initWithFrame:CGRectMake(0, 0, 110, 35) andStars:5 isFractional:YES star:[UIImage imageNamed:@"result_small_star_disable_iphone"] highlightStar:[UIImage imageNamed:@"redstar"]];
+//    dlCtrl.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+//    dlCtrl.userInteractionEnabled = NO;
+//    
+//    dlCtrl.rating = [[NSString getTheNoNullStr:[wholeInfoDic objectForKey:@"stars"] andRepalceStr:@"0"] floatValue];
+//    
+//    [starLabel addSubview:dlCtrl];
+//    [backView addSubview:starLabel];
     
-    [starLabel addSubview:dlCtrl];
-    [backView addSubview:starLabel];
     
-    
-    UILabel *lab1=[[UILabel alloc]initWithFrame:CGRectMake(starLabel.right,starLabel.top, SCREENWIDTH-200, 14)];
+    UILabel *lab1=[[UILabel alloc]initWithFrame:CGRectMake(starView.right + 5, starView.top+1.5, SCREENWIDTH-90-95-20-62, 12)];
     lab1.textAlignment=NSTextAlignmentLeft;
     lab1.text=[[NSString alloc]initWithFormat:@"| 已售:%@",[NSString getTheNoNullStr:[wholeInfoDic objectForKey:@"sold"] andRepalceStr:@"0"]];
     lab1.textColor = RGB(102,102,102);
-    lab1.font=[UIFont systemFontOfSize:13.0f];
+    lab1.font=[UIFont systemFontOfSize:12.0f];
     [backView addSubview:lab1];
     
     

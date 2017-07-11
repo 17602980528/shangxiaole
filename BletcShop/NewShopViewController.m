@@ -84,7 +84,8 @@
     [paramer setValue:self.activityId forKey:@"advert_id"];
     
     [paramer setValue:[NSString stringWithFormat:@"%ld",_page] forKey:@"index"];
-    
+    NSLog(@"paramer----%@",paramer);
+
     [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
      {
          NSLog(@"=====%@===%@",[result class],result);
@@ -224,6 +225,7 @@
         }
 
         
+        NSLog(@"----%@",result);
         [self getDate];
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {

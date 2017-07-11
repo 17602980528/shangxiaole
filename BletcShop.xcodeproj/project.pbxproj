@@ -2153,6 +2153,7 @@
 		D9824F4D1F134B9600301076 /* InsureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsureVC.h; sourceTree = "<group>"; };
 		D9824F4E1F134B9600301076 /* InsureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsureVC.m; sourceTree = "<group>"; };
 		D9824F4F1F134B9600301076 /* InsureVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InsureVC.xib; sourceTree = "<group>"; };
+		D9824F521F137D9700301076 /* NewShopCardListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewShopCardListCell.h; sourceTree = "<group>"; };
 		D985332F1DDE9A86004E1E6F /* NewBuyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewBuyCardViewController.h; sourceTree = "<group>"; };
 		D98533301DDE9A86004E1E6F /* NewBuyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewBuyCardViewController.m; sourceTree = "<group>"; };
 		D98533321DDE9B21004E1E6F /* NameSignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSignViewController.h; sourceTree = "<group>"; };
@@ -2335,7 +2336,6 @@
 		D9AB252E1D88E4ED000E9288 /* VoiceSearchFeedback020@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VoiceSearchFeedback020@2x.png"; sourceTree = "<group>"; };
 		D9ABB19F1EC93EF900FBE080 /* NewShopDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewShopDetailVC.h; sourceTree = "<group>"; };
 		D9ABB1A01EC93EF900FBE080 /* NewShopDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewShopDetailVC.m; sourceTree = "<group>"; };
-		D9ABB1A31EC93F1D00FBE080 /* NewShopCardListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewShopCardListCell.h; sourceTree = "<group>"; };
 		D9ABB1A41EC93F1D00FBE080 /* NewShopCardListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewShopCardListCell.m; sourceTree = "<group>"; };
 		D9ABB1A71EC9408E00FBE080 /* ApriseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApriseVC.h; sourceTree = "<group>"; };
 		D9ABB1A81EC9408E00FBE080 /* ApriseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApriseVC.m; sourceTree = "<group>"; };
@@ -4841,7 +4841,7 @@
 				D9824F441F13446E00301076 /* 商铺详情cell */,
 				180D0D411F0DCE4400A39790 /* 店内更多商品 */,
 				D9ABB1A61EC9406E00FBE080 /* 查看更多评价 */,
-				D9ABB1A21EC93F0500FBE080 /* 商铺信息Cell */,
+				D9ABB1A21EC93F0500FBE080 /* 商铺会员卡Cell */,
 			);
 			name = "店铺信息";
 			sourceTree = "<group>";
@@ -5277,13 +5277,13 @@
 			name = imgas;
 			sourceTree = "<group>";
 		};
-		D9ABB1A21EC93F0500FBE080 /* 商铺信息Cell */ = {
+		D9ABB1A21EC93F0500FBE080 /* 商铺会员卡Cell */ = {
 			isa = PBXGroup;
 			children = (
-				D9ABB1A31EC93F1D00FBE080 /* NewShopCardListCell.h */,
+				D9824F521F137D9700301076 /* NewShopCardListCell.h */,
 				D9ABB1A41EC93F1D00FBE080 /* NewShopCardListCell.m */,
 			);
-			name = "商铺信息Cell";
+			name = "商铺会员卡Cell";
 			sourceTree = "<group>";
 		};
 		D9ABB1A61EC9406E00FBE080 /* 查看更多评价 */ = {

@@ -32,10 +32,10 @@
 //新的接口
 //#define BASEURL @"http://101.201.100.191/cnconsum/App/"
 
-#define LOCALIP @"192.168.0.142"//本地测试使用
+#define LOCALIP @"192.168.0.168"//本地测试使用
 #define SERVERIP @"101.201.100.191"//发布使用
 
-#define BASEURL [NSString stringWithFormat:@"http://%@/cnconsum/App/",SERVERIP]
+#define BASEURL [NSString stringWithFormat:@"http://%@/cnconsum/App/",LOCALIP]
 
 //项目图片
 #define PRODUCT_IMAGE @"http://101.201.100.191/cnconsum/Public/Uploads/optionImage/"
