@@ -436,11 +436,13 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    if (section==0) {
-        NSLog(@"--viewForHeaderInSection---%@",self.headerView);
-            return self.headerView;
-        
-    }else if(section ==1){
+//    if (section==0) {
+//        NSLog(@"--viewForHeaderInSection---%@",self.headerView);
+//            return self.headerView;
+//        
+//    }else
+    
+        if(section ==1){
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 40)];
         view.backgroundColor = [UIColor whiteColor];
         UILabel *like_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, view.height)];
@@ -491,16 +493,21 @@
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section==0) {
-        NSLog(@"self.headerView.height-----%lf",self.headerView.height);
-
-        if (self.headerView) {
-            return self.headerView.height;
-        }else{
-            return [self creatHeaderView].height;
-
-        }
-    }else if(section==1){
+//    if (section==0) {
+//        NSLog(@"self.headerView.height-----%lf",self.headerView.height);
+//
+//        if (!self.headerView) {
+//            return self.headerView.height;
+//        }else{
+//            self.headerView = [self creatHeaderView];
+//            
+//
+//        }
+//        
+//        return self.headerView.height;
+//
+//    }else
+        if(section==1){
         return 40;
     }else
         return 0.01;
@@ -961,6 +968,7 @@
         
         self.headerView = [self creatHeaderView];
 
+        table_View.tableHeaderView = self.headerView;
         
         
         self.data_A2 = result[@"activity_ad"];
