@@ -154,6 +154,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+
     self.locationManager = [[JFLocation alloc] init];
     _locationManager.delegate = self;
 
@@ -367,7 +369,7 @@
 }
 
 -(void)initTableView{
-    table_View = [[UITableView alloc]initWithFrame:CGRectMake(0, -20, SCREENWIDTH, SCREENHEIGHT-self.tabBarController.tabBar.frame.size.height+20) style:UITableViewStyleGrouped];
+    table_View = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-self.tabBarController.tabBar.frame.size.height) style:UITableViewStyleGrouped];
     table_View.dataSource = self;
     table_View.delegate = self;
     table_View.separatorStyle= UITableViewCellSeparatorStyleNone;
