@@ -196,7 +196,7 @@
     
     self.title_lab.text = _model.title_S;
 
-    NSLog(@"%@",self.muta_A);
+//    NSLog(@"self.model.img_url==%@",self.model.img_url);
     
     self.muta_A = [NSMutableArray array];
 
@@ -232,19 +232,23 @@
     self.starView.currentScore = [_model.stars floatValue];
     
     
-    CLLocationCoordinate2D c1 = (CLLocationCoordinate2D){[self.model.latitude doubleValue], [self.model.longtitude doubleValue]};
+//    CLLocationCoordinate2D c1 = (CLLocationCoordinate2D){[self.model.latitude doubleValue], [self.model.longtitude doubleValue]};
+//    
+//    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+//    CLLocationCoordinate2D c2 = appdelegate.userLocation.location.coordinate;
+//    
+//    BMKMapPoint a=BMKMapPointForCoordinate(c1);
+//    BMKMapPoint b=BMKMapPointForCoordinate(c2);
+//    CLLocationDistance distance = BMKMetersBetweenMapPoints(a,b);
+//    int meter = (int)distance;
     
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    CLLocationCoordinate2D c2 = appdelegate.userLocation.location.coordinate;
+    CGFloat meter = [self.model.distance floatValue];
     
-    BMKMapPoint a=BMKMapPointForCoordinate(c1);
-    BMKMapPoint b=BMKMapPointForCoordinate(c2);
-    CLLocationDistance distance = BMKMetersBetweenMapPoints(a,b);
-    int meter = (int)distance;
+    
     if (meter>1000) {
         self.distance_lab.text = [[NSString alloc]initWithFormat:@"距离%.1fkm",meter/1000.0];
     }else
-        self.distance_lab.text = [[NSString alloc]initWithFormat:@"距离%dm",meter];
+        self.distance_lab.text = [[NSString alloc]initWithFormat:@"距离%.1fm",meter];
     
     
     CGFloat width= [self calculateRowWidth:self.model.trade];

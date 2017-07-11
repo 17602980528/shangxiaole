@@ -14,6 +14,10 @@
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import "ShaperView.h"
 #import "DLStarRatingControl.h"
+
+#import "ShopListTableViewCell.h"
+
+
 @interface SearchTableViewController ()
 @property(nonatomic)int indexss;
 
@@ -91,148 +95,131 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 140;
+    return 97;
 }
 
 //返回单元格内容
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellIndentifier = @"cellIndentifier";
-    // 定义唯一标识
-    // 通过indexPath创建cell实例 每一个cell都是单独的
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIndentifier = @"cell";
+    ShopListTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIndentifier];
+        cell = [[ShopListTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIndentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
     
-    UIImageView *shopImageView = [[UIImageView alloc]initWithFrame:CGRectMake(12, 10, 64, 64)];
-    shopImageView.layer.cornerRadius = 5;
-    shopImageView.layer.masksToBounds = YES;
-    [cell addSubview:shopImageView];
-    //店名
-    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(90, 10, SCREENWIDTH-90, 20)];
-    nameLabel.backgroundColor = [UIColor clearColor];
-    nameLabel.textAlignment = NSTextAlignmentLeft;
-    nameLabel.font = [UIFont systemFontOfSize:14];
-    nameLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    nameLabel.numberOfLines = 0;
-    nameLabel.text = @"";
-    [cell addSubview:nameLabel];
     
-    //距离
-    UILabel *distanceLabel = [[UILabel alloc]initWithFrame:CGRectMake(90, 63, 120, 12)];
-    distanceLabel.backgroundColor = [UIColor clearColor];
-    distanceLabel.textAlignment = NSTextAlignmentLeft;
-    distanceLabel.font = [UIFont systemFontOfSize:12];
-    distanceLabel.text = @"1000米";
-    [cell addSubview:distanceLabel];
-    //销售额
-    UILabel *sellerLabel=[[UILabel alloc]initWithFrame:CGRectMake(90+95+20, 40, SCREENWIDTH-90-95-20, 12)];
-    sellerLabel.font=[UIFont systemFontOfSize:12.0f];
-    sellerLabel.textAlignment=NSTextAlignmentLeft;
-    [cell addSubview:sellerLabel];
-    
-    ShaperView *viewr=[[ShaperView alloc]initWithFrame:CGRectMake(90, 85, SCREENWIDTH-90, 1)];
-    ShaperView *viewt= [viewr drawDashLine:viewr lineLength:3 lineSpacing:3 lineColor:[UIColor colorWithRed:234/255.0f green:234/255.0f blue:234/255.0f alpha:1.0f]];
-    [cell addSubview:viewt];
-    
-    UILabel *sheLab=[[UILabel alloc]initWithFrame:CGRectMake(90, 97, 12, 12)];
-    sheLab.backgroundColor=[UIColor colorWithRed:238/255.0 green:94/255.0 blue:44/255.0f alpha:1.0];
-    sheLab.text=@"折";
-    sheLab.textAlignment=1;
-    sheLab.textColor=[UIColor whiteColor];
-    sheLab.font=[UIFont systemFontOfSize:12.0f];
-    [cell addSubview:sheLab];
-    
-    UILabel *sheContent=[[UILabel alloc]initWithFrame:CGRectMake(114, 97, SCREENWIDTH-114, 12)];
-    sheContent.textAlignment=NSTextAlignmentLeft;
-    sheContent.font=[UIFont systemFontOfSize:12.0f];
-    
-    [cell addSubview:sheContent];
-    
-    UILabel *giveLab=[[UILabel alloc]initWithFrame:CGRectMake(90, 117, 12, 12)];
-    giveLab.backgroundColor=[UIColor colorWithRed:86/255.0 green:171/255.0 blue:228/255.0f alpha:1.0];
-    giveLab.text=@"赠";
-    giveLab.textAlignment=1;
-    giveLab.textColor=[UIColor whiteColor];
-    giveLab.font=[UIFont systemFontOfSize:12.0f];
-    [cell addSubview:giveLab];
-    
-    UILabel *giveContent=[[UILabel alloc]initWithFrame:CGRectMake(114, 117, SCREENWIDTH-114, 12)];
-    giveContent.textAlignment=NSTextAlignmentLeft;
-    giveContent.font=[UIFont systemFontOfSize:12.0f];
-    
-    [cell addSubview:giveContent];
-   
-    UILabel *brandLabel=[[UILabel alloc]initWithFrame:CGRectMake(52, 10, 24, 12)];
-    brandLabel.textAlignment=1;
-    brandLabel.text=@"品牌";
-    brandLabel.font=[UIFont systemFontOfSize:10.0f];
-    [cell addSubview:brandLabel];
-    brandLabel.backgroundColor=[UIColor colorWithRed:255/255.0 green:210/255.0 blue:0 alpha:1];
-    
-    
-    DLStarRatingControl* dlCtrl = [[DLStarRatingControl alloc]initWithFrame:CGRectMake(-40, 0, 160, 35) andStars:5 isFractional:YES star:[UIImage imageNamed:@"result_small_star_disable_iphone"] highlightStar:[UIImage imageNamed:@"redstar"]];
-    dlCtrl.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-    dlCtrl.userInteractionEnabled = NO;
-    dlCtrl.rating =0.0;
-    
-    UILabel *starLabel = [[UILabel alloc]initWithFrame:CGRectMake(90, 38, 95, 15)];
-    starLabel.backgroundColor = [UIColor clearColor];
-    starLabel.textAlignment = NSTextAlignmentLeft;
-    starLabel.font = [UIFont systemFontOfSize:15];
-    
-    [starLabel addSubview:dlCtrl];
-    [cell addSubview:starLabel];
-    
+
+
+
     if (self.searchController.active){
         if (self.searchList.count>0) {
-            brandLabel.text=self.searchList[indexPath.row][@"trade"];
-            CGFloat width = [NSString calculateRowWidth:brandLabel];
-            brandLabel.frame=CGRectMake(76-width, 10, width, 12);
+          
+            NSDictionary *dic = self.searchList[indexPath.row];
+                
+                
+                //店铺名
+                cell.nameLabel.text=[dic objectForKey:@"store"];
+                //销量
+                cell.sellerLabel.text=[NSString stringWithFormat:@"| 已售%@笔",[dic objectForKey:@"sold"]];
+                //距离
+                CLLocationCoordinate2D c1 = CLLocationCoordinate2DMake([[dic objectForKey:@"latitude"] doubleValue], [[dic objectForKey:@"longtitude"] doubleValue]);
+                AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+                
+                
+                BMKMapPoint a=BMKMapPointForCoordinate(c1);
+                BMKMapPoint b=BMKMapPointForCoordinate(appdelegate.userLocation.location.coordinate);
+                CLLocationDistance distance = BMKMetersBetweenMapPoints(a,b);
+                
+                int meter = (int)distance;
+                if (meter>1000) {
+                    cell.distanceLabel.text = [[NSString alloc]initWithFormat:@"距离%.1fkm",meter/1000.0];
+                }else
+                    cell.distanceLabel.text = [[NSString alloc]initWithFormat:@"距离%dm",meter];
+                NSURL * nurl1=[[NSURL alloc] initWithString:[[SHOPIMAGE_ADDIMAGE stringByAppendingString:[dic objectForKey:@"image_url"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+                [cell.shopImageView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
+                
+                
+                
+                //评星
+                
+                NSString *starsss = [NSString getTheNoNullStr:[dic objectForKey:@"stars"] andRepalceStr:@"0"];
+                cell.starView.currentScore=[starsss floatValue];
+                
+                
+                
+                NSString *discount =[NSString getTheNoNullStr:[dic objectForKey:@"discount"] andRepalceStr:@""];
+                
+                
+                NSString *giveString =[NSString getTheNoNullStr:[dic objectForKey:@"add"] andRepalceStr:@""];
+                
+                NSMutableArray *muta_a = [NSMutableArray array];
+                
+                
+                if ([discount doubleValue]>0.0 && [discount doubleValue]<100.0) {
+                    
+                    [muta_a addObject:@"折"];
+                    
+                }
+                
+                
+                if ([giveString floatValue]>0.0) {
+                    [muta_a addObject:@"赠"];
+                    
+                    
+                    
+                }
+                
+                if ([dic[@"coupon"] isEqualToString:@"yes"]) {
+                    [muta_a addObject:@"券"];
+                    
+                }
+                
+                
+                for (UIView *view in cell.subviews) {
+                    if (view.tag>=999) {
+                        [view removeFromSuperview];
+                    }
+                }
+                for (int i = 0; i <muta_a.count; i ++) {
+                    
+                    
+                    UILabel *zhelab=[[UILabel alloc]initWithFrame:CGRectMake(cell.nameLabel.left +i*(16+15), cell.nameLabel.bottom+13, 16, 16)];
+                    zhelab.text=muta_a[i];
+                    zhelab.textAlignment=1;
+                    zhelab.tag =i+999;
+                    zhelab.textColor=[UIColor whiteColor];
+                    zhelab.font=[UIFont systemFontOfSize:12.0f];
+                    zhelab.layer.cornerRadius = 2;
+                    zhelab.layer.masksToBounds = YES;
+                    [cell addSubview:zhelab];
+                    
+                    if ([zhelab.text isEqualToString:@"折"]) {
+                        zhelab.backgroundColor = RGB(238,94,44);
+                        
+                    }
+                    
+                    if ([zhelab.text isEqualToString:@"赠"]) {
+                        zhelab.backgroundColor = RGB(86,171,228);
+                        
+                    }
+                    if ([zhelab.text isEqualToString:@"券"]) {
+                        zhelab.backgroundColor = RGB(255,0,0);
+                        
+                    }
+                }
+                
+                cell.tradeLable.text=dic[@"trade"];
+                CGRect trade_frame = cell.tradeLable.frame;
+                trade_frame.size.width =[self calculateRowWidth: cell.tradeLable.text];
+                cell.tradeLable.frame = trade_frame;
+                
+                
             
-            nameLabel.text = @"";
-            distanceLabel.text = @"";
-            //店铺名
-            nameLabel.text=[[self.searchList objectAtIndex:indexPath.row] objectForKey:@"store"];
-            //销量
-            sellerLabel.text=[NSString stringWithFormat:@"已售%@笔",[[self.searchList objectAtIndex:indexPath.row] objectForKey:@"sold"]];
-            //距离
-            CLLocationCoordinate2D c1 = CLLocationCoordinate2DMake([[[self.searchList objectAtIndex:indexPath.row] objectForKey:@"latitude"] doubleValue], [[[self.searchList objectAtIndex:indexPath.row] objectForKey:@"longtitude"] doubleValue]);
-            AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-            
-            
-            BMKMapPoint a=BMKMapPointForCoordinate(c1);
-            BMKMapPoint b=BMKMapPointForCoordinate(appdelegate.userLocation.location.coordinate);
-            CLLocationDistance distance = BMKMetersBetweenMapPoints(a,b);
-            
-            int meter = (int)distance;
-            if (meter>1000) {
-                distanceLabel.text = [[NSString alloc]initWithFormat:@"%.1fkm",meter/1000.0];
-            }else
-                distanceLabel.text = [[NSString alloc]initWithFormat:@"%dm",meter];
-            NSURL * nurl1=[[NSURL alloc] initWithString:[[SHOPIMAGE_ADDIMAGE stringByAppendingString:[[self.searchList objectAtIndex:indexPath.row] objectForKey:@"image_url"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
-            [shopImageView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
             
         }
-        
-        //评星
-        
-        NSString *starsss = [NSString getTheNoNullStr:[[self.searchList objectAtIndex:indexPath.row] objectForKey:@"stars"] andRepalceStr:@"0"];
-        dlCtrl.rating=[starsss floatValue];
-        
-        //sheContent
-        NSString *sheString=[NSString getTheNoNullStr:[[self.searchList objectAtIndex:indexPath.row] objectForKey:@"add"] andRepalceStr:@"商家暂无折扣"];
-        sheContent.text=sheString;
-        
-        NSString *giveContentStr=[NSString getTheNoNullStr:[[self.searchList objectAtIndex:indexPath.row] objectForKey:@"discount"] andRepalceStr:@"商家暂无赠送活动"];
-        UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, 139, SCREENWIDTH, 1)];
-        giveContent.text=giveContentStr;
-        
-        lineView.backgroundColor=[UIColor colorWithRed:234/255.0f green:234/255.0f blue:234/255.0f alpha:1.0f];
-        [cell addSubview:lineView];
-        
     }else{
         [cell.textLabel setText:self.dataList[indexPath.row]];
     }
@@ -392,6 +379,11 @@
     }
 }
 
-
+- (CGFloat)calculateRowWidth:(NSString *)string {
+    NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:10]};  //指定字号
+    CGRect rect = [string boundingRectWithSize:CGSizeMake(0, 12)/*计算宽度时要确定高度*/ options:NSStringDrawingUsesLineFragmentOrigin |
+                   NSStringDrawingUsesFontLeading attributes:dic context:nil];
+    return rect.size.width;
+}
 
 @end

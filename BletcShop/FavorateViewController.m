@@ -24,6 +24,9 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"我的收藏";
+    
+    [self _inittable];
+
     [self postRequestFavorate];
     
     
@@ -31,7 +34,7 @@
 }
 -(void)_inittable
 {
-    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64) style:UITableViewStylePlain];
+    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64) style:UITableViewStyleGrouped];
     table.delegate = self;
     table.dataSource = self;
     table.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -42,9 +45,16 @@
     [self.view addSubview:table];
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 10;
+}
 -(void)postRequestFavorate
 {
     
+    [self showHudInView:self.view hint:@"加载中..."];
     NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/collect/storeGet",BASEURL];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -54,19 +64,25 @@
 
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
      {
+         [self hideHud];
          NSLog(@"result===%@", result);
 
          self.favorateShopArray = [result mutableCopy];
-         [self _inittable];
+         
+         [_favorateTable reloadData];
+        
      } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-         //         [self noIntenet];
+         [self hideHud];
          NSLog(@"%@", error);
      }];
     
 }
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.favorateShopArray.count;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.favorateShopArray.count;
+    return 1;
 }
 
 
@@ -112,7 +128,7 @@
 //    [cell addSubview:distanceLabel];
 //    
 //    
-    NSDictionary *dic = self.favorateShopArray[indexPath.row];
+    NSDictionary *dic = self.favorateShopArray[indexPath.section];
 //
 //    
 //    nameLabel.text =[NSString getTheNoNullStr:dic[@"store"] andRepalceStr:@""];
@@ -185,7 +201,7 @@
 {
     
     // 进入下层入口
-    NSMutableDictionary *dic = [self.favorateShopArray objectAtIndex:indexPath.row];
+    NSMutableDictionary *dic = [self.favorateShopArray objectAtIndex:indexPath.section];
     
     NewShopDetailVC *vc= [self startSellerView:dic];
     
@@ -234,22 +250,22 @@
     
     controller.title = @"商铺信息";
     return controller;
-//    [self.navigationController pushViewController:controller animated:YES];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"BtnClick_%zd",indexPath.row);
-    [self removeFavorateState:self.favorateShopArray[indexPath.row][@"muid"] index:indexPath.row];
+    [self removeFavorateState:self.favorateShopArray[indexPath.section][@"muid"] index:indexPath.section];
 }
 -(void)removeFavorateState:(NSString *)muid index:(NSInteger)index{
+    
+    
     NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/collect/stateSet",BASEURL];
+    
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
     [params setObject:[appdelegate.userInfoDic objectForKey:@"uuid"] forKey:@"user"];
     [params setObject:muid forKey:@"merchant"];
     [params setObject:@"false" forKey:@"state"];
@@ -264,10 +280,7 @@
                  [self.favorateShopArray removeObjectAtIndex:index];
                  [self.favorateTable reloadData];
              }
-             else
-             {
-                
-             }
+         
         } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
          //         [self noIntenet];
          NSLog(@"%@", error);

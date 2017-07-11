@@ -397,18 +397,19 @@
     
     __block HomeViewController *blockSelf = self;
     _refreshheader.beginRefreshingOperation = ^{
+        currentIndex3 = 1;
         
         [blockSelf getIcons:@""];
     };
     
     
-//    _refreshFooter = [SDRefreshFooterView refreshView];
-//    [_refreshFooter addToScrollView:table_View];
-//    
-//    _refreshFooter.beginRefreshingOperation =^{
-////        [blockSelf postRequestAdv1WithMore:@"more"];
-//        
-//    };
+    _refreshFooter = [SDRefreshFooterView refreshView];
+    [_refreshFooter addToScrollView:table_View];
+    
+    _refreshFooter.beginRefreshingOperation =^{
+        [blockSelf postRequestAdv3WithMore:@"more"];
+        
+    };
 
     
 
@@ -576,7 +577,7 @@
             
             UIImageView *img_view = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 76-1)];
             [img_view sd_setImageWithURL:[NSURL URLWithString:model.long_img_url] placeholderImage:[UIImage imageNamed:@"icon3"]];
-            
+            NSLog(@"long_img_url----_%@",model.long_img_url);
             [cell.contentView addSubview:img_view];
             
             
@@ -1083,10 +1084,14 @@
         self.city_district =  [self.city_district stringByReplacingOccurrencesOfString:@"全城" withString:@""];
     }
 
-    
+    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+
     NSMutableDictionary*paramer = [NSMutableDictionary dictionary];
     [paramer setValue:self.city_district forKey:@"location"];
     
+    [paramer setValue:[NSString stringWithFormat:@"%lf",appdelegate.userLocation.location.coordinate.latitude] forKey:@"lat"];
+    [paramer setValue:[NSString stringWithFormat:@"%lf",appdelegate.userLocation.location.coordinate.longitude] forKey:@"lng"];
+
     [_refreshheader endRefreshing];
     [self showHudInView:self.view hint:@"加载中..."];
     
@@ -1128,6 +1133,9 @@
         
         
         NSArray *arr = result[@"stores"];
+        
+        [self.data_A3 removeAllObjects];
+        [self.shopData_A removeAllObjects];
         
         for (NSDictionary *dic in arr) {
             
@@ -1355,71 +1363,66 @@
 //    
 //}
 //获取商家列表
-//-(void)postRequestAdv3WithMore:(NSString*)more
-//{
-//    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/merchant/listGet",BASEURL];
-//    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
-//    
-//    [paramer setValue:self.city_district forKey:@"eare"];
-//    if ([more isEqualToString:@"more"]) {
-//        
-//        [paramer setValue:[NSString stringWithFormat:@"%d",++currentIndex3] forKey:@"index"];
-//
-//
-//    }else{
-//        
-//        currentIndex3 = 1;
-//        
-//        [self.data_A3 removeAllObjects];
-//        [self.shopData_A removeAllObjects];
-//        [paramer setValue:@"1" forKey:@"index"];
-//
-//    }
-//
-//    NSLog(@"postRequestAdv3WithMore---%@",paramer);
-//    
-//    
-//    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-//     {
-//         [data_hud hideAnimated:YES];
-//
-//                  NSLog(@"result3==%@",result);
-//         
-//         NSArray *arr = (NSArray*)result;
-//         
-//         
-//         for (NSDictionary *dic in arr) {
-//             
-//             HomeShopModel *model = [[HomeShopModel alloc]initWithDictionary:dic];
-//
-//             [self.data_A3 addObject:model];
-//             [self.shopData_A addObject:dic];
-//
-//         }
-//         
-//         static dispatch_once_t onceToken;
-//         dispatch_once(&onceToken, ^{
-//             
-//             [self getVersion_code];
-//
-//         });
-//         
-//         
-//         [_refreshheader endRefreshing];
-//         [_refreshFooter endRefreshing];
-//         
-//         [table_View reloadData];
-//         
-//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-//
-//         [_refreshheader endRefreshing];
-//         [_refreshFooter endRefreshing];
-//         [data_hud hideAnimated:YES];
-//
-//         NSLog(@"%@", error);
-//     }];
-//    
-//}
+-(void)postRequestAdv3WithMore:(NSString*)more
+{
+    
+    [self showHudInView:self.view hint:@"加载中..."];
+    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/HP/dropLoad",BASEURL];
+    
+    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+
+    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
+    
+     [paramer setValue:[NSString stringWithFormat:@"%d",++currentIndex3] forKey:@"index"];
+
+    [paramer setValue:self.city_district forKey:@"location"];
+    
+    [paramer setValue:[NSString stringWithFormat:@"%lf",appdelegate.userLocation.location.coordinate.latitude] forKey:@"lat"];
+    [paramer setValue:[NSString stringWithFormat:@"%lf",appdelegate.userLocation.location.coordinate.longitude] forKey:@"lng"];
+
+
+    NSLog(@"postRequestAdv3WithMore-url-%@-%@",url,paramer);
+    
+    
+    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
+     {
+         [self hideHud];
+         [_refreshFooter endRefreshing];
+
+           NSLog(@"result3==%@",result);
+         
+         if ([result[@"insert_ad"] isKindOfClass:[NSDictionary class]]) {
+             
+             
+             HomeShopModel *model = [[HomeShopModel alloc]initWithDictionary:result[@"insert_ad"]];
+              model.remark = @"长条广告";
+
+              [self.data_A3 addObject:model];
+              [self.shopData_A addObject:result[@"insert_ad"]];
+         }
+         
+         
+         for (NSDictionary *dic in result[@"stores"]) {
+             
+             HomeShopModel *model = [[HomeShopModel alloc]initWithDictionary:dic];
+             
+             [self.data_A3 addObject:model];
+             [self.shopData_A addObject:dic];
+             
+         }
+    
+         
+       [table_View reloadData];
+         
+     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+         [self hideHud];
+         [_refreshheader endRefreshing];
+         [_refreshFooter endRefreshing];
+
+         NSLog(@"postRequestAdv3WithMore=%@", error);
+     }];
+    
+}
 //获取弹出广告
 -(void)getPopupAdvertise{
     

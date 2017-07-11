@@ -24,6 +24,7 @@
 
 @property(nonatomic,copy)NSString *stars; //评分
 @property(nonatomic,assign) CGFloat cellHight;
+@property(nonatomic,copy)NSString *distance; //距离
 
 
 //长条广告的数据

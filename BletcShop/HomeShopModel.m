@@ -27,7 +27,7 @@
     
     self.muid =[NSString getTheNoNullStr:dic[@"muid"] andRepalceStr:@""];
     
-    self.img_url = [[SHOPIMAGE_ADDIMAGE stringByAppendingString:[dic objectForKey:@"image_url"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    self.img_url = [NSString stringWithFormat:@"%@%@",SHOPIMAGE_ADDIMAGE,dic[@"image_url"]];
     
     self.title_S =[NSString getTheNoNullStr:dic[@"store"] andRepalceStr:@""];
     self.subTitl = [NSString getTheNoNullStr:dic[@"discount"] andRepalceStr:@""];
@@ -40,8 +40,10 @@
     
     self.latitude =[NSString getTheNoNullStr:dic[@"latitude"] andRepalceStr:@""];
     self.stars =[NSString getTheNoNullStr:dic[@"stars"] andRepalceStr:@"0"];
-    self.coupon_exists=dic[@"coupon"];
-    self.trade=dic[@"trade"];
+    self.coupon_exists= [NSString getTheNoNullStr:dic[@"coupon"] andRepalceStr:@""];
+    self.trade=[NSString getTheNoNullStr:dic[@"trade"] andRepalceStr:@""];
+    
+    self.distance =[NSString getTheNoNullStr:dic[@"distance"] andRepalceStr:@""];
     return self;
 }
 
