@@ -135,6 +135,7 @@
     self.navigationController.navigationBar.hidden= YES;
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     if (self.tView && (self.advertiseHeaderList.count!=0)) {
+        
         [self.tView startAnimation];
     }
     self.cityChoice = appdelegate.cityChoice;
@@ -143,33 +144,14 @@
     
     printf("viewWillAppear ==%s\n %s",[self.cityChoice UTF8String] ,[self.city_district UTF8String]);
 
-    self.ifOpen =NO;
-    
-    if (self.ifOpen==NO)
-    {
-        [self initTopView];
-    }
-    if (self.ifOpen==YES) {
-        
-    }
-
+           [self initTopView];
 
     
     [cycleScrollView2 adjustWhenControllerViewWillAppera];
 
  
 }
-- (void)viewDidAppear:(BOOL)animated {
-    
-   
-}
-#pragma mark - action
 
-
-- (void)viewDidDisappear:(BOOL)animated {
-    
-    //timer 必须在 viewDidDisappear 进行销毁，才能正确的释放 self。
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.locationManager = [[JFLocation alloc] init];
@@ -507,11 +489,17 @@
 }
 
 
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section==0) {
         NSLog(@"self.headerView.height-----%lf",self.headerView.height);
 
-        return [self creatHeaderView].height;
+        if (self.headerView) {
+            return self.headerView.height;
+        }else{
+            return [self creatHeaderView].height;
+
+        }
     }else if(section==1){
         return 40;
     }else
@@ -791,14 +779,9 @@
     hot_label.backgroundColor = [UIColor whiteColor];
     [view addSubview:hot_label];
     
-//    UIImageView *imgVi = [[UIImageView alloc]initWithFrame:CGRectMake(5, _smallSV.bottom+1+7.5, 145/2, 15)];
-//    imgVi.image = [UIImage imageNamed:@"今日头条"];
-//    
-//    [view addSubview:imgVi];
     
     CGFloat hot_ww = [self getSizeWithLab:hot_label andMaxSize:CGSizeMake(100, 100)].width;
     
-//    GYChangeTextView *tView = [[GYChangeTextView alloc] initWithFrame:CGRectMake(hot_ww+5, hot_label.top+(hot_label.height-12)/2, SCREENWIDTH-hot_ww-20, 12)];
     GYChangeTextView *tView = [[GYChangeTextView alloc] initWithFrame:CGRectMake(hot_ww+5, hot_label.top, SCREENWIDTH-hot_ww-20, hot_label.height)];
     [tView setValue:RGB(51, 51, 51) forKeyPath:@"textLabel.textColor"];
     [tView setValue:[UIFont systemFontOfSize:12] forKeyPath:@"textLabel.font"];
@@ -905,147 +888,6 @@
         }
     }
     
-//    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-//    button1.frame = CGRectMake(0, 10, SCREENWIDTH/2, 81*LZDScale);
-//    button1.backgroundColor = [UIColor whiteColor];
-//    [button1 addTarget:self action:@selector(advertiseClick:) forControlEvents:UIControlEventTouchUpInside];
-//    [back_view addSubview:button1];
-//    
-//    UILabel *lab1_1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 25, button1.width, 15)];
-//    lab1_1.text = @"新店入住";
-//    button1.tag=0;
-//    lab1_1.font = [UIFont systemFontOfSize:15];
-//    lab1_1.textColor = [UIColor colorWithHexString:@"fe0000"];
-//    lab1_1.textAlignment = NSTextAlignmentCenter;
-//    [button1 addSubview:lab1_1];
-//    
-//    UILabel *lab1_2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 46, button1.width, 12)];
-//    lab1_2.text = @"优惠停不下来";
-//    lab1_2.font = [UIFont systemFontOfSize:12];
-//    lab1_2.textColor = RGB(102,102,102);
-//    lab1_2.textAlignment = NSTextAlignmentCenter;
-//    [button1 addSubview:lab1_2];
-//    
-//    UIImageView *img_1 = [[UIImageView alloc]initWithFrame:CGRectMake((button1.width-119)/2, 87, 119, 49)];
-//    img_1.contentMode = UIViewContentModeScaleAspectFit;
-//    [button1 addSubview:img_1];
-//    
-//    
-//    NSDictionary *dic ;
-//    if (self.data_A2.count!=0) {
-//        
-//        dic = self.data_A2[0];
-//        lab1_1.text = dic[@"theme"];
-//        lab1_2.text = dic[@"content"];
-//        NSString *img_str = [NSString stringWithFormat:@"%@%@",FOURADVERTIMAGE,dic[@"image_url"]];
-//        [img_1 sd_setImageWithURL:[NSURL URLWithString:img_str] placeholderImage:[UIImage imageNamed:@"dfg"]];
-//        
-//        
-//    }
-//    
-//    
-//    
-//    
-//    UIButton *button2 =[UIButton buttonWithType:UIButtonTypeCustom];
-//    button2.frame = CGRectMake(button1.right+1, 10, SCREENWIDTH-button1.right-1, 79-5);
-//    button2.backgroundColor = [UIColor whiteColor];
-//    [button2 addTarget:self action:@selector(advertiseClick:) forControlEvents:UIControlEventTouchUpInside];
-//    button2.tag=1;
-//    [back_view addSubview:button2];
-//    
-//    UILabel *lab2_1 = [[UILabel alloc]initWithFrame:CGRectMake(13, 10, button2.width/2, 15)];
-//    lab2_1.text = @"美发专区";
-//    lab2_1.font = [UIFont systemFontOfSize:15];
-//    lab2_1.textColor = [UIColor colorWithHexString:@"fe0000"];
-//    lab2_1.textAlignment = NSTextAlignmentLeft;
-//    [button2 addSubview:lab2_1];
-//    
-//    UILabel *lab2_2 = [[UILabel alloc]initWithFrame:CGRectMake(13, 31, button2.width/2-13, 12)];
-//    lab2_2.text = @"办卡永享8折";
-//    lab2_2.font = [UIFont systemFontOfSize:12];
-//    lab2_2.textColor = RGB(102,102,102);
-//    lab2_2.textAlignment = NSTextAlignmentLeft;
-//    [button2 addSubview:lab2_2];
-//    
-//    
-//    UIImageView *img_2 = [[UIImageView alloc]initWithFrame:CGRectMake(button2.width/2, 0, button2.height*230/124, button2.height)];
-//    img_2.contentMode = UIViewContentModeScaleAspectFit;
-//
-////    img_2.backgroundColor = RGB(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255));
-//    [button2 addSubview:img_2];
-//    
-//    
-//    if (self.data_A2.count!=0) {
-//        
-//        dic = self.data_A2[1];
-//        lab2_1.text = dic[@"theme"];
-//        lab2_2.text = dic[@"content"];
-//        NSString *img_str = [NSString stringWithFormat:@"%@%@",FOURADVERTIMAGE,dic[@"image_url"]];
-//
-//        [img_2 sd_setImageWithURL:[NSURL URLWithString:img_str] placeholderImage:[UIImage imageNamed:@"dasda.png"]];
-//        
-//        CGFloat hh = [lab2_2.text boundingRectWithSize:CGSizeMake(lab2_2.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName :lab2_2.font} context:nil].size.height;
-//        
-//        
-//        if (hh>lab2_2.height) {
-//            lab2_2.frame = CGRectMake(13, 31, button2.width/2-13, 25);
-//            lab2_2.numberOfLines= 2;
-//        }
-//    }
-//
-//    
-//    
-//    for (int i = 0; i <2; i ++) {
-//        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        btn.frame = CGRectMake(button1.right+1+i*((button2.width-1)/2+1), button2.bottom+1, ((button2.width-1)/2), 80+5);
-//        [btn addTarget:self action:@selector(advertiseClick:) forControlEvents:UIControlEventTouchUpInside];
-//        btn.tag = i+2;
-//        btn.backgroundColor = [UIColor whiteColor];
-//        
-//        UILabel *lab_1 = [[UILabel alloc]initWithFrame:CGRectMake(11, 10, btn.width, 15)];
-//        lab_1.text = @"会员大放送";
-//        lab_1.font = [UIFont systemFontOfSize:15];
-//        lab_1.textColor = [UIColor colorWithHexString:@"fe0000"];
-//        lab_1.textAlignment = NSTextAlignmentLeft;
-//        [btn addSubview:lab_1];
-//        
-//        UILabel *lab_2 = [[UILabel alloc]initWithFrame:CGRectMake(11, 27, btn.width, 12)];
-//        lab_2.text = @"优惠停不下来";
-//        lab_2.font = [UIFont systemFontOfSize:12];
-//        lab_2.textColor = RGB(102,102,102);
-//        lab_2.textAlignment = NSTextAlignmentLeft;
-//        [btn addSubview:lab_2];
-////btn.width-13-38, btn.height-38-2, 38, 38
-//        UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake( (btn.width-38*224/110)/2, btn.height-38-2, 38*224/110, 38)];
-//        img.contentMode = UIViewContentModeScaleAspectFit;
-//
-//        [btn addSubview:img];
-//        
-//              [back_view addSubview:btn];
-//        
-//        if (self.data_A2.count!=0) {
-//            
-//            dic = self.data_A2[i+2];
-//            lab_1.text = dic[@"theme"];
-//            lab_2.text = dic[@"content"];
-//            
-//            NSString *img_str = [NSString stringWithFormat:@"%@%@",FOURADVERTIMAGE,dic[@"image_url"]];
-//            
-//            [img sd_setImageWithURL:[NSURL URLWithString:img_str] placeholderImage:[UIImage imageNamed:@"icon3.png"]];
-//            
-//            
-//            if (i ==0) {
-//                //img.frame = CGRectMake(13, btn.height-38-2, 38, 38);
-//                [img sd_setImageWithURL:[NSURL URLWithString:img_str] placeholderImage:[UIImage imageNamed:@"icon3.png"]];
-////                lab_2.text = @"喜迎中国年!";(13, btn.height-38-2, 38, 38
-//                
-//            }
-//
-//            
-//            
-//        }
-//
-//    }
     
     //长条广告
     _longAdvertise_btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -1165,203 +1007,8 @@
 
     
     
-//    data_hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    
-//    NSString *url =[[NSString alloc]initWithFormat:@"%@Extra/Source/tradeIconGet",BASEURL];
-//    [KKRequestDataService requestWithURL:url params:nil httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-//     {
-//         self.icon_A= (NSArray*)result;
-//
-//         
-////         [self getAdvertiseHeaderLineGet:more];
-//         
-//
-//
-//         
-//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-//         [data_hud hideAnimated:YES];
-//         [_refreshheader endRefreshing];
-//         [_refreshFooter endRefreshing];
-//         NSLog(@"%@", error);
-//     }];
 }
 
-//获取头条
-//-(void)getAdvertiseHeaderLineGet:(NSString*)more{
-//    NSLog(@"senderSelectCity=====%@",self.city_district);
-//    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/advert/headlineGet",BASEURL];
-//    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
-//    [paramer setValue:self.city_district forKey:@"eare"];
-//    NSLog(@"--%@",paramer);
-//    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-//     {
-//         NSLog(@"result====>>>%@",result);
-//         self.advertiseHeaderList= (NSArray*)result;
-////         self.headerView = [self creatHeaderView];
-////         
-////         [self postRequestAdv2:more];
-//         [self getTopCircleAdverList:more];
-//         
-//         
-//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-//         [_refreshheader endRefreshing];
-//         [_refreshFooter endRefreshing];
-//         [data_hud hideAnimated:YES];
-//
-//         NSLog(@"%@", error);
-//     }];
-//}
-
-
-//-(void)getTopCircleAdverList:(NSString*)more{
-//    
-//    
-//    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/advertTop/get",BASEURL];
-//    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-//    
-//    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
-//    [paramer setValue:appdelegate.cityChoice forKey:@"address"];
-//    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-//     {
-//         
-//         NSLog(@"getTopCircleAdverList--%@ ==%@",paramer,result);
-//
-//         self.circleAdverlist= (NSArray*)result;
-//         
-//         
-//         [self.adverImages removeAllObjects];
-//         
-//         [self.titles removeAllObjects];
-//         for (int i=0; i<[result count]; i++) {
-//             [self.adverImages addObject:[NSString stringWithFormat:@"%@%@",HOME_LUNBO_IMAGE,result[i][@"image_url"]]];
-//             
-//             [self.titles addObject:result[i][@"title"]];
-//         }
-//
-//         self.headerView = [self creatHeaderView];
-//         
-//         [self postRequestAdv2:more];
-//         
-//         
-//         
-//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-//         [data_hud hideAnimated:YES];
-//
-//         [_refreshheader endRefreshing];
-//         [_refreshFooter endRefreshing];
-//         NSLog(@"%@", error);
-//     }];
-//
-//}
-
-/**
- 获取活动数据
- */
-//-(void)postRequestAdv2:(NSString*)more
-//{
-//    
-//    NSLog(@"------self.cityChoice-------%@-----%@",self.cityChoice,self.city_district);
-//
-//    
-//    if ([self.city_district containsString:@"全城"]) {
-//       self.city_district =  [self.city_district stringByReplacingOccurrencesOfString:@"全城" withString:@""];
-//    }
-//    
-//    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/activity/get",BASEURL];
-//    
-//    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
-//    [paramer setValue:self.city_district forKey:@"eare"];
-//    NSLog(@"postRequestAdv2-----%@",paramer);
-//    
-//    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-//     {
-//
-//         NSLog(@"获取活动数据----%@",result);
-//         
-//         self.data_A2= (NSArray*)result;
-//         [self postRequestAdv1WithMore:more];
-//         
-//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-//         [_refreshheader endRefreshing];
-//         [_refreshFooter endRefreshing];
-//         [data_hud hideAnimated:YES];
-//
-//         NSLog(@"%@", error);
-//     }];
-//    
-//}
-
-
-/**
- 获取长条广告
-
- @param more <#more description#>
- */
-//-(void)postRequestAdv1WithMore:(NSString *)more
-//{
-//    NSLog(@"------self.cityChoice-------%@-----%@==more=%@",self.cityChoice,self.city_district,more);
-//    if (![self.city_district containsString:self.cityChoice]) {
-//        self.city_district =self.cityChoice;
-//    }
-//    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/advert/insertGet",BASEURL];
-//    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
-//    [paramer setValue:self.city_district forKey:@"eare"];
-//    
-//    if ([more isEqualToString:@"more"]) {
-//        [paramer setValue:[NSString stringWithFormat:@"%d",++currentIndex1] forKey:@"place"];
-//
-//    }else{
-//        currentIndex1 = 1;
-//        [paramer setValue:@"1" forKey:@"place"];
-// 
-//    }
-//
-//    NSLog(@"postRequestAdv1WithMore====%@",paramer);
-//    
-//    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-//     {
-//                  NSLog(@"postRequestAdv1WithMore---%@",result);
-//         
-//         if ([more isEqualToString:@""]) {
-//             
-//             if ([result isKindOfClass:[NSDictionary class]]) {
-//                 self.longAdvertise_dic = (NSDictionary*)result;
-//
-//             }
-//             
-//             self.secondheaderView = [self creatSecondheardView];
-//             [self postRequestAdv3WithMore:@""];
-//
-//         }else{
-//             if ([result isKindOfClass:[NSDictionary class]]) {
-//                 NSLog(@"--是字典---");
-//                 
-//                 HomeShopModel *model = [[HomeShopModel alloc]initWithDictionary:result];
-//                 model.remark = @"长条广告";
-//                 
-//                 [self.data_A3 addObject:model];
-//                 [self.shopData_A addObject:result];
-//             }else{
-//                 NSLog(@"--是数组---");
-//
-//             }
-//            
-//
-//             
-//             [self postRequestAdv3WithMore:more];
-//
-//         }
-//         
-//         
-//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-//         [data_hud hideAnimated:YES];
-//
-//         [_refreshheader endRefreshing];
-//         [_refreshFooter endRefreshing];
-//                  NSLog(@"postRequestAdv1==%@", error);
-//     }];
-//    
-//}
 //获取商家列表
 -(void)postRequestAdv3WithMore:(NSString*)more
 {

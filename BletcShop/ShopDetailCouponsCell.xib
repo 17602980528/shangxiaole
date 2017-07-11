@@ -55,9 +55,9 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="|||||||||||||||||||||||||" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBr-Jw-uaX">
-                                <rect key="frame" x="258.5" y="9" width="3" height="51.5"/>
+                                <rect key="frame" x="259.5" y="9" width="1" height="51.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="3" id="0uS-XT-h0t"/>
+                                    <constraint firstAttribute="width" constant="1" id="0uS-XT-h0t"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="4"/>
                                 <color key="textColor" red="0.82352941176470584" green="0.82352941176470584" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>

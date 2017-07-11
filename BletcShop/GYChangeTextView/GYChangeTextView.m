@@ -64,6 +64,7 @@ typedef NS_ENUM(NSUInteger, GYTitlePosition) {
 }
 
 - (void)startAnimation {
+    NSLog(@"startAnimation");
     self.shouldStop = NO;
 
     __weak typeof(self) weakSelf = self;
@@ -92,6 +93,8 @@ typedef NS_ENUM(NSUInteger, GYTitlePosition) {
 }
 
 - (void)stopAnimation {
+    
+    NSLog(@"stopAnimation");
     self.shouldStop = YES;
 }
 
