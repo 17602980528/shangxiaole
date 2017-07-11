@@ -18,6 +18,8 @@
                 <outlet property="headerView" destination="O5f-nS-sbF" id="dN9-gK-doP"/>
                 <outlet property="moveView" destination="TkG-YC-C5N" id="uAe-7y-bVq"/>
                 <outlet property="nick" destination="v8o-sV-q2o" id="mpp-Oq-sE9"/>
+                <outlet property="priseButton" destination="0j2-JD-SDY" id="oS3-zF-Vlw"/>
+                <outlet property="pubButton" destination="jWa-2K-Ruq" id="yGw-M4-wnj"/>
                 <outlet property="publishButton" destination="jWa-2K-Ruq" id="PiO-bd-OAI"/>
                 <outlet property="sectionHeadView" destination="8eL-mI-xO7" id="ry4-Cc-4wH"/>
                 <outlet property="tableView" destination="ajn-1g-qao" id="eSh-VP-3YR"/>
@@ -130,7 +132,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0j2-JD-SDY">
-                    <rect key="frame" x="0.0" y="0.0" width="188" height="45"/>
+                    <rect key="frame" x="0.0" y="0.0" width="187.5" height="45"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="她的评价(2)">
                         <color key="titleColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
@@ -140,7 +142,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWa-2K-Ruq">
-                    <rect key="frame" x="188" y="0.0" width="188" height="45"/>
+                    <rect key="frame" x="187.5" y="0.0" width="187.5" height="45"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="她的发布(0)">
                         <color key="titleColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
@@ -149,13 +151,10 @@
                         <action selector="publishBtnClick:" destination="-1" eventType="touchUpInside" id="ROZ-wS-tbl"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TkG-YC-C5N">
-                    <rect key="frame" x="54" y="43" width="80" height="2"/>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TkG-YC-C5N">
+                    <rect key="frame" x="53" y="43" width="80" height="2"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.93725490196078431" green="0.42352941176470588" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="2" id="HUA-n1-bsN"/>
-                        <constraint firstAttribute="width" constant="80" id="d96-Ya-5zG"/>
-                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -163,13 +162,11 @@
                 <constraint firstItem="jWa-2K-Ruq" firstAttribute="leading" secondItem="0j2-JD-SDY" secondAttribute="trailing" id="0H4-sS-hGG"/>
                 <constraint firstItem="0j2-JD-SDY" firstAttribute="leading" secondItem="8eL-mI-xO7" secondAttribute="leading" id="0dn-x0-WGS"/>
                 <constraint firstAttribute="bottom" secondItem="jWa-2K-Ruq" secondAttribute="bottom" id="1yl-tL-fqM"/>
-                <constraint firstAttribute="bottom" secondItem="TkG-YC-C5N" secondAttribute="bottom" id="G5h-WG-obe"/>
-                <constraint firstItem="TkG-YC-C5N" firstAttribute="leading" secondItem="8eL-mI-xO7" secondAttribute="leading" constant="54" id="KeM-hv-6TX"/>
+                <constraint firstAttribute="trailing" secondItem="jWa-2K-Ruq" secondAttribute="trailing" id="Cwd-5Q-Iom"/>
                 <constraint firstItem="jWa-2K-Ruq" firstAttribute="top" secondItem="8eL-mI-xO7" secondAttribute="top" id="NSL-DH-WAd"/>
                 <constraint firstAttribute="bottom" secondItem="0j2-JD-SDY" secondAttribute="bottom" id="Np7-56-ewj"/>
                 <constraint firstItem="jWa-2K-Ruq" firstAttribute="width" secondItem="0j2-JD-SDY" secondAttribute="width" id="QIb-Xq-g1W"/>
                 <constraint firstItem="0j2-JD-SDY" firstAttribute="top" secondItem="8eL-mI-xO7" secondAttribute="top" id="xb2-ZK-1mT"/>
-                <constraint firstItem="TkG-YC-C5N" firstAttribute="centerX" secondItem="0j2-JD-SDY" secondAttribute="centerX" id="yqs-3C-ijL"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
