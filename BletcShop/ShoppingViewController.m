@@ -15,7 +15,6 @@
 #import "AppDelegate.h"
 #import "NewShopDetailVC.h"
 #import "ShopListTableViewCell.h"
-#import "DLStarRatingControl.h"
 #import "ShaperView.h"
 
 #import "JFAreaDataManager.h"
@@ -404,7 +403,6 @@
         dic = [self.data1 objectAtIndex:indexPath.row];
         
     }
-    //    NSMutableDictionary *dic = [self.data1 objectAtIndex:indexPath.row];
     
     NewShopDetailVC *vc= [self startSellerView:dic];
     vc.videoID=@"";
@@ -412,38 +410,6 @@
     vc.videoID=[NSString getTheNoNullStr:dic[@"video"] andRepalceStr:@""];
     [self.navigationController pushViewController:vc animated:YES];
     
-    //    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/merchant/videoGet",BASEURL];
-    //    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    //    //获取商家手机号
-    //
-    //    [params setObject:dic[@"muid"] forKey:@"muid"];
-    //
-    //    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, NSArray* result)
-    //     {
-    //         NSLog(@"%@",result);
-    //         if (result.count>0) {
-    //             __block ShoppingViewController* tempSelf = self;
-    //             if ([result[0][@"state"] isEqualToString:@"true"]) {
-    //                 vc.videoID=result[0][@"video"];
-    //
-    //             }else{
-    //                 vc.videoID=@"";
-    //
-    //             }
-    //             [tempSelf.navigationController pushViewController:vc animated:YES];
-    //         }else{
-    //             __block ShoppingViewController* tempSelf = self;
-    //             vc.videoID=@"";
-    //             [tempSelf.navigationController pushViewController:vc animated:YES];
-    //         }
-    //
-    //     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-    //         NSLog(@"%@", error);
-    //         __block ShoppingViewController* tempSelf = self;
-    //         vc.videoID=@"";
-    //         [tempSelf.navigationController pushViewController:vc animated:YES];
-    //     }];
-    //
     
 }
 
@@ -608,7 +574,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 140;
+    return 97;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -642,7 +608,7 @@
         //店铺名
         cell.nameLabel.text=[dic objectForKey:@"store"];
         //销量
-        cell.sellerLabel.text=[NSString stringWithFormat:@"已售%@笔",[dic objectForKey:@"sold"]];
+        cell.sellerLabel.text=[NSString stringWithFormat:@"| 已售%@笔",[dic objectForKey:@"sold"]];
         //距离
         CLLocationCoordinate2D c1 = CLLocationCoordinate2DMake([[dic objectForKey:@"latitude"] doubleValue], [[dic objectForKey:@"longtitude"] doubleValue]);
         AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -654,9 +620,9 @@
         
         int meter = (int)distance;
         if (meter>1000) {
-            cell.distanceLabel.text = [[NSString alloc]initWithFormat:@"%.1fkm",meter/1000.0];
+            cell.distanceLabel.text = [[NSString alloc]initWithFormat:@"距离%.1fkm",meter/1000.0];
         }else
-            cell.distanceLabel.text = [[NSString alloc]initWithFormat:@"%dm",meter];
+            cell.distanceLabel.text = [[NSString alloc]initWithFormat:@"距离%dm",meter];
         NSURL * nurl1=[[NSURL alloc] initWithString:[[SHOPIMAGE_ADDIMAGE stringByAppendingString:[dic objectForKey:@"image_url"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
         [cell.shopImageView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
         
@@ -665,40 +631,78 @@
         //评星
         
         NSString *starsss = [NSString getTheNoNullStr:[dic objectForKey:@"stars"] andRepalceStr:@"0"];
-        cell.dlCtrl.rating=[starsss floatValue];
-        //    [NSString stringWithFormat:@"%.1f折",[_model.subTitl floatValue]/10]    //sheContent
+        cell.starView.currentScore=[starsss floatValue];
+        
+        
         
         NSString *discount =[NSString getTheNoNullStr:[dic objectForKey:@"discount"] andRepalceStr:@""];
-        
-        if ([discount doubleValue]>0.0 && [discount doubleValue]<100.0) {
-            discount =  [NSString stringWithFormat:@"%.1f折",[discount floatValue]/10];
-            
-        }else{
-            discount  = @"暂无折扣!";
-        }
-        
-        cell.sheContent.text=discount;
         
         
         NSString *giveString =[NSString getTheNoNullStr:[dic objectForKey:@"add"] andRepalceStr:@""];
         
+        NSMutableArray *muta_a = [NSMutableArray array];
+
+        
+        if ([discount doubleValue]>0.0 && [discount doubleValue]<100.0) {
+            
+            [muta_a addObject:@"折"];
+            
+        }
+        
+        
         if ([giveString floatValue]>0.0) {
-            cell.giveContent.text = [NSString stringWithFormat:@"办卡就送%@",giveString];
-            
-        }else{
-            cell.giveContent.text  = @"暂无活动!";
+            [muta_a addObject:@"赠"];
+
+
             
         }
+        
         if ([dic[@"coupon"] isEqualToString:@"yes"]) {
-            cell.couponLable.hidden=NO;
-        }else{
-            cell.couponLable.hidden=YES;
+            [muta_a addObject:@"券"];
+
         }
+        
+        
+        for (UIView *view in cell.subviews) {
+            if (view.tag>=999) {
+                [view removeFromSuperview];
+            }
+        }
+        for (int i = 0; i <muta_a.count; i ++) {
+            
+            
+            UILabel *zhelab=[[UILabel alloc]initWithFrame:CGRectMake(cell.nameLabel.left +i*(16+15), cell.nameLabel.bottom+13, 16, 16)];
+            zhelab.text=muta_a[i];
+            zhelab.textAlignment=1;
+            zhelab.tag =i+999;
+            zhelab.textColor=[UIColor whiteColor];
+            zhelab.font=[UIFont systemFontOfSize:12.0f];
+            zhelab.layer.cornerRadius = 2;
+            zhelab.layer.masksToBounds = YES;
+            [cell addSubview:zhelab];
+            
+            if ([zhelab.text isEqualToString:@"折"]) {
+                zhelab.backgroundColor = RGB(238,94,44);
+                
+            }
+            
+            if ([zhelab.text isEqualToString:@"赠"]) {
+                zhelab.backgroundColor = RGB(86,171,228);
+                
+            }
+            if ([zhelab.text isEqualToString:@"券"]) {
+                zhelab.backgroundColor = RGB(255,0,0);
+                
+            }
+        }
+
+        
         
     }
     cell.tradeLable.text=dic[@"trade"];
-    CGFloat width=[self calculateRowWidth: cell.tradeLable.text];
-    cell.tradeLable.frame=CGRectMake(76-width, 10, width, 12);
+    CGRect trade_frame = cell.tradeLable.frame;
+    trade_frame.size.width =[self calculateRowWidth: cell.tradeLable.text];
+    cell.tradeLable.frame = trade_frame;
     
     return cell;
     

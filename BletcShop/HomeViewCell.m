@@ -18,6 +18,7 @@
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 #import <BaiduMapAPI_Search/BMKSearchComponent.h>
 
+#import "XHStarRateView.h"
 @interface HomeViewCell ()
 {
     UIView *lineView;
@@ -26,7 +27,7 @@
 @property (nonatomic,weak) UILabel *subTitle;//折扣描述
 @property(nonatomic,weak)UILabel * title_lab;//标题
 @property(nonatomic,weak)UILabel * distance_lab;//距离
-@property(nonatomic,weak) DLStarRatingControl* dlCtrl;//评分
+@property(nonatomic,weak) XHStarRateView* starView;//评分
 
 @property(nonatomic,weak)UILabel *seller_Label;//销量
 @property(nonatomic,weak)UILabel *give_Lab;//赠送描述
@@ -82,19 +83,29 @@
     
     //评分
     
-    DLStarRatingControl* dlCtrl = [[DLStarRatingControl alloc]initWithFrame:CGRectMake(-40, 0, 160, 35) andStars:5 isFractional:YES star:[UIImage imageNamed:@"result_small_star_disable_iphone"] highlightStar:[UIImage imageNamed:@"redstar"]];
+    XHStarRateView *starView = [[XHStarRateView alloc]initWithFrame:CGRectMake(nameLabel.left, 67, 77, 15)];
+    starView.userInteractionEnabled = NO;
+    starView.currentScore = 3;
+    starView.rateStyle = IncompleteStar;
+    [self addSubview:starView];
     
-    dlCtrl.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-    dlCtrl.userInteractionEnabled = NO;
-    
-    self.dlCtrl = dlCtrl;
-    UILabel *starLabel = [[UILabel alloc]initWithFrame:CGRectMake(90, shopImageView.bottom-5, 95, 24)];
-    starLabel.backgroundColor = [UIColor clearColor];
-    starLabel.textAlignment = NSTextAlignmentLeft;
-    starLabel.font = [UIFont systemFontOfSize:15];
-    
-    [starLabel addSubview:dlCtrl];
-    [self addSubview:starLabel];
+    self.starView = starView;
+//    
+//    DLStarRatingControl* dlCtrl = [[DLStarRatingControl alloc]initWithFrame:CGRectMake(-40, 0, 160, 35) andStars:5 isFractional:YES star:[UIImage imageNamed:@"result_small_star_disable_iphone"] highlightStar:[UIImage imageNamed:@"redstar"]];
+//    
+//    dlCtrl.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+//    dlCtrl.userInteractionEnabled = NO;
+//    
+//    self.dlCtrl = dlCtrl;
+//    
+//    
+//    UILabel *starLabel = [[UILabel alloc]initWithFrame:CGRectMake(90, shopImageView.bottom-5, 95, 24)];
+//    starLabel.backgroundColor = [UIColor clearColor];
+//    starLabel.textAlignment = NSTextAlignmentLeft;
+//    starLabel.font = [UIFont systemFontOfSize:15];
+//    
+//    [starLabel addSubview:dlCtrl];
+//    [self addSubview:starLabel];
     
     //距离
     UILabel *distanceLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 44, SCREENWIDTH-12, 12)];
@@ -105,7 +116,7 @@
     [self addSubview:distanceLabel];
     self.distance_lab = distanceLabel;
     //销售额
-    UILabel *sellerLabel=[[UILabel alloc]initWithFrame:CGRectMake(starLabel.right, starLabel.center.y-10.5, SCREENWIDTH-90-95-20-62, 12)];
+    UILabel *sellerLabel=[[UILabel alloc]initWithFrame:CGRectMake(starView.right + 5, starView.top+1.5, SCREENWIDTH-90-95-20-62, 12)];
     sellerLabel.text=@"已售258笔";
     sellerLabel.font=[UIFont systemFontOfSize:12.0f];
     sellerLabel.textAlignment=NSTextAlignmentLeft;
@@ -218,7 +229,7 @@
     
    
     self.seller_Label.text = [NSString stringWithFormat:@"| 已售%@笔",_model.soldCount];
-    self.dlCtrl.rating = [_model.stars floatValue];
+    self.starView.currentScore = [_model.stars floatValue];
     
     
     CLLocationCoordinate2D c1 = (CLLocationCoordinate2D){[self.model.latitude doubleValue], [self.model.longtitude doubleValue]};

@@ -37,7 +37,7 @@
 #import "HotNewsVC.h"
 #import "ChouJiangVC.h"
 #import "LandingController.h"
-@interface HomeViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,GYChangeTextViewDelegate,SelectCityDelegate,JFLocationDelegate,SDCycleScrollViewDelegate>
+@interface HomeViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,GYChangeTextViewDelegate,SelectCityDelegate,JFLocationDelegate,SDCycleScrollViewDelegate>
 {
     
     int currentIndex3;//请求页码
@@ -51,9 +51,7 @@
     NSInteger _pageID;
     
     UIPageControl *topPageControl;
-    MBProgressHUD *data_hud;
    
-    NSTimer* _timer;
     
     UIButton* _longAdvertise_btn;//长条广告
     
@@ -93,7 +91,6 @@
 @property(nonatomic,strong)UIView *headerView;//头view
 @property(nonatomic,strong)NSMutableArray *data_A3; //广告位.第三部分列表
 @property(nonatomic,strong)UIView *secondheaderView;//头2view
-@property(nonatomic,strong)UIView *areaView;
 
 @property(nonatomic,strong)NSArray *data_A2;//广告位.第二部分列表
 
@@ -150,11 +147,9 @@
     
     if (self.ifOpen==NO)
     {
-        [self.areaView removeFromSuperview];
         [self initTopView];
     }
     if (self.ifOpen==YES) {
-        [self choiceArea];
         
     }
 
@@ -174,7 +169,6 @@
 - (void)viewDidDisappear:(BOOL)animated {
     
     //timer 必须在 viewDidDisappear 进行销毁，才能正确的释放 self。
-    [_timer invalidate];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -391,7 +385,7 @@
 }
 
 -(void)initTableView{
-    table_View = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-self.tabBarController.tabBar.frame.size.height) style:UITableViewStyleGrouped];
+    table_View = [[UITableView alloc]initWithFrame:CGRectMake(0, -20, SCREENWIDTH, SCREENHEIGHT-self.tabBarController.tabBar.frame.size.height+20) style:UITableViewStyleGrouped];
     table_View.dataSource = self;
     table_View.delegate = self;
     table_View.separatorStyle= UITableViewCellSeparatorStyleNone;
@@ -408,13 +402,13 @@
     };
     
     
-    _refreshFooter = [SDRefreshFooterView refreshView];
-    [_refreshFooter addToScrollView:table_View];
-    
-    _refreshFooter.beginRefreshingOperation =^{
-        [blockSelf postRequestAdv1WithMore:@"more"];
-        
-    };
+//    _refreshFooter = [SDRefreshFooterView refreshView];
+//    [_refreshFooter addToScrollView:table_View];
+//    
+//    _refreshFooter.beginRefreshingOperation =^{
+////        [blockSelf postRequestAdv1WithMore:@"more"];
+//        
+//    };
 
     
 
@@ -1075,307 +1069,219 @@
     
     return back_view;
 }
--(void)choiceArea
-{
-    UIView *newView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, SCREENWIDTH, SCREENHEIGHT/2)];
-    self.areaView = newView;
-    newView.backgroundColor = [UIColor lightGrayColor];
-    
-    UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc ]init];
-    NSInteger height = 0;
 
-    height =  SCREENHEIGHT/2-80;
-    NSLog(@"%ld",height);
-    self.collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0,SCREENWIDTH ,height) collectionViewLayout:flowLayout];
-    [self.collectionView setShowsHorizontalScrollIndicator:NO];
-    [self.collectionView setShowsVerticalScrollIndicator:YES];
-    [self.collectionView setScrollEnabled:YES];
-    /*
-     *  注册cell
-     */
-    [self.collectionView registerClass:[UICollectionViewCell class]forCellWithReuseIdentifier:@"cell"];
-    [self.collectionView setBackgroundColor:[UIColor whiteColor]];
-    
-    [newView addSubview:self.collectionView];
-    self.collectionView.dataSource=self;
-    self.collectionView.delegate=self;
-    UIView *cityView = [[UIView alloc]initWithFrame:CGRectMake(20, SCREENHEIGHT/2-55, SCREENWIDTH-40, 30)];
-    cityView.backgroundColor = [UIColor whiteColor];
-    
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(5,0,60,30)];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:10];
-    label.text = @"当前城市:";
-    [cityView addSubview:label];
-    UILabel *labelCity = [[UILabel alloc]initWithFrame:CGRectMake(70,0,100,30)];
-    labelCity.font = [UIFont systemFontOfSize:10];
-    labelCity.textAlignment = NSTextAlignmentLeft;
-    
-    labelCity.text = self.cityChoice;
-    [cityView addSubview:labelCity];
-    UILabel *labelChange = [[UILabel alloc]initWithFrame:CGRectMake(cityView.width-80,0,60,30)];
-    labelChange.textAlignment = NSTextAlignmentRight;
-    labelChange.font = [UIFont systemFontOfSize:10];
-    labelChange.text = @"更换";
-    [cityView addSubview:labelChange];
-    UIButton *choiceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    choiceBtn.frame = CGRectMake(cityView.width-20, 10, 10, 10);
-    [choiceBtn setImage:[UIImage imageNamed:@"arraw_right"] forState:UIControlStateNormal];
-    [choiceBtn setImage:[UIImage imageNamed:@"jiantou"] forState:UIControlStateSelected];
-    
-    [cityView addSubview:choiceBtn];
-    cityView.userInteractionEnabled = YES;
-    UIGestureRecognizer *tapGestureDate = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(allCanChoiceCities)];
-    [cityView addGestureRecognizer:tapGestureDate];
-    [newView addSubview:cityView];
-    [self.view addSubview:newView];
-    
-}
--(void)allCanChoiceCities
-{
-    AddressPickerDemo *addressPickerDemo = [[AddressPickerDemo alloc] init];
-    addressPickerDemo.delegate = self;
-    [self.navigationController pushViewController:addressPickerDemo animated:YES];
-}
-
-#pragma mark- Source Delegate
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return 1;
-}
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return [self.areaListArray count];
-}
-
-
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    static NSString *identify=@"cell";
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
-    //解决视图重叠问题
-    for (UIView *subView in cell.subviews) {
-        if ([subView isMemberOfClass:[UILabel class]]) {    //UILabel 改为自己加的控件
-            [subView removeFromSuperview];
-        }
-    }
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10,1,(SCREENWIDTH-40)/3,35)];
-    label.font = [UIFont systemFontOfSize:14];
-    label.textAlignment = NSTextAlignmentCenter;
-    [cell addSubview:label];
-    cell.layer.cornerRadius = 1;
-    cell.layer.masksToBounds = YES;
-    //给图层添加一个有色边框?
-    cell.layer.borderWidth = 0.1;
-    
-    cell.layer.borderColor = [[UIColor grayColor] CGColor];
-    NSString *item = [self.areaListArray objectAtIndex:(long)indexPath.row];
-    label.text = item;
-    label.textAlignment = NSTextAlignmentCenter;
-    
-    [self minimumInteritemSpacing];
-    return cell;
-}
-- (CGFloat)minimumInteritemSpacing {
-    return 0;
-}
-#pragma mark- FlowDelegate
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return CGSizeMake((SCREENWIDTH-40)/3, 35 );
-}
-
--(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 10;
-}
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 10;
-}
-//点击选择区域
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    appdelegate.districtString= [self.areaListArray objectAtIndex:(long)indexPath.row];;
-    self.ifOpen = NO;
-    [dingweiBtn setTitle:appdelegate.districtString forState:UIControlStateNormal];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3];
-    CGAffineTransform transform;
-    
-    if (dingweiBtn.selected) {
-        transform = CGAffineTransformRotate(dingwei_img.transform, M_PI);
-    } else {
-        transform = CGAffineTransformRotate(dingwei_img.transform, -270*M_PI/90);
-    }
-    dingwei_img.transform = transform;
-
-    [UIView commitAnimations];
-    
-    
-    dingweiBtn.selected =! dingweiBtn.selected;
-    self.ifOpen = !self.ifOpen;
-    [self.areaView removeFromSuperview];
-    
-   
-    
-    self.city_district = [NSString stringWithFormat:@"%@%@%@",appdelegate.cityChoice,@"市",appdelegate.districtString];
-    if (!self.city_district) {
-        self.city_district = @"西安市雁塔区";
-    }
-
-    printf("didSelectItemAtIndexPath===%s\n",[self.city_district UTF8String]);
-    
-    CGFloat ww = [dingweiBtn.titleLabel.text boundingRectWithSize:CGSizeMake(200, 44) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:dingweiBtn.titleLabel.font} context:nil].size.width;
-    
-   
-    
-    
-    NSLog(@"--------------%f",ww);
-    
-    CGRect btn_frame = dingweiBtn.frame;
-    btn_frame.size.width =  ww<43 ? 43:58;
-    dingweiBtn.frame = btn_frame;
-    
-    [self resetFrame];
-
-    
-    [self getIcons:@""];
-    
-}
 
 #pragma  mark 数据请求
 //获取小分类
 -(void)getIcons:(NSString*)more{
     
-    data_hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSString *urls = [NSString stringWithFormat:@"%@UserType/HP/getData",BASEURL];
     
-    NSString *url =[[NSString alloc]initWithFormat:@"%@Extra/Source/tradeIconGet",BASEURL];
-    [KKRequestDataService requestWithURL:url params:nil httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-     {
-         self.icon_A= (NSArray*)result;
+    
+    
+    if ([self.city_district containsString:@"全城"]) {
+        self.city_district =  [self.city_district stringByReplacingOccurrencesOfString:@"全城" withString:@""];
+    }
 
-         
-         [self getAdvertiseHeaderLineGet:more];
-         
+    
+    NSMutableDictionary*paramer = [NSMutableDictionary dictionary];
+    [paramer setValue:self.city_district forKey:@"location"];
+    
+    [_refreshheader endRefreshing];
+    [self showHudInView:self.view hint:@"加载中..."];
+    
+    [KKRequestDataService requestWithURL:urls params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        
+        [self hideHud];
 
+        NSLog(@"url======%@",result);
+        
+        self.icon_A = result[@"trade_icon"];
+        self.advertiseHeaderList =  result[@"headline"];
+        
+        self.circleAdverlist= result[@"top_ad"];
+        
+        
+        [self.adverImages removeAllObjects];
+        
+        [self.titles removeAllObjects];
+        
+        for (int i=0; i<_circleAdverlist.count; i++) {
+            [self.adverImages addObject:[NSString stringWithFormat:@"%@%@",HOME_LUNBO_IMAGE,_circleAdverlist[i][@"image_url"]]];
+            
+            [self.titles addObject:_circleAdverlist[i][@"title"]];
+        }
+        
+        self.headerView = [self creatHeaderView];
 
-         
-     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-         [data_hud hideAnimated:YES];
-         [_refreshheader endRefreshing];
-         [_refreshFooter endRefreshing];
-         NSLog(@"%@", error);
-     }];
+        
+        
+        self.data_A2 = result[@"activity_ad"];
+        
+        
+        if ([result[@"insert_ad"] isKindOfClass:[NSDictionary class]]) {
+            self.longAdvertise_dic = (NSDictionary*)result[@"insert_ad"];
+            
+        }
+        
+        self.secondheaderView = [self creatSecondheardView];
+        
+        
+        NSArray *arr = result[@"stores"];
+        
+        for (NSDictionary *dic in arr) {
+            
+            HomeShopModel *model = [[HomeShopModel alloc]initWithDictionary:dic];
+            
+            [self.data_A3 addObject:model];
+            [self.shopData_A addObject:dic];
+            
+        }
+        
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            
+            [self getVersion_code];
+            
+        });
+
+        
+        
+        [table_View reloadData];
+        
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [_refreshheader endRefreshing];
+        [self hideHud];
+
+    }];
+
+    
+    
+//    data_hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    
+//    NSString *url =[[NSString alloc]initWithFormat:@"%@Extra/Source/tradeIconGet",BASEURL];
+//    [KKRequestDataService requestWithURL:url params:nil httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
+//     {
+//         self.icon_A= (NSArray*)result;
+//
+//         
+////         [self getAdvertiseHeaderLineGet:more];
+//         
+//
+//
+//         
+//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//         [data_hud hideAnimated:YES];
+//         [_refreshheader endRefreshing];
+//         [_refreshFooter endRefreshing];
+//         NSLog(@"%@", error);
+//     }];
 }
 
 //获取头条
--(void)getAdvertiseHeaderLineGet:(NSString*)more{
-    NSLog(@"senderSelectCity=====%@",self.city_district);
-    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/advert/headlineGet",BASEURL];
-    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
-    [paramer setValue:self.city_district forKey:@"eare"];
-    NSLog(@"--%@",paramer);
-    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-     {
-         NSLog(@"result====>>>%@",result);
-         self.advertiseHeaderList= (NSArray*)result;
+//-(void)getAdvertiseHeaderLineGet:(NSString*)more{
+//    NSLog(@"senderSelectCity=====%@",self.city_district);
+//    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/advert/headlineGet",BASEURL];
+//    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
+//    [paramer setValue:self.city_district forKey:@"eare"];
+//    NSLog(@"--%@",paramer);
+//    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
+//     {
+//         NSLog(@"result====>>>%@",result);
+//         self.advertiseHeaderList= (NSArray*)result;
+////         self.headerView = [self creatHeaderView];
+////         
+////         [self postRequestAdv2:more];
+//         [self getTopCircleAdverList:more];
+//         
+//         
+//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//         [_refreshheader endRefreshing];
+//         [_refreshFooter endRefreshing];
+//         [data_hud hideAnimated:YES];
+//
+//         NSLog(@"%@", error);
+//     }];
+//}
+
+
+//-(void)getTopCircleAdverList:(NSString*)more{
+//    
+//    
+//    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/advertTop/get",BASEURL];
+//    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+//    
+//    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
+//    [paramer setValue:appdelegate.cityChoice forKey:@"address"];
+//    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
+//     {
+//         
+//         NSLog(@"getTopCircleAdverList--%@ ==%@",paramer,result);
+//
+//         self.circleAdverlist= (NSArray*)result;
+//         
+//         
+//         [self.adverImages removeAllObjects];
+//         
+//         [self.titles removeAllObjects];
+//         for (int i=0; i<[result count]; i++) {
+//             [self.adverImages addObject:[NSString stringWithFormat:@"%@%@",HOME_LUNBO_IMAGE,result[i][@"image_url"]]];
+//             
+//             [self.titles addObject:result[i][@"title"]];
+//         }
+//
 //         self.headerView = [self creatHeaderView];
 //         
 //         [self postRequestAdv2:more];
-         [self getTopCircleAdverList:more];
-         
-         
-     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-         [_refreshheader endRefreshing];
-         [_refreshFooter endRefreshing];
-         [data_hud hideAnimated:YES];
-
-         NSLog(@"%@", error);
-     }];
-}
-
-
--(void)getTopCircleAdverList:(NSString*)more{
-    
-    
-    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/advertTop/get",BASEURL];
-    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    
-    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
-    [paramer setValue:appdelegate.cityChoice forKey:@"address"];
-    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-     {
-         
-         NSLog(@"getTopCircleAdverList--%@ ==%@",paramer,result);
-
-         self.circleAdverlist= (NSArray*)result;
-         
-         
-         [self.adverImages removeAllObjects];
-         
-         [self.titles removeAllObjects];
-         for (int i=0; i<[result count]; i++) {
-             [self.adverImages addObject:[NSString stringWithFormat:@"%@%@",HOME_LUNBO_IMAGE,result[i][@"image_url"]]];
-             
-             [self.titles addObject:result[i][@"title"]];
-         }
-
-         self.headerView = [self creatHeaderView];
-         
-         [self postRequestAdv2:more];
-         
-         
-         
-     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-         [data_hud hideAnimated:YES];
-
-         [_refreshheader endRefreshing];
-         [_refreshFooter endRefreshing];
-         NSLog(@"%@", error);
-     }];
-
-}
+//         
+//         
+//         
+//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//         [data_hud hideAnimated:YES];
+//
+//         [_refreshheader endRefreshing];
+//         [_refreshFooter endRefreshing];
+//         NSLog(@"%@", error);
+//     }];
+//
+//}
 
 /**
  获取活动数据
  */
--(void)postRequestAdv2:(NSString*)more
-{
-    
-    NSLog(@"------self.cityChoice-------%@-----%@",self.cityChoice,self.city_district);
-
-    
-    if ([self.city_district containsString:@"全城"]) {
-       self.city_district =  [self.city_district stringByReplacingOccurrencesOfString:@"全城" withString:@""];
-    }
-    
-    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/activity/get",BASEURL];
-    
-    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
-    [paramer setValue:self.city_district forKey:@"eare"];
-    NSLog(@"postRequestAdv2-----%@",paramer);
-    
-    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-     {
-
-         NSLog(@"获取活动数据----%@",result);
-         
-         self.data_A2= (NSArray*)result;
-         [self postRequestAdv1WithMore:more];
-         
-     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-         [_refreshheader endRefreshing];
-         [_refreshFooter endRefreshing];
-         [data_hud hideAnimated:YES];
-
-         NSLog(@"%@", error);
-     }];
-    
-}
+//-(void)postRequestAdv2:(NSString*)more
+//{
+//    
+//    NSLog(@"------self.cityChoice-------%@-----%@",self.cityChoice,self.city_district);
+//
+//    
+//    if ([self.city_district containsString:@"全城"]) {
+//       self.city_district =  [self.city_district stringByReplacingOccurrencesOfString:@"全城" withString:@""];
+//    }
+//    
+//    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/activity/get",BASEURL];
+//    
+//    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
+//    [paramer setValue:self.city_district forKey:@"eare"];
+//    NSLog(@"postRequestAdv2-----%@",paramer);
+//    
+//    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
+//     {
+//
+//         NSLog(@"获取活动数据----%@",result);
+//         
+//         self.data_A2= (NSArray*)result;
+//         [self postRequestAdv1WithMore:more];
+//         
+//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//         [_refreshheader endRefreshing];
+//         [_refreshFooter endRefreshing];
+//         [data_hud hideAnimated:YES];
+//
+//         NSLog(@"%@", error);
+//     }];
+//    
+//}
 
 
 /**
@@ -1383,137 +1289,137 @@
 
  @param more <#more description#>
  */
--(void)postRequestAdv1WithMore:(NSString *)more
-{
-    NSLog(@"------self.cityChoice-------%@-----%@==more=%@",self.cityChoice,self.city_district,more);
-    if (![self.city_district containsString:self.cityChoice]) {
-        self.city_district =self.cityChoice;
-    }
-    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/advert/insertGet",BASEURL];
-    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
-    [paramer setValue:self.city_district forKey:@"eare"];
-    
-    if ([more isEqualToString:@"more"]) {
-        [paramer setValue:[NSString stringWithFormat:@"%d",++currentIndex1] forKey:@"place"];
-
-    }else{
-        currentIndex1 = 1;
-        [paramer setValue:@"1" forKey:@"place"];
- 
-    }
-
-    NSLog(@"postRequestAdv1WithMore====%@",paramer);
-    
-    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-     {
-                  NSLog(@"postRequestAdv1WithMore---%@",result);
-         
-         if ([more isEqualToString:@""]) {
-             
-             if ([result isKindOfClass:[NSDictionary class]]) {
-                 self.longAdvertise_dic = (NSDictionary*)result;
-
-             }
-             
-             self.secondheaderView = [self creatSecondheardView];
-             [self postRequestAdv3WithMore:@""];
-
-         }else{
-             if ([result isKindOfClass:[NSDictionary class]]) {
-                 NSLog(@"--是字典---");
-                 
-                 HomeShopModel *model = [[HomeShopModel alloc]initWithDictionary:result];
-                 model.remark = @"长条广告";
-                 
-                 [self.data_A3 addObject:model];
-                 [self.shopData_A addObject:result];
-             }else{
-                 NSLog(@"--是数组---");
-
-             }
-            
-
-             
-             [self postRequestAdv3WithMore:more];
-
-         }
-         
-         
-     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-         [data_hud hideAnimated:YES];
-
-         [_refreshheader endRefreshing];
-         [_refreshFooter endRefreshing];
-                  NSLog(@"postRequestAdv1==%@", error);
-     }];
-    
-}
+//-(void)postRequestAdv1WithMore:(NSString *)more
+//{
+//    NSLog(@"------self.cityChoice-------%@-----%@==more=%@",self.cityChoice,self.city_district,more);
+//    if (![self.city_district containsString:self.cityChoice]) {
+//        self.city_district =self.cityChoice;
+//    }
+//    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/advert/insertGet",BASEURL];
+//    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
+//    [paramer setValue:self.city_district forKey:@"eare"];
+//    
+//    if ([more isEqualToString:@"more"]) {
+//        [paramer setValue:[NSString stringWithFormat:@"%d",++currentIndex1] forKey:@"place"];
+//
+//    }else{
+//        currentIndex1 = 1;
+//        [paramer setValue:@"1" forKey:@"place"];
+// 
+//    }
+//
+//    NSLog(@"postRequestAdv1WithMore====%@",paramer);
+//    
+//    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
+//     {
+//                  NSLog(@"postRequestAdv1WithMore---%@",result);
+//         
+//         if ([more isEqualToString:@""]) {
+//             
+//             if ([result isKindOfClass:[NSDictionary class]]) {
+//                 self.longAdvertise_dic = (NSDictionary*)result;
+//
+//             }
+//             
+//             self.secondheaderView = [self creatSecondheardView];
+//             [self postRequestAdv3WithMore:@""];
+//
+//         }else{
+//             if ([result isKindOfClass:[NSDictionary class]]) {
+//                 NSLog(@"--是字典---");
+//                 
+//                 HomeShopModel *model = [[HomeShopModel alloc]initWithDictionary:result];
+//                 model.remark = @"长条广告";
+//                 
+//                 [self.data_A3 addObject:model];
+//                 [self.shopData_A addObject:result];
+//             }else{
+//                 NSLog(@"--是数组---");
+//
+//             }
+//            
+//
+//             
+//             [self postRequestAdv3WithMore:more];
+//
+//         }
+//         
+//         
+//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//         [data_hud hideAnimated:YES];
+//
+//         [_refreshheader endRefreshing];
+//         [_refreshFooter endRefreshing];
+//                  NSLog(@"postRequestAdv1==%@", error);
+//     }];
+//    
+//}
 //获取商家列表
--(void)postRequestAdv3WithMore:(NSString*)more
-{
-    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/merchant/listGet",BASEURL];
-    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
-    
-    [paramer setValue:self.city_district forKey:@"eare"];
-    if ([more isEqualToString:@"more"]) {
-        
-        [paramer setValue:[NSString stringWithFormat:@"%d",++currentIndex3] forKey:@"index"];
-
-
-    }else{
-        
-        currentIndex3 = 1;
-        
-        [self.data_A3 removeAllObjects];
-        [self.shopData_A removeAllObjects];
-        [paramer setValue:@"1" forKey:@"index"];
-
-    }
-
-    NSLog(@"postRequestAdv3WithMore---%@",paramer);
-    
-    
-    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-     {
-         [data_hud hideAnimated:YES];
-
-                  NSLog(@"result3==%@",result);
-         
-         NSArray *arr = (NSArray*)result;
-         
-         
-         for (NSDictionary *dic in arr) {
-             
-             HomeShopModel *model = [[HomeShopModel alloc]initWithDictionary:dic];
-
-             [self.data_A3 addObject:model];
-             [self.shopData_A addObject:dic];
-
-         }
-         
-         static dispatch_once_t onceToken;
-         dispatch_once(&onceToken, ^{
-             
-             [self getVersion_code];
-
-         });
-         
-         
-         [_refreshheader endRefreshing];
-         [_refreshFooter endRefreshing];
-         
-         [table_View reloadData];
-         
-     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-         [_refreshheader endRefreshing];
-         [_refreshFooter endRefreshing];
-         [data_hud hideAnimated:YES];
-
-         NSLog(@"%@", error);
-     }];
-    
-}
+//-(void)postRequestAdv3WithMore:(NSString*)more
+//{
+//    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/merchant/listGet",BASEURL];
+//    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
+//    
+//    [paramer setValue:self.city_district forKey:@"eare"];
+//    if ([more isEqualToString:@"more"]) {
+//        
+//        [paramer setValue:[NSString stringWithFormat:@"%d",++currentIndex3] forKey:@"index"];
+//
+//
+//    }else{
+//        
+//        currentIndex3 = 1;
+//        
+//        [self.data_A3 removeAllObjects];
+//        [self.shopData_A removeAllObjects];
+//        [paramer setValue:@"1" forKey:@"index"];
+//
+//    }
+//
+//    NSLog(@"postRequestAdv3WithMore---%@",paramer);
+//    
+//    
+//    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
+//     {
+//         [data_hud hideAnimated:YES];
+//
+//                  NSLog(@"result3==%@",result);
+//         
+//         NSArray *arr = (NSArray*)result;
+//         
+//         
+//         for (NSDictionary *dic in arr) {
+//             
+//             HomeShopModel *model = [[HomeShopModel alloc]initWithDictionary:dic];
+//
+//             [self.data_A3 addObject:model];
+//             [self.shopData_A addObject:dic];
+//
+//         }
+//         
+//         static dispatch_once_t onceToken;
+//         dispatch_once(&onceToken, ^{
+//             
+//             [self getVersion_code];
+//
+//         });
+//         
+//         
+//         [_refreshheader endRefreshing];
+//         [_refreshFooter endRefreshing];
+//         
+//         [table_View reloadData];
+//         
+//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//
+//         [_refreshheader endRefreshing];
+//         [_refreshFooter endRefreshing];
+//         [data_hud hideAnimated:YES];
+//
+//         NSLog(@"%@", error);
+//     }];
+//    
+//}
 //获取弹出广告
 -(void)getPopupAdvertise{
     
@@ -1792,9 +1698,6 @@
     self.city_district = [selectCity stringByAppendingString:@"市"];
     
     
-//    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-//    appdelegate.city = self.city_district;
-//    appdelegate.addressDistrite = @"";
 
     
     NSLog(@"senderSelectCity==%@===%@",selectCity,self.city_district);
@@ -1810,10 +1713,7 @@
     self.navigationController.navigationBar.hidden = NO;
     [self.tView stopAnimation];
     
-    if (self.ifOpen==YES) {
-        [self.areaView removeFromSuperview];
-    }
-
+    
 }
 
 
