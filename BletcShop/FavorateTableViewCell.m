@@ -18,7 +18,7 @@
     
     UIButton *deleteBtn = [UIButton new];
 
-    [deleteBtn setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+    [deleteBtn setImage:[UIImage imageNamed:@"垃圾桶"] forState:UIControlStateNormal];
     [deleteBgView addSubview:deleteBtn];
     
     [deleteBgView mas_makeConstraints:^(MASConstraintMaker *make) {

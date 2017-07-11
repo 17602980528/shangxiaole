@@ -97,6 +97,11 @@
 		185A45961F132F5B0033AFE3 /* LZDUserInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185A45941F132F5B0033AFE3 /* LZDUserInfoVC.xib */; };
 		185A459A1F134DDB0033AFE3 /* FavorateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A45981F134DDB0033AFE3 /* FavorateTableViewCell.m */; };
 		185A459B1F134DDB0033AFE3 /* FavorateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185A45991F134DDB0033AFE3 /* FavorateTableViewCell.xib */; };
+		185A459F1F1371060033AFE3 /* 垃圾桶@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185A459C1F1371060033AFE3 /* 垃圾桶@2x.png */; };
+		185A45A01F1371060033AFE3 /* 默认sex.png in Resources */ = {isa = PBXBuildFile; fileRef = 185A459D1F1371060033AFE3 /* 默认sex.png */; };
+		185A45A11F1371060033AFE3 /* 选中sex.png in Resources */ = {isa = PBXBuildFile; fileRef = 185A459E1F1371060033AFE3 /* 选中sex.png */; };
+		185A45A51F137D010033AFE3 /* MorePubTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A45A31F137D010033AFE3 /* MorePubTableViewCell.m */; };
+		185A45A61F137D010033AFE3 /* MorePubTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185A45A41F137D010033AFE3 /* MorePubTableViewCell.xib */; };
 		185ABD621D8021B100BD8097 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185ABD611D8021B100BD8097 /* Foundation.framework */; };
 		185ABD641D8021C100BD8097 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185ABD631D8021C100BD8097 /* UIKit.framework */; };
 		185ABD661D8021EA00BD8097 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185ABD651D8021EA00BD8097 /* CoreVideo.framework */; };
@@ -1181,6 +1186,12 @@
 		185A45971F134DDB0033AFE3 /* FavorateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavorateTableViewCell.h; sourceTree = "<group>"; };
 		185A45981F134DDB0033AFE3 /* FavorateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavorateTableViewCell.m; sourceTree = "<group>"; };
 		185A45991F134DDB0033AFE3 /* FavorateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavorateTableViewCell.xib; sourceTree = "<group>"; };
+		185A459C1F1371060033AFE3 /* 垃圾桶@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "垃圾桶@2x.png"; sourceTree = "<group>"; };
+		185A459D1F1371060033AFE3 /* 默认sex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "默认sex.png"; sourceTree = "<group>"; };
+		185A459E1F1371060033AFE3 /* 选中sex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选中sex.png"; sourceTree = "<group>"; };
+		185A45A21F137D010033AFE3 /* MorePubTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MorePubTableViewCell.h; sourceTree = "<group>"; };
+		185A45A31F137D010033AFE3 /* MorePubTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MorePubTableViewCell.m; sourceTree = "<group>"; };
+		185A45A41F137D010033AFE3 /* MorePubTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MorePubTableViewCell.xib; sourceTree = "<group>"; };
 		185ABD611D8021B100BD8097 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		185ABD631D8021C100BD8097 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		185ABD651D8021EA00BD8097 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -3074,12 +3085,9 @@
 				182F3C4E1F0CEDA800540FAE /* 返回erci.png */,
 				182F3C4F1F0CEDA800540FAE /* b27_icon_star_gray@2x.png */,
 				182F3C501F0CEDA800540FAE /* b27_icon_star_yellow@2x.png */,
-				182F3C411F0CED8E00540FAE /* AddFriendTableViewCell.h */,
-				182F3C421F0CED8E00540FAE /* AddFriendTableViewCell.m */,
-				182F3C431F0CED8E00540FAE /* AddFriendTableViewCell.xib */,
-				182F3C441F0CED8E00540FAE /* AddFriendVC.h */,
-				182F3C451F0CED8E00540FAE /* AddFriendVC.m */,
-				182F3C461F0CED8E00540FAE /* AddFriendVC.xib */,
+				1857EBB91F145FA600CE4172 /* SHE.S Aprise Cell */,
+				1857EBBA1F145FDC00CE4172 /* SHE.S PUBLISH Cell */,
+				1857EBBB1F145FFF00CE4172 /* SHE.S Main Page */,
 				182F3C471F0CED8E00540FAE /* XHStarRateView.h */,
 				182F3C481F0CED8E00540FAE /* XHStarRateView.m */,
 			);
@@ -3172,6 +3180,36 @@
 				1835774D1EC4382400F321F1 /* 获取支付验码 */,
 			);
 			name = "登录或支付";
+			sourceTree = "<group>";
+		};
+		1857EBB91F145FA600CE4172 /* SHE.S Aprise Cell */ = {
+			isa = PBXGroup;
+			children = (
+				182F3C411F0CED8E00540FAE /* AddFriendTableViewCell.h */,
+				182F3C421F0CED8E00540FAE /* AddFriendTableViewCell.m */,
+				182F3C431F0CED8E00540FAE /* AddFriendTableViewCell.xib */,
+			);
+			name = "SHE.S Aprise Cell";
+			sourceTree = "<group>";
+		};
+		1857EBBA1F145FDC00CE4172 /* SHE.S PUBLISH Cell */ = {
+			isa = PBXGroup;
+			children = (
+				185A45A21F137D010033AFE3 /* MorePubTableViewCell.h */,
+				185A45A31F137D010033AFE3 /* MorePubTableViewCell.m */,
+				185A45A41F137D010033AFE3 /* MorePubTableViewCell.xib */,
+			);
+			name = "SHE.S PUBLISH Cell";
+			sourceTree = "<group>";
+		};
+		1857EBBB1F145FFF00CE4172 /* SHE.S Main Page */ = {
+			isa = PBXGroup;
+			children = (
+				182F3C441F0CED8E00540FAE /* AddFriendVC.h */,
+				182F3C451F0CED8E00540FAE /* AddFriendVC.m */,
+				182F3C461F0CED8E00540FAE /* AddFriendVC.xib */,
+			);
+			name = "SHE.S Main Page";
 			sourceTree = "<group>";
 		};
 		1894115F1D816CE600314E11 /* 密码 */ = {
@@ -4841,6 +4879,9 @@
 				18FA58DA1EEA89C000F458F2 /* RailNameConfirmVC.xib */,
 				18FA58DD1EEA92C900F458F2 /* 姓名she@3x.png */,
 				18FA58DF1EEA92F500F458F2 /* 身份she@3x.png */,
+				185A459C1F1371060033AFE3 /* 垃圾桶@2x.png */,
+				185A459D1F1371060033AFE3 /* 默认sex.png */,
+				185A459E1F1371060033AFE3 /* 选中sex.png */,
 				D987BB321E792C3D008AE24D /* 修改编辑信息 */,
 				D987BB221E790B28008AE24D /* 用户信息cell */,
 			);
@@ -5973,6 +6014,7 @@
 				18D8464C1ED591630048F010 /* 线下角标.png in Resources */,
 				1CF283991C58C48900F3952A /* merchant_default.png in Resources */,
 				D94DF25E1CAE0DB8000D5B69 /* result_small_star_disable_iphone@2x.png in Resources */,
+				185A45A11F1371060033AFE3 /* 选中sex.png in Resources */,
 				D95869391E4DA4EE00E91A47 /* ResetPhoneNextVC.xib in Resources */,
 				18F032031E5ED79300ACD261 /* points.jpg in Resources */,
 				D9CACCFD1ED7BEBF002DC49A /* PlatCouponsVC.xib in Resources */,
@@ -6199,6 +6241,7 @@
 				D9D50D881D879B9900A5E469 /* emotion@2x.png in Resources */,
 				18EB36B81D4B4B5B0087CE1A /* 未标题-1-03.png in Resources */,
 				D9ED52061D2A467700267729 /* grey_add.png in Resources */,
+				185A459F1F1371060033AFE3 /* 垃圾桶@2x.png in Resources */,
 				18D846491ED570510048F010 /* 下角标.png in Resources */,
 				D981FD051E2616080026E4B2 /* UShare进阶.html in Resources */,
 				D9AB253E1D88E4ED000E9288 /* VoiceSearchFeedback016@2x.png in Resources */,
@@ -6240,10 +6283,12 @@
 				18518D591E7945A000067D95 /* s_money_n@3x.png in Resources */,
 				D947E4651D7D3BBA00F9FEE8 /* 聊天键盘-icon-选择照片@2x.png in Resources */,
 				1C9E82411C60557E0007BF02 /* 5(8)@2x.png in Resources */,
+				185A45A01F1371060033AFE3 /* 默认sex.png in Resources */,
 				1CF6E4881C61F1C90001159C /* huiyuanzhi.png in Resources */,
 				1CF6E47E1C61E4350001159C /* jici@2x.png in Resources */,
 				18EB36B91D4B4B5B0087CE1A /* 未标题-1-04.png in Resources */,
 				1C2ED1121C5B1827003EE93B /* 3-02@2x.png in Resources */,
+				185A45A61F137D010033AFE3 /* MorePubTableViewCell.xib in Resources */,
 				D94DF2321CAE08AB000D5B69 /* colletc_selected.png in Resources */,
 				183577461EC430AE00F321F1 /* RealChooseChangePayPassVC.xib in Resources */,
 				D9AA10CE1F04914F00F7EDE8 /* MealAndExpCardManageVC.xib in Resources */,
@@ -6453,6 +6498,7 @@
 				D9C0E95B1DCC81DE00FD1199 /* ShaperView.m in Sources */,
 				D949EC2B1CE192970023B6D6 /* BCurrentCityCell.m in Sources */,
 				D94DF24D1CAE0AA4000D5B69 /* DLStarView.m in Sources */,
+				185A45A51F137D010033AFE3 /* MorePubTableViewCell.m in Sources */,
 				D9D50DB41D87DE0E00A5E469 /* EmojiEmoticons.m in Sources */,
 				D941135C1CE9A3D7008E231F /* NSDataEx.m in Sources */,
 				180D0D401F0DCE2F00A39790 /* XWScanImage.m in Sources */,
