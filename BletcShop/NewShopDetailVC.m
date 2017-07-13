@@ -832,7 +832,7 @@
     backView.backgroundColor = [UIColor whiteColor];
     
     UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(13, 10, 3, 15)];
-    view1.backgroundColor=[UIColor colorWithRed:66/255.0 green:170/255.0 blue:250/255.0 alpha:1.0f];
+    view1.backgroundColor=RGB(253,108,110);
     [backView addSubview:view1];
     
     UILabel *timeLable=[[UILabel alloc]initWithFrame:CGRectMake(22, 10, SCREENWIDTH-13, 13)];
@@ -853,7 +853,7 @@
     [backView addSubview:timeContent];
     
     UIView *view2=[[UIView alloc]initWithFrame:CGRectMake(13, 34+labelHeight+13, 3, 15)];
-    view2.backgroundColor=[UIColor colorWithRed:66/255.0 green:170/255.0 blue:250/255.0 alpha:1.0f];
+    view2.backgroundColor=view1.backgroundColor;
     [backView addSubview:view2];
     
     NSString *notice=[NSString getTheNoNullStr:wholeInfoDic[@"notice"] andRepalceStr:@"本店会员卡优惠多多"];
@@ -876,7 +876,7 @@
     [backView addSubview:noticeContent];
     
     UIView *view3=[[UIView alloc]initWithFrame:CGRectMake(13, CGRectGetMaxY(noticeContent.frame)+11, 3, 15)];
-    view3.backgroundColor=[UIColor colorWithRed:66/255.0 green:170/255.0 blue:250/255.0 alpha:1.0f];
+    view3.backgroundColor=view1.backgroundColor;
     [backView addSubview:view3];
     
     UILabel *phoneLable=[[UILabel alloc]initWithFrame:CGRectMake(22, CGRectGetMaxY(noticeContent.frame)+11, SCREENWIDTH-13, 13)];

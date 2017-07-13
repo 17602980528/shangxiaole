@@ -350,7 +350,7 @@
         [self addGestureRecognizer:tapGesture];
         
         //background init and tapped
-        _backGroundView = [[UIView alloc] initWithFrame:CGRectMake(origin.x, origin.y, screenSize.width, screenSize.height)];
+        _backGroundView = [[UIView alloc] initWithFrame:CGRectMake(origin.x, self.frame.origin.y + self.frame.size.height, screenSize.width, screenSize.height-(self.frame.origin.y + self.frame.size.height))];
         _backGroundView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
         _backGroundView.opaque = NO;
         UIGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTapped:)];
@@ -453,7 +453,6 @@
     //calculate index
     NSInteger tapIndex = touchPoint.x / (self.frame.size.width / _numOfMenu);
     
-    NSLog(@"-----%ld",tapIndex);
     for (int i = 0; i < _numOfMenu; i++) {
         if (i != tapIndex) {
             [self animateIndicator:_indicators[i] Forward:NO complete:^{
@@ -480,12 +479,16 @@
             _show = YES;
         }];
     }
+    
+    
 }
 
 - (void)backgroundTapped:(UITapGestureRecognizer *)paramSender
 {
     [self animateIdicator:_indicators[_currentSelectedMenudIndex] background:_backGroundView tableView:_leftTableView title:_titles[_currentSelectedMenudIndex] forward:NO complecte:^{
         _show = NO;
+        
+
     }];
 }
 
@@ -614,7 +617,14 @@
 
 - (void)animateIdicator:(CAShapeLayer *)indicator background:(UIView *)background tableView:(UITableView *)tableView title:(CATextLayer *)title forward:(BOOL)forward complecte:(void(^)())complete{
     
+    if (_menuRowClcikBolck ) {
+        self.menuRowClcikBolck(_currentSelectedMenudIndex, forward);
+        
+    }
+    
     [self animateIndicator:indicator Forward:forward complete:^{
+        
+        
         [self animateTitle:title show:forward complete:^{
             [self animateBackGroundView:background show:forward complete:^{
                 [self animateTableView:tableView show:forward complete:^{
@@ -775,6 +785,7 @@
         [self confiMenuWithSelectItem:indexPath.item];
         if (self.delegate && [_delegate respondsToSelector:@selector(menu:didSelectRowAtIndexPath:)]) {
             NSInteger currentSelectedMenudRow = [_currentSelectRowArray[_currentSelectedMenudIndex] integerValue];
+           
             [self.delegate menu:self didSelectRowAtIndexPath:[DOPIndexPath indexPathWithCol:_currentSelectedMenudIndex row:currentSelectedMenudRow item:indexPath.row]];
             
             NSLog(@"=======_rightTableView==");

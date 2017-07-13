@@ -124,7 +124,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WechatIMG16.png" translatesAutoresizingMaskIntoConstraints="NO" id="xLE-BS-9Um">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="已领取 图章" translatesAutoresizingMaskIntoConstraints="NO" id="xLE-BS-9Um">
                                 <rect key="frame" x="280" y="0.0" width="50" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="RL2-G7-fNz"/>
@@ -189,7 +189,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="WechatIMG16.png" width="200" height="200"/>
+        <image name="已领取 图章" width="100" height="87"/>
         <image name="线上shop" width="60" height="58"/>
     </resources>
 </document>

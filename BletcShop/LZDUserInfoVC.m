@@ -251,29 +251,31 @@
             VC.leibie = self.title_A[1][indexPath.row];
             [self.navigationController pushViewController:VC animated:YES];
         }
+        
+        if (indexPath.row ==2) {
+            ProfessionEditVC *VC=[[ProfessionEditVC alloc]init];
+            VC.prodessionBlock=^(NSDictionary*result) {
+                
+                NSLog(@"UserInfoEditVC.block====%@",result);
+                
+                if (![result[@"award"] isEqualToString:@"false"]) {
+                    self.tishiwenzi.text = [NSString stringWithFormat:@"恭喜你，完成个人信息获得 %@ 个积分，快去看看吧",[NSString getTheNoNullStr:result[@"award"] andRepalceStr:@"0"]];
+                    
+                    self.tishiview.hidden = NO;
+                    
+                }
+                
+                
+                
+            };
+            
+            [self.navigationController pushViewController:VC animated:YES];
+            
+        }
+
 
     }
-    if (indexPath.row ==2) {
-        ProfessionEditVC *VC=[[ProfessionEditVC alloc]init];
-        VC.prodessionBlock=^(NSDictionary*result) {
-            
-            NSLog(@"UserInfoEditVC.block====%@",result);
-            
-            if (![result[@"award"] isEqualToString:@"false"]) {
-                self.tishiwenzi.text = [NSString stringWithFormat:@"恭喜你，完成个人信息获得 %@ 个积分，快去看看吧",[NSString getTheNoNullStr:result[@"award"] andRepalceStr:@"0"]];
-                
-                self.tishiview.hidden = NO;
-                
-            }
-            
-            
-            
-        };
-        
-        [self.navigationController pushViewController:VC animated:YES];
-        
-    }
-
+    
 }
 
 

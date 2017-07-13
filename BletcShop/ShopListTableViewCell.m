@@ -23,12 +23,12 @@
 -(void)crectSubviews{
     
     
-    UIImageView *shopImageView = [[UIImageView alloc]initWithFrame:CGRectMake(13, 10, 65, 65)];
+    UIImageView *shopImageView = [[UIImageView alloc]initWithFrame:CGRectMake(13, 10+10, 65, 65)];
     shopImageView.layer.cornerRadius = 5;
     shopImageView.layer.masksToBounds = YES;
     [self addSubview:shopImageView];
     //店名
-    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(shopImageView.right+15, 14, SCREENWIDTH-(shopImageView.right+15), 14)];
+    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(shopImageView.right+15, 14+10, SCREENWIDTH-(shopImageView.right+15), 14)];
     nameLabel.backgroundColor = [UIColor clearColor];
     nameLabel.textAlignment = NSTextAlignmentLeft;
     nameLabel.font = [UIFont systemFontOfSize:15];
@@ -38,7 +38,7 @@
     [self addSubview:nameLabel];
     
     //距离
-    UILabel *distanceLabel = [[UILabel alloc]initWithFrame:CGRectMake(90, 44, SCREENWIDTH-90-13, 12)];
+    UILabel *distanceLabel = [[UILabel alloc]initWithFrame:CGRectMake(90, 44+10, SCREENWIDTH-90-13, 12)];
     distanceLabel.backgroundColor = [UIColor clearColor];
     distanceLabel.textAlignment = NSTextAlignmentRight;
     distanceLabel.font = [UIFont systemFontOfSize:12];
@@ -62,7 +62,7 @@
     
        
     
-    XHStarRateView *starView = [[XHStarRateView alloc]initWithFrame:CGRectMake(nameLabel.left, 67, 77, 15)];
+    XHStarRateView *starView = [[XHStarRateView alloc]initWithFrame:CGRectMake(nameLabel.left, 67+10, 77, 15)];
     starView.userInteractionEnabled = NO;
     starView.currentScore = 3;
     starView.rateStyle = IncompleteStar;
@@ -87,7 +87,7 @@
     
 
     
-    UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, shopImageView.bottom+17, SCREENWIDTH, 6)];
+    UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 10)];
     
     lineView.backgroundColor=RGB(240,240,240);
     [self addSubview:lineView];
