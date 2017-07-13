@@ -35,6 +35,12 @@
 		180D0D4E1F0E291300A39790 /* 设置.png in Resources */ = {isa = PBXBuildFile; fileRef = 180D0D4D1F0E291300A39790 /* 设置.png */; };
 		18148E5C1F16237B001C86AC /* NewAppriseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18148E5A1F16237B001C86AC /* NewAppriseVC.m */; };
 		18148E5D1F16237B001C86AC /* NewAppriseVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18148E5B1F16237B001C86AC /* NewAppriseVC.xib */; };
+		18148E611F173B67001C86AC /* NewMyPayMentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18148E5F1F173B67001C86AC /* NewMyPayMentsVC.m */; };
+		18148E621F173B67001C86AC /* NewMyPayMentsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18148E601F173B67001C86AC /* NewMyPayMentsVC.xib */; };
+		18148E671F173C66001C86AC /* NewCardPayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18148E651F173C66001C86AC /* NewCardPayTableViewCell.m */; };
+		18148E681F173C66001C86AC /* NewCardPayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18148E661F173C66001C86AC /* NewCardPayTableViewCell.xib */; };
+		18148E6C1F173C83001C86AC /* NewCardBuyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18148E6A1F173C83001C86AC /* NewCardBuyTableViewCell.m */; };
+		18148E6D1F173C83001C86AC /* NewCardBuyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18148E6B1F173C83001C86AC /* NewCardBuyTableViewCell.xib */; };
 		1817FF591D405BE100AFC965 /* mhead_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1817FF581D405BE100AFC965 /* mhead_default.png */; };
 		1828C7E51E272D4A00480DB9 /* CardEricShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1828C7E41E272D4A00480DB9 /* CardEricShareViewController.m */; };
 		182988411E723F4200164F32 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182988341E723F4200164F32 /* TAAbstractDotView.m */; };
@@ -1099,6 +1105,15 @@
 		18148E591F16237B001C86AC /* NewAppriseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAppriseVC.h; sourceTree = "<group>"; };
 		18148E5A1F16237B001C86AC /* NewAppriseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAppriseVC.m; sourceTree = "<group>"; };
 		18148E5B1F16237B001C86AC /* NewAppriseVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewAppriseVC.xib; sourceTree = "<group>"; };
+		18148E5E1F173B67001C86AC /* NewMyPayMentsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMyPayMentsVC.h; sourceTree = "<group>"; };
+		18148E5F1F173B67001C86AC /* NewMyPayMentsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMyPayMentsVC.m; sourceTree = "<group>"; };
+		18148E601F173B67001C86AC /* NewMyPayMentsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewMyPayMentsVC.xib; sourceTree = "<group>"; };
+		18148E641F173C66001C86AC /* NewCardPayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCardPayTableViewCell.h; sourceTree = "<group>"; };
+		18148E651F173C66001C86AC /* NewCardPayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCardPayTableViewCell.m; sourceTree = "<group>"; };
+		18148E661F173C66001C86AC /* NewCardPayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewCardPayTableViewCell.xib; sourceTree = "<group>"; };
+		18148E691F173C83001C86AC /* NewCardBuyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCardBuyTableViewCell.h; sourceTree = "<group>"; };
+		18148E6A1F173C83001C86AC /* NewCardBuyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCardBuyTableViewCell.m; sourceTree = "<group>"; };
+		18148E6B1F173C83001C86AC /* NewCardBuyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewCardBuyTableViewCell.xib; sourceTree = "<group>"; };
 		1817FF581D405BE100AFC965 /* mhead_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mhead_default.png; sourceTree = "<group>"; };
 		1828C7E31E272D4A00480DB9 /* CardEricShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardEricShareViewController.h; sourceTree = "<group>"; };
 		1828C7E41E272D4A00480DB9 /* CardEricShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardEricShareViewController.m; sourceTree = "<group>"; };
@@ -3050,6 +3065,38 @@
 			name = "店内更多商品";
 			sourceTree = "<group>";
 		};
+		18148E631F173BE9001C86AC /* 新消费记录 */ = {
+			isa = PBXGroup;
+			children = (
+				18148E5E1F173B67001C86AC /* NewMyPayMentsVC.h */,
+				18148E5F1F173B67001C86AC /* NewMyPayMentsVC.m */,
+				18148E601F173B67001C86AC /* NewMyPayMentsVC.xib */,
+				18148E6E1F173C95001C86AC /* 刷卡记录cell */,
+				18148E6F1F173CAE001C86AC /* 办卡记录cell */,
+			);
+			name = "新消费记录";
+			sourceTree = "<group>";
+		};
+		18148E6E1F173C95001C86AC /* 刷卡记录cell */ = {
+			isa = PBXGroup;
+			children = (
+				18148E641F173C66001C86AC /* NewCardPayTableViewCell.h */,
+				18148E651F173C66001C86AC /* NewCardPayTableViewCell.m */,
+				18148E661F173C66001C86AC /* NewCardPayTableViewCell.xib */,
+			);
+			name = "刷卡记录cell";
+			sourceTree = "<group>";
+		};
+		18148E6F1F173CAE001C86AC /* 办卡记录cell */ = {
+			isa = PBXGroup;
+			children = (
+				18148E691F173C83001C86AC /* NewCardBuyTableViewCell.h */,
+				18148E6A1F173C83001C86AC /* NewCardBuyTableViewCell.m */,
+				18148E6B1F173C83001C86AC /* NewCardBuyTableViewCell.xib */,
+			);
+			name = "办卡记录cell";
+			sourceTree = "<group>";
+		};
 		182988311E723F4200164F32 /* SDCycleScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3622,6 +3669,7 @@
 				1CB53C051C571FB1002B6CC1 /* MyOderController.m */,
 				D9C4CDE81DE4161E009C76C1 /* MyOrderDetailVC.h */,
 				D9C4CDE91DE4161E009C76C1 /* MyOrderDetailVC.m */,
+				18148E631F173BE9001C86AC /* 新消费记录 */,
 			);
 			name = "我的消费";
 			sourceTree = "<group>";
@@ -5906,6 +5954,7 @@
 				D9345E6B1E769805006B2AC1 /* TopActiveListTableVC.xib in Resources */,
 				180D0D451F0DDFAC00A39790 /* 加好友——评价——店铺icon.png in Resources */,
 				180D0D4E1F0E291300A39790 /* 设置.png in Resources */,
+				18148E621F173B67001C86AC /* NewMyPayMentsVC.xib in Resources */,
 				18F4BF6A1D41BB21003F0F66 /* c_se.png in Resources */,
 				D95BAE511D542FD500ED0CDC /* award_07.png in Resources */,
 				D981FD0C1E2616080026E4B2 /* WeiboSDK.bundle in Resources */,
@@ -6008,6 +6057,7 @@
 				18A4B6F31D33933B00EFBCC1 /* 椭圆-01.png in Resources */,
 				1836B8411E559DD700B587A6 /* Active_top4.jpg in Resources */,
 				D9BA5F041D7564090067E7A2 /* FriendRequest.plist in Resources */,
+				18148E6D1F173C83001C86AC /* NewCardBuyTableViewCell.xib in Resources */,
 				D9ABB1B01EC9408E00FBE080 /* TableViewCell.xib in Resources */,
 				D95BAE4E1D542FD500ED0CDC /* award_04.png in Resources */,
 				D981FD061E2616080026E4B2 /* 适配iOS9+系统.html in Resources */,
@@ -6226,6 +6276,7 @@
 				D94DF24E1CAE0AA4000D5B69 /* star.png in Resources */,
 				1A83127B1D885444001BC3B6 /* chat_receiver_audio_playing002@2x.png in Resources */,
 				18F032071E5ED79300ACD261 /* tempProducts_02.jpg in Resources */,
+				18148E681F173C66001C86AC /* NewCardPayTableViewCell.xib in Resources */,
 				1CBE67CF1C5828CD00706AE9 /* icon_chose_arrow_nor@2x.png in Resources */,
 				D9345E601E766DDE006B2AC1 /* DefaultAddressVC.xib in Resources */,
 				1C9E82461C60557E0007BF02 /* 5(3)@2x.png in Resources */,
@@ -6461,6 +6512,7 @@
 				18FA58D21EEA769C00F458F2 /* NewUserAccessCodeVC.m in Sources */,
 				D93BE8671CFD6B6300000E0D /* FavorateViewController.m in Sources */,
 				D99760F41E695CFD008E21FE /* CityModel.m in Sources */,
+				18148E6C1F173C83001C86AC /* NewCardBuyTableViewCell.m in Sources */,
 				D93C0D6E1D251FC1001A1AC1 /* BackChooseStateViewController.m in Sources */,
 				D98E5C1A1E51524D009D56BF /* SRVideoLayerView.m in Sources */,
 				D9A06B601D8679C30037795B /* EMCDDeviceManagerBase.m in Sources */,
@@ -6582,6 +6634,7 @@
 				D936F5831D473CBF00424B22 /* MyCashCouponViewController.m in Sources */,
 				D9D50DB31D87DE0E00A5E469 /* Emoji.m in Sources */,
 				D9764E801DD591A500B088DE /* AddBankAccountVC.m in Sources */,
+				18148E671F173C66001C86AC /* NewCardPayTableViewCell.m in Sources */,
 				D932B2761ECC51BD0052CC37 /* AddFriendCell.m in Sources */,
 				D980B6691D77FBAB00CC6637 /* ContactCell.m in Sources */,
 				D94869EB1D17DE05003D1972 /* SearchTableViewController.m in Sources */,
@@ -6608,6 +6661,7 @@
 				D9ACF1AF1E24CB4200BCC877 /* thirdlogVC.m in Sources */,
 				D9345E6A1E769805006B2AC1 /* TopActiveListTableVC.m in Sources */,
 				D98E5B8F1E5150FC009D56BF /* GetDiscountCouponVC.m in Sources */,
+				18148E611F173B67001C86AC /* NewMyPayMentsVC.m in Sources */,
 				18F031F11E5EB8C100ACD261 /* ConvertRecordVC.m in Sources */,
 				189ED0431E8CD53600A762C7 /* KeyChainStore.m in Sources */,
 				18148E5C1F16237B001C86AC /* NewAppriseVC.m in Sources */,

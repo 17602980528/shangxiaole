@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewMyPayMentsVC">
+            <connections>
+                <outlet property="buyCardButton" destination="fWx-9h-Ixw" id="Ylp-jE-koN"/>
+                <outlet property="cardCostButton" destination="fsH-HS-k9J" id="vR4-et-5kN"/>
+                <outlet property="moveLine" destination="Psd-w3-qUB" id="vwm-kv-Dgy"/>
+                <outlet property="tableView" destination="ljx-Ll-iPA" id="0Zp-RN-bTs"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ljx-Ll-iPA">
+                    <rect key="frame" x="0.0" y="45" width="375" height="622"/>
+                    <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Bde-cd-RcG"/>
+                        <outlet property="delegate" destination="-1" id="3We-Cr-d6J"/>
+                    </connections>
+                </tableView>
+                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oBB-2i-OZi">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                    <subviews>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsH-HS-k9J">
+                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="45"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="刷卡消费">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="btnClick:" destination="-1" eventType="touchUpInside" id="jUc-5K-0KJ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fWx-9h-Ixw">
+                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="45"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="办卡记录">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="btnClick:" destination="-1" eventType="touchUpInside" id="RfU-rP-e9A"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qT2-6d-UyY">
+                            <rect key="frame" x="0.0" y="44" width="375" height="1"/>
+                            <color key="backgroundColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="ayP-sy-7q6"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Psd-w3-qUB">
+                            <rect key="frame" x="43" y="43" width="100" height="2"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.95294117647058818" green="0.28627450980392155" blue="0.30588235294117649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="qT2-6d-UyY" secondAttribute="trailing" id="7EX-kE-tCx"/>
+                        <constraint firstItem="fsH-HS-k9J" firstAttribute="leading" secondItem="oBB-2i-OZi" secondAttribute="leading" id="8Ro-I6-nlI"/>
+                        <constraint firstItem="qT2-6d-UyY" firstAttribute="leading" secondItem="oBB-2i-OZi" secondAttribute="leading" id="8au-IM-6Fb"/>
+                        <constraint firstItem="fWx-9h-Ixw" firstAttribute="leading" secondItem="fsH-HS-k9J" secondAttribute="trailing" id="F19-WJ-TEW"/>
+                        <constraint firstAttribute="bottom" secondItem="fWx-9h-Ixw" secondAttribute="bottom" id="IkR-6p-XdP"/>
+                        <constraint firstAttribute="bottom" secondItem="fsH-HS-k9J" secondAttribute="bottom" id="QUf-2P-x98"/>
+                        <constraint firstAttribute="bottom" secondItem="qT2-6d-UyY" secondAttribute="bottom" id="dhL-XU-G0l"/>
+                        <constraint firstAttribute="trailing" secondItem="fWx-9h-Ixw" secondAttribute="trailing" id="e5e-G5-WZr"/>
+                        <constraint firstAttribute="height" constant="45" id="fHJ-ed-B8A"/>
+                        <constraint firstItem="fWx-9h-Ixw" firstAttribute="width" secondItem="fsH-HS-k9J" secondAttribute="width" id="fPm-CM-WTn"/>
+                        <constraint firstItem="fWx-9h-Ixw" firstAttribute="top" secondItem="oBB-2i-OZi" secondAttribute="top" id="miZ-jU-2Ph"/>
+                        <constraint firstItem="fsH-HS-k9J" firstAttribute="top" secondItem="oBB-2i-OZi" secondAttribute="top" id="tSC-To-lP8"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ljx-Ll-iPA" firstAttribute="top" secondItem="oBB-2i-OZi" secondAttribute="bottom" id="4CR-nG-tLQ"/>
+                <constraint firstAttribute="trailing" secondItem="ljx-Ll-iPA" secondAttribute="trailing" id="RNJ-h2-PSB"/>
+                <constraint firstItem="oBB-2i-OZi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aGk-2G-kPE"/>
+                <constraint firstItem="ljx-Ll-iPA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bFj-Od-xZs"/>
+                <constraint firstAttribute="bottom" secondItem="ljx-Ll-iPA" secondAttribute="bottom" id="cbP-qx-DTF"/>
+                <constraint firstAttribute="trailing" secondItem="oBB-2i-OZi" secondAttribute="trailing" id="dAz-oe-9sR"/>
+                <constraint firstItem="oBB-2i-OZi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nx8-2q-uj7"/>
+            </constraints>
+            <point key="canvasLocation" x="3" y="-121"/>
+        </view>
+    </objects>
+</document>

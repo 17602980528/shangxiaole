@@ -41,6 +41,7 @@
 #import "QRcodeUIViewController.h"
 #import "MineInfoVCSecond.h"
 #import "MoreViewController.h"
+#import "NewMyPayMentsVC.h"
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UIView *shareView;
@@ -272,7 +273,7 @@
         Myitem *item10 = [Myitem itemsWithImg:@"会员卡ss" title:@"我的会员卡" vcClass:[CardVipController class]];
         Myitem *item11 = [Myitem itemsWithImg:@"钱包" title:@"我的钱包" vcClass:[MyMoneybagController class]];
         Myitem *item13 = [Myitem itemsWithImg:@"优惠券ss" title:@"我的优惠券" vcClass:[MyCashCouponViewController class]];
-        Myitem *item14 = [Myitem itemsWithImg:@"消费" title:@"我的消费" vcClass:[MyOderController class]];
+        Myitem *item14 = [Myitem itemsWithImg:@"消费" title:@"我的消费" vcClass:[NewMyPayMentsVC class]];//
         
         Myitem *item12=[Myitem itemsWithImg:@"积分商城" title:@"积分商城" vcClass:[LZDCenterViewController class]];
         Mygroup *group1 = [[Mygroup alloc] init];
@@ -338,7 +339,7 @@
         cell.bgImageView.image=[UIImage imageNamed:@""];
         cell.bgImageView.backgroundColor=[UIColor whiteColor];
     }
-    if (indexPath.section==0&&indexPath.row==4) {
+    if (indexPath.section==1&&indexPath.row==0) {
         cell.desLale.hidden=NO;
     }else{
         cell.desLale.hidden=YES;

@@ -325,9 +325,9 @@
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-     NewAppriseVC*newAppriseVC=[[NewAppriseVC alloc]init];
-    //newAppriseVC.evaluate_dic=[self.noEvaluateShopArray objectAtIndex:indexPath.row];
-    [self.navigationController pushViewController:newAppriseVC animated:YES];
+//     NewAppriseVC*newAppriseVC=[[NewAppriseVC alloc]init];
+//    //newAppriseVC.evaluate_dic=[self.noEvaluateShopArray objectAtIndex:indexPath.row];
+//    [self.navigationController pushViewController:newAppriseVC animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
