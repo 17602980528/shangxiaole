@@ -574,7 +574,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 97;
+    return 97+4;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -1004,7 +1004,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section==0) {
-        return bottomView.bottom+5;
+        return bottomView.bottom+0.01;
     }else{
         return 0.01;
     }
@@ -1030,7 +1030,7 @@
     topView.backgroundColor=[UIColor whiteColor];
     [bgView addSubview:topView];
     
-    bottomView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, topView.bottom+5, SCREENWIDTH, 90)];
+    bottomView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, topView.bottom+10, SCREENWIDTH, 90)];
     bottomView.backgroundColor=[UIColor whiteColor];
     bottomView.showsHorizontalScrollIndicator=NO;
     [bgView addSubview:bottomView];

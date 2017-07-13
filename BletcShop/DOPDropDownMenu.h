@@ -91,6 +91,8 @@
 #pragma mark - interface
 @interface DOPDropDownMenu : UIView <UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic,copy)void (^menuRowClcikBolck)(NSInteger currentIndex, BOOL show);// 顶部点击
+
 @property (nonatomic, weak) id <DOPDropDownMenuDataSource> dataSource;
 @property (nonatomic, weak) id <DOPDropDownMenuDelegate> delegate;
 

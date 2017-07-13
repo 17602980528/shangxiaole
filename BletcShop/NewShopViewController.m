@@ -229,7 +229,8 @@
         [self getDate];
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        NSLog(@"error----%@",error);
+
         [self hideHud];
     }];
 

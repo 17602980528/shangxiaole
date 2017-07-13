@@ -724,6 +724,8 @@
 		D9824F4B1F13480500301076 /* PictureAndTextVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9824F491F13480500301076 /* PictureAndTextVC.xib */; };
 		D9824F501F134B9600301076 /* InsureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9824F4E1F134B9600301076 /* InsureVC.m */; };
 		D9824F511F134B9600301076 /* InsureVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9824F4F1F134B9600301076 /* InsureVC.xib */; };
+		D9824F571F15BBD500301076 /* BeautyIndustryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9824F551F15BBD400301076 /* BeautyIndustryVC.m */; };
+		D9824F581F15BBD500301076 /* BeautyIndustryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9824F561F15BBD400301076 /* BeautyIndustryVC.xib */; };
 		D98533311DDE9A86004E1E6F /* NewBuyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D98533301DDE9A86004E1E6F /* NewBuyCardViewController.m */; };
 		D98533341DDE9B21004E1E6F /* NameSignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D98533331DDE9B21004E1E6F /* NameSignViewController.m */; };
 		D9853F7B1DD463FA0028BF94 /* UILabel+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D9853F7A1DD463FA0028BF94 /* UILabel+extension.m */; };
@@ -2159,6 +2161,9 @@
 		D9824F4E1F134B9600301076 /* InsureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsureVC.m; sourceTree = "<group>"; };
 		D9824F4F1F134B9600301076 /* InsureVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InsureVC.xib; sourceTree = "<group>"; };
 		D9824F521F137D9700301076 /* NewShopCardListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewShopCardListCell.h; sourceTree = "<group>"; };
+		D9824F541F15BBD400301076 /* BeautyIndustryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeautyIndustryVC.h; sourceTree = "<group>"; };
+		D9824F551F15BBD400301076 /* BeautyIndustryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeautyIndustryVC.m; sourceTree = "<group>"; };
+		D9824F561F15BBD400301076 /* BeautyIndustryVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeautyIndustryVC.xib; sourceTree = "<group>"; };
 		D985332F1DDE9A86004E1E6F /* NewBuyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewBuyCardViewController.h; sourceTree = "<group>"; };
 		D98533301DDE9A86004E1E6F /* NewBuyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewBuyCardViewController.m; sourceTree = "<group>"; };
 		D98533321DDE9B21004E1E6F /* NameSignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSignViewController.h; sourceTree = "<group>"; };
@@ -4480,6 +4485,7 @@
 				18D43E431ED6D4EC0077861A /* UIView+Frame.m */,
 				18D43E441ED6D4EC0077861A /* WYWebProgressLayer.h */,
 				18D43E451ED6D4EC0077861A /* WYWebProgressLayer.m */,
+				D9824F531F15BB3F00301076 /* 美业频道 */,
 			);
 			name = "home首页";
 			sourceTree = "<group>";
@@ -4862,6 +4868,16 @@
 				D9824F4F1F134B9600301076 /* InsureVC.xib */,
 			);
 			name = "保障详情";
+			sourceTree = "<group>";
+		};
+		D9824F531F15BB3F00301076 /* 美业频道 */ = {
+			isa = PBXGroup;
+			children = (
+				D9824F541F15BBD400301076 /* BeautyIndustryVC.h */,
+				D9824F551F15BBD400301076 /* BeautyIndustryVC.m */,
+				D9824F561F15BBD400301076 /* BeautyIndustryVC.xib */,
+			);
+			name = "美业频道";
 			sourceTree = "<group>";
 		};
 		D98533351DDE9B25004E1E6F /* 用户信息 */ = {
@@ -6132,6 +6148,7 @@
 				D9AB25371D88E4ED000E9288 /* VoiceSearchFeedback009@2x.png in Resources */,
 				D92302591D152443008FB9A9 /* merchant_ed.png in Resources */,
 				D953B7741D3F1B7100C5D5A9 /* 小标-24.png in Resources */,
+				D9824F581F15BBD500301076 /* BeautyIndustryVC.xib in Resources */,
 				D977C1461EC97BE800CA5AF5 /* WechatIMG16.png in Resources */,
 				D92302611D1528BB008FB9A9 /* entrance_selected.png in Resources */,
 				D9637DFF1D59BAF900C19D0B /* admin_p.png in Resources */,
@@ -6792,6 +6809,7 @@
 				D9BB4DE21E050EA200971BCC /* AppointStateViewController.m in Sources */,
 				D941135D1CE9A3D7008E231F /* openssl_wrapper.m in Sources */,
 				D9B3A5BC1D74255700F3F27E /* PSTCollectionView.m in Sources */,
+				D9824F571F15BBD500301076 /* BeautyIndustryVC.m in Sources */,
 				18E3CA8D1D532C6000789065 /* EndOrBeginningViewController.m in Sources */,
 				D941135E1CE9A3D7008E231F /* RSADataSigner.m in Sources */,
 				D98E5C0E1E515210009D56BF /* ViewController+MASAdditions.m in Sources */,

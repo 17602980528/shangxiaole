@@ -37,6 +37,9 @@
 #import "HotNewsVC.h"
 #import "ChouJiangVC.h"
 #import "LandingController.h"
+
+#import "BeautyIndustryVC.h"
+
 @interface HomeViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,GYChangeTextViewDelegate,SelectCityDelegate,JFLocationDelegate,SDCycleScrollViewDelegate>
 {
     
@@ -1175,13 +1178,21 @@
 -(void)topClick:(UIButton*)sender{
     
     NSLog(@"小分类");
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    appdelegate.menuString = [self.icon_A objectAtIndex:sender.tag][@"text"];
-    NSLog(@"appdelegate.menuString%@",appdelegate.menuString);
-    //    self.tabBarController.selectedIndex = 1;
-    NSLog(@"%ld",(long)sender.tag);
     
-    self.tabBarController.selectedIndex =1;
+    if (sender.tag==0) {
+        
+        PUSH(BeautyIndustryVC)
+        
+    }else{
+        AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+        appdelegate.menuString = [self.icon_A objectAtIndex:sender.tag][@"text"];
+        NSLog(@"appdelegate.menuString%@",appdelegate.menuString);
+        //    self.tabBarController.selectedIndex = 1;
+        NSLog(@"%ld",(long)sender.tag);
+        
+        self.tabBarController.selectedIndex =1;
+    }
+   
 
 }
 //搜索
