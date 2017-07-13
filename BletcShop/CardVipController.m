@@ -45,7 +45,7 @@
     self.title = @"我的会员卡";
     
     
-    topBackView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 40)];
+    topBackView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 92)];
     topBackView.backgroundColor=[UIColor whiteColor];
     topBackView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:topBackView];
@@ -62,35 +62,53 @@
     
     for (int i=0; i<self.kindArray.count; i++) {
         UIButton *Catergray=[UIButton buttonWithType:UIButtonTypeCustom];
-        Catergray.frame=CGRectMake(1+i%_kindArray.count*((SCREENWIDTH-5)/4+1), 0, (SCREENWIDTH-5)/4, 40);
-        Catergray.titleLabel.font=[UIFont systemFontOfSize:17.0f];
-        [Catergray setTitle:_kindArray[i] forState:UIControlStateNormal];
+        Catergray.frame=CGRectMake(1+i%_kindArray.count*((SCREENWIDTH-5)/4+1), 0, (SCREENWIDTH-5)/4, 92);
+        Catergray.titleLabel.font=[UIFont systemFontOfSize:14.0f];
+        //[Catergray setTitle:_kindArray[i][@"mainTitle"] forState:UIControlStateNormal];
         [Catergray setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         Catergray.tag=666+i;
         [topBackView addSubview:Catergray];
         [Catergray addTarget:self action:@selector(changeTitleColorAndRefreshCard:) forControlEvents:UIControlEventTouchUpInside];
         if (i!=_kindArray.count-1) {
             if (i==0) {
-                [Catergray setTitleColor:RGB(24, 190, 245) forState:UIControlStateNormal];
+                // [Catergray setTitleColor:RGB(24, 190, 245) forState:UIControlStateNormal];
                 noticeLine=[[UIView alloc]init];
-                noticeLine.bounds=CGRectMake(0, 0, (SCREENWIDTH-105)/4, 1);
-                noticeLine.center=CGPointMake(Catergray.center.x, Catergray.center.y+14+4);
+                noticeLine.bounds=CGRectMake(0, 0, (SCREENWIDTH-105)/4, 2);
+                noticeLine.center=CGPointMake(Catergray.center.x, Catergray.center.y+43);
                 noticeLine.backgroundColor=RGB(24, 190, 245);
                 [topBackView addSubview:noticeLine];
                 
                 title_btn_tag = Catergray.tag;
             }
-            UIView *catergrayView=[[UIView alloc]initWithFrame:CGRectMake(Catergray.right,10,1,20)];
-            catergrayView.backgroundColor=RGB(234, 234, 234);
-            [topBackView addSubview:catergrayView];
+            
         }
         
-        
+        UILabel *label=[[UILabel alloc]init];
+        label.bounds=CGRectMake(0, 0, 38, 38);
+        label.center=CGPointMake(Catergray.center.x, Catergray.center.y-13);
+        label.font=[UIFont systemFontOfSize:20.0f];
+        label.text=_kindArray[i][@"title"];
+        label.layer.cornerRadius=19.0f;
+        label.layer.borderWidth=1.5f;
+        label.textColor=[UIColor colorWithHexString:_kindArray[i][@"color"] alpha:1];
+        label.textAlignment=NSTextAlignmentCenter;
+        label.layer.borderColor=[UIColor colorWithHexString:_kindArray[i][@"color"] alpha:1].CGColor;
+        label.clipsToBounds=YES;
+        [topBackView addSubview:label];
         topBackView.contentSize = CGSizeMake(Catergray.right+5, 0);
+        
+        UILabel *titleLable=[[UILabel alloc]initWithFrame:CGRectMake(1+i%_kindArray.count*((SCREENWIDTH-5)/4+1), label.bottom+11, (SCREENWIDTH-5)/4, 14)];
+        titleLable.font=[UIFont systemFontOfSize:14.0f];
+        titleLable.textAlignment=NSTextAlignmentCenter;
+        titleLable.text=_kindArray[i][@"mainTitle"];
+        [topBackView addSubview:titleLable];
+        
+        [topBackView bringSubviewToFront:Catergray];
         
     }
     
 }
+
 -(void)changeTitleColorAndRefreshCard:(UIButton *)sender{
     
     title_btn_tag = sender.tag;
@@ -98,7 +116,7 @@
     
     [self.Cardtable reloadData];
 
-    noticeLine.center=CGPointMake(sender.center.x, sender.center.y+14+4);
+    noticeLine.center=CGPointMake(sender.center.x, sender.center.y+43);
     for (int i=0; i<_kindArray.count; i++) {
         UIButton*button=(UIButton *)[topBackView viewWithTag:666+i];
         if (button.tag==sender.tag) {
@@ -146,7 +164,7 @@
 //创建TableView
 -(void)_inittable
 {
-    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 40, SCREENWIDTH, SCREENHEIGHT-64-40) style:UITableViewStyleGrouped];
+    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 92, SCREENWIDTH, SCREENHEIGHT-64-92) style:UITableViewStyleGrouped];
     table.delegate = self;
     table.dataSource = self;
     table.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -478,11 +496,10 @@
 
 -(NSArray *)kindArray{
     if (!_kindArray) {
-        _kindArray = @[@"全部",@"储值卡",@"计次卡",@"套餐卡",@"体验卡",@"分享卡"];
+        _kindArray = @[@{@"mainTitle":@"全部",@"title":@"全",@"color":@"#F3494E"},@{@"mainTitle":@"储值卡",@"title":@"储",@"color":@"#40B9B0"},@{@"mainTitle":@"计次卡",@"title":@"次",@"color":@"#BD4EFD"},@{@"mainTitle":@"套餐卡",@"title":@"餐",@"color":@"#FF712F"},@{@"mainTitle":@"体验卡",@"title":@"验",@"color":@"#1CB5FA"},@{@"mainTitle":@"分享卡",@"title":@"享",@"color":@"#FF5885"}];
     }
     return _kindArray;
 }
-
 -(NSMutableArray *)wholeDataArray{
     if (!_wholeDataArray) {
         _wholeDataArray = [NSMutableArray array];

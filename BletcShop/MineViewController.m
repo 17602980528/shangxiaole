@@ -182,7 +182,8 @@
 //添加下部的TableView
 -(void)_initTable
 {
-    UITableView *mytable = [[UITableView alloc]initWithFrame:CGRectMake(0, -20, SCREENWIDTH, SCREENHEIGHT - 49) style:UITableViewStyleGrouped];
+    //self.automaticallyAdjustsScrollViewInsets=NO;
+    UITableView *mytable = [[UITableView alloc]initWithFrame:CGRectMake(0, -20, SCREENWIDTH, SCREENHEIGHT - 49+20) style:UITableViewStyleGrouped];
     mytable.backgroundColor=[UIColor clearColor];
     mytable.dataSource = self;
     mytable.delegate = self;
