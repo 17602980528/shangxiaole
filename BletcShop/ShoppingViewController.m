@@ -79,6 +79,13 @@
 //    }
 //    return _classifys;
 //}
+
+-(NSArray *)sorts{
+    if (!_sorts) {
+        _sorts = @[@"智能排序",@"好评优先",@"离我最近"];
+    }
+    return _sorts;
+}
 -(NSMutableArray *)areas{
     if (!_areas) {
         _areas = [NSMutableArray array];
@@ -175,7 +182,7 @@
         [self.areas insertObject:appdelegate.addressDistrite atIndex:0];
     }
     
-    self.sorts = @[@"智能排序",@"好评优先",@"离我最近"];
+    
     
     
     if (arr != [[NSUserDefaults standardUserDefaults]objectForKey:@"currentEreaList"] || [[NSUserDefaults standardUserDefaults]objectForKey:@"currentEareDic"] != curentEare) {
