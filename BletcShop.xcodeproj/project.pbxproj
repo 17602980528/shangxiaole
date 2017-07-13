@@ -33,6 +33,8 @@
 		180D0D4A1F0E11BB00A39790 /* MoreViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180D0D481F0E11BB00A39790 /* MoreViewCell.xib */; };
 		180D0D4C1F0E205800A39790 /* 设置   矩形.png in Resources */ = {isa = PBXBuildFile; fileRef = 180D0D4B1F0E205800A39790 /* 设置   矩形.png */; };
 		180D0D4E1F0E291300A39790 /* 设置.png in Resources */ = {isa = PBXBuildFile; fileRef = 180D0D4D1F0E291300A39790 /* 设置.png */; };
+		18148E5C1F16237B001C86AC /* NewAppriseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18148E5A1F16237B001C86AC /* NewAppriseVC.m */; };
+		18148E5D1F16237B001C86AC /* NewAppriseVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18148E5B1F16237B001C86AC /* NewAppriseVC.xib */; };
 		1817FF591D405BE100AFC965 /* mhead_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1817FF581D405BE100AFC965 /* mhead_default.png */; };
 		1828C7E51E272D4A00480DB9 /* CardEricShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1828C7E41E272D4A00480DB9 /* CardEricShareViewController.m */; };
 		182988411E723F4200164F32 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182988341E723F4200164F32 /* TAAbstractDotView.m */; };
@@ -1092,6 +1094,9 @@
 		180D0D481F0E11BB00A39790 /* MoreViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreViewCell.xib; sourceTree = "<group>"; };
 		180D0D4B1F0E205800A39790 /* 设置   矩形.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "设置   矩形.png"; sourceTree = "<group>"; };
 		180D0D4D1F0E291300A39790 /* 设置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "设置.png"; sourceTree = "<group>"; };
+		18148E591F16237B001C86AC /* NewAppriseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAppriseVC.h; sourceTree = "<group>"; };
+		18148E5A1F16237B001C86AC /* NewAppriseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAppriseVC.m; sourceTree = "<group>"; };
+		18148E5B1F16237B001C86AC /* NewAppriseVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewAppriseVC.xib; sourceTree = "<group>"; };
 		1817FF581D405BE100AFC965 /* mhead_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mhead_default.png; sourceTree = "<group>"; };
 		1828C7E31E272D4A00480DB9 /* CardEricShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardEricShareViewController.h; sourceTree = "<group>"; };
 		1828C7E41E272D4A00480DB9 /* CardEricShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardEricShareViewController.m; sourceTree = "<group>"; };
@@ -3655,6 +3660,9 @@
 				1CB53C0B1C571FE1002B6CC1 /* NoEvaluateController.m */,
 				D93027D81CFEA66C007447D2 /* AppraiseViewController.h */,
 				D93027D91CFEA66C007447D2 /* AppraiseViewController.m */,
+				18148E591F16237B001C86AC /* NewAppriseVC.h */,
+				18148E5A1F16237B001C86AC /* NewAppriseVC.m */,
+				18148E5B1F16237B001C86AC /* NewAppriseVC.xib */,
 			);
 			name = "未评价";
 			sourceTree = "<group>";
@@ -6292,6 +6300,7 @@
 				D94DF2321CAE08AB000D5B69 /* colletc_selected.png in Resources */,
 				183577461EC430AE00F321F1 /* RealChooseChangePayPassVC.xib in Resources */,
 				D9AA10CE1F04914F00F7EDE8 /* MealAndExpCardManageVC.xib in Resources */,
+				18148E5D1F16237B001C86AC /* NewAppriseVC.xib in Resources */,
 				1CF6E4801C61E4350001159C /* guanggao@2x.png in Resources */,
 				D986A1C81DE57849007B798B /* PaySuccessVc.xib in Resources */,
 				D98E5C211E51525E009D56BF /* SRVideoPlayer.bundle in Resources */,
@@ -6584,6 +6593,7 @@
 				D98E5B8F1E5150FC009D56BF /* GetDiscountCouponVC.m in Sources */,
 				18F031F11E5EB8C100ACD261 /* ConvertRecordVC.m in Sources */,
 				189ED0431E8CD53600A762C7 /* KeyChainStore.m in Sources */,
+				18148E5C1F16237B001C86AC /* NewAppriseVC.m in Sources */,
 				D99C11A51DE28CF100E45B64 /* UPgradeVC.m in Sources */,
 				D9B3A5A11D74255700F3F27E /* AdView.m in Sources */,
 				0793870D1C561D5E0021B385 /* Myitem.m in Sources */,

@@ -13,7 +13,6 @@
 #import "CardVipController.h"
 #import "MyOderController.h"
 #import "MyMoneybagController.h"
-#import "NoEvaluateController.h"
 #import "FriendController.h"
 #import "LookAgoController.h"
 #import "LandingController.h"

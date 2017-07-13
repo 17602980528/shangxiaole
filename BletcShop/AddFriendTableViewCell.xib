@@ -15,11 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="435" height="280"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="435" height="280"/>
+                <rect key="frame" x="0.0" y="0.0" width="435" height="279.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="izy-wO-MUa">
-                        <rect key="frame" x="12" y="5" width="411" height="269.5"/>
+                        <rect key="frame" x="12" y="10" width="411" height="269.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="头像.png" translatesAutoresizingMaskIntoConstraints="NO" id="L6M-Vn-Ohc">
                                 <rect key="frame" x="10" y="15" width="40" height="40"/>
@@ -131,8 +131,8 @@
                 <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="izy-wO-MUa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="42F-bq-ebb"/>
-                    <constraint firstItem="izy-wO-MUa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="EzW-YH-U0R"/>
-                    <constraint firstAttribute="bottom" secondItem="izy-wO-MUa" secondAttribute="bottom" constant="5" id="Tzt-MJ-9n8"/>
+                    <constraint firstItem="izy-wO-MUa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="EzW-YH-U0R"/>
+                    <constraint firstAttribute="bottom" secondItem="izy-wO-MUa" secondAttribute="bottom" id="Tzt-MJ-9n8"/>
                     <constraint firstAttribute="trailing" secondItem="izy-wO-MUa" secondAttribute="trailing" constant="12" id="jAX-bL-kFd"/>
                 </constraints>
             </tableViewCellContentView>
