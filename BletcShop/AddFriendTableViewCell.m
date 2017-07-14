@@ -27,6 +27,9 @@
     self.starRateView.currentScore=5.0;
     [self.appriseStars addSubview:self.starRateView];
     
+    self.headImage.layer.cornerRadius=20.0f;
+    self.headImage.clipsToBounds=YES;
+    self.headImage.contentMode=UIViewContentModeScaleAspectFill;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

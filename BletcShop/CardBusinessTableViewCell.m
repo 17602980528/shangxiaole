@@ -58,7 +58,7 @@
     }
     self.addresslab.text = [NSString stringWithFormat:@"来自%@",_model.address];
     self.pricelab.text = [NSString stringWithFormat:@"¥%@",_model.card_remain];
-    
+    self.tradeLable.text=[NSString stringWithFormat:@" %@ ",_model.trade];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

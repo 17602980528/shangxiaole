@@ -38,7 +38,7 @@
         
 
     }else{
-        //[self postSocketAppraise];
+        [self postSocketAppraise];
         
     }
 }
@@ -85,19 +85,10 @@
     [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
     [params setObject:self.evaluate_dic[@"merchant"] forKey:@"muid"];
     [params setObject:self.textView.text forKey:@"content"];
-    NSString *stars = [[NSString alloc]initWithFormat:@"%f",_indoorStars];
+    NSString *stars = [[NSString alloc]initWithFormat:@"%.1f",_indoorStars];
     [params setObject:stars forKey:@"stars"];
-    [params setObject:self.evaluate_dic[@"card_code"] forKey:@"cardCode"];
-    [params setObject:self.evaluate_dic[@"card_level"] forKey:@"cardLevel"];
-    [params setObject:self.evaluate_dic[@"card_type"] forKey:@"cardType"];
-    [params setObject:self.evaluate_dic[@"card_remain"] forKey:@"price"];
-    [params setObject:self.evaluate_dic[@"card_temp_color"] forKey:@"card_temp_color"];
+    [params setObject:self.evaluate_dic[@"datetime"] forKey:@"datetime"];
     
-    NSDateFormatter* matter = [[NSDateFormatter alloc]init];
-    [matter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate* date  = [NSDate date];
-    NSString *NowDate = [matter stringFromDate:date];
-    [params setObject:NowDate forKey:@"date"];
     NSLog(@"%@",params);
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
      {

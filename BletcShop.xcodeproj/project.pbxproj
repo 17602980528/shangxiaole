@@ -5894,7 +5894,8 @@
 				TargetAttributes = {
 					0793867B1C55B5CA0021B385 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = NQK9Q69HHD;
+						DevelopmentTeam = RW4B26WN2L;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -7116,7 +7117,7 @@
 				CODE_SIGN_ENTITLEMENTS = BletcShop/BletcShop.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = NQK9Q69HHD;
+				DEVELOPMENT_TEAM = RW4B26WN2L;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7155,6 +7156,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bletc.shangxiaole.BletcShops;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REZ_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -7169,7 +7171,7 @@
 				CODE_SIGN_ENTITLEMENTS = BletcShop/BletcShop.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = NQK9Q69HHD;
+				DEVELOPMENT_TEAM = RW4B26WN2L;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7207,6 +7209,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bletc.shangxiaole.BletcShops;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REZ_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};

@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *buyCardButton;
 @property (weak, nonatomic) IBOutlet UIView *moveLine;
 @property (nonatomic)NSInteger apriseOrPublish;// 0 代表评价--1 代表发布
-
+@property (nonatomic,retain)NSMutableArray *orderArray;
 @end
 
 @implementation NewMyPayMentsVC
@@ -46,8 +46,12 @@
     _tableView.estimatedRowHeight=200;
     _tableView.rowHeight=UITableViewAutomaticDimension;
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self postRequstOrderInfo];
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.orderArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (_apriseOrPublish==0) {
@@ -76,21 +80,33 @@
 -(void)appriseBtnClick:(UIButton *)sender{
     NSLog(@"sender.tag====%ld",(long)sender.tag);
     NewAppriseVC *newAppriseVC=[[NewAppriseVC alloc]init];
+    newAppriseVC.evaluate_dic= self.orderArray[sender.tag];
     [self.navigationController pushViewController:newAppriseVC animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+   
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//获取消费记录
+-(void)postRequstOrderInfo
+{
+    
+    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/user/cnGet",BASEURL];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
+    
+    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
+     {
+         NSLog(@"result%@", result);
+         
+         self.orderArray = [result mutableCopy];
+         [_tableView reloadData];
+         
+     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"%@", error);
+     }];
+    
 }
-*/
 
 @end

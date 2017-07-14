@@ -27,7 +27,7 @@
 @property (nonatomic,copy)NSString *muid;// 商户muid
 @property (nonatomic,copy)NSString *address;// 地址
 @property (nonatomic,copy)NSString *headimage;// 头像
-
+@property (nonatomic,copy)NSString *trade;//行业
 
 -(CardMarketModel*)intiWithDictionary:(NSDictionary *)dic;
 @end
