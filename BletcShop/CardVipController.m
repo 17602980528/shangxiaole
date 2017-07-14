@@ -75,7 +75,7 @@
                 noticeLine=[[UIView alloc]init];
                 noticeLine.bounds=CGRectMake(0, 0, (SCREENWIDTH-105)/4, 2);
                 noticeLine.center=CGPointMake(Catergray.center.x, Catergray.center.y+43);
-                noticeLine.backgroundColor=RGB(24, 190, 245);
+                noticeLine.backgroundColor=RGB(243, 73, 78);
                 [topBackView addSubview:noticeLine];
                 
                 title_btn_tag = Catergray.tag;
@@ -117,6 +117,7 @@
     [self.Cardtable reloadData];
 
     noticeLine.center=CGPointMake(sender.center.x, sender.center.y+43);
+    noticeLine.backgroundColor=[UIColor colorWithHexString:_kindArray[sender.tag-666][@"color"]];
     for (int i=0; i<_kindArray.count; i++) {
         UIButton*button=(UIButton *)[topBackView viewWithTag:666+i];
         if (button.tag==sender.tag) {
