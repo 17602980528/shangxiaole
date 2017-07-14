@@ -26,7 +26,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self _inittable];
     [self postRequestEvaluate];
-
 }
 
 -(void)postRequestEvaluate

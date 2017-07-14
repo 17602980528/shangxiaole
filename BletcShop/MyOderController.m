@@ -21,12 +21,11 @@
     self.title = @"我的消费";
     self.orderArray = [[NSMutableArray alloc]init];
     [self postRequstOrderInfo];
-    // Do any additional setup after loading the view.
 }
+
 //获取消费记录
 -(void)postRequstOrderInfo
 {
-
     NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/user/cnGet",BASEURL];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
