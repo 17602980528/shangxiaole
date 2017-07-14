@@ -41,6 +41,8 @@
 		18148E681F173C66001C86AC /* NewCardPayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18148E661F173C66001C86AC /* NewCardPayTableViewCell.xib */; };
 		18148E6C1F173C83001C86AC /* NewCardBuyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18148E6A1F173C83001C86AC /* NewCardBuyTableViewCell.m */; };
 		18148E6D1F173C83001C86AC /* NewCardBuyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18148E6B1F173C83001C86AC /* NewCardBuyTableViewCell.xib */; };
+		18148E781F186EF1001C86AC /* VipCardHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18148E761F186EF1001C86AC /* VipCardHomeTableViewCell.m */; };
+		18148E791F186EF1001C86AC /* VipCardHomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18148E771F186EF1001C86AC /* VipCardHomeTableViewCell.xib */; };
 		1817FF591D405BE100AFC965 /* mhead_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1817FF581D405BE100AFC965 /* mhead_default.png */; };
 		1828C7E51E272D4A00480DB9 /* CardEricShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1828C7E41E272D4A00480DB9 /* CardEricShareViewController.m */; };
 		182988411E723F4200164F32 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182988341E723F4200164F32 /* TAAbstractDotView.m */; };
@@ -1117,6 +1119,9 @@
 		18148E691F173C83001C86AC /* NewCardBuyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCardBuyTableViewCell.h; sourceTree = "<group>"; };
 		18148E6A1F173C83001C86AC /* NewCardBuyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCardBuyTableViewCell.m; sourceTree = "<group>"; };
 		18148E6B1F173C83001C86AC /* NewCardBuyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewCardBuyTableViewCell.xib; sourceTree = "<group>"; };
+		18148E751F186EF1001C86AC /* VipCardHomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VipCardHomeTableViewCell.h; sourceTree = "<group>"; };
+		18148E761F186EF1001C86AC /* VipCardHomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VipCardHomeTableViewCell.m; sourceTree = "<group>"; };
+		18148E771F186EF1001C86AC /* VipCardHomeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VipCardHomeTableViewCell.xib; sourceTree = "<group>"; };
 		1817FF581D405BE100AFC965 /* mhead_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mhead_default.png; sourceTree = "<group>"; };
 		1828C7E31E272D4A00480DB9 /* CardEricShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardEricShareViewController.h; sourceTree = "<group>"; };
 		1828C7E41E272D4A00480DB9 /* CardEricShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardEricShareViewController.m; sourceTree = "<group>"; };
@@ -3628,6 +3633,9 @@
 			children = (
 				18F4CD4B1D6FD6F2008FBAD1 /* CardVipController.h */,
 				18F4CD4C1D6FD6F2008FBAD1 /* CardVipController.m */,
+				18148E751F186EF1001C86AC /* VipCardHomeTableViewCell.h */,
+				18148E761F186EF1001C86AC /* VipCardHomeTableViewCell.m */,
+				18148E771F186EF1001C86AC /* VipCardHomeTableViewCell.xib */,
 				D94040391CBDEB7100EC98EA /* CardManagerViewController.h */,
 				D940403A1CBDEB7100EC98EA /* CardManagerViewController.m */,
 				D9824F591F18593300301076 /* CardManageCell.h */,
@@ -6372,6 +6380,7 @@
 				D947E4651D7D3BBA00F9FEE8 /* 聊天键盘-icon-选择照片@2x.png in Resources */,
 				1C9E82411C60557E0007BF02 /* 5(8)@2x.png in Resources */,
 				185A45A01F1371060033AFE3 /* 默认sex.png in Resources */,
+				18148E791F186EF1001C86AC /* VipCardHomeTableViewCell.xib in Resources */,
 				1CF6E4881C61F1C90001159C /* huiyuanzhi.png in Resources */,
 				1CF6E47E1C61E4350001159C /* jici@2x.png in Resources */,
 				18EB36B91D4B4B5B0087CE1A /* 未标题-1-04.png in Resources */,
@@ -6820,6 +6829,7 @@
 				1CDCCD1F1C7594040094E70D /* AFURLSessionManager.m in Sources */,
 				180D0D491F0E11BB00A39790 /* MoreViewCell.m in Sources */,
 				D9345E6F1E76984F006B2AC1 /* TopActiveCell.m in Sources */,
+				18148E781F186EF1001C86AC /* VipCardHomeTableViewCell.m in Sources */,
 				D9B3A5A41D74255700F3F27E /* MWGridViewController.m in Sources */,
 				D958AD6C1E654CF200B0776F /* JHScatterChart.m in Sources */,
 				18FA58DB1EEA89C000F458F2 /* RailNameConfirmVC.m in Sources */,
