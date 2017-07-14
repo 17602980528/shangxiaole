@@ -10,6 +10,7 @@
 
 @interface MoneyPAYViewController : UIViewController
 
+@property (nonatomic,copy)NSString *user;// <#Description#>
 
 /**
  卡的信息

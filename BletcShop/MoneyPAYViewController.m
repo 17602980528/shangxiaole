@@ -163,7 +163,7 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
-    [params setObject:self.card_dic[@"user"] forKey:@"uuid"];
+    [params setObject:self.user forKey:@"uuid"];
     [params setObject:self.card_dic[@"merchant"] forKey:@"muid"];
     [params setObject:self.card_dic[@"card_code"] forKey:@"cardCode"];
     [params setObject:self.card_dic[@"card_level"] forKey:@"cardLevel"];

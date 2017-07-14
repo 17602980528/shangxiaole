@@ -23,7 +23,9 @@
 #import "CheckTransferStateAndEditOrRemoveCardViewController.h"
 
 
-#import "CardManageCell.h"
+#import "MoneyPAYViewController.h"
+#import "CountPAYViewController.h"
+
 
 @interface CardManagerViewController ()
 {
@@ -32,25 +34,20 @@
     NSArray *titles_array;
     NSArray *imageNameArray;
 }
+@property (weak, nonatomic) IBOutlet UILabel *typeAndLevel1;
+@property (weak, nonatomic) IBOutlet UILabel *shopeName1;
+@property (weak, nonatomic) IBOutlet UILabel *shopName;
+@property (weak, nonatomic) IBOutlet UILabel *typeAndLevel;
+@property (weak, nonatomic) IBOutlet UILabel *remainLab;
+@property (weak, nonatomic) IBOutlet UILabel *startAndEndLab;
+@property (weak, nonatomic) IBOutlet UILabel *card_contentLab;
+@property (weak, nonatomic) IBOutlet UIButton *shousuoBtn;
+@property (strong, nonatomic) IBOutlet UIView *tabheaderView;
+@property (weak, nonatomic) IBOutlet UIView *content_back_View;
+@property (weak, nonatomic) IBOutlet UIImageView *cardImgview;
 @end
 
 @implementation CardManagerViewController
-
--(NSMutableArray *)cardInfoArray2{
-    if (!_cardInfoArray2) {
-        _cardInfoArray2 = [NSMutableArray array];
-        
-    }
-    return _cardInfoArray2;
-}
--(void)viewWillAppear:(BOOL)animated
-{
-    
-    
-    [self postRequestAllInfo];
-    
-    
-}
 
 
 -(void)postRequestAllInfo
@@ -78,6 +75,29 @@
         appdelegate.cardInfo_dic = cardInfo_dic;
         
         cardInfo_dic = result;
+        
+        
+      self.shopeName1.text =  self.shopName.text = cardInfo_dic[@"store"];
+        self.cardImgview.backgroundColor = [UIColor colorWithHexString:cardInfo_dic[@"card_temp_color"]];
+        
+      self.typeAndLevel1.text =  self.typeAndLevel.text = [NSString stringWithFormat:@"%@(%@)",cardInfo_dic[@"card_type"],cardInfo_dic[@"card_level"]];
+        self.startAndEndLab.text = [NSString stringWithFormat:@"%@-%@",[cardInfo_dic[@"date_start"] substringToIndex:10],[cardInfo_dic[@"date_end"] substringToIndex:10]];
+        
+        if ([cardInfo_dic[@"card_type"] isEqualToString:@"计次卡"]) {
+            
+            self.card_contentLab.text = @"店内项目可使用会员卡任意消费。";
+            int cishu =  [cardInfo_dic[@"card_remain"] floatValue]  /   ([cardInfo_dic[@"price"] floatValue]/[cardInfo_dic[@"rule"] floatValue]);
+            
+            
+            self.remainLab.text = [NSString stringWithFormat:@"剩余:%d次",cishu];
+        }else{
+//            self.card_contentLab.text = @"计次卡用完为止。";
+            self.card_contentLab.text = @"您应该已经收到系统生成的电子邮件，您可以访问电子邮件中的链接，并在我们的计划中注册您的公司。请注意，在迁移完成之前，您将无法访问“Certificates, Identifiers & Profiles”（证书、标识符和描述文件）门户";
+
+            self.remainLab.text = [NSString stringWithFormat:@"余额:%@元",cardInfo_dic[@"card_remain"]];
+
+        }
+        
         [self.CardInfotable reloadData];
         
         
@@ -90,7 +110,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor=[UIColor whiteColor];
     
     
     self.navigationItem.title = @"会员卡";
@@ -98,36 +117,49 @@
     titles_array = @[@"我要续卡",@"我要升级",@"申请延期",@"我要预约",@"家庭共享",@"卡片转让",@"我要分享",@"投诉理赔"];
     imageNameArray=@[@"vip_renewal_n",@"vip_upgrade_n",@"vip_delay_n",@"vip_order_n",@"vip_share_n",@"VIP_icon_sha_n",@"VIP_icon_ref_n",@"VIP_icon_comp_n"];
     
+    [self postRequestAllInfo];
+
+    
+    
     [self _inittable];
     
 }
 -(void)_inittable
 {
-    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64) style:UITableViewStylePlain];
+    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(13, self.cardImgview.bottom-30, SCREENWIDTH-26, SCREENHEIGHT-64-(self.cardImgview.bottom-30)) style:UITableViewStylePlain];
     table.delegate = self;
     table.dataSource = self;
     table.separatorStyle = UITableViewCellSeparatorStyleNone;
     table.showsVerticalScrollIndicator = NO;
     table.estimatedRowHeight = 100;
-    table.rowHeight = UITableViewAutomaticDimension;
-//    table.bounces = NO;
+    table.backgroundColor = [UIColor clearColor];
     self.CardInfotable = table;
     [self.view addSubview:table];
+    
+    
+    [self.view bringSubviewToFront:table];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section==0) {
-        return 1;
+        return 0;
     }else{
         
         return titles_array.count;
     }
     return 0;
 }
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (section==1) {
+        return self.tabheaderView;
+    }else
+        return nil;
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0) {
-        return UITableViewAutomaticDimension;
+        return 0.01;
     }
     else
     {
@@ -140,7 +172,7 @@
         }
        
     }
-        
+    
     
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -148,12 +180,10 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section==0) {
-        return 0;
-    }else if (section==1){
-        return 10;
-    }
-    return 10;
+    if (section==1) {
+        return 99;
+    }else
+    return 0.01;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;
@@ -166,140 +196,19 @@
     if(cell==nil)
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
-        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor whiteColor];
         cell.selectionStyle =UITableViewCellSelectionStyleNone;
 
     }
     
-    if (indexPath.section==0&&indexPath.row==0) {
-        
-        CardManageCell *manageCell = [tableView dequeueReusableCellWithIdentifier:@"cardManageCellID"];
-        if (!manageCell) {
-            manageCell = [[[NSBundle mainBundle]loadNibNamed:@"CardManageCell" owner:self options:nil] firstObject];
-            
-        }
-        
-        [manageCell.shouSuoBtn addTarget:self action:@selector(shouSuoClick:) forControlEvents:UIControlEventTouchUpInside];
-        
-        return manageCell;
-        
-//        if (cardInfo_dic) {
-//            
-//            for (UIView *view in cell.subviews) {
-//                [view removeFromSuperview];
-//            }
-//            UIImageView *cardImageView = [[UIImageView alloc]initWithFrame:CGRectMake(20, 10, SCREENWIDTH-40, 200*(SCREENWIDTH-40)/336.0)];
-//            cardImageView.layer.cornerRadius = 10;
-//            cardImageView.layer.masksToBounds = YES;
-//            cardImageView.layer.borderWidth = 0.5;
-//            cardImageView.layer.borderColor = RGB(234, 234, 234).CGColor;
-//            
-//            cardImageView.backgroundColor = [UIColor colorWithHexString:[NSString getTheNoNullStr:cardInfo_dic[@"card_temp_color"] andRepalceStr:@""]];
-//            
-////            NSString *imageAddress=[NSString getTheNoNullStr:cardInfo_dic[@"card_image_url"] andRepalceStr:@"1"];
-////            NSURL * nurl1=[[NSURL alloc] initWithString:[[SOURCECARD stringByAppendingString:imageAddress] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
-////            
-////            [cardImageView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon2.png"] options:SDWebImageRetryFailed];
-//            
-//            [cell addSubview:cardImageView];
-//            
-//            
-////            UILabel *code_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 5, cardImageView.width-5, 9)];
-////            code_lab.textColor = RGB(255,255,255);
-////            code_lab.textAlignment = NSTextAlignmentRight;
-////            code_lab.text = [NSString stringWithFormat:@"%@",[NSString getTheNoNullStr:cardInfo_dic[@"card_code"] andRepalceStr:@""]];
-////            code_lab.font = [UIFont systemFontOfSize:9];
-////            [cardImageView addSubview:code_lab];
-//
-//            
-//            UILabel *typeAndeLevel = [[UILabel alloc]initWithFrame:CGRectMake(12, 30, cardImageView.width-12, 23)];
-//            typeAndeLevel.textColor = RGB(255,255,255);
-//            typeAndeLevel.text = [NSString stringWithFormat:@"%@(%@)",[NSString getTheNoNullStr:cardInfo_dic[@"card_type"] andRepalceStr:@""],[NSString getTheNoNullStr:cardInfo_dic[@"card_level"] andRepalceStr:@""]];
-//            typeAndeLevel.font = [UIFont systemFontOfSize:22];
-//            [cardImageView addSubview:typeAndeLevel];
-//            
-//            UILabel *yueLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, cardImageView.height-49-21-30, cardImageView.width-12, 21)];
-//            yueLabel.textColor = RGB(255,255,255);
-//            yueLabel.textAlignment = NSTextAlignmentRight;
-//            yueLabel.font = [UIFont systemFontOfSize:27];
-//            [cardImageView addSubview:yueLabel];
-//
-//            
-//            UILabel *discountLab = [[UILabel alloc]initWithFrame:CGRectMake(typeAndeLevel.left, yueLabel.top, 100, yueLabel.height)];
-//            discountLab.font= yueLabel.font;
-//            discountLab.textColor = yueLabel.textColor;
-//            [cardImageView addSubview:discountLab];
-//            
-//            if ([[NSString getTheNoNullStr:[cardInfo_dic objectForKey:@"card_type"] andRepalceStr:@""] isEqualToString:@"计次卡"]) {
-//                NSString *oneString = [NSString getTheNoNullStr:[cardInfo_dic objectForKey:@"price"] andRepalceStr:@""];//单价
-//                //
-//                NSString *allString = [NSString getTheNoNullStr:[cardInfo_dic objectForKey:@"card_remain"] andRepalceStr:@""];//余额
-//                
-//                
-//                double onePrice = [oneString doubleValue];
-//                double allPrice = [allString doubleValue];
-//                
-//                int cishu =[[NSString getTheNoNullStr:[cardInfo_dic objectForKey:@"rule"] andRepalceStr:@""] intValue];
-//                
-//                int time = (int)(allPrice/(onePrice/cishu));
-//                //
-//                yueLabel.text = [[NSString alloc]initWithFormat:@"次数:%d",time];
-//                
-//                
-//            }else{
-//                
-//                discountLab.text = [NSString stringWithFormat:@"%g折",[[NSString getTheNoNullStr:cardInfo_dic[@"rule"] andRepalceStr:@""] floatValue]/10];
-//
-//                yueLabel.text = [[NSString alloc]initWithFormat:@"余额:%@",[NSString getTheNoNullStr:[cardInfo_dic objectForKey:@"card_remain"] andRepalceStr:@""]];
-//            }
-//
-//
-//            
-//            
-//            UIView *downView=[[UIView alloc]initWithFrame:CGRectMake(0, cardImageView.height - 49, cardImageView.width, 49)];
-//            downView.backgroundColor=[UIColor whiteColor];
-//            [cardImageView addSubview:downView];
-//
-//            
-//            UILabel *deadLine =[[UILabel alloc]initWithFrame:CGRectMake(15, downView.top-25, cardImageView.width, 25)];
-//            NSString *deadString = cardInfo_dic[@"date_end"];
-//            if (deadString.length>10) {
-//                deadString = [deadString substringToIndex:10];
-//            }
-//            deadLine.text = deadString;
-//            deadLine.textColor = [UIColor whiteColor];
-//            deadLine.font = [UIFont systemFontOfSize:12];
-//            [cardImageView addSubview:deadLine];
-//
-//            
-//            if ([self.card_dic[@"indate"] isEqualToString:@"no"]) {
-//               deadLine.text = @"无限期";
-//            }
-//            
-//            
-//            UILabel *shopName=[[UILabel alloc]initWithFrame:CGRectMake(12, 0, downView.width-91-12, downView.height)];
-//            shopName.text=[NSString getTheNoNullStr:cardInfo_dic[@"store"] andRepalceStr:@""];
-//            shopName.textColor= RGB(51, 51, 51);
-//            [downView addSubview:shopName];
-//
-//            
-//            UILabel *typeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(cardImageView.frame)+10, SCREENWIDTH, 16)];
-//            typeLabel.font = [UIFont systemFontOfSize:17];
-//            typeLabel.textAlignment=NSTextAlignmentCenter;
-//            typeLabel.text = [NSString stringWithFormat:@"%@ (%@)",[NSString getTheNoNullStr:cardInfo_dic[@"card_level"] andRepalceStr:@"---"],[NSString getTheNoNullStr:cardInfo_dic[@"card_type"] andRepalceStr:@"---"]];
-//            [cell addSubview:typeLabel];
-//            heights=cardImageView.height+46;
-//            
-//            
-//        }
-    }
-    else if (indexPath.section==1)
+    
+     if (indexPath.section==1)
     {
         cell.textLabel.text=titles_array[indexPath.row];
         cell.imageView.image=[UIImage imageNamed:imageNameArray[indexPath.row]];
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
         
-        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 50-1, SCREENWIDTH, 1)];
+        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(13, 50-1, SCREENWIDTH-26, 1)];
         line.backgroundColor = RGB(220,220,220);
         [cell.contentView addSubview:line];
         
@@ -516,12 +425,7 @@
         [self.navigationController pushViewController:upgradeView animated:YES];
 
         
-        
-//        UpgradeViewController *upgradeView = [[UpgradeViewController alloc]init];
-//        upgradeView.card_dic = cardInfo_dic;
-//        upgradeView.resultArray = [result copy];
-//        [self.navigationController pushViewController:upgradeView animated:YES];
-        
+
         
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -546,26 +450,89 @@
 }
 
 
--(void)shouSuoClick:(UIButton*)sender{
-    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
-    CardManageCell *cell = [self.CardInfotable cellForRowAtIndexPath:indexpath];
+-(IBAction)shouSuoClick:(UIButton*)sender{
+    
 
     if (sender.selected) {
-        
-        cell.topbackView.hidden = YES;
+        [UIView animateWithDuration:0.3 animations:^{
+            CGRect frame = self.CardInfotable.frame;
+            
+            frame.origin.y = SCREENHEIGHT-64-99;
+            self.CardInfotable.frame = frame;
+
+        }];
         
     }else{
-        cell.topbackView.hidden = NO;
 
+        [UIView animateWithDuration:0.3 animations:^{
+            CGRect frame = self.CardInfotable.frame;
+            
+            frame.origin.y = self.cardImgview.bottom-30;
+            self.CardInfotable.frame = frame;
+
+        }];
+        
+        
     }
     sender.selected = !sender.selected;
     
 
     
-    [self.CardInfotable reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
     
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    
+
+    
+    
+    if (scrollView.contentOffset.y<-100) {
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            self.shousuoBtn.selected = !self.shousuoBtn.selected;
+
+            CGRect frame = self.CardInfotable.frame;
+            
+            frame.origin.y = SCREENHEIGHT-64-99;
+            self.CardInfotable.frame = frame;
+            
+        }];
+
+    }
+}
+
+- (IBAction)payBtnClick:(UIButton *)sender {
+    
+    
+    if ([cardInfo_dic[@"card_type"] isEqualToString:@"储值卡"]) {
+        PUSH(MoneyPAYViewController)
+        vc.refresheDate = ^{
+            [self postRequestAllInfo];
+        };
+        
+        vc.card_dic = cardInfo_dic;
+        vc.user = self.card_dic[@"user"];
+
+        
+    }else if ([cardInfo_dic[@"card_type"] isEqualToString:@"计次卡"]){
+        
+        PUSH(CountPAYViewController)
+        vc.card_dic = cardInfo_dic;
+        vc.refresheDate = ^{
+            [self postRequestAllInfo];
+        };
+        vc.user = self.card_dic[@"user"];
+        
+    }
+
+    
+}
+
+- (IBAction)tapShopClick:(UITapGestureRecognizer *)sender {
+    
+    
+}
 
 -(void)tishi:(NSString*)ts{
     

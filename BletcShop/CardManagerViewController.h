@@ -11,7 +11,6 @@
 @interface CardManagerViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,weak)UITableView *CardInfotable;
 
-@property (nonatomic,retain)NSMutableArray *cardInfoArray2;
 
 /**
 卡的信息

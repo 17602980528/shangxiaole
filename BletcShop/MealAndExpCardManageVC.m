@@ -9,14 +9,22 @@
 #import "MealAndExpCardManageVC.h"
 #import "OrderViewController.h"
 #import "ComplaintVC.h"
-@interface MealAndExpCardManageVC ()<UITableViewDataSource,UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *table_View;
-@property (strong, nonatomic) IBOutlet UIView *tabe_headerView;
-@property (weak, nonatomic) IBOutlet UIView *header_bg;
-@property (weak, nonatomic) IBOutlet UILabel *card_type;
-@property (weak, nonatomic) IBOutlet UILabel *card_content;
-@property (weak, nonatomic) IBOutlet UIView *grayView;
 
+#import "MealCardPayVC.h"
+#import "ExperienceCardGoToPayVC.h"
+@interface MealAndExpCardManageVC ()<UITableViewDataSource,UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *shopName1;
+@property (weak, nonatomic) IBOutlet UILabel *typeAndLevel1;
+@property (strong, nonatomic)  UITableView *table_View;
+@property (weak, nonatomic) IBOutlet UILabel *shopName;
+@property (weak, nonatomic) IBOutlet UILabel *typeAndLevel;
+@property (weak, nonatomic) IBOutlet UILabel *remainLab;
+@property (weak, nonatomic) IBOutlet UILabel *startAndEndLab;
+@property (weak, nonatomic) IBOutlet UILabel *card_contentLab;
+@property (weak, nonatomic) IBOutlet UIButton *shousuoBtn;
+@property (strong, nonatomic) IBOutlet UIView *tabheaderView;
+@property (weak, nonatomic) IBOutlet UIView *content_back_View;
+@property (weak, nonatomic) IBOutlet UIImageView *cardImgview;
 
 @property(nonatomic,strong)  NSArray *titles_array;
 @property(nonatomic,strong) NSArray *imageNameArray;
@@ -43,45 +51,53 @@
 
     
     
-   CGRect frame = self.tabe_headerView.frame;
-    frame.size.width = SCREENWIDTH;
-    frame.size.height = self.grayView.bottom;
-    self.tabe_headerView.frame = frame;
-//
-    NSLog(@"frame = %@",NSStringFromCGRect(self.tabe_headerView.frame));
     
-    self.table_View.tableHeaderView = self.tabe_headerView;
-    self.table_View.rowHeight = 50;
+    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(13, self.cardImgview.bottom-30, SCREENWIDTH-26, SCREENHEIGHT) style:UITableViewStylePlain];
+    table.delegate = self;
+    table.dataSource = self;
+    table.separatorStyle = UITableViewCellSeparatorStyleNone;
+    table.showsVerticalScrollIndicator = NO;
+    table.estimatedRowHeight = 100;
+    table.backgroundColor = [UIColor clearColor];
+    table.bounces = NO;
+    self.table_View = table;
+    [self.view addSubview:table];
     
     
-    self.header_bg.backgroundColor = [UIColor colorWithHexString:_card_dic[@"card_temp_color"]];
     
-    self.card_type.text = _card_dic[@"card_type"];
-    if ([_card_dic[@"card_type"] isEqualToString:@"套餐卡"]) {
-        self.card_content.text = [NSString stringWithFormat:@"套餐总价:%@",_card_dic[@"option_sum"]];
+    self.cardImgview.backgroundColor = [UIColor colorWithHexString:_card_dic[@"card_temp_color"]];
+    self.shopName.text =self.shopName1.text = _card_dic[@"store"];
 
+    self.typeAndLevel.text =self.typeAndLevel1.text = _card_dic[@"card_type"];
+    if ([_card_dic[@"card_type"] isEqualToString:@"套餐卡"]) {
+        self.remainLab.text = [NSString stringWithFormat:@"套餐总价:%@",_card_dic[@"option_sum"]];
+
+        [self getDataPost];
+
+        self.startAndEndLab.text = @"长期有效，套餐用完为止。";
     }
     
     if ([_card_dic[@"card_type"] isEqualToString:@"体验卡"]) {
-        self.card_content.text = [NSString stringWithFormat:@"价值:%@",_card_dic[@"price"]];
-        
+        self.remainLab.text = [NSString stringWithFormat:@"价值:%@",_card_dic[@"price"]];
+        self.startAndEndLab.text = @"仅使用一次，长期有效。";
+
     }
 
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0.01;
-//    return self.tabe_headerView.height;
+    return 99;
+
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;
 }
-//-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    return self.tabe_headerView;
-//}
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return self.tabheaderView;
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.titles_array.count;
+    return self.titles_array.count+7;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -93,13 +109,16 @@
         cell.selectionStyle =UITableViewCellSelectionStyleNone;
         
     }
-    cell.textLabel.text=self.titles_array[indexPath.row];
-    cell.imageView.image=[UIImage imageNamed:self.imageNameArray[indexPath.row]];
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-    
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 50-1, SCREENWIDTH, 1)];
-    line.backgroundColor = RGB(220,220,220);
-    [cell.contentView addSubview:line];
+    if (indexPath.row<self.titles_array.count) {
+        cell.textLabel.text=self.titles_array[indexPath.row];
+        cell.imageView.image=[UIImage imageNamed:self.imageNameArray[indexPath.row]];
+        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+        
+        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(13, 50-1, SCREENWIDTH-26, 1)];
+        line.backgroundColor = RGB(220,220,220);
+        [cell.contentView addSubview:line];
+
+    }
     
     
     return cell;
@@ -126,6 +145,51 @@
         [self.navigationController pushViewController:VC animated:YES];
     }
 }
+
+
+-(void)getDataPost{
+    
+    
+    [self showHudInView:self.view hint:@"加载中..."];
+    
+    NSString *url = [NSString stringWithFormat:@"%@UserType/MealCard/getOption",BASEURL];
+    
+    AppDelegate *app = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    NSMutableDictionary*paramer = [NSMutableDictionary dictionary];
+    [paramer setValue:self.card_dic[@"merchant"] forKey:@"muid"];
+    
+    [paramer setValue:app.userInfoDic[@"uuid"] forKey:@"uuid"];
+    [paramer setValue:self.card_dic[@"card_code"] forKey:@"code"];
+    
+    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        [self hideHud];
+        
+        
+        NSString *content_S ;
+        for (NSDictionary *dic in result) {
+            
+                if (content_S.length ==0) {
+                    content_S = [NSString stringWithFormat:@"%@   %@元   (可用%@次)",dic[@"name"],dic[@"price"],dic[@"option_count"]];
+                }else
+                    content_S = [NSString stringWithFormat:@"%@\n%@",content_S,[NSString stringWithFormat:@"%@   %@元   (可用%@次)",dic[@"name"],dic[@"price"],dic[@"option_count"]]];
+
+            
+            self.card_contentLab.text = content_S;
+        }
+        
+        NSLog(@"------%@",result);
+        
+        
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        
+        [self hideHud];
+        
+    }];
+    
+}
+
 
 
 /**
@@ -162,7 +226,84 @@
     }];
     
 }
+- (IBAction)shouSuoClcik:(UIButton*)sender {
+    if (sender.selected) {
+        [UIView animateWithDuration:0.3 animations:^{
+            CGRect frame = self.table_View.frame;
+            
+            frame.origin.y = SCREENHEIGHT-64-99;
+            self.table_View.frame = frame;
+            
+        }];
+        
+    }else{
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            CGRect frame = self.table_View.frame;
+            
+            frame.origin.y = self.cardImgview.bottom-30;
+            self.table_View.frame = frame;
+            
+        }];
+        
+        
+    }
+    sender.selected = !sender.selected;
+    
+    
+    
+    
+}
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    
+    
+    
+    
+    if (scrollView.contentOffset.y<-100) {
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            self.shousuoBtn.selected = !self.shousuoBtn.selected;
+            
+            CGRect frame = self.table_View.frame;
+            
+            frame.origin.y = SCREENHEIGHT-64-99;
+            self.table_View.frame = frame;
+            
+        }];
+        
+    }
+}
+
+
+- (IBAction)payClick:(id)sender {
+    
+    if ([_card_dic[@"card_type"] isEqualToString:@"套餐卡"]){
+        
+        PUSH(MealCardPayVC)
+        vc.card_dic = _card_dic;
+        vc.refresheDate = ^{
+            [self getDataPost];
+        };
+        
+        
+    }else if ([_card_dic[@"card_type"] isEqualToString:@"体验卡"]){
+        
+        PUSH(ExperienceCardGoToPayVC)
+        vc.card_dic = _card_dic;
+        vc.refresheDate = ^{
+//            [self postRequestVipCard];
+        };
+        
+        
+        
+    }
+
+    
+}
+- (IBAction)shopClick:(id)sender {
+}
 
 
 @end

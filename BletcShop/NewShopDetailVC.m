@@ -54,21 +54,7 @@
 @implementation NewShopDetailVC
 
 
--(void)viewWillAppear:(BOOL)animated
-{
-    self.state = NO;
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    if (appdelegate.IsLogin) {
-        [self postRequestState];
-    }
-    else
-    {
-        self.state = NO;
-    }
-    
-    
-    
-}
+
 
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -249,7 +235,7 @@
     }
     else if (indexPath.section ==7){
         
-                if ((title_old_btn.tag==0 &&self.pictureAndTextArray.count>1) ||title_old_btn.tag==2) {
+                if ((title_old_btn.tag==0 &&self.pictureAndTextArray.count>=1) ||title_old_btn.tag==2) {
         
         
         return 44;
@@ -575,7 +561,7 @@
         
 
         
-        if ((title_old_btn.tag==0 &&self.pictureAndTextArray.count>1) ||(title_old_btn.tag==2 &&_insureImage_A.count>1)) {
+        if ((title_old_btn.tag==0 &&self.pictureAndTextArray.count>=1) ||(title_old_btn.tag==2 &&_insureImage_A.count>1)) {
             UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 33+11)];
             [cell addSubview:backView];
             
@@ -1427,9 +1413,23 @@
          
          wholeInfoDic=[result copy];
          
+         if ([result[@"collect_state"] isEqualToString:@"true"]) {
+             self.state = YES;
+             
+             [collectBtn setTitle:@"取消收藏" forState:0];
+         }else if ([result[@"collect_state"] isEqualToString:@"false"]) {
+             self.state = NO;
+             [collectBtn setTitle:@"立即收藏" forState:0];
+             
+         }
+
+         self.pictureAndTextArray = result[@"imgtxt_list"];
+         
+         
          
          [self creatTableViewHeadView];
-         [self postRequestGetInfo];
+//         [self postRequestGetInfo];
+         [self getInsuranceImgs];
          
      } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
          [_refreshheader endRefreshing];
@@ -1809,29 +1809,29 @@ if (old_view !=tap.view) {
 }
 
 
-//获取图文介绍
--(void)postRequestGetInfo
-{
-    
-    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/Imgtxt/get",BASEURL];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:[self.infoDic objectForKey:@"muid"] forKey:@"muid"];
-    
-    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
-        
-        NSLog(@"postRequestGetInfo%@", result);
-        self.pictureAndTextArray = result;
-        
-        
-        [self getInsuranceImgs];
-
-    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        NSLog(@"%@", error);
-        
-    }];
-    
-}
+////获取图文介绍
+//-(void)postRequestGetInfo
+//{
+//    
+//    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/Imgtxt/get",BASEURL];
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    [params setObject:[self.infoDic objectForKey:@"muid"] forKey:@"muid"];
+//    
+//    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+//        
+//        NSLog(@"postRequestGetInfo%@", result);
+//        self.pictureAndTextArray = result;
+//        
+//        
+//        [self getInsuranceImgs];
+//
+//    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        NSLog(@"%@", error);
+//        
+//    }];
+//    
+//}
 -(void)getInsuranceImgs{
     NSString *url =[[NSString alloc]initWithFormat:@"%@Extra/Source/insurance",BASEURL];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -1853,34 +1853,34 @@ if (old_view !=tap.view) {
 
     
 }
-//获取收藏状态
--(void)postRequestState
-{
-    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/collect/stateGet",BASEURL];
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:[appdelegate.userInfoDic objectForKey:@"uuid"] forKey:@"user"];
-    [params setObject:[self.infoDic objectForKey:@"muid"] forKey:@"merchant"];
-    
-    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-     {
-         NSLog(@"result====%@", result);
-         NSDictionary *dic = [result copy];
-         if ([dic[@"result_code"] isEqualToString:@"true"]) {
-             self.state = YES;
-             
-             [collectBtn setTitle:@"取消收藏" forState:0];
-         }else if ([dic[@"result_code"] isEqualToString:@"false"]) {
-             self.state = NO;
-             [collectBtn setTitle:@"立即收藏" forState:0];
-             
-         }
-     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-         //         [self noIntenet];
-         NSLog(@"%@", error);
-     }];
-    
-}
+////获取收藏状态
+//-(void)postRequestState
+//{
+//    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/collect/stateGet",BASEURL];
+//    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    [params setObject:[appdelegate.userInfoDic objectForKey:@"uuid"] forKey:@"user"];
+//    [params setObject:[self.infoDic objectForKey:@"muid"] forKey:@"merchant"];
+//    
+//    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
+//     {
+//         NSLog(@"result====%@", result);
+//         NSDictionary *dic = [result copy];
+//         if ([dic[@"result_code"] isEqualToString:@"true"]) {
+//             self.state = YES;
+//             
+//             [collectBtn setTitle:@"取消收藏" forState:0];
+//         }else if ([dic[@"result_code"] isEqualToString:@"false"]) {
+//             self.state = NO;
+//             [collectBtn setTitle:@"立即收藏" forState:0];
+//             
+//         }
+//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//         //         [self noIntenet];
+//         NSLog(@"%@", error);
+//     }];
+//    
+//}
 
 //领取优惠券;
 

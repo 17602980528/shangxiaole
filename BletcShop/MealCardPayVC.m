@@ -179,9 +179,11 @@
     [paramer setValue:option_dic[@"option_id"] forKey:@"option_id"];
     
     
-    
+    NSLog(@"=paramer====%@",paramer);
+
     [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
-        
+    
+        NSLog(@"-result---%@",result);
         if ([result[@"result_code"] intValue]==1) {
             
             
@@ -211,6 +213,8 @@
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         
+        
+        NSLog(@"=====%@",error);
     }];
     
 

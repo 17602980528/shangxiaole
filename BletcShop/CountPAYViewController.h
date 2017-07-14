@@ -12,6 +12,7 @@
 
 @property (nonatomic,copy) void (^refresheDate)();// 返回时刷新数据
 
+@property (nonatomic,copy)NSString *user;// <#Description#>
 
 /**
  卡的信息
