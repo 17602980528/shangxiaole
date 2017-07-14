@@ -732,6 +732,9 @@
 		D9824F511F134B9600301076 /* InsureVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9824F4F1F134B9600301076 /* InsureVC.xib */; };
 		D9824F571F15BBD500301076 /* BeautyIndustryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9824F551F15BBD400301076 /* BeautyIndustryVC.m */; };
 		D9824F581F15BBD500301076 /* BeautyIndustryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9824F561F15BBD400301076 /* BeautyIndustryVC.xib */; };
+		D9824F5C1F18593300301076 /* CardManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9824F5A1F18593300301076 /* CardManageCell.m */; };
+		D9824F5D1F18593300301076 /* CardManageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9824F5B1F18593300301076 /* CardManageCell.xib */; };
+		D9824F611F188C0200301076 /* CardManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9824F601F188C0200301076 /* CardManagerViewController.xib */; };
 		D98533311DDE9A86004E1E6F /* NewBuyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D98533301DDE9A86004E1E6F /* NewBuyCardViewController.m */; };
 		D98533341DDE9B21004E1E6F /* NameSignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D98533331DDE9B21004E1E6F /* NameSignViewController.m */; };
 		D9853F7B1DD463FA0028BF94 /* UILabel+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D9853F7A1DD463FA0028BF94 /* UILabel+extension.m */; };
@@ -2179,6 +2182,10 @@
 		D9824F541F15BBD400301076 /* BeautyIndustryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeautyIndustryVC.h; sourceTree = "<group>"; };
 		D9824F551F15BBD400301076 /* BeautyIndustryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeautyIndustryVC.m; sourceTree = "<group>"; };
 		D9824F561F15BBD400301076 /* BeautyIndustryVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeautyIndustryVC.xib; sourceTree = "<group>"; };
+		D9824F591F18593300301076 /* CardManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardManageCell.h; sourceTree = "<group>"; };
+		D9824F5A1F18593300301076 /* CardManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardManageCell.m; sourceTree = "<group>"; };
+		D9824F5B1F18593300301076 /* CardManageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardManageCell.xib; sourceTree = "<group>"; };
+		D9824F601F188C0200301076 /* CardManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardManagerViewController.xib; sourceTree = "<group>"; };
 		D985332F1DDE9A86004E1E6F /* NewBuyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewBuyCardViewController.h; sourceTree = "<group>"; };
 		D98533301DDE9A86004E1E6F /* NewBuyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewBuyCardViewController.m; sourceTree = "<group>"; };
 		D98533321DDE9B21004E1E6F /* NameSignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSignViewController.h; sourceTree = "<group>"; };
@@ -2728,6 +2735,7 @@
 		079386731C55B5CA0021B385 = {
 			isa = PBXGroup;
 			children = (
+				D9824F601F188C0200301076 /* CardManagerViewController.xib */,
 				185ABD651D8021EA00BD8097 /* CoreVideo.framework */,
 				185ABD631D8021C100BD8097 /* UIKit.framework */,
 				185ABD611D8021B100BD8097 /* Foundation.framework */,
@@ -3622,6 +3630,9 @@
 				18F4CD4C1D6FD6F2008FBAD1 /* CardVipController.m */,
 				D94040391CBDEB7100EC98EA /* CardManagerViewController.h */,
 				D940403A1CBDEB7100EC98EA /* CardManagerViewController.m */,
+				D9824F591F18593300301076 /* CardManageCell.h */,
+				D9824F5A1F18593300301076 /* CardManageCell.m */,
+				D9824F5B1F18593300301076 /* CardManageCell.xib */,
 				D9AA10C91F0490C400F7EDE8 /* 体验卡与套餐卡管理 */,
 				D9AA10BD1F0389F200F7EDE8 /* 体验卡支付 */,
 				D9AA10BC1F0389E700F7EDE8 /* 计次卡支付 */,
@@ -6308,6 +6319,7 @@
 				18D8464F1ED591C90048F010 /* 优惠券背景线下.png in Resources */,
 				D9D315DB1E07C9E5009FB465 /* QQ20161219-0.png in Resources */,
 				D94DF2601CAE0DB8000D5B69 /* result_small_star_disable@2x.png in Resources */,
+				D9824F5D1F18593300301076 /* CardManageCell.xib in Resources */,
 				18F27F041D640E84002DD03A /* 头像-28.png in Resources */,
 				D9F1301A1D8E8E3700E82F38 /* zhoubianHL@2x.png in Resources */,
 				D94DF23C1CAE08F7000D5B69 /* share.png in Resources */,
@@ -6431,6 +6443,7 @@
 				1C9E825B1C60AD5A0007BF02 /* 3-01.png in Resources */,
 				1C31F8101C63284400CB1A9E /* Centjiesuan.png in Resources */,
 				18D7C4941D5B12C700AEF545 /* zijie.png in Resources */,
+				D9824F611F188C0200301076 /* CardManagerViewController.xib in Resources */,
 				18F27F011D640E84002DD03A /* 头像-25.png in Resources */,
 				D93C0D5E1D251E7B001A1AC1 /* 小标-13.png in Resources */,
 				D9DEED371CACFCA100ACDD00 /* ShopImageTableViewCell.xib in Resources */,
@@ -6870,6 +6883,7 @@
 				D923024D1D14DEDF008FB9A9 /* WelcomViewController.m in Sources */,
 				D9DEED1C1CACED7C00ACDD00 /* SDImageCache.m in Sources */,
 				D98E5C041E515210009D56BF /* MASViewConstraint.m in Sources */,
+				D9824F5C1F18593300301076 /* CardManageCell.m in Sources */,
 				D9DEED1F1CACED7C00ACDD00 /* SDWebImageDownloader.m in Sources */,
 				1C07697C1C7C324400F3D29B /* LandingController.m in Sources */,
 				D9B3A4A31D73D6A900F3F27E /* LZDContentView.m in Sources */,
