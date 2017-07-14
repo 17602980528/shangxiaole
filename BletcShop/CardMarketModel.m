@@ -38,7 +38,7 @@
     self.rate = [NSString getTheNoNullStr:dic[@"rate"] andRepalceStr:@""];
     self.address = [NSString getTheNoNullStr:dic[@"address"] andRepalceStr:@""];
     self.muid = [NSString getTheNoNullStr:dic[@"muid"] andRepalceStr:@""];
-
+    self.trade=[NSString getTheNoNullStr:dic[@"trade"] andRepalceStr:@""];
     
     return self;
 }
