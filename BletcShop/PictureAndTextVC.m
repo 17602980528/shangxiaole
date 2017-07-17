@@ -20,24 +20,31 @@
 
     self.navigationItem.title = @"图文详情";
     
-
+    NSLog(@"----%@",self.picAndText_A);
 
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.picAndText_A.count;
+    return self.picAndText_A.count+1;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString *str = self.picAndText_A[indexPath.row][@"type"];
-    if ([str isEqualToString:@"1"]) {
+    if (indexPath.row==0) {
         return SCREENWIDTH*2/3;
-    }else if([str isEqualToString:@"0"]||[str isEqualToString:@"2"]){
-        return (SCREENWIDTH/2-10)*2/3+10;
-    }
-    return SCREENWIDTH*2/3;
 
+    }else{
+        
+        NSString *str = self.picAndText_A[indexPath.row-1][@"type"];
+        if ([str isEqualToString:@"1"]) {
+            return SCREENWIDTH*2/3;
+        }else if([str isEqualToString:@"0"]||[str isEqualToString:@"2"]){
+            return (SCREENWIDTH/2-10)*2/3+10;
+        }
+        return SCREENWIDTH*2/3;
+ 
+    }
+   
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -81,7 +88,7 @@
         }
     
         else{
-    NSDictionary *dic = self.picAndText_A[indexPath.row];
+    NSDictionary *dic = self.picAndText_A[indexPath.row-1];
     
     
     NSString *newStr=dic[@"content"];

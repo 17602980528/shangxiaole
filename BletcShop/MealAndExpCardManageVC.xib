@@ -15,6 +15,7 @@
                 <outlet property="cardImgview" destination="XYI-7s-Kt5" id="Dr9-1g-YJM"/>
                 <outlet property="card_contentLab" destination="MxG-3e-uHp" id="LEl-5e-Opc"/>
                 <outlet property="content_back_View" destination="cXW-sC-Ipg" id="owi-6R-7fr"/>
+                <outlet property="redImg" destination="GW9-eW-hXo" id="NOr-6t-Lxv"/>
                 <outlet property="remainLab" destination="d5P-nu-qeT" id="89l-y4-psm"/>
                 <outlet property="shopName" destination="7Sp-Ms-WoO" id="XIl-XX-2S4"/>
                 <outlet property="shopName1" destination="tvT-Ed-A5p" id="vim-zS-wxM"/>
@@ -37,7 +38,7 @@
                 </view>
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XYI-7s-Kt5">
                     <rect key="frame" x="13" y="0.0" width="349" height="212"/>
-                    <color key="backgroundColor" red="0.84453068259999997" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="XYI-7s-Kt5" secondAttribute="height" multiplier="349:212" id="ac1-6d-c3z"/>
                     </constraints>
@@ -214,10 +215,18 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="会员卡_vip" translatesAutoresizingMaskIntoConstraints="NO" id="98I-gA-U7a">
+                    <rect key="frame" x="157.5" y="99" width="60" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="Tbb-Ia-Wfv"/>
+                        <constraint firstAttribute="height" constant="30" id="kFS-AO-SlW"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="mCD-3u-Yka" firstAttribute="top" secondItem="tvT-Ed-A5p" secondAttribute="bottom" constant="15" id="497-6v-nSx"/>
+                <constraint firstItem="98I-gA-U7a" firstAttribute="centerY" secondItem="XYI-7s-Kt5" secondAttribute="centerY" constant="8" id="9m8-xv-lLG"/>
                 <constraint firstItem="cXW-sC-Ipg" firstAttribute="top" secondItem="XYI-7s-Kt5" secondAttribute="bottom" id="ApA-tu-0MS"/>
                 <constraint firstItem="T6D-TK-RHA" firstAttribute="width" secondItem="XYI-7s-Kt5" secondAttribute="width" id="AxE-2b-TZv"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tvT-Ed-A5p" secondAttribute="trailing" constant="13" id="AzW-db-gwB"/>
@@ -230,13 +239,14 @@
                 <constraint firstItem="mCD-3u-Yka" firstAttribute="leading" secondItem="tvT-Ed-A5p" secondAttribute="leading" id="Slp-te-3TJ"/>
                 <constraint firstAttribute="trailing" secondItem="cXW-sC-Ipg" secondAttribute="trailing" constant="13" id="W3o-gG-vt7"/>
                 <constraint firstItem="cXW-sC-Ipg" firstAttribute="leading" secondItem="opD-v8-28w" secondAttribute="leading" constant="13" id="Xuq-nf-PvF"/>
+                <constraint firstItem="98I-gA-U7a" firstAttribute="centerX" secondItem="opD-v8-28w" secondAttribute="centerX" id="ho2-k9-4Gg"/>
                 <constraint firstItem="tvT-Ed-A5p" firstAttribute="top" secondItem="XYI-7s-Kt5" secondAttribute="top" constant="23" id="jQz-PM-G8B"/>
                 <constraint firstAttribute="trailing" secondItem="XYI-7s-Kt5" secondAttribute="trailing" constant="13" id="ji6-jj-41N"/>
                 <constraint firstItem="XYI-7s-Kt5" firstAttribute="top" secondItem="opD-v8-28w" secondAttribute="top" id="lbM-IS-0z3"/>
                 <constraint firstItem="d5P-nu-qeT" firstAttribute="bottom" secondItem="XYI-7s-Kt5" secondAttribute="bottom" constant="-23" id="rVH-cf-ShU"/>
                 <constraint firstItem="XYI-7s-Kt5" firstAttribute="leading" secondItem="opD-v8-28w" secondAttribute="leading" constant="13" id="ygR-8r-gLp"/>
             </constraints>
-            <point key="canvasLocation" x="-1813" y="-663"/>
+            <point key="canvasLocation" x="-2135" y="-1045"/>
         </view>
         <view contentMode="scaleToFill" id="5ON-J0-doS">
             <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
@@ -245,7 +255,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9EX-dm-KDz">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                     <subviews>
-                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lkf-dc-GRx">
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="会员卡_付款BG" translatesAutoresizingMaskIntoConstraints="NO" id="Lkf-dc-GRx">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DwA-TW-6KU">
@@ -274,7 +284,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8P-cu-bds">
                             <rect key="frame" x="128.5" y="0.0" width="118" height="49"/>
-                            <color key="backgroundColor" red="0.73725490199999999" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="118" id="MDG-0r-m9y"/>
                             </constraints>
@@ -282,23 +292,32 @@
                                 <action selector="shouSuoClcik:" destination="-1" eventType="touchUpInside" id="v1B-Uo-U5g"/>
                             </connections>
                         </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="会员卡_红色三角" translatesAutoresizingMaskIntoConstraints="NO" id="GW9-eW-hXo">
+                            <rect key="frame" x="177.5" y="21" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="Ex3-zx-gYq"/>
+                                <constraint firstAttribute="height" constant="20" id="Qqe-Qf-OWe"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="c8P-cu-bds" firstAttribute="top" secondItem="9EX-dm-KDz" secondAttribute="top" id="02f-8B-nty"/>
                         <constraint firstItem="Lkf-dc-GRx" firstAttribute="leading" secondItem="9EX-dm-KDz" secondAttribute="leading" id="2gQ-HG-gpV"/>
+                        <constraint firstItem="GW9-eW-hXo" firstAttribute="centerX" secondItem="9EX-dm-KDz" secondAttribute="centerX" id="6Dk-cb-vZe"/>
                         <constraint firstItem="c8P-cu-bds" firstAttribute="centerX" secondItem="9EX-dm-KDz" secondAttribute="centerX" id="9M9-rH-fbh"/>
                         <constraint firstItem="DwA-TW-6KU" firstAttribute="top" secondItem="c8P-cu-bds" secondAttribute="bottom" id="DNS-Gz-jSw"/>
                         <constraint firstItem="Lkf-dc-GRx" firstAttribute="top" secondItem="9EX-dm-KDz" secondAttribute="top" id="FuC-1H-7Bq"/>
                         <constraint firstAttribute="bottom" secondItem="Lkf-dc-GRx" secondAttribute="bottom" id="Tgs-UQ-Yo2"/>
                         <constraint firstAttribute="trailing" secondItem="Lkf-dc-GRx" secondAttribute="trailing" id="Yg5-uw-X0f"/>
                         <constraint firstAttribute="bottom" secondItem="DwA-TW-6KU" secondAttribute="bottom" constant="14" id="dn8-8S-bsu"/>
+                        <constraint firstItem="GW9-eW-hXo" firstAttribute="top" secondItem="9EX-dm-KDz" secondAttribute="top" constant="21" id="oUn-mb-Qcj"/>
                         <constraint firstAttribute="height" constant="99" id="y2G-ji-7iH"/>
                         <constraint firstItem="DwA-TW-6KU" firstAttribute="centerX" secondItem="9EX-dm-KDz" secondAttribute="centerX" id="ymt-K2-5pd"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="9EX-dm-KDz" secondAttribute="bottom" id="AzY-Vi-hZr"/>
                 <constraint firstItem="9EX-dm-KDz" firstAttribute="top" secondItem="5ON-J0-doS" secondAttribute="top" id="FUJ-1E-Zv1"/>
@@ -306,7 +325,7 @@
                 <constraint firstAttribute="trailing" secondItem="9EX-dm-KDz" secondAttribute="trailing" id="XQ9-nU-rEc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-2134" y="-1178"/>
+            <point key="canvasLocation" x="-2112.5" y="-1127.5"/>
         </view>
         <tapGestureRecognizer id="Zo5-ZY-Cja">
             <connections>
@@ -316,6 +335,9 @@
     </objects>
     <resources>
         <image name="youjiantou" width="7" height="13"/>
+        <image name="会员卡_vip" width="122" height="59"/>
+        <image name="会员卡_付款BG" width="698" height="167"/>
+        <image name="会员卡_红色三角" width="40" height="40"/>
         <image name="店铺icon——红色" width="30" height="30"/>
     </resources>
 </document>

@@ -15,6 +15,8 @@
 #import "ShareCardViewController.h"
 #import "ComplaintVC.h"
 
+#import "NewShopDetailVC.h"
+
 #import "PayMentController.h"
 #import "UPgradeVC.h"
 //eric
@@ -45,6 +47,7 @@
 @property (strong, nonatomic) IBOutlet UIView *tabheaderView;
 @property (weak, nonatomic) IBOutlet UIView *content_back_View;
 @property (weak, nonatomic) IBOutlet UIImageView *cardImgview;
+@property (weak, nonatomic) IBOutlet UIImageView *redimg;
 @end
 
 @implementation CardManagerViewController
@@ -77,6 +80,8 @@
         cardInfo_dic = result;
         
         
+        
+        
       self.shopeName1.text =  self.shopName.text = cardInfo_dic[@"store"];
         self.cardImgview.backgroundColor = [UIColor colorWithHexString:cardInfo_dic[@"card_temp_color"]];
         
@@ -84,15 +89,15 @@
         self.startAndEndLab.text = [NSString stringWithFormat:@"%@-%@",[cardInfo_dic[@"date_start"] substringToIndex:10],[cardInfo_dic[@"date_end"] substringToIndex:10]];
         
         if ([cardInfo_dic[@"card_type"] isEqualToString:@"计次卡"]) {
-            
-            self.card_contentLab.text = @"店内项目可使用会员卡任意消费。";
+            self.card_contentLab.text = @"计次卡用完为止。";
+
             int cishu =  [cardInfo_dic[@"card_remain"] floatValue]  /   ([cardInfo_dic[@"price"] floatValue]/[cardInfo_dic[@"rule"] floatValue]);
             
             
             self.remainLab.text = [NSString stringWithFormat:@"剩余:%d次",cishu];
         }else{
-//            self.card_contentLab.text = @"计次卡用完为止。";
-            self.card_contentLab.text = @"您应该已经收到系统生成的电子邮件，您可以访问电子邮件中的链接，并在我们的计划中注册您的公司。请注意，在迁移完成之前，您将无法访问“Certificates, Identifiers & Profiles”（证书、标识符和描述文件）门户";
+            self.card_contentLab.text = @"店内项目可使用会员卡任意消费。";
+//            self.card_contentLab.text = @"您应该已经收到系统生成的电子邮件，您可以访问电子邮件中的链接，并在我们的计划中注册您的公司。请注意，在迁移完成之前，您将无法访问“Certificates, Identifiers & Profiles”（证书、标识符和描述文件）门户";
 
             self.remainLab.text = [NSString stringWithFormat:@"余额:%@元",cardInfo_dic[@"card_remain"]];
 
@@ -119,20 +124,25 @@
     
     [self postRequestAllInfo];
 
+    self.tabheaderView.frame = CGRectMake(13, self.cardImgview.bottom-21, SCREENWIDTH-26, 99);
     
+    [self.view addSubview:self.tabheaderView];
+
     
     [self _inittable];
+    
+    
     
 }
 -(void)_inittable
 {
-    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(13, self.cardImgview.bottom-30, SCREENWIDTH-26, SCREENHEIGHT-64-(self.cardImgview.bottom-30)) style:UITableViewStylePlain];
+    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(13, _tabheaderView.bottom, SCREENWIDTH-26, SCREENHEIGHT-64-(_tabheaderView.bottom)) style:UITableViewStylePlain];
     table.delegate = self;
     table.dataSource = self;
     table.separatorStyle = UITableViewCellSeparatorStyleNone;
     table.showsVerticalScrollIndicator = NO;
     table.estimatedRowHeight = 100;
-    table.backgroundColor = [UIColor clearColor];
+    table.backgroundColor = [UIColor whiteColor];
     self.CardInfotable = table;
     [self.view addSubview:table];
     
@@ -150,12 +160,7 @@
     return 0;
 }
 
--(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (section==1) {
-        return self.tabheaderView;
-    }else
-        return nil;
-}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0) {
@@ -167,7 +172,7 @@
             return 0.01;
 
         }else{
-            return 50;
+            return 42;
 
         }
        
@@ -180,9 +185,9 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section==1) {
-        return 99;
-    }else
+//    if (section==1) {
+//        return 0.01;
+//    }else
     return 0.01;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -208,7 +213,7 @@
         cell.imageView.image=[UIImage imageNamed:imageNameArray[indexPath.row]];
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
         
-        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(13, 50-1, SCREENWIDTH-26, 1)];
+        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(13, 42-1, SCREENWIDTH-26, 1)];
         line.backgroundColor = RGB(220,220,220);
         [cell.contentView addSubview:line];
         
@@ -454,22 +459,46 @@
     
 
     if (sender.selected) {
+
         [UIView animateWithDuration:0.3 animations:^{
             CGRect frame = self.CardInfotable.frame;
             
-            frame.origin.y = SCREENHEIGHT-64-99;
+            frame.origin.y = SCREENHEIGHT;
             self.CardInfotable.frame = frame;
 
+            self.redimg.transform = CGAffineTransformMakeRotation(M_PI);
+            
+            
+            CGRect tabheaderFrame =  self.tabheaderView.frame;
+        
+            tabheaderFrame.origin.y = SCREENHEIGHT-64-99;
+            self.tabheaderView.frame = tabheaderFrame;
+        
+        
         }];
         
     }else{
 
+        
         [UIView animateWithDuration:0.3 animations:^{
+            
+            CGRect tabheaderFrame =  self.tabheaderView.frame;
+            
+            tabheaderFrame.origin.y = self.cardImgview.bottom-21;
+            self.tabheaderView.frame = tabheaderFrame;
+
+            
             CGRect frame = self.CardInfotable.frame;
             
-            frame.origin.y = self.cardImgview.bottom-30;
+            frame.origin.y = self.tabheaderView.bottom;
             self.CardInfotable.frame = frame;
+            
+            
 
+        } completion:^(BOOL finished) {
+            
+            
+            self.redimg.transform = CGAffineTransformMakeRotation(0);
         }];
         
         
@@ -481,26 +510,28 @@
     
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-    
-
-    
-    
-    if (scrollView.contentOffset.y<-100) {
-        [UIView animateWithDuration:0.3 animations:^{
-            
-            self.shousuoBtn.selected = !self.shousuoBtn.selected;
-
-            CGRect frame = self.CardInfotable.frame;
-            
-            frame.origin.y = SCREENHEIGHT-64-99;
-            self.CardInfotable.frame = frame;
-            
-        }];
-
-    }
-}
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    
+//    
+//
+//    
+//    
+//    if (scrollView.contentOffset.y<-100) {
+//        [UIView animateWithDuration:0.3 animations:^{
+//            
+//            self.shousuoBtn.selected = !self.shousuoBtn.selected;
+//
+//            CGRect frame = self.CardInfotable.frame;
+//            
+//            frame.origin.y = SCREENHEIGHT-64-99;
+//            self.CardInfotable.frame = frame;
+//            
+//            self.redimg.transform = CGAffineTransformMakeRotation(M_PI);
+//
+//        }];
+//
+//    }
+//}
 
 - (IBAction)payBtnClick:(UIButton *)sender {
     
@@ -532,6 +563,13 @@
 - (IBAction)tapShopClick:(UITapGestureRecognizer *)sender {
     
     
+    PUSH(NewShopDetailVC)
+    
+    NSMutableDictionary *muta_dic =[NSMutableDictionary dictionaryWithDictionary:cardInfo_dic];
+    [muta_dic setValue:cardInfo_dic[@"merchant"] forKey:@"muid"];
+    vc.videoID = @"";
+    vc.infoDic =muta_dic;
+       
 }
 
 -(void)tishi:(NSString*)ts{

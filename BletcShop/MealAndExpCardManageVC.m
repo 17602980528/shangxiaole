@@ -9,7 +9,7 @@
 #import "MealAndExpCardManageVC.h"
 #import "OrderViewController.h"
 #import "ComplaintVC.h"
-
+#import "NewShopDetailVC.h"
 #import "MealCardPayVC.h"
 #import "ExperienceCardGoToPayVC.h"
 @interface MealAndExpCardManageVC ()<UITableViewDataSource,UITableViewDelegate>
@@ -25,6 +25,7 @@
 @property (strong, nonatomic) IBOutlet UIView *tabheaderView;
 @property (weak, nonatomic) IBOutlet UIView *content_back_View;
 @property (weak, nonatomic) IBOutlet UIImageView *cardImgview;
+@property (weak, nonatomic) IBOutlet UIImageView *redImg;
 
 @property(nonatomic,strong)  NSArray *titles_array;
 @property(nonatomic,strong) NSArray *imageNameArray;
@@ -50,14 +51,17 @@
     self.navigationItem.title = @"会员卡";
 
     
+    self.tabheaderView.frame = CGRectMake(13, self.cardImgview.bottom-21, SCREENWIDTH-26, 99);
     
+    [self.view addSubview:self.tabheaderView];
+
     
-    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(13, self.cardImgview.bottom-30, SCREENWIDTH-26, SCREENHEIGHT) style:UITableViewStylePlain];
+    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(13, self.tabheaderView.bottom, SCREENWIDTH-26, SCREENHEIGHT) style:UITableViewStylePlain];
     table.delegate = self;
     table.dataSource = self;
     table.separatorStyle = UITableViewCellSeparatorStyleNone;
     table.showsVerticalScrollIndicator = NO;
-    table.estimatedRowHeight = 100;
+    table.rowHeight = 42;
     table.backgroundColor = [UIColor clearColor];
     table.bounces = NO;
     self.table_View = table;
@@ -86,15 +90,15 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 99;
+    return 0.01;
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;
 }
--(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    return self.tabheaderView;
-}
+//-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    return self.tabheaderView;
+//}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.titles_array.count+7;
@@ -114,7 +118,7 @@
         cell.imageView.image=[UIImage imageNamed:self.imageNameArray[indexPath.row]];
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
         
-        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(13, 50-1, SCREENWIDTH-26, 1)];
+        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(13, 42-1, SCREENWIDTH-26, 1)];
         line.backgroundColor = RGB(220,220,220);
         [cell.contentView addSubview:line];
 
@@ -227,23 +231,49 @@
     
 }
 - (IBAction)shouSuoClcik:(UIButton*)sender {
+    
+    
     if (sender.selected) {
+        
         [UIView animateWithDuration:0.3 animations:^{
             CGRect frame = self.table_View.frame;
             
-            frame.origin.y = SCREENHEIGHT-64-99;
+            frame.origin.y = SCREENHEIGHT;
             self.table_View.frame = frame;
+            
+            self.redImg.transform = CGAffineTransformMakeRotation(M_PI);
+            
+            
+            CGRect tabheaderFrame =  self.tabheaderView.frame;
+            
+            tabheaderFrame.origin.y = SCREENHEIGHT-64-99;
+            self.tabheaderView.frame = tabheaderFrame;
+            
             
         }];
         
     }else{
         
+        
         [UIView animateWithDuration:0.3 animations:^{
+            
+            CGRect tabheaderFrame =  self.tabheaderView.frame;
+            
+            tabheaderFrame.origin.y = self.cardImgview.bottom-21;
+            self.tabheaderView.frame = tabheaderFrame;
+            
+            
             CGRect frame = self.table_View.frame;
             
-            frame.origin.y = self.cardImgview.bottom-30;
+            frame.origin.y = self.tabheaderView.bottom;
             self.table_View.frame = frame;
             
+            
+            
+        } completion:^(BOOL finished) {
+            
+            
+            self.redImg.transform = CGAffineTransformMakeRotation(0);
         }];
         
         
@@ -271,6 +301,9 @@
             frame.origin.y = SCREENHEIGHT-64-99;
             self.table_View.frame = frame;
             
+            
+            self.redImg.transform = CGAffineTransformMakeRotation(M_PI);
+
         }];
         
     }
@@ -303,6 +336,15 @@
     
 }
 - (IBAction)shopClick:(id)sender {
+    
+    PUSH(NewShopDetailVC)
+    
+    
+    NSMutableDictionary *muta_dic =[NSMutableDictionary dictionaryWithDictionary:_card_dic];
+    [muta_dic setValue:_card_dic[@"merchant"] forKey:@"muid"];
+    vc.videoID = @"";
+    vc.infoDic =muta_dic;
+
 }
 
 
