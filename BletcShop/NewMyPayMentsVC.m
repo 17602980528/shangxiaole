@@ -10,6 +10,7 @@
 #import "NewCardPayTableViewCell.h"
 #import "NewCardBuyTableViewCell.h"
 #import "NewAppriseVC.h"
+#import "MyOrderDetailVC.h"
 @interface NewMyPayMentsVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *cardCostButton;
@@ -65,7 +66,7 @@
         cell.delBtn.tag=indexPath.row;
         cell.appriseBtn.tag=indexPath.row;
         cell.dateTime.text=_orderArray[indexPath.row][@"datetime"];
-        cell.totalCosts.text=[NSString stringWithFormat:@"消费：%@元",_orderArray[indexPath.row][@"sum"]];
+        //cell.totalCosts.text=[NSString stringWithFormat:@"消费：%@元",_orderArray[indexPath.row][@"sum"]];
         cell.shopName.text=[[[[self.orderArray objectAtIndex:indexPath.row] objectForKey:@"content"] componentsSeparatedByString:PAY_USCS] firstObject];
         
         if ([_orderArray[indexPath.row][@"evaluate_state"] isEqualToString:@"false"]) {
@@ -79,6 +80,37 @@
              cell.appriseBtn.layer.borderColor=RGB(181, 181, 181).CGColor;
         }
         [cell.delBtn addTarget:self action:@selector(deletePayRecord:) forControlEvents:UIControlEventTouchUpInside];
+        //
+        NSString *string = [[[[self.orderArray objectAtIndex:indexPath.row] objectForKey:@"content"] componentsSeparatedByString:PAY_USCS] lastObject];
+        
+        if ([[string substringToIndex:4] isEqualToString:@"结算次数"]||[[string substringToIndex:4] isEqualToString:@"消费次数"]) {
+            
+            NSArray *arr = [NSArray array];
+            arr= [string componentsSeparatedByString:PAY_UORC];
+            for (NSString *stri in arr) {
+                
+                NSString *price = [[stri componentsSeparatedByString:PAY_NP]lastObject];
+                price =  [[price componentsSeparatedByString:@"次"]firstObject];
+                string = [NSString stringWithFormat:@"%d次",[string intValue]+[price intValue]];
+                
+            }
+            
+        }else{
+            
+            NSArray *arr = [NSArray array];
+            
+            arr= [string componentsSeparatedByString:PAY_UORC];
+            for (NSString *stri in arr) {
+                NSString *price = [[stri componentsSeparatedByString:PAY_NP]lastObject];
+                price =  [[price componentsSeparatedByString:@"元"]firstObject];
+                
+                string = [NSString stringWithFormat:@"%.2f元",[string floatValue]+[price floatValue]];
+                
+            }
+            
+        }
+        cell.totalCosts.text=[NSString stringWithFormat:@"消费：%@",string];
+
         return cell;
     }else{
         static NSString *resuseIdentify=@"NewCardBuyTabCell";
@@ -162,4 +194,49 @@
     [self presentViewController:alert animated:YES completion:nil];
 
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    NSString *pay_tp;
+    
+    
+    NSString *string = [[[[self.orderArray objectAtIndex:indexPath.row] objectForKey:@"content"] componentsSeparatedByString:PAY_USCS] lastObject];
+    
+    if ([[string substringToIndex:4] isEqualToString:@"结算次数"]||[[string substringToIndex:4] isEqualToString:@"消费次数"]) {
+        pay_tp = @"计次数量";
+        NSArray *arr = [NSArray array];
+        arr= [string componentsSeparatedByString:PAY_UORC];
+        for (NSString *stri in arr) {
+            
+            NSString *price = [[stri componentsSeparatedByString:PAY_NP]lastObject];
+            price =  [[price componentsSeparatedByString:@"次"]firstObject];
+            string = [NSString stringWithFormat:@"%d次",[string intValue]+[price intValue]];
+            
+            
+        }
+        
+    }else{
+        pay_tp = @"付款金额";
+        
+        NSArray *arr = [NSArray array];
+        
+        arr= [string componentsSeparatedByString:PAY_UORC];
+        for (NSString *stri in arr) {
+            NSString *price = [[stri componentsSeparatedByString:PAY_NP]lastObject];
+            price =  [[price componentsSeparatedByString:@"元"]firstObject];
+            
+            string = [NSString stringWithFormat:@"%.2f元",[string floatValue]+[price floatValue]];
+            
+        }
+        
+    }
+    
+    MyOrderDetailVC *VC  = [[MyOrderDetailVC alloc]init];
+    VC.order_dic = [self.orderArray objectAtIndex:indexPath.row];
+    VC.allPay = string;
+    VC.pay_type_s = pay_tp;
+    
+    [self.navigationController pushViewController:VC animated:YES];
+}
+
 @end
