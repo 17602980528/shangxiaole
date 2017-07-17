@@ -62,7 +62,7 @@
                         <rect key="frame" x="93" y="61" width="80.5" height="10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="ChC-2L-6zk"/>
-                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="90" id="nLZ-IF-25c"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="120" id="nLZ-IF-25c"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -151,7 +151,11 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="appriseBtn" destination="mY1-XB-PKf" id="xq8-Co-Z5x"/>
+                <outlet property="dateTime" destination="vNt-cz-D5b" id="g6N-fl-q9C"/>
                 <outlet property="delBtn" destination="ste-vg-7vm" id="sqE-RR-9DX"/>
+                <outlet property="headImageView" destination="ctj-Mt-6hA" id="8Ga-0K-mdf"/>
+                <outlet property="shopName" destination="tP4-e3-ltO" id="G6T-NA-Veh"/>
+                <outlet property="totalCosts" destination="bQb-I5-Kkn" id="SxT-jy-Dkd"/>
             </connections>
             <point key="canvasLocation" x="3.5" y="-11.5"/>
         </tableViewCell>
