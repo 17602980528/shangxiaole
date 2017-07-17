@@ -1203,6 +1203,9 @@
     [params setObject:self.card_dic[@"muid"] forKey:@"muid"];
     [params setObject:app.userInfoDic[@"uuid"] forKey:@"uuid"];
     [params setObject:_card_dic[@"code"] forKey:@"code"];
+    
+    
+    
     [params setObject:self.moneyString forKey:@"pay_sum"];
 
     

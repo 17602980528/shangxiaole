@@ -69,6 +69,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = RGB(234, 234, 234);
+    self.navigationItem.title = @"店铺详情";
+
     scrollViewOffSet = 0.0f;
     title_old_btn = [UIButton buttonWithType:UIButtonTypeCustom];
     
@@ -1990,7 +1992,7 @@ if (old_view !=tap.view) {
            
             
             PUSH(PictureAndTextVC)
-            vc.infoDic= self.infoDic;
+            vc.infoDic= wholeInfoDic;
             vc.picAndText_A = self.pictureAndTextArray;
             
         }
