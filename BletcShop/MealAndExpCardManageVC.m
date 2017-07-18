@@ -317,6 +317,7 @@
         PUSH(MealCardPayVC)
         vc.card_dic = _card_dic;
         vc.refresheDate = ^{
+            self.refresheDate();
             [self getDataPost];
         };
         
@@ -326,6 +327,8 @@
         PUSH(ExperienceCardGoToPayVC)
         vc.card_dic = _card_dic;
         vc.refresheDate = ^{
+            self.refresheDate();
+            
 //            [self postRequestVipCard];
         };
         

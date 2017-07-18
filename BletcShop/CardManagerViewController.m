@@ -539,6 +539,8 @@
     if ([cardInfo_dic[@"card_type"] isEqualToString:@"储值卡"]) {
         PUSH(MoneyPAYViewController)
         vc.refresheDate = ^{
+            self.refresheDate();
+            
             [self postRequestAllInfo];
         };
         
@@ -551,6 +553,8 @@
         PUSH(CountPAYViewController)
         vc.card_dic = cardInfo_dic;
         vc.refresheDate = ^{
+            self.refresheDate();
+
             [self postRequestAllInfo];
         };
         vc.user = self.card_dic[@"user"];

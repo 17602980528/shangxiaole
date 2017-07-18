@@ -142,7 +142,8 @@
                 self.refresheDate();
                 
                 
-                [self.navigationController popViewControllerAnimated:YES];
+                [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+                
                 
             }];
             
@@ -157,6 +158,8 @@
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         
+        
+        NSLog(@"--------%@",error);
     }];
     
     

@@ -11,6 +11,7 @@
 @interface CardManagerViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,weak)UITableView *CardInfotable;
 
+@property (nonatomic,copy) void (^refresheDate)();// 返回时刷新数据
 
 /**
 卡的信息
