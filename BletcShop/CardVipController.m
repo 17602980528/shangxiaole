@@ -34,6 +34,8 @@
     UIView *noticeLine;
     UIScrollView *topBackView;
      NSInteger title_btn_tag;
+    
+    UILabel *placeHoderlab;
 }
 
 
@@ -114,6 +116,33 @@
     title_btn_tag = sender.tag;
 
     
+    if (sender.tag-666==0) {
+        NSInteger count_sum = 0;
+        for (NSArray *arr in self.wholeDataArray) {
+            count_sum +=arr.count;
+            
+        }
+        
+        if (count_sum ==0) {
+            placeHoderlab.hidden = NO;
+        }else{
+            placeHoderlab.hidden = YES;;
+
+        }
+    
+    }else{
+        
+        
+        if ([self.wholeDataArray[sender.tag-666-1] count]==0) {
+            placeHoderlab.hidden = NO;
+        }else{
+            placeHoderlab.hidden = YES;
+            
+        }
+
+        
+    }
+    
     [self.Cardtable reloadData];
 
     noticeLine.center=CGPointMake(sender.center.x, sender.center.y+43);
@@ -149,7 +178,13 @@
         [self.wholeDataArray addObjectsFromArray:@[value_A,count_A,meal_A,experience_A,share_A]];
         
         
-        
+        if (value_A.count+count_A.count+meal_A.count+experience_A.count+share_A.count==0 ) {
+            placeHoderlab.hidden= NO;
+        }else{
+            placeHoderlab.hidden= YES;
+ 
+        }
+       
        
         [self.Cardtable reloadData];
         NSLog(@"result===%@", result);
@@ -173,6 +208,18 @@
     table.bounces = YES;
     self.Cardtable = table;
     [self.view addSubview:table];
+    
+    
+    placeHoderlab = [[UILabel alloc]init];
+    placeHoderlab.text = @"您暂时还没有会员卡哦！";
+    placeHoderlab.textAlignment = NSTextAlignmentCenter;
+    placeHoderlab.font = [UIFont systemFontOfSize:13];
+    placeHoderlab.textColor = RGB(175,174,174);
+    placeHoderlab.bounds = CGRectMake(0, 0, SCREENWIDTH, 13);
+    placeHoderlab.center = self.view.center;
+    placeHoderlab.hidden = YES;
+    [self.view addSubview:placeHoderlab];
+
 }
 
 
@@ -182,13 +229,17 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
+    NSLog(@"[self.wholeDataArray[section] count]----%ld",[self.wholeDataArray[section] count]);
     
     if (title_btn_tag==666) {
-        return [self.wholeDataArray[section] count];
+        
+         return [self.wholeDataArray[section] count];
 
     }else{
         
         if (title_btn_tag-666-1 ==section) {
+            
+            
             return [self.wholeDataArray[section] count];
 
         }else{
@@ -405,6 +456,8 @@
             cell.cardStyleAndLevel.text = [NSString stringWithFormat:@"%@",dic[@"card_type"]];
             
         }
+        
+
         
     }
     
