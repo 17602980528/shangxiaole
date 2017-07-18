@@ -22,7 +22,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8W8-of-oLk">
                         <rect key="frame" x="24" y="5" width="451" height="260.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon3.png" translatesAutoresizingMaskIntoConstraints="NO" id="2Dr-Fs-Wnl">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Card.png" translatesAutoresizingMaskIntoConstraints="NO" id="2Dr-Fs-Wnl">
                                 <rect key="frame" x="15" y="13" width="106" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="9xJ-CP-S0W"/>
@@ -248,6 +248,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="Card.png" width="983" height="604"/>
         <image name="icon3.png" width="227" height="152"/>
         <image name="咨询.png" width="26" height="24"/>
         <image name="导航栏定位.png" width="20" height="28"/>
