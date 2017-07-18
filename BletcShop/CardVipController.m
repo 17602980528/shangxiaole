@@ -33,7 +33,7 @@
 {
     UIView *noticeLine;
     UIScrollView *topBackView;
-     NSInteger title_btn_tag;
+     UIButton* title_btn;
     
     UILabel *placeHoderlab;
 }
@@ -52,11 +52,13 @@
     topBackView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:topBackView];
 
-    [self postRequestVipCard];
 
     
     [self initCatergray];
     [self _inittable];
+    
+    [self postRequestVipCard];
+
 
 }
 //卡分类
@@ -80,7 +82,7 @@
                 noticeLine.backgroundColor=RGB(243, 73, 78);
                 [topBackView addSubview:noticeLine];
                 
-                title_btn_tag = Catergray.tag;
+                title_btn = Catergray;
             }
             
         }
@@ -113,7 +115,7 @@
 
 -(void)changeTitleColorAndRefreshCard:(UIButton *)sender{
     
-    title_btn_tag = sender.tag;
+    title_btn = sender;
 
     
     if (sender.tag-666==0) {
@@ -185,8 +187,8 @@
  
         }
        
+        [self changeTitleColorAndRefreshCard:title_btn];
        
-        [self.Cardtable reloadData];
         NSLog(@"result===%@", result);
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         
@@ -231,13 +233,13 @@
     
     NSLog(@"[self.wholeDataArray[section] count]----%ld",[self.wholeDataArray[section] count]);
     
-    if (title_btn_tag==666) {
+    if (title_btn.tag==666) {
         
          return [self.wholeDataArray[section] count];
 
     }else{
         
-        if (title_btn_tag-666-1 ==section) {
+        if (title_btn.tag-666-1 ==section) {
             
             
             return [self.wholeDataArray[section] count];
@@ -255,12 +257,12 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (title_btn_tag==666) {
+    if (title_btn.tag==666) {
         return 0.01;//10;
         
     }else{
         
-        if (title_btn_tag-666-1 ==section) {
+        if (title_btn.tag-666-1 ==section) {
             return 0.01;//10;
             
         }else{
@@ -554,6 +556,14 @@
         PUSH(CardManagerViewController)
         
         vc.card_dic = dic;
+        vc.refresheDate = ^{
+            
+            [self postRequestVipCard];
+            
+        };
+
+        
+        
         AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
         
         appdelegate.payCardType =dic[@"card_level"];
@@ -566,6 +576,13 @@
     PUSH(MealAndExpCardManageVC)
     
         vc.card_dic = dic;
+        
+        vc.refresheDate = ^{
+            
+            [self postRequestVipCard];
+
+        };
+        
     }else if (indexPath.section ==4){
         
         

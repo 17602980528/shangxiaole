@@ -26,7 +26,7 @@
     
 //    UIImageView*backImg=[[UIImageView alloc]init];
 //    backImg.frame=CGRectMake(9, 30, 12, 20);
-//    backImg.image=[UIImage imageNamed:@"leftArrow"];
+//    backImg.image=[UIImage imageNamed:@"返回箭头"];
 //    [topView addSubview:backImg];
     
     UILabel*label=[[UILabel alloc]initWithFrame:CGRectMake(0, +20, SCREENWIDTH, 44)];

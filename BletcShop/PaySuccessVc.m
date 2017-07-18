@@ -36,7 +36,7 @@
     
     UIButton *back =[UIButton buttonWithType:UIButtonTypeCustom];
     back.frame = CGRectMake(9, 30, 12, 20);
-    [back setImage:[UIImage imageNamed:@"leftArrow"] forState:0];
+    [back setImage:[UIImage imageNamed:@"返回箭头"] forState:0];
     [back addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     
     
