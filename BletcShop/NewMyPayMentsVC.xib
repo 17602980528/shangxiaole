@@ -14,6 +14,7 @@
                 <outlet property="buyCardButton" destination="fWx-9h-Ixw" id="Ylp-jE-koN"/>
                 <outlet property="cardCostButton" destination="fsH-HS-k9J" id="vR4-et-5kN"/>
                 <outlet property="moveLine" destination="Psd-w3-qUB" id="vwm-kv-Dgy"/>
+                <outlet property="noDataNotice" destination="f85-I1-18V" id="zFs-Am-qBj"/>
                 <outlet property="tableView" destination="ljx-Ll-iPA" id="0Zp-RN-bTs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,14 +24,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ljx-Ll-iPA">
-                    <rect key="frame" x="0.0" y="45" width="375" height="622"/>
-                    <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="Bde-cd-RcG"/>
-                        <outlet property="delegate" destination="-1" id="3We-Cr-d6J"/>
-                    </connections>
-                </tableView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="无数据.png" translatesAutoresizingMaskIntoConstraints="NO" id="f85-I1-18V">
+                    <rect key="frame" x="137.5" y="245" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="WNP-cU-ej3"/>
+                        <constraint firstAttribute="width" constant="100" id="pXt-9X-VYM"/>
+                    </constraints>
+                </imageView>
                 <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oBB-2i-OZi">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                     <subviews>
@@ -83,10 +83,20 @@
                         <constraint firstItem="fsH-HS-k9J" firstAttribute="top" secondItem="oBB-2i-OZi" secondAttribute="top" id="tSC-To-lP8"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ljx-Ll-iPA">
+                    <rect key="frame" x="0.0" y="45" width="375" height="622"/>
+                    <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Bde-cd-RcG"/>
+                        <outlet property="delegate" destination="-1" id="3We-Cr-d6J"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="f85-I1-18V" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="23y-FI-3z1"/>
                 <constraint firstItem="ljx-Ll-iPA" firstAttribute="top" secondItem="oBB-2i-OZi" secondAttribute="bottom" id="4CR-nG-tLQ"/>
+                <constraint firstItem="f85-I1-18V" firstAttribute="top" secondItem="oBB-2i-OZi" secondAttribute="bottom" constant="200" id="6B9-13-w97"/>
                 <constraint firstAttribute="trailing" secondItem="ljx-Ll-iPA" secondAttribute="trailing" id="RNJ-h2-PSB"/>
                 <constraint firstItem="oBB-2i-OZi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aGk-2G-kPE"/>
                 <constraint firstItem="ljx-Ll-iPA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bFj-Od-xZs"/>
@@ -97,4 +107,7 @@
             <point key="canvasLocation" x="3" y="-121"/>
         </view>
     </objects>
+    <resources>
+        <image name="无数据.png" width="16" height="16"/>
+    </resources>
 </document>
