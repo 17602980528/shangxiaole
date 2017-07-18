@@ -12,10 +12,11 @@
 #import "AddFriendTableViewCell.h"
 #import "NewAppriseVC.h"
 @interface NoEvaluateController ()
-
+{
+    UIImageView *noneData;
+}
 @property(nonatomic,weak)UITableView *noEvaluateTable;
 @property (nonatomic,retain)NSMutableArray *noEvaluateShopArray;
-
 
 @end
 
@@ -23,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGB(240, 240, 240);
     [self _inittable];
     [self postRequestEvaluate];
 }
@@ -40,11 +41,17 @@
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
      {
          NSLog(@"result===%@", result);
-
-         NSMutableArray *evaluateArray = [result mutableCopy];
-         self.noEvaluateShopArray = evaluateArray;;
-         [self.noEvaluateTable reloadData];
-         
+         if (result&&[result count]>0) {
+             NSMutableArray *evaluateArray = [result mutableCopy];
+             self.noEvaluateShopArray = evaluateArray;;
+             [self.noEvaluateTable reloadData];
+             self.noEvaluateTable.hidden=NO;
+             noneData.hidden=YES;
+         }else{
+             self.noEvaluateTable.hidden=YES;
+             noneData.hidden=NO;
+         }
+        
      } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
          //         [self noIntenet];
          NSLog(@"%@", error);
@@ -65,6 +72,11 @@
     table.rowHeight=UITableViewAutomaticDimension;
     
     [self.view addSubview:table];
+    
+    noneData=[[UIImageView alloc]initWithFrame:CGRectMake((SCREENWIDTH-100)/2, 200, 100, 100)];
+    noneData.image=[UIImage imageNamed:@"无数据.png"];
+    [self.view addSubview:noneData];
+    
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
