@@ -1533,7 +1533,7 @@
     NSLog(@"order.body====%@",order.body);
     
 
-//    order.totalFee = [self.contentLabel.text substringFromIndex:4]; //商品价格
+    order.totalFee = [self.contentLabel.text substringFromIndex:4]; //商品价格
 //    order.totalFee = @"0.01"; //商品价格
 
     if ([self.cardListArray[_selectRow][@"type"] isEqualToString:@"套餐卡"]) {

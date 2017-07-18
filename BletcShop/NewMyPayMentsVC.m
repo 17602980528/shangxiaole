@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *cardCostButton;
 @property (weak, nonatomic) IBOutlet UIButton *buyCardButton;
 @property (weak, nonatomic) IBOutlet UIView *moveLine;
+@property (weak, nonatomic) IBOutlet UIImageView *noDataNotice;
 @property (nonatomic)NSInteger apriseOrPublish;// 0 代表评价--1 代表发布
 @property (nonatomic,retain)NSMutableArray *orderArray;
 @end
@@ -146,9 +147,15 @@
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
      {
          NSLog(@"result%@", result);
-         
-         self.orderArray = [result mutableCopy];
-         [_tableView reloadData];
+         if (result&&[result count]>0) {
+             self.orderArray = [result mutableCopy];
+             _tableView.hidden=NO;
+             _noDataNotice.hidden=YES;
+             [_tableView reloadData];
+         }else{
+             _tableView.hidden=YES;
+             _noDataNotice.hidden=NO;
+         }
          
      } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
          NSLog(@"%@", error);
