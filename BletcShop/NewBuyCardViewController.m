@@ -1206,7 +1206,7 @@
     
     
     
-    [params setObject:self.moneyString forKey:@"pay_sum"];
+    [params setObject:self.moneyString forKey:@"sum"];
 
     
     //实际支付价格.没有×100
@@ -1214,7 +1214,7 @@
     if (self.Type==Wares)
     {
         //使用商户自己的优惠券,sum为抵扣后的值,即实际支付的价格,其他不变
-        [params setObject:[self.contentLabel.text substringFromIndex:4] forKey:@"pay_sum"];
+        [params setObject:[self.contentLabel.text substringFromIndex:4] forKey:@"sum"];
 
         [params setObject:@"cp" forKey:@"pay_type"];
         [params setObject:self.coup_dic[@"coupon_id"] forKey:@"content"];
@@ -1233,7 +1233,10 @@
         [params setObject:@"null" forKey:@"pay_type"];
     }
     //实付金额×100
-       
+    
+    
+    [params setObject:[self.contentLabel.text substringFromIndex:4] forKey:@"pay_sum"];
+
     
     NSLog(@"params----%@==%@",params,url);
     
