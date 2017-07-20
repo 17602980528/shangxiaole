@@ -742,6 +742,7 @@
 		D9824F571F15BBD500301076 /* BeautyIndustryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9824F551F15BBD400301076 /* BeautyIndustryVC.m */; };
 		D9824F581F15BBD500301076 /* BeautyIndustryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9824F561F15BBD400301076 /* BeautyIndustryVC.xib */; };
 		D9824F631F188E2200301076 /* CardManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9824F621F188E2200301076 /* CardManagerViewController.xib */; };
+		D9824F741F2092CE00301076 /* MemberCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9824F731F2092CE00301076 /* MemberCenterVC.m */; };
 		D98533311DDE9A86004E1E6F /* NewBuyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D98533301DDE9A86004E1E6F /* NewBuyCardViewController.m */; };
 		D98533341DDE9B21004E1E6F /* NameSignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D98533331DDE9B21004E1E6F /* NameSignViewController.m */; };
 		D9853F7B1DD463FA0028BF94 /* UILabel+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D9853F7A1DD463FA0028BF94 /* UILabel+extension.m */; };
@@ -2201,6 +2202,8 @@
 		D9824F551F15BBD400301076 /* BeautyIndustryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeautyIndustryVC.m; sourceTree = "<group>"; };
 		D9824F561F15BBD400301076 /* BeautyIndustryVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeautyIndustryVC.xib; sourceTree = "<group>"; };
 		D9824F621F188E2200301076 /* CardManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardManagerViewController.xib; sourceTree = "<group>"; };
+		D9824F721F2092CE00301076 /* MemberCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCenterVC.h; sourceTree = "<group>"; };
+		D9824F731F2092CE00301076 /* MemberCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCenterVC.m; sourceTree = "<group>"; };
 		D985332F1DDE9A86004E1E6F /* NewBuyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewBuyCardViewController.h; sourceTree = "<group>"; };
 		D98533301DDE9A86004E1E6F /* NewBuyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewBuyCardViewController.m; sourceTree = "<group>"; };
 		D98533321DDE9B21004E1E6F /* NameSignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSignViewController.h; sourceTree = "<group>"; };
@@ -4204,6 +4207,8 @@
 			children = (
 				18D846471ED570510048F010 /* 下角标.png */,
 				18D846481ED570510048F010 /* 上角标.png */,
+				D9824F721F2092CE00301076 /* MemberCenterVC.h */,
+				D9824F731F2092CE00301076 /* MemberCenterVC.m */,
 				D9345E591E7636C2006B2AC1 /* LZDCenterViewController.h */,
 				D9345E5A1E7636C2006B2AC1 /* LZDCenterViewController.m */,
 				D990FF021E7B773B00BF7E40 /* IntegralMallViewController.h */,
@@ -6691,6 +6696,7 @@
 				18D89C641D51CE1000717B11 /* GoShopViewController.m in Sources */,
 				1CF283641C5862A200F3952A /* UIViewExt.m in Sources */,
 				D9A06B5C1D8679C30037795B /* EMCDDeviceManager+Media.m in Sources */,
+				D9824F741F2092CE00301076 /* MemberCenterVC.m in Sources */,
 				079386841C55B5CA0021B385 /* AppDelegate.mm in Sources */,
 				D9B3A5B41D74255700F3F27E /* UIButton+EMWebCache.m in Sources */,
 				1CDCCCFF1C7572130094E70D /* BaseModel.m in Sources */,
