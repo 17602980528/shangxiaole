@@ -24,6 +24,14 @@ static NSString *identifier = @"couponCellId";
 @property (nonatomic , strong) UIImageView *headImg;// 头像
 @property (nonatomic , strong) UIImageView *showImg;// 过期
 @property (nonatomic , strong) UIImageView *onlineState;//线上线下
+//
+@property (nonatomic,strong)UIView *bgView;
+@property (nonatomic,strong)UIButton *turnButton;
+@property (nonatomic,strong)UILabel *contentLable;
+@property(nonatomic,strong)UIImageView *jian;
+@property(nonatomic,strong)UIImageView *expiredView;
+@property(nonatomic,strong)UIView *topView;
+@property(nonatomic,strong)UIImageView *youjian;
 +(instancetype)couponCellWithTableView:(UITableView*)tableView;
 
 @end

@@ -12,8 +12,11 @@
 #import "CouponCell.h"
 #import "UIImageView+WebCache.h"
 #import "OFFLINEVC.h"
+#import "ExpiredCouponsVC.h"
 @interface MyCashCouponViewController ()<UITableViewDataSource,UITableViewDelegate>
-
+{
+    CGFloat heights;
+}
 @end
 
 @implementation MyCashCouponViewController
@@ -39,12 +42,12 @@
     [super viewDidLoad];
     
     self.title = @"我的优惠券";
-
-    self.view.backgroundColor = [UIColor whiteColor];
-    NSLog(@"#######%@",self.couponArray);
     
+    self.view.backgroundColor = RGB(240, 240, 240);
+    NSLog(@"#######%@",self.couponArray);
+    heights=0;
     [self _inittable];
-
+    
 }
 //无活动显示无活动
 -(void)initNoneActiveView{
@@ -76,40 +79,42 @@
     if (_useCoupon ==100) {
         
         [params setObject:self.muid forKey:@"muid"];
-
+        
     }
     NSLog(@"params---%@",params);
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         
         [hud hideAnimated:YES];
         [self.couponArray removeAllObjects];
-
+        
         DebugLog(@"result---%@",result);
-     
-            NSArray *arr = (NSArray*)result;
-            
-            if (self.useCoupon ==100) {
-                for (NSDictionary *dic in arr) {
-                    
-                    if ([dic[@"pri_condition"] floatValue] <= [self.moneyString floatValue] && [dic[@"validate"] isEqualToString:@"true"]) {
-                        
-                        
-                        [self.couponArray addObject:dic];
-
-                    }
-                    
-                }
-
+        
+        NSArray *arr = (NSArray*)result;
+        
+        if (self.useCoupon ==100) {
+            for (NSDictionary *dic in arr) {
                 
-            }else{
-                for (NSDictionary *dic in arr) {
+                if ([dic[@"pri_condition"] floatValue] <= [self.moneyString floatValue] && [dic[@"validate"] isEqualToString:@"true"]) {
+                    
                     
                     [self.couponArray addObject:dic];
+                    
                 }
- 
+                
             }
             
-      
+            
+        }else{
+            for (NSDictionary *dic in arr) {
+                NSMutableDictionary *newDic=[dic mutableCopy];
+                [newDic setObject:@"close" forKey:@"turn"];
+                [self.couponArray addObject:newDic];
+                NSLog(@"couponArray====%@",self.couponArray);
+            }
+            
+        }
+        
+        
         
         if ([self.couponArray count]==0) {
             
@@ -128,13 +133,21 @@
 //创建TableView
 -(void)_inittable
 {
-
-    
-    _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64) style:UITableViewStyleGrouped];
+    _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64-49) style:UITableViewStyleGrouped];
     _tableView.delegate=self;
     _tableView.dataSource=self;
     _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
+    
+    UIButton *checkExpiredCouponsButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    checkExpiredCouponsButton.frame=CGRectMake(0, SCREENHEIGHT-49-64, SCREENWIDTH, 49);
+    checkExpiredCouponsButton.backgroundColor=RGB(235, 235, 235);
+    [checkExpiredCouponsButton setTitleColor:RGB(94, 94, 94) forState:UIControlStateNormal];
+    [checkExpiredCouponsButton setTitle:@"查看不可用优惠券  >>" forState:UIControlStateNormal];
+    checkExpiredCouponsButton.titleLabel.font=[UIFont systemFontOfSize:12.0f];
+    [self.view addSubview:checkExpiredCouponsButton];
+    
+    [checkExpiredCouponsButton addTarget:self action:@selector(checkExpiredCouponsButtonClick) forControlEvents:UIControlEventTouchUpInside];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.couponArray.count;
@@ -147,20 +160,48 @@
         NSDictionary *dic = self.couponArray[indexPath.row];
         
         [cell.headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHOPIMAGE_ADDIMAGE,dic[@"image_url"]]]];
+        
         cell.shopNamelab.text=dic[@"store"];
-        cell.couponMoney.text=dic[@"sum"];
-        cell.deadTime.text= [NSString stringWithFormat:@"有效期:%@~%@",dic[@"date_start"],dic[@"date_end"]];
-        cell.limitLab.text=dic[@"content"];
+        
+        cell.couponMoney.text=[NSString stringWithFormat:@"%@元",dic[@"sum"]];
+        
+        cell.deadTime.text= [NSString stringWithFormat:@"%@~%@",dic[@"date_start"],dic[@"date_end"]];
+        
+        cell.limitLab.text=[NSString stringWithFormat:@"满减券 满%@元可用",dic[@"pri_condition"]];
+        
+        cell.expiredView.hidden=YES;
         if ([dic[@"validate"] isEqualToString:@"true"]) {
             cell.showImg.hidden = YES ;
         }else{
             cell.showImg.hidden = NO ;
-
+            
         }
+        
         if ([dic[@"coupon_type"] isEqualToString:@"ONLINE"]||[dic[@"coupon_type"] isEqualToString:@"null"]) {
-            cell.onlineState.image=[UIImage imageNamed:@"线上角标"];
+            cell.onlineState.image=[UIImage imageNamed:@"线上shop"];
+            cell.youjian.hidden=YES;
         }else{
-            cell.onlineState.image=[UIImage imageNamed:@"线下角标"];
+            cell.onlineState.image=[UIImage imageNamed:@"线下shop"];
+            cell.youjian.hidden=NO;
+        }
+        
+        
+        cell.contentLable.text=dic[@"content"];
+        //      cell.contentLable.text=@"此优惠活动只针对新顾客体验使用此优惠活动只针对新顾客体验使用此优惠活动只针对新顾客体验使用此优惠活动只针对新顾客体验使用此优惠活动只针对新顾客体验使用此优惠活动只针对新顾客体验使用";
+        CGFloat hh = [cell.contentLable.text boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: cell.contentLable.font} context:nil].size.height;
+        
+        cell.turnButton.tag=indexPath.row;
+        [cell.turnButton addTarget:self action:@selector(openOrClose:) forControlEvents:UIControlEventTouchUpInside];
+        if([self.couponArray[indexPath.row][@"turn"] isEqualToString:@"open"]){
+            cell.bgView.frame=CGRectMake(12, 10, SCREENWIDTH-24, 150+hh+10-34);
+            cell.contentLable.frame=CGRectMake(12, cell.turnButton.bottom+10+1, cell.bgView.width-24, hh);
+            heights=160+hh+10-34;
+            cell.jian.image=[UIImage imageNamed:@"上A"];
+        }else{
+            cell.bgView.frame=CGRectMake(12, 10, SCREENWIDTH-24, 150-34);
+            cell.contentLable.frame=CGRectMake(12, cell.turnButton.bottom+10+1, cell.bgView.width-24, 10);
+            heights=160-34;
+            cell.jian.image=[UIImage imageNamed:@"下A"];
         }
         
     }
@@ -171,11 +212,10 @@
     return 0.01;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 15;
+    return 0.01;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 150+11;
-
+    return heights;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -186,7 +226,7 @@
         if ([_couponArray[indexPath.row][@"coupon_type"] isEqualToString:@"ONLINE"]||[_couponArray[indexPath.row][@"coupon_type"] isEqualToString:@"null"]) {
             if (self.useCoupon ==100) {
                 
-            if (self.delegate && [_delegate respondsToSelector:@selector(sendValue:)]) {
+                if (self.delegate && [_delegate respondsToSelector:@selector(sendValue:)]) {
                     [_delegate sendValue:_couponArray[indexPath.row]];
                     
                     [self.navigationController popViewControllerAnimated:YES];
@@ -198,7 +238,7 @@
                 [self.navigationController pushViewController:vc animated:YES];
                 
             }
-
+            
         }else{
             //OFFLINEVC
             OFFLINEVC *vc=[[OFFLINEVC alloc]init];
@@ -217,7 +257,7 @@
     }];
     action.backgroundColor = [UIColor redColor];
     return @[];
-//    return @[action];
+    //    return @[action];
     
 }
 
@@ -231,5 +271,21 @@
         
     }];
     
+}
+-(void)openOrClose:(UIButton *)sender{
+    NSMutableDictionary *dic=self.couponArray[sender.tag];
+    if ([dic[@"turn"] isEqualToString:@"close"]) {
+        [dic setObject:@"open" forKey:@"turn"];
+    }else{
+        [dic setObject:@"close" forKey:@"turn"];
+    }
+    [self.couponArray replaceObjectAtIndex:sender.tag withObject:dic];
+    
+    [_tableView reloadData];
+}
+//去过期优惠券页面
+-(void)checkExpiredCouponsButtonClick{
+    ExpiredCouponsVC *vc=[[ExpiredCouponsVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

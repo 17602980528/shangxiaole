@@ -22,7 +22,7 @@
     if (!cell) {
         cell = [[CouponCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.selectionStyle =UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = RGB(238, 238, 238);
+        cell.backgroundColor = RGB(240, 240, 240);
     }
     
     return cell;
@@ -39,110 +39,110 @@
 }
 
 -(void)initSubViews{
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(12, 10, SCREENWIDTH-24, 116)];
+    view.backgroundColor=[UIColor whiteColor];
+    view.layer.cornerRadius=5;
+    view.clipsToBounds = YES;
+    [self addSubview:view];
     
+    self.bgView=view;
     
+    UIView *topRedView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, view.width, 6)];
+    topRedView.backgroundColor=RGB(243, 73, 78);
+    [view addSubview:topRedView];
     
-    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(12, 0, SCREENWIDTH-24, 150)];
-    backView.backgroundColor = [UIColor whiteColor];
-    backView.layer.cornerRadius=5;
-    backView.clipsToBounds = YES;
-    [self.contentView addSubview:backView];
+    self.topView=topRedView;
     
+    UIImageView *onlineImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [view addSubview:onlineImageView];
     
-    CGFloat R =(backView.width/(waveNum*2+1)/2);
-
-    
-    UIView *topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, backView.width, 92+R)];
-    topView.backgroundColor = RGB(175, 198, 242);
-    [backView addSubview:topView];
-    
-    //添加渐变色
-    CAGradientLayer *gradientLayer = [[CAGradientLayer alloc] init];
-    
-    gradientLayer.colors = @[(__bridge id)RGB(175, 198, 242).CGColor,(__bridge id)RGB(147, 218, 243).CGColor];
-    
-    
-    gradientLayer.startPoint = CGPointMake(0, 0);
-    
-    gradientLayer.endPoint = CGPointMake(0, 1);
-    
-    gradientLayer.frame = CGRectMake(0, 0, CGRectGetWidth(topView.frame), CGRectGetHeight(topView.frame));
-    
-    [topView.layer addSublayer:gradientLayer];
-    
-    self.gradientLayer = gradientLayer;
-    
-
-    SawtoothView *bottomView = [SawtoothView new];
-    
-    bottomView.frame = CGRectMake(0, topView.bottom-R, backView.width, 57+R);
-    
-    [bottomView setColor:[UIColor whiteColor] waveCount:waveNum];
-    [backView addSubview:bottomView];
-    
-    
-    
-    UIImageView *headImage=[[UIImageView alloc]initWithFrame:CGRectMake(11, 23, 60, 60)];
-    headImage.image=[UIImage imageNamed:@"5-01"];
-    headImage.layer.cornerRadius=headImage.width/2;
-    headImage.clipsToBounds=YES;
-    [topView addSubview:headImage];
-    self.headImg = headImage;
-    
-    UILabel *shopNameLable=[[UILabel alloc]initWithFrame:CGRectMake(headImage.right+12, 46, topView.width*2/3-83, 15)];
-    shopNameLable.text=@"森林雨火锅";
-    shopNameLable.font=[UIFont systemFontOfSize:15.0f];
-    shopNameLable.textColor=[UIColor whiteColor];
-    [topView addSubview:shopNameLable];
-    self.shopNamelab = shopNameLable;
-
-    UILabel *Y_lab = [[UILabel alloc]initWithFrame:CGRectMake(topView.width*2/3, 47, 10, 13)];
-    Y_lab.text = @"¥";
-    Y_lab.textColor = [UIColor whiteColor];
-    Y_lab.font = [UIFont systemFontOfSize:17];
-    [topView addSubview:Y_lab];
-    
-
-    UILabel *couponMoney=[[UILabel alloc]initWithFrame:CGRectMake(Y_lab.right+9, 40, topView.width/3-9-13, 27)];
-    couponMoney.text=@"20";
-    couponMoney.font=[UIFont systemFontOfSize:36.0f];
-    couponMoney.textColor = [UIColor whiteColor];
-    [topView addSubview:couponMoney];
-    self.couponMoney = couponMoney;
-    
-   
-    UILabel *deadTime=[[UILabel alloc]initWithFrame:CGRectMake(10, 14, bottomView.width-10, 13)];
-    deadTime.text=@"使用期限：2017.2.18 ~ 2017.5.18";
-    deadTime.font=[UIFont systemFontOfSize:13.0f];
-    deadTime.textColor=RGB(102,102,102);
-    [bottomView addSubview:deadTime];
-    self.deadTime = deadTime;
-    
-    UILabel *limitLab=[[UILabel alloc]initWithFrame:CGRectMake(10, deadTime.bottom+8, bottomView.width-10, 13)];
-    limitLab.text=@"消费满500可用";
-    limitLab.font=[UIFont systemFontOfSize:13.0f];
-    limitLab.textColor=RGB(102,102,102);
-    [bottomView addSubview:limitLab];
-
-    self.limitLab = limitLab;
-    
-        UIImageView *validateImg = [[UIImageView alloc]init];
-        
-        validateImg.bounds = CGRectMake(0, 0, backView.height*0.8, backView.height*0.8);
-        validateImg.center = CGPointMake(SCREENWIDTH -backView.height*0.8, backView.center.y);
-    validateImg.layer.cornerRadius = validateImg.height/2;
-    validateImg.layer.masksToBounds = YES;
-    validateImg.hidden = NO;
-    validateImg.image = [UIImage imageNamed:@"WechatIMG16"];
-//        validateImg.backgroundColor = RGB(234, 234, 234);
-        [self addSubview:validateImg];
- 
-    self.showImg = validateImg;
-    
-    UIImageView *onlineImageView=[[UIImageView alloc]initWithFrame:CGRectMake(backView.width-40, 0, 40, 40)];
-    onlineImageView.image=[UIImage imageNamed:@"线上角标"];
-    [backView addSubview:onlineImageView];
     self.onlineState=onlineImageView;
+    
+    
+    UIImageView *headImageView=[[UIImageView alloc]initWithFrame:CGRectMake(17, 19, 51, 51)];
+    headImageView.layer.cornerRadius=headImageView.width*0.5;
+    headImageView.clipsToBounds=YES;
+    [view addSubview:headImageView];
+    
+    self.headImg=headImageView;
+    
+    UILabel *shopName=[[UILabel alloc]initWithFrame:CGRectMake(83, topRedView.bottom+9, view.width-83-5, 13)];
+    shopName.font=[UIFont systemFontOfSize:14.0f];
+    shopName.textColor=RGB(51, 51, 51);
+    [view addSubview:shopName];
+    
+    self.shopNamelab=shopName;
+    
+    UILabel *useLimit=[[UILabel alloc]initWithFrame:CGRectMake(83, shopName.bottom+11, 120, 12)];
+    useLimit.font= [UIFont systemFontOfSize:12.0f];
+    useLimit.textColor=RGB(243, 73, 78);
+    self.limitLab=useLimit;
+    [view addSubview:useLimit];
+    
+    UILabel *useTime=[[UILabel alloc]initWithFrame:CGRectMake(83, useLimit.bottom+12, view.width-83, 10)];
+    useTime.font=[UIFont systemFontOfSize:12.0f];
+    useTime.textColor=RGB(51, 51, 51);
+    [view addSubview:useTime];
+    
+    self.deadTime=useTime;
+    
+    UIImageView *more=[[UIImageView alloc]initWithFrame:CGRectMake(view.width-18-6, 38, 6, 12)];
+    more.image=[UIImage imageNamed:@"youjiantou"];
+    [view addSubview:more];
+    
+    self.youjian=more;
+    
+    UIView *line=[[UIView alloc]initWithFrame:CGRectMake(18, 84, view.width-36, 1)];
+    line.backgroundColor=RGB(231, 231, 231);
+    [view addSubview:line];
+    
+    UIView *leftCircle=[[UIView alloc]initWithFrame:CGRectMake(-9, 84-9, 18, 18)];
+    leftCircle.backgroundColor=RGB(240, 240, 240);
+    leftCircle.layer.cornerRadius=9.0f;
+    leftCircle.clipsToBounds=YES;
+    [view addSubview:leftCircle];
+    
+    UIView *rightCircle=[[UIView alloc]initWithFrame:CGRectMake(line.right+9, 84-9, 16, 16)];
+    rightCircle.backgroundColor=RGB(240, 240, 240);
+    rightCircle.layer.cornerRadius=9.0f;
+    rightCircle.clipsToBounds=YES;
+    [view addSubview:rightCircle];
+    
+    UILabel *detail=[[UILabel alloc]initWithFrame:CGRectMake(18, line.bottom+10, 25, 12)];
+    detail.font=[UIFont systemFontOfSize:12];
+    detail.textColor=RGB(132, 132, 132);
+    detail.text=@"详情";
+    [view addSubview:detail];
+    
+    UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    button.frame=CGRectMake(0, 100-44+10, 80, 40);
+    [view addSubview:button];
+    
+    self.turnButton=button;
+    
+    
+    UILabel *messageLable=[[UILabel alloc]initWithFrame:CGRectMake(12, button.bottom+6 , view.width-24, 10)];
+    messageLable.textColor=RGB(132, 132, 132);
+    messageLable.font=[UIFont systemFontOfSize:12.0f];
+    messageLable.numberOfLines=0;
+    [view addSubview:messageLable];
+    
+    self.contentLable=messageLable;
+    
+    UIImageView *jiantou=[[UIImageView alloc]initWithFrame:CGRectMake(detail.right+4, line.bottom+13, 10, 10)];
+    [view addSubview:jiantou];
+    self.jian=jiantou;
+    
+    UILabel *couponMoney=[[UILabel alloc]initWithFrame:CGRectMake(useLimit.right +40, 35, 80, 18)];
+    couponMoney.font=[UIFont systemFontOfSize:14.0f];
+    couponMoney.textColor=RGB(243, 73, 78);
+    [view addSubview:couponMoney];
+    self.couponMoney=couponMoney;
+    
+    UIImageView *expiredCoupon=[[UIImageView alloc]initWithFrame:CGRectMake(view.width-51, topRedView.bottom, 51, 45)];
+    [view addSubview:expiredCoupon];
+    self.expiredView=expiredCoupon;
     
 }
 -(void)setShopNamelab:(UILabel *)shopNamelab{
@@ -152,7 +152,7 @@
 -(void)setGradientLayer:(CAGradientLayer *)gradientLayer{
     
     _gradientLayer = gradientLayer;
-
+    
     
 }
 @end

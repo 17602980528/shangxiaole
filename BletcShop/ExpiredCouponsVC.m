@@ -1,0 +1,165 @@
+//
+//  ExpiredCouponsVC.m
+//  BletcShop
+//
+//  Created by apple on 2017/7/20.
+//  Copyright © 2017年 bletc. All rights reserved.
+//
+
+#import "ExpiredCouponsVC.h"
+#import "CouponCell.h"
+#import "UIImageView+WebCache.h"
+@interface ExpiredCouponsVC ()
+{
+    CGFloat heights;
+}
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@end
+
+@implementation ExpiredCouponsVC
+{
+    __block MBProgressHUD *hud;
+}
+-(NSMutableArray *)couponArray{
+    if (!_couponArray) {
+        _couponArray = [NSMutableArray array];
+    }
+    return _couponArray;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationItem.title=@"不可用优惠券";
+    heights=0;
+    [self postRequestCashCoupon];
+}
+-(void)postRequestCashCoupon
+{
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/coupon/userGet",BASEURL];
+    
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
+    
+    NSLog(@"params---%@",params);
+    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        
+        [hud hideAnimated:YES];
+        [self.couponArray removeAllObjects];
+        
+        DebugLog(@"result---%@",result);
+        
+        NSArray *arr = (NSArray*)result;
+        
+        for (NSDictionary *dic in arr) {
+                NSMutableDictionary *newDic=[dic mutableCopy];
+                [newDic setObject:@"close" forKey:@"turn"];
+                [self.couponArray addObject:newDic];
+                NSLog(@"couponArray====%@",self.couponArray);
+            }
+        
+        [_tableView reloadData];
+        
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [hud hideAnimated:YES afterDelay:3.f];
+        NSLog(@"%@", error);
+    }];
+    
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.couponArray.count;
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CouponCell *cell = [CouponCell couponCellWithTableView:tableView];
+    
+    if (self.couponArray.count!=0) {
+        NSDictionary *dic = self.couponArray[indexPath.row];
+        
+        [cell.headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHOPIMAGE_ADDIMAGE,dic[@"image_url"]]]];
+        
+        cell.shopNamelab.text=dic[@"store"];
+        
+        cell.couponMoney.text=[NSString stringWithFormat:@"%@元",dic[@"sum"]];
+        
+        cell.deadTime.text= [NSString stringWithFormat:@"%@~%@",dic[@"date_start"],dic[@"date_end"]];
+        
+        cell.limitLab.text=[NSString stringWithFormat:@"满减券 满%@元可用",dic[@"pri_condition"]];
+        
+        cell.expiredView.image=[UIImage imageNamed:@"已过期——印章"];
+        
+        cell.topView.backgroundColor=RGB(130, 130, 130);
+        cell.youjian.hidden=YES;
+        if ([dic[@"coupon_type"] isEqualToString:@"ONLINE"]||[dic[@"coupon_type"] isEqualToString:@"null"]) {
+            cell.onlineState.image=[UIImage imageNamed:@"已过期-线上"];
+           // cell.youjian.hidden=YES;
+        }else{
+            cell.onlineState.image=[UIImage imageNamed:@"已过期-线下"];
+            //cell.youjian.hidden=YES;
+        }
+        
+        
+        cell.contentLable.text=dic[@"content"];
+        //      cell.contentLable.text=@"此优惠活动只针对新顾客体验使用此优惠活动只针对新顾客体验使用此优惠活动只针对新顾客体验使用此优惠活动只针对新顾客体验使用此优惠活动只针对新顾客体验使用此优惠活动只针对新顾客体验使用";
+        CGFloat hh = [cell.contentLable.text boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: cell.contentLable.font} context:nil].size.height;
+        
+        cell.turnButton.tag=indexPath.row;
+        [cell.turnButton addTarget:self action:@selector(openOrClose:) forControlEvents:UIControlEventTouchUpInside];
+        if([self.couponArray[indexPath.row][@"turn"] isEqualToString:@"open"]){
+            cell.bgView.frame=CGRectMake(12, 10, SCREENWIDTH-24, 150+hh+10-34);
+            cell.contentLable.frame=CGRectMake(12, cell.turnButton.bottom+10+1, cell.bgView.width-24, hh);
+            heights=160+hh+10-34;
+            cell.jian.image=[UIImage imageNamed:@"上A"];
+        }else{
+            cell.bgView.frame=CGRectMake(12, 10, SCREENWIDTH-24, 150-34);
+            cell.contentLable.frame=CGRectMake(12, cell.turnButton.bottom+10+1, cell.bgView.width-24, 10);
+            heights=160-34;
+            cell.jian.image=[UIImage imageNamed:@"下A"];
+        }
+        
+    }
+    
+    return cell;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.01;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return heights;
+}
+
+-(void)openOrClose:(UIButton *)sender{
+    NSMutableDictionary *dic=self.couponArray[sender.tag];
+    if ([dic[@"turn"] isEqualToString:@"close"]) {
+        [dic setObject:@"open" forKey:@"turn"];
+    }else{
+        [dic setObject:@"close" forKey:@"turn"];
+    }
+    [self.couponArray replaceObjectAtIndex:sender.tag withObject:dic];
+    
+    [_tableView reloadData];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

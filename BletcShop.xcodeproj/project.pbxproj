@@ -182,6 +182,13 @@
 		18EDCF731D460659004C40B7 /* custom1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EDCF711D460659004C40B7 /* custom1.png */; };
 		18EDCF741D460659004C40B7 /* custom2.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EDCF721D460659004C40B7 /* custom2.png */; };
 		18EEE6E21D49940F00E168B4 /* Icon-240.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EEE6E11D49940F00E168B4 /* Icon-240.png */; };
+		18EFA0B61F205D1E00360C8A /* ExpiredCouponsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EFA0B41F205D1E00360C8A /* ExpiredCouponsVC.m */; };
+		18EFA0B71F205D1E00360C8A /* ExpiredCouponsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EFA0B51F205D1E00360C8A /* ExpiredCouponsVC.xib */; };
+		18EFA0BD1F205D3700360C8A /* 上A.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EFA0B81F205D3700360C8A /* 上A.png */; };
+		18EFA0BE1F205D3700360C8A /* 下A.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EFA0B91F205D3700360C8A /* 下A.png */; };
+		18EFA0BF1F205D3700360C8A /* 已过期-线上.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EFA0BA1F205D3700360C8A /* 已过期-线上.png */; };
+		18EFA0C01F205D3700360C8A /* 已过期-线下.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EFA0BB1F205D3700360C8A /* 已过期-线下.png */; };
+		18EFA0C11F205D3700360C8A /* 已过期——印章.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EFA0BC1F205D3700360C8A /* 已过期——印章.png */; };
 		18F031F11E5EB8C100ACD261 /* ConvertRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F031F01E5EB8C100ACD261 /* ConvertRecordVC.m */; };
 		18F031F41E5ED34300ACD261 /* PointAllGetAndCostsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F031F31E5ED34300ACD261 /* PointAllGetAndCostsVC.m */; };
 		18F032021E5ED79300ACD261 /* coupon.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18F031F51E5ED79300ACD261 /* coupon.jpeg */; };
@@ -1310,6 +1317,14 @@
 		18EDCF711D460659004C40B7 /* custom1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom1.png; sourceTree = "<group>"; };
 		18EDCF721D460659004C40B7 /* custom2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom2.png; sourceTree = "<group>"; };
 		18EEE6E11D49940F00E168B4 /* Icon-240.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-240.png"; sourceTree = "<group>"; };
+		18EFA0B31F205D1E00360C8A /* ExpiredCouponsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpiredCouponsVC.h; sourceTree = "<group>"; };
+		18EFA0B41F205D1E00360C8A /* ExpiredCouponsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpiredCouponsVC.m; sourceTree = "<group>"; };
+		18EFA0B51F205D1E00360C8A /* ExpiredCouponsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpiredCouponsVC.xib; sourceTree = "<group>"; };
+		18EFA0B81F205D3700360C8A /* 上A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上A.png"; sourceTree = "<group>"; };
+		18EFA0B91F205D3700360C8A /* 下A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "下A.png"; sourceTree = "<group>"; };
+		18EFA0BA1F205D3700360C8A /* 已过期-线上.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "已过期-线上.png"; sourceTree = "<group>"; };
+		18EFA0BB1F205D3700360C8A /* 已过期-线下.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "已过期-线下.png"; sourceTree = "<group>"; };
+		18EFA0BC1F205D3700360C8A /* 已过期——印章.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "已过期——印章.png"; sourceTree = "<group>"; };
 		18F031EF1E5EB8C100ACD261 /* ConvertRecordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertRecordVC.h; sourceTree = "<group>"; };
 		18F031F01E5EB8C100ACD261 /* ConvertRecordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvertRecordVC.m; sourceTree = "<group>"; };
 		18F031F21E5ED34300ACD261 /* PointAllGetAndCostsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointAllGetAndCostsVC.h; sourceTree = "<group>"; };
@@ -4224,8 +4239,16 @@
 				18D8464B1ED591630048F010 /* 线下角标.png */,
 				D936F5811D473CBF00424B22 /* MyCashCouponViewController.h */,
 				D936F5821D473CBF00424B22 /* MyCashCouponViewController.m */,
+				18EFA0B31F205D1E00360C8A /* ExpiredCouponsVC.h */,
+				18EFA0B41F205D1E00360C8A /* ExpiredCouponsVC.m */,
+				18EFA0B51F205D1E00360C8A /* ExpiredCouponsVC.xib */,
 				187E94BC1ED2D8FF007EF19F /* OFFLINEVC.h */,
 				187E94BD1ED2D8FF007EF19F /* OFFLINEVC.m */,
+				18EFA0B81F205D3700360C8A /* 上A.png */,
+				18EFA0B91F205D3700360C8A /* 下A.png */,
+				18EFA0BA1F205D3700360C8A /* 已过期-线上.png */,
+				18EFA0BB1F205D3700360C8A /* 已过期-线下.png */,
+				18EFA0BC1F205D3700360C8A /* 已过期——印章.png */,
 			);
 			name = "我的代金券";
 			sourceTree = "<group>";
@@ -6010,6 +6033,7 @@
 				182F3C661F0CEFC600540FAE /* 导角矩形上.png in Resources */,
 				D93C0D611D251E7B001A1AC1 /* 小标-16.png in Resources */,
 				D94DF2331CAE08AB000D5B69 /* colletc_default.png in Resources */,
+				18EFA0C01F205D3700360C8A /* 已过期-线下.png in Resources */,
 				180D0D4C1F0E205800A39790 /* 设置   矩形.png in Resources */,
 				182F3C511F0CEDA800540FAE /* 返回erci.png in Resources */,
 				D9AE75391D2E39AD00269EC5 /* back_03.png in Resources */,
@@ -6134,6 +6158,7 @@
 				1CF6E4631C6199BC0001159C /* Card.png in Resources */,
 				D94B86E71D6BED5D00E15A70 /* app_icon3.png in Resources */,
 				18F0320E1E5ED79300ACD261 /* tempProducts_09.jpg in Resources */,
+				18EFA0BF1F205D3700360C8A /* 已过期-线上.png in Resources */,
 				1CDA9E041C59FAB300DFE518 /* seller.png in Resources */,
 				18F27EEE1D640E84002DD03A /* 头像-6.png in Resources */,
 				1C9E82441C60557E0007BF02 /* 5(5)@2x.png in Resources */,
@@ -6372,10 +6397,12 @@
 				18518D591E7945A000067D95 /* s_money_n@3x.png in Resources */,
 				D947E4651D7D3BBA00F9FEE8 /* 聊天键盘-icon-选择照片@2x.png in Resources */,
 				1C9E82411C60557E0007BF02 /* 5(8)@2x.png in Resources */,
+				18EFA0BD1F205D3700360C8A /* 上A.png in Resources */,
 				185A45A01F1371060033AFE3 /* 默认sex.png in Resources */,
 				18148E791F186EF1001C86AC /* VipCardHomeTableViewCell.xib in Resources */,
 				1CF6E4881C61F1C90001159C /* huiyuanzhi.png in Resources */,
 				1CF6E47E1C61E4350001159C /* jici@2x.png in Resources */,
+				18EFA0B71F205D1E00360C8A /* ExpiredCouponsVC.xib in Resources */,
 				18EB36B91D4B4B5B0087CE1A /* 未标题-1-04.png in Resources */,
 				1C2ED1121C5B1827003EE93B /* 3-02@2x.png in Resources */,
 				185A45A61F137D010033AFE3 /* MorePubTableViewCell.xib in Resources */,
@@ -6401,6 +6428,7 @@
 				180D0D431F0DDC5C00A39790 /* 店铺icon.png in Resources */,
 				18EB36BE1D4B4B5B0087CE1A /* 未标题-1-09.png in Resources */,
 				D93027DE1CFEB26B007447D2 /* share_grade_star.png in Resources */,
+				18EFA0C11F205D3700360C8A /* 已过期——印章.png in Resources */,
 				1C9E82571C60AD390007BF02 /* 0-01.png in Resources */,
 				18FA58DE1EEA92C900F458F2 /* 姓名she@3x.png in Resources */,
 				1CDA9E021C59FAB300DFE518 /* buyer.png in Resources */,
@@ -6461,6 +6489,7 @@
 				18FA58D71EEA769C00F458F2 /* NewUserSetPassVC.xib in Resources */,
 				D98FDF871E601C280057C206 /* AD_ad_tb@3x.png in Resources */,
 				D97F60031D62BFF8000EE794 /* line@2x.png in Resources */,
+				18EFA0BE1F205D3700360C8A /* 下A.png in Resources */,
 				18EB36C01D4B5A2E0087CE1A /* 反1-01.png in Resources */,
 				18F27EFF1D640E84002DD03A /* 头像-23.png in Resources */,
 				D98559481E1605C3003D9423 /* 启动页(1).png in Resources */,
@@ -6673,6 +6702,7 @@
 				18D43E481ED6D4EC0077861A /* WYWebProgressLayer.m in Sources */,
 				18A7E3E61F0227B300C14C98 /* NewShopComeInTableViewCell.m in Sources */,
 				D9ACF1AF1E24CB4200BCC877 /* thirdlogVC.m in Sources */,
+				18EFA0B61F205D1E00360C8A /* ExpiredCouponsVC.m in Sources */,
 				D9345E6A1E769805006B2AC1 /* TopActiveListTableVC.m in Sources */,
 				D98E5B8F1E5150FC009D56BF /* GetDiscountCouponVC.m in Sources */,
 				18148E611F173B67001C86AC /* NewMyPayMentsVC.m in Sources */,
