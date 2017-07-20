@@ -75,7 +75,7 @@
     
     
     LZDButton *rightBtn = [LZDButton creatLZDButton];
-    rightBtn.frame = CGRectMake(scre, 0, 60, 44);
+    rightBtn.bounds = CGRectMake(0, 0, 80, 44);
     [rightBtn setTitle:@"积分知识" forState:0];
     [rightBtn setTitleColor:RGB(51,51,51) forState:0];
     rightBtn.titleLabel.font = [UIFont systemFontOfSize:15];
