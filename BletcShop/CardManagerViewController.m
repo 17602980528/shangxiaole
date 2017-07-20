@@ -120,7 +120,7 @@
     self.navigationItem.title = @"会员卡";
     
     titles_array = @[@"我要续卡",@"我要升级",@"申请延期",@"我要预约",@"家庭共享",@"卡片转让",@"我要分享",@"投诉理赔"];
-    imageNameArray=@[@"vip_renewal_n",@"vip_upgrade_n",@"vip_delay_n",@"vip_order_n",@"vip_share_n",@"VIP_icon_sha_n",@"VIP_icon_ref_n",@"VIP_icon_comp_n"];
+    imageNameArray=@[@"会员卡-续卡-2017",@"会员卡-升级-2017",@"会员卡-延期-2017",@"会员卡-预约-2017",@"会员卡-共享-2017",@"会员卡-转让-2017",@"会员卡-分享-2017",@"会员卡-理赔-2017"];
     
     [self postRequestAllInfo];
 
