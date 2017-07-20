@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntegralKnowledgeVC">
+            <connections>
+                <outlet property="getLab" destination="jHj-B1-3gX" id="VJn-H9-wNy"/>
+                <outlet property="noticeLab" destination="eAd-iq-gmM" id="I1R-wV-3S5"/>
+                <outlet property="useLab" destination="tnc-4n-kJx" id="n0h-Pa-F7N"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如何获取商消乐积分？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9n-VA-YnT">
+                    <rect key="frame" x="14" y="16" width="361" height="13"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="13" id="6sY-WD-CFo"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHj-B1-3gX">
+                    <rect key="frame" x="27" y="39" width="323" height="100.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="Xts-fq-iCO"/>
+                    </constraints>
+                    <string key="text">1）完善个人信息，送20积分； 2）签到送20积分，连续签到第7天当天送50积分； 3）消费1元送1个积分； 4）每分享一次可得20积分，每天最多5次； 5）每推荐一位用户注册，送500积分；推荐新用户注册同时送5元红包； 6）每推荐一位商户入驻，送10000积分；推荐商户入驻同时送50元红包； 7）评价一次可得5积分；每消费1次享有1次评论送积分机会。 备注：以上积分按单次计算，累计可叠加。</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.57647058823529407" green="0.57647058823529407" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商消乐积分有什么用？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9u-HY-oGt">
+                    <rect key="frame" x="14" y="153.5" width="361" height="13"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="13" id="jcm-8c-EdL"/>
+                        <constraint firstAttribute="height" constant="13" id="pN5-OV-ig7"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户获取商消乐积分后，可在APP首页“会员中心”和我的“积分商城”中查询； 1）抵用现金：在商消乐购买产品时，系统显示是否使用积分及最大可使用积分数（100积分=1元）； 2）在“会员中心”的“积分商城”中可兑换商品。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnc-4n-kJx">
+                    <rect key="frame" x="27" y="176.5" width="323" height="57.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="120" id="ATO-Vk-ETu"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.57647058819999997" green="0.57647058819999997" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="特别提醒" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pGj-eF-qUF">
+                    <rect key="frame" x="14" y="249" width="361" height="13"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="13" id="9Fy-s3-jP6"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="13" id="JNR-kS-aiI"/>
+                        <constraint firstAttribute="height" constant="13" id="tqY-yE-BE9"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1）积分可以累积，有效期至次年年底，逾期自动作废（例如商消乐积分获取时间为2017年5月31日，有效期至2018年12月31日，过期作废）； 2）积分不能兑现，不可转让" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAd-iq-gmM">
+                    <rect key="frame" x="27" y="272" width="323" height="43"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="pbr-T2-fEd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.57647058819999997" green="0.57647058819999997" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="o9n-VA-YnT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="2nG-EF-y4P"/>
+                <constraint firstItem="pGj-eF-qUF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="4wO-tz-mb7"/>
+                <constraint firstAttribute="trailing" secondItem="jHj-B1-3gX" secondAttribute="trailing" constant="25" id="5P7-x9-gcE"/>
+                <constraint firstItem="I9u-HY-oGt" firstAttribute="top" secondItem="jHj-B1-3gX" secondAttribute="bottom" constant="14" id="6Dt-Ib-Vh6"/>
+                <constraint firstItem="eAd-iq-gmM" firstAttribute="top" secondItem="pGj-eF-qUF" secondAttribute="bottom" constant="10" id="BzK-de-QaS"/>
+                <constraint firstItem="tnc-4n-kJx" firstAttribute="top" secondItem="I9u-HY-oGt" secondAttribute="bottom" constant="10" id="DWy-7P-lXa"/>
+                <constraint firstItem="o9n-VA-YnT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="N10-On-S1a"/>
+                <constraint firstItem="jHj-B1-3gX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="27" id="S1n-vb-lvn"/>
+                <constraint firstItem="jHj-B1-3gX" firstAttribute="top" secondItem="o9n-VA-YnT" secondAttribute="bottom" constant="10" id="TS9-il-gUi"/>
+                <constraint firstAttribute="trailing" secondItem="o9n-VA-YnT" secondAttribute="trailing" id="YhZ-1L-oJN"/>
+                <constraint firstAttribute="trailing" secondItem="I9u-HY-oGt" secondAttribute="trailing" id="cNx-tq-eS0"/>
+                <constraint firstItem="tnc-4n-kJx" firstAttribute="trailing" secondItem="jHj-B1-3gX" secondAttribute="trailing" id="czi-d2-6pM"/>
+                <constraint firstAttribute="trailing" secondItem="pGj-eF-qUF" secondAttribute="trailing" id="eYd-b4-mrK"/>
+                <constraint firstItem="tnc-4n-kJx" firstAttribute="leading" secondItem="jHj-B1-3gX" secondAttribute="leading" id="iB2-6I-CLa"/>
+                <constraint firstItem="I9u-HY-oGt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="mlp-fs-By9"/>
+                <constraint firstItem="pGj-eF-qUF" firstAttribute="top" secondItem="tnc-4n-kJx" secondAttribute="bottom" constant="15" id="wfA-Jo-ONZ"/>
+                <constraint firstItem="eAd-iq-gmM" firstAttribute="leading" secondItem="tnc-4n-kJx" secondAttribute="leading" id="wuJ-Ft-c0E"/>
+                <constraint firstItem="eAd-iq-gmM" firstAttribute="trailing" secondItem="tnc-4n-kJx" secondAttribute="trailing" id="yEL-Ck-6ov"/>
+            </constraints>
+            <point key="canvasLocation" x="152" y="7"/>
+        </view>
+    </objects>
+</document>

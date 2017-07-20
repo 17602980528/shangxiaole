@@ -13,6 +13,7 @@
 #import "LandingController.h"
 #import "SDCycleScrollView.h"
 #import "THProgressView.h"
+#import "IntegralKnowledgeVC.h"
 
 #import "ConvertRecordCell.h"
 #import "ConvertCostVC.h"
@@ -68,7 +69,7 @@
 
 -(void)goclick{
     
-    
+    PUSH(IntegralKnowledgeVC)
     
 }
 - (void)viewDidLoad {
@@ -142,7 +143,7 @@
     convertLabel.font=[UIFont systemFontOfSize:14.0f];
     convertLabel.textColor=RGB(243,73,78);
     
-    convertLabel.text= [NSString stringWithFormat:@"%ld积分",[pointAndSign_dic[@"integral"] integerValue] ];
+    convertLabel.text= [NSString stringWithFormat:@"积分:%ld",[pointAndSign_dic[@"integral"] integerValue] ];
     [headView addSubview:convertLabel];
     
     signBtn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -169,7 +170,7 @@
         NSURL * nurl1=[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,[delegate.userInfoDic objectForKey:@"headimage"]]];
         
         [headImageView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
-        [signBtn addTarget:self action:@selector(signBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [signBtn addTarget:self action:@selector(signBtnClick) forControlEvents:UIControlEventTouchUpInside];
         
         
     }else{
@@ -782,7 +783,7 @@
 
 
 //签到
--(void)signBtnClick:(UIButton*)sender{
+-(void)signBtnClick{
     
     
     NSString *url =[[NSString alloc]initWithFormat:@"%@Extra/mall/sign",BASEURL ];
@@ -810,6 +811,18 @@
     
 }
 
+
+-(void)goLandingOrNot{
+    AppDelegate *delegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (!delegate.IsLogin)
+    {
+        LandingController *landVc = [[LandingController alloc]init];
+        [self.navigationController pushViewController:landVc animated:YES];
+    }else{
+        [self signBtnClick];
+    }
+    
+}
 #pragma mark 数据请求
 
 //领取优惠券;
@@ -1056,11 +1069,15 @@
             
             pointAndSign_dic = [NSDictionary dictionaryWithDictionary:result];
             
-            convertLabel.text= [NSString stringWithFormat:@"%ld积分",[pointAndSign_dic[@"integral"] integerValue] ];
+            convertLabel.text= [NSString stringWithFormat:@"积分:%ld",[pointAndSign_dic[@"integral"] integerValue] ];
             
             if ([pointAndSign_dic[@"signed"]isEqualToString:@"yes"]) {
                 [signBtn setTitle:@"已签到" forState:UIControlStateNormal];
-                signBtn.backgroundColor=RGB(202, 202, 202);
+                signBtn.backgroundColor=[UIColor whiteColor];
+                signBtn.layer.borderWidth = 1;
+                signBtn.layer.borderColor =RGB(243,73,78).CGColor;
+                [signBtn setTitleColor:RGB(243,73,78) forState:UIControlStateNormal];
+
                 
                 
                 signBtn.enabled = NO;
@@ -1068,7 +1085,8 @@
                 signBtn.enabled = YES;
                 
                 [signBtn setTitle:@"签到" forState:UIControlStateNormal];
-                signBtn.backgroundColor=NavBackGroundColor;
+                signBtn.backgroundColor=RGB(243,73,78);
+                [signBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             }
 
 
@@ -1083,15 +1101,7 @@
 }
 
 
--(void)goLandingOrNot{
-    AppDelegate *delegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (!delegate.IsLogin)
-    {
-        LandingController *landVc = [[LandingController alloc]init];
-        [self.navigationController pushViewController:landVc animated:YES];
-    }
-    
-}
+
 
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{

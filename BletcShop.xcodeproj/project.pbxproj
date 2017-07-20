@@ -743,6 +743,8 @@
 		D9824F581F15BBD500301076 /* BeautyIndustryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9824F561F15BBD400301076 /* BeautyIndustryVC.xib */; };
 		D9824F631F188E2200301076 /* CardManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9824F621F188E2200301076 /* CardManagerViewController.xib */; };
 		D9824F741F2092CE00301076 /* MemberCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9824F731F2092CE00301076 /* MemberCenterVC.m */; };
+		D9824F791F2096C300301076 /* IntegralKnowledgeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9824F771F2096C300301076 /* IntegralKnowledgeVC.m */; };
+		D9824F7A1F2096C300301076 /* IntegralKnowledgeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9824F781F2096C300301076 /* IntegralKnowledgeVC.xib */; };
 		D98533311DDE9A86004E1E6F /* NewBuyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D98533301DDE9A86004E1E6F /* NewBuyCardViewController.m */; };
 		D98533341DDE9B21004E1E6F /* NameSignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D98533331DDE9B21004E1E6F /* NameSignViewController.m */; };
 		D9853F7B1DD463FA0028BF94 /* UILabel+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D9853F7A1DD463FA0028BF94 /* UILabel+extension.m */; };
@@ -2204,6 +2206,9 @@
 		D9824F621F188E2200301076 /* CardManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardManagerViewController.xib; sourceTree = "<group>"; };
 		D9824F721F2092CE00301076 /* MemberCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCenterVC.h; sourceTree = "<group>"; };
 		D9824F731F2092CE00301076 /* MemberCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCenterVC.m; sourceTree = "<group>"; };
+		D9824F761F2096C300301076 /* IntegralKnowledgeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralKnowledgeVC.h; sourceTree = "<group>"; };
+		D9824F771F2096C300301076 /* IntegralKnowledgeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralKnowledgeVC.m; sourceTree = "<group>"; };
+		D9824F781F2096C300301076 /* IntegralKnowledgeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntegralKnowledgeVC.xib; sourceTree = "<group>"; };
 		D985332F1DDE9A86004E1E6F /* NewBuyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewBuyCardViewController.h; sourceTree = "<group>"; };
 		D98533301DDE9A86004E1E6F /* NewBuyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewBuyCardViewController.m; sourceTree = "<group>"; };
 		D98533321DDE9B21004E1E6F /* NameSignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSignViewController.h; sourceTree = "<group>"; };
@@ -4207,6 +4212,7 @@
 			children = (
 				18D846471ED570510048F010 /* 下角标.png */,
 				18D846481ED570510048F010 /* 上角标.png */,
+				D9824F751F20967C00301076 /* 积分知识 */,
 				D9824F721F2092CE00301076 /* MemberCenterVC.h */,
 				D9824F731F2092CE00301076 /* MemberCenterVC.m */,
 				D9345E591E7636C2006B2AC1 /* LZDCenterViewController.h */,
@@ -4965,6 +4971,16 @@
 				D9824F561F15BBD400301076 /* BeautyIndustryVC.xib */,
 			);
 			name = "美业频道";
+			sourceTree = "<group>";
+		};
+		D9824F751F20967C00301076 /* 积分知识 */ = {
+			isa = PBXGroup;
+			children = (
+				D9824F761F2096C300301076 /* IntegralKnowledgeVC.h */,
+				D9824F771F2096C300301076 /* IntegralKnowledgeVC.m */,
+				D9824F781F2096C300301076 /* IntegralKnowledgeVC.xib */,
+			);
+			name = "积分知识";
 			sourceTree = "<group>";
 		};
 		D98533351DDE9B25004E1E6F /* 用户信息 */ = {
@@ -6349,6 +6365,7 @@
 				D947E4721D7D4CB000F9FEE8 /* sdRefeshView_arrow@2x.png in Resources */,
 				D9FF0D981D53304C00443312 /* 图标-10new.png in Resources */,
 				18D8464F1ED591C90048F010 /* 优惠券背景线下.png in Resources */,
+				D9824F7A1F2096C300301076 /* IntegralKnowledgeVC.xib in Resources */,
 				D9D315DB1E07C9E5009FB465 /* QQ20161219-0.png in Resources */,
 				D94DF2601CAE0DB8000D5B69 /* result_small_star_disable@2x.png in Resources */,
 				18F27F041D640E84002DD03A /* 头像-28.png in Resources */,
@@ -6596,6 +6613,7 @@
 				D98E5C1E1E51524D009D56BF /* SRVideoTopBar.m in Sources */,
 				D9B3A4A71D73D70300F3F27E /* UIImage+XMGResizing.m in Sources */,
 				D9811C1E1DDD3E0D0041A8C9 /* SettlementViewController.m in Sources */,
+				D9824F791F2096C300301076 /* IntegralKnowledgeVC.m in Sources */,
 				D9DEED291CACED7C00ACDD00 /* UIImageView+WebCache.m in Sources */,
 				182988471E723F4200164F32 /* UIView+SDExtension.m in Sources */,
 				D9764E8F1DD5B62100B088DE /* PointConvertViewController.m in Sources */,
