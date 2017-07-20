@@ -24,7 +24,7 @@
 #import "PointConvertViewController.h"
 #import "NewMessageVC.h"
 
-#import "LZDCenterViewController.h"
+//#import "LZDCenterViewController.h"
 #import "TopActiveListTableVC.h"
 #import "SDCycleScrollView.h"
 
@@ -39,6 +39,9 @@
 #import "LandingController.h"
 
 #import "BeautyIndustryVC.h"
+
+
+#import "MemberCenterVC.h"
 
 @interface HomeViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,GYChangeTextViewDelegate,SelectCityDelegate,JFLocationDelegate,SDCycleScrollViewDelegate>
 {
@@ -1293,10 +1296,12 @@
             
 //            [self showHint:@"暂未开通!"];
 
-            LZDCenterViewController *VC = [[LZDCenterViewController alloc]init];
-       
+            PUSH(MemberCenterVC)
             
-            [self.navigationController pushViewController:VC animated:YES];
+//            LZDCenterViewController *VC = [[LZDCenterViewController alloc]init];
+//       
+//            
+//            [self.navigationController pushViewController:VC animated:YES];
         }
 
     }
