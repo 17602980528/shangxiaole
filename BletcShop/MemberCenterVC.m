@@ -67,17 +67,29 @@
 
 @implementation MemberCenterVC
 
--(void)goclick{
-    
-    PUSH(IntegralKnowledgeVC)
-    
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=RGB(234, 234, 234);
     self.navigationItem.title=@"会员中心";
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"积分知识" style:UIBarButtonItemStylePlain target:self action:@selector(goclick)];
+    
+    LZDButton *rightBtn = [LZDButton creatLZDButton];
+    rightBtn.frame = CGRectMake(scre, 0, 60, 44);
+    [rightBtn setTitle:@"积分知识" forState:0];
+    [rightBtn setTitleColor:RGB(51,51,51) forState:0];
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+
+    rightBtn.block = ^(LZDButton *btn) {
+        PUSH(IntegralKnowledgeVC)
+
+    };
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
+    
+    
+    
+   
     
     self.page_integral = self.page_coupon = self.page_exchange = self.page_pointList = 1;
     

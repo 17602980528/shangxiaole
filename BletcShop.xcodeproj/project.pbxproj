@@ -4212,9 +4212,9 @@
 			children = (
 				18D846471ED570510048F010 /* 下角标.png */,
 				18D846481ED570510048F010 /* 上角标.png */,
-				D9824F751F20967C00301076 /* 积分知识 */,
 				D9824F721F2092CE00301076 /* MemberCenterVC.h */,
 				D9824F731F2092CE00301076 /* MemberCenterVC.m */,
+				D9824F751F20967C00301076 /* 积分知识 */,
 				D9345E591E7636C2006B2AC1 /* LZDCenterViewController.h */,
 				D9345E5A1E7636C2006B2AC1 /* LZDCenterViewController.m */,
 				D990FF021E7B773B00BF7E40 /* IntegralMallViewController.h */,
