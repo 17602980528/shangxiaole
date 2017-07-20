@@ -71,7 +71,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=RGB(234, 234, 234);
-    self.navigationItem.title=@"会员中心";
+    self.navigationItem.title=@"积分商城";
     
     
     LZDButton *rightBtn = [LZDButton creatLZDButton];
