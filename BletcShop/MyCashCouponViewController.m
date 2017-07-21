@@ -121,8 +121,7 @@
         if (self.useCoupon ==100) {
             for (NSDictionary *dic in arr) {
                 
-                if ([dic[@"pri_condition"] floatValue] <= [self.moneyString floatValue] && [dic[@"validate"] isEqualToString:@"true"]) {
-                    
+                if ([dic[@"pri_condition"] floatValue] <= [self.moneyString floatValue]&&![dic[@"coupon_type"] isEqualToString:@"OFFLINE"]) {
                     
                     [self.couponArray addObject:dic];
                     
