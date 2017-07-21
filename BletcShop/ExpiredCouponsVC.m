@@ -12,9 +12,11 @@
 @interface ExpiredCouponsVC ()
 {
     CGFloat heights;
+    SDRefreshFooterView *_refreshFooter;
+    SDRefreshHeaderView *_refreshheader;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property(nonatomic)NSInteger page;
 @end
 
 @implementation ExpiredCouponsVC
@@ -32,24 +34,53 @@
     [super viewDidLoad];
     self.navigationItem.title=@"不可用优惠券";
     heights=0;
+    _page=1;
+    
+    _refreshheader = [SDRefreshHeaderView refreshView];
+    [_refreshheader addToScrollView:_tableView];
+    _refreshheader.isEffectedByNavigationController = NO;
+    
+    __block typeof(self)tempSelf =self;
+    _refreshheader.beginRefreshingOperation = ^{
+        tempSelf.page=1;
+        [tempSelf.couponArray removeAllObjects];
+        //请求数据
+        [tempSelf postRequestCashCoupon];
+    };
+    
+    
+    _refreshFooter = [SDRefreshFooterView refreshView];
+    [_refreshFooter addToScrollView:_tableView];
+    _refreshFooter.beginRefreshingOperation =^{
+        tempSelf.page++;
+        //数据请求
+        NSLog(@"====>>>>%ld",tempSelf.page);
+        [tempSelf postRequestCashCoupon];
+        
+    };
+
+    
     [self postRequestCashCoupon];
 }
 -(void)postRequestCashCoupon
 {
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/coupon/userGet",BASEURL];
+    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/coupon/invalidateGet",BASEURL];
     
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
+    [params setValue:[NSString stringWithFormat:@"%ld",_page] forKey:@"index"];
     
     NSLog(@"params---%@",params);
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         
         [hud hideAnimated:YES];
-        [self.couponArray removeAllObjects];
+        
+        [_refreshFooter endRefreshing];
+        [_refreshheader endRefreshing];
         
         DebugLog(@"result---%@",result);
         
@@ -61,7 +92,6 @@
                 [self.couponArray addObject:newDic];
                 NSLog(@"couponArray====%@",self.couponArray);
             }
-        
         [_tableView reloadData];
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {

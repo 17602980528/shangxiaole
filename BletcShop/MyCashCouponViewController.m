@@ -16,14 +16,15 @@
 @interface MyCashCouponViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     CGFloat heights;
+    SDRefreshFooterView *_refreshFooter;
+    SDRefreshHeaderView *_refreshheader;
+    UITableView *_tableView;
+    __block MBProgressHUD *hud;
 }
+@property(nonatomic)NSInteger page;
 @end
 
 @implementation MyCashCouponViewController
-{
-    __block MBProgressHUD *hud;
-    UITableView *_tableView;
-}
 
 -(NSMutableArray *)couponArray{
     if (!_couponArray) {
@@ -33,8 +34,10 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    
+    _page=1;
+    [self.couponArray removeAllObjects];
     [self postRequestCashCoupon];
+    
     self.navigationController.navigationBarHidden = NO;
 }
 -(void)viewDidLoad
@@ -46,7 +49,32 @@
     self.view.backgroundColor = RGB(240, 240, 240);
     NSLog(@"#######%@",self.couponArray);
     heights=0;
+    _page=1;
     [self _inittable];
+    
+    _refreshheader = [SDRefreshHeaderView refreshView];
+    [_refreshheader addToScrollView:_tableView];
+    _refreshheader.isEffectedByNavigationController = NO;
+    
+    __block typeof(self)tempSelf =self;
+    _refreshheader.beginRefreshingOperation = ^{
+        tempSelf.page=1;
+        [tempSelf.couponArray removeAllObjects];
+        //请求数据
+        [tempSelf postRequestCashCoupon];
+    };
+    
+    
+    _refreshFooter = [SDRefreshFooterView refreshView];
+    [_refreshFooter addToScrollView:_tableView];
+    _refreshFooter.beginRefreshingOperation =^{
+        tempSelf.page++;
+        //数据请求
+        NSLog(@"====>>>>%ld",tempSelf.page);
+        [tempSelf postRequestCashCoupon];
+        
+    };
+
     
 }
 //无活动显示无活动
@@ -68,13 +96,13 @@
 {
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/coupon/userGet",BASEURL];
+    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/coupon/validateGet",BASEURL];
     
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
-    
+    [params setObject:@"1" forKey:@"index"];
     
     if (_useCoupon ==100) {
         
@@ -85,8 +113,7 @@
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         
         [hud hideAnimated:YES];
-        [self.couponArray removeAllObjects];
-        
+       
         DebugLog(@"result---%@",result);
         
         NSArray *arr = (NSArray*)result;
@@ -219,11 +246,8 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    if ([_couponArray[indexPath.row][@"validate"] isEqualToString:@"true"]) {
-        
         if ([_couponArray[indexPath.row][@"coupon_type"] isEqualToString:@"ONLINE"]||[_couponArray[indexPath.row][@"coupon_type"] isEqualToString:@"null"]) {
+            
             if (self.useCoupon ==100) {
                 
                 if (self.delegate && [_delegate respondsToSelector:@selector(sendValue:)]) {
@@ -245,7 +269,6 @@
             vc.dic=_couponArray[indexPath.row];
             [self.navigationController pushViewController:vc animated:YES];
         }
-    }
 }
 
 
