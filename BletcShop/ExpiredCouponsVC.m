@@ -96,6 +96,8 @@
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         [hud hideAnimated:YES afterDelay:3.f];
+        [_refreshFooter endRefreshing];
+        [_refreshheader endRefreshing];
         NSLog(@"%@", error);
     }];
     

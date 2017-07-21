@@ -111,7 +111,8 @@
     }
     NSLog(@"params---%@",params);
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
-        
+        [_refreshFooter endRefreshing];
+        [_refreshheader endRefreshing];
         [hud hideAnimated:YES];
        
         DebugLog(@"result---%@",result);
@@ -121,7 +122,7 @@
         if (self.useCoupon ==100) {
             for (NSDictionary *dic in arr) {
                 
-                if ([dic[@"pri_condition"] floatValue] <= [self.moneyString floatValue]&&![dic[@"coupon_type"] isEqualToString:@"OFFLINE"]) {
+                if ([dic[@"pri_condition"] floatValue] <= [self.moneyString floatValue]&&![dic[@"coupon_type"] isEqualToString:@"OFFLINE"] && [self.muid isEqualToString:dic[@"muid"]]) {
                     
                     [self.couponArray addObject:dic];
                     
@@ -152,6 +153,9 @@
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         [hud hideAnimated:YES afterDelay:3.f];
+        [_refreshFooter endRefreshing];
+        [_refreshheader endRefreshing];
+
         NSLog(@"%@", error);
     }];
     
