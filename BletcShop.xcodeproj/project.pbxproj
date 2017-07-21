@@ -682,6 +682,8 @@
 		D96AA13B1CB399CA00F2003B /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = D96AA13A1CB399CA00F2003B /* NIDropDown.m */; };
 		D971EB411EF287210038614E /* 首页顶部海报.png in Resources */ = {isa = PBXBuildFile; fileRef = D971EB401EF287210038614E /* 首页顶部海报.png */; };
 		D971FABB1E2DE82A00C5387C /* CardMarketSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D971FABA1E2DE82A00C5387C /* CardMarketSearchVC.m */; };
+		D9728A021F21F9400030EE9B /* ShareCardManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9728A001F21F9400030EE9B /* ShareCardManageVC.m */; };
+		D9728A031F21F9400030EE9B /* ShareCardManageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9728A011F21F9400030EE9B /* ShareCardManageVC.xib */; };
 		D97338C11ED666600093A2FB /* 下角标ss.png in Resources */ = {isa = PBXBuildFile; fileRef = D97338C01ED666600093A2FB /* 下角标ss.png */; };
 		D97338C21ED666600093A2FB /* 下角标ss.png in Resources */ = {isa = PBXBuildFile; fileRef = D97338C01ED666600093A2FB /* 下角标ss.png */; };
 		D97338C31ED666600093A2FB /* 下角标ss.png in Resources */ = {isa = PBXBuildFile; fileRef = D97338C01ED666600093A2FB /* 下角标ss.png */; };
@@ -2107,6 +2109,9 @@
 		D971EB401EF287210038614E /* 首页顶部海报.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "首页顶部海报.png"; path = "../BletcShop/首页顶部海报.png"; sourceTree = "<group>"; };
 		D971FAB91E2DE82A00C5387C /* CardMarketSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardMarketSearchVC.h; sourceTree = "<group>"; };
 		D971FABA1E2DE82A00C5387C /* CardMarketSearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardMarketSearchVC.m; sourceTree = "<group>"; };
+		D97289FF1F21F9400030EE9B /* ShareCardManageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCardManageVC.h; sourceTree = "<group>"; };
+		D9728A001F21F9400030EE9B /* ShareCardManageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCardManageVC.m; sourceTree = "<group>"; };
+		D9728A011F21F9400030EE9B /* ShareCardManageVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareCardManageVC.xib; sourceTree = "<group>"; };
 		D97338C01ED666600093A2FB /* 下角标ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "下角标ss.png"; path = "BletcShop/下角标ss.png"; sourceTree = SOURCE_ROOT; };
 		D973D58B1D9E4588003F82FB /* tanhao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tanhao.png; path = ../BletcShop/tanhao.png; sourceTree = "<group>"; };
 		D9764E7E1DD591A500B088DE /* AddBankAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBankAccountVC.h; sourceTree = "<group>"; };
@@ -3656,6 +3661,7 @@
 				D94040391CBDEB7100EC98EA /* CardManagerViewController.h */,
 				D940403A1CBDEB7100EC98EA /* CardManagerViewController.m */,
 				D9824F621F188E2200301076 /* CardManagerViewController.xib */,
+				D97289FE1F21F8F20030EE9B /* 共享卡管理 */,
 				D9AA10C91F0490C400F7EDE8 /* 体验卡与套餐卡管理 */,
 				D9AA10BD1F0389F200F7EDE8 /* 体验卡支付 */,
 				D9AA10BC1F0389E700F7EDE8 /* 计次卡支付 */,
@@ -4734,6 +4740,16 @@
 				D971FABA1E2DE82A00C5387C /* CardMarketSearchVC.m */,
 			);
 			name = "搜索页面";
+			sourceTree = "<group>";
+		};
+		D97289FE1F21F8F20030EE9B /* 共享卡管理 */ = {
+			isa = PBXGroup;
+			children = (
+				D97289FF1F21F9400030EE9B /* ShareCardManageVC.h */,
+				D9728A001F21F9400030EE9B /* ShareCardManageVC.m */,
+				D9728A011F21F9400030EE9B /* ShareCardManageVC.xib */,
+			);
+			name = "共享卡管理";
 			sourceTree = "<group>";
 		};
 		D97A5D511CD9CFE300D8C13C /* AsyncSocket */ = {
@@ -6177,6 +6193,7 @@
 				D9ED52021D2A461800267729 /* add_yellow.png in Resources */,
 				D9AB25331D88E4ED000E9288 /* VoiceSearchFeedback005@2x.png in Resources */,
 				1CF6E4631C6199BC0001159C /* Card.png in Resources */,
+				D9728A031F21F9400030EE9B /* ShareCardManageVC.xib in Resources */,
 				D94B86E71D6BED5D00E15A70 /* app_icon3.png in Resources */,
 				18F0320E1E5ED79300ACD261 /* tempProducts_09.jpg in Resources */,
 				18EFA0BF1F205D3700360C8A /* 已过期-线上.png in Resources */,
@@ -6863,6 +6880,7 @@
 				D9AA10CD1F04914F00F7EDE8 /* MealAndExpCardManageVC.m in Sources */,
 				D97B70331E2CBBD400CEAFC1 /* CardmarketDetailVC.m in Sources */,
 				D95869331E4D9C9600E91A47 /* ResetPhoneViewController.m in Sources */,
+				D9728A021F21F9400030EE9B /* ShareCardManageVC.m in Sources */,
 				D94756841CF82A2B008356C5 /* FeedBackViewController.m in Sources */,
 				D97F600A1D62DCAA000EE794 /* NSArray+Log.m in Sources */,
 				D94743941CE56A6000D1D3EE /* LNLocationManager.m in Sources */,

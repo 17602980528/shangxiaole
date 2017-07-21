@@ -19,6 +19,10 @@
 #import "MealAndExpCardManageVC.h" //套餐卡,体验卡,管理页面
 #import "VipCardHomeTableViewCell.h"
 
+
+#import "ShareCardManageVC.h"
+
+
 @interface CardVipController()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,weak)UITableView *Cardtable;
 @property (nonatomic,retain)NSMutableArray *vipCardArray;
@@ -585,8 +589,22 @@
         
     }else if (indexPath.section ==4){
         
+        AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
         
-        [self showHint:@"本卡是分享卡!不可操作"];
+        appdelegate.payCardType =dic[@"card_level"];
+        
+        appdelegate.cardInfo_dic =dic;
+
+        
+        PUSH(ShareCardManageVC)
+        
+        vc.card_dic = dic;
+        
+        vc.refresheDate = ^{
+            
+            [self postRequestVipCard];
+            
+        };
     }
     
     

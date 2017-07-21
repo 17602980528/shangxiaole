@@ -74,7 +74,7 @@
 
     self.typeAndLevel.text =self.typeAndLevel1.text = _card_dic[@"card_type"];
     if ([_card_dic[@"card_type"] isEqualToString:@"套餐卡"]) {
-        self.remainLab.text = [NSString stringWithFormat:@"套餐总价:%@",_card_dic[@"option_sum"]];
+        self.remainLab.text = @"";
 
         [self getDataPost];
 
