@@ -48,6 +48,13 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="会员卡_vip" translatesAutoresizingMaskIntoConstraints="NO" id="16t-nd-iGl">
+                    <rect key="frame" x="157.5" y="99" width="60" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="3aY-SV-NHb"/>
+                        <constraint firstAttribute="width" constant="60" id="cdJ-ca-eP2"/>
+                    </constraints>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9l-ua-5LR">
                     <rect key="frame" x="13" y="212" width="349" height="242"/>
                     <subviews>
@@ -223,11 +230,13 @@
                 <constraint firstAttribute="trailing" secondItem="b9l-ua-5LR" secondAttribute="trailing" constant="13" id="Ewu-vv-UsV"/>
                 <constraint firstItem="ttc-lK-vdz" firstAttribute="top" secondItem="580-3m-hod" secondAttribute="bottom" constant="15" id="Fep-f5-IXe"/>
                 <constraint firstItem="b9l-ua-5LR" firstAttribute="top" secondItem="Hzf-Dh-ODT" secondAttribute="bottom" id="FtS-9C-Zi7"/>
+                <constraint firstItem="16t-nd-iGl" firstAttribute="centerY" secondItem="Hzf-Dh-ODT" secondAttribute="centerY" constant="8" id="GUV-Xz-eFU"/>
                 <constraint firstItem="Hzf-Dh-ODT" firstAttribute="leading" secondItem="BMV-3T-jri" secondAttribute="leading" constant="13" id="Jpl-zx-w1I"/>
                 <constraint firstItem="580-3m-hod" firstAttribute="leading" secondItem="Hzf-Dh-ODT" secondAttribute="leading" constant="14" id="Lva-T1-nYt"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ttc-lK-vdz" secondAttribute="trailing" constant="13" id="No0-mz-OYy"/>
                 <constraint firstItem="oKO-Mm-uBU" firstAttribute="width" secondItem="Hzf-Dh-ODT" secondAttribute="width" id="P3o-0Z-fO6"/>
                 <constraint firstItem="oKO-Mm-uBU" firstAttribute="centerX" secondItem="BMV-3T-jri" secondAttribute="centerX" id="Qeg-Dm-Y4g"/>
+                <constraint firstItem="16t-nd-iGl" firstAttribute="centerX" secondItem="Hzf-Dh-ODT" secondAttribute="centerX" id="UH7-J5-y82"/>
                 <constraint firstItem="580-3m-hod" firstAttribute="top" secondItem="Hzf-Dh-ODT" secondAttribute="top" constant="23" id="dUk-8r-Eg7"/>
                 <constraint firstItem="MPI-Im-Q5X" firstAttribute="bottom" secondItem="Hzf-Dh-ODT" secondAttribute="bottom" constant="-23" id="dnY-61-Bfm"/>
                 <constraint firstItem="b9l-ua-5LR" firstAttribute="leading" secondItem="BMV-3T-jri" secondAttribute="leading" constant="13" id="hKa-Pv-gub"/>
@@ -317,7 +326,7 @@
                 <constraint firstAttribute="trailing" secondItem="fLR-hl-Jqe" secondAttribute="trailing" id="mI7-lD-lQL"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-1334.5" y="-798.5"/>
+            <point key="canvasLocation" x="-1426" y="-111"/>
         </view>
         <tapGestureRecognizer id="CRa-Eu-Zeg">
             <connections>
@@ -327,6 +336,7 @@
     </objects>
     <resources>
         <image name="youjiantou" width="7" height="13"/>
+        <image name="会员卡_vip" width="122" height="59"/>
         <image name="会员卡_付款BG" width="698" height="167"/>
         <image name="会员卡_红色三角" width="40" height="40"/>
         <image name="店铺icon——红色" width="30" height="30"/>
