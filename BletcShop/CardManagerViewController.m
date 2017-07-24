@@ -66,7 +66,7 @@
     
     
     
-    NSLog(@"---%@",appdelegate.cardInfo_dic);
+    NSLog(@"---%@",params);
     
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         
@@ -124,7 +124,7 @@
     
     [self postRequestAllInfo];
 
-    self.tabheaderView.frame = CGRectMake(13, self.cardImgview.bottom-21, SCREENWIDTH-26, 99);
+    self.tabheaderView.frame = CGRectMake(13, self.cardImgview.bottom-52, SCREENWIDTH-26, 99);
     
     [self.view addSubview:self.tabheaderView];
 

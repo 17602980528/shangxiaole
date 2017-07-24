@@ -10,7 +10,6 @@
 #import "CustomIOSAlertView.h"
 
 @interface CanPayCardViewController : UIViewController
-@property(nonatomic,retain)NSMutableArray *payCardArray;//可支付的卡
 @property (nonatomic,copy)NSString *muid;// <#Description#>
 
 @end

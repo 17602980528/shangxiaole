@@ -1244,92 +1244,92 @@
     {
         
         
-        [self postSocketPayAction];
+//        [self postSocketPayAction];
         
     }
 }
--(void)postSocketPayAction
+//-(void)postSocketPayAction
 
-{
-    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/user/cardGet",BASEURL];
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
-    
-    
-    [params setObject:self.payShopName forKey:@"muid"];
-    
-    
-    NSLog(@"type%@",self.type);
-    if ([self.type isEqualToString:@"t"]){
-        [params setObject:@"计次卡" forKey:@"type"];
-    }else
-    {
-        [params setObject:@"储值卡" forKey:@"type"];
-    }
-    
-    NSLog(@"params===%@",params);
-    
-    
-    
-    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-     {
-         
-         self.payCardArray = [result copy];
-         
-         NSLog(@"self.payCardArray%@", self.payCardArray);
-         //
-         UIViewController *view =[self topViewController];
-         //         self.window.rootViewController = view;
-         //         view = [[MainTabBarController alloc]init];
-         //NSArray *arrControllers = [view viewControllers];
-         NSLog(@"view = %@",view);
-         NSLog(@"canPayCardView.messagePay%@",self.messagePayAll);
-         CanPayCardViewController *canPayCardView = [[CanPayCardViewController alloc]init];
-         canPayCardView.payCardArray = self.payCardArray;
-         //         canPayCardView.messagePay = self.messagePayAll;
-         //         canPayCardView.cardType = self.type;
-         //         canPayCardView.payMoney = self.payMoney;
-         //         canPayCardView.payShopName = self.payShopName;
-         
-         //         NSString *type = [[NSString alloc]init];
-         //         if ([type isEqualToString:@"t"]){
-         //             type =@"计次卡";
-         //         }else
-         //         {
-         //             type =@"储值卡";
-         //         }
-         //         canPayCardView.cardType = type;
-         [view.navigationController pushViewController:canPayCardView animated:YES];
-         if ([view isKindOfClass:[MainTabBarController class]]) {
-             MainTabBarController *view1 = [[MainTabBarController alloc]init];
-             CanPayCardViewController *canPayCardView = [[CanPayCardViewController alloc]init];
-             canPayCardView.payCardArray = self.payCardArray;
-             //             canPayCardView.messagePay = self.messagePayAll;
-             //             canPayCardView.cardType = self.type;
-             //             canPayCardView.payMoney = self.payMoney;
-             //             canPayCardView.payShopName = self.payShopName;
-             NSArray *arrControllers = [view1 viewControllers];
-             NSLog(@"view1 = %@",arrControllers);
-             BaseNavigationController *oldNavigationController = [arrControllers objectAtIndex:0];
-             
-             UIViewController *viewcontroller7 = [oldNavigationController.viewControllers objectAtIndex:view1.selectedIndex];
-             UIViewController *superVC=(UIViewController *)[viewcontroller7 nextResponder];
-             NSLog(@"view2 = %@",viewcontroller7.navigationController);
-             NSLog(@"view3 = %@",superVC);
-             [superVC.navigationController pushViewController:canPayCardView animated:YES];
-             
-         }
-         
-         
-         
-     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-         //         [self noIntenet];
-         NSLog(@"%@", error);
-     }];
-    
-}
+//{
+//    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/user/cardGet",BASEURL];
+//    
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+//    [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
+//    
+//    
+//    [params setObject:self.payShopName forKey:@"muid"];
+//    
+//    
+//    NSLog(@"type%@",self.type);
+//    if ([self.type isEqualToString:@"t"]){
+//        [params setObject:@"计次卡" forKey:@"type"];
+//    }else
+//    {
+//        [params setObject:@"储值卡" forKey:@"type"];
+//    }
+//    
+//    NSLog(@"params===%@",params);
+//    
+//    
+//    
+//    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
+//     {
+//         
+//         self.payCardArray = [result copy];
+//         
+//         NSLog(@"self.payCardArray%@", self.payCardArray);
+//         //
+//         UIViewController *view =[self topViewController];
+//         //         self.window.rootViewController = view;
+//         //         view = [[MainTabBarController alloc]init];
+//         //NSArray *arrControllers = [view viewControllers];
+//         NSLog(@"view = %@",view);
+//         NSLog(@"canPayCardView.messagePay%@",self.messagePayAll);
+//         CanPayCardViewController *canPayCardView = [[CanPayCardViewController alloc]init];
+//         canPayCardView.payCardArray = self.payCardArray;
+//         //         canPayCardView.messagePay = self.messagePayAll;
+//         //         canPayCardView.cardType = self.type;
+//         //         canPayCardView.payMoney = self.payMoney;
+//         //         canPayCardView.payShopName = self.payShopName;
+//         
+//         //         NSString *type = [[NSString alloc]init];
+//         //         if ([type isEqualToString:@"t"]){
+//         //             type =@"计次卡";
+//         //         }else
+//         //         {
+//         //             type =@"储值卡";
+//         //         }
+//         //         canPayCardView.cardType = type;
+//         [view.navigationController pushViewController:canPayCardView animated:YES];
+//         if ([view isKindOfClass:[MainTabBarController class]]) {
+//             MainTabBarController *view1 = [[MainTabBarController alloc]init];
+//             CanPayCardViewController *canPayCardView = [[CanPayCardViewController alloc]init];
+//             canPayCardView.payCardArray = self.payCardArray;
+//             //             canPayCardView.messagePay = self.messagePayAll;
+//             //             canPayCardView.cardType = self.type;
+//             //             canPayCardView.payMoney = self.payMoney;
+//             //             canPayCardView.payShopName = self.payShopName;
+//             NSArray *arrControllers = [view1 viewControllers];
+//             NSLog(@"view1 = %@",arrControllers);
+//             BaseNavigationController *oldNavigationController = [arrControllers objectAtIndex:0];
+//             
+//             UIViewController *viewcontroller7 = [oldNavigationController.viewControllers objectAtIndex:view1.selectedIndex];
+//             UIViewController *superVC=(UIViewController *)[viewcontroller7 nextResponder];
+//             NSLog(@"view2 = %@",viewcontroller7.navigationController);
+//             NSLog(@"view3 = %@",superVC);
+//             [superVC.navigationController pushViewController:canPayCardView animated:YES];
+//             
+//         }
+//         
+//         
+//         
+//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//         //         [self noIntenet];
+//         NSLog(@"%@", error);
+//     }];
+//    
+//}
 
 - (UIViewController*)topViewController
 {

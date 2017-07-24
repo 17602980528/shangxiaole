@@ -426,6 +426,7 @@
     [paramer setValue:dic[@"muid"] forKey:@"muid"];
     [paramer setValue:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
     
+    NSLog(@"paramer-----%@",paramer);
     
     [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         
@@ -493,7 +494,6 @@
         else if([result[@"num"] intValue]>1){
             
             CanPayCardViewController *VC = [[CanPayCardViewController alloc]init];
-            VC.payCardArray =result[@"info"];
             VC.muid = dic[@"muid"];
             
             [self.navigationController pushViewController:VC animated:YES];
@@ -505,6 +505,13 @@
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         
+        MISSALERT
+       
+        
+        
+        
+        NSLog(@"error-----%@",error);
+
     }];
     
     

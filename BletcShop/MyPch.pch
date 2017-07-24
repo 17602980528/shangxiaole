@@ -176,6 +176,8 @@
 
 #define  POP   [self.navigationController popViewControllerAnimated:YES];
 
+#define MISSALERT   UIAlertController *alterVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"请求出错!" preferredStyle:UIAlertControllerStyleAlert];UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {POP }];[alterVC addAction:sureAction];[self presentViewController:alterVC animated:YES completion:nil];
+
 
 #define  ORDER_PAY_NOTIFICATION @"order_pay_result"
 
