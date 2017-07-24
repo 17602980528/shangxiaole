@@ -688,6 +688,8 @@
 //
 -(void)addFriendBtnClick:(UIButton *)sender{
     AddFriendVC *vc=[[AddFriendVC alloc]init];
+    CardMarketModel *M=self.data_A[sender.tag];
+    vc.dic=M.dic;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

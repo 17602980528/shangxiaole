@@ -9,7 +9,11 @@
 #import "AddFriendVC.h"
 #import "AddFriendTableViewCell.h"
 #import "MorePubTableViewCell.h"
+#import "UIImageView+WebCache.h"
 @interface AddFriendVC ()<UITableViewDelegate,UITableViewDataSource>
+{
+    UIImageView *noneData;
+}
 //tableview
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 //tableHead
@@ -26,6 +30,7 @@
 @property (nonatomic)NSInteger apriseOrPublish;// 0 代表评价--1 代表发布
 @property (weak, nonatomic) IBOutlet UIButton *priseButton;
 @property (weak, nonatomic) IBOutlet UIButton *pubButton;
+@property(nonnull,strong)NSMutableArray *noEvaluateShopArray;
 @end
 
 @implementation AddFriendVC
@@ -35,6 +40,7 @@
 }
 //已评价
 - (IBAction)appriseBtnClick:(UIButton *)sender {
+    noneData.hidden=YES;
     _apriseOrPublish=0;
     
     [UIView animateWithDuration:0.2 animations:^{
@@ -42,11 +48,12 @@
         center.x=sender.center.x;
         self.moveView.center=center;
     }];
-    [_tableView reloadData];
+    [self postRequestEvaluate];
     
 }
 //已发布
 - (IBAction)publishBtnClick:(UIButton *)sender {
+    noneData.hidden=YES;
     _apriseOrPublish=1;
     
     [UIView animateWithDuration:0.2 animations:^{
@@ -61,7 +68,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _apriseOrPublish=0;
-    
+    NSLog(@"self.dic====%@",self.dic);
     self.navigationController.navigationBar.hidden=YES;
     self.addFrdBtn.layer.borderWidth=1.0f;
     self.addFrdBtn.layer.borderColor=[RGB(237, 72, 77)CGColor];
@@ -72,16 +79,28 @@
     _tableView.estimatedRowHeight=500;
     _tableView.rowHeight=UITableViewAutomaticDimension;
     
+    noneData=[[UIImageView alloc]initWithFrame:CGRectMake((SCREENWIDTH-100)/2, 350, 100, 100)];
+    noneData.image=[UIImage imageNamed:@"无数据.png"];
+    [self.view addSubview:noneData];
+    
+    [self postRequestEvaluate];
+    
+    [self.head sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,self.dic[@"headimage"]]] placeholderImage:[UIImage imageNamed:@"user.png"]];
+    self.head.layer.cornerRadius=32.5;
+    self.head.clipsToBounds=YES;
+    
+    self.nick.text=self.dic[@"nickname"];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden=NO;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    [_appriseButton setTitle:[NSString stringWithFormat:@"她的评价(%lu)",(unsigned long)self.noEvaluateShopArray.count] forState:UIControlStateNormal];
     return self.sectionHeadView;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return self.noEvaluateShopArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     //MorePubTableViewCell
@@ -110,6 +129,31 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;
+}
+-(void)postRequestEvaluate
+{
+    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/evaluate/userGet",BASEURL];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.dic[@"uuid"] forKey:@"uuid"];
+    
+    NSLog(@"%@",params);
+    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
+     {
+         NSLog(@"result===%@", result);
+         if (result&&[result count]>0) {
+             NSMutableArray *evaluateArray = [result mutableCopy];
+             self.noEvaluateShopArray = evaluateArray;;
+             [_tableView reloadData];
+             noneData.hidden=YES;
+         }else{
+             noneData.hidden=NO;
+         }
+         
+     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+         //         [self noIntenet];
+         NSLog(@"%@", error);
+     }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

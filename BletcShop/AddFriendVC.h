@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AddFriendVC : UIViewController
-
+@property(nonatomic,strong)NSDictionary *dic;
 @end
