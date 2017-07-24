@@ -11,6 +11,7 @@
 #import "NewCardBuyTableViewCell.h"
 #import "NewAppriseVC.h"
 #import "MyOrderDetailVC.h"
+#import "UIImageView+WebCache.h"
 @interface NewMyPayMentsVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *cardCostButton;
@@ -75,8 +76,10 @@
         cell.delBtn.tag=indexPath.row;
         cell.appriseBtn.tag=indexPath.row;
         cell.dateTime.text=_orderArray[indexPath.row][@"datetime"];
-        //cell.totalCosts.text=[NSString stringWithFormat:@"消费：%@元",_orderArray[indexPath.row][@"sum"]];
-        cell.shopName.text=[[[[self.orderArray objectAtIndex:indexPath.row] objectForKey:@"content"] componentsSeparatedByString:PAY_USCS] firstObject];
+        cell.totalCosts.text=[NSString stringWithFormat:@"消费：%@元",_orderArray[indexPath.row][@"sum"]];
+        cell.shopName.text=_orderArray[indexPath.row][@"store"];//[[[[self.orderArray objectAtIndex:indexPath.row] objectForKey:@"content"] componentsSeparatedByString:PAY_USCS] firstObject];
+        NSURL * nurl1=[[NSURL alloc] initWithString:[[SHOPIMAGE_ADDIMAGE stringByAppendingString:[_orderArray[indexPath.row] objectForKey:@"image_url"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+        [cell.headImageView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
         
         if ([_orderArray[indexPath.row][@"evaluate_state"] isEqualToString:@"false"]) {
             cell.appriseBtn.userInteractionEnabled=YES;
@@ -155,7 +158,7 @@
 #pragma mark ---刷卡消费记录
 -(void)postRequstOrderInfo
 {
-    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/user/cnGet",BASEURL];
+    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/Record/pay",BASEURL];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
