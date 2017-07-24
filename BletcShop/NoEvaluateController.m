@@ -11,6 +11,7 @@
 #import "AppraiseViewController.h"
 #import "AddFriendTableViewCell.h"
 #import "NewAppriseVC.h"
+#import "NewShopDetailVC.h"
 @interface NoEvaluateController ()
 {
     UIImageView *noneData;
@@ -101,11 +102,22 @@
     cell.shopName.text=self.noEvaluateShopArray[indexPath.row][@"store"];
     cell.appriseLable.text=self.noEvaluateShopArray[indexPath.row][@"content"];
     cell.publishTime.text=self.noEvaluateShopArray[indexPath.row][@"datetime"];
+    cell.goShopDetailButton.tag=indexPath.row;
+    [cell.goShopDetailButton addTarget:self action:@selector(goShopDetailButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
+}
+-(void)goShopDetailButtonClick:(UIButton *)sender{
+    NewShopDetailVC *controller = [[NewShopDetailVC alloc]init];
+    controller.videoID=@"";
+    NSMutableDictionary *dic=[self.noEvaluateShopArray[sender.tag] mutableCopy];
+    [dic setObject:dic[@"merchant"] forKey:@"muid"];
+    controller.infoDic=dic;
+    controller.title = @"商铺信息";
+    [self.navigationController pushViewController:controller animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
