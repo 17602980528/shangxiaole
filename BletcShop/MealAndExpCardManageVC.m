@@ -51,7 +51,7 @@
     self.navigationItem.title = @"会员卡";
 
     
-    self.tabheaderView.frame = CGRectMake(13, self.cardImgview.bottom-52, SCREENWIDTH-26, 99);
+    self.tabheaderView.frame = CGRectMake(13, 212*LZDScale-52, SCREENWIDTH-26, 99);
     
     [self.view addSubview:self.tabheaderView];
 

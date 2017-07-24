@@ -317,7 +317,7 @@
                 <constraint firstAttribute="trailing" secondItem="fLR-hl-Jqe" secondAttribute="trailing" id="mI7-lD-lQL"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-1090" y="-424"/>
+            <point key="canvasLocation" x="-1334.5" y="-798.5"/>
         </view>
         <tapGestureRecognizer id="CRa-Eu-Zeg">
             <connections>
