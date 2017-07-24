@@ -20,7 +20,7 @@
 
 -(CardMarketModel*)intiWithDictionary:(NSDictionary *)dic;
 {
-    
+    self.dic=dic;
     self.headimage = [NSString getTheNoNullStr:dic[@"headimage"] andRepalceStr:@""];
     self.nickname = [NSString getTheNoNullStr:dic[@"nickname"] andRepalceStr:@""];
     self.uuid = [NSString getTheNoNullStr:dic[@"uuid"] andRepalceStr:@""];

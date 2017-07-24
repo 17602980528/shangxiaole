@@ -28,6 +28,6 @@
 @property (nonatomic,copy)NSString *address;// 地址
 @property (nonatomic,copy)NSString *headimage;// 头像
 @property (nonatomic,copy)NSString *trade;//行业
-
+@property (nonatomic,strong)NSDictionary *dic;
 -(CardMarketModel*)intiWithDictionary:(NSDictionary *)dic;
 @end
