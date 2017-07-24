@@ -781,6 +781,7 @@
         _pc.numberOfPages = self.icon_A.count/10+1;
 
     }
+    _pc.hidesForSinglePage = YES;
     
     UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, _smallSV.bottom, SCREENWIDTH, 10)];
     line.backgroundColor =RGB(239,239,244);
