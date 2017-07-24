@@ -23,6 +23,10 @@
 
 @implementation NewMyPayMentsVC
 - (IBAction)btnClick:(UIButton *)sender {
+    if (self.orderArray.count!=0) {
+        [self.orderArray removeAllObjects];
+        [_tableView reloadData];
+    }
     if (sender.tag==1) {
         _apriseOrPublish=0;
         [UIView animateWithDuration:0.3 animations:^{
@@ -30,7 +34,7 @@
             center.x=sender.center.x;
             self.moveLine.center=center;
         }];
-        [_tableView reloadData];
+        [self postRequstOrderInfo];
     }else{
         _apriseOrPublish=1;
         [UIView animateWithDuration:0.3 animations:^{
@@ -38,7 +42,7 @@
             center.x=sender.center.x;
             self.moveLine.center=center;
         }];
-        [_tableView reloadData];
+        [self buyCardsRecorsPostRequest];
     }
 }
 
@@ -50,7 +54,11 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self postRequstOrderInfo];
+    if (_apriseOrPublish==0) {
+         [self postRequstOrderInfo];
+    }else{
+        
+    }
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.orderArray.count;
@@ -123,6 +131,12 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor=[UIColor clearColor];
         }
+        cell.shopName.text=self.orderArray[indexPath.row][@"store"];
+        cell.cardLevel.text=[NSString stringWithFormat:@"级别：%@",self.orderArray[indexPath.row][@"card_level"]];
+        cell.cardType.text=[NSString stringWithFormat:@"类型：%@",self.orderArray[indexPath.row][@"card_type"]];
+        cell.payMoney.text=[NSString stringWithFormat:@"消费：%@元",self.orderArray[indexPath.row][@"sum"]];
+        cell.payTime.text=self.orderArray[indexPath.row][@"datetime"];
+        
         return cell;
     }
     
@@ -137,10 +151,10 @@
     [super didReceiveMemoryWarning];
    
 }
-//获取消费记录
+//获取消费记录---刷卡消费
+#pragma mark ---刷卡消费记录
 -(void)postRequstOrderInfo
 {
-    
     NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/user/cnGet",BASEURL];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -164,6 +178,7 @@
      }];
     
 }
+
 -(void)deletePayRecord:(UIButton *)sender{
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"是否删除该条消费记录？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
@@ -246,6 +261,34 @@
     VC.pay_type_s = pay_tp;
     
     [self.navigationController pushViewController:VC animated:YES];
+}
+
+#pragma mark ---办卡记录
+
+-(void)buyCardsRecorsPostRequest{
+     NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/Record/card",BASEURL];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
+    
+    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
+     {
+         NSLog(@"result%@", result);
+         if (result&&[result count]>0) {
+             self.orderArray = [result mutableCopy];
+             _tableView.hidden=NO;
+             _noDataNotice.hidden=YES;
+             [_tableView reloadData];
+         }else{
+             _tableView.hidden=YES;
+             _noDataNotice.hidden=NO;
+         }
+         
+     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"%@", error);
+     }];
+
+    
 }
 
 @end

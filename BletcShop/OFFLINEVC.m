@@ -10,6 +10,7 @@
 #import "HGDQQRCodeView.h"
 #import "UIImageView+WebCache.h"
 #import "ShaperView.h"
+#import "NewShopDetailVC.h"
 @interface OFFLINEVC ()
 {
     UIView *bgView;
@@ -159,6 +160,11 @@
 }
 -(void)goNextBtnClick{
     NSLog(@"goNextBtnClick-----");
+    NewShopDetailVC *controller = [[NewShopDetailVC alloc]init];
+    controller.videoID=@"";
+    controller.infoDic=[self.dic mutableCopy];
+    controller.title = @"商铺信息";
+    [self.navigationController pushViewController:controller animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

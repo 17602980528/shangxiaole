@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface NewCardBuyTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *shopName;
+@property (weak, nonatomic) IBOutlet UILabel *cardLevel;
+@property (weak, nonatomic) IBOutlet UILabel *cardType;
+@property (weak, nonatomic) IBOutlet UILabel *payMoney;
+@property (weak, nonatomic) IBOutlet UILabel *payTime;
 
 @end

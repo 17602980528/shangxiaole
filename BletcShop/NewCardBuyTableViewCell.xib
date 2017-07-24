@@ -147,6 +147,13 @@
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lTI-Oy-1Bg" secondAttribute="bottom" constant="10" id="zxe-pq-6yN"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="cardLevel" destination="l20-VF-b1p" id="vDO-Ls-JK3"/>
+                <outlet property="cardType" destination="ftk-r3-3Xo" id="Sdt-92-rgt"/>
+                <outlet property="payMoney" destination="xzw-kU-qqn" id="H7u-FQ-CuX"/>
+                <outlet property="payTime" destination="UeV-jR-S1L" id="6CD-Rb-UrC"/>
+                <outlet property="shopName" destination="zLN-XB-0JG" id="jb6-MM-1XO"/>
+            </connections>
             <point key="canvasLocation" x="53" y="53.5"/>
         </tableViewCell>
     </objects>
