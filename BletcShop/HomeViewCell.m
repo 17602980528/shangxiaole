@@ -200,31 +200,51 @@
     
     self.muta_A = [NSMutableArray array];
 
-    if ([_model.subTitl floatValue]>0.0 && [_model.subTitl floatValue]<100.0) {
+    
+    if ([_model.pri[@"discount"] boolValue]) {
         [_muta_A addObject:@"折"];
-        
-    }else{
-    }
-    
-    
-    if ([_model.addTitl floatValue]>0.0) {
-        [_muta_A addObject:@"赠"];
 
-      
-        
-//        self.give_Lab.text = [NSString stringWithFormat:@"办卡就送%@",_model.addTitl];
-        
-    }else{
-//        self.give_Lab.text  = @"暂无活动!";
-        
     }
     
-    
-    if ([_model.coupon_exists isEqualToString:@"yes"]) {
+    if ([_model.pri[@"coupon"] boolValue]) {
         [_muta_A addObject:@"券"];
-
-    }else{
+        
     }
+    if ([_model.pri[@"add"] boolValue]) {
+        [_muta_A addObject:@"赠"];
+        
+    }
+    if ([_model.pri[@"insure"] boolValue]) {
+        [_muta_A addObject:@"保"];
+        
+    }
+    
+//    
+//    if ([_model.subTitl floatValue]>0.0 && [_model.subTitl floatValue]<100.0) {
+//        [_muta_A addObject:@"折"];
+//        
+//    }else{
+//    }
+//    
+//    
+//    if ([_model.addTitl floatValue]>0.0) {
+//        [_muta_A addObject:@"赠"];
+//
+//      
+//        
+////        self.give_Lab.text = [NSString stringWithFormat:@"办卡就送%@",_model.addTitl];
+//        
+//    }else{
+////        self.give_Lab.text  = @"暂无活动!";
+//        
+//    }
+//    
+//    
+//    if ([_model.coupon_exists isEqualToString:@"yes"]) {
+//        [_muta_A addObject:@"券"];
+//
+//    }else{
+//    }
     
     
    
@@ -281,7 +301,9 @@
         if ([sheLab.text isEqualToString:@"折"]) {
             sheLab.backgroundColor = RGB(226,102,102);
         }
-        
+        if ([sheLab.text isEqualToString:@"保"]) {
+            sheLab.backgroundColor = RGB(0,160,233);
+        }
         
         
     }

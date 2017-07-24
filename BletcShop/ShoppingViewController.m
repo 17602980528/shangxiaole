@@ -362,7 +362,7 @@
     
     
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
-        //       NSLog(@"postRequestShop-----%@",result);
+         NSLog(@"postRequestShop-----%@",result);
         if ([result isKindOfClass:[NSArray class]]) {
             if (self.indexss==1) {
                 
@@ -642,31 +642,40 @@
         
         
         
-        NSString *discount =[NSString getTheNoNullStr:[dic objectForKey:@"discount"] andRepalceStr:@""];
+//        NSString *discount =[NSString getTheNoNullStr:[dic objectForKey:@"discount"] andRepalceStr:@""];
+//        
+//        
+//        NSString *giveString =[NSString getTheNoNullStr:[dic objectForKey:@"add"] andRepalceStr:@""];
+//        
+        NSDictionary *pri_dic = dic[@"pri"];
         
-        
-        NSString *giveString =[NSString getTheNoNullStr:[dic objectForKey:@"add"] andRepalceStr:@""];
         
         NSMutableArray *muta_a = [NSMutableArray array];
 
         
-        if ([discount doubleValue]>0.0 && [discount doubleValue]<100.0) {
+        if ([pri_dic[@"discount"] boolValue]) {
             
             [muta_a addObject:@"折"];
             
         }
         
-        
-        if ([giveString floatValue]>0.0) {
+        if ([pri_dic[@"coupon"] boolValue]) {
+            [muta_a addObject:@"券"];
+            
+            
+            
+        }
+        if ([pri_dic[@"add"] boolValue]) {
             [muta_a addObject:@"赠"];
 
 
             
         }
-        
-        if ([dic[@"coupon"] isEqualToString:@"yes"]) {
-            [muta_a addObject:@"券"];
-
+        if ([pri_dic[@"insure"] boolValue]) {
+            [muta_a addObject:@"保"];
+            
+            
+            
         }
         
         
@@ -688,18 +697,17 @@
             zhelab.layer.masksToBounds = YES;
             [cell addSubview:zhelab];
             
-            if ([zhelab.text isEqualToString:@"折"]) {
-                zhelab.backgroundColor = RGB(238,94,44);
-                
-            }
-            
-            if ([zhelab.text isEqualToString:@"赠"]) {
-                zhelab.backgroundColor = RGB(86,171,228);
-                
-            }
             if ([zhelab.text isEqualToString:@"券"]) {
                 zhelab.backgroundColor = RGB(255,0,0);
-                
+            }
+            if ([zhelab.text isEqualToString:@"赠"]) {
+                zhelab.backgroundColor = RGB(86,171,228);
+            }
+            if ([zhelab.text isEqualToString:@"折"]) {
+                zhelab.backgroundColor = RGB(226,102,102);
+            }
+            if ([zhelab.text isEqualToString:@"保"]) {
+                zhelab.backgroundColor = RGB(0,160,233);
             }
         }
 
@@ -920,7 +928,7 @@
     DebugLog(@"===url=%@\n===paramer==%@",url,params);
     
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
-        //                  NSLog(@"getAdverListRequestWithIndePath-----%@",result);
+                      NSLog(@"getAdverListRequestWithIndePath-----%@",result);
         if ([result isKindOfClass:[NSDictionary class]]) {
             
             

@@ -44,6 +44,8 @@
     self.trade=[NSString getTheNoNullStr:dic[@"trade"] andRepalceStr:@""];
     
     self.distance =[NSString getTheNoNullStr:dic[@"distance"] andRepalceStr:@""];
+    
+    self.pri = dic[@"pri"];
     return self;
 }
 

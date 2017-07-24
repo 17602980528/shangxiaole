@@ -35,6 +35,9 @@
 @property(nonatomic,copy)NSString *coupon_exists;
 @property(nonatomic,copy)NSString *trade;
 
+
+@property (nonatomic , strong) NSDictionary *pri;// 优惠标识
+
 -(HomeShopModel*)initWithDictionary:(NSDictionary*)dic;
 
 
