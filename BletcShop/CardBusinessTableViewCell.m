@@ -39,7 +39,7 @@
     
     _model = model;
     
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,_model.headimage]] placeholderImage:[UIImage imageNamed:@"user.png"]];
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,_model.headimage]] placeholderImage:[UIImage imageNamed:@"userHeader"]];
     
     self.nickNamelab.text = _model.nickname;
     self.timeLab.text = _model.datetime;

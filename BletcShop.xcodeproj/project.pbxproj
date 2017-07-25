@@ -943,6 +943,7 @@
 		D9B3A5C71D74255700F3F27E /* PSTGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B3A59F1D74255700F3F27E /* PSTGridLayoutSection.m */; };
 		D9B3A5C81D74255700F3F27E /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D9B3A5A01D74255700F3F27E /* MWPhotoBrowser.bundle */; };
 		D9B57F181D337DD700E9654A /* areaAll.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9B57F171D337DD700E9654A /* areaAll.plist */; };
+		D9B9231D1F26D447003AA113 /* CardmarketDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9B9231C1F26D447003AA113 /* CardmarketDetailVC.xib */; };
 		D9BA5F041D7564090067E7A2 /* FriendRequest.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9BA5F031D7564090067E7A2 /* FriendRequest.plist */; };
 		D9BB4DDE1E05019400971BCC /* DelayScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BB4DDD1E05019400971BCC /* DelayScanVC.m */; };
 		D9BB4DE21E050EA200971BCC /* AppointStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BB4DE11E050EA100971BCC /* AppointStateViewController.m */; };
@@ -2523,6 +2524,7 @@
 		D9B3A59F1D74255700F3F27E /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
 		D9B3A5A01D74255700F3F27E /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
 		D9B57F171D337DD700E9654A /* areaAll.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = areaAll.plist; sourceTree = "<group>"; };
+		D9B9231C1F26D447003AA113 /* CardmarketDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardmarketDetailVC.xib; sourceTree = "<group>"; };
 		D9BA5F031D7564090067E7A2 /* FriendRequest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FriendRequest.plist; sourceTree = "<group>"; };
 		D9BB4DDC1E05019400971BCC /* DelayScanVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayScanVC.h; sourceTree = "<group>"; };
 		D9BB4DDD1E05019400971BCC /* DelayScanVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelayScanVC.m; sourceTree = "<group>"; };
@@ -4774,6 +4776,7 @@
 				D97B70271E2C5E7300CEAFC1 /* CardMarketViewController.m */,
 				D97B70311E2CBBD400CEAFC1 /* CardmarketDetailVC.h */,
 				D97B70321E2CBBD400CEAFC1 /* CardmarketDetailVC.m */,
+				D9B9231C1F26D447003AA113 /* CardmarketDetailVC.xib */,
 				D97B70291E2C62AC00CEAFC1 /* CardMarketCell.h */,
 				D97B702A1E2C62AC00CEAFC1 /* CardMarketCell.m */,
 				D97B702E1E2C90FE00CEAFC1 /* CardMarketModel.h */,
@@ -6549,6 +6552,7 @@
 				D9AA10C81F03B43400F7EDE8 /* NewBuyOptionsCell.xib in Resources */,
 				D9699E511D348EF7001DEC06 /* 小标-21.png in Resources */,
 				D9AB25381D88E4ED000E9288 /* VoiceSearchFeedback010@2x.png in Resources */,
+				D9B9231D1F26D447003AA113 /* CardmarketDetailVC.xib in Resources */,
 				1C31F8141C632A4E00CB1A9E /* tianjiavip@2x.png in Resources */,
 				D92C632F1CC8DA08006768C6 /* modify.png in Resources */,
 				D9FF0DA21D53304C00443312 /* 图标-20new.png in Resources */,
