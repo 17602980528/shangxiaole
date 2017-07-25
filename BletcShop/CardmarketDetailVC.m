@@ -14,7 +14,8 @@
 #import "UPPaymentControl.h"
 #import "LandingController.h"
 #import "RailNameConfirmVC.h"
-@interface CardmarketDetailVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+#import "UIImageView+WebCache.h"
+@interface CardmarketDetailVC ()<UITextFieldDelegate>
 {
     UITableView *table_View;
     UIView *buyView;
@@ -34,7 +35,15 @@
     
 }
 @property(nonatomic,strong)UILabel *moneyLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *headerImg;
+@property (weak, nonatomic) IBOutlet UILabel *userName;
+@property (weak, nonatomic) IBOutlet UILabel *dateTime;
+@property (weak, nonatomic) IBOutlet UILabel *priceLab;
 
+@property (weak, nonatomic) IBOutlet UILabel *contentLab;
+@property (weak, nonatomic) IBOutlet UIImageView *cardImg;
+@property (weak, nonatomic) IBOutlet UILabel *shopName;
+@property (weak, nonatomic) IBOutlet UILabel *tradeLab;
 
 @end
 
@@ -115,6 +124,9 @@
     self.view.backgroundColor = RGB(240, 240, 240);
 
     priceString = [NSString stringWithFormat:@"%.2f",[_model.card_remain floatValue]*[_model.rate floatValue]*0.01];
+    
+    
+    
 
     [self initTableView];
     
@@ -123,14 +135,49 @@
 -(void)initTableView{
  
     
-    table_View = [[UITableView alloc]initWithFrame:CGRectMake(0, 10, SCREENWIDTH, SCREENHEIGHT-10-49) style:UITableViewStyleGrouped];
-    table_View.dataSource = self;
-    table_View.delegate = self;
-    table_View.separatorStyle= UITableViewCellSeparatorStyleNone;
-    table_View.estimatedRowHeight = 92;
-    table_View.bounces = NO;
+//    table_View = [[UITableView alloc]initWithFrame:CGRectMake(0, 375, SCREENWIDTH, SCREENHEIGHT-10-49) style:UITableViewStyleGrouped];
+//    table_View.dataSource = self;
+//    table_View.delegate = self;
+//    table_View.separatorStyle= UITableViewCellSeparatorStyleNone;
+//    table_View.estimatedRowHeight = 92;
+//    table_View.bounces = NO;
+//    
+//    [self.view addSubview: table_View];
+//    
     
-    [self.view addSubview: table_View];
+    
+    [self.headerImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,_model.headimage]] placeholderImage:[UIImage imageNamed:@"userHeader"]];
+    
+    self.userName.text = _model.nickname;
+    self.priceLab.text = [NSString stringWithFormat:@"¥%@",_model.card_remain];
+    self.dateTime.text = [NSString stringWithFormat:@"%@发布",_model.datetime];
+
+    
+    
+    
+    
+    NSString *type;
+    if ([_model.method isEqualToString:@"transfer"]) {
+        type = @"转让";
+        self.contentLab.text = [NSString stringWithFormat:@"【%@】现有%@%@元%@%@一张(%.1f折卡),%.1f折%@,需要的朋友尽快下手",type,_model.store,_model.card_remain,_model.card_level,_model.card_type,[_model.rule floatValue]*0.1,[_model.rate floatValue]*0.1,type];
+        
+    }else{
+        type = @"分享";
+        self.contentLab.text = [NSString stringWithFormat:@"【%@】现有%@%@元%@%@一张(%g折卡),需要的朋友尽快下手,手续费仅(%@%%)",type,_model.store,_model.card_remain,_model.card_level,_model.card_type,[_model.rule floatValue]*0.1,_model.rate];
+        
+    }
+
+    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc]initWithString:self.contentLab.text];
+    
+    [attri setAttributes:@{NSForegroundColorAttributeName:RGB(243,73,78)} range:NSMakeRange(0, 4)];
+    self.contentLab.attributedText = attri;
+    
+    
+    self.shopName.text = _model.store;
+    self.tradeLab.text = [NSString stringWithFormat:@" %@ ",_model.trade];
+    
+    
+    
     
     
     
@@ -166,33 +213,33 @@
     
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.01;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0.01;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-   
-    
-    return self.model.cellHight;
-    
-}
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    CardMarketCell *cell = [CardMarketCell creatCellWithTableView:tableView];
-    cell.model = self.model;
-//    cell.pricelab.hidden = YES;
-    
-    return cell;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+//    return 0.01;
+//}
+//
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 0.01;
+//}
+//
+//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    return 1;
+//}
+//
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//   
+//    
+//    return self.model.cellHight;
+//    
+//}
+//-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//    CardMarketCell *cell = [CardMarketCell creatCellWithTableView:tableView];
+//    cell.model = self.model;
+////    cell.pricelab.hidden = YES;
+//    
+//    return cell;
+//}
 
 -(void)creatBuyView{
     
@@ -833,6 +880,8 @@
          //         [self noIntenet];
          NSLog(@"%@", error);
      }];
+}
+- (IBAction)shopClick:(id)sender {
 }
 
 
