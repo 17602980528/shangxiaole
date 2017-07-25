@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -116,10 +117,18 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                         </userDefinedRuntimeAttributes>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R86-Jo-5rP">
+                        <rect key="frame" x="93" y="13" width="130" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="gWc-UE-aCV"/>
+                            <constraint firstAttribute="width" constant="130" id="pkL-vO-CYc"/>
+                        </constraints>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="SSf-tC-TXL" firstAttribute="leading" secondItem="tP4-e3-ltO" secondAttribute="trailing" constant="5" id="4sV-t1-ygR"/>
+                    <constraint firstItem="R86-Jo-5rP" firstAttribute="leading" secondItem="ctj-Mt-6hA" secondAttribute="trailing" constant="15" id="ARj-TN-bFH"/>
                     <constraint firstItem="vNt-cz-D5b" firstAttribute="leading" secondItem="zj2-pf-IGL" secondAttribute="leading" id="AdH-cH-CIK"/>
                     <constraint firstAttribute="trailing" secondItem="nMU-n4-GWd" secondAttribute="trailing" id="BBD-ZW-k16"/>
                     <constraint firstItem="nMU-n4-GWd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="DYz-Ha-QEi"/>
@@ -137,6 +146,7 @@
                     <constraint firstItem="mY1-XB-PKf" firstAttribute="leading" secondItem="ste-vg-7vm" secondAttribute="trailing" constant="15" id="Xp4-s2-tnQ"/>
                     <constraint firstAttribute="trailing" secondItem="laF-6m-4c7" secondAttribute="trailing" constant="14" id="ZKy-KB-gFM"/>
                     <constraint firstItem="ste-vg-7vm" firstAttribute="top" secondItem="nMU-n4-GWd" secondAttribute="bottom" constant="10" id="bi1-hF-Q2y"/>
+                    <constraint firstItem="R86-Jo-5rP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="gUq-Gv-Jg7"/>
                     <constraint firstItem="ctj-Mt-6hA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="i1A-s4-gGy"/>
                     <constraint firstItem="aYc-qE-ocA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="jPE-LA-JwC"/>
                     <constraint firstItem="tP4-e3-ltO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="23" id="jdS-nL-Jcd"/>
@@ -153,6 +163,7 @@
                 <outlet property="appriseBtn" destination="mY1-XB-PKf" id="xq8-Co-Z5x"/>
                 <outlet property="dateTime" destination="vNt-cz-D5b" id="g6N-fl-q9C"/>
                 <outlet property="delBtn" destination="ste-vg-7vm" id="sqE-RR-9DX"/>
+                <outlet property="goShopDetailButton" destination="R86-Jo-5rP" id="1fl-lF-onA"/>
                 <outlet property="headImageView" destination="ctj-Mt-6hA" id="8Ga-0K-mdf"/>
                 <outlet property="shopName" destination="tP4-e3-ltO" id="G6T-NA-Veh"/>
                 <outlet property="totalCosts" destination="bQb-I5-Kkn" id="SxT-jy-Dkd"/>

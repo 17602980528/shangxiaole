@@ -12,6 +12,7 @@
 #import "NewAppriseVC.h"
 #import "MyOrderDetailVC.h"
 #import "UIImageView+WebCache.h"
+#import "NewShopDetailVC.h"
 @interface NewMyPayMentsVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *cardCostButton;
@@ -124,7 +125,9 @@
             
         }
         cell.totalCosts.text=[NSString stringWithFormat:@"消费：%@",string];
-
+        cell.goShopDetailButton.tag=indexPath.row;
+        [cell.goShopDetailButton addTarget:self action:@selector(goShopDetailButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        
         return cell;
     }else{
         static NSString *resuseIdentify=@"NewCardBuyTabCell";
@@ -139,7 +142,8 @@
         cell.cardType.text=[NSString stringWithFormat:@"类型：%@",self.orderArray[indexPath.row][@"card_type"]];
         cell.payMoney.text=[NSString stringWithFormat:@"消费：%@元",self.orderArray[indexPath.row][@"sum"]];
         cell.payTime.text=self.orderArray[indexPath.row][@"datetime"];
-        
+        cell.goShopDetailButton.tag=indexPath.row;
+        [cell.goShopDetailButton addTarget:self action:@selector(goShopDetailButtontap:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }
     
@@ -293,5 +297,22 @@
 
     
 }
-
+-(void)goShopDetailButtonClick:(UIButton *)sender{
+    NewShopDetailVC *controller = [[NewShopDetailVC alloc]init];
+    controller.videoID=@"";
+    NSMutableDictionary *dic=[self.orderArray[sender.tag] mutableCopy];
+    [dic setObject:dic[@"merchant"] forKey:@"muid"];
+    controller.infoDic=dic;
+    controller.title = @"商铺信息";
+    [self.navigationController pushViewController:controller animated:YES];
+}
+-(void)goShopDetailButtontap:(UIButton *)sender{
+    NewShopDetailVC *controller = [[NewShopDetailVC alloc]init];
+    controller.videoID=@"";
+    NSMutableDictionary *dic=[self.orderArray[sender.tag] mutableCopy];
+    [dic setObject:dic[@"merchant"] forKey:@"muid"];
+    controller.infoDic=dic;
+    controller.title = @"商铺信息";
+    [self.navigationController pushViewController:controller animated:YES];
+}
 @end
