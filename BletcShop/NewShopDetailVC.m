@@ -654,7 +654,7 @@
                 NSDictionary *dic = evaluate_list[indexPath.row];
                 
                 UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(13, 13, 34, 34)];
-                [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,dic[@"headimage"]]] placeholderImage:[UIImage imageNamed:@"3.1-02"]];
+                [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,dic[@"headimage"]]] placeholderImage:[UIImage imageNamed:@"userHeader"]];
                 imageView.contentMode=UIViewContentModeScaleAspectFill;
                 imageView.layer.cornerRadius = imageView.width/2;
                 imageView.layer.masksToBounds = YES;

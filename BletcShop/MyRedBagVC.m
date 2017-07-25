@@ -85,7 +85,7 @@
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     NSString *str = [[[NSString alloc]initWithFormat:@"%@%@",HEADIMAGE,[appdelegate.userInfoDic objectForKey:@"headimage"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [headImage sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"头像.png"] options:SDWebImageRetryFailed];
+    [headImage sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"userHeader"] options:SDWebImageRetryFailed];
     
     
     allMoney_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, headImage.bottom+38, SCREENWIDTH, 29)];

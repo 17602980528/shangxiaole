@@ -136,7 +136,7 @@
     [topBackView addSubview:headView];
     
     headImageView=[[UIImageView alloc]initWithFrame:CGRectMake(13, 13, 40, 40)];
-    headImageView.image=[UIImage imageNamed:@"3.1-02"];
+    headImageView.image=[UIImage imageNamed:@"userHeader"];
     headImageView.layer.cornerRadius=headImageView.height/2;
     headImageView.clipsToBounds=YES;
     headImageView.userInteractionEnabled=YES;

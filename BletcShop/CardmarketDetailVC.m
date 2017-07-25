@@ -15,6 +15,7 @@
 #import "LandingController.h"
 #import "RailNameConfirmVC.h"
 #import "UIImageView+WebCache.h"
+#import "NewShopDetailVC.h"
 @interface CardmarketDetailVC ()<UITextFieldDelegate>
 {
     UITableView *table_View;
@@ -120,7 +121,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.navigationItem.title = @"卡市";
+    self.navigationItem.title = @"卡片详情";
     self.view.backgroundColor = RGB(240, 240, 240);
 
     priceString = [NSString stringWithFormat:@"%.2f",[_model.card_remain floatValue]*[_model.rate floatValue]*0.01];
@@ -882,6 +883,11 @@
      }];
 }
 - (IBAction)shopClick:(id)sender {
+    
+    PUSH(NewShopDetailVC)
+    
+    vc.infoDic = [NSMutableDictionary dictionaryWithObject:_model.muid forKey:@"muid"];
+    vc.videoID = @"";
 }
 
 

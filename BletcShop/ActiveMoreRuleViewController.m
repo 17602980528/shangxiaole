@@ -218,7 +218,7 @@
         button.hidden=YES;
         recordImage.hidden=NO;
         NSURL * nurl2=[[NSURL alloc] initWithString:[[HEADIMAGE stringByAppendingString:recordArray[indexPath.row][3]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
-        [recordImage sd_setImageWithURL:nurl2 placeholderImage:[UIImage imageNamed:@"头像.png"] options:SDWebImageRetryFailed];
+        [recordImage sd_setImageWithURL:nurl2 placeholderImage:[UIImage imageNamed:@"userHeader"] options:SDWebImageRetryFailed];
         nickLable.hidden=NO;
         nickLable.text=recordArray[indexPath.row][0];
         

@@ -45,7 +45,7 @@
     _adverImages=[[NSMutableArray alloc]initWithCapacity:0];
     //图像
     headImageView=[[UIImageView alloc]initWithFrame:CGRectMake(22, 10, 44, 44)];
-    headImageView.image=[UIImage imageNamed:@"3.1-02"];
+    headImageView.image=[UIImage imageNamed:@"userHeader"];
     headImageView.layer.cornerRadius=22.0f;
     headImageView.clipsToBounds=YES;
     headImageView.userInteractionEnabled=YES;

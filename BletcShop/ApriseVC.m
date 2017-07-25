@@ -88,7 +88,7 @@
        
     }
     if (_dataAray.count>0) {
-         [ cell.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,_dataAray[indexPath.row][@"headimage"]]] placeholderImage:[UIImage imageNamed:@"3.1-02"]];
+         [ cell.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,_dataAray[indexPath.row][@"headimage"]]] placeholderImage:[UIImage imageNamed:@"userHeader"]];
         cell.headImageView.layer.cornerRadius=2;
         cell.headImageView.clipsToBounds=YES;
         cell.headImageView.contentMode=UIViewContentModeScaleAspectFill;

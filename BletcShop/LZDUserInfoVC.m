@@ -105,7 +105,7 @@
         str = [[[NSString alloc]initWithFormat:@"%@%@",HEADIMAGE,[appdelegate.userInfoDic objectForKey:@"headimage"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         DebugLog(@"headerImg ==%@",str);
         cell.headImg.contentMode=UIViewContentModeScaleAspectFill;
-        [cell.headImg sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"头像.png"] options:SDWebImageRetryFailed];
+        [cell.headImg sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"userHeader"] options:SDWebImageRetryFailed];
         
         return cell;
 
