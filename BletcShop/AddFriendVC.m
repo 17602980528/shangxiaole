@@ -86,7 +86,7 @@
     
     [self postRequestEvaluate];
     
-    [self.head sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,self.dic[@"headimage"]]] placeholderImage:[UIImage imageNamed:@"user.png"]];
+    [self.head sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,self.dic[@"headimage"]]] placeholderImage:[UIImage imageNamed:@"userHeader"]];
     self.head.layer.cornerRadius=32.5;
     self.head.clipsToBounds=YES;
     
@@ -95,6 +95,10 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden=NO;
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden=YES;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     [_appriseButton setTitle:[NSString stringWithFormat:@"她的评价(%lu)",(unsigned long)self.noEvaluateShopArray.count] forState:UIControlStateNormal];
@@ -115,7 +119,7 @@
         }
         NSString *string=[NSString stringWithFormat:@"%@%@",HEADIMAGE,self.noEvaluateShopArray[indexPath.row][@"headimage"]];
         NSURL * nurl1=[NSURL URLWithString:[string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
-        [cell.headImage sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"头像"] options:SDWebImageRetryFailed];
+        [cell.headImage sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"userHeader"] options:SDWebImageRetryFailed];
         cell.starRateView.currentScore=[self.noEvaluateShopArray[indexPath.row][@"stars"] floatValue];
         cell.nickName.text=self.noEvaluateShopArray[indexPath.row][@"nickname"];
         cell.shopName.text=self.noEvaluateShopArray[indexPath.row][@"store"];
