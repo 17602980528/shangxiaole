@@ -9,6 +9,8 @@
 #import "AroundViewController.h"
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 #import "UIImageView+WebCache.h"
+#import "BaseNavigationController.h"
+#import "JFCityViewController.h"
 #import "ShopListTableViewCell.h"
 #import "SDCycleScrollView.h"
 #import "NewShopDetailVC.h"
@@ -16,6 +18,7 @@
 {
     LZDButton *oldBtn;
 }
+@property (weak, nonatomic) IBOutlet UILabel *addressLab;
 
 @property (weak, nonatomic) IBOutlet UITableView *tabview;
 @property(nonatomic,strong)NSMutableArray *data_M_A;
@@ -23,12 +26,13 @@
 @property(nonatomic,strong)NSArray *trade_A;
 @property(nonatomic,strong)NSMutableArray* adverImages;
 @property (strong, nonatomic) IBOutlet UIView *topLeftView;
+@property (strong, nonatomic) IBOutlet UIView *topRightView;
 
 @end
 @implementation AroundViewController
 -(NSArray *)trade_A{
     if (!_trade_A) {
-        _trade_A = @[@"热门",@"美容",@"养发",@"足疗按摩"];
+        _trade_A = @[@"热门",@"美容",@"养发",@"足疗按摩",@"汽车维修",@"超市"];
     }
     return _trade_A;
 }
@@ -45,26 +49,59 @@
     return _data_M_A;
 }
 - (IBAction)addressClick:(UITapGestureRecognizer *)sender {
+    NSLog(@"定位");
     
-    NSLog(@"-----");
-}
+    
+    JFCityViewController *cityViewController = [[JFCityViewController alloc] init];
+    
+    cityViewController.title = @"城市";
+    BaseNavigationController *navigationController = [[BaseNavigationController alloc]initWithRootViewController:cityViewController];
+    
+    [self presentViewController:navigationController animated:YES completion:nil];
 
--(void)searchClick{
+    
+    
+    __weak typeof(self) weakSelf = self;
+    [cityViewController choseCityBlock:^(NSString *cityName,NSString *eareName){
+        weakSelf.addressLab.text = eareName.length>0 ? eareName:cityName;
+        
+        NSString *address = eareName.length>0 ? [cityName stringByAppendingString:eareName] :cityName;
+        
+        [weakSelf postRequestShopWithAddress:address];
+        NSLog(@"%@-%@",cityName,eareName);
+        
+        
+        
+    }];
+    
+    
+    
+    
+    
+}
+- (IBAction)searchClcik:(UITapGestureRecognizer *)sender {
+    
     NSLog(@"--searchClick--");
+
+
+
 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title  = @"周边";
+    self.title  = @"周边";
 
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"搜索icon"] style:UIBarButtonItemStylePlain target:self action:@selector(searchClick)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.topRightView];
+
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.topLeftView];
+    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+
+    self.addressLab.text = appdelegate.districtString.length >0? appdelegate.districtString : @"雁塔区";
     
     
-    
-    [self postRequestShopWithAddress:@"西安市"];
+    [self postRequestShopWithAddress:self.addressLab.text];
     
     self.tabview.tableHeaderView = [self creatHeadView];
 }
@@ -259,7 +296,7 @@
         btn.layer.borderColor = RGB(220,220,220).CGColor;
         [btn setTitleColor:RGB(143,143,143) forState:0];
         
-        [bgView addSubview:btn];
+        [topScrollView addSubview:btn];
         
         btn.block = ^(LZDButton *sender) {
           
@@ -284,6 +321,8 @@
             [btn setTitleColor:[UIColor whiteColor] forState:0];
         }
         
+        
+        topScrollView.contentSize = CGSizeMake(btn.right+13, 0);
         
     }
     
