@@ -54,11 +54,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GBx-bc-lQ6">
+                                <rect key="frame" x="13" y="5" width="123.5" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="DNS-VV-zjM"/>
+                                </constraints>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="1IW-gX-lGA"/>
                             <constraint firstItem="q9J-s2-ImV" firstAttribute="top" secondItem="J8F-SD-aDR" secondAttribute="top" constant="14" id="CXd-9Z-8hc"/>
+                            <constraint firstItem="GBx-bc-lQ6" firstAttribute="leading" secondItem="jQE-p2-DRk" secondAttribute="leading" id="H0L-v6-2bx"/>
+                            <constraint firstItem="o38-Uc-f06" firstAttribute="trailing" secondItem="GBx-bc-lQ6" secondAttribute="trailing" id="Hcz-AQ-McV"/>
                             <constraint firstItem="jQE-p2-DRk" firstAttribute="top" secondItem="J8F-SD-aDR" secondAttribute="top" constant="15" id="Qgt-0R-rJU"/>
                             <constraint firstItem="zLN-XB-0JG" firstAttribute="top" secondItem="J8F-SD-aDR" secondAttribute="top" constant="16" id="RoQ-rb-6xj"/>
                             <constraint firstItem="jQE-p2-DRk" firstAttribute="leading" secondItem="J8F-SD-aDR" secondAttribute="leading" constant="13" id="TrR-UY-OAU"/>
@@ -66,6 +74,7 @@
                             <constraint firstItem="q9J-s2-ImV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="o38-Uc-f06" secondAttribute="trailing" constant="5" id="UNG-e8-jHA"/>
                             <constraint firstItem="o38-Uc-f06" firstAttribute="top" secondItem="J8F-SD-aDR" secondAttribute="top" constant="16" id="YGJ-WT-Fre"/>
                             <constraint firstAttribute="trailing" secondItem="q9J-s2-ImV" secondAttribute="trailing" constant="14" id="ZUU-Lt-LWk"/>
+                            <constraint firstItem="GBx-bc-lQ6" firstAttribute="top" secondItem="J8F-SD-aDR" secondAttribute="top" constant="5" id="kLB-SZ-jfk"/>
                             <constraint firstItem="o38-Uc-f06" firstAttribute="leading" secondItem="zLN-XB-0JG" secondAttribute="trailing" constant="5" id="vjn-eM-Nks"/>
                         </constraints>
                     </view>
@@ -150,6 +159,7 @@
             <connections>
                 <outlet property="cardLevel" destination="l20-VF-b1p" id="vDO-Ls-JK3"/>
                 <outlet property="cardType" destination="ftk-r3-3Xo" id="Sdt-92-rgt"/>
+                <outlet property="goShopDetailButton" destination="GBx-bc-lQ6" id="Wm2-Rq-jFo"/>
                 <outlet property="payMoney" destination="xzw-kU-qqn" id="H7u-FQ-CuX"/>
                 <outlet property="payTime" destination="UeV-jR-S1L" id="6CD-Rb-UrC"/>
                 <outlet property="shopName" destination="zLN-XB-0JG" id="jb6-MM-1XO"/>
