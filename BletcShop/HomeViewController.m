@@ -40,7 +40,7 @@
 
 #import "BeautyIndustryVC.h"
 
-
+#import "ShoppingViewController.h"
 #import "MemberCenterVC.h"
 
 @interface HomeViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,GYChangeTextViewDelegate,SelectCityDelegate,JFLocationDelegate,SDCycleScrollViewDelegate>
@@ -50,7 +50,7 @@
     int currentIndex1;//请求页码
 
     UIView*searchView;
-    
+    UIView *top_line;
     NSString *address_old;//之前的地址
     //广告轮播
     NSArray* _topAdverImages;
@@ -79,8 +79,13 @@
     UIView *PopupAdvertiseView;//弹出广告
     SDCycleScrollView *cycleScrollView2;
     
+    UIImageView *dingweiXiaImg;
     
     NSDictionary *pop_data_Dic;
+    
+    UIImageView *erweimaImg;
+    UIImageView *xiaoxiImg;
+    UIImageView *search1;
 
 }
 
@@ -253,30 +258,27 @@
     topView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:topView];
     
-    
-    UIColor *color=NavBackGroundColor;
-    CGFloat offset=table_View.contentOffset.y;
-    //        NSLog(@"================%lf",offset);
-    if (offset<0) {
-        topView.backgroundColor = [color colorWithAlphaComponent:0];
-    }else {
-        CGFloat alpha=1-((100-offset)/100);
-        topView.backgroundColor=[color colorWithAlphaComponent:alpha];
-    }
+    top_line = [[UIView alloc]initWithFrame:CGRectMake(0, 63, SCREENWIDTH, 1)];
+    top_line.backgroundColor =[UIColor clearColor];
+    [topView addSubview:top_line];
     
     
     
     
     
+    dingweiXiaImg = [[UIImageView alloc]initWithFrame:CGRectMake(11, 30, 15, 15)];
+    dingweiXiaImg.image = [UIImage imageNamed:@"定位icon"];
+    [topView addSubview:dingweiXiaImg];
     
-    dingweiBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 20, 43, 44)];
+    
+    dingweiBtn = [[UIButton alloc]initWithFrame:CGRectMake(27, 20-5, 43, 44)];
     [dingweiBtn addTarget:self action:@selector(dingweiClick:) forControlEvents:UIControlEventTouchUpInside];
     
     
     
     
     [dingweiBtn setTitle:appdelegate.districtString.length>0?appdelegate.districtString:appdelegate.cityChoice forState:UIControlStateNormal];
-    [dingweiBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [dingweiBtn setTitleColor:RGB(255,255,255) forState:UIControlStateNormal];
     dingweiBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [topView addSubview:dingweiBtn];
     
@@ -290,26 +292,26 @@
     dingweiBtn.frame = btn_frame;
     
     
-    dingwei_img = [[UIImageView alloc]initWithFrame:CGRectMake(dingweiBtn.right, 20+(44-12)/2, 12, 12)];
+    dingwei_img = [[UIImageView alloc]initWithFrame:CGRectMake(dingweiBtn.right, dingweiBtn.top+(44-12)/2, 12, 12)];
     dingwei_img.image = [UIImage imageNamed:@"首页最上面"];
     [topView addSubview:dingwei_img];
     
     
     searchView=[[UIView alloc]init];
-    searchView.frame=CGRectMake(dingwei_img.right+5, 28, SCREENWIDTH-dingwei_img.right-5-35-30, 30);
-    searchView.backgroundColor=RGB(249, 249, 249);
-    searchView.layer.cornerRadius=3;
-    searchView.alpha = 0.8;
+    searchView.frame=CGRectMake(dingwei_img.right+13, 24, SCREENWIDTH-dingwei_img.right-13-35-35-15, 28);
+    searchView.backgroundColor=RGB(255,255,255);
+    searchView.layer.cornerRadius=12;
+//    searchView.alpha = 0.8;
     [topView addSubview:searchView];
     
     
-    UIImageView *search1= [[UIImageView alloc]initWithFrame:CGRectMake(11, 17/2, 13, 13)];
-    search1.image = [UIImage imageNamed:@"sousuo"];
+     search1= [[UIImageView alloc]initWithFrame:CGRectMake(11, 5, 18, 18)];
+    search1.image = [UIImage imageNamed:@"搜索icon"];
     [searchView addSubview:search1];
     
     
-    search_tf=[[UITextField alloc]initWithFrame:CGRectMake(search1.right+10, 7, SCREENWIDTH-120, 20)];
-    search_tf.placeholder=@"点击搜索";
+    search_tf=[[UITextField alloc]initWithFrame:CGRectMake(search1.right+10, 8, searchView.width-(search1.right+10), 20)];
+    search_tf.placeholder=@"总有一款适合你";
     search_tf.delegate=self;
     [search_tf setValue:[UIFont systemFontOfSize:13] forKeyPath:@"_placeholderLabel.font"];
     [search_tf setValue:RGB(153, 153, 153) forKeyPath:@"_placeholderLabel.color"];
@@ -328,18 +330,18 @@
         
         UIButton *minePageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         minePageBtn.tag = i;
-        minePageBtn.frame = CGRectMake(CGRectGetMaxX(searchView.frame)+i*35, CGRectGetMinY(searchView.frame), 35, 35);
+        minePageBtn.frame = CGRectMake(CGRectGetMaxX(searchView.frame)+15+i*35, CGRectGetMinY(searchView.frame)-3, 35, 35);
         [minePageBtn addTarget:self action:@selector(goMineCenter:) forControlEvents:UIControlEventTouchUpInside];
         
         [topView addSubview:minePageBtn];
         
         UIImageView *img_mine = [[UIImageView alloc]initWithFrame:CGRectMake(7.5, 7.5, 20, 20)];
-        img_mine.image = [UIImage imageNamed:@"扫描二维码"];
+        img_mine.image = [UIImage imageNamed:@"二维码扫描"];
         [minePageBtn addSubview:img_mine];
         if (i==1) {
             
             
-           
+            xiaoxiImg= img_mine;
 
 //            UIView *redView = [[UIView alloc]initWithFrame:CGRectMake(16, 4, 4, 4)];
 //            redView.backgroundColor = [UIColor redColor];
@@ -347,8 +349,8 @@
 //            redView.clipsToBounds = YES;
 //            [img_mine addSubview:redView];
             
-            img_mine.frame =CGRectMake(2.5, 5.5, 24, 24);
-            img_mine.image = [UIImage imageNamed:@"home_adress_choose_n"];
+            img_mine.frame =CGRectMake(2.5+3, 5.5+3, 18, 18);
+            img_mine.image = [UIImage imageNamed:@"提醒icon"];
             
             //            UIImageView *whitePoint = [[UIImageView alloc]initWithFrame:CGRectMake(img_mine.width-6-2, 0, 6, 6)];
             //            whitePoint.backgroundColor = [UIColor greenColor];
@@ -356,6 +358,8 @@
             //            whitePoint.layer.cornerRadius = whitePoint.width/2;
             //            [img_mine addSubview:whitePoint];
             
+        }else{
+            erweimaImg = img_mine;
         }
         
         
@@ -369,6 +373,50 @@
     }
     
     
+    
+    UIColor *color=[UIColor whiteColor];
+    UIColor *lineCOlor =RGB(98,98,98);
+    CGFloat offset=table_View.contentOffset.y;
+    if (offset<0) {
+        top_line.backgroundColor = [lineCOlor colorWithAlphaComponent:0];
+        topView.backgroundColor = [color colorWithAlphaComponent:0];
+        
+        
+        
+    }else {
+        CGFloat alpha=1-((100-offset)/100);
+        topView.backgroundColor=[color colorWithAlphaComponent:alpha];
+        top_line.backgroundColor = [lineCOlor colorWithAlphaComponent:alpha];
+        
+        if (alpha>=0.5) {
+            dingweiXiaImg.image = [UIImage imageNamed:@"红色定位icon"];
+            searchView.backgroundColor=RGB(221,221,221);
+            
+            dingwei_img.image = [UIImage imageNamed:@"下A"];
+            [dingweiBtn setTitleColor:RGB(119,119,119) forState:UIControlStateNormal];
+            
+            erweimaImg.image = [UIImage imageNamed:@"灰色二维码扫描"];
+            xiaoxiImg.image = [UIImage imageNamed:@"灰色提醒icon"];
+            search1.image = [UIImage imageNamed:@"灰色搜索icon"];
+
+            
+        }else{
+            dingweiXiaImg.image = [UIImage imageNamed:@"定位icon"];
+            searchView.backgroundColor=RGB(255,255,255);
+            
+            dingwei_img.image = [UIImage imageNamed:@"首页最上面"];
+            [dingweiBtn setTitleColor:RGB(255,255,255) forState:UIControlStateNormal];
+            
+            erweimaImg.image = [UIImage imageNamed:@"二维码扫描"];
+            xiaoxiImg.image = [UIImage imageNamed:@"提醒icon"];
+            search1.image = [UIImage imageNamed:@"搜索icon"];
+
+            
+            
+        }
+        
+    }
+
     
     
     
@@ -1188,13 +1236,16 @@
         PUSH(BeautyIndustryVC)
         
     }else{
-        AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-        appdelegate.menuString = [self.icon_A objectAtIndex:sender.tag][@"text"];
-        NSLog(@"appdelegate.menuString%@",appdelegate.menuString);
-        //    self.tabBarController.selectedIndex = 1;
-        NSLog(@"%ld",(long)sender.tag);
         
-        self.tabBarController.selectedIndex =1;
+        PUSH(ShoppingViewController)
+        vc.navigationItem.title = self.icon_A[sender.tag][@"text"];
+//        AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+//        appdelegate.menuString = [self.icon_A objectAtIndex:sender.tag][@"text"];
+//        NSLog(@"appdelegate.menuString%@",appdelegate.menuString);
+//        //    self.tabBarController.selectedIndex = 1;
+//        NSLog(@"%ld",(long)sender.tag);
+//        
+//        self.tabBarController.selectedIndex =1;
     }
    
 
@@ -1332,14 +1383,53 @@
     
     
     if (scrollView ==table_View) {
-        UIColor *color=NavBackGroundColor;
+        UIColor *color=[UIColor whiteColor];
+        UIColor *lineCOlor =RGB(98,98,98);
+
+        
         CGFloat offset=scrollView.contentOffset.y;
 //        NSLog(@"================%lf",offset);
         if (offset<0) {
+            top_line.backgroundColor = [lineCOlor colorWithAlphaComponent:0];
+
             topView.backgroundColor = [color colorWithAlphaComponent:0];
+            
+
+            
         }else {
             CGFloat alpha=1-((100-offset)/100);
             topView.backgroundColor=[color colorWithAlphaComponent:alpha];
+            top_line.backgroundColor = [lineCOlor colorWithAlphaComponent:alpha];
+            
+            
+            if (alpha>=0.5) {
+                dingweiXiaImg.image = [UIImage imageNamed:@"红色定位icon"];
+                searchView.backgroundColor=RGB(221,221,221);
+                
+                dingwei_img.image = [UIImage imageNamed:@"下A"];
+                [dingweiBtn setTitleColor:RGB(119,119,119) forState:UIControlStateNormal];
+                search1.image = [UIImage imageNamed:@"灰色搜索icon"];
+
+                erweimaImg.image = [UIImage imageNamed:@"灰色二维码扫描"];
+                xiaoxiImg.image = [UIImage imageNamed:@"灰色提醒icon"];
+                
+            }else{
+                dingweiXiaImg.image = [UIImage imageNamed:@"定位icon"];
+                searchView.backgroundColor=RGB(255,255,255);
+                
+                dingwei_img.image = [UIImage imageNamed:@"首页最上面"];
+                [dingweiBtn setTitleColor:RGB(255,255,255) forState:UIControlStateNormal];
+                
+                erweimaImg.image = [UIImage imageNamed:@"二维码扫描"];
+                xiaoxiImg.image = [UIImage imageNamed:@"提醒icon"];
+
+                search1.image = [UIImage imageNamed:@"搜索icon"];
+
+                
+            }
+
+            
+
         }
 
     }
@@ -1398,8 +1488,10 @@
 
 -(void)resetFrame{
     
-    dingwei_img.frame = CGRectMake(dingweiBtn.right, 20+(44-12)/2, 12, 12);
-    searchView.frame=CGRectMake(dingwei_img.right+5, 28, SCREENWIDTH-dingwei_img.right-5-35-30, 30);
+    
+    dingwei_img.frame = CGRectMake(dingweiBtn.right, dingweiBtn.top+(44-12)/2, 12, 12);
+    searchView.frame=CGRectMake(dingwei_img.right+13, 24, SCREENWIDTH-dingwei_img.right-13-35-35-15, 28);
+    
 
     
 }

@@ -132,7 +132,7 @@
         
         self.ereaString = [NSString stringWithFormat:@"%@%@",appdelegate.cityChoice,appdelegate.addressDistrite];
     
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
     [_mapView viewWillAppear];
     _mapView.delegate = self;
     _locService.delegate = self;
@@ -215,7 +215,7 @@
     [self getData];
     
     
-    [self _initView];
+//    [self _initView];
     [self _initTable];
     [self _initFootTab];
     
@@ -225,7 +225,7 @@
 -(void)_initFootTab
 {
     // 添加下拉菜单
-    DOPDropDownMenu *menu = [[DOPDropDownMenu alloc] initWithOrigin:CGPointMake(0, 110-60) andHeight:44];
+    DOPDropDownMenu *menu = [[DOPDropDownMenu alloc] initWithOrigin:CGPointMake(0, 0) andHeight:44];
     menu.delegate = self;
     menu.dataSource = self;
     menu.isClickHaveItemValid = YES;
@@ -240,42 +240,54 @@
 
 
 //创建顶部控件;
--(void)_initView
-{
-    //    顶部地理位置
-    UIView *back_v =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 50)];
-    back_v.backgroundColor = NavBackGroundColor;
-    [self.view addSubview:back_v];
-    
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    NSLog(@"appdelegate.addressInfo%@",appdelegate.addressInfo);
-    UILabel *GpsLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, SCREENWIDTH, 30)];
-    GpsLabel.text = appdelegate.addressInfo;
-    GpsLabel.backgroundColor = NavBackGroundColor;
-    GpsLabel.textAlignment = NSTextAlignmentCenter;
-    GpsLabel.font = [UIFont systemFontOfSize:10];
-    [GpsLabel setTextColor:[UIColor whiteColor]];
-    [self.view addSubview:GpsLabel];
-    self.GpsLabel = GpsLabel;
-    
-    UIView *Fview = [[UIView alloc]initWithFrame:CGRectMake(0, 110-60, SCREENWIDTH, 45)];
-    Fview.backgroundColor = [UIColor whiteColor];
-    Fview.layer.borderWidth = 1;
-    Fview.layer.borderColor = [UIColor grayColor].CGColor;
-    Fview.alpha = 0.3;
-    [self.view addSubview:Fview];
-    
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 109-60, SCREENWIDTH, 1)];
-    lineView.backgroundColor = [UIColor grayColor];
-    lineView.alpha = 0.3;
-    [self.view addSubview: lineView];
-    //
-}
+//-(void)_initView
+//{
+//    //    顶部地理位置
+//    UIView *back_v =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 50)];
+//    back_v.backgroundColor = NavBackGroundColor;
+//    [self.view addSubview:back_v];
+//    
+//    
+//    
+//    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+//    NSLog(@"appdelegate.addressInfo%@",appdelegate.addressInfo);
+//    UILabel *GpsLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, SCREENWIDTH, 30)];
+//    GpsLabel.text = appdelegate.addressInfo;
+//    GpsLabel.backgroundColor = NavBackGroundColor;
+//    GpsLabel.textAlignment = NSTextAlignmentCenter;
+//    GpsLabel.font = [UIFont systemFontOfSize:10];
+//    [GpsLabel setTextColor:[UIColor whiteColor]];
+//    [self.view addSubview:GpsLabel];
+//    self.GpsLabel = GpsLabel;
+//    
+//    UIView *Fview = [[UIView alloc]initWithFrame:CGRectMake(0, 50, SCREENWIDTH, 45)];
+//    Fview.backgroundColor = [UIColor whiteColor];
+//    Fview.layer.borderWidth = 1;
+//    Fview.layer.borderColor = [UIColor grayColor].CGColor;
+//    Fview.alpha = 0.3;
+//    [self.view addSubview:Fview];
+//    
+//    LZDButton *backBtn = [LZDButton creatLZDButton];
+//    backBtn.frame = CGRectMake(0, 20, 50, 30);
+//    [backBtn setImage:[UIImage imageNamed:@"返回箭头"] forState:0];
+//    [self.view addSubview:backBtn];
+//    
+//    backBtn.block = ^(LZDButton *btn) {
+//        POP
+//    };
+//
+//    
+//    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 109-60, SCREENWIDTH, 1)];
+//    lineView.backgroundColor = [UIColor grayColor];
+//    lineView.alpha = 0.3;
+//    [self.view addSubview: lineView];
+//    //
+//}
 
 //商户列表
 -(void)_initTable
 {
-    UITableView *shopTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 155-60, SCREENWIDTH, SCREENHEIGHT-155-50+60) style:UITableViewStylePlain];
+    UITableView *shopTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 44, SCREENWIDTH, SCREENHEIGHT-(44-64)) style:UITableViewStylePlain];
     shopTable.delegate = self;
     shopTable.dataSource = self;
     shopTable.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -990,7 +1002,7 @@
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     appdelegate.menuString = self.classifyString;
     appdelegate.addressDistrite = @"";
-    self.navigationController.navigationBarHidden = NO;
+//    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -1044,6 +1056,8 @@
     UIView *topView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, (SCREENWIDTH-24)*95/350+24)];
     topView.backgroundColor=[UIColor whiteColor];
     [bgView addSubview:topView];
+    
+    
     
     bottomView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, topView.bottom+10, SCREENWIDTH, 90)];
     bottomView.backgroundColor=[UIColor whiteColor];

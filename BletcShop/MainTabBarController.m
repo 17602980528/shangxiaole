@@ -10,10 +10,11 @@
 #import "BaseNavigationController.h"
 //#import "MoreViewController.h"
 #import "MineViewController.h"
-#import "ShoppingViewController.h"
+//#import "ShoppingViewController.h"
 
 #import "HomeViewController.h"
 #import "CardMarketViewController.h"
+#import "AroundViewController.h"
 
 
 @interface MainTabBarController ()
@@ -42,7 +43,7 @@
     //    FirstViewController *firstVc = [[FirstViewController alloc]init];
     [self addOneChindVC:firstVc title:@"首页" imageName:@"mine_home_n" selectedImageName:@"mine_home_s"];
     
-    ShoppingViewController *shopVC = [[ShoppingViewController alloc]init];
+    AroundViewController *shopVC = [[AroundViewController alloc]init];
     [self addOneChindVC:shopVC title:@"周边" imageName:@"mine_side_n" selectedImageName:@"mine_side_s"];
     
     

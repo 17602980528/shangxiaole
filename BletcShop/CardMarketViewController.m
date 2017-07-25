@@ -132,20 +132,22 @@
     
     
     topView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 64)];
-    topView.backgroundColor = NavBackGroundColor;
+    topView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:topView];
     
     
     
+    UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(15, 30, 11, 15)];
+    imgV.image = [UIImage imageNamed:@"导航栏定位"];
+    [topView addSubview:imgV];
     
     
-    
-    dingweiBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 20, 43, 44)];
+    dingweiBtn = [[UIButton alloc]initWithFrame:CGRectMake(27, 20-5, 43, 44)];
     [dingweiBtn addTarget:self action:@selector(dingweiClick:) forControlEvents:UIControlEventTouchUpInside];
     
     
     [dingweiBtn setTitle:appdelegate.districtString.length>0?appdelegate.districtString:appdelegate.cityChoice forState:UIControlStateNormal];
-    [dingweiBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [dingweiBtn setTitleColor:RGB(119,119,119) forState:UIControlStateNormal];
     dingweiBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [topView addSubview:dingweiBtn];
     
@@ -158,26 +160,27 @@
     btn_frame.size.width =  ww<43 ? 43:58;
     dingweiBtn.frame = btn_frame;
     
-    
-    dingwei_img = [[UIImageView alloc]initWithFrame:CGRectMake(dingweiBtn.right, 20+(44-12)/2, 12, 12)];
-    dingwei_img.image = [UIImage imageNamed:@"首页最上面"];
+    dingwei_img = [[UIImageView alloc]initWithFrame:CGRectMake(dingweiBtn.right, dingweiBtn.top+(44-12)/2, 12, 12)];
+    dingwei_img.image = [UIImage imageNamed:@"下A"];
     [topView addSubview:dingwei_img];
     
     
+    
     searchView=[[UIView alloc]init];
-    searchView.frame=CGRectMake(dingwei_img.right+5, 28, SCREENWIDTH-dingwei_img.right-5-30, 30);
-    searchView.backgroundColor=RGB(249, 249, 249);
-    searchView.layer.cornerRadius=3;
+    searchView.frame=CGRectMake(dingwei_img.right+13, 24, SCREENWIDTH-(dingwei_img.right-13)*2, 28);
+    searchView.backgroundColor=RGB(221,221,221);
+    searchView.layer.cornerRadius=12;
+
     [topView addSubview:searchView];
     
     
-    UIImageView *search1= [[UIImageView alloc]initWithFrame:CGRectMake(11, 17/2, 13, 13)];
-    search1.image = [UIImage imageNamed:@"sousuo"];
+    UIImageView *search1= [[UIImageView alloc]initWithFrame:CGRectMake(11, 5, 18, 18)];
+    search1.image = [UIImage imageNamed:@"灰色搜索icon"];
     [searchView addSubview:search1];
     
     
-    search_tf=[[UITextField alloc]initWithFrame:CGRectMake(search1.right+10, 7, SCREENWIDTH-120, 20)];
-    search_tf.placeholder=@"请输入您要找的关键字";
+    search_tf=[[UITextField alloc]initWithFrame:CGRectMake(search1.right+10, 8, searchView.width-(search1.right+10), 20)];
+    search_tf.placeholder=@"总有一款适合你";
     search_tf.delegate=self;
     [search_tf setValue:[UIFont systemFontOfSize:13] forKeyPath:@"_placeholderLabel.font"];
     [search_tf setValue:RGB(153, 153, 153) forKeyPath:@"_placeholderLabel.color"];
@@ -608,9 +611,8 @@
     btn_frame.size.width =  ww<43 ? 43:58;
     dingweiBtn.frame = btn_frame;
     
-    
-    dingwei_img.frame = CGRectMake(dingweiBtn.right, 20+(44-12)/2, 12, 12);
-    searchView.frame=CGRectMake(dingwei_img.right+5, 28, SCREENWIDTH-dingwei_img.right-5-30, 30);
+    dingwei_img.frame = CGRectMake(dingweiBtn.right, dingweiBtn.top+(44-12)/2, 12, 12);
+    searchView.frame=CGRectMake(dingwei_img.right+13, 24, SCREENWIDTH-dingwei_img.right-13-35-35-15, 28);
     
     
 }
