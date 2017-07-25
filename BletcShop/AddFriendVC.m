@@ -10,6 +10,7 @@
 #import "AddFriendTableViewCell.h"
 #import "MorePubTableViewCell.h"
 #import "UIImageView+WebCache.h"
+#import "NewShopDetailVC.h"
 @interface AddFriendVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     UIImageView *noneData;
@@ -112,6 +113,17 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor=[UIColor clearColor];
         }
+        NSString *string=[NSString stringWithFormat:@"%@%@",HEADIMAGE,self.noEvaluateShopArray[indexPath.row][@"headimage"]];
+        NSURL * nurl1=[NSURL URLWithString:[string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+        [cell.headImage sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"头像"] options:SDWebImageRetryFailed];
+        cell.starRateView.currentScore=[self.noEvaluateShopArray[indexPath.row][@"stars"] floatValue];
+        cell.nickName.text=self.noEvaluateShopArray[indexPath.row][@"nickname"];
+        cell.shopName.text=self.noEvaluateShopArray[indexPath.row][@"store"];
+        cell.appriseLable.text=self.noEvaluateShopArray[indexPath.row][@"content"];
+        cell.publishTime.text=self.noEvaluateShopArray[indexPath.row][@"datetime"];
+        cell.goShopDetailButton.tag=indexPath.row;
+        [cell.goShopDetailButton addTarget:self action:@selector(goShopDetailButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        
         return cell;
     }else{
         static NSString *resuseIdentifyss=@"MorePubCell";
@@ -155,7 +167,15 @@
      }];
     
 }
-
+-(void)goShopDetailButtonClick:(UIButton *)sender{
+    NewShopDetailVC *controller = [[NewShopDetailVC alloc]init];
+    controller.videoID=@"";
+    NSMutableDictionary *dic=[self.noEvaluateShopArray[sender.tag] mutableCopy];
+    [dic setObject:dic[@"merchant"] forKey:@"muid"];
+    controller.infoDic=dic;
+    controller.title = @"商铺信息";
+    [self.navigationController pushViewController:controller animated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
