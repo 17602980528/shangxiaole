@@ -231,7 +231,7 @@
 -(void)postRequestPoints
 {
     
-    NSString *url =[NSString stringWithFormat:@"%@UserType/user/getRedPacket",BASEURL];
+    NSString *url =[NSString stringWithFormat:@"%@UserType/user/getRedPacket",BASEURL_SERVER];
     NSMutableDictionary *paramer =[NSMutableDictionary dictionary];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     
@@ -1148,11 +1148,11 @@
         NSArray *arr = result;
         if ([arr[0] isKindOfClass:[NSString class]]) {
 #ifdef DEBUG
-            [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:@"blectShop" mode:@"01" viewController:self];
+            [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:@"blectUser" mode:@"01" viewController:self];
             
             
 #else
-            [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:@"blectShop" mode:@"00" viewController:self];
+            [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:@"blectUser" mode:@"00" viewController:self];
             
             
 #endif
@@ -1449,11 +1449,11 @@
         if ([arr[0] isKindOfClass:[NSString class]]) {
             
 #ifdef DEBUG
-            [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:@"blectShop" mode:@"01" viewController:self];
+            [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:@"blectUser" mode:@"01" viewController:self];
             
             
 #else
-            [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:@"blectShop" mode:@"00" viewController:self];
+            [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:@"blectUser" mode:@"00" viewController:self];
             
             
 #endif
@@ -1639,17 +1639,17 @@
         [paramer setValue:[self.contentLabel.text substringFromIndex:4] forKey:@"income"];
         
         [paramer setValue:@"cp" forKey:@"privi"];
-        [paramer setValue:self.coup_dic[@"coupon_id"] forKey:@"privy_con"];
+        [paramer setValue:self.coup_dic[@"coupon_id"] forKey:@"privi_con"];
         
         
     }else if (self.Type==plat_Ware) {
         [paramer setValue:@"scp" forKey:@"privi"];
-        [paramer setValue:self.plat_coup_dic[@"id"] forKey:@"privy_con"];
+        [paramer setValue:self.plat_coup_dic[@"id"] forKey:@"privi_con"];
         
         
     }else if (self.Type == points) {
         [paramer setValue:@"rp" forKey:@"privi"];
-        [paramer setValue:[NSString stringWithFormat:@"%g",self.canUsePoint] forKey:@"privy_con"];
+        [paramer setValue:[NSString stringWithFormat:@"%g",self.canUsePoint] forKey:@"privi_con"];
         
         
     }else{
@@ -1855,17 +1855,17 @@
         [paramer setValue:[self.contentLabel.text substringFromIndex:4] forKey:@"income"];
 
         [paramer setValue:@"cp" forKey:@"privi"];
-        [paramer setValue:self.coup_dic[@"coupon_id"] forKey:@"privy_con"];
+        [paramer setValue:self.coup_dic[@"coupon_id"] forKey:@"privi_con"];
         
         
     }else if (self.Type==plat_Ware) {
         [paramer setValue:@"scp" forKey:@"privi"];
-        [paramer setValue:self.plat_coup_dic[@"id"] forKey:@"privy_con"];
+        [paramer setValue:self.plat_coup_dic[@"id"] forKey:@"privi_con"];
 
         
     }else if (self.Type == points) {
         [paramer setValue:@"rp" forKey:@"privi"];
-        [paramer setValue:[NSString stringWithFormat:@"%g",self.canUsePoint] forKey:@"privy_con"];
+        [paramer setValue:[NSString stringWithFormat:@"%g",self.canUsePoint] forKey:@"privi_con"];
 
         
     }else{

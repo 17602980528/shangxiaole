@@ -373,7 +373,7 @@
           CGFloat  WW = [like_lab.text boundingRectWithSize:CGSizeMake(200, 50) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:like_lab.font} context:nil].size.width;
           
           UIView *line1 = [[UIView alloc]init];
-          line1.frame = CGRectMake(13, (like_lab.height-2)/2+like_lab.top, SCREENWIDTH/2-13-WW/2-13, 2);
+          line1.frame = CGRectMake(13, (like_lab.height-1)/2+like_lab.top, SCREENWIDTH/2-13-WW/2-13, 1);
           line1.backgroundColor = RGB(98,98,98);
           [cell addSubview:line1];
           
@@ -449,7 +449,7 @@
         CGFloat  WW = [like_lab.text boundingRectWithSize:CGSizeMake(200, 50) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:like_lab.font} context:nil].size.width;
         
         UIView *line1 = [[UIView alloc]init];
-        line1.frame = CGRectMake(13, (like_lab.height-2)/2+like_lab.top, SCREENWIDTH/2-13-WW/2-13, 2);
+        line1.frame = CGRectMake(13, (like_lab.height-1)/2+like_lab.top, SCREENWIDTH/2-13-WW/2-13, 1);
         line1.backgroundColor = RGB(98,98,98);
         [cell addSubview:line1];
         
@@ -1382,7 +1382,7 @@
     [self showHudInView:self.view hint:@"加载中..."];
     
     AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/merchant/contentGet",BASEURL];
+    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/merchant/contentGet",BASEURL_SERVER];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[self.infoDic objectForKey:@"muid"] forKey:@"muid"];
     
@@ -1597,7 +1597,7 @@
 //    [backView addSubview:starLabel];
     
     
-    UILabel *lab1=[[UILabel alloc]initWithFrame:CGRectMake(starView.right + 5, starView.top+1.5, SCREENWIDTH-90-95-20-62, 12)];
+    UILabel *lab1=[[UILabel alloc]initWithFrame:CGRectMake(starView.right + 5, starView.top+1.5, SCREENWIDTH-(starView.right + 5), 12)];
     lab1.textAlignment=NSTextAlignmentLeft;
     lab1.text=[[NSString alloc]initWithFormat:@"| 已售:%@",[NSString getTheNoNullStr:[wholeInfoDic objectForKey:@"sold"] andRepalceStr:@"0"]];
     lab1.textColor = RGB(102,102,102);
@@ -1887,7 +1887,7 @@ if (old_view !=tap.view) {
 //领取优惠券;
 
 -(void)postReceiveConponRequest:(NSDictionary *)dic{
-    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/coupon/receive",BASEURL];
+    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/coupon/receive",BASEURL_SERVER];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     

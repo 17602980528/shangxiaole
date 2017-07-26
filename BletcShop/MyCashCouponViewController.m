@@ -96,13 +96,13 @@
 {
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/coupon/validateGet",BASEURL];
+    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/coupon/validateGet",BASEURL_SERVER];
     
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
-    [params setObject:@"1" forKey:@"index"];
+    [params setObject:[NSString stringWithFormat:@"%ld",self.page] forKey:@"index"];
     
     if (_useCoupon ==100) {
         

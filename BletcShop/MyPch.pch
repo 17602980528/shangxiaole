@@ -30,7 +30,7 @@
 #define kQIYIAppSecret @"d50834895639cdf46a98e0efd427b9a1"
 
 //新的接口
-//#define BASEURL @"http://101.201.100.191/cnconsum/App/"
+#define BASEURL_SERVER @"http://101.201.100.191/cnconsum/App/"
 
 #define LOCALIP @"192.168.0.168"//本地测试使用
 #define SERVERIP @"101.201.100.191"//发布使用
