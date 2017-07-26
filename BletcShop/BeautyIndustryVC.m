@@ -104,7 +104,8 @@
     self.navigationItem.title = @"美业频道";
     
     needRefresh = YES;
-    
+    _table_view.backgroundColor = RGB(240, 240, 240);
+
     [self creatTableViewHeaderView];
     
     
@@ -240,7 +241,11 @@
             needRefresh = NO;
             [weakSelf.view addSubview: weakSelf.dropDownMenu];
 
-            [weakSelf.table_view scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            if (weakSelf.table_view.tableHeaderView.height >= weakSelf.table_view.contentOffset.y) {
+                [weakSelf.table_view scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+
+            }
+            
             
             
 

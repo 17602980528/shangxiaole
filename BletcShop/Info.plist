@@ -46,7 +46,7 @@
 			<string>bletc</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>blectShop</string>
+				<string>blectUser</string>
 			</array>
 		</dict>
 		<dict>

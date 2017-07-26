@@ -258,7 +258,7 @@
     topView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:topView];
     
-    top_line = [[UIView alloc]initWithFrame:CGRectMake(0, 63, SCREENWIDTH, 1)];
+    top_line = [[UIView alloc]initWithFrame:CGRectMake(0, 63.5, SCREENWIDTH, 0.5)];
     top_line.backgroundColor =[UIColor clearColor];
     [topView addSubview:top_line];
     
@@ -375,7 +375,7 @@
     
     
     UIColor *color=[UIColor whiteColor];
-    UIColor *lineCOlor =RGB(98,98,98);
+    UIColor *lineCOlor =[UIColor lightGrayColor];
     CGFloat offset=table_View.contentOffset.y;
     if (offset<0) {
         top_line.backgroundColor = [lineCOlor colorWithAlphaComponent:0];
@@ -1384,7 +1384,7 @@
     
     if (scrollView ==table_View) {
         UIColor *color=[UIColor whiteColor];
-        UIColor *lineCOlor =RGB(98,98,98);
+        UIColor *lineCOlor =[UIColor lightGrayColor];
 
         
         CGFloat offset=scrollView.contentOffset.y;

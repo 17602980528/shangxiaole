@@ -999,7 +999,7 @@
     if (payKind==0) {
         
         
-        if ([self.cardListArray[_selectRow][@"type"] isEqualToString:@"套餐卡"] || [self.cardListArray[_selectRow][@"type"] isEqualToString:@"体验卡卡"]) {
+        if ([self.cardListArray[_selectRow][@"type"] isEqualToString:@"套餐卡"] || [self.cardListArray[_selectRow][@"type"] isEqualToString:@"体验卡"]) {
             
             [self buyUseAlipayForMealOrExperience];
         }else{
@@ -1491,90 +1491,184 @@
 -(void)buyUseAlipayForMealOrExperience{
     
     
+//
+//    
+//    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+//    appdelegate.whoPay =1;//办卡
+//    /*
+//     *生成订单信息及签名
+//     */
+//    //将商品信息赋予AlixPayOrder的成员变量
+//    Order *order = [[Order alloc] init];
+//    order.partner = kAlipayPartner;
+//    order.sellerID = kAlipaySeller;
+//    int x= arc4random()%100000;
+//    NSDate *currentDate = [NSDate date];//获取当前时间，日期
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"YYYYMMddhhmmss"];
+//    NSString *dateString = [dateFormatter stringFromDate:currentDate];
+//    
+//    dateString = [dateString stringByReplacingOccurrencesOfString:@":" withString:@""];
+//    dateString = [dateString stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    
+//    NSString *outtrade =[[NSString alloc]initWithFormat:@"%@%5d",dateString,x];
+//    NSLog(@"%@",outtrade);
+//    order.outTradeNO = outtrade; //订单ID（由商家自行制定）
+//    order.subject = @"办卡"; //商品标题
+//    
+//
+//    if (self.Type==Wares) {
+//        
+//        order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@",@"cp",appdelegate.userInfoDic[@"uuid"],_card_dic[@"muid"],_card_dic[@"code"],self.coup_dic[@"coupon_id"],[self.contentLabel.text substringFromIndex:4]];
+//        
+//    }else if (self.Type==plat_Ware) {
+//        
+//        order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@",@"scp",appdelegate.userInfoDic[@"uuid"],_card_dic[@"muid"],_card_dic[@"code"],self.plat_coup_dic[@"id"],_card_dic[@"price"]];
+//        
+//    }else if (self.Type == points) {
+//        
+//        
+//        order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@",@"rp",appdelegate.userInfoDic[@"uuid"],_card_dic[@"muid"],_card_dic[@"code"],[[NSString alloc]initWithFormat:@"%.f",self.canUsePoint],_card_dic[@"price"]];
+//        
+//    }else{
+//        
+//        order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@",@"null",appdelegate.userInfoDic[@"uuid"],_card_dic[@"muid"],_card_dic[@"code"],@"null",_card_dic[@"price"]];
+//    }
+//    
+//    NSLog(@"order.body====%@",order.body);
+//    
+//
+//    order.totalFee = [self.contentLabel.text substringFromIndex:4]; //商品价格
+////    order.totalFee = @"0.01"; //商品价格
+//
+//    if ([self.cardListArray[_selectRow][@"type"] isEqualToString:@"套餐卡"]) {
+//        order.notifyURL =  @"http://101.201.100.191/alipay/meal_card_buy.php"; //回调URL
+//
+//    }
+//    if ([self.cardListArray[_selectRow][@"type"] isEqualToString:@"体验卡"]) {
+//    order.notifyURL =  @"http://101.201.100.191/alipay/experience_card_buy.php"; //回调URL
+//
+//    }
+//
+//    
+//    order.service = @"mobile.securitypay.pay";
+//    order.paymentType = @"1";
+//    order.inputCharset = @"utf-8";
+//    order.itBPay = @"30m";
+//    order.showURL = @"m.alipay.com";
+//    
+//    //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
+//    NSString *appScheme = @"blectShop";
+//    
+//    //将商品信息拼接成字符串
+//    NSString *orderSpec = [order description];
+//    NSLog(@"orderSpec = %@",orderSpec);
+//    
+//    //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
+//    id<DataSigner> signer = CreateRSADataSigner(kAlipayPrivateKey);
+//    NSString *signedString = [signer signString:orderSpec];
+//    
+//    //将签名成功字符串格式化为订单字符串,请严格按照该格式
+//    NSString *orderString = nil;
+//    if (signedString != nil) {
+//        orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+//                       orderSpec, signedString, @"RSA"];
+//        
+//        [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic)
+//         {
+//             NSLog(@"BuyCardChoicePayViewControllerreslut = %@",resultDic);
+//             NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
+//             if (orderState==9000) {
+//                 
+//                 PaySuccessVc *VC = [[PaySuccessVc alloc]init];
+//                 VC.orderInfoType = self.orderInfoType;
+//                 VC.card_dic = self.card_dic;
+//                 if (self.Type== Wares) {
+//                     VC.money_str = [self.contentLabel.text substringFromIndex:4];
+//                     
+//                 }else{
+//                     VC.money_str = self.card_dic[@"price"];
+//                     
+//                 }
+//                 
+//                 [self.navigationController pushViewController:VC animated:YES];
+//                 
+//                 
+//                
+//                 
+//             }else{
+//                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"是否放弃当前交易?" delegate:self cancelButtonTitle:@"放弃" otherButtonTitles:@"去支付", nil];
+//                 alert.tag =1111;
+//                 [alert show];
+//                 
+//             }
+//             
+//             
+//             
+//         }];
+//        
+//    }
+    
+    
+    
+    
+    
+    NSString *url = @"http://101.201.100.191/cnconsum/Pay/aliPay/user/MealCard/buy.php";
+    
+    if ([_card_dic[@"type"] isEqualToString:@"体验卡"]) {
+        url = @"http://101.201.100.191/cnconsum/Pay/aliPay/user/ExperienceCard/buy.php";
+    }
+    
+    AppDelegate *app = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    NSMutableDictionary*paramer = [NSMutableDictionary dictionary];
+    
+    
+    [paramer setValue:_card_dic[@"muid"] forKey:@"muid"];
 
+    [paramer setValue:_card_dic[@"code"] forKey:@"card_code"];
+    [paramer setValue:app.userInfoDic[@"uuid"] forKey:@"uuid"];
     
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    appdelegate.whoPay =1;//办卡
-    /*
-     *生成订单信息及签名
-     */
-    //将商品信息赋予AlixPayOrder的成员变量
-    Order *order = [[Order alloc] init];
-    order.partner = kAlipayPartner;
-    order.sellerID = kAlipaySeller;
-    int x= arc4random()%100000;
-    NSDate *currentDate = [NSDate date];//获取当前时间，日期
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYYMMddhhmmss"];
-    NSString *dateString = [dateFormatter stringFromDate:currentDate];
+    [paramer setValue:[self.contentLabel.text substringFromIndex:4] forKey:@"total_amount"];
+    [paramer setValue:_moneyString forKey:@"income"];
     
-    dateString = [dateString stringByReplacingOccurrencesOfString:@":" withString:@""];
-    dateString = [dateString stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    NSString *outtrade =[[NSString alloc]initWithFormat:@"%@%5d",dateString,x];
-    NSLog(@"%@",outtrade);
-    order.outTradeNO = outtrade; //订单ID（由商家自行制定）
-    order.subject = @"办卡"; //商品标题
     
-
+    
     if (self.Type==Wares) {
+        [paramer setValue:[self.contentLabel.text substringFromIndex:4] forKey:@"income"];
         
-        order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@",@"cp",appdelegate.userInfoDic[@"uuid"],_card_dic[@"muid"],_card_dic[@"code"],self.coup_dic[@"coupon_id"],[self.contentLabel.text substringFromIndex:4]];
+        [paramer setValue:@"cp" forKey:@"privi"];
+        [paramer setValue:self.coup_dic[@"coupon_id"] forKey:@"privy_con"];
+        
         
     }else if (self.Type==plat_Ware) {
+        [paramer setValue:@"scp" forKey:@"privi"];
+        [paramer setValue:self.plat_coup_dic[@"id"] forKey:@"privy_con"];
         
-        order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@",@"scp",appdelegate.userInfoDic[@"uuid"],_card_dic[@"muid"],_card_dic[@"code"],self.plat_coup_dic[@"id"],_card_dic[@"price"]];
         
     }else if (self.Type == points) {
+        [paramer setValue:@"rp" forKey:@"privi"];
+        [paramer setValue:[NSString stringWithFormat:@"%g",self.canUsePoint] forKey:@"privy_con"];
         
-        
-        order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@",@"rp",appdelegate.userInfoDic[@"uuid"],_card_dic[@"muid"],_card_dic[@"code"],[[NSString alloc]initWithFormat:@"%.f",self.canUsePoint],_card_dic[@"price"]];
         
     }else{
         
-        order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@",@"null",appdelegate.userInfoDic[@"uuid"],_card_dic[@"muid"],_card_dic[@"code"],@"null",_card_dic[@"price"]];
-    }
-    
-    NSLog(@"order.body====%@",order.body);
-    
-
-    order.totalFee = [self.contentLabel.text substringFromIndex:4]; //商品价格
-//    order.totalFee = @"0.01"; //商品价格
-
-    if ([self.cardListArray[_selectRow][@"type"] isEqualToString:@"套餐卡"]) {
-        order.notifyURL =  @"http://101.201.100.191/alipay/meal_card_buy.php"; //回调URL
-
-    }
-    if ([self.cardListArray[_selectRow][@"type"] isEqualToString:@"体验卡"]) {
-    order.notifyURL =  @"http://101.201.100.191/alipay/experience_card_buy.php"; //回调URL
-
-    }
-
-    
-    order.service = @"mobile.securitypay.pay";
-    order.paymentType = @"1";
-    order.inputCharset = @"utf-8";
-    order.itBPay = @"30m";
-    order.showURL = @"m.alipay.com";
-    
-    //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-    NSString *appScheme = @"blectShop";
-    
-    //将商品信息拼接成字符串
-    NSString *orderSpec = [order description];
-    NSLog(@"orderSpec = %@",orderSpec);
-    
-    //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
-    id<DataSigner> signer = CreateRSADataSigner(kAlipayPrivateKey);
-    NSString *signedString = [signer signString:orderSpec];
-    
-    //将签名成功字符串格式化为订单字符串,请严格按照该格式
-    NSString *orderString = nil;
-    if (signedString != nil) {
-        orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
-                       orderSpec, signedString, @"RSA"];
+        [paramer setValue:@"null" forKey:@"privi"];
         
-        [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic)
+    }
+    
+    
+    [self showHudInView:self.view hint:@"正在请求..."];
+    
+    NSLog(@"pramer----%@===%@",paramer,url);
+    
+    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        NSLog(@"result----%@",result);
+        
+        [self hideHud];
+        
+        [[AlipaySDK defaultService] payOrder:result[@"orderInfo"] fromScheme:@"blectUser" callback:^(NSDictionary *resultDic)
          {
              NSLog(@"BuyCardChoicePayViewControllerreslut = %@",resultDic);
              NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
@@ -1609,84 +1703,188 @@
              
          }];
         
-    }
+        
+        
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self hideHud];
+        
+        NSLog(@"------%@",error);
+    }];
+    
+
     
 }
 
 -(void)initAlipayInfo{
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    NSLog(@"appdelegate.cardInfo_dic==%@",appdelegate.cardInfo_dic);
-    appdelegate.whoPay =1;//办卡
-    /*
-     *生成订单信息及签名
-     */
-    //将商品信息赋予AlixPayOrder的成员变量
-    Order *order = [[Order alloc] init];
-    order.partner = kAlipayPartner;
-    order.sellerID = kAlipaySeller;
-    int x= arc4random()%100000;
-    NSDate *currentDate = [NSDate date];//获取当前时间，日期
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYYMMddhhmmss"];
-    NSString *dateString = [dateFormatter stringFromDate:currentDate];
-    dateString = [dateString stringByReplacingOccurrencesOfString:@":" withString:@""];
-    dateString = [dateString stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+//    NSLog(@"appdelegate.cardInfo_dic==%@",appdelegate.cardInfo_dic);
+//    appdelegate.whoPay =1;//办卡
+//    /*
+//     *生成订单信息及签名
+//     */
+//    //将商品信息赋予AlixPayOrder的成员变量
+//    Order *order = [[Order alloc] init];
+//    order.partner = kAlipayPartner;
+//    order.sellerID = kAlipaySeller;
+//    int x= arc4random()%100000;
+//    NSDate *currentDate = [NSDate date];//获取当前时间，日期
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"YYYYMMddhhmmss"];
+//    NSString *dateString = [dateFormatter stringFromDate:currentDate];
+//    dateString = [dateString stringByReplacingOccurrencesOfString:@":" withString:@""];
+//    dateString = [dateString stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    
+//    //    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+//    //    NSInteger date = (long long int)time;
+//    NSString *outtrade =[[NSString alloc]initWithFormat:@"%@%5d",dateString,x];
+//    NSLog(@"%@",outtrade);
+//    order.outTradeNO = outtrade; //订单ID（由商家自行制定）
+//    order.subject = @"办卡"; //商品标题
+//    
+//       if (self.Type==Wares) {
+//        
+//        order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@#%@#%@#%@#%@",@"cp",@"办卡",appdelegate.cardInfo_dic[@"code"],appdelegate.cardInfo_dic[@"level"],appdelegate.cardInfo_dic[@"type"],@"template",appdelegate.userInfoDic[@"uuid"],appdelegate.cardInfo_dic[@"muid"],[self.contentLabel.text substringFromIndex:4],self.coup_dic[@"coupon_id"]];
+//        
+//    }else if (self.Type==plat_Ware) {
+//        
+//            order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@#%@#%@#%@#%@",@"scp",@"办卡",appdelegate.cardInfo_dic[@"code"],appdelegate.cardInfo_dic[@"level"],appdelegate.cardInfo_dic[@"type"],@"template",appdelegate.userInfoDic[@"uuid"],appdelegate.cardInfo_dic[@"muid"],appdelegate.cardInfo_dic[@"price"],self.plat_coup_dic[@"id"]];
+//            
+//        }else if (self.Type == points) {
+//        
+//        
+//        order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@#%@#%@#%@#%@",@"rp",@"办卡",appdelegate.cardInfo_dic[@"code"],appdelegate.cardInfo_dic[@"level"],appdelegate.cardInfo_dic[@"type"],@"template",appdelegate.userInfoDic[@"uuid"],appdelegate.cardInfo_dic[@"muid"],appdelegate.cardInfo_dic[@"price"],[[NSString alloc]initWithFormat:@"%.f",self.canUsePoint]];
+//        
+//    }else{
+//        
+//        order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@#%@#%@#%@",@"null",@"办卡",appdelegate.cardInfo_dic[@"code"],appdelegate.cardInfo_dic[@"level"],appdelegate.cardInfo_dic[@"type"],@"template",appdelegate.userInfoDic[@"uuid"],appdelegate.cardInfo_dic[@"muid"],appdelegate.cardInfo_dic[@"price"]];
+//    }
+//    
+//    NSLog(@"order.body====%@",order.body);
+//    //order.productDescription = wareOrderInfo.orderDescription; //商品描述
+//    //float price =[self.moneyText.text floatValue];
+//    order.totalFee = [self.contentLabel.text substringFromIndex:4];//[NSString stringWithFormat:@"%lf",price]; //商品价格
+//    order.notifyURL =  kAlipayCallBackURL; //回调URL
+//    
+//    order.service = @"mobile.securitypay.pay";
+//    order.paymentType = @"1";
+//    order.inputCharset = @"utf-8";
+//    order.itBPay = @"30m";
+//    order.showURL = @"m.alipay.com";
+//    
+//    //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
+//    NSString *appScheme = @"blectShop";
+//    
+//    //将商品信息拼接成字符串
+//    NSString *orderSpec = [order description];
+//    NSLog(@"orderSpec = %@",orderSpec);
+//    
+//    //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
+//    id<DataSigner> signer = CreateRSADataSigner(kAlipayPrivateKey);
+//    NSString *signedString = [signer signString:orderSpec];
+//    
+//    //将签名成功字符串格式化为订单字符串,请严格按照该格式
+//    NSString *orderString = nil;
+//    if (signedString != nil) {
+//        orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+//                       orderSpec, signedString, @"RSA"];
+//        
+//        [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic)
+//         {
+//             NSLog(@"BuyCardChoicePayViewControllerreslut = %@",resultDic);
+//             NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
+//             if (orderState==9000) {
+//                 
+//                 PaySuccessVc *VC = [[PaySuccessVc alloc]init];
+//                 VC.orderInfoType = self.orderInfoType;
+//                 VC.card_dic = self.card_dic;
+//                 if (self.Type== Wares) {
+//                     VC.money_str = [self.contentLabel.text substringFromIndex:4];
+//                     
+//                 }else{
+//                     VC.money_str = self.card_dic[@"price"];
+//                     
+//                 }
+//                 
+//                 [self.navigationController pushViewController:VC animated:YES];
+//                 
+//                 
+//                 //                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"恭喜" message:@"您已成功支付啦!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+//                 //
+//                 //                 [alert show];
+//                 
+//             }else{
+//                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"是否放弃当前交易?" delegate:self cancelButtonTitle:@"放弃" otherButtonTitles:@"去支付", nil];
+//                 alert.tag =1111;
+//                 [alert show];
+//                 
+//             }
+//             
+//             
+//             
+//         }];
+//        
+//    }
+//    
     
-    //    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
-    //    NSInteger date = (long long int)time;
-    NSString *outtrade =[[NSString alloc]initWithFormat:@"%@%5d",dateString,x];
-    NSLog(@"%@",outtrade);
-    order.outTradeNO = outtrade; //订单ID（由商家自行制定）
-    order.subject = @"办卡"; //商品标题
     
-       if (self.Type==Wares) {
+    NSString *url = @"http://101.201.100.191/cnconsum/Pay/aliPay/user/ValueCard/buy.php";
+    
+    if ([_card_dic[@"type"] isEqualToString:@"计次卡"]) {
+        url = @"http://101.201.100.191/cnconsum/Pay/aliPay/user/CountCard/buy.php";
+    }
+    
+    AppDelegate *app = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    NSMutableDictionary*paramer = [NSMutableDictionary dictionary];
+    
+    
+
+    [paramer setValue:_card_dic[@"code"] forKey:@"card_code"];
+    [paramer setValue:_card_dic[@"level"] forKey:@"card_level"];
+    [paramer setValue:_card_dic[@"type"] forKey:@"card_type"];
+    [paramer setValue:app.userInfoDic[@"uuid"] forKey:@"uuid"];
+    [paramer setValue:_card_dic[@"muid"] forKey:@"muid"];
+
+    [paramer setValue:[self.contentLabel.text substringFromIndex:4] forKey:@"total_amount"];
+    [paramer setValue:_moneyString forKey:@"income"];
+
+    
+
+    
+    if (self.Type==Wares) {
+        [paramer setValue:[self.contentLabel.text substringFromIndex:4] forKey:@"income"];
+
+        [paramer setValue:@"cp" forKey:@"privi"];
+        [paramer setValue:self.coup_dic[@"coupon_id"] forKey:@"privy_con"];
         
-        order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@#%@#%@#%@#%@",@"cp",@"办卡",appdelegate.cardInfo_dic[@"code"],appdelegate.cardInfo_dic[@"level"],appdelegate.cardInfo_dic[@"type"],@"template",appdelegate.userInfoDic[@"uuid"],appdelegate.cardInfo_dic[@"muid"],[self.contentLabel.text substringFromIndex:4],self.coup_dic[@"coupon_id"]];
         
     }else if (self.Type==plat_Ware) {
+        [paramer setValue:@"scp" forKey:@"privi"];
+        [paramer setValue:self.plat_coup_dic[@"id"] forKey:@"privy_con"];
+
         
-            order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@#%@#%@#%@#%@",@"scp",@"办卡",appdelegate.cardInfo_dic[@"code"],appdelegate.cardInfo_dic[@"level"],appdelegate.cardInfo_dic[@"type"],@"template",appdelegate.userInfoDic[@"uuid"],appdelegate.cardInfo_dic[@"muid"],appdelegate.cardInfo_dic[@"price"],self.plat_coup_dic[@"id"]];
-            
-        }else if (self.Type == points) {
-        
-        
-        order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@#%@#%@#%@#%@",@"rp",@"办卡",appdelegate.cardInfo_dic[@"code"],appdelegate.cardInfo_dic[@"level"],appdelegate.cardInfo_dic[@"type"],@"template",appdelegate.userInfoDic[@"uuid"],appdelegate.cardInfo_dic[@"muid"],appdelegate.cardInfo_dic[@"price"],[[NSString alloc]initWithFormat:@"%.f",self.canUsePoint]];
+    }else if (self.Type == points) {
+        [paramer setValue:@"rp" forKey:@"privi"];
+        [paramer setValue:[NSString stringWithFormat:@"%g",self.canUsePoint] forKey:@"privy_con"];
+
         
     }else{
         
-        order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@#%@#%@#%@",@"null",@"办卡",appdelegate.cardInfo_dic[@"code"],appdelegate.cardInfo_dic[@"level"],appdelegate.cardInfo_dic[@"type"],@"template",appdelegate.userInfoDic[@"uuid"],appdelegate.cardInfo_dic[@"muid"],appdelegate.cardInfo_dic[@"price"]];
-    }
-    
-    NSLog(@"order.body====%@",order.body);
-    //order.productDescription = wareOrderInfo.orderDescription; //商品描述
-    //float price =[self.moneyText.text floatValue];
-    order.totalFee = [self.contentLabel.text substringFromIndex:4];//[NSString stringWithFormat:@"%lf",price]; //商品价格
-    order.notifyURL =  kAlipayCallBackURL; //回调URL
-    
-    order.service = @"mobile.securitypay.pay";
-    order.paymentType = @"1";
-    order.inputCharset = @"utf-8";
-    order.itBPay = @"30m";
-    order.showURL = @"m.alipay.com";
-    
-    //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-    NSString *appScheme = @"blectShop";
-    
-    //将商品信息拼接成字符串
-    NSString *orderSpec = [order description];
-    NSLog(@"orderSpec = %@",orderSpec);
-    
-    //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
-    id<DataSigner> signer = CreateRSADataSigner(kAlipayPrivateKey);
-    NSString *signedString = [signer signString:orderSpec];
-    
-    //将签名成功字符串格式化为订单字符串,请严格按照该格式
-    NSString *orderString = nil;
-    if (signedString != nil) {
-        orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
-                       orderSpec, signedString, @"RSA"];
+        [paramer setValue:@"null" forKey:@"privi"];
         
-        [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic)
+    }
+
+    
+    [self showHudInView:self.view hint:@"正在请求..."];
+   
+    NSLog(@"pramer----%@",paramer);
+   
+    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        NSLog(@"result----%@",result);
+
+        [self hideHud];
+        
+        [[AlipaySDK defaultService] payOrder:result[@"orderInfo"] fromScheme:@"blectUser" callback:^(NSDictionary *resultDic)
          {
              NSLog(@"BuyCardChoicePayViewControllerreslut = %@",resultDic);
              NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
@@ -1720,8 +1918,16 @@
              
              
          }];
+
         
-    }
+        
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self hideHud];
+
+        NSLog(@"------%@",error);
+    }];
+
+    
     
 }
 - (void)processOrderWithPaymentResult:(NSURL *)resultUrl
