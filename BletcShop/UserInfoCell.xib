@@ -21,7 +21,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DrY-w7-qYf">
                         <rect key="frame" x="13" y="0.0" width="325" height="57"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13250002360" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4SQ-cF-OzQ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13250002360" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4SQ-cF-OzQ">
                         <rect key="frame" x="107" y="0.0" width="92.5" height="58"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -57,6 +57,7 @@
                     <constraint firstItem="4SQ-cF-OzQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="DL7-PU-J1I"/>
                     <constraint firstAttribute="bottom" secondItem="DrY-w7-qYf" secondAttribute="bottom" id="IoF-d8-Rcq"/>
                     <constraint firstItem="thO-DV-irn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="LFY-Ec-bdm"/>
+                    <constraint firstItem="trc-gp-fvA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4SQ-cF-OzQ" secondAttribute="trailing" constant="5" id="MYI-oi-x5e"/>
                     <constraint firstAttribute="trailing" secondItem="DrY-w7-qYf" secondAttribute="trailing" constant="13" id="O9E-6L-yuG"/>
                     <constraint firstItem="4SQ-cF-OzQ" firstAttribute="leading" secondItem="thO-DV-irn" secondAttribute="trailing" constant="14" id="Rr0-0q-cjg"/>
                     <constraint firstItem="KVa-ML-v2d" firstAttribute="trailing" secondItem="DrY-w7-qYf" secondAttribute="trailing" id="Rvz-hr-3si"/>

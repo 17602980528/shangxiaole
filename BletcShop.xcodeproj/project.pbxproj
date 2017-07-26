@@ -116,6 +116,8 @@
 		185ABD641D8021C100BD8097 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185ABD631D8021C100BD8097 /* UIKit.framework */; };
 		185ABD661D8021EA00BD8097 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185ABD651D8021EA00BD8097 /* CoreVideo.framework */; };
 		187E94BE1ED2D8FF007EF19F /* OFFLINEVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 187E94BD1ED2D8FF007EF19F /* OFFLINEVC.m */; };
+		188372441F2748270076D2D8 /* HobbyChooseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188372421F2748270076D2D8 /* HobbyChooseVC.m */; };
+		188372451F2748270076D2D8 /* HobbyChooseVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188372431F2748270076D2D8 /* HobbyChooseVC.xib */; };
 		189411431D8052FE00314E11 /* playvedio.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 189411421D8052FE00314E11 /* playvedio.jpg */; };
 		189619441D92319D003BA40C /* ContactSeverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189619431D92319D003BA40C /* ContactSeverViewController.m */; };
 		189757491E9B16A400AB1D00 /* WebViewJavascriptBridge.js.txt in Resources */ = {isa = PBXBuildFile; fileRef = 189757471E9B16A400AB1D00 /* WebViewJavascriptBridge.js.txt */; };
@@ -1240,6 +1242,9 @@
 		185ABD651D8021EA00BD8097 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		187E94BC1ED2D8FF007EF19F /* OFFLINEVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFFLINEVC.h; sourceTree = "<group>"; };
 		187E94BD1ED2D8FF007EF19F /* OFFLINEVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFFLINEVC.m; sourceTree = "<group>"; };
+		188372411F2748270076D2D8 /* HobbyChooseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HobbyChooseVC.h; sourceTree = "<group>"; };
+		188372421F2748270076D2D8 /* HobbyChooseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HobbyChooseVC.m; sourceTree = "<group>"; };
+		188372431F2748270076D2D8 /* HobbyChooseVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HobbyChooseVC.xib; sourceTree = "<group>"; };
 		189411421D8052FE00314E11 /* playvedio.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = playvedio.jpg; sourceTree = "<group>"; };
 		189619421D92319D003BA40C /* ContactSeverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactSeverViewController.h; sourceTree = "<group>"; };
 		189619431D92319D003BA40C /* ContactSeverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactSeverViewController.m; sourceTree = "<group>"; };
@@ -5033,6 +5038,9 @@
 				185A459C1F1371060033AFE3 /* 垃圾桶@2x.png */,
 				185A459D1F1371060033AFE3 /* 默认sex.png */,
 				185A459E1F1371060033AFE3 /* 选中sex.png */,
+				188372411F2748270076D2D8 /* HobbyChooseVC.h */,
+				188372421F2748270076D2D8 /* HobbyChooseVC.m */,
+				188372431F2748270076D2D8 /* HobbyChooseVC.xib */,
 				D987BB321E792C3D008AE24D /* 修改编辑信息 */,
 				D987BB221E790B28008AE24D /* 用户信息cell */,
 			);
@@ -6329,6 +6337,7 @@
 				D95BAE551D542FD500ED0CDC /* award_11.png in Resources */,
 				D9FF0D9C1D53304C00443312 /* 图标-14new.png in Resources */,
 				1CF6E4831C61E4350001159C /* guanliyuan@2x.png in Resources */,
+				188372451F2748270076D2D8 /* HobbyChooseVC.xib in Resources */,
 				D94DF23B1CAE08F7000D5B69 /* location.png in Resources */,
 				18EB36A31D4B1F5D0087CE1A /* 滑动选择-01.png in Resources */,
 				18BCCDCB1D3C9EE8005E145D /* merchant_ed1.png in Resources */,
@@ -6653,6 +6662,7 @@
 				D9811C1E1DDD3E0D0041A8C9 /* SettlementViewController.m in Sources */,
 				D9824F791F2096C300301076 /* IntegralKnowledgeVC.m in Sources */,
 				D9DEED291CACED7C00ACDD00 /* UIImageView+WebCache.m in Sources */,
+				188372441F2748270076D2D8 /* HobbyChooseVC.m in Sources */,
 				182988471E723F4200164F32 /* UIView+SDExtension.m in Sources */,
 				D9764E8F1DD5B62100B088DE /* PointConvertViewController.m in Sources */,
 				D9442ADD1D1E330A00956AB4 /* Singleton.m in Sources */,

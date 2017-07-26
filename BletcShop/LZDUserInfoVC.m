@@ -19,6 +19,9 @@
 #import "NewModelImageViewController.h"
 #import "ChangeLoginOrPayVC.h"
 #import "RailNameConfirmVC.h"
+#import "HobbyChooseVC.h"
+#import "ValuePickerView.h"
+#import "LZDCenterViewController.h"
 @interface LZDUserInfoVC ()<UITableViewDelegate,UITableViewDataSource,NewModelImageViewControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate>
 
 {
@@ -26,6 +29,13 @@
     NSData *imageData;
     NSData *imageData2;
 }
+@property (nonatomic, strong) ValuePickerView *educationPickerView;
+@property (nonatomic, strong) ValuePickerView *pickerView;//婚姻
+@property (nonatomic, strong) ValuePickerView *sexyPickerView;//性别
+@property (nonatomic, strong) NSArray *marray_A;
+@property (nonatomic, strong) NSArray *education_A;
+@property(nonatomic,strong)NSArray *sexy_A;
+
 @property (weak, nonatomic) IBOutlet UITableView *tabView;
 @property(nonatomic,strong)NSArray *title_A;
 @property(nonatomic,strong)NSArray *title_headImage;
@@ -40,6 +50,55 @@
 @end
 
 @implementation LZDUserInfoVC
+//性别
+-(ValuePickerView *)sexyPickerView{
+    if (!_sexyPickerView) {
+        _sexyPickerView = [[ValuePickerView alloc]init];
+        
+    }
+    return _sexyPickerView;
+    
+}
+
+//教育
+-(ValuePickerView *)educationPickerView{
+    if (!_educationPickerView) {
+        _educationPickerView = [[ValuePickerView alloc]init];
+        
+    }
+    return _educationPickerView;
+    
+}
+//婚姻
+-(ValuePickerView *)pickerView{
+    if (!_pickerView) {
+        _pickerView = [[ValuePickerView alloc]init];
+        
+    }
+    return _pickerView;
+    
+}
+//
+-(NSArray *)sexy_A{
+    if (!_sexy_A) {
+        _sexy_A = @[@"男",@"女"];
+    }
+    return _sexy_A;
+}
+//
+-(NSArray *)education_A{
+    if (!_education_A) {
+        _education_A = @[@"小学",@"初中",@"高中",@"大专",@"本科",@"硕士",@"博士",@"其他"];
+    }
+    return _education_A;
+}
+-(NSArray *)marray_A{
+    if (!_marray_A) {
+        _marray_A = @[@"已婚",@"单身"];
+    }
+    return _marray_A;
+}
+
 -(NSArray *)title_A{
     if (!_title_A) {
         _title_A = @[@[@"实名认证",@"昵称",@"性别",@"手机号",@"邮箱"]
@@ -192,12 +251,13 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     if (indexPath.section==0) {
          [self changeUserImg];
     }else if(indexPath.section==1){
         if (indexPath.row==0) {
             NSLog(@"你好帅");
-            AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+           
             if ([appdelegate.userInfoDic[@"state"] isEqualToString:@"not_auth"]) {
                 RailNameConfirmVC *confirmVC=[[RailNameConfirmVC alloc]init];
                 confirmVC.title=_title_A[0][indexPath.row];
@@ -209,7 +269,7 @@
             }
         }
         
-        if (indexPath.row ==1 || indexPath.row ==2 || indexPath.row ==4) {
+        if (indexPath.row ==1 /*|| indexPath.row ==2*/ || indexPath.row ==4) {
             UserInfoEditVC *VC = [[UserInfoEditVC alloc]init];
             
             VC.resultBlock=^(NSDictionary*result) {
@@ -227,6 +287,21 @@
             [self.navigationController pushViewController:VC animated:YES];
         }
         
+        if (indexPath.row==2) {
+            self.sexyPickerView.dataSource = self.sexy_A;
+            
+            __weak typeof(self) weakSelf = self;
+            
+            self.sexyPickerView.valueDidSelect = ^(NSString * value){
+                
+                NSString *title= [[value componentsSeparatedByString:@"/"] firstObject];
+                [weakSelf postRevise:title type:@"sex"];
+                
+            };
+            
+            [self.sexyPickerView show];
+        }
+        
         if (indexPath.row ==3) {
             ResetPhoneViewController *VC = [[ResetPhoneViewController alloc]init];
             
@@ -234,7 +309,7 @@
         }
 
     }else if (indexPath.section==2){
-        if (indexPath.row ==0 || indexPath.row ==1 || indexPath.row ==3|| indexPath.row ==4|| indexPath.row ==5) {
+        if (indexPath.row ==0 || indexPath.row ==1/* || indexPath.row ==3|| indexPath.row ==4|| indexPath.row ==5*/) {
             UserInfoEditVC *VC = [[UserInfoEditVC alloc]init];
             
             VC.resultBlock=^(NSDictionary*result) {
@@ -265,14 +340,60 @@
                     
                 }
                 
-                
-                
             };
             
             [self.navigationController pushViewController:VC animated:YES];
             
         }
+        
+        if (indexPath.row==3) {
+            self.educationPickerView.dataSource = self.education_A;
+            
+            __weak typeof(self) weakSelf = self;
+            
+            self.educationPickerView.valueDidSelect = ^(NSString * value){
+                
+                NSString *title= [[value componentsSeparatedByString:@"/"] firstObject];
+                [weakSelf postRevise:title type:@"education"];
+                
+            };
+            
+            [self.educationPickerView show];
+        }
+        
+        if (indexPath.row==4) {
+            
+           
+            self.pickerView.dataSource = self.marray_A;
+                
+            __weak typeof(self) weakSelf = self;
+            
+            self.pickerView.valueDidSelect = ^(NSString * value){
+                
+                NSString *title= [[value componentsSeparatedByString:@"/"] firstObject];
+                [weakSelf postRevise:title type:@"mate"];
+                
+            };
+            
+            [self.pickerView show];
+            
+        }
+        if (indexPath.row==5) {
+            HobbyChooseVC *hobbyVC=[[HobbyChooseVC alloc]init];
+            hobbyVC.hobby=[NSString getTheNoNullStr:appdelegate.userInfoDic[@"hobby"] andRepalceStr:@""];
+            hobbyVC.resultBlock=^(NSDictionary*result) {
+                NSLog(@"UserInfoEditVC.block====%@",result);
+                
+            if (![result[@"award"] isEqualToString:@"false"]) {
+                    self.tishiwenzi.text = [NSString stringWithFormat:@"恭喜你，完成个人信息获得 %@ 个积分，快去看看吧",[NSString getTheNoNullStr:result[@"award"] andRepalceStr:@"0"]];
+                    self.tishiview.hidden = NO;
+                    
+                }
+                
+            };
 
+            [self.navigationController pushViewController:hobbyVC animated:YES];
+        }
 
     }
     
@@ -592,7 +713,9 @@
 - (IBAction)sureBtnClcik:(UIButton *)sender {
 
     self.tishiview.hidden = YES;
-
+    LZDCenterViewController *vc=[[LZDCenterViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 -(void)postRequest
 {
@@ -646,4 +769,72 @@
      }];
 
 }
+-(void)postRevise:(NSString *)string type:(NSString *)type
+{
+    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/user/accountSet",BASEURL];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
+    [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
+    
+    [params setObject:string forKey:@"para"];
+    
+    [params setObject:type forKey:@"type"];
+    
+    NSLog(@"params===%@",params);
+    
+    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
+     {
+         DebugLog(@"result===+%@",result);
+         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+         hud.mode = MBProgressHUDModeText;
+         if ([result[@"result_code"] intValue]==1 ) {
+            
+             
+             hud.label.font = [UIFont systemFontOfSize:13];
+             //    [hud setColor:[UIColor blackColor]];
+             hud.frame = CGRectMake(25, SCREENHEIGHT/2, SCREENWIDTH-50, 100);
+             hud.userInteractionEnabled = YES;
+             
+            
+             
+             [self postRequestAllInfoForUser];
+             
+             if (![result[@"award"] isEqualToString:@"false"]) {
+                 self.tishiwenzi.text = [NSString stringWithFormat:@"恭喜你，完成个人信息获得 %@ 个积分，快去看看吧",[NSString getTheNoNullStr:result[@"award"] andRepalceStr:@"0"]];
+                 self.tishiview.hidden = NO;
+                  [hud hideAnimated:YES afterDelay:0.01f];
+             }else{
+                  hud.label.text = NSLocalizedString(@"修改成功", @"HUD message title");
+                  [hud hideAnimated:YES afterDelay:1.f];
+             }
+//             NSMutableDictionary *new_dic = [appdelegate.userInfoDic mutableCopy];
+//             
+//             
+//             [new_dic setValue:result[@"para"] forKey:result[@"type"]];
+//             
+//             appdelegate.userInfoDic = new_dic;
+             
+         }else
+         {
+             hud.label.text = NSLocalizedString(@"请求失败 请重试", @"HUD message title");
+             
+             hud.label.font = [UIFont systemFontOfSize:13];
+             //    [hud setColor:[UIColor blackColor]];
+             hud.frame = CGRectMake(25, SCREENHEIGHT/2, SCREENWIDTH-50, 100);
+             hud.userInteractionEnabled = YES;
+             
+             [hud hideAnimated:YES afterDelay:1.f];
+             
+             
+         }
+         
+     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+         
+         NSLog(@"%@", error);
+         
+     }];
+    
+}
+
 @end

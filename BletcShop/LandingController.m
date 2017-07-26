@@ -51,7 +51,7 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(SCREENWIDTH-75, 0, 60, 40);
     [button setTitle:@"注册" forState:0];
-    [button setTitleColor:[UIColor whiteColor] forState:0];
+    [button setTitleColor:RGB(243, 73, 78) forState:UIControlStateNormal];
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     button.titleLabel.font = [UIFont systemFontOfSize:15];
     
