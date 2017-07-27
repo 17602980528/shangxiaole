@@ -8,7 +8,8 @@
 
 #import "ComplaintVC.h"
 #import "ComplaintDetailVC.h"
-
+#import "ComplainProcessNormalVC.h"
+#import "ComplainUnnormalVC.h"
 @interface ComplaintVC ()
 {
     UILabel *labl;
@@ -24,7 +25,7 @@
 
 -(NSArray *)complaint_A{
     if (!_complaint_A) {
-        _complaint_A = @[@"商家倒闭",@"商家跑路",@"店铺迁址",@"其他"];
+        _complaint_A = @[@"商家倒闭",@"商家跑路",@"服务态度差",@"环境卫生差",@"直接申请理赔（只赔付卡内剩余金额）",@"其他"];
         
     }
     return _complaint_A;
@@ -55,8 +56,6 @@
     [self.view addSubview:button];
     
     for (int i = 0; i < self.complaint_A.count; i ++) {
-       
-        
         UIView *listbackView = [[UIView alloc]initWithFrame:CGRectMake(0, backView.bottom + i *44, SCREENWIDTH, 44)];
         listbackView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:listbackView];
@@ -70,11 +69,17 @@
         lab.textColor = RGB(51,51,51);
         lab.font = [UIFont systemFontOfSize:16];
         lab.text = _complaint_A[i];
+        if (i==4) {
+            NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString: _complaint_A[i]];
+            [AttributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:13.0] range:NSMakeRange(6, 11)];
+            
+               [AttributedStr addAttribute:NSForegroundColorAttributeName value:RGB(192, 192, 192) range:NSMakeRange(6, 11)];
+            lab.attributedText=AttributedStr;
+        }
+        
         [listbackView addSubview:lab];
         lab.userInteractionEnabled = YES;
         lab.tag = i;
-        
-        
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
         
@@ -90,17 +95,9 @@
         }
             UIImageView *imgView= [[UIImageView alloc]initWithFrame:CGRectMake(SCREENWIDTH-40, 7, 30, 30)];
             imgView.image = [UIImage imageNamed:@"settlement_unchoose_n"];
-            
             [listbackView addSubview:imgView];
-            
-
-        
         
     }
-    
-    
-    
-    
 
 }
 
@@ -108,13 +105,11 @@
     
     UILabel *lab = (UILabel*)gesture.view;
     
-    
-    
     for (UIView *objView in oldLab.superview.subviews) {
         if ([objView isKindOfClass:[UIImageView class]]) {
             UIImageView *imgV =(UIImageView*)objView;
-            imgV.image = [UIImage imageNamed:@"settlement_unchoose_n"];
-        }
+                 imgV.image = [UIImage imageNamed:@"settlement_unchoose_n"];
+            }
     }
 
     if (lab.tag ==_complaint_A.count-1) {
@@ -122,47 +117,27 @@
         VC.card_info = self.card_info;
         [self.navigationController pushViewController:VC animated:YES];
         
+    }else if (lab.tag ==_complaint_A.count-2){
+        ComplainUnnormalVC *vc=[[ComplainUnnormalVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
         
     }else{
-        
         for (UIView *objView in lab.superview.subviews) {
             if ([objView isKindOfClass:[UIImageView class]]) {
                 UIImageView *imgV =(UIImageView*)objView;
-                imgV.image = [UIImage imageNamed:@"settlement_choose_n"];
-            }
+                                   imgV.image = [UIImage imageNamed:@"settlement_choose_n"];
+                }
         }
  
-       
-
     }
    
-    
-    
     oldLab = lab;
-   
-    
-    NSLog(@"lab.tag==%ld",(long)lab.tag);
-    
 
-    
-    
-    
-  
+    NSLog(@"lab.tag==%ld",(long)lab.tag);
 }
 -(void)btnClick{
     NSLog(@"=====%@",oldLab.text);
-    
-    if ([oldLab.text isEqualToString:[self.complaint_A lastObject]]) {
-        
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.mode = MBProgressHUDModeText;
-        hud.label.text = NSLocalizedString(@"请选择原因", @"HUD message title");
-        hud.label.font = [UIFont systemFontOfSize:13];
-        
-        [hud hideAnimated:YES afterDelay:2.f];
-
-        
-    }else{
+    if (oldLab.text&&![oldLab.text isEqualToString:[self.complaint_A lastObject]]&&![oldLab.text isEqualToString:[self.complaint_A objectAtIndex:4]]) {
         NSString *url = [NSString stringWithFormat:@"%@UserType/complaint/commit",BASEURL];
         NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
         
@@ -179,26 +154,42 @@
             NSLog(@"-----%@==%@",paramer,result);
             if ([result[@"result_code"] integerValue] ==1) {
                 
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"投诉成功，是否查看投诉进度？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                 
-                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                hud.mode = MBProgressHUDModeText;
-                hud.label.text = NSLocalizedString(@"提交成功!", @"HUD message title");
-                hud.label.font = [UIFont systemFontOfSize:13];
-
-                [hud hideAnimated:YES afterDelay:2.f];
-
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+                [cancelAction setValue:RGB(51, 51, 51) forKey:@"titleTextColor"];
+                
+                UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    
+                    ComplainProcessNormalVC *complainProcessNormalVC=[[ComplainProcessNormalVC alloc]init];
+                    complainProcessNormalVC.complainReason=oldLab.text;
+                    [self.navigationController pushViewController:complainProcessNormalVC animated:YES];
+                    
+                }];
+                [sureAction setValue:RGB(243, 73, 78) forKey:@"titleTextColor"];
+                [alert addAction:cancelAction];
+                [alert addAction:sureAction];
+                
+                [self presentViewController:alert animated:YES completion:nil];
+                
             }
             
         } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"===%@",error);
             
         }];
+
+    }else{
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.label.text = NSLocalizedString(@"请选择原因", @"HUD message title");
+        hud.label.font = [UIFont systemFontOfSize:13];
+        [hud hideAnimated:YES afterDelay:2.f];
         
- 
     }
     
 }
-
-
 
 @end

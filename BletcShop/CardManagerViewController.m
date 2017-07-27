@@ -27,7 +27,7 @@
 
 #import "MoneyPAYViewController.h"
 #import "CountPAYViewController.h"
-
+#import "ComplainUnnormalVC.h"
 
 @interface CardManagerViewController ()
 {
@@ -340,10 +340,13 @@
         }else if(indexPath.row==7)
         {
             
-            ComplaintVC *VC = [[ComplaintVC alloc]init];
-            VC.card_info = cardInfo_dic;
-            
-            [self.navigationController pushViewController:VC animated:YES];
+//            ComplaintVC *VC = [[ComplaintVC alloc]init];
+//            VC.card_info = cardInfo_dic;
+//            
+//            [self.navigationController pushViewController:VC animated:YES];
+            ComplainUnnormalVC *vc=[[ComplainUnnormalVC alloc]init];
+            vc.dic=cardInfo_dic;
+            [self.navigationController pushViewController:vc animated:YES];
         }else{
             
             

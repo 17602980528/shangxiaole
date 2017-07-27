@@ -165,7 +165,7 @@
 -(void)postRequestVipCard
 {
     
-    NSString *url = [NSString stringWithFormat:@"%@UserType/card/multiGet",BASEURL_SERVER];
+    NSString *url = [NSString stringWithFormat:@"%@UserType/card/multiGet",BASEURL];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];

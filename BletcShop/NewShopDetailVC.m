@@ -1382,7 +1382,7 @@
     [self showHudInView:self.view hint:@"加载中..."];
     
     AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/merchant/contentGet",BASEURL_SERVER];
+    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/merchant/contentGet",BASEURL];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[self.infoDic objectForKey:@"muid"] forKey:@"muid"];
     
@@ -1887,7 +1887,7 @@ if (old_view !=tap.view) {
 //领取优惠券;
 
 -(void)postReceiveConponRequest:(NSDictionary *)dic{
-    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/coupon/receive",BASEURL_SERVER];
+    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/coupon/receive",BASEURL];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     
