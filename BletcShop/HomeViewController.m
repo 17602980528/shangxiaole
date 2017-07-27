@@ -809,7 +809,7 @@
             
             NSDictionary *dic  = self.icon_A[i];
             
-            [imag sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",ICONIMAGE,dic[@"icon_url"]]] placeholderImage:[UIImage imageNamed:@"icon3"]];
+            [imag sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UPICONIMAGE,dic[@"icon_url"]]] placeholderImage:[UIImage imageNamed:@"icon3"]];
             [lable_S setText:[NSString getTheNoNullStr:dic[@"text"] andRepalceStr:@"美女服务"]];
             
                    
@@ -1552,7 +1552,8 @@
 
 //定位成功
 - (void)currentLocation:(NSDictionary *)locationDictionary {
-    
+    NSLog(@"定位成功------%@",locationDictionary);
+
     [self getIcons:@""];
 
     NSString *city = [locationDictionary valueForKey:@"City"];
