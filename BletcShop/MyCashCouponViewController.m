@@ -96,7 +96,7 @@
 {
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/coupon/validateGet",BASEURL_SERVER];
+    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/coupon/validateGet",BASEURL];
     
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];

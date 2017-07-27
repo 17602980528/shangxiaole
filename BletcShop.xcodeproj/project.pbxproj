@@ -118,6 +118,10 @@
 		187E94BE1ED2D8FF007EF19F /* OFFLINEVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 187E94BD1ED2D8FF007EF19F /* OFFLINEVC.m */; };
 		188372441F2748270076D2D8 /* HobbyChooseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188372421F2748270076D2D8 /* HobbyChooseVC.m */; };
 		188372451F2748270076D2D8 /* HobbyChooseVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188372431F2748270076D2D8 /* HobbyChooseVC.xib */; };
+		188372491F29876D0076D2D8 /* ComplainProcessNormalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188372471F29876D0076D2D8 /* ComplainProcessNormalVC.m */; };
+		1883724A1F29876D0076D2D8 /* ComplainProcessNormalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188372481F29876D0076D2D8 /* ComplainProcessNormalVC.xib */; };
+		1883724F1F29C0A20076D2D8 /* ComplainUnnormalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1883724D1F29C0A20076D2D8 /* ComplainUnnormalVC.m */; };
+		188372501F29C0A30076D2D8 /* ComplainUnnormalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1883724E1F29C0A20076D2D8 /* ComplainUnnormalVC.xib */; };
 		189411431D8052FE00314E11 /* playvedio.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 189411421D8052FE00314E11 /* playvedio.jpg */; };
 		189619441D92319D003BA40C /* ContactSeverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189619431D92319D003BA40C /* ContactSeverViewController.m */; };
 		189757491E9B16A400AB1D00 /* WebViewJavascriptBridge.js.txt in Resources */ = {isa = PBXBuildFile; fileRef = 189757471E9B16A400AB1D00 /* WebViewJavascriptBridge.js.txt */; };
@@ -1245,6 +1249,12 @@
 		188372411F2748270076D2D8 /* HobbyChooseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HobbyChooseVC.h; sourceTree = "<group>"; };
 		188372421F2748270076D2D8 /* HobbyChooseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HobbyChooseVC.m; sourceTree = "<group>"; };
 		188372431F2748270076D2D8 /* HobbyChooseVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HobbyChooseVC.xib; sourceTree = "<group>"; };
+		188372461F29876D0076D2D8 /* ComplainProcessNormalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplainProcessNormalVC.h; sourceTree = "<group>"; };
+		188372471F29876D0076D2D8 /* ComplainProcessNormalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplainProcessNormalVC.m; sourceTree = "<group>"; };
+		188372481F29876D0076D2D8 /* ComplainProcessNormalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComplainProcessNormalVC.xib; sourceTree = "<group>"; };
+		1883724C1F29C0A20076D2D8 /* ComplainUnnormalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplainUnnormalVC.h; sourceTree = "<group>"; };
+		1883724D1F29C0A20076D2D8 /* ComplainUnnormalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplainUnnormalVC.m; sourceTree = "<group>"; };
+		1883724E1F29C0A20076D2D8 /* ComplainUnnormalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComplainUnnormalVC.xib; sourceTree = "<group>"; };
 		189411421D8052FE00314E11 /* playvedio.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = playvedio.jpg; sourceTree = "<group>"; };
 		189619421D92319D003BA40C /* ContactSeverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactSeverViewController.h; sourceTree = "<group>"; };
 		189619431D92319D003BA40C /* ContactSeverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactSeverViewController.m; sourceTree = "<group>"; };
@@ -3315,6 +3325,26 @@
 			name = "SHE.S Main Page";
 			sourceTree = "<group>";
 		};
+		1883724B1F298CDF0076D2D8 /* 一般投诉进度 */ = {
+			isa = PBXGroup;
+			children = (
+				188372461F29876D0076D2D8 /* ComplainProcessNormalVC.h */,
+				188372471F29876D0076D2D8 /* ComplainProcessNormalVC.m */,
+				188372481F29876D0076D2D8 /* ComplainProcessNormalVC.xib */,
+			);
+			name = "一般投诉进度";
+			sourceTree = "<group>";
+		};
+		188372511F29C0A90076D2D8 /* 投诉理赔进度 */ = {
+			isa = PBXGroup;
+			children = (
+				1883724C1F29C0A20076D2D8 /* ComplainUnnormalVC.h */,
+				1883724D1F29C0A20076D2D8 /* ComplainUnnormalVC.m */,
+				1883724E1F29C0A20076D2D8 /* ComplainUnnormalVC.xib */,
+			);
+			name = "投诉理赔进度";
+			sourceTree = "<group>";
+		};
 		1894115F1D816CE600314E11 /* 密码 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5104,6 +5134,8 @@
 				D987872B1E272A3200C7A828 /* ComplaintDetailVC.h */,
 				D987872C1E272A3200C7A828 /* ComplaintDetailVC.m */,
 				D987872D1E272A3200C7A828 /* ComplaintDetailVC.xib */,
+				1883724B1F298CDF0076D2D8 /* 一般投诉进度 */,
+				188372511F29C0A90076D2D8 /* 投诉理赔进度 */,
 			);
 			name = "我要投诉";
 			sourceTree = "<group>";
@@ -6147,6 +6179,7 @@
 				D93C0D5F1D251E7B001A1AC1 /* 小标-14.png in Resources */,
 				D9FF0D8F1D53304C00443312 /* 图标-01new.png in Resources */,
 				D95869341E4D9C9600E91A47 /* ResetPhoneViewController.xib in Resources */,
+				1883724A1F29876D0076D2D8 /* ComplainProcessNormalVC.xib in Resources */,
 				18FA58D31EEA769C00F458F2 /* NewUserAccessCodeVC.xib in Resources */,
 				D93027E11CFEB641007447D2 /* star_selected.png in Resources */,
 				D95BAE531D542FD500ED0CDC /* award_09.png in Resources */,
@@ -6235,6 +6268,7 @@
 				1CF283931C58C48900F3952A /* homepage_selected.png in Resources */,
 				1CDA9E031C59FAB300DFE518 /* seletc.jpg in Resources */,
 				1C2ED1111C5B1827003EE93B /* 3.1-02@2x.png in Resources */,
+				188372501F29C0A30076D2D8 /* ComplainUnnormalVC.xib in Resources */,
 				D93C0D631D251E7B001A1AC1 /* 小标-18.png in Resources */,
 				1CF2838F1C58C48900F3952A /* food.png in Resources */,
 				18F0320D1E5ED79300ACD261 /* tempProducts_08.png in Resources */,
@@ -6869,6 +6903,7 @@
 				D9DEED271CACED7C00ACDD00 /* UIImage+WebP.m in Sources */,
 				D941135A1CE9A3D7008E231F /* DataVerifier.m in Sources */,
 				1CDCCD181C7594040094E70D /* AFHTTPRequestOperationManager.m in Sources */,
+				188372491F29876D0076D2D8 /* ComplainProcessNormalVC.m in Sources */,
 				D9824F501F134B9600301076 /* InsureVC.m in Sources */,
 				18FA58D41EEA769C00F458F2 /* NewUserRegistVC.m in Sources */,
 				D925D1851E7106EB0000B8B1 /* SelectAddressViewController.m in Sources */,
@@ -6936,6 +6971,7 @@
 				D99627461DE67953007B7B34 /* NewRechargeSuccessVC.m in Sources */,
 				D9345E5F1E766DDE006B2AC1 /* DefaultAddressVC.m in Sources */,
 				D98E5C0A1E515210009D56BF /* SRVideoPlayer.m in Sources */,
+				1883724F1F29C0A20076D2D8 /* ComplainUnnormalVC.m in Sources */,
 				182988441E723F4200164F32 /* TAPageControl.m in Sources */,
 				D98E5B971E515142009D56BF /* CouponIntroduceVC.m in Sources */,
 				D9764E901DD5B62100B088DE /* THProgressView.m in Sources */,

@@ -231,7 +231,7 @@
 -(void)postRequestPoints
 {
     
-    NSString *url =[NSString stringWithFormat:@"%@UserType/user/getRedPacket",BASEURL_SERVER];
+    NSString *url =[NSString stringWithFormat:@"%@UserType/user/getRedPacket",BASEURL];
     NSMutableDictionary *paramer =[NSMutableDictionary dictionary];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     
