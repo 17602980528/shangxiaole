@@ -22,7 +22,8 @@
     NSDictionary *curentEare;
 
     NSDictionary *currentCityDic;
-
+    UIScrollView *middle_scrollView;
+    
     BOOL needRefresh;
     
     
@@ -109,6 +110,70 @@
     [self creatTableViewHeaderView];
     
     
+    [self getSubIcons];
+    
+    
+}
+-(void)getSubIcons{
+    
+    NSString *url = [NSString stringWithFormat:@"%@Extra/Trade/getSub",BASEURL];
+    
+    NSMutableDictionary*paramer = [NSMutableDictionary dictionary];
+    [paramer setValue:_icon_dic[@"id"] forKey:@"up_id"];
+    
+    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        for (UIView *view in middle_scrollView.subviews) {
+            [view removeFromSuperview];
+        }
+        
+        for (NSInteger i = 0; i <[result count]; i ++) {
+            NSDictionary *dic = result[i];
+            
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            btn.frame = CGRectMake(i*middle_scrollView.width/4, 0,middle_scrollView.width/4, middle_scrollView.height);
+            [middle_scrollView addSubview:btn];
+            
+            middle_scrollView.contentSize = CGSizeMake(btn.right, 0);
+            
+            
+            UIImageView *imgView = [[UIImageView alloc]init];
+            
+            [imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",ICONIMAGE,dic[@"icon_url"]]] placeholderImage:[UIImage imageNamed:@"icon3"]];
+            [btn addSubview:imgView];
+            
+            
+            [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.width.height.mas_equalTo(44);
+                make.top.mas_offset(20);
+                make.centerX.equalTo(btn);
+            }];
+            
+            
+            UILabel *titlelab = [[UILabel alloc]init];
+            titlelab.textColor = RGB(51,51,51);
+            titlelab.text = dic[@"text"];
+            titlelab.font = [UIFont systemFontOfSize:13];
+            titlelab.textAlignment = NSTextAlignmentCenter;
+            [btn addSubview:titlelab];
+            
+            [titlelab mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.bottom.mas_equalTo(btn).offset(-21);
+                make.width.equalTo(btn);
+                make.height.mas_equalTo(13);
+                make.centerX.equalTo(imgView);
+                
+            }];
+            
+            
+        }
+
+        
+        
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
     
 }
 
@@ -133,7 +198,7 @@
     [headerView addSubview:cycleScrollView];
     
     
-    UIScrollView *middle_scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, cycleScrollView.bottom+8, SCREENWIDTH, 110)];
+     middle_scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, cycleScrollView.bottom+8, SCREENWIDTH, 110)];
     middle_scrollView.backgroundColor = [UIColor whiteColor];
     middle_scrollView.showsVerticalScrollIndicator = NO;
     middle_scrollView.showsHorizontalScrollIndicator = NO;
@@ -146,7 +211,7 @@
         [middle_scrollView addSubview:btn];
         
         UIImageView *imgView = [[UIImageView alloc]init];
-        imgView.backgroundColor = [UIColor redColor];
+        imgView.image = [UIImage imageNamed:@"icon3"];
         [btn addSubview:imgView];
         [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
           

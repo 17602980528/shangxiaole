@@ -236,11 +236,11 @@
         NSArray *arr = result;
 
 #ifdef DEBUG
-        [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:@"blectUser" mode:@"01" viewController:self];
+        [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:APPScheme mode:@"01" viewController:self];
 
 
 #else
-        [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:@"blectUser" mode:@"00" viewController:self];
+        [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:APPScheme mode:@"00" viewController:self];
   
         
 #endif

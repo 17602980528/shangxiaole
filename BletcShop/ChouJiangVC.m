@@ -20,7 +20,9 @@
 @synthesize javascriptBridge = _bridge;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"积分抽奖";
+//    self.navigationItem.title = @"积分抽奖";
+    self.navigationItem.title = @"周边";
+
     hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.userInteractionEnabled = YES;
     
@@ -32,9 +34,9 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+//    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
     [hud hideAnimated:YES afterDelay:0.0f];
-    [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setUuid('%@','%@')",delegate.userInfoDic[@"uuid"],delegate.userInfoDic[@"integral"]]];
+//    [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setUuid('%@','%@')",delegate.userInfoDic[@"uuid"],delegate.userInfoDic[@"integral"]]];
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [hud hideAnimated:YES afterDelay:5.0];

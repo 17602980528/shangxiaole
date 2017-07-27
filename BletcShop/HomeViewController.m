@@ -225,6 +225,11 @@
     
     address_old = appdelegate.districtString.length>0?appdelegate.districtString:appdelegate.cityChoice;
 
+    
+    
+    //获取小分类保存在本地
+    
+    [self getAllIconData];
 
     
 }
@@ -450,6 +455,7 @@
     };
 
     
+    
 
     [self getIcons:@""];
 
@@ -512,7 +518,7 @@
         CGFloat  WW = [like_lab.text boundingRectWithSize:CGSizeMake(200, 50) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:like_lab.font} context:nil].size.width;
         
         UIView *line1 = [[UIView alloc]init];
-        line1.frame = CGRectMake(95, (like_lab.height-2)/2+like_lab.top, SCREENWIDTH/2-95-WW/2-20, 2);
+        line1.frame = CGRectMake(75, (like_lab.height-1)/2+like_lab.top, SCREENWIDTH/2-75-WW/2-20, 1);
         line1.backgroundColor = RGB(221,221,221);
         [view addSubview:line1];
         
@@ -1000,6 +1006,7 @@
 
     [_refreshheader endRefreshing];
     [self showHudInView:self.view hint:@"加载中..."];
+    NSLog(@"-----%@",paramer);
     
     [KKRequestDataService requestWithURL:urls params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         
@@ -1065,6 +1072,8 @@
         [table_View reloadData];
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"-----%@",error);
+
         [_refreshheader endRefreshing];
         [self hideHud];
 
@@ -1231,9 +1240,10 @@
     
     NSLog(@"小分类");
     
-    if (sender.tag==0) {
+    if (sender.tag<5) {
         
         PUSH(BeautyIndustryVC)
+        vc.icon_dic = self.icon_A[sender.tag];
         
     }else{
         
@@ -1543,6 +1553,8 @@
 //定位成功
 - (void)currentLocation:(NSDictionary *)locationDictionary {
     
+    [self getIcons:@""];
+
     NSString *city = [locationDictionary valueForKey:@"City"];
     //    if (![_resultLabel.text isEqualToString:city]) {
     //        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"您定位到%@，确定切换城市吗？",city] preferredStyle:UIAlertControllerStyleAlert];
@@ -1587,6 +1599,7 @@
 
 /// 拒绝定位
 - (void)refuseToUsePositioningSystem:(NSString *)message {
+
     NSLog(@"%@",message);
     [self.manager currentCityDic:@"西安市" currentCityDic:^(NSDictionary *dic) {
         
@@ -1716,6 +1729,27 @@
 //        PopupAdvertiseView.hidden=YES;
 //        [self.navigationController pushViewController:landVC animated:YES];
 //    }
+    
+}
+
+-(void)getAllIconData{
+    
+    NSString *url = [NSString stringWithFormat:@"%@Extra/Trade/getUp",BASEURL];
+    
+    
+    [KKRequestDataService requestWithURL:url params:nil httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        NSLog(@"getAllIconData-----%@",result);
+        
+        
+        [[NSUserDefaults standardUserDefaults] setObject:result forKey:@"allIcon"];
+        
+        
+        
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"getAllIconData-----%@",error);
+
+    }];
+
     
 }
 #pragma mark 懒加载

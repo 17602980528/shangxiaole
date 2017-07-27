@@ -1148,11 +1148,11 @@
         NSArray *arr = result;
         if ([arr[0] isKindOfClass:[NSString class]]) {
 #ifdef DEBUG
-            [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:@"blectUser" mode:@"01" viewController:self];
+            [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:APPScheme mode:@"01" viewController:self];
             
             
 #else
-            [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:@"blectUser" mode:@"00" viewController:self];
+            [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:APPScheme mode:@"00" viewController:self];
             
             
 #endif
@@ -1449,11 +1449,11 @@
         if ([arr[0] isKindOfClass:[NSString class]]) {
             
 #ifdef DEBUG
-            [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:@"blectUser" mode:@"01" viewController:self];
+            [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:APPScheme mode:@"01" viewController:self];
             
             
 #else
-            [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:@"blectUser" mode:@"00" viewController:self];
+            [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:APPScheme mode:@"00" viewController:self];
             
             
 #endif
@@ -1668,7 +1668,7 @@
         
         [self hideHud];
         
-        [[AlipaySDK defaultService] payOrder:result[@"orderInfo"] fromScheme:@"blectUser" callback:^(NSDictionary *resultDic)
+        [[AlipaySDK defaultService] payOrder:result[@"orderInfo"] fromScheme:APPScheme callback:^(NSDictionary *resultDic)
          {
              NSLog(@"BuyCardChoicePayViewControllerreslut = %@",resultDic);
              NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
@@ -1884,7 +1884,7 @@
 
         [self hideHud];
         
-        [[AlipaySDK defaultService] payOrder:result[@"orderInfo"] fromScheme:@"blectUser" callback:^(NSDictionary *resultDic)
+        [[AlipaySDK defaultService] payOrder:result[@"orderInfo"] fromScheme:APPScheme callback:^(NSDictionary *resultDic)
          {
              NSLog(@"BuyCardChoicePayViewControllerreslut = %@",resultDic);
              NSInteger orderState=[resultDic[@"resultStatus"] integerValue];

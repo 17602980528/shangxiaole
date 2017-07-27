@@ -732,11 +732,11 @@ enum PayTypes {
         NSArray *arr = result;
         
 #ifdef DEBUG
-        [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:@"blectUser" mode:@"01" viewController:self];
+        [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:APPScheme mode:@"01" viewController:self];
         
         
 #else
-        [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:@"blectUser" mode:@"00" viewController:self];
+        [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:APPScheme mode:@"00" viewController:self];
         
         
 #endif
@@ -761,101 +761,67 @@ enum PayTypes {
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     appdelegate.whoPay =self.orderInfoType;//办卡
-    /*
-     *生成订单信息及签名
-     */
-    //将商品信息赋予AlixPayOrder的成员变量
-    Order *order = [[Order alloc] init];
-    order.partner = kAlipayPartner;
-    order.sellerID = kAlipaySeller;
-    int x= arc4random()%100000;
-    NSDate *currentDate = [NSDate date];//获取当前时间，日期
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYYMMddhhmmss"];
-    NSString *dateString = [dateFormatter stringFromDate:currentDate];
-    dateString = [dateString stringByReplacingOccurrencesOfString:@":" withString:@""];
-    dateString = [dateString stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    //    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
-    //    NSInteger date = (long long int)time;
-    NSString *outtrade =[[NSString alloc]initWithFormat:@"%@%5d",dateString,x];
-    NSLog(@"%@",outtrade);
-    order.outTradeNO = outtrade; //订单ID（由商家自行制定）
-    order.subject = orderType_A[self.orderInfoType]; //商品标题
+    AppDelegate *app = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    NSMutableDictionary*paramer = [NSMutableDictionary dictionary];
+    
+    
+    [paramer setValue:_card_dic[@"card_code"] forKey:@"card_code"];
+    [paramer setValue:_card_dic[@"card_level"] forKey:@"card_level"];
+    [paramer setValue:_card_dic[@"card_type"] forKey:@"card_type"];
+    [paramer setValue:app.userInfoDic[@"uuid"] forKey:@"uuid"];
+    [paramer setValue:_card_dic[@"merchant"] forKey:@"muid"];
+    
+    [paramer setValue:self.moneyString forKey:@"total_amount"];
+    [paramer setValue:self.moneyString forKey:@"sum"];
+    
     
     //升级
+    NSString *url;
+    
+
     if (self.orderInfoType==4) {
-        if ([self.pay_Type isEqualToString:@"voucher"]) {
+        
+        [paramer setValue:_level forKey:@"new_level"];
+
+        if ([self.card_dic[@"card_type"] isEqualToString:@"储值卡"]) {
+            url =@"http://101.201.100.191/cnconsum/Pay/aliPay/user/ValueCard/upgrade.php";
             
-            
-            order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@#%@#%@#%@",self.pay_Type,orderType_A[self.orderInfoType],appdelegate.cardInfo_dic[@"card_code"],appdelegate.cardInfo_dic[@"card_level"],appdelegate.userInfoDic[@"uuid"],appdelegate.cardInfo_dic[@"merchant"],self.moneyString,appdelegate.payCardType,self.coup_dic[@"type"]];
-            
-            
-        }else if ([self.pay_Type isEqualToString:@"integral"]) {
-            
-            
-            order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@#%@#%@#%.f",self.pay_Type,orderType_A[self.orderInfoType],appdelegate.cardInfo_dic[@"card_code"],appdelegate.cardInfo_dic[@"card_level"],appdelegate.userInfoDic[@"uuid"],appdelegate.cardInfo_dic[@"merchant"],self.moneyString,appdelegate.payCardType,self.canUsePoint];
-            
-            
-        }else if ([self.pay_Type isEqualToString:@"null"])
-        {
-            
-            order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@#%@#%@",self.pay_Type,orderType_A[self.orderInfoType],appdelegate.cardInfo_dic[@"card_code"],appdelegate.cardInfo_dic[@"card_level"],appdelegate.userInfoDic[@"uuid"],appdelegate.cardInfo_dic[@"merchant"],self.moneyString,appdelegate.payCardType];
         }
-        
-        
+        if ([self.card_dic[@"card_type"] isEqualToString:@"计次卡"]) {
+            url =@"http://101.201.100.191/cnconsum/Pay/aliPay/user/CountCard/upgrade.php";
+
+        }
     }else{
         
-        if ([self.pay_Type isEqualToString:@"voucher"]) {
+        //续卡
+        
+        if ([self.card_dic[@"card_type"] isEqualToString:@"储值卡"]) {
+            url =@"http://101.201.100.191/cnconsum/Pay/aliPay/user/ValueCard/renew.php";
             
-            order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@#%@#%@",self.pay_Type,orderType_A[self.orderInfoType],appdelegate.cardInfo_dic[@"card_code"],appdelegate.cardInfo_dic[@"card_level"],appdelegate.userInfoDic[@"uuid"],appdelegate.cardInfo_dic[@"merchant"],appdelegate.cardInfo_dic[@"price"],self.coup_dic[@"type"]];
-            
-            
-        }else if ([self.pay_Type isEqualToString:@"integral"]) {
-            
-            
-            order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@#%@#%.f",self.pay_Type,orderType_A[self.orderInfoType],appdelegate.cardInfo_dic[@"card_code"],appdelegate.cardInfo_dic[@"card_level"],appdelegate.userInfoDic[@"uuid"],appdelegate.cardInfo_dic[@"merchant"],appdelegate.cardInfo_dic[@"price"],self.canUsePoint];
-            
-            
-        }else if ([self.pay_Type isEqualToString:@"null"])
-        {
-            
-            order.body =[[NSString alloc]initWithFormat:@"%@#%@#%@#%@#%@#%@#%@",self.pay_Type,orderType_A[self.orderInfoType],appdelegate.cardInfo_dic[@"card_code"],appdelegate.cardInfo_dic[@"card_level"],appdelegate.userInfoDic[@"uuid"],appdelegate.cardInfo_dic[@"merchant"],appdelegate.cardInfo_dic[@"price"]];
         }
+        if ([self.card_dic[@"card_type"] isEqualToString:@"计次卡"]) {
+            url =@"http://101.201.100.191/cnconsum/Pay/aliPay/user/CountCard/renew.php";
+            
+        }
+  
+        
         
     }
     
-    NSLog(@"order.body====%@",order.body);
-    
-    //order.productDescription = wareOrderInfo.orderDescription; //商品描述
-    //float price =[self.moneyText.text floatValue];
-    order.totalFee = [self.actualMoney substringFromIndex:5];//[NSString stringWithFormat:@"%lf",price]; //商品价格
-    order.notifyURL =  kAlipayCallBackURL; //回调URL
-    
-    order.service = @"mobile.securitypay.pay";
-    order.paymentType = @"1";
-    order.inputCharset = @"utf-8";
-    order.itBPay = @"30m";
-    order.showURL = @"m.alipay.com";
-    
-    //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-    NSString *appScheme = @"blectShop";
-    
-    //将商品信息拼接成字符串
-    NSString *orderSpec = [order description];
-    NSLog(@"orderSpec = %@",orderSpec);
-    
-    //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
-    id<DataSigner> signer = CreateRSADataSigner(kAlipayPrivateKey);
-    NSString *signedString = [signer signString:orderSpec];
-    
-    //将签名成功字符串格式化为订单字符串,请严格按照该格式
-    NSString *orderString = nil;
-    if (signedString != nil) {
-        orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
-                       orderSpec, signedString, @"RSA"];
         
-        [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic)
+        
+        
+    
+    
+    NSLog(@"paramer-----%@",paramer);
+    [self showHudInView:self.view hint:@"请求中..."];
+
+    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        NSLog(@"result-----%@",result);
+        [self hideHud];
+        [[AlipaySDK defaultService] payOrder:result[@"orderInfo"] fromScheme:APPScheme callback:^(NSDictionary *resultDic)
          {
              NSLog(@"ChoicePayTypeViewControllerreslut = %@",resultDic);
              NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
@@ -872,7 +838,7 @@ enum PayTypes {
                      appdelegate.cardInfo_dic =  card_dic;
                      
                  }
-
+                 
                  
                  
                  PaySuccessVc *VC = [[PaySuccessVc alloc]init];
@@ -883,11 +849,9 @@ enum PayTypes {
                  
                  [self.navigationController pushViewController:VC animated:YES];
                  
-
                  
-//                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"恭喜" message:@"您已成功支付啦!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-//                 
-//                 [alert show];
+              
+                 
                  
              }else{
                  UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"是否放弃当前交易?" delegate:self cancelButtonTitle:@"放弃" otherButtonTitles:@"去支付", nil];
@@ -901,7 +865,22 @@ enum PayTypes {
          }];
         
         
-    }
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self hideHud];
+
+        NSLog(@"----%@",error);
+    }];
+
+      
+        
+        
+    
+    
+    
+    
+        
+   
+        
     
 }
 - (void)processOrderWithPaymentResult:(NSURL *)resultUrl

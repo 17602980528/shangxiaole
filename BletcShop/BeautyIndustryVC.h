@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BeautyIndustryVC : UIViewController
+@property (nonatomic , strong) NSDictionary  *icon_dic;// <#Description#>
 
 @end

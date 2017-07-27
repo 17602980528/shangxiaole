@@ -29,13 +29,16 @@
 #define kQIYIAppKey @"3cebded02e884b1a98c42046ad4fb996"
 #define kQIYIAppSecret @"d50834895639cdf46a98e0efd427b9a1"
 
+#define APPScheme @"blectUser"
+
+
 //新的接口
 #define BASEURL_SERVER @"http://101.201.100.191/cnconsum/App/"
 
 #define LOCALIP @"192.168.0.168"//本地测试使用
 #define SERVERIP @"101.201.100.191"//发布使用
 
-#define BASEURL [NSString stringWithFormat:@"http://%@/cnconsum/App/",LOCALIP]
+#define BASEURL [NSString stringWithFormat:@"http://%@/cnconsum/App/",SERVERIP]
 
 //项目图片
 #define PRODUCT_IMAGE @"http://101.201.100.191/cnconsum/Public/Uploads/optionImage/"
