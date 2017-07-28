@@ -45,6 +45,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *cardImg;
 @property (weak, nonatomic) IBOutlet UILabel *shopName;
 @property (weak, nonatomic) IBOutlet UILabel *tradeLab;
+@property (weak, nonatomic) IBOutlet UILabel *card_level;
 
 @end
 
@@ -152,9 +153,18 @@
     self.userName.text = _model.nickname;
     self.priceLab.text = [NSString stringWithFormat:@"¥%@",_model.card_remain];
     self.dateTime.text = [NSString stringWithFormat:@"%@发布",_model.datetime];
+    self.cardImg.backgroundColor = [UIColor colorWithHexString:_model.card_temp_color];
+    
+    self.card_level.text = [NSString stringWithFormat:@"VIP%@",_model.card_level];
+    
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:self.card_level.text];
+    
+    [attr setAttributes:@{NSForegroundColorAttributeName:RGB(253,108,110),NSFontAttributeName:[UIFont boldSystemFontOfSize:27]} range:NSMakeRange(0, 3)];
+    
+    [attr setAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(3, self.card_level.text.length-3)];
+    
+    self.card_level.attributedText = attr;
 
-    
-    
     
     
     NSString *type;
@@ -617,6 +627,18 @@
         
     }
     
+    /*
+    
+     "b_sum" = "9.50";
+     "b_uuid" = "u_uuid0148";
+     "card_code" = "vipc_3ba8f333e1";
+     "card_level" = "\U666e\U5361";
+     "card_type" = "\U50a8\U503c\U5361";
+     muid = "m_d7c116a9cc";
+     "s_sum" = "9.00";
+     "s_uuid" = "u_c5aaaf9307";
+     "total_amount" = "9.50";
+    **/
     
     
     

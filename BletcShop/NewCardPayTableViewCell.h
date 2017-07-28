@@ -16,5 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *shopName;
 @property (weak, nonatomic) IBOutlet UILabel *dateTime;
 @property (weak, nonatomic) IBOutlet UIButton *goShopDetailButton;
+@property (weak, nonatomic) IBOutlet UILabel *card_type;
+@property (weak, nonatomic) IBOutlet UILabel *original_price;
+@property (weak, nonatomic) IBOutlet UILabel *current_price;
 
 @end

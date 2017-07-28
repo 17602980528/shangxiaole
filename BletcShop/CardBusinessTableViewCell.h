@@ -25,6 +25,7 @@ static NSString *identifierEric = @"CardBusinessCell";
 @property (strong, nonatomic) IBOutlet UILabel *noticeLable;
 @property (strong, nonatomic) IBOutlet UILabel *tradeLable;
 @property (strong, nonatomic) IBOutlet UIButton *addFriendBtn;
+@property (weak, nonatomic) IBOutlet UILabel *card_Level;
 
 +(instancetype)creatCellWithTableView:(UITableView*)tableView;
 

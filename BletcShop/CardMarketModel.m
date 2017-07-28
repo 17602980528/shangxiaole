@@ -21,6 +21,8 @@
 -(CardMarketModel*)intiWithDictionary:(NSDictionary *)dic;
 {
     self.dic=dic;
+    self.card_temp_color = [NSString getTheNoNullStr:dic[@"card_temp_color"] andRepalceStr:@""];
+    
     self.headimage = [NSString getTheNoNullStr:dic[@"headimage"] andRepalceStr:@""];
     self.nickname = [NSString getTheNoNullStr:dic[@"nickname"] andRepalceStr:@""];
     self.uuid = [NSString getTheNoNullStr:dic[@"uuid"] andRepalceStr:@""];

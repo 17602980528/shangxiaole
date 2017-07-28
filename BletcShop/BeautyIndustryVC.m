@@ -15,6 +15,7 @@
 #import "DOPDropDownMenu.h"
 #import "ProvinceModel.h"
 #import "CityModel.h"
+#import "ShoppingViewController.h"
 @interface BeautyIndustryVC ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,DOPDropDownMenuDelegate,DOPDropDownMenuDataSource>
 {
     NSArray *arr;
@@ -102,7 +103,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"美业频道";
+    self.navigationItem.title = _icon_dic[@"text"];
     
     needRefresh = YES;
     _table_view.backgroundColor = RGB(240, 240, 240);
@@ -129,10 +130,18 @@
         for (NSInteger i = 0; i <[result count]; i ++) {
             NSDictionary *dic = result[i];
             
-            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            LZDButton *btn = [LZDButton creatLZDButton];
             btn.frame = CGRectMake(i*middle_scrollView.width/4, 0,middle_scrollView.width/4, middle_scrollView.height);
             [middle_scrollView addSubview:btn];
             
+            
+            btn.block = ^(LZDButton *btn) {
+              
+                PUSH(ShoppingViewController);
+               vc.navigationItem.title = dic[@"text"];
+
+                
+            };
             middle_scrollView.contentSize = CGSizeMake(btn.right, 0);
             
             

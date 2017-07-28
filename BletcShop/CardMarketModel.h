@@ -22,6 +22,8 @@
 @property (nonatomic,copy)NSString *card_code;// 卡类型
 @property (nonatomic,copy)NSString *rule;// 折扣率
 
+@property (nonatomic,copy)NSString *card_temp_color;// 卡的颜色
+
 @property (nonatomic,copy)NSString *rate;// 手续费
 @property (nonatomic,copy)NSString *uuid;// 用户uuid
 @property (nonatomic,copy)NSString *muid;// 商户muid
