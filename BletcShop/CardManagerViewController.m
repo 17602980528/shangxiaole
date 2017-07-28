@@ -51,7 +51,28 @@
 @end
 
 @implementation CardManagerViewController
-
+/**
+ 
+ "addition_sum" = 0;
+ "card_code" = "vipc_3ba8f333e1";
+ "card_level" = "\U91d1\U5361";
+ "card_remain" = 100;
+ "card_temp_color" = "#6A5ACD";
+ "card_type" = "\U50a8\U503c\U5361";
+ "claim_state" = null;
+ "date_end" = "2017-07-26 17:40:05";
+ "date_start" = "2017-07-26 17:40:05";
+ evaluate = false;
+ indate = no;
+ merchant = "m_d7c116a9cc";
+ price = 100;
+ rule = 80;
+ state = null;
+ store = "\U5546\U6d88\U4e50";
+ user = "u_uuid0148";
+ 
+ 
+ */
 
 -(void)postRequestAllInfo
 {

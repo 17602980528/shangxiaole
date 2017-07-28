@@ -44,6 +44,11 @@
 #define PRODUCT_IMAGE @"http://101.201.100.191/cnconsum/Public/Uploads/optionImage/"
 //头像
 #define ICONIMAGE @"http://101.201.100.191/cnconsum/Public/Uploads/iconImage/"
+//上层分类的图标
+#define UPICONIMAGE @"http://101.201.100.191/cnconsum/Public/Uploads/iconImage/up/"
+//下层分类的图标
+#define SUBICONIMAGE @"http://101.201.100.191/cnconsum/Public/Uploads/iconImage/sub/"
+
 //轮播广告
 #define LUNBO_IMAGE @"http://101.201.100.191/cnconsum/Public/Uploads/advert/top/"
 //启动后广告页面

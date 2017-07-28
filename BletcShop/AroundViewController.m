@@ -68,6 +68,17 @@
     }
     return _data_M_A;
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    [appdelegate.locService startUserLocationService];
+    
+    
+    [self postGetMutiAdvertistShops:_city_district];
+
+    
+}
 - (IBAction)addressClick:(UITapGestureRecognizer *)sender {
     NSLog(@"定位");
     
@@ -95,17 +106,14 @@
 
     self.addressLab.text = appdelegate.districtString.length >0? appdelegate.districtString : @"雁塔区";
     
-    
-    
-    [self creatHeadView:nil];
-    
+
     
     self.city_district = [NSString stringWithFormat:@"%@%@",appdelegate.cityChoice,[appdelegate.districtString isEqualToString:appdelegate.cityChoice] ? @"":appdelegate.districtString];
 
     
    
     
-    [self postGetMutiAdvertistShops:_city_district];
+//    [self postGetMutiAdvertistShops:_city_district];
     
     
     
@@ -480,7 +488,12 @@
             }
 
             
-            [self creatHeadView:(NSDictionary*)result];
+            NSLog(@"self.tabview.tableHeaderView------%@",self.tabview.tableHeaderView)  ;
+            
+            if (!self.tabview.tableHeaderView) {
+                [self creatHeadView:(NSDictionary*)result];
+
+            }
             
         }
         

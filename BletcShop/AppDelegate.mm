@@ -237,7 +237,7 @@
     _locService.delegate = self;
     //启动LocationService
     [_locService startUserLocationService];
-    //_locationDelegate = nil;
+
     //按比例适配屏幕
     AppDelegate *myDelegate =(AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(SCREENHEIGHT == 667){
@@ -291,17 +291,14 @@
     
     [[UMSocialManager defaultManager] openLog:YES];
     
-    //    [[UMSocialManager defaultManager] setAppKey:@"57b151fe67e58ec90a000bca"];
     [[UMSocialManager defaultManager]setUmSocialAppkey:@"57b151fe67e58ec90a000bca"];
     
     [[UMSocialManager defaultManager]setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx9ff00c1974e22928" appSecret:@"aaf33e2246f133e4d30ebc1ab6db2dfa" redirectURL:@"http://mobile.umeng.com/social"];
     
     
-    //    [UMSocialWechatHandler setWXAppId:@"wx9ff00c1974e22928" appSecret:@"aaf33e2246f133e4d30ebc1ab6db2dfa" url:@"http://www.umeng.com/social"];
     
     [[UMSocialManager defaultManager]setPlaform:UMSocialPlatformType_Sina appKey:@"3250560160" appSecret:@"25ee0d2e21e73af9162c801381171e14" redirectURL:@"www.cnconsum.com"];
     
-    //    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"3250560160" secret:@"25ee0d2e21e73af9162c801381171e14" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     
     [[UMSocialManager defaultManager]setPlaform:UMSocialPlatformType_QQ appKey:@"1105439953" appSecret:@"XmlGFpPTvzYfOjOe" redirectURL:@"http://mobile.umeng.com/social"];
     
