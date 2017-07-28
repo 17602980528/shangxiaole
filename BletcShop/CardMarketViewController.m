@@ -35,7 +35,6 @@
     UIView *move_line;
     SDRefreshFooterView *_refreshFooter;
     SDRefreshHeaderView *_refreshheader;
-    int currentIndex1;//请求页码
     
     NSString *address_old;//之前的地址
     
@@ -48,7 +47,7 @@
 @property(nonatomic,strong)NSArray *areaListArray;
 @property (nonatomic,strong)UICollectionView *collectionView;
 
-
+@property(nonatomic,assign)int currentIndex1;
 
 @end
 
@@ -89,6 +88,8 @@
     
     
     self.cityChoice = appdelegate.cityChoice;
+    
+    self.currentIndex1 =1;
     
     
     
@@ -205,7 +206,9 @@
     
     if (![address_old isEqualToString:dingweiBtn.titleLabel.text]) {
         address_old = dingweiBtn.titleLabel.text;
-        [self getDataWithMore:@""];
+        _currentIndex1 = 1;
+        [self getDataWithMore:_currentIndex1];
+
         
     }
     
@@ -380,8 +383,8 @@
     
     [self resetFrame];
     
-    
-    [self getDataWithMore:@""];
+    self.currentIndex1 = 1;
+    [self getDataWithMore:self.currentIndex1];
     
 }
 
@@ -417,7 +420,7 @@
     
     table_View = [[UITableView alloc]initWithFrame:CGRectMake(0, selectView.bottom+1, SCREENWIDTH, SCREENHEIGHT-(selectView.bottom+1)-self.tabBarController.tabBar.frame.size.height) style:UITableViewStyleGrouped];
     
-    //    table_View = [[UITableView alloc]initWithFrame:CGRectMake(0, selectView.bottom+1, SCREENWIDTH, 180) style:UITableViewStyleGrouped];
+
     
     table_View.dataSource = self;
     table_View.delegate = self;
@@ -427,14 +430,18 @@
     [self.view addSubview: table_View];
     
     
+
+
+    
     _refreshheader = [SDRefreshHeaderView refreshView];
     [_refreshheader addToScrollView:table_View];
     _refreshheader.isEffectedByNavigationController = NO;
     
     __block CardMarketViewController *blockSelf = self;
     _refreshheader.beginRefreshingOperation = ^{
-        
-        [blockSelf getDataWithMore:@""];
+        blockSelf.currentIndex1 = 1;
+        [blockSelf.data_A removeAllObjects];
+        [blockSelf getDataWithMore:blockSelf.currentIndex1];
     };
     
     
@@ -442,14 +449,14 @@
     [_refreshFooter addToScrollView:table_View];
     
     _refreshFooter.beginRefreshingOperation =^{
-        [blockSelf getDataWithMore:@"more"];
+        [blockSelf getDataWithMore:++blockSelf.currentIndex1];
         
     };
     
     
     
     
-    [self getDataWithMore:@""];
+    [self getDataWithMore:_currentIndex1];
     
     
     
@@ -504,7 +511,8 @@
     
     CardmarketDetailVC *VC = [[CardmarketDetailVC alloc]init];
     VC.block = ^{
-        [self getDataWithMore:@""];
+        _currentIndex1 = 1;
+        [self getDataWithMore:_currentIndex1];
     };
     
     VC.model = self.data_A[indexPath.row];
@@ -560,7 +568,7 @@
         [weakSelf resetFrame];
         
         
-        //        [self getDataWithMore:@""];
+        //        [self getDataWithMore:@"one"];
         
         
         
@@ -579,7 +587,8 @@
     
     
     NSLog(@"senderSelectCity==%@===%@",selectCity,self.city_district);
-    [self getDataWithMore:@""];
+    _currentIndex1 = 1;
+    [self getDataWithMore:_currentIndex1];
     
 }
 -(void)buttonClick:(UIButton*)sender{
@@ -591,7 +600,8 @@
             
         }];
         
-        [self getDataWithMore:@""];
+        _currentIndex1 = 1;
+        [self getDataWithMore:_currentIndex1];
         
     }
     
@@ -619,10 +629,10 @@
 
 
 
--(void)getDataWithMore:(NSString *)more{
+-(void)getDataWithMore:(NSInteger )page{
     
     
-    NSLog(@"oldBtn.tag---%ld",oldBtn.tag);
+    NSLog(@"oldBtn.tag---%ld===more:%ld",oldBtn.tag,page);
     NSString *url = [NSString stringWithFormat:@"%@UserType/CardMarket/get",BASEURL];
     
     NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
@@ -645,19 +655,12 @@
     
     [paramer setValue:self.city_district forKey:@"address"];
     
-    
-    if ([more isEqualToString:@"more"]) {
-        [paramer setValue:[NSString stringWithFormat:@"%d",++currentIndex1] forKey:@"page"];
+   
+        [paramer setValue:[NSString stringWithFormat:@"%ld",page] forKey:@"page"];
         
-    }else{
-        
+    if (page==1) {
         [self.data_A removeAllObjects];
-        
-        currentIndex1 = 1;
-        [paramer setValue:@"1" forKey:@"page"];
-        
     }
-    
     
     NSLog(@"CardMarket===%@",paramer);
     [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
@@ -681,6 +684,7 @@
         [table_View reloadData];
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"=====%@",error);
         [_refreshheader endRefreshing];
         [_refreshFooter endRefreshing];
         

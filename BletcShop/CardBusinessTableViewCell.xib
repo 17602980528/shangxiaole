@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -16,13 +16,13 @@
             <rect key="frame" x="0.0" y="0.0" width="499" height="271"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="499" height="270.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="499" height="271"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8W8-of-oLk">
                         <rect key="frame" x="24" y="5" width="451" height="260.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Card.png" translatesAutoresizingMaskIntoConstraints="NO" id="2Dr-Fs-Wnl">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Dr-Fs-Wnl">
                                 <rect key="frame" x="15" y="13" width="106" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="9xJ-CP-S0W"/>
@@ -39,9 +39,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="ayer.cornerRadius" value="5"/>
-                                </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mqa-D1-7FN">
                                 <rect key="frame" x="391" y="18" width="60" height="18"/>
@@ -173,6 +170,15 @@
                                 <color key="textColor" red="0.68627450980392157" green="0.68627450980392157" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlR-qj-WJp">
+                                <rect key="frame" x="15" y="13" width="106" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="6dM-Ij-KpP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -192,10 +198,12 @@
                             <constraint firstItem="hj7-K4-GFa" firstAttribute="top" secondItem="ybq-fU-E4P" secondAttribute="bottom" constant="8" id="Jvq-Vi-YDg"/>
                             <constraint firstAttribute="trailing" secondItem="hj7-K4-GFa" secondAttribute="trailing" constant="5" id="L2V-4x-tuj"/>
                             <constraint firstItem="uDA-J6-leM" firstAttribute="leading" secondItem="8W8-of-oLk" secondAttribute="leading" id="MYa-sq-Utr"/>
+                            <constraint firstItem="zlR-qj-WJp" firstAttribute="trailing" secondItem="2Dr-Fs-Wnl" secondAttribute="trailing" id="R9q-KU-ThY"/>
                             <constraint firstItem="uDA-J6-leM" firstAttribute="top" secondItem="wFB-zS-uag" secondAttribute="bottom" constant="12" id="RRp-vS-tD5"/>
                             <constraint firstItem="fzg-xf-ycG" firstAttribute="leading" secondItem="ide-a2-dfj" secondAttribute="trailing" constant="8" id="S1a-co-1lh"/>
                             <constraint firstItem="Zc0-ol-jdr" firstAttribute="top" secondItem="yNI-Oh-WiV" secondAttribute="top" id="VP2-2p-YAB"/>
                             <constraint firstItem="tVo-tD-nlY" firstAttribute="top" secondItem="uDA-J6-leM" secondAttribute="bottom" id="WQg-qL-OeQ"/>
+                            <constraint firstItem="zlR-qj-WJp" firstAttribute="leading" secondItem="2Dr-Fs-Wnl" secondAttribute="leading" id="ZLg-Pr-6tS"/>
                             <constraint firstItem="yNI-Oh-WiV" firstAttribute="top" secondItem="2Dr-Fs-Wnl" secondAttribute="bottom" constant="10" id="ZgA-zQ-vGb"/>
                             <constraint firstItem="alc-tN-ReS" firstAttribute="bottom" secondItem="2Dr-Fs-Wnl" secondAttribute="bottom" id="a0r-2T-iRb"/>
                             <constraint firstItem="MkT-TB-I1z" firstAttribute="leading" secondItem="vZW-hR-A7a" secondAttribute="trailing" constant="10" id="bRN-qC-9n2"/>
@@ -209,15 +217,13 @@
                             <constraint firstItem="fzg-xf-ycG" firstAttribute="trailing" secondItem="SAB-C4-kns" secondAttribute="trailing" id="jfU-Gh-JDG"/>
                             <constraint firstItem="SAB-C4-kns" firstAttribute="top" secondItem="i6d-pW-z8a" secondAttribute="top" id="lXG-Hc-bUt"/>
                             <constraint firstAttribute="trailing" secondItem="wFB-zS-uag" secondAttribute="trailing" id="lhB-cN-TIG"/>
+                            <constraint firstItem="zlR-qj-WJp" firstAttribute="top" secondItem="2Dr-Fs-Wnl" secondAttribute="top" id="mAg-hq-yO6"/>
                             <constraint firstItem="Mqa-D1-7FN" firstAttribute="top" secondItem="ybq-fU-E4P" secondAttribute="top" id="mF2-zV-yQj"/>
                             <constraint firstItem="vZW-hR-A7a" firstAttribute="top" secondItem="uDA-J6-leM" secondAttribute="bottom" constant="12" id="nab-Cj-6Tr"/>
                             <constraint firstItem="2Dr-Fs-Wnl" firstAttribute="leading" secondItem="8W8-of-oLk" secondAttribute="leading" constant="15" id="y6K-5D-Bsg"/>
                             <constraint firstItem="alc-tN-ReS" firstAttribute="leading" secondItem="2Dr-Fs-Wnl" secondAttribute="trailing" constant="2" id="y8t-pW-L0Q"/>
                             <constraint firstAttribute="trailing" secondItem="Mqa-D1-7FN" secondAttribute="trailing" id="yDe-hU-Bur"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="ayer.cornerRadius" value="5"/>
-                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
@@ -233,6 +239,7 @@
                 <outlet property="addresslab" destination="Zc0-ol-jdr" id="anW-qV-utD"/>
                 <outlet property="bgView" destination="8W8-of-oLk" id="xHY-gE-WHr"/>
                 <outlet property="cardImageView" destination="2Dr-Fs-Wnl" id="Q0Y-SY-zED"/>
+                <outlet property="card_Level" destination="zlR-qj-WJp" id="SzD-8N-zvp"/>
                 <outlet property="descripLab" destination="hlx-4A-3oB" id="61n-K8-Iuz"/>
                 <outlet property="headDescripLab" destination="alc-tN-ReS" id="A0u-e3-i84"/>
                 <outlet property="imgView" destination="vZW-hR-A7a" id="BvW-NE-H5O"/>
@@ -244,11 +251,10 @@
                 <outlet property="timeLab" destination="wFB-zS-uag" id="pNh-qI-hg4"/>
                 <outlet property="tradeLable" destination="ybq-fU-E4P" id="riQ-4T-y5A"/>
             </connections>
-            <point key="canvasLocation" x="112.5" y="82.5"/>
+            <point key="canvasLocation" x="-154" y="38"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Card.png" width="983" height="604"/>
         <image name="icon3.png" width="227" height="152"/>
         <image name="咨询.png" width="26" height="24"/>
         <image name="导航栏定位.png" width="20" height="28"/>

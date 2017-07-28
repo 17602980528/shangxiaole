@@ -14,6 +14,7 @@
 #import "ShopListTableViewCell.h"
 #import "SDCycleScrollView.h"
 #import "NewShopDetailVC.h"
+#import "SearchTableViewController.h"
 
 #import "ChouJiangVC.h"
 
@@ -44,31 +45,6 @@
 @end
 @implementation AroundViewController
 
--(NSArray *)advert_A{
-    if (!_advert_A) {
-        _advert_A = [NSArray array];
-    }
-    return _advert_A;
-}
--(NSArray *)trade_A{
-    if (!_trade_A) {
-        _trade_A = [NSArray array];
-    }
-    return _trade_A;
-}
--(NSMutableArray *)adverImages{
-    if (!_adverImages) {
-        _adverImages = [NSMutableArray array];
-    }
-    return _adverImages;
-}
--(NSMutableArray *)data_M_A{
-    if (!_data_M_A) {
-        _data_M_A = [NSMutableArray array];
-    }
-    return _data_M_A;
-}
-
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -89,7 +65,7 @@
 - (IBAction)searchClcik:(UITapGestureRecognizer *)sender {
     
     NSLog(@"--searchClick--");
-
+    PUSH(SearchTableViewController)
 
 }
 - (void)viewDidLoad {
@@ -570,6 +546,34 @@
         
     }];
     
+}
+
+
+
+#pragma mark 懒加载
+-(NSArray *)advert_A{
+    if (!_advert_A) {
+        _advert_A = [NSArray array];
+    }
+    return _advert_A;
+}
+-(NSArray *)trade_A{
+    if (!_trade_A) {
+        _trade_A = [NSArray array];
+    }
+    return _trade_A;
+}
+-(NSMutableArray *)adverImages{
+    if (!_adverImages) {
+        _adverImages = [NSMutableArray array];
+    }
+    return _adverImages;
+}
+-(NSMutableArray *)data_M_A{
+    if (!_data_M_A) {
+        _data_M_A = [NSMutableArray array];
+    }
+    return _data_M_A;
 }
 
 

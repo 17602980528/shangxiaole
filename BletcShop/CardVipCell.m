@@ -22,6 +22,7 @@
 @implementation CardVipCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.Depoist.layer.cornerRadius = 8;
     self.CardImg.layer.cornerRadius = 8;

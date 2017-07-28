@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *buyCardButton;
 @property (weak, nonatomic) IBOutlet UIView *moveLine;
 @property (weak, nonatomic) IBOutlet UIImageView *noDataNotice;
-@property (nonatomic)NSInteger apriseOrPublish;// 0 代表评价--1 代表发布
+@property (nonatomic)NSInteger apriseOrPublish;// 0 代表刷卡--1 代表办卡
 @property (nonatomic,retain)NSMutableArray *orderArray;
 @end
 
@@ -78,7 +78,9 @@
         cell.appriseBtn.tag=indexPath.row;
         cell.dateTime.text=_orderArray[indexPath.row][@"datetime"];
         cell.totalCosts.text=[NSString stringWithFormat:@"消费：%@元",_orderArray[indexPath.row][@"sum"]];
-        cell.shopName.text=_orderArray[indexPath.row][@"store"];//[[[[self.orderArray objectAtIndex:indexPath.row] objectForKey:@"content"] componentsSeparatedByString:PAY_USCS] firstObject];
+        cell.shopName.text=_orderArray[indexPath.row][@"store"];
+        
+        //[[[[self.orderArray objectAtIndex:indexPath.row] objectForKey:@"content"] componentsSeparatedByString:PAY_USCS] firstObject];
         NSURL * nurl1=[[NSURL alloc] initWithString:[[SHOPIMAGE_ADDIMAGE stringByAppendingString:[_orderArray[indexPath.row] objectForKey:@"image_url"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
         [cell.headImageView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
         
@@ -89,7 +91,7 @@
             cell.appriseBtn.layer.borderColor=RGB(243, 73, 78).CGColor;
             [cell.appriseBtn addTarget:self action:@selector(appriseBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         }else{
-            cell.userInteractionEnabled=NO;
+            cell.appriseBtn.userInteractionEnabled=NO;
             [cell.appriseBtn setTitle:@"已评价" forState:UIControlStateNormal];
             [cell.appriseBtn setTitleColor:RGB(181, 181, 181) forState:UIControlStateNormal];
              cell.appriseBtn.layer.borderColor=RGB(181, 181, 181).CGColor;
@@ -100,6 +102,7 @@
         
         if ([[string substringToIndex:4] isEqualToString:@"结算次数"]||[[string substringToIndex:4] isEqualToString:@"消费次数"]) {
             
+            cell.card_type.text = @"消费卡种：计次卡";
             NSArray *arr = [NSArray array];
             arr= [string componentsSeparatedByString:PAY_UORC];
             for (NSString *stri in arr) {
@@ -110,8 +113,14 @@
                 
             }
             
-        }else{
-            
+            cell.current_price.text = @"";
+            cell.original_price.text = @"";
+
+            cell.totalCosts.text=[NSString stringWithFormat:@"消费：%@",string];
+
+        }else if ([[string substringToIndex:4] isEqualToString:@"结算金额"]||[[string substringToIndex:4] isEqualToString:@"消费金额"]){
+            cell.card_type.text = @"消费卡种：储值卡";
+
             NSArray *arr = [NSArray array];
             
             arr= [string componentsSeparatedByString:PAY_UORC];
@@ -122,9 +131,44 @@
                 string = [NSString stringWithFormat:@"%.2f元",[string floatValue]+[price floatValue]];
                 
             }
+            cell.current_price.text = [NSString stringWithFormat:@"现价：%@",string];
+            cell.totalCosts.text=[NSString stringWithFormat:@"消费：%@",string];
+            
+            cell.original_price.text = @"";
+
+
+            
+        }else if ([[string substringToIndex:4] isEqualToString:@"项目名称"]){
+            
+            cell.card_type.text = @"消费卡种：套餐卡";
+            cell.current_price.text = @"";
+NSString *myString =@"";
+            
+            
+            
+            NSArray *arr = [string componentsSeparatedByString:PAY_UORC];
+            
+            for (int i = 0; i <arr.count/2; i++) {
+                
+                NSString *ss = arr[i*2];
+                
+                NSString *price = [NSString stringWithFormat:@"%@1次",[[ss componentsSeparatedByString:PAY_NP]lastObject]];
+
+                if (myString.length ==0) {
+                    myString = price;
+                }else{
+                    
+                    myString = [[myString stringByAppendingString:@"x"] stringByAppendingString:price];
+ 
+                }
+            }
+            
+            cell.original_price.text = myString;
+
+            cell.totalCosts.text=[NSString stringWithFormat:@"消费：%ld项",arr.count/2];
+
             
         }
-        cell.totalCosts.text=[NSString stringWithFormat:@"消费：%@",string];
         cell.goShopDetailButton.tag=indexPath.row;
         [cell.goShopDetailButton addTarget:self action:@selector(goShopDetailButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -137,13 +181,38 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor=[UIColor clearColor];
         }
-        cell.shopName.text=self.orderArray[indexPath.row][@"store"];
-        cell.cardLevel.text=[NSString stringWithFormat:@"级别：%@",self.orderArray[indexPath.row][@"card_level"]];
-        cell.cardType.text=[NSString stringWithFormat:@"类型：%@",self.orderArray[indexPath.row][@"card_type"]];
-        cell.payMoney.text=[NSString stringWithFormat:@"消费：%@元",self.orderArray[indexPath.row][@"sum"]];
-        cell.payTime.text=self.orderArray[indexPath.row][@"datetime"];
+        NSDictionary *dic =self.orderArray[indexPath.row];
+        
+        cell.shopName.text=dic[@"store"];
+        
+        if ([dic[@"card_level"] isEqualToString:dic[@"card_type"]]) {
+            cell.cardLevel.text=[NSString stringWithFormat:@"类型：%@",dic[@"card_type"]];
+            cell.cardType.text=@"";
+            
+        }else{
+            cell.cardLevel.text=[NSString stringWithFormat:@"级别：%@",dic[@"card_level"]];
+            cell.cardType.text=[NSString stringWithFormat:@"类型：%@",dic[@"card_type"]];
+        }
+       
+        
+        
+        cell.payMoney.text=[NSString stringWithFormat:@"消费：%@元",dic[@"sum"]];
+        cell.payTime.text=dic[@"datetime"];
         cell.goShopDetailButton.tag=indexPath.row;
         [cell.goShopDetailButton addTarget:self action:@selector(goShopDetailButtontap:) forControlEvents:UIControlEventTouchUpInside];
+        
+        cell.card_img.backgroundColor = [UIColor colorWithHexString:dic[@"card_temp_color"]];
+        cell.card_lev.text = [NSString stringWithFormat:@"VIP%@",dic[@"card_level"]];
+        
+        NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:cell.card_lev.text];
+        
+        [attr setAttributes:@{NSForegroundColorAttributeName:RGB(253,108,110),NSFontAttributeName:[UIFont boldSystemFontOfSize:17]} range:NSMakeRange(0, 3)];
+        
+        [attr setAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(3, cell.card_lev.text.length-3)];
+        
+        cell.card_lev.attributedText = attr;
+
+        
         return cell;
     }
     
@@ -162,6 +231,8 @@
 #pragma mark ---刷卡消费记录
 -(void)postRequstOrderInfo
 {
+    
+    [self showHudInView:self.view hint:@"加载中..."];
     NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/Record/pay",BASEURL];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -169,6 +240,8 @@
     
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
      {
+         [self hideHud];
+
          NSLog(@"result%@", result);
          if (result&&[result count]>0) {
              self.orderArray = [result mutableCopy];
@@ -181,6 +254,8 @@
          }
          
      } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+         [self hideHud];
+
          NSLog(@"%@", error);
      }];
     
@@ -228,6 +303,11 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    
+    if (_apriseOrPublish==0) {
+        
+        NSLog(@"----刷卡消费-");
+
     NSString *pay_tp;
     
     
@@ -268,11 +348,21 @@
     VC.pay_type_s = pay_tp;
     
     [self.navigationController pushViewController:VC animated:YES];
+        
+        
+    }else{
+        
+        
+        NSLog(@"----办卡消费-");
+    }
+
 }
 
 #pragma mark ---办卡记录
 
 -(void)buyCardsRecorsPostRequest{
+    [self showHudInView:self.view hint:@"加载中..."];
+
      NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/Record/card",BASEURL];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -280,6 +370,7 @@
     
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
      {
+         [self hideHud];
          NSLog(@"result%@", result);
          if (result&&[result count]>0) {
              self.orderArray = [result mutableCopy];
@@ -292,6 +383,8 @@
          }
          
      } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+         [self hideHud];
+
          NSLog(@"%@", error);
      }];
 

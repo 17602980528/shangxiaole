@@ -15,5 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *payMoney;
 @property (weak, nonatomic) IBOutlet UILabel *payTime;
 @property (weak, nonatomic) IBOutlet UIButton *goShopDetailButton;
+@property (weak, nonatomic) IBOutlet UILabel *card_lev;
+@property (weak, nonatomic) IBOutlet UIImageView *card_img;
 
 @end

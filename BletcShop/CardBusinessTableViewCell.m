@@ -12,8 +12,16 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 64-20, self.cardImageView.width, 20)];
+    view.backgroundColor = [UIColor whiteColor];
+    [self.cardImageView addSubview:view];
+    
     self.cardImageView.layer.cornerRadius=5.0f;
     self.cardImageView.clipsToBounds=YES;
+    self.cardImageView.layer.borderWidth = 0.5;
+    self.cardImageView.layer.borderColor = RGB(49,43,43).CGColor;
+    
     self.imgView.layer.cornerRadius=3.0f;
     self.imgView.clipsToBounds=YES;
     self.tradeLable.layer.cornerRadius=2.0f;
@@ -44,6 +52,18 @@
     self.nickNamelab.text = _model.nickname;
     self.timeLab.text = _model.datetime;
     self.shopLab.text = _model.store;
+    self.cardImageView.backgroundColor = [UIColor colorWithHexString:_model.card_temp_color];
+    
+    self.card_Level.text = [NSString stringWithFormat:@"VIP%@",_model.card_level];
+    
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:self.card_Level.text];
+    
+    [attr setAttributes:@{NSForegroundColorAttributeName:RGB(253,108,110),NSFontAttributeName:[UIFont boldSystemFontOfSize:17]} range:NSMakeRange(0, 3)];
+    
+    [attr setAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(3, self.card_Level.text.length-3)];
+    
+    self.card_Level.attributedText = attr;
+    
     
     NSString *type;
     if ([_model.method isEqualToString:@"transfer"]) {
