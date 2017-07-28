@@ -28,7 +28,7 @@
 #import "MoneyPAYViewController.h"
 #import "CountPAYViewController.h"
 #import "ComplainUnnormalVC.h"
-
+#import "OtherCardComplainVC.h"
 @interface CardManagerViewController ()
 {
     NSDictionary *cardInfo_dic;
@@ -344,9 +344,16 @@
 //            VC.card_info = cardInfo_dic;
 //            
 //            [self.navigationController pushViewController:VC animated:YES];
-            ComplainUnnormalVC *vc=[[ComplainUnnormalVC alloc]init];
-            vc.dic=cardInfo_dic;
-            [self.navigationController pushViewController:vc animated:YES];
+            if ([cardInfo_dic[@"card_type"] isEqualToString:@"计次卡"]){
+                OtherCardComplainVC *vc=[[OtherCardComplainVC alloc]init];
+                vc.dic=cardInfo_dic;
+                [self.navigationController pushViewController:vc animated:YES];
+            }else{
+                ComplainUnnormalVC *vc=[[ComplainUnnormalVC alloc]init];
+                vc.dic=cardInfo_dic;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+           
         }else{
             
             

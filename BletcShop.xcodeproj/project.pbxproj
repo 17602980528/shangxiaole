@@ -122,6 +122,8 @@
 		1883724A1F29876D0076D2D8 /* ComplainProcessNormalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188372481F29876D0076D2D8 /* ComplainProcessNormalVC.xib */; };
 		1883724F1F29C0A20076D2D8 /* ComplainUnnormalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1883724D1F29C0A20076D2D8 /* ComplainUnnormalVC.m */; };
 		188372501F29C0A30076D2D8 /* ComplainUnnormalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1883724E1F29C0A20076D2D8 /* ComplainUnnormalVC.xib */; };
+		188372551F29DE060076D2D8 /* OtherCardComplainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188372531F29DE060076D2D8 /* OtherCardComplainVC.m */; };
+		188372561F29DE060076D2D8 /* OtherCardComplainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188372541F29DE060076D2D8 /* OtherCardComplainVC.xib */; };
 		189411431D8052FE00314E11 /* playvedio.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 189411421D8052FE00314E11 /* playvedio.jpg */; };
 		189619441D92319D003BA40C /* ContactSeverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189619431D92319D003BA40C /* ContactSeverViewController.m */; };
 		189757491E9B16A400AB1D00 /* WebViewJavascriptBridge.js.txt in Resources */ = {isa = PBXBuildFile; fileRef = 189757471E9B16A400AB1D00 /* WebViewJavascriptBridge.js.txt */; };
@@ -1255,6 +1257,9 @@
 		1883724C1F29C0A20076D2D8 /* ComplainUnnormalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplainUnnormalVC.h; sourceTree = "<group>"; };
 		1883724D1F29C0A20076D2D8 /* ComplainUnnormalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplainUnnormalVC.m; sourceTree = "<group>"; };
 		1883724E1F29C0A20076D2D8 /* ComplainUnnormalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComplainUnnormalVC.xib; sourceTree = "<group>"; };
+		188372521F29DE060076D2D8 /* OtherCardComplainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherCardComplainVC.h; sourceTree = "<group>"; };
+		188372531F29DE060076D2D8 /* OtherCardComplainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherCardComplainVC.m; sourceTree = "<group>"; };
+		188372541F29DE060076D2D8 /* OtherCardComplainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherCardComplainVC.xib; sourceTree = "<group>"; };
 		189411421D8052FE00314E11 /* playvedio.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = playvedio.jpg; sourceTree = "<group>"; };
 		189619421D92319D003BA40C /* ContactSeverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactSeverViewController.h; sourceTree = "<group>"; };
 		189619431D92319D003BA40C /* ContactSeverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactSeverViewController.m; sourceTree = "<group>"; };
@@ -3335,14 +3340,24 @@
 			name = "一般投诉进度";
 			sourceTree = "<group>";
 		};
-		188372511F29C0A90076D2D8 /* 投诉理赔进度 */ = {
+		188372511F29C0A90076D2D8 /* 储卡投诉理赔进度 */ = {
 			isa = PBXGroup;
 			children = (
 				1883724C1F29C0A20076D2D8 /* ComplainUnnormalVC.h */,
 				1883724D1F29C0A20076D2D8 /* ComplainUnnormalVC.m */,
 				1883724E1F29C0A20076D2D8 /* ComplainUnnormalVC.xib */,
 			);
-			name = "投诉理赔进度";
+			name = "储卡投诉理赔进度";
+			sourceTree = "<group>";
+		};
+		188372571F29DE120076D2D8 /* 其它卡理赔 */ = {
+			isa = PBXGroup;
+			children = (
+				188372521F29DE060076D2D8 /* OtherCardComplainVC.h */,
+				188372531F29DE060076D2D8 /* OtherCardComplainVC.m */,
+				188372541F29DE060076D2D8 /* OtherCardComplainVC.xib */,
+			);
+			name = "其它卡理赔";
 			sourceTree = "<group>";
 		};
 		1894115F1D816CE600314E11 /* 密码 */ = {
@@ -5135,7 +5150,8 @@
 				D987872C1E272A3200C7A828 /* ComplaintDetailVC.m */,
 				D987872D1E272A3200C7A828 /* ComplaintDetailVC.xib */,
 				1883724B1F298CDF0076D2D8 /* 一般投诉进度 */,
-				188372511F29C0A90076D2D8 /* 投诉理赔进度 */,
+				188372511F29C0A90076D2D8 /* 储卡投诉理赔进度 */,
+				188372571F29DE120076D2D8 /* 其它卡理赔 */,
 			);
 			name = "我要投诉";
 			sourceTree = "<group>";
@@ -6324,6 +6340,7 @@
 				D95BAE521D542FD500ED0CDC /* award_08.png in Resources */,
 				D973D58C1D9E4588003F82FB /* tanhao.png in Resources */,
 				18F27F031D640E84002DD03A /* 头像-27.png in Resources */,
+				188372561F29DE060076D2D8 /* OtherCardComplainVC.xib in Resources */,
 				1CF2839C1C58C48900F3952A /* mine_selected.png in Resources */,
 				1CF6E47F1C61E4350001159C /* tuihuo@2x.png in Resources */,
 				D9AB25401D88E4ED000E9288 /* VoiceSearchFeedback018@2x.png in Resources */,
@@ -6921,6 +6938,7 @@
 				D947E44D1D7D0B5400F9FEE8 /* ContactView.m in Sources */,
 				18F4CD4D1D6FD6F2008FBAD1 /* CardVipController.m in Sources */,
 				D95F03241DD95D5600F9DC2F /* GetMoneyNowVC.m in Sources */,
+				188372551F29DE060076D2D8 /* OtherCardComplainVC.m in Sources */,
 				D9026B1E1F0B7428005CA5F4 /* XieYiViewController.m in Sources */,
 				D940403E1CBE156100EC98EA /* RechargeViewController.m in Sources */,
 				1CBE67CE1C5828CD00706AE9 /* DOPDropDownMenu.m in Sources */,

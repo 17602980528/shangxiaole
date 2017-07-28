@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComplainUnnormalVC">
             <connections>
+                <outlet property="bottomTip" destination="pL3-V7-vy7" id="A3V-we-EDk"/>
                 <outlet property="cardPrice" destination="FrX-U7-DXY" id="4u5-ue-bWW"/>
                 <outlet property="cardReamin" destination="NRo-Nk-0YV" id="yc9-ni-yZf"/>
                 <outlet property="comPlainResults" destination="Pyg-Li-fSd" id="FOe-2g-N0d"/>
@@ -23,6 +24,7 @@
                 <outlet property="tipFive" destination="X2g-7J-yEW" id="tV5-yL-tEe"/>
                 <outlet property="tipFour" destination="VC2-dS-xdO" id="RDo-UN-PDJ"/>
                 <outlet property="tipThree" destination="4VW-Y2-qbp" id="gs8-Sq-aVz"/>
+                <outlet property="topTip" destination="JYa-wZ-8hR" id="3Bd-Il-gJy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
