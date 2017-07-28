@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void(^ComplainUnnormalVCBlock)(NSString *result);
 
 @interface ComplainUnnormalVC : UIViewController
+@property (nonatomic,copy)ComplainUnnormalVCBlock resultBlock;//
 @property(nonatomic,strong)NSDictionary *dic;
 @end

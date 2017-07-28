@@ -137,6 +137,8 @@
 		18A72C5B1ED563E9005FDF87 /* 线上角标.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A72C5A1ED563E8005FDF87 /* 线上角标.png */; };
 		18A7E3E51F0227B300C14C98 /* NewShopComeInTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A7E3E31F0227B300C14C98 /* NewShopComeInTableViewCell.xib */; };
 		18A7E3E61F0227B300C14C98 /* NewShopComeInTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A7E3E41F0227B300C14C98 /* NewShopComeInTableViewCell.m */; };
+		18B139821F2AEE2100283CED /* RevokeVicotoryOrFailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B139801F2AEE2100283CED /* RevokeVicotoryOrFailVC.m */; };
+		18B139831F2AEE2100283CED /* RevokeVicotoryOrFailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B139811F2AEE2100283CED /* RevokeVicotoryOrFailVC.xib */; };
 		18BCCDCA1D3C9EE8005E145D /* back_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCCDC41D3C9EE8005E145D /* back_04.png */; };
 		18BCCDCB1D3C9EE8005E145D /* merchant_ed1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCCDC51D3C9EE8005E145D /* merchant_ed1.png */; };
 		18BCCDCC1D3C9EE8005E145D /* merchant_es1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCCDC61D3C9EE8005E145D /* merchant_es1.png */; };
@@ -1281,6 +1283,9 @@
 		18A7E3E21F0227B300C14C98 /* NewShopComeInTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewShopComeInTableViewCell.h; sourceTree = "<group>"; };
 		18A7E3E31F0227B300C14C98 /* NewShopComeInTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewShopComeInTableViewCell.xib; sourceTree = "<group>"; };
 		18A7E3E41F0227B300C14C98 /* NewShopComeInTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewShopComeInTableViewCell.m; sourceTree = "<group>"; };
+		18B1397F1F2AEE2100283CED /* RevokeVicotoryOrFailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RevokeVicotoryOrFailVC.h; sourceTree = "<group>"; };
+		18B139801F2AEE2100283CED /* RevokeVicotoryOrFailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RevokeVicotoryOrFailVC.m; sourceTree = "<group>"; };
+		18B139811F2AEE2100283CED /* RevokeVicotoryOrFailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RevokeVicotoryOrFailVC.xib; sourceTree = "<group>"; };
 		18BCCDC41D3C9EE8005E145D /* back_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_04.png; sourceTree = "<group>"; };
 		18BCCDC51D3C9EE8005E145D /* merchant_ed1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = merchant_ed1.png; sourceTree = "<group>"; };
 		18BCCDC61D3C9EE8005E145D /* merchant_es1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = merchant_es1.png; sourceTree = "<group>"; };
@@ -3350,14 +3355,14 @@
 			name = "储卡投诉理赔进度";
 			sourceTree = "<group>";
 		};
-		188372571F29DE120076D2D8 /* 其它卡理赔 */ = {
+		188372571F29DE120076D2D8 /* 其它卡理赔（废弃） */ = {
 			isa = PBXGroup;
 			children = (
 				188372521F29DE060076D2D8 /* OtherCardComplainVC.h */,
 				188372531F29DE060076D2D8 /* OtherCardComplainVC.m */,
 				188372541F29DE060076D2D8 /* OtherCardComplainVC.xib */,
 			);
-			name = "其它卡理赔";
+			name = "其它卡理赔（废弃）";
 			sourceTree = "<group>";
 		};
 		1894115F1D816CE600314E11 /* 密码 */ = {
@@ -3370,6 +3375,16 @@
 			);
 			name = "密码";
 			path = BletcShop;
+			sourceTree = "<group>";
+		};
+		18B139841F2AEE3500283CED /* 理赔反馈 */ = {
+			isa = PBXGroup;
+			children = (
+				18B1397F1F2AEE2100283CED /* RevokeVicotoryOrFailVC.h */,
+				18B139801F2AEE2100283CED /* RevokeVicotoryOrFailVC.m */,
+				18B139811F2AEE2100283CED /* RevokeVicotoryOrFailVC.xib */,
+			);
+			name = "理赔反馈";
 			sourceTree = "<group>";
 		};
 		18EB36981D4B1F5D0087CE1A /* 动画效果 */ = {
@@ -5151,7 +5166,8 @@
 				D987872D1E272A3200C7A828 /* ComplaintDetailVC.xib */,
 				1883724B1F298CDF0076D2D8 /* 一般投诉进度 */,
 				188372511F29C0A90076D2D8 /* 储卡投诉理赔进度 */,
-				188372571F29DE120076D2D8 /* 其它卡理赔 */,
+				188372571F29DE120076D2D8 /* 其它卡理赔（废弃） */,
+				18B139841F2AEE3500283CED /* 理赔反馈 */,
 			);
 			name = "我要投诉";
 			sourceTree = "<group>";
@@ -6157,6 +6173,7 @@
 				1836B83F1E559D5B00B587A6 /* Active_top3.jpg in Resources */,
 				18EDCF731D460659004C40B7 /* custom1.png in Resources */,
 				D9026B231F0B758F005CA5F4 /* CardDetailShowProdictCell.xib in Resources */,
+				18B139831F2AEE2100283CED /* RevokeVicotoryOrFailVC.xib in Resources */,
 				1C31F8121C6328DE00CB1A9E /* tianjiachanp@2x.png in Resources */,
 				D97F60201D6306F4000EE794 /* 分享.jpg in Resources */,
 				1C9E822F1C603B7A0007BF02 /* 我的界面灰色箭头.png in Resources */,
@@ -6944,6 +6961,7 @@
 				1CBE67CE1C5828CD00706AE9 /* DOPDropDownMenu.m in Sources */,
 				D98E5BFA1E515210009D56BF /* MASCompositeConstraint.m in Sources */,
 				1A4173C31D787E1200A70601 /* ContactSelectionViewController.m in Sources */,
+				18B139821F2AEE2100283CED /* RevokeVicotoryOrFailVC.m in Sources */,
 				D97F60011D62BE95000EE794 /* ScanViewController.m in Sources */,
 				D958AD6F1E654CF200B0776F /* JHTableDataRowModel.m in Sources */,
 				182988451E723F4200164F32 /* SDCollectionViewCell.m in Sources */,

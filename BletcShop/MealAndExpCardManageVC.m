@@ -12,7 +12,9 @@
 #import "NewShopDetailVC.h"
 #import "MealCardPayVC.h"
 #import "ExperienceCardGoToPayVC.h"
-#import "OtherCardComplainVC.h"
+#import "ComplainUnnormalVC.h"
+#import "RevokeVicotoryOrFailVC.h"
+//#import "OtherCardComplainVC.h"
 @interface MealAndExpCardManageVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *shopName1;
 @property (weak, nonatomic) IBOutlet UILabel *typeAndLevel1;
@@ -52,7 +54,7 @@
     self.navigationItem.title = @"会员卡";
 
     
-    self.tabheaderView.frame = CGRectMake(13, 212*LZDScale-52, SCREENWIDTH-26, 99);
+    self.tabheaderView.frame = CGRectMake(13, 212*LZDScale-21, SCREENWIDTH-26, 99);
     
     [self.view addSubview:self.tabheaderView];
 
@@ -110,7 +112,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
     if(cell==nil)
     {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIndentifier];
         cell.selectionStyle =UITableViewCellSelectionStyleNone;
         
     }
@@ -124,7 +126,22 @@
         [cell.contentView addSubview:line];
 
     }
+    cell.detailTextLabel.textColor=RGB(243, 73, 78);
     
+    if (indexPath.row==1) {
+        if ([_card_dic[@"claim_state"] isEqualToString:@"null"]) {
+            cell.detailTextLabel.text=@"";
+        }else if([_card_dic[@"claim_state"] isEqualToString:@"CHECK_FAILED"]){
+            cell.detailTextLabel.text=@"核查失败";
+        }else if([_card_dic[@"claim_state"] isEqualToString:@"ACCESS"]){
+            cell.detailTextLabel.text=@"处理成功";
+        }else{
+            cell.detailTextLabel.text=@"处理中";
+        }
+    }else{
+        cell.detailTextLabel.text=@"";
+    }
+
     
     return cell;
     
@@ -143,14 +160,21 @@
     
     if (indexPath.row==1) {
         
-        
-//        ComplaintVC *VC = [[ComplaintVC alloc]init];
-//        VC.card_info = _card_dic;
-//        
-//        [self.navigationController pushViewController:VC animated:YES];
-        OtherCardComplainVC *vc=[[OtherCardComplainVC alloc]init];
-        vc.dic=_card_dic;
-        [self.navigationController pushViewController:vc animated:YES];
+        if ([_card_dic[@"claim_state"] isEqualToString:@"CHECK_FAILED"]) {
+            RevokeVicotoryOrFailVC *vc=[[RevokeVicotoryOrFailVC alloc]init];
+            vc.dic=_card_dic;
+            vc.resultBlock = ^(NSString *result) {
+                [self postRequestAllInfo];
+            };
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            ComplainUnnormalVC *vc=[[ComplainUnnormalVC alloc]init];
+            vc.resultBlock = ^(NSString *result) {
+                [self postRequestAllInfo];
+            };
+            vc.dic=_card_dic;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 
@@ -353,6 +377,34 @@
     vc.infoDic =muta_dic;
 
 }
-
+//
+-(void)postRequestAllInfo
+{
+    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/card/detailGet",BASEURL];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
+    
+    [params setObject:self.card_dic[@"merchant"] forKey:@"muid"];
+    [params setObject:appdelegate.cardInfo_dic[@"card_level"] forKey:@"cardLevel"];
+    [params setObject:self.card_dic[@"card_code"] forKey:@"cardCode"];
+    
+    NSLog(@"---%@",appdelegate.cardInfo_dic);
+    
+    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        
+        NSLog(@"result===%@", result);
+      _card_dic = [NSDictionary dictionaryWithDictionary:result];
+        
+        [ self.table_View reloadData];
+        
+        
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"%@", error);
+        
+    }];
+    
+}
 
 @end

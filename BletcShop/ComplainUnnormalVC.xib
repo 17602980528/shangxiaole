@@ -21,11 +21,13 @@
                 <outlet property="lineThree" destination="Yi7-Dg-H5M" id="kCM-Em-dbg"/>
                 <outlet property="lineTwo" destination="XGS-4L-cCE" id="VQu-Sf-TcP"/>
                 <outlet property="proceedView" destination="FRX-Sx-4iw" id="wIO-9L-ciT"/>
+                <outlet property="revokeResultNotice" destination="5G6-7D-tFl" id="zLk-ob-XSm"/>
                 <outlet property="tipFive" destination="X2g-7J-yEW" id="tV5-yL-tEe"/>
                 <outlet property="tipFour" destination="VC2-dS-xdO" id="RDo-UN-PDJ"/>
                 <outlet property="tipThree" destination="4VW-Y2-qbp" id="gs8-Sq-aVz"/>
                 <outlet property="topTip" destination="JYa-wZ-8hR" id="3Bd-Il-gJy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="warmNotice" destination="ZMn-Op-7o9" id="EMh-pB-1SN"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -193,6 +195,12 @@
                             <color key="textColor" red="0.38431372549019605" green="0.38431372549019605" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="鉴于卡种原因，商消乐平台会根据专业计算，您的理赔金额 将会在理赔申请成功后显示。" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5G6-7D-tFl">
+                            <rect key="frame" x="13" y="40" width="349" height="35"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -206,16 +214,20 @@
                         <constraint firstAttribute="trailing" secondItem="ILI-Sh-fAw" secondAttribute="trailing" constant="13" id="EZD-ah-qe7"/>
                         <constraint firstItem="OHI-DF-7e1" firstAttribute="leading" secondItem="5ho-ni-znu" secondAttribute="leading" id="HnO-UP-GWc"/>
                         <constraint firstItem="WLn-xx-NYm" firstAttribute="top" secondItem="5ho-ni-znu" secondAttribute="top" constant="15" id="I4O-g4-Dxw"/>
+                        <constraint firstItem="5G6-7D-tFl" firstAttribute="leading" secondItem="5ho-ni-znu" secondAttribute="leading" constant="13" id="JRQ-bq-Ozb"/>
                         <constraint firstAttribute="trailing" secondItem="oto-Fu-d5j" secondAttribute="trailing" constant="13" id="KwJ-y7-E8B"/>
                         <constraint firstAttribute="trailing" secondItem="NRo-Nk-0YV" secondAttribute="trailing" id="PZk-Eb-HXp"/>
                         <constraint firstItem="NRo-Nk-0YV" firstAttribute="top" secondItem="ILI-Sh-fAw" secondAttribute="bottom" constant="11" id="RDe-tv-AbL"/>
                         <constraint firstItem="ILI-Sh-fAw" firstAttribute="top" secondItem="WLn-xx-NYm" secondAttribute="bottom" constant="11" id="WWs-v1-e3D"/>
                         <constraint firstItem="ILI-Sh-fAw" firstAttribute="leading" secondItem="5ho-ni-znu" secondAttribute="leading" constant="13" id="Xl6-hU-2RB"/>
                         <constraint firstItem="FrX-U7-DXY" firstAttribute="top" secondItem="ILI-Sh-fAw" secondAttribute="bottom" constant="11" id="Y9h-Av-xHg"/>
+                        <constraint firstItem="5G6-7D-tFl" firstAttribute="top" secondItem="ILI-Sh-fAw" secondAttribute="bottom" id="b40-PO-tdl"/>
+                        <constraint firstItem="oto-Fu-d5j" firstAttribute="top" secondItem="5G6-7D-tFl" secondAttribute="bottom" id="pjw-p0-dYZ"/>
                         <constraint firstAttribute="trailing" secondItem="OHI-DF-7e1" secondAttribute="trailing" constant="13" id="sR6-hq-4XL"/>
                         <constraint firstItem="OHI-DF-7e1" firstAttribute="top" secondItem="oto-Fu-d5j" secondAttribute="bottom" constant="11" id="sZG-F6-Sav"/>
                         <constraint firstItem="WLn-xx-NYm" firstAttribute="leading" secondItem="5ho-ni-znu" secondAttribute="leading" constant="13" id="uHY-2P-gbt"/>
                         <constraint firstItem="NRo-Nk-0YV" firstAttribute="leading" secondItem="FrX-U7-DXY" secondAttribute="trailing" constant="50" id="uLI-oX-uko"/>
+                        <constraint firstAttribute="trailing" secondItem="5G6-7D-tFl" secondAttribute="trailing" constant="13" id="v0C-d5-lLJ"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ma1-Du-5n1">

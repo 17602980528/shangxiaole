@@ -28,7 +28,8 @@
 #import "MoneyPAYViewController.h"
 #import "CountPAYViewController.h"
 #import "ComplainUnnormalVC.h"
-#import "OtherCardComplainVC.h"
+//#import "OtherCardComplainVC.h"
+#import "RevokeVicotoryOrFailVC.h"//失败反馈
 @interface CardManagerViewController ()
 {
     NSDictionary *cardInfo_dic;
@@ -221,7 +222,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
     if(cell==nil)
     {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIndentifier];
         cell.backgroundColor = [UIColor whiteColor];
         cell.selectionStyle =UITableViewCellSelectionStyleNone;
 
@@ -244,6 +245,20 @@
             cell.imageView.hidden = YES;
             cell.accessoryType=UITableViewCellAccessoryNone;
             line.hidden = YES;
+        }
+        cell.detailTextLabel.textColor=RGB(243, 73, 78);
+        if (indexPath.row==7) {
+            if ([cardInfo_dic[@"claim_state"] isEqualToString:@"null"]) {
+                cell.detailTextLabel.text=@"";
+            }else if([cardInfo_dic[@"claim_state"] isEqualToString:@"CHECK_FAILED"]){
+                cell.detailTextLabel.text=@"核查失败";
+            }else if([cardInfo_dic[@"claim_state"] isEqualToString:@"ACCESS"]){
+                cell.detailTextLabel.text=@"处理成功";
+            }else{
+                cell.detailTextLabel.text=@"处理中";
+            }
+        }else{
+            cell.detailTextLabel.text=@"";
         }
     }
     
@@ -365,19 +380,43 @@
 //            VC.card_info = cardInfo_dic;
 //            
 //            [self.navigationController pushViewController:VC animated:YES];
-            if ([cardInfo_dic[@"card_type"] isEqualToString:@"计次卡"]){
-                OtherCardComplainVC *vc=[[OtherCardComplainVC alloc]init];
-                vc.dic=cardInfo_dic;
-                [self.navigationController pushViewController:vc animated:YES];
-            }else{
-                ComplainUnnormalVC *vc=[[ComplainUnnormalVC alloc]init];
-                vc.dic=cardInfo_dic;
-                [self.navigationController pushViewController:vc animated:YES];
-            }
+//            if ([cardInfo_dic[@"card_type"] isEqualToString:@"计次卡"]){
+//                if ([cardInfo_dic[@"claim_state"] isEqualToString:@"CHECK_FAILED"]){
+//                    
+//                    RevokeVicotoryOrFailVC *vc=[[RevokeVicotoryOrFailVC alloc]init];
+//                    vc.dic=cardInfo_dic;
+//                    vc.resultBlock = ^(NSString *result) {
+//                        [self postRequestAllInfo];
+//                    };
+//                    [self.navigationController pushViewController:vc animated:YES];
+//                    
+//                }else{
+//                    OtherCardComplainVC *vc=[[OtherCardComplainVC alloc]init];
+//                    vc.dic=cardInfo_dic;
+//                    [self.navigationController pushViewController:vc animated:YES];
+//                }
+//                
+//            }else{
+            
+                if ([cardInfo_dic[@"claim_state"] isEqualToString:@"CHECK_FAILED"]) {
+                    RevokeVicotoryOrFailVC *vc=[[RevokeVicotoryOrFailVC alloc]init];
+                    vc.dic=cardInfo_dic;
+                    vc.resultBlock = ^(NSString *result) {
+                        [self postRequestAllInfo];
+                    };
+                    [self.navigationController pushViewController:vc animated:YES];
+                }else{
+                    ComplainUnnormalVC *vc=[[ComplainUnnormalVC alloc]init];
+                    vc.resultBlock = ^(NSString *result) {
+                        [self postRequestAllInfo];
+                    };
+                    vc.dic=cardInfo_dic;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                
+//            }
            
         }else{
-            
-            
             
         }
     }
