@@ -45,7 +45,24 @@
         [self postRequestCompensateRevoke];
     }else{
         if (self.reasonStr&&![self.reasonStr isEqualToString:@""]) {
-            [self postRequestComplain];
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"理赔处理期间，您的卡片将停止一切操作和消费，您确定要投诉理赔吗？？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            
+            [cancelAction setValue:RGB(51, 51, 51) forKey:@"titleTextColor"];
+            
+            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                 [self postRequestComplain];
+            }];
+            [sureAction setValue:RGB(243, 73, 78) forKey:@"titleTextColor"];
+            
+            [alert addAction:cancelAction];
+            [alert addAction:sureAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
         }else{
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.mode = MBProgressHUDModeText;
@@ -85,6 +102,12 @@
     
     [AttributedStr addAttribute:NSForegroundColorAttributeName value:RGB(192, 192, 192) range:NSMakeRange(4, 14)];
     self.complainChoosement.attributedText=AttributedStr;
+    NSLog(@"???????%@",self.dic);
+    if ([self.dic[@"claim_state"] isEqualToString:@"null"]||[self.dic[@"claim_state"] isEqualToString:@"COMMITTED"]) {
+        self.commitButton.hidden=NO;
+    }else{
+        self.commitButton.hidden=YES;
+    }
     
     if (![self.dic[@"claim_state"] isEqualToString:@"null"]) {
         [self.commitButton setTitle:@"撤销理赔" forState:UIControlStateNormal];
@@ -128,7 +151,7 @@
         NSLog(@"-----%@==%@",paramer,result);
         if ([result[@"result_code"] integerValue] ==1) {
             
-             self.resultBlock(@"COMMITED");
+             self.resultBlock(@"COMMITTED");
              [self.commitButton setTitle:@"撤销理赔" forState:UIControlStateNormal];
             
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提交申请成功！" message:@"" preferredStyle:UIAlertControllerStyleAlert];
@@ -205,7 +228,7 @@
                     self.tipThree.backgroundColor=RGB(243, 73, 78);
                     self.tipFour.backgroundColor=RGB(222, 222, 222);
                     self.tipFive.backgroundColor=RGB(222, 222, 222);
-                    
+                    //self.commitButton.hidden=YES;
                 }else if ([state isEqualToString:@"CHECK_FAILED"]){
                     self.lineTwo.backgroundColor=RGB(243, 73, 78);
                     self.lineThree.backgroundColor=RGB(222, 222, 222);
@@ -219,6 +242,7 @@
                     self.tipThree.backgroundColor=RGB(243, 73, 78);
                     self.tipFour.backgroundColor=RGB(243, 73, 78);
                     self.tipFive.backgroundColor=RGB(222, 222, 222);
+                    //self.commitButton.hidden=YES;
                 }else if ([state isEqualToString:@"ACCESS"]){
                     self.lineTwo.backgroundColor=RGB(243, 73, 78);
                     self.lineThree.backgroundColor=RGB(243, 73, 78);
@@ -226,7 +250,7 @@
                     self.tipFour.backgroundColor=RGB(243, 73, 78);
                     self.tipFive.backgroundColor=RGB(243, 73, 78);
                     self.warmNotice.hidden=YES;
-                    self.commitButton.hidden=YES;
+                    //self.commitButton.hidden=YES;
                     
                     self.comPlainResults.text=@"温馨提醒：您的理赔金额已赔付到商消乐钱包中，请注意查看。";
                     self.complainMoney.text=[NSString stringWithFormat:@"理赔金额：￥%@",dic[@"sum"]];

@@ -89,6 +89,8 @@
         self.startAndEndLab.text = @"仅使用一次，长期有效。";
 
     }
+    
+    [self postRequestAllInfo:_card_dic[@"card_type"]];
 
 }
 
@@ -151,9 +153,18 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row==0) {
-        
-        [self  postRequestOrder];
-    
+        if ([self.card_dic[@"claim_state"] isEqualToString:@"null"]) {
+            [self  postRequestOrder];
+        }else{
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"会员卡理赔中，不能进行任何操作！" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            [sureAction setValue:RGB(243, 73, 78) forKey:@"titleTextColor"];
+            [alert addAction:sureAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
     }
     
     
@@ -340,31 +351,42 @@
 
 - (IBAction)payClick:(id)sender {
     
-    if ([_card_dic[@"card_type"] isEqualToString:@"套餐卡"]){
+    if ([self.card_dic[@"claim_state"] isEqualToString:@"null"]) {
         
-        PUSH(MealCardPayVC)
-        vc.card_dic = _card_dic;
-        vc.refresheDate = ^{
-            self.refresheDate();
-            [self getDataPost];
-        };
-        
-        
-    }else if ([_card_dic[@"card_type"] isEqualToString:@"体验卡"]){
-        
-        PUSH(ExperienceCardGoToPayVC)
-        vc.card_dic = _card_dic;
-        vc.refresheDate = ^{
-            self.refresheDate();
+        if ([_card_dic[@"card_type"] isEqualToString:@"套餐卡"]){
             
-//            [self postRequestVipCard];
-        };
+            PUSH(MealCardPayVC)
+            vc.card_dic = _card_dic;
+            vc.refresheDate = ^{
+                self.refresheDate();
+                [self getDataPost];
+            };
+            
+            
+        }else if ([_card_dic[@"card_type"] isEqualToString:@"体验卡"]){
+            
+            PUSH(ExperienceCardGoToPayVC)
+            vc.card_dic = _card_dic;
+            vc.refresheDate = ^{
+                self.refresheDate();
+                
+                //            [self postRequestVipCard];
+            };
+            
+        }
         
+
+    }else{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"会员卡理赔中，不能进行任何操作！" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
-        
+        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [sureAction setValue:RGB(243, 73, 78) forKey:@"titleTextColor"];
+        [alert addAction:sureAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 
-    
 }
 - (IBAction)shopClick:(id)sender {
     
@@ -397,7 +419,7 @@
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         
         NSLog(@"result===%@", result);
-      _card_dic = [NSDictionary dictionaryWithDictionary:result];
+      _card_dic = [NSDictionary dictionaryWithDictionary:result[0]];
         
         [ self.table_View reloadData];
         

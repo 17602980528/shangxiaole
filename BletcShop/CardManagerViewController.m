@@ -270,133 +270,7 @@
     
     if (indexPath.section==1) {
         
-        
-        if (indexPath.row==0) {
-            
-            if ([[NSString getTheNoNullStr:cardInfo_dic[@"display_state"] andRepalceStr:@""] isEqualToString:@"off"]) {
-                [self tishi:@"不能进行该操作!"];
-
-            }else{
-                [self rechargeAction];
-
-            }
-        }else if (indexPath.row==1){
-            
-            if ([[NSString getTheNoNullStr:cardInfo_dic[@"display_state"] andRepalceStr:@""] isEqualToString:@"off"] ) {
-
-                [self tishi:@"不能进行该操作!"];
-
-            }else{
-                [self postRequestUpgrade];
-
-            }
-        }else if (indexPath.row==2){
-            
-              [self delayAction];
-
-        }else if (indexPath.row==3){
-            [self postRequestOrder];
-        }else if (indexPath.row==4){
-            [self shareCard];
-        }else if(indexPath.row==5){
-            NSLog(@"%@",cardInfo_dic);
-            if ([cardInfo_dic[@"state"] isEqualToString:@"null"]) {
-                //没转让也没分享
-                TransferOwnershipViewController *transferOwnershipVC=[[TransferOwnershipViewController alloc]init];
-                transferOwnershipVC.dic=self.card_dic;
-                [self.navigationController pushViewController:transferOwnershipVC animated:YES];
-
-            }else if ([cardInfo_dic[@"state"] isEqualToString:@"transfer"]){
-                //转让没分享,去查看编辑页面
-                //去下个页面
-                CheckTransferStateAndEditOrRemoveCardViewController *vc=[[CheckTransferStateAndEditOrRemoveCardViewController alloc]init];
-                vc.index=0;
-                vc.state=0;
-//                vc.realMoney=realMoney;
-//                vc.disCount=disCount;
-                vc.dic = cardInfo_dic;
-                [self.navigationController pushViewController:vc animated:YES];
-                
-            }else if ([cardInfo_dic[@"state"] isEqualToString:@"share"]){
-                //分享没转让
-                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                hud.mode = MBProgressHUDModeText;
-                hud.label.text = NSLocalizedString(@"该卡已分享，转让需取消分享", @"HUD message title");
-                hud.label.font = [UIFont systemFontOfSize:13];
-                hud.frame = CGRectMake(25, SCREENHEIGHT/2, SCREENWIDTH-50, 100);
-                [hud hideAnimated:YES afterDelay:2.f];
-            }
-            
-        }else if (indexPath.row==6){
-            
-            if ([cardInfo_dic[@"card_type"] isEqualToString:@"储值卡"] && [cardInfo_dic[@"rule"] integerValue] !=100) {
-                
-                if ([cardInfo_dic[@"state"] isEqualToString:@"null"]){
-                    CardEricShareViewController *transferOwnershipVC=[[CardEricShareViewController alloc]init];
-                    transferOwnershipVC.dic = cardInfo_dic;
-                    [self.navigationController pushViewController:transferOwnershipVC animated:YES];
-                    
-                }else if ([cardInfo_dic[@"state"] isEqualToString:@"share"]){
-                    //分享转让没转让,去查看编辑页面
-                    //去下个页面
-                    CheckTransferStateAndEditOrRemoveCardViewController *vc=[[CheckTransferStateAndEditOrRemoveCardViewController alloc]init];
-                    vc.index=1;
-                    vc.state=0;
-                    //                vc.realMoney=realMoney;
-                    //                vc.disCount=disCount;
-                    vc.dic = cardInfo_dic;
-                    [self.navigationController pushViewController:vc animated:YES];
-                }else if ([cardInfo_dic[@"state"] isEqualToString:@"transfer"]){
-                    //分享没转让
-                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                    hud.mode = MBProgressHUDModeText;
-                    hud.label.text = NSLocalizedString(@"该卡已转让，分享需取消转让", @"HUD message title");
-                    hud.label.font = [UIFont systemFontOfSize:13];
-                    hud.frame = CGRectMake(25, SCREENHEIGHT/2, SCREENWIDTH-50, 100);
-                    [hud hideAnimated:YES afterDelay:2.f];
-                }
-  
-            }else{
-                
-                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                hud.mode = MBProgressHUDModeText;
-                if ([cardInfo_dic[@"card_type"] isEqualToString:@"计次卡"]){
-                    hud.label.text = NSLocalizedString(@"计次卡不能分享!", @"HUD message title");
-                }else if ([cardInfo_dic[@"rule"] integerValue] ==100){
-                    hud.label.text = NSLocalizedString(@"没有折扣的储值卡,不能分享!", @"HUD message title");
-                }
-                hud.label.font = [UIFont systemFontOfSize:13];
-                hud.frame = CGRectMake(25, SCREENHEIGHT/2, SCREENWIDTH-50, 100);
-                [hud hideAnimated:YES afterDelay:2.f];
-                
-            }
-            
-            
-            
-        }else if(indexPath.row==7)
-        {
-            
-//            ComplaintVC *VC = [[ComplaintVC alloc]init];
-//            VC.card_info = cardInfo_dic;
-//            
-//            [self.navigationController pushViewController:VC animated:YES];
-//            if ([cardInfo_dic[@"card_type"] isEqualToString:@"计次卡"]){
-//                if ([cardInfo_dic[@"claim_state"] isEqualToString:@"CHECK_FAILED"]){
-//                    
-//                    RevokeVicotoryOrFailVC *vc=[[RevokeVicotoryOrFailVC alloc]init];
-//                    vc.dic=cardInfo_dic;
-//                    vc.resultBlock = ^(NSString *result) {
-//                        [self postRequestAllInfo];
-//                    };
-//                    [self.navigationController pushViewController:vc animated:YES];
-//                    
-//                }else{
-//                    OtherCardComplainVC *vc=[[OtherCardComplainVC alloc]init];
-//                    vc.dic=cardInfo_dic;
-//                    [self.navigationController pushViewController:vc animated:YES];
-//                }
-//                
-//            }else{
+        if (indexPath.row==7) {
             
                 if ([cardInfo_dic[@"claim_state"] isEqualToString:@"CHECK_FAILED"]) {
                     RevokeVicotoryOrFailVC *vc=[[RevokeVicotoryOrFailVC alloc]init];
@@ -413,12 +287,129 @@
                     vc.dic=cardInfo_dic;
                     [self.navigationController pushViewController:vc animated:YES];
                 }
-                
-//            }
-           
-        }else{
             
+        }else{
+            if ([cardInfo_dic[@"claim_state"] isEqualToString:@"null"]){
+                
+                if (indexPath.row==0) {
+                    
+                    if ([[NSString getTheNoNullStr:cardInfo_dic[@"display_state"] andRepalceStr:@""] isEqualToString:@"off"]) {
+                        [self tishi:@"不能进行该操作!"];
+                        
+                    }else{
+                        [self rechargeAction];
+                        
+                    }
+                }else if (indexPath.row==1){
+                    
+                    if ([[NSString getTheNoNullStr:cardInfo_dic[@"display_state"] andRepalceStr:@""] isEqualToString:@"off"] ) {
+                        
+                        [self tishi:@"不能进行该操作!"];
+                        
+                    }else{
+                        [self postRequestUpgrade];
+                        
+                    }
+                }else if (indexPath.row==2){
+                    
+                    [self delayAction];
+                    
+                }else if (indexPath.row==3){
+                    [self postRequestOrder];
+                }else if (indexPath.row==4){
+                    [self shareCard];
+                }else if(indexPath.row==5){
+                    NSLog(@"%@",cardInfo_dic);
+                    if ([cardInfo_dic[@"state"] isEqualToString:@"null"]) {
+                        //没转让也没分享
+                        TransferOwnershipViewController *transferOwnershipVC=[[TransferOwnershipViewController alloc]init];
+                        transferOwnershipVC.dic=self.card_dic;
+                        [self.navigationController pushViewController:transferOwnershipVC animated:YES];
+                        
+                    }else if ([cardInfo_dic[@"state"] isEqualToString:@"transfer"]){
+                        //转让没分享,去查看编辑页面
+                        //去下个页面
+                        CheckTransferStateAndEditOrRemoveCardViewController *vc=[[CheckTransferStateAndEditOrRemoveCardViewController alloc]init];
+                        vc.index=0;
+                        vc.state=0;
+                        //                vc.realMoney=realMoney;
+                        //                vc.disCount=disCount;
+                        vc.dic = cardInfo_dic;
+                        [self.navigationController pushViewController:vc animated:YES];
+                        
+                    }else if ([cardInfo_dic[@"state"] isEqualToString:@"share"]){
+                        //分享没转让
+                        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                        hud.mode = MBProgressHUDModeText;
+                        hud.label.text = NSLocalizedString(@"该卡已分享，转让需取消分享", @"HUD message title");
+                        hud.label.font = [UIFont systemFontOfSize:13];
+                        hud.frame = CGRectMake(25, SCREENHEIGHT/2, SCREENWIDTH-50, 100);
+                        [hud hideAnimated:YES afterDelay:2.f];
+                    }
+                    
+                }else if (indexPath.row==6){
+                    
+                    if ([cardInfo_dic[@"card_type"] isEqualToString:@"储值卡"] && [cardInfo_dic[@"rule"] integerValue] !=100) {
+                        
+                        if ([cardInfo_dic[@"state"] isEqualToString:@"null"]){
+                            CardEricShareViewController *transferOwnershipVC=[[CardEricShareViewController alloc]init];
+                            transferOwnershipVC.dic = cardInfo_dic;
+                            [self.navigationController pushViewController:transferOwnershipVC animated:YES];
+                            
+                        }else if ([cardInfo_dic[@"state"] isEqualToString:@"share"]){
+                            //分享转让没转让,去查看编辑页面
+                            //去下个页面
+                            CheckTransferStateAndEditOrRemoveCardViewController *vc=[[CheckTransferStateAndEditOrRemoveCardViewController alloc]init];
+                            vc.index=1;
+                            vc.state=0;
+                            //                vc.realMoney=realMoney;
+                            //                vc.disCount=disCount;
+                            vc.dic = cardInfo_dic;
+                            [self.navigationController pushViewController:vc animated:YES];
+                        }else if ([cardInfo_dic[@"state"] isEqualToString:@"transfer"]){
+                            //分享没转让
+                            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                            hud.mode = MBProgressHUDModeText;
+                            hud.label.text = NSLocalizedString(@"该卡已转让，分享需取消转让", @"HUD message title");
+                            hud.label.font = [UIFont systemFontOfSize:13];
+                            hud.frame = CGRectMake(25, SCREENHEIGHT/2, SCREENWIDTH-50, 100);
+                            [hud hideAnimated:YES afterDelay:2.f];
+                        }
+                        
+                    }else{
+                        
+                        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                        hud.mode = MBProgressHUDModeText;
+                        if ([cardInfo_dic[@"card_type"] isEqualToString:@"计次卡"]){
+                            hud.label.text = NSLocalizedString(@"计次卡不能分享!", @"HUD message title");
+                        }else if ([cardInfo_dic[@"rule"] integerValue] ==100){
+                            hud.label.text = NSLocalizedString(@"没有折扣的储值卡,不能分享!", @"HUD message title");
+                        }
+                        hud.label.font = [UIFont systemFontOfSize:13];
+                        hud.frame = CGRectMake(25, SCREENHEIGHT/2, SCREENWIDTH-50, 100);
+                        [hud hideAnimated:YES afterDelay:2.f];
+                        
+                    }
+                    
+                    
+                    
+                }else{
+                    
+                }
+                
+            }else{
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"会员卡理赔中，不能进行任何操作！" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    
+                }];
+                [sureAction setValue:RGB(243, 73, 78) forKey:@"titleTextColor"];
+                [alert addAction:sureAction];
+                [self presentViewController:alert animated:YES completion:nil];
+                
+            }
         }
+       
     }
 }
 /**
@@ -511,9 +502,6 @@
     
 }
 
-
-
-
 /**
  延期
  */
@@ -527,7 +515,6 @@
 
 -(IBAction)shouSuoClick:(UIButton*)sender{
     
-
     if (sender.selected) {
 
         [UIView animateWithDuration:0.3 animations:^{
@@ -549,7 +536,6 @@
         
     }else{
 
-        
         [UIView animateWithDuration:0.3 animations:^{
             
             CGRect tabheaderFrame =  self.tabheaderView.frame;
@@ -563,8 +549,6 @@
             frame.origin.y = self.tabheaderView.bottom;
             self.CardInfotable.frame = frame;
             
-            
-
         } completion:^(BOOL finished) {
             
             
@@ -575,62 +559,46 @@
     }
     sender.selected = !sender.selected;
     
-
-    
-    
 }
-
-//-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    
-//    
-//
-//    
-//    
-//    if (scrollView.contentOffset.y<-100) {
-//        [UIView animateWithDuration:0.3 animations:^{
-//            
-//            self.shousuoBtn.selected = !self.shousuoBtn.selected;
-//
-//            CGRect frame = self.CardInfotable.frame;
-//            
-//            frame.origin.y = SCREENHEIGHT-64-99;
-//            self.CardInfotable.frame = frame;
-//            
-//            self.redimg.transform = CGAffineTransformMakeRotation(M_PI);
-//
-//        }];
-//
-//    }
-//}
 
 - (IBAction)payBtnClick:(UIButton *)sender {
     
-    
-    if ([cardInfo_dic[@"card_type"] isEqualToString:@"储值卡"]) {
-        PUSH(MoneyPAYViewController)
-        vc.refresheDate = ^{
-            self.refresheDate();
+    if ([cardInfo_dic[@"claim_state"] isEqualToString:@"null"]){
+        if ([cardInfo_dic[@"card_type"] isEqualToString:@"储值卡"]) {
+            PUSH(MoneyPAYViewController)
+            vc.refresheDate = ^{
+                self.refresheDate();
+                
+                [self postRequestAllInfo];
+            };
             
-            [self postRequestAllInfo];
-        };
-        
-        vc.card_dic = cardInfo_dic;
-        vc.user = self.card_dic[@"user"];
+            vc.card_dic = cardInfo_dic;
+            vc.user = self.card_dic[@"user"];
+            
+            
+        }else if ([cardInfo_dic[@"card_type"] isEqualToString:@"计次卡"]){
+            
+            PUSH(CountPAYViewController)
+            vc.card_dic = cardInfo_dic;
+            vc.refresheDate = ^{
+                self.refresheDate();
+                
+                [self postRequestAllInfo];
+            };
+            vc.user = self.card_dic[@"user"];
+            
+        }
 
+    }else{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"会员卡理赔中，不能进行任何操作！" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
-    }else if ([cardInfo_dic[@"card_type"] isEqualToString:@"计次卡"]){
-        
-        PUSH(CountPAYViewController)
-        vc.card_dic = cardInfo_dic;
-        vc.refresheDate = ^{
-            self.refresheDate();
-
-            [self postRequestAllInfo];
-        };
-        vc.user = self.card_dic[@"user"];
-        
+        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [sureAction setValue:RGB(243, 73, 78) forKey:@"titleTextColor"];
+        [alert addAction:sureAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
-
     
 }
 
