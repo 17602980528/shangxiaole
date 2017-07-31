@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="k49-bO-A6g">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="UhJ-cR-qYN"/>
@@ -34,12 +34,12 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="k49-bO-A6g" secondAttribute="bottom" id="98e-6q-MYW"/>
+                <constraint firstAttribute="bottom" secondItem="k49-bO-A6g" secondAttribute="bottom" constant="49" id="98e-6q-MYW"/>
                 <constraint firstItem="k49-bO-A6g" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="CBH-Xa-6Mh"/>
                 <constraint firstItem="k49-bO-A6g" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CIb-7w-Cyl"/>
                 <constraint firstAttribute="trailing" secondItem="k49-bO-A6g" secondAttribute="trailing" id="YmX-5s-csV"/>
             </constraints>
-            <point key="canvasLocation" x="-448" y="263"/>
+            <point key="canvasLocation" x="190" y="-288"/>
         </view>
         <view contentMode="scaleToFill" id="phW-tg-qjp">
             <rect key="frame" x="0.0" y="0.0" width="92" height="44"/>

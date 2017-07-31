@@ -43,6 +43,7 @@
 #import "ShoppingViewController.h"
 #import "MemberCenterVC.h"
 
+
 @interface HomeViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,GYChangeTextViewDelegate,SelectCityDelegate,JFLocationDelegate,SDCycleScrollViewDelegate>
 {
     
@@ -1555,6 +1556,8 @@
 - (void)currentLocation:(NSDictionary *)locationDictionary {
     NSLog(@"定位成功------%@",locationDictionary);
 
+    [self initTopView];
+    
     [self getIcons:@""];
 
     NSString *city = [locationDictionary valueForKey:@"City"];

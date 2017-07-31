@@ -18,7 +18,7 @@
 
 #import "ChouJiangVC.h"
 
-
+#import "BaiduMapManager.h"
 
 @interface AroundViewController ()<UITableViewDelegate,UITableViewDataSource,BMKLocationServiceDelegate>
 {
@@ -47,11 +47,26 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [appdelegate.locService startUserLocationService];
+
+    
+    BaiduMapManager *baiduMapManager = [BaiduMapManager shareBaiduMapManager];
+    [baiduMapManager startUserLocationService];
+    baiduMapManager.userAddressBlock = ^(BMKReverseGeoCodeResult *result) {
+    
+        if ([self.addressLab.text isEqualToString:result.addressDetail.district]) {
+            
+            self.addressLab.text =result.addressDetail.district;
+            
+            _city_district =[NSString stringWithFormat:@"%@%@",result.addressDetail.city,result.addressDetail.district];
+            [self postGetMutiAdvertistShops:_city_district];
+
+        }
+        
+        
+    };
     
     
-    [self postGetMutiAdvertistShops:_city_district];
+    
 
     
 }

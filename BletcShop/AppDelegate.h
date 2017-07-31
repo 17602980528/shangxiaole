@@ -20,8 +20,6 @@
 #import "GCDAsyncUdpSocket.h"
 #import "Singleton.h"
 
-
-
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
 #import "CustomIOSAlertView.h"
 @class VCOPClient;
@@ -79,17 +77,13 @@
 @property (nonatomic, copy )GCDAsyncSocket     *_asyncSocket;
 @property (nonatomic, copy ) NSString *socketHost; // socket的Host
 @property (nonatomic, assign) UInt16 socketPort; // socket的prot
-//-(void)socketConnectHost;// socket连接
-//-(void)socketConnectHostShop;//商户
+
 @property (nonatomic, retain) NSTimer *connectTimer;
 
 
 @property (nonatomic,retain)NSData* aData;
 @property BOOL needConnect;
-//@property (nonatomic,retain)BMKLocationService *locService;
 @property (nonatomic,retain)BMKUserLocation *userLocation;
-@property (nonatomic,retain)id<BMKLocationServiceDelegate> locationDelegate;
--(void)changeBMKLoctionSeviceDelegate:(id<BMKLocationServiceDelegate>)delegate;
 
 @property (nonatomic,retain)NSString *cityChoice;//
 @property (nonatomic,retain)NSThread *myFirstThread;
@@ -99,7 +93,6 @@
 @property (nonatomic , assign) BOOL shopIsLogin;// <#Description#>
 
 @property(nonatomic,retain)NSArray *areaListArray;//区域
-@property(nonatomic,strong)CLGeocoder *geocoder;
 
 
 @property (nonatomic,retain)CustomIOSAlertView *alertView;

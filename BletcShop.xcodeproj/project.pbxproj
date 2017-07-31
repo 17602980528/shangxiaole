@@ -427,6 +427,7 @@
 		D9026B1E1F0B7428005CA5F4 /* XieYiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9026B1D1F0B7428005CA5F4 /* XieYiViewController.m */; };
 		D9026B221F0B758F005CA5F4 /* CardDetailShowProdictCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9026B201F0B758F005CA5F4 /* CardDetailShowProdictCell.m */; };
 		D9026B231F0B758F005CA5F4 /* CardDetailShowProdictCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9026B211F0B758F005CA5F4 /* CardDetailShowProdictCell.xib */; };
+		D90F51701F2EF4C10005EB05 /* BaiduMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F516F1F2EF4C10005EB05 /* BaiduMapManager.m */; };
 		D91395B11CF4589400509491 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D91395B01CF4589400509491 /* mapapi.bundle */; };
 		D920B95D1DD05164001AC7F5 /* AdvertiseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D920B95B1DD05164001AC7F5 /* AdvertiseCell.m */; };
 		D920B95E1DD05164001AC7F5 /* AdvertiseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D920B95C1DD05164001AC7F5 /* AdvertiseCell.xib */; };
@@ -1683,6 +1684,8 @@
 		D9026B1F1F0B758F005CA5F4 /* CardDetailShowProdictCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardDetailShowProdictCell.h; sourceTree = "<group>"; };
 		D9026B201F0B758F005CA5F4 /* CardDetailShowProdictCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardDetailShowProdictCell.m; sourceTree = "<group>"; };
 		D9026B211F0B758F005CA5F4 /* CardDetailShowProdictCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardDetailShowProdictCell.xib; sourceTree = "<group>"; };
+		D90F516E1F2EF4C00005EB05 /* BaiduMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMapManager.h; sourceTree = "<group>"; };
+		D90F516F1F2EF4C10005EB05 /* BaiduMapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduMapManager.m; sourceTree = "<group>"; };
 		D91395B01CF4589400509491 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		D920B95A1DD05164001AC7F5 /* AdvertiseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertiseCell.h; sourceTree = "<group>"; };
 		D920B95B1DD05164001AC7F5 /* AdvertiseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvertiseCell.m; sourceTree = "<group>"; };
@@ -2827,6 +2830,8 @@
 				D969815A1ED57CFD00A44142 /* imgS */,
 				079386821C55B5CA0021B385 /* AppDelegate.h */,
 				079386831C55B5CA0021B385 /* AppDelegate.mm */,
+				D90F516E1F2EF4C00005EB05 /* BaiduMapManager.h */,
+				D90F516F1F2EF4C10005EB05 /* BaiduMapManager.m */,
 				D9026B241F0B7B75005CA5F4 /* 其他类别 */,
 				1CDA9E091C5A116200DFE518 /* 用户端 */,
 				079386B51C55B9860021B385 /* Main */,
@@ -6783,6 +6788,7 @@
 				D94B52581D4B434500C067B3 /* PointRuleViewController.m in Sources */,
 				1A4173AB1D78708100A70601 /* CreatGroupVC.m in Sources */,
 				D9A06B681D86A73B0037795B /* ToolManager.m in Sources */,
+				D90F51701F2EF4C10005EB05 /* BaiduMapManager.m in Sources */,
 				D9DEED281CACED7C00ACDD00 /* UIImageView+HighlightedWebCache.m in Sources */,
 				1CB53C0C1C571FE1002B6CC1 /* NoEvaluateController.m in Sources */,
 				183577451EC430AE00F321F1 /* RealChooseChangePayPassVC.m in Sources */,

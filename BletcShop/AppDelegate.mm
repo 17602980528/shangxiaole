@@ -25,7 +25,7 @@
 #import "UPPaymentControl.h"
 #import "CardManagerViewController.h"
 #import "LandingController.h"
-
+#import "BaiduMapManager.h"
 #import "BaseNavigationController.h"
 
 #import <UMSocialCore/UMSocialCore.h>
@@ -218,19 +218,31 @@
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc]init];
     
-    BOOL ret = [_mapManager start:@"szRrpYb78QCwCY0oHUv0DUENV61Ho2ZP" generalDelegate:self];
+    BOOL ret = [_mapManager start:@"9EyRNg7GH4lQoObVHOYEA7Mwn8F922SG" generalDelegate:self];
     if (!ret) {
         NSLog(@"manager start failed!");
     }
-    _geocodesearch = [[BMKGeoCodeSearch alloc] init];
-    _geocodesearch.delegate = self;
-    _locService = [[BMKLocationService alloc]init];
     
-    
-    _locService.delegate = self;
-    //启动LocationService
-    [_locService startUserLocationService];
+    BaiduMapManager *baiduMapManager = [BaiduMapManager shareBaiduMapManager];
+    [baiduMapManager startUserLocationService];
 
+    
+    baiduMapManager.userAddressBlock = ^(BMKReverseGeoCodeResult *result) {
+        self.addressInfo = result.address;
+        self.addressDistrite = result.addressDetail.district;
+        self.province =result.addressDetail.province;
+        self.city =result.addressDetail.city;
+        self.districtString =result.addressDetail.district;
+
+        
+    };
+    baiduMapManager.userLocationBlock = ^(BMKUserLocation *location) {
+        self.userLocation = location;
+        
+    };
+    
+    
+//
     //按比例适配屏幕
     AppDelegate *myDelegate =(AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(SCREENHEIGHT == 667){
@@ -572,115 +584,8 @@
     
     
 }
-- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
-{
-    //    if (_locationDelegate!=nil) {
-    //        [_locationDelegate didUpdateBMKUserLocation:userLocation];
-    //    }
-    self.userLocation = userLocation;
-    
-    //_geocodesearch.delegate = self;
-    // 初始化反地址编码选项（数据模型）
-    BMKReverseGeoCodeOption *option = [[BMKReverseGeoCodeOption alloc] init];
-    // 将TextField中的数据传到反地址编码模型
-    option.reverseGeoPoint = CLLocationCoordinate2DMake(userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
-    NSLog(@"%f - %f", option.reverseGeoPoint.latitude, option.reverseGeoPoint.longitude);
-    // 调用反地址编码方法，让其在代理方法中输出
-    [_geocodesearch reverseGeoCode:option];
-    // 获取当前所在的城市名
-    
-    //CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    
-    //根据经纬度反向地理编译出地址信
-    
-    //    [self.geocoder reverseGeocodeLocation:currentLocation
-    //
-    //                   completionHandler:^(NSArray *placemarks, NSError *error) {
-    //
-    //                       if (error == nil &&
-    //
-    //                           [placemarks count] > 0){
-    //
-    //                           CLPlacemark *placemark = [placemarks objectAtIndex:0];
-    //
-    //                           NSLog(@"address dictionary %@",[placemark.addressDictionary objectForKey:@"State"]);
-    //
-    //                       }
-    //
-    //                       else if (error == nil &&
-    //
-    //                                [placemarks count] == 0){
-    //
-    //                           NSLog(@"No results were returned.");
-    //
-    //                       }
-    //
-    //                       else if (error != nil){
-    //
-    //                           NSLog(@"An error occurred = %@", error);
-    //
-    //                       }
-    //
-    //                   }];
-    
-    [_locService stopUserLocationService];
-}
-#pragma mark 代理方法返回反地理编码结果
-- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
-{
-    if (result) {
-        
-        printf("result.address===%s\n",[result.address UTF8String]);
-        NSLog(@"cbcbcbc%@ - %@", result.addressDetail.city, result.address);
-        //        if ([result.address isEqualToString:@""]||[result.address isEqualToString:@"(null"]) {
-        //
-        //        }else
-        self.addressInfo = result.address;
-        self.addressDistrite = result.addressDetail.district;
-        self.province =result.addressDetail.province;
-        self.city =result.addressDetail.city;
-        self.districtString =result.addressDetail.district;
-        NSLog(@"cbcbcbc%@", result.addressDetail.district);
-        //        if([result.addressDetail.city rangeOfString:@"市"].location !=NSNotFound)//_roaldSearchText
-        //        {
-        //            NSRange range = [result.addressDetail.city rangeOfString:@"市"];
-        //
-        //            self.cityChoice = [result.addressDetail.city substringToIndex:range.location];;
-        //        }else
-        self.cityChoice = result.addressDetail.city;
-        NSLog(@"self.cityChoice=======%@",self.cityChoice);
-        
-        NSBundle *bundle = [NSBundle mainBundle];
-        NSString *plistPath = [bundle pathForResource:@"area" ofType:@"plist"];
-        self.allDic = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-        NSArray *allCityKeys = [self.allDic allKeys];
-        
-        NSMutableArray *cities = [[NSMutableArray alloc]init];
-        NSMutableDictionary *allCityss = [[NSMutableDictionary alloc]init];
-        for (int i = 0; i < [self.allDic count]; i++) {
-            [allCityss addEntriesFromDictionary:[self.allDic objectForKey:[allCityKeys objectAtIndex:i]]];
-        }
-        for (int i = 0; i < [self.allDic count]; i++) {
-            [cities addObjectsFromArray:[self.allDic objectForKey:[allCityKeys objectAtIndex:i]]];
-        }
-        self.areaListArray = [[NSArray alloc] initWithArray: [allCityss objectForKey: self.cityChoice]];
-        for (int i=0; i<[self.areaListArray count]; i++)
-        {
-            //            NSLog(@"self.areaListArray%@",self.areaListArray[i]);
-        }
-        
-        //        self.areaListArray = self.areaListArray;
-    }else{
-        //self.address.text = @"找不到相对应的位置信息";
-    }
-}
 
--(void)changeBMKLoctionSeviceDelegate:(id<BMKLocationServiceDelegate>)delegate
-{
-    [_locService stopUserLocationService];
-    _locationDelegate = delegate;
-    [_locService startUserLocationService];
-}
+
 //断网提示遮罩
 - (void)textExample {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.window animated:YES];
@@ -1238,88 +1143,8 @@
         
     }
 }
-//-(void)postSocketPayAction
 
-//{
-//    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/user/cardGet",BASEURL];
-//    
-//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-//    [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
-//    
-//    
-//    [params setObject:self.payShopName forKey:@"muid"];
-//    
-//    
-//    NSLog(@"type%@",self.type);
-//    if ([self.type isEqualToString:@"t"]){
-//        [params setObject:@"计次卡" forKey:@"type"];
-//    }else
-//    {
-//        [params setObject:@"储值卡" forKey:@"type"];
-//    }
-//    
-//    NSLog(@"params===%@",params);
-//    
-//    
-//    
-//    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-//     {
-//         
-//         self.payCardArray = [result copy];
-//         
-//         NSLog(@"self.payCardArray%@", self.payCardArray);
-//         //
-//         UIViewController *view =[self topViewController];
-//         //         self.window.rootViewController = view;
-//         //         view = [[MainTabBarController alloc]init];
-//         //NSArray *arrControllers = [view viewControllers];
-//         NSLog(@"view = %@",view);
-//         NSLog(@"canPayCardView.messagePay%@",self.messagePayAll);
-//         CanPayCardViewController *canPayCardView = [[CanPayCardViewController alloc]init];
-//         canPayCardView.payCardArray = self.payCardArray;
-//         //         canPayCardView.messagePay = self.messagePayAll;
-//         //         canPayCardView.cardType = self.type;
-//         //         canPayCardView.payMoney = self.payMoney;
-//         //         canPayCardView.payShopName = self.payShopName;
-//         
-//         //         NSString *type = [[NSString alloc]init];
-//         //         if ([type isEqualToString:@"t"]){
-//         //             type =@"计次卡";
-//         //         }else
-//         //         {
-//         //             type =@"储值卡";
-//         //         }
-//         //         canPayCardView.cardType = type;
-//         [view.navigationController pushViewController:canPayCardView animated:YES];
-//         if ([view isKindOfClass:[MainTabBarController class]]) {
-//             MainTabBarController *view1 = [[MainTabBarController alloc]init];
-//             CanPayCardViewController *canPayCardView = [[CanPayCardViewController alloc]init];
-//             canPayCardView.payCardArray = self.payCardArray;
-//             //             canPayCardView.messagePay = self.messagePayAll;
-//             //             canPayCardView.cardType = self.type;
-//             //             canPayCardView.payMoney = self.payMoney;
-//             //             canPayCardView.payShopName = self.payShopName;
-//             NSArray *arrControllers = [view1 viewControllers];
-//             NSLog(@"view1 = %@",arrControllers);
-//             BaseNavigationController *oldNavigationController = [arrControllers objectAtIndex:0];
-//             
-//             UIViewController *viewcontroller7 = [oldNavigationController.viewControllers objectAtIndex:view1.selectedIndex];
-//             UIViewController *superVC=(UIViewController *)[viewcontroller7 nextResponder];
-//             NSLog(@"view2 = %@",viewcontroller7.navigationController);
-//             NSLog(@"view3 = %@",superVC);
-//             [superVC.navigationController pushViewController:canPayCardView animated:YES];
-//             
-//         }
-//         
-//         
-//         
-//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-//         //         [self noIntenet];
-//         NSLog(@"%@", error);
-//     }];
-//    
-//}
+
 
 - (UIViewController*)topViewController
 {
