@@ -164,13 +164,13 @@
             RevokeVicotoryOrFailVC *vc=[[RevokeVicotoryOrFailVC alloc]init];
             vc.dic=_card_dic;
             vc.resultBlock = ^(NSString *result) {
-                [self postRequestAllInfo];
+                [self postRequestAllInfo:_card_dic[@"card_type"]];
             };
             [self.navigationController pushViewController:vc animated:YES];
         }else{
             ComplainUnnormalVC *vc=[[ComplainUnnormalVC alloc]init];
             vc.resultBlock = ^(NSString *result) {
-                [self postRequestAllInfo];
+                [self postRequestAllInfo:_card_dic[@"card_type"]];
             };
             vc.dic=_card_dic;
             [self.navigationController pushViewController:vc animated:YES];
@@ -378,18 +378,21 @@
 
 }
 //
--(void)postRequestAllInfo
+-(void)postRequestAllInfo:(NSString *)type
 {
-    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/card/detailGet",BASEURL];
+    NSString *url =@"";
+    if ([type isEqualToString:@"套餐卡"]) {
+        url=[[NSString alloc]initWithFormat:@"%@UserType/MealCard/detailGet",BASEURL];
+    }else{
+        url=[[NSString alloc]initWithFormat:@"%@UserType/ExperienceCard/detailGet",BASEURL];
+    }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
-    
     [params setObject:self.card_dic[@"merchant"] forKey:@"muid"];
-    [params setObject:appdelegate.cardInfo_dic[@"card_level"] forKey:@"cardLevel"];
-    [params setObject:self.card_dic[@"card_code"] forKey:@"cardCode"];
+    [params setObject:self.card_dic[@"card_code"] forKey:@"code"];
     
-    NSLog(@"---%@",appdelegate.cardInfo_dic);
+    NSLog(@"---%@",params);
     
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         
