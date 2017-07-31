@@ -216,177 +216,6 @@
 }
 
 
--(void)choiceArea
-{
-    UIView *newView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, SCREENWIDTH, SCREENHEIGHT/2)];
-    self.areaView = newView;
-    newView.backgroundColor = [UIColor lightGrayColor];
-    
-    UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc ]init];
-    NSInteger height = 0;
-    
-    height =  SCREENHEIGHT/2-80;
-    NSLog(@"%ld",height);
-    self.collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0,SCREENWIDTH ,height) collectionViewLayout:flowLayout];
-    [self.collectionView setShowsHorizontalScrollIndicator:NO];
-    [self.collectionView setShowsVerticalScrollIndicator:YES];
-    [self.collectionView setScrollEnabled:YES];
-    /*
-     *  注册cell
-     */
-    [self.collectionView registerClass:[UICollectionViewCell class]forCellWithReuseIdentifier:@"cell"];
-    [self.collectionView setBackgroundColor:[UIColor whiteColor]];
-    
-    [newView addSubview:self.collectionView];
-    self.collectionView.dataSource=self;
-    self.collectionView.delegate=self;
-    UIView *cityView = [[UIView alloc]initWithFrame:CGRectMake(20, SCREENHEIGHT/2-55, SCREENWIDTH-40, 30)];
-    cityView.backgroundColor = [UIColor whiteColor];
-    
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(5,0,60,30)];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:10];
-    label.text = @"当前城市:";
-    [cityView addSubview:label];
-    UILabel *labelCity = [[UILabel alloc]initWithFrame:CGRectMake(70,0,100,30)];
-    labelCity.font = [UIFont systemFontOfSize:10];
-    labelCity.textAlignment = NSTextAlignmentLeft;
-    
-    labelCity.text = self.cityChoice;
-    [cityView addSubview:labelCity];
-    UILabel *labelChange = [[UILabel alloc]initWithFrame:CGRectMake(cityView.width-80,0,60,30)];
-    labelChange.textAlignment = NSTextAlignmentRight;
-    labelChange.font = [UIFont systemFontOfSize:10];
-    labelChange.text = @"更换";
-    [cityView addSubview:labelChange];
-    UIButton *choiceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    choiceBtn.frame = CGRectMake(cityView.width-20, 10, 10, 10);
-    [choiceBtn setImage:[UIImage imageNamed:@"arraw_right"] forState:UIControlStateNormal];
-    [choiceBtn setImage:[UIImage imageNamed:@"jiantou"] forState:UIControlStateSelected];
-    
-    [cityView addSubview:choiceBtn];
-    cityView.userInteractionEnabled = YES;
-    UIGestureRecognizer *tapGestureDate = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(allCanChoiceCities)];
-    [cityView addGestureRecognizer:tapGestureDate];
-    [newView addSubview:cityView];
-    [self.view addSubview:newView];
-    
-}
--(void)allCanChoiceCities
-{
-    AddressPickerDemo *addressPickerDemo = [[AddressPickerDemo alloc] init];
-    addressPickerDemo.delegate = self;
-    [self.navigationController pushViewController:addressPickerDemo animated:YES];
-}
-
-#pragma mark- Source Delegate
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return 1;
-}
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return [self.areaListArray count];
-}
-
-
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    static NSString *identify=@"cell";
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
-    //解决视图重叠问题
-    for (UIView *subView in cell.subviews) {
-        if ([subView isMemberOfClass:[UILabel class]]) {    //UILabel 改为自己加的控件
-            [subView removeFromSuperview];
-        }
-    }
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10,1,(SCREENWIDTH-40)/3,35)];
-    label.font = [UIFont systemFontOfSize:14];
-    label.textAlignment = NSTextAlignmentCenter;
-    [cell addSubview:label];
-    cell.layer.cornerRadius = 1;
-    cell.layer.masksToBounds = YES;
-    //给图层添加一个有色边框?
-    cell.layer.borderWidth = 0.1;
-    
-    cell.layer.borderColor = [[UIColor grayColor] CGColor];
-    NSString *item = [self.areaListArray objectAtIndex:(long)indexPath.row];
-    label.text = item;
-    label.textAlignment = NSTextAlignmentCenter;
-    
-    [self minimumInteritemSpacing];
-    return cell;
-}
-- (CGFloat)minimumInteritemSpacing {
-    return 0;
-}
-#pragma mark- FlowDelegate
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return CGSizeMake((SCREENWIDTH-40)/3, 35 );
-}
-
--(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 10;
-}
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 10;
-}
-//点击选择区域
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    appdelegate.districtString= [self.areaListArray objectAtIndex:(long)indexPath.row];;
-    self.ifOpen = NO;
-    [dingweiBtn setTitle:appdelegate.districtString forState:UIControlStateNormal];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3];
-    CGAffineTransform transform;
-    
-    if (dingweiBtn.selected) {
-        transform = CGAffineTransformRotate(dingwei_img.transform, M_PI);
-    } else {
-        transform = CGAffineTransformRotate(dingwei_img.transform, -270*M_PI/90);
-    }
-    dingwei_img.transform = transform;
-    
-    [UIView commitAnimations];
-    
-    
-    dingweiBtn.selected =! dingweiBtn.selected;
-    self.ifOpen = !self.ifOpen;
-    [self.areaView removeFromSuperview];
-    
-    
-    
-    self.city_district = [NSString stringWithFormat:@"%@%@",appdelegate.cityChoice,appdelegate.districtString];
-    if (!self.city_district) {
-        self.city_district = @"西安市雁塔区";
-    }
-    
-    printf("didSelectItemAtIndexPath===%s\n",[self.city_district UTF8String]);
-    
-    CGFloat ww = [dingweiBtn.titleLabel.text boundingRectWithSize:CGSizeMake(200, 44) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:dingweiBtn.titleLabel.font} context:nil].size.width;
-    
-    
-    
-    
-    NSLog(@"--------------%f",ww);
-    
-    CGRect btn_frame = dingweiBtn.frame;
-    btn_frame.size.width =  ww<43 ? 43:58;
-    dingweiBtn.frame = btn_frame;
-    
-    [self resetFrame];
-    
-    self.currentIndex1 = 1;
-    [self getDataWithMore:self.currentIndex1];
-    
-}
 
 -(void)initTableView{
     
@@ -411,7 +240,7 @@
             move_line = [[UIView alloc]init];
             move_line.bounds = CGRectMake(0, 0, 51, 1);
             move_line.center = CGPointMake(button.center.x, button.bottom-1);
-            move_line.backgroundColor = RGB(17,141,240);
+            move_line.backgroundColor = RGB(228,96,98);
             [selectView addSubview:move_line];
         }
         
@@ -660,7 +489,9 @@
         
     if (page==1) {
         [self.data_A removeAllObjects];
+        [table_View reloadData];
     }
+    
     
     NSLog(@"CardMarket===%@",paramer);
     [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {

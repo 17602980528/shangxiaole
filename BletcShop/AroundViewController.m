@@ -20,7 +20,7 @@
 
 
 
-@interface AroundViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface AroundViewController ()<UITableViewDelegate,UITableViewDataSource,BMKLocationServiceDelegate>
 {
     LZDButton *oldBtn;
     SDRefreshFooterView *_refreshFooter;

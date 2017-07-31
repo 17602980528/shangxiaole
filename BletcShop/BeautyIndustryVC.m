@@ -277,65 +277,65 @@
     
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
-    return 40;
-    
-}
-
--(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 40)];
-    backView.backgroundColor = RGB(240, 240, 240);
-    
-    
-    if (!_dropDownMenu) {
-        DOPDropDownMenu *dropDownMenu = [[DOPDropDownMenu alloc]initWithOrigin:CGPointMake(0, 0) andHeight:40];
-        self.dropDownMenu = dropDownMenu;
-        dropDownMenu.backgroundColor = [UIColor whiteColor];
-        dropDownMenu.delegate = self;
-        dropDownMenu.dataSource = self;
-        [self.dropDownMenu selectDefalutIndexPath];
-        NSLog(@"-_dropDownMenu--");
-        
-    }
-   
-    NSLog(@"-needRefresh--");
-
-    if (needRefresh) {
-        [backView addSubview: self.dropDownMenu];
-    }
-
-
-    __weak typeof(self) weakSelf = self;
-   self.dropDownMenu.menuRowClcikBolck = ^(NSInteger currentIndex, BOOL show) {
-        NSLog(@"-----%ld===%d",currentIndex,show);
-        if (show) {
-            
-            needRefresh = NO;
-            [weakSelf.view addSubview: weakSelf.dropDownMenu];
-
-            if (weakSelf.table_view.tableHeaderView.height >= weakSelf.table_view.contentOffset.y) {
-                [weakSelf.table_view scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-
-            }
-            
-            
-            
-
-        }else{
-            needRefresh = YES;
-
-            [backView addSubview: weakSelf.dropDownMenu];
- 
-        }
-        
-        
-    };
-    
-    return backView;
-    
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    
+//    return 40;
+//    
+//}
+//
+//-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    
+//    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 40)];
+//    backView.backgroundColor = RGB(240, 240, 240);
+//    
+//    
+//    if (!_dropDownMenu) {
+//        DOPDropDownMenu *dropDownMenu = [[DOPDropDownMenu alloc]initWithOrigin:CGPointMake(0, 0) andHeight:40];
+//        self.dropDownMenu = dropDownMenu;
+//        dropDownMenu.backgroundColor = [UIColor whiteColor];
+//        dropDownMenu.delegate = self;
+//        dropDownMenu.dataSource = self;
+//        [self.dropDownMenu selectDefalutIndexPath];
+//        NSLog(@"-_dropDownMenu--");
+//        
+//    }
+//   
+//    NSLog(@"-needRefresh--");
+//
+//    if (needRefresh) {
+//        [backView addSubview: self.dropDownMenu];
+//    }
+//
+//
+//    __weak typeof(self) weakSelf = self;
+//   self.dropDownMenu.menuRowClcikBolck = ^(NSInteger currentIndex, BOOL show) {
+//        NSLog(@"-----%ld===%d",currentIndex,show);
+//        if (show) {
+//            
+//            needRefresh = NO;
+//            [weakSelf.view addSubview: weakSelf.dropDownMenu];
+//
+//            if (weakSelf.table_view.tableHeaderView.height >= weakSelf.table_view.contentOffset.y) {
+//                [weakSelf.table_view scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+//
+//            }
+//            
+//            
+//            
+//
+//        }else{
+//            needRefresh = YES;
+//
+//            [backView addSubview: weakSelf.dropDownMenu];
+// 
+//        }
+//        
+//        
+//    };
+//    
+//    return backView;
+//    
+//}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.data_M_A.count==0 ? 1 : self.data_M_A.count;
 }

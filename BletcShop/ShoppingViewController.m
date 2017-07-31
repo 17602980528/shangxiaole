@@ -1037,81 +1037,81 @@
 //     }];
 //}
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section==0) {
-        return bottomView.bottom+0.01;
-    }else{
+//    if (section==0) {
+//        return bottomView.bottom+0.01;
+//    }else{
         return 0.01;
-    }
+//    }
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;
 }
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (section==0) {
-        self.headerView=[self creatHeadView];
-        return self.headerView;
-    }else{
-        return nil;
-    }
-    
-}
--(UIView *)creatHeadView{
-    UIView *bgView=[[UIView alloc]init];
-    bgView.backgroundColor=RGB(240, 240, 240);
-    
-    UIView *topView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, (SCREENWIDTH-24)*95/350+24)];
-    topView.backgroundColor=[UIColor whiteColor];
-    [bgView addSubview:topView];
-    
-    
-    
-    bottomView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, topView.bottom+10, SCREENWIDTH, 90)];
-    bottomView.backgroundColor=[UIColor whiteColor];
-    bottomView.showsHorizontalScrollIndicator=NO;
-    [bgView addSubview:bottomView];
-    
-    for (int i=0; i<3; i++) {
-        UIImageView *placeImageView=[[UIImageView alloc]initWithFrame:CGRectMake(10+i%3*(145+10), 10, 145, 70)];
-        placeImageView.image=[UIImage imageNamed:@"icon3.png"];
-        [bottomView addSubview:placeImageView];
-        bottomView.contentSize=CGSizeMake(placeImageView.right+10, 0);
-    }
-    [self.adverImages removeAllObjects];
-    [self.adverImages addObject:@"新店入住banner2 拷贝.jpg"];
-    [self.adverImages addObject:@"新店入住banner1 拷贝.jpg"];
-    
-    if (_adverImages.count !=0) {
-        cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(12, 12, SCREENWIDTH-24, (SCREENWIDTH-24)*95/350) delegate:self placeholderImage:[UIImage imageNamed:@""]];
-        cycleScrollView2.imageURLStringsGroup = _adverImages;
-        cycleScrollView2.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-        //           cycleScrollView2.titlesGroup = self.titles;
-        cycleScrollView2.currentPageDotColor = [UIColor whiteColor]; // 自定义分页控件小圆标颜色
-        cycleScrollView2.hidesForSinglePage = YES;
-        [topView addSubview:cycleScrollView2];
-        
-    }else{
-        
-        UIImageView *imgView = [[UIImageView alloc]initWithFrame:topView.frame];
-        imgView.image = [UIImage imageNamed:@"首页顶部海报"];
-        [topView addSubview:imgView];
-    }
-    
-    
-    
-    
-    return bgView;
-}
--(NSMutableArray*)adverImages{
-    if (!_adverImages) {
-        _adverImages = [NSMutableArray array];
-    }
-    return _adverImages;
-}
--(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    
-    
-}
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    if (section==0) {
+//        self.headerView=[self creatHeadView];
+//        return self.headerView;
+//    }else{
+//        return nil;
+//    }
+//    
+//}
+//-(UIView *)creatHeadView{
+//    UIView *bgView=[[UIView alloc]init];
+//    bgView.backgroundColor=RGB(240, 240, 240);
+//    
+//    UIView *topView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, (SCREENWIDTH-24)*95/350+24)];
+//    topView.backgroundColor=[UIColor whiteColor];
+//    [bgView addSubview:topView];
+//    
+//    
+//    
+//    bottomView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, topView.bottom+10, SCREENWIDTH, 90)];
+//    bottomView.backgroundColor=[UIColor whiteColor];
+//    bottomView.showsHorizontalScrollIndicator=NO;
+//    [bgView addSubview:bottomView];
+//    
+//    for (int i=0; i<3; i++) {
+//        UIImageView *placeImageView=[[UIImageView alloc]initWithFrame:CGRectMake(10+i%3*(145+10), 10, 145, 70)];
+//        placeImageView.image=[UIImage imageNamed:@"icon3.png"];
+//        [bottomView addSubview:placeImageView];
+//        bottomView.contentSize=CGSizeMake(placeImageView.right+10, 0);
+//    }
+//    [self.adverImages removeAllObjects];
+//    [self.adverImages addObject:@"新店入住banner2 拷贝.jpg"];
+//    [self.adverImages addObject:@"新店入住banner1 拷贝.jpg"];
+//    
+//    if (_adverImages.count !=0) {
+//        cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(12, 12, SCREENWIDTH-24, (SCREENWIDTH-24)*95/350) delegate:self placeholderImage:[UIImage imageNamed:@""]];
+//        cycleScrollView2.imageURLStringsGroup = _adverImages;
+//        cycleScrollView2.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+//        //           cycleScrollView2.titlesGroup = self.titles;
+//        cycleScrollView2.currentPageDotColor = [UIColor whiteColor]; // 自定义分页控件小圆标颜色
+//        cycleScrollView2.hidesForSinglePage = YES;
+//        [topView addSubview:cycleScrollView2];
+//        
+//    }else{
+//        
+//        UIImageView *imgView = [[UIImageView alloc]initWithFrame:topView.frame];
+//        imgView.image = [UIImage imageNamed:@"首页顶部海报"];
+//        [topView addSubview:imgView];
+//    }
+//    
+//    
+//    
+//    
+//    return bgView;
+//}
+//-(NSMutableArray*)adverImages{
+//    if (!_adverImages) {
+//        _adverImages = [NSMutableArray array];
+//    }
+//    return _adverImages;
+//}
+//-(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+//    
+//    
+//}
 - (CGFloat)calculateRowWidth:(NSString *)string {
     NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:10]};  //指定字号
     CGRect rect = [string boundingRectWithSize:CGSizeMake(0, 12)/*计算宽度时要确定高度*/ options:NSStringDrawingUsesLineFragmentOrigin |

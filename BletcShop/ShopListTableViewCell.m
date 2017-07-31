@@ -71,7 +71,7 @@
     
     
     //销售额
-    UILabel *sellerLabel=[[UILabel alloc]initWithFrame:CGRectMake(starView.right + 5, starView.top+1.5, SCREENWIDTH-90-95-20-62, 12)];
+    UILabel *sellerLabel=[[UILabel alloc]initWithFrame:CGRectMake(starView.right + 5, starView.top+1.5, SCREENWIDTH-(starView.right + 5), 12)];
     sellerLabel.font=[UIFont systemFontOfSize:12.0f];
     sellerLabel.textAlignment=NSTextAlignmentLeft;
     sellerLabel.textColor = RGB(102,102,102);

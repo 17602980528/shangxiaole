@@ -60,20 +60,13 @@
     
     
 }
-//@property(nonatomic,weak)UIView *choseView;
-//@property (nonatomic,strong) UIView *view1;
+
 @property (nonatomic,strong) UIImageView *imageView;
-//@property (nonatomic,assign) CGPoint startPoint;
-//@property (nonatomic,assign) CGPoint startCenter;
-//@property(nonatomic,strong)UIImageView *leftAnimationView;
-//@property(nonatomic,strong)UIImageView *rightAnimationView;
-//@property (nonatomic,copy)NSString *plistPath;// 好友列表的plist路径
+
 @property(nonatomic,strong)UIButton *jump_btn;//跳过
 //
 @property(nonatomic,strong)dispatch_source_t timer;
-//@property(nonatomic,strong)dispatch_source_t repateTimer;
-//
-//@property(nonatomic,assign)BOOL shopperIsLog;//商户是否自动登录
+
 
 @end
 
@@ -437,10 +430,10 @@
         
         
         
-        ShopLandController *shopvc = [[ShopLandController alloc]init];
-        
-        self.window.rootViewController = shopvc;
-        [shopvc showHint:@"您的账户已在别处登录"];
+//        ShopLandController *shopvc = [[ShopLandController alloc]init];
+//        
+//        self.window.rootViewController = shopvc;
+//        [shopvc showHint:@"您的账户已在别处登录"];
         
     }
     

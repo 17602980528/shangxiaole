@@ -1238,18 +1238,18 @@
 //小分类按钮
 -(void)topClick:(UIButton*)sender{
     
-    NSLog(@"小分类");
-    
-//    if (sender.tag<5) {
+    NSLog(@"小分类" );
+    if ([self.icon_A[sender.tag][@"state"] isEqualToString:@"true"]) {
     
         PUSH(BeautyIndustryVC)
     
         vc.icon_dic = self.icon_A[sender.tag];
         
-//    }else{
-//        
-//        PUSH(ShoppingViewController)
-//        vc.navigationItem.title = self.icon_A[sender.tag][@"text"];
+    }else{
+        
+        PUSH(ShoppingViewController)
+        vc.navigationItem.title = self.icon_A[sender.tag][@"text"];
+        
 //        AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
 //        appdelegate.menuString = [self.icon_A objectAtIndex:sender.tag][@"text"];
 //        NSLog(@"appdelegate.menuString%@",appdelegate.menuString);
@@ -1257,7 +1257,7 @@
 //        NSLog(@"%ld",(long)sender.tag);
 //        
 //        self.tabBarController.selectedIndex =1;
-//    }
+    }
    
 
 }
