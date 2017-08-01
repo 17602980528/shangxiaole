@@ -11,6 +11,7 @@
 #import "ChangePayPassVC.h"
 #import "PayCustomView.h"
 #import "AccessCodeVC.h"
+#import "PayVictoryVC.h"
 @interface CountPAYViewController ()<UITextFieldDelegate,UIAlertViewDelegate,PayCustomViewDelegate>
 {
     UITextField *textTF;
@@ -235,8 +236,13 @@
              UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"支付成功" preferredStyle:UIAlertControllerStyleAlert];
              UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                  self.refresheDate();
-
-                 POP
+                 PayVictoryVC *vc=[[PayVictoryVC alloc]init];
+                 NSMutableDictionary *dictionary=[NSMutableDictionary dictionaryWithDictionary:params];
+                 [dictionary setObject:self.card_dic[@"store"] forKey:@"store"];
+                 [dictionary setObject:[NSString stringWithFormat:@"%d",self.payCount] forKey:@"oldNeed"];
+                 vc.dic=dictionary;
+                 [self.navigationController pushViewController:vc animated:YES];
+                 //POP
              }];
              
              [alertVC addAction:cancelAction];

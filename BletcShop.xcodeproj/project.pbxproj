@@ -145,6 +145,8 @@
 		18B1399C1F3012D400283CED /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B1399A1F3012D400283CED /* HistoryTableViewCell.xib */; };
 		18B1399E1F3012DD00283CED /* 时间.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B1399D1F3012DD00283CED /* 时间.png */; };
 		18B139A01F3012E700283CED /* 删除24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B1399F1F3012E700283CED /* 删除24x24.png */; };
+		18B139AA1F3066D000283CED /* PayVictoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B139A81F3066D000283CED /* PayVictoryVC.m */; };
+		18B139AB1F3066D000283CED /* PayVictoryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B139A91F3066D000283CED /* PayVictoryVC.xib */; };
 		18BCCDCA1D3C9EE8005E145D /* back_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCCDC41D3C9EE8005E145D /* back_04.png */; };
 		18BCCDCB1D3C9EE8005E145D /* merchant_ed1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCCDC51D3C9EE8005E145D /* merchant_ed1.png */; };
 		18BCCDCC1D3C9EE8005E145D /* merchant_es1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCCDC61D3C9EE8005E145D /* merchant_es1.png */; };
@@ -1301,6 +1303,9 @@
 		18B1399A1F3012D400283CED /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		18B1399D1F3012DD00283CED /* 时间.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "时间.png"; sourceTree = "<group>"; };
 		18B1399F1F3012E700283CED /* 删除24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "删除24x24.png"; sourceTree = "<group>"; };
+		18B139A71F3066D000283CED /* PayVictoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayVictoryVC.h; sourceTree = "<group>"; };
+		18B139A81F3066D000283CED /* PayVictoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayVictoryVC.m; sourceTree = "<group>"; };
+		18B139A91F3066D000283CED /* PayVictoryVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayVictoryVC.xib; sourceTree = "<group>"; };
 		18BCCDC41D3C9EE8005E145D /* back_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_04.png; sourceTree = "<group>"; };
 		18BCCDC51D3C9EE8005E145D /* merchant_ed1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = merchant_ed1.png; sourceTree = "<group>"; };
 		18BCCDC61D3C9EE8005E145D /* merchant_es1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = merchant_es1.png; sourceTree = "<group>"; };
@@ -2846,6 +2851,9 @@
 				079386831C55B5CA0021B385 /* AppDelegate.mm */,
 				D90F516E1F2EF4C00005EB05 /* BaiduMapManager.h */,
 				D90F516F1F2EF4C10005EB05 /* BaiduMapManager.m */,
+				18B139A71F3066D000283CED /* PayVictoryVC.h */,
+				18B139A81F3066D000283CED /* PayVictoryVC.m */,
+				18B139A91F3066D000283CED /* PayVictoryVC.xib */,
 				1CDA9E091C5A116200DFE518 /* 用户端 */,
 				18B139A11F3012F800283CED /* 带历史搜索记录的新搜索 */,
 				D9026B241F0B7B75005CA5F4 /* 其他类别 */,
@@ -6285,6 +6293,7 @@
 				1C9E822C1C603B7A0007BF02 /* arraw_left@2x.png in Resources */,
 				18EB36A71D4B1F5D0087CE1A /* 滑动选择-05.png in Resources */,
 				D94DF25F1CAE0DB8000D5B69 /* result_small_star_disable.png in Resources */,
+				18B139AB1F3066D000283CED /* PayVictoryVC.xib in Resources */,
 				18F27EEA1D640E84002DD03A /* 头像-2.png in Resources */,
 				18D7C48C1D5B12BA00AEF545 /* mohu-08.png in Resources */,
 				18D8464C1ED591630048F010 /* 线下角标.png in Resources */,
@@ -6923,6 +6932,7 @@
 				D949EC301CE192AE0023B6D6 /* AddressPickerDemo.m in Sources */,
 				18E3DA1B1D8287450089597B /* NewPasswordViewController.m in Sources */,
 				D9B3A4901D73CFE800F3F27E /* LZDButton.m in Sources */,
+				18B139AA1F3066D000283CED /* PayVictoryVC.m in Sources */,
 				182988421E723F4200164F32 /* TAAnimatedDotView.m in Sources */,
 				1C0BEF8A1C7DA14400519481 /* SuccessController.m in Sources */,
 				D92ACE071F0F341F00858727 /* ShopDetailCouponsCell.m in Sources */,

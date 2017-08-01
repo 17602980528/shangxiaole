@@ -11,6 +11,7 @@
 #import "ChangePayPassVC.h"
 #import "PayCustomView.h"
 #import "AccessCodeVC.h"
+#import "PayVictoryVC.h"
 @interface MoneyPAYViewController ()<UIAlertViewDelegate,PayCustomViewDelegate>
 {
     UITextField *textTF;
@@ -106,17 +107,6 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
         
-//    }else if (alertView.tag==999) {
-//        //支付成功提示框
-//        if (buttonIndex==0) {
-//            [self.navigationController popViewControllerAnimated:YES];
-//            
-//            
-//        }
-//        
-//    }else{
-//        
-        
     }
     
 }
@@ -188,9 +178,14 @@
              UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                
                  self.refresheDate();
+                 PayVictoryVC *vc=[[PayVictoryVC alloc]init];
+                 NSMutableDictionary *dictionary=[NSMutableDictionary dictionaryWithDictionary:params];
+                 [dictionary setObject:self.card_dic[@"store"] forKey:@"store"];
+                 [dictionary setObject:textTF.text forKey:@"oldNeed"];
+                 vc.dic=dictionary;
+                 [self.navigationController pushViewController:vc animated:YES];
                  
-                 
-                 [self.navigationController popViewControllerAnimated:YES];
+                // [self.navigationController popViewControllerAnimated:YES];
 
              }];
              

@@ -12,7 +12,7 @@
 #import "AccessCodeVC.h"
 #import "UIImageView+WebCache.h"
 #import "ChangePayPassVC.h"
-
+#import "PayVictoryVC.h"
 @interface MealCardPayVC ()<UITableViewDelegate,UITableViewDataSource,PayCustomViewDelegate,UIAlertViewDelegate>
 {
     NSInteger selectRow;
@@ -168,6 +168,7 @@
 }
 
 -(void)payRequest:(NSDictionary*)option_dic{
+    NSLog(@"dic======%@",option_dic);
     NSString *url = [NSString stringWithFormat:@"%@UserType/MealCard/pay",BASEURL];
     
     AppDelegate *app = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -197,8 +198,14 @@
                 
                 self.refresheDate();
                 
-                
-                [self.navigationController popViewControllerAnimated:YES];
+                PayVictoryVC *vc=[[PayVictoryVC alloc]init];
+                NSMutableDictionary *dictionary=[NSMutableDictionary dictionaryWithDictionary:paramer];
+                [dictionary setObject:self.card_dic[@"store"] forKey:@"store"];
+                [dictionary setObject:option_dic[@"name"] forKey:@"oldNeed"];
+                [dictionary setObject:self.card_dic[@"card_type"] forKey:@"cardType"];
+                vc.dic=dictionary;
+                [self.navigationController pushViewController:vc animated:YES];
+                //[self.navigationController popViewControllerAnimated:YES];
                 
             }];
             

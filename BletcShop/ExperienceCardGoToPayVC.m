@@ -10,6 +10,7 @@
 #import "PayCustomView.h"
 #import "AccessCodeVC.h"
 #import "ChangePayPassVC.h"
+#import "PayVictoryVC.h"
 @interface ExperienceCardGoToPayVC ()<PayCustomViewDelegate,UIAlertViewDelegate>
 {
     PayCustomView * Payview;
@@ -141,8 +142,14 @@
                 
                 self.refresheDate();
                 
+                PayVictoryVC *vc=[[PayVictoryVC alloc]init];
+                NSMutableDictionary *dictionary=[NSMutableDictionary dictionaryWithDictionary:paramer];
+                [dictionary setObject:self.card_dic[@"store"] forKey:@"store"];
+                [dictionary setObject:[NSString stringWithFormat:@"%@",self.card_dic[@"price"]] forKey:@"oldNeed"];
+                vc.dic=dictionary;
+                [self.navigationController pushViewController:vc animated:YES];
                 
-                [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+                //[self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
                 
                 
             }];
