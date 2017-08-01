@@ -105,7 +105,7 @@
     
    
     
-//    [self postGetMutiAdvertistShops:_city_district];
+    [self postGetMutiAdvertistShops:_city_district];
     
     
     
