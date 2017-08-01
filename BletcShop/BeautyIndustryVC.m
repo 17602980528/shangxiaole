@@ -194,7 +194,11 @@
     
     UIView *headerView = [[UIView alloc]init];
     headerView.backgroundColor = RGB(240, 240, 240);
-    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREENWIDTH, 119*LZDScale) delegate:nil placeholderImage:[UIImage imageNamed:@"首页顶部海报"]];
+    UIView *whiteView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 13)];
+    whiteView.backgroundColor = [UIColor whiteColor];
+    [headerView addSubview:whiteView];
+    
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 13, SCREENWIDTH, 119*LZDScale) delegate:nil placeholderImage:[UIImage imageNamed:@"首页顶部海报"]];
     
     cycleScrollView.imageURLStringsGroup = self.topImg_M_A;
     cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
@@ -361,7 +365,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return  self.data_M_A.count==0? 100  :97+4;
+    return  self.data_M_A.count==0? 100  :96;
     
     
 }
