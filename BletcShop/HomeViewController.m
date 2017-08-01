@@ -1241,7 +1241,7 @@
 //小分类按钮
 -(void)topClick:(UIButton*)sender{
     
-    NSLog(@"小分类" );
+    NSLog(@"小分类==%@",self.icon_A[sender.tag]);
     if ([self.icon_A[sender.tag][@"state"] isEqualToString:@"true"]) {
     
         PUSH(BeautyIndustryVC)
@@ -1252,7 +1252,8 @@
         
         PUSH(ShoppingViewController)
         vc.navigationItem.title = self.icon_A[sender.tag][@"text"];
-        
+        vc.icon_dic = self.icon_A[sender.tag];
+
 //        AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
 //        appdelegate.menuString = [self.icon_A objectAtIndex:sender.tag][@"text"];
 //        NSLog(@"appdelegate.menuString%@",appdelegate.menuString);

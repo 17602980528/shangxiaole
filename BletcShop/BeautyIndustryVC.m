@@ -56,7 +56,6 @@
 @property (nonatomic,copy)NSString *address;
 
 
-@property (nonatomic, strong) NSMutableArray *adverList;// 上面的广告数组
 
 @property(nonatomic,copy)NSString *sort_string;//智能排序;
 @property(nonatomic,strong)NSDictionary *upSort_data_dic;
@@ -143,6 +142,8 @@
     [self getData_UPSort];
     
 }
+
+
 -(void)creatScreenView{
     
     _back_scressn_view = [[UIView alloc]initWithFrame:CGRectMake(SCREENWIDTH, 0, SCREENWIDTH, SCREENHEIGHT)];
@@ -150,9 +151,17 @@
     
     [self.view addSubview: _back_scressn_view];
     
+    
+    
     UIView *topV = [[UIView alloc]initWithFrame:CGRectMake(66, 0, SCREENWIDTH-66, 64)];
     topV.backgroundColor = [UIColor whiteColor];
     [_back_scressn_view addSubview:topV];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideScreenView)];
+
+    [topV addGestureRecognizer:tap];
+
+    
     UILabel *title_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 33, topV.width, 17)];
     title_lab.text = @"筛选条件";
     title_lab.textAlignment = NSTextAlignmentCenter;
@@ -365,7 +374,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return  self.data_M_A.count==0? 100  :96;
+    return  96;
     
     
 }
@@ -376,8 +385,33 @@
     
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if (self.data_M_A.count==0) {
+        
+        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 150)];
+        backView.backgroundColor = RGB(240, 240, 240);
+
+        
+        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREENWIDTH/2-30, 30, 60, 60)];
+        imgView.image = [UIImage imageNamed:@"无数据"];
+        [backView addSubview:imgView];
+        
+        
+        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, imgView.bottom +10, SCREENWIDTH, 20)];
+        
+        lab.textColor= RGB(51, 51, 51);
+        lab.text = @"暂时没有数据哦!!!";
+        lab.textAlignment = NSTextAlignmentCenter;
+        lab.font = [UIFont systemFontOfSize:14];
+        [backView addSubview:lab];
+
+        return backView;
+    }else
+        return nil;
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.01;
+          return  self.data_M_A.count==0? 150  :0.01;
+
 }
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
@@ -416,7 +450,7 @@
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.data_M_A.count==0 ? 1 : self.data_M_A.count;
+    return self.data_M_A.count;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIndentifier = @"cell";
@@ -527,30 +561,8 @@
         cell.tradeLable.frame = trade_frame;
 
         
-    }else{
-        
-        [[cell viewWithTag:9999] removeFromSuperview];
-        
-        
-        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 150)];
-        backView.backgroundColor = RGB(240, 240, 240);
-        backView.tag = 9999;
-        [cell addSubview:backView];
-        
-        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREENWIDTH/2-30, 30, 60, 60)];
-        imgView.image = [UIImage imageNamed:@"无数据"];
-        [backView addSubview:imgView];
-        
-        
-        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, imgView.bottom +10, SCREENWIDTH, 20)];
-        
-        lab.textColor= RGB(51, 51, 51);
-        lab.text = @"暂时没有数据哦!!!";
-        lab.textAlignment = NSTextAlignmentCenter;
-        lab.font = [UIFont systemFontOfSize:14];
-        [backView addSubview:lab];
-        
     }
+    
     
     return cell;
 
@@ -679,43 +691,27 @@
     
     arr = [[NSUserDefaults standardUserDefaults]objectForKey:@"locationCityEreaList"];
     
+
     
-    
-//    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-//    
-//    NSString *currentEare = appdelegate.districtString.length>0?appdelegate.districtString:appdelegate.cityChoice;
-    
-    
-    
-    ProvinceModel *MM = [[ProvinceModel alloc]init];
-    [MM setName:city];
     
     for (int i = 0; i < arr.count; i ++) {
+        
         NSDictionary *dic = arr[i];
         
         ProvinceModel *model = [[ProvinceModel alloc] init];
         [model setValuesForKeysWithDictionary:dic];
 
         
-//        if ([currentEare isEqualToString:model.name]) {
-//            [self.dataSourceProvinceArray insertObject:model atIndex:0];
-//            if (i ==0) {
-//                [self.dataSourceProvinceArray insertObject:MM atIndex:1];
-//                
-//            }
-//            
-//        }else{
             [self.dataSourceProvinceArray addObject:model];
             
-            if (i ==0) {
-                [self.dataSourceProvinceArray insertObject:MM atIndex:0];
-                
-            }
-            
-//        }
         
     }
-    
+    ProvinceModel *MM = [[ProvinceModel alloc]init];
+    [MM setName:city];
+    NSLog(@"--===============+%@",MM);
+
+    [self.dataSourceProvinceArray insertObject:MM atIndex:0];
+
     
     
     
@@ -766,6 +762,7 @@
                     
                 }
                 
+                NSLog(@"--===============+%@",mod);
                 [self.dataSourceCityArray insertObject:mod atIndex:i];
                 
             }
@@ -878,7 +875,7 @@
     [paramer setValue:_icon_dic[@"id"] forKey:@"up_id"];
 
     [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
-//        NSLog(@"getData_UPSort---%@",result);
+        NSLog(@"getData_UPSort---%@",result);
 
         [self hideHud];
 
@@ -989,12 +986,7 @@
     }
     return _mid_advert_img;
 }
--(NSMutableArray *)adverList{
-    if (!_adverList) {
-        _adverList = [NSMutableArray array];
-    }
-    return _adverList;
-}
+
 -(NSMutableArray *)dataSourceCityArray{
     if (!_dataSourceCityArray) {
         _dataSourceCityArray = [NSMutableArray array];
