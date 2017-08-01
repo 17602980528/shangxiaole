@@ -42,7 +42,7 @@
 
 #import "ShoppingViewController.h"
 #import "MemberCenterVC.h"
-
+#import "CustomSearchVC.h"
 
 @interface HomeViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,GYChangeTextViewDelegate,SelectCityDelegate,JFLocationDelegate,SDCycleScrollViewDelegate>
 {
@@ -1265,7 +1265,7 @@
 //搜索
 -(void)searchViewClick{
     NSLog(@"搜索");
-    SearchTableViewController *VC = [[SearchTableViewController alloc]init];
+    CustomSearchVC *VC = [[CustomSearchVC alloc]init];
     
     [self.navigationController pushViewController:VC animated:YES];
 }
