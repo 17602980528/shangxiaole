@@ -69,7 +69,8 @@
     imageview.image=[UIImage imageNamed:@"sousuo"];
     [middleView addSubview:imageview];
     
-    titleView=[[UITextField alloc]initWithFrame:CGRectMake(35, 0, middleView.width-15, 30)];
+    titleView=[[UITextField alloc]initWithFrame:CGRectMake(35, 0, middleView.width-35, 30)];
+    titleView.clearButtonMode=UITextFieldViewModeWhileEditing;
     titleView.delegate=self;
     titleView.font=[UIFont systemFontOfSize:13.0f];
     titleView.returnKeyType=UIReturnKeySearch;
