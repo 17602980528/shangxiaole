@@ -60,7 +60,7 @@
                                         <constraint firstAttribute="width" constant="17" id="PwQ-L2-LBY"/>
                                     </constraints>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="灰色二维码扫描" translatesAutoresizingMaskIntoConstraints="NO" id="kAb-VN-4uL">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="筛选icon 2" translatesAutoresizingMaskIntoConstraints="NO" id="kAb-VN-4uL">
                                     <rect key="frame" x="47.5" y="14" width="17" height="17"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="17" id="UAK-W1-NFU"/>
@@ -138,8 +138,8 @@
         </view>
     </objects>
     <resources>
-        <image name="灰色二维码扫描" width="28" height="28"/>
         <image name="灰色搜索icon" width="28" height="28"/>
+        <image name="筛选icon 2" width="34" height="34"/>
         <image name="返回箭头" width="18" height="32"/>
     </resources>
 </document>
