@@ -207,10 +207,8 @@
         
         
         
-        //        NSString *discount =[NSString getTheNoNullStr:[dic objectForKey:@"discount"] andRepalceStr:@""];
-        //
-        //
-        //        NSString *giveString =[NSString getTheNoNullStr:[dic objectForKey:@"add"] andRepalceStr:@""];
+      
+        
         //
         NSDictionary *pri_dic = dic[@"pri"];
         
@@ -281,6 +279,13 @@
         CGRect trade_frame = cell.tradeLable.frame;
         trade_frame.size.width =[NSString calculateRowWidth: cell.tradeLable];
         cell.tradeLable.frame = trade_frame;
+        
+        cell.delete_btn.hidden = NO;
+        cell.delete_btn.block = ^(LZDButton *sender) {
+            [self.data_M_A removeObjectAtIndex:indexPath.row];
+            
+            [tableView reloadData];
+        };
     }
     
     

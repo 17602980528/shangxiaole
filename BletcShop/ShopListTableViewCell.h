@@ -19,4 +19,7 @@
 @property (nonatomic , strong) UILabel *givelab;
 @property (nonatomic,strong) UILabel *couponLable;
 @property (nonatomic,strong)UILabel *tradeLable;
+@property (nonatomic , strong) LZDButton *delete_btn;// <#Description#>
+
+
 @end

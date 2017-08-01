@@ -86,6 +86,16 @@
     brandLabel.backgroundColor=RGB(226,102,102);
     
 
+    LZDButton *delete_btn = [LZDButton creatLZDButton];
+    delete_btn.hidden = YES;
+    delete_btn.frame = CGRectMake(SCREENWIDTH-36, 60, 36, 36);
+    
+    [delete_btn setImage:[UIImage imageNamed:@"删除按钮 2"] forState:0];
+
+    delete_btn.contentEdgeInsets = UIEdgeInsetsMake(10.5, 10.5, 10.5, 10.5);
+    [self addSubview:delete_btn];
+    self.delete_btn = delete_btn;
+    
     
     UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 5)];
     
