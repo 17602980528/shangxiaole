@@ -56,7 +56,6 @@
 @property (nonatomic,copy)NSString *address;
 
 
-@property (nonatomic, strong) NSMutableArray *adverList;// 上面的广告数组
 
 @property(nonatomic,copy)NSString *sort_string;//智能排序;
 @property(nonatomic,strong)NSDictionary *upSort_data_dic;
@@ -692,43 +691,27 @@
     
     arr = [[NSUserDefaults standardUserDefaults]objectForKey:@"locationCityEreaList"];
     
+
     
-    
-//    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-//    
-//    NSString *currentEare = appdelegate.districtString.length>0?appdelegate.districtString:appdelegate.cityChoice;
-    
-    
-    
-    ProvinceModel *MM = [[ProvinceModel alloc]init];
-    [MM setName:city];
     
     for (int i = 0; i < arr.count; i ++) {
+        
         NSDictionary *dic = arr[i];
         
         ProvinceModel *model = [[ProvinceModel alloc] init];
         [model setValuesForKeysWithDictionary:dic];
 
         
-//        if ([currentEare isEqualToString:model.name]) {
-//            [self.dataSourceProvinceArray insertObject:model atIndex:0];
-//            if (i ==0) {
-//                [self.dataSourceProvinceArray insertObject:MM atIndex:1];
-//                
-//            }
-//            
-//        }else{
             [self.dataSourceProvinceArray addObject:model];
             
-            if (i ==0) {
-                [self.dataSourceProvinceArray insertObject:MM atIndex:0];
-                
-            }
-            
-//        }
         
     }
-    
+    ProvinceModel *MM = [[ProvinceModel alloc]init];
+    [MM setName:city];
+    NSLog(@"--===============+%@",MM);
+
+    [self.dataSourceProvinceArray insertObject:MM atIndex:0];
+
     
     
     
@@ -779,6 +762,7 @@
                     
                 }
                 
+                NSLog(@"--===============+%@",mod);
                 [self.dataSourceCityArray insertObject:mod atIndex:i];
                 
             }
@@ -891,7 +875,7 @@
     [paramer setValue:_icon_dic[@"id"] forKey:@"up_id"];
 
     [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
-//        NSLog(@"getData_UPSort---%@",result);
+        NSLog(@"getData_UPSort---%@",result);
 
         [self hideHud];
 
@@ -1002,12 +986,7 @@
     }
     return _mid_advert_img;
 }
--(NSMutableArray *)adverList{
-    if (!_adverList) {
-        _adverList = [NSMutableArray array];
-    }
-    return _adverList;
-}
+
 -(NSMutableArray *)dataSourceCityArray{
     if (!_dataSourceCityArray) {
         _dataSourceCityArray = [NSMutableArray array];

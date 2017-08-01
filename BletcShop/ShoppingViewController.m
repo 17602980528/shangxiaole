@@ -560,36 +560,24 @@
     
     
     
-    ProvinceModel *MM = [[ProvinceModel alloc]init];
-    [MM setName:_city];
-    
+   
     for (int i = 0; i < arr.count; i ++) {
         NSDictionary *dic = arr[i];
         
         ProvinceModel *model = [[ProvinceModel alloc] init];
         [model setValuesForKeysWithDictionary:dic];
-        //        NSLog(@"%@ * %@", model.fullname, model.id);
-//        if ([currentEare isEqualToString:model.name]) {
-//            [self.dataSourceProvinceArray insertObject:model atIndex:0];
-//            if (i ==0) {
-//                [self.dataSourceProvinceArray insertObject:MM atIndex:1];
-//                
-//            }
-//            
-//        }else{
-            [self.dataSourceProvinceArray addObject:model];
+ 
+        [self.dataSourceProvinceArray addObject:model];
             
-            if (i ==0) {
-                [self.dataSourceProvinceArray insertObject:MM atIndex:0];
-                
-            }
-            
-//        }
+ 
         
     }
     
     
-    
+    ProvinceModel *MM = [[ProvinceModel alloc]init];
+    [MM setName:_city];
+    [self.dataSourceProvinceArray insertObject:MM atIndex:0];
+
     
     
     
@@ -690,6 +678,9 @@
 //一进入页面获取数据
 -(void)storeFilter_getData{
     
+    
+  [[self.shopTabel viewWithTag:9999] removeFromSuperview];
+    
     NSString *url = [NSString stringWithFormat:@"%@UserType/StoreFilter/getData",BASEURL];
     
     
@@ -700,6 +691,12 @@
         
         self.data1 = [result[@"stores"] mutableCopy];
         
+        if (_data1.count==0) {
+            
+           
+            [self initNoDataView];
+            
+        }
         [self.shopTabel reloadData];
         
         
@@ -717,7 +714,8 @@
 
 //筛选数据
 -(void)storeFilter_getFilterStores{
-    
+    [[self.shopTabel viewWithTag:9999] removeFromSuperview];
+
     [self showHudInView:self.view hint:@"加载中..."];
     NSString *url = [NSString stringWithFormat:@"%@UserType/StoreFilter/getFilterStores",BASEURL];
     
@@ -755,6 +753,8 @@
         
         self.data1 = [result[@"stores"] mutableCopy];
         
+        [self initNoDataView];
+
         [self.shopTabel reloadData];
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -827,6 +827,29 @@
 }
 
 
+-(void)initNoDataView{
+    
+    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, (SCREENHEIGHT-64-40 -150)/2, SCREENWIDTH, 150)];
+    backView.backgroundColor = RGB(240, 240, 240);
+    
+    backView.tag=9999;
+    [self.shopTabel addSubview:backView];
+    
+    
+    UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREENWIDTH/2-30, 30, 60, 60)];
+    imgView.image = [UIImage imageNamed:@"无数据"];
+    [backView addSubview:imgView];
+    
+    
+    UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, imgView.bottom +10, SCREENWIDTH, 20)];
+    
+    lab.textColor= RGB(51, 51, 51);
+    lab.text = @"暂时没有数据哦!!!";
+    lab.textAlignment = NSTextAlignmentCenter;
+    lab.font = [UIFont systemFontOfSize:14];
+    [backView addSubview:lab];
+
+}
 
 - (CGFloat)calculateRowWidth:(NSString *)string {
     NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:10]};  //指定字号
