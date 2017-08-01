@@ -305,8 +305,8 @@
 }
 
 #pragma mark - init method
-- (instancetype)initWithOrigin:(CGPoint)origin andHeight:(CGFloat)height {
-    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+- (instancetype)initWithOrigin:(CGPoint)origin andHeight:(CGFloat)height andSuperView:(UIView*)supview {
+    CGSize screenSize = supview.bounds.size;
     self = [self initWithFrame:CGRectMake(origin.x, origin.y, screenSize.width, height)];
     if (self) {
         _origin = origin;

@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.navigationItem.title = @"积分抽奖";
-    self.navigationItem.title = @"周边";
+//    self.navigationItem.title = @"周边";
 
     hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.userInteractionEnabled = YES;

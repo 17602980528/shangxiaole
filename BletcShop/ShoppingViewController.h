@@ -7,15 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIImageView+WebCache.h"
-#import "DOPDropDownMenu.h"
+
 @interface ShoppingViewController : UIViewController
-@property (nonatomic,retain)NSString *menuTitle;
-@property (nonatomic,copy)NSString *classifyString;
-@property (nonatomic,copy)NSString *ereaString;
-@property (nonatomic,copy)NSString *streetString;
 
-@property(nonatomic)int indexss;
-
+@property (nonatomic , strong) NSDictionary *icon_dic;// <#Description#>
 
 @end

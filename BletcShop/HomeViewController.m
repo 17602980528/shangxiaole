@@ -194,6 +194,8 @@
             
             [KCURRENTCITYINFODEFAULTS setObject:areaData forKey:@"currentEreaList"];
             
+            [KCURRENTCITYINFODEFAULTS setObject:areaData forKey:@"locationCityEreaList"];
+
             
             
         }];
@@ -1591,6 +1593,8 @@
             
             [KCURRENTCITYINFODEFAULTS setObject:areaData forKey:@"currentEreaList"];
             
+            [KCURRENTCITYINFODEFAULTS setObject:areaData forKey:@"locationCityEreaList"];
+
 
             
         }];
@@ -1622,7 +1626,8 @@
             
             [KCURRENTCITYINFODEFAULTS setObject:areaData forKey:@"currentEreaList"];
             
-            
+            [KCURRENTCITYINFODEFAULTS setObject:areaData forKey:@"locationCityEreaList"];
+
             
         }];
         
@@ -1649,7 +1654,8 @@
             
             [KCURRENTCITYINFODEFAULTS setObject:areaData forKey:@"currentEreaList"];
             
-            
+            [KCURRENTCITYINFODEFAULTS setObject:areaData forKey:@"locationCityEreaList"];
+
             
         }];
         

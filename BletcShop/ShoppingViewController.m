@@ -7,12 +7,14 @@
 //
 
 #import "ShoppingViewController.h"
-#import "DOPDropDownMenu.h"
+#import "UIImageView+WebCache.h"
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BaiduMapAPI_Search/BMKSearchComponent.h>
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
-#import "AppDelegate.h"
+
+#import "DOPDropDownMenu.h"
+
 #import "NewShopDetailVC.h"
 #import "ShopListTableViewCell.h"
 #import "ShaperView.h"
@@ -23,12 +25,9 @@
 #import "CityModel.h"
 #import "SDCycleScrollView.h"
 
-@interface ShoppingViewController ()<UITableViewDataSource,UITableViewDelegate,DOPDropDownMenuDataSource,DOPDropDownMenuDelegate,BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,SDCycleScrollViewDelegate>
+@interface ShoppingViewController ()<UITableViewDataSource,UITableViewDelegate,DOPDropDownMenuDataSource,DOPDropDownMenuDelegate,SDCycleScrollViewDelegate>
 {
-    BMKMapView* _mapView;
-    BMKLocationService* _locService;
-    BMKGeoCodeSearch* _geocodesearch;
-    bool isGeoSearch;
+    
     SDRefreshFooterView *_refreshFooter;
     SDRefreshHeaderView *_refreshheader;
     
@@ -42,17 +41,27 @@
     UIScrollView *bottomView;
     
 }
+@property (nonatomic,copy)NSString *classifyString;
+@property (nonatomic,copy)NSString *ereaString;
+@property (nonatomic,copy)NSString *streetString;
+@property (nonatomic,copy)NSString *city;
+
+@property (nonatomic,copy)NSString *address;
+@property(nonatomic,copy)NSString *sort_string;//智能排序;
+
+@property(nonatomic)int indexss;
+
 @property(nonatomic,strong)NSMutableArray* adverImages;
 @property(nonatomic,strong)UIView *headerView;//头view
 @property(nonatomic,strong)DOPIndexPath *indexpathSelect;
-@property(nonatomic,weak)UILabel *GpsLabel;//地址的lable
+
 @property(nonatomic,weak)UITableView *shopTabel;//商户的列表
 
 @property(nonatomic, strong)NSMutableArray *dataSourceProvinceArray;
 @property(nonatomic, strong)NSMutableArray *dataSourceCityArray;
 //
 @property(nonatomic,strong)NSMutableArray *data1;
-@property (nonatomic, strong) NSMutableArray *areas;// 区列表
+
 @property (nonatomic, strong) NSArray *sorts;//智能排序
 @property (nonatomic, weak) DOPDropDownMenu *menu;//下拉列表
 @property (nonatomic, strong) NSMutableArray *classifys;// 分类数组
@@ -86,8 +95,6 @@
         }
         
         
-        
-//        _classifys = [[NSMutableArray alloc]initWithArray:@[@"全部分类",@"美容",@"美发",@"美甲",@"足疗按摩",@"皮革养护",@"汽车服务",@"洗衣",@"瑜伽舞蹈",@"瘦身纤体",@"宠物店",@"电影院",@"运动健身",@"零售连锁",@"餐饮食品",@"医药",@"游乐场",@"娱乐KTV",@"婚纱摄影",@"游泳馆",@"超市购物",@"甜点饮品",@"酒店",@"教育培训",@"商务会所"]];
     }
     return _classifys;
 }
@@ -98,13 +105,8 @@
     }
     return _sorts;
 }
--(NSMutableArray *)areas{
-    if (!_areas) {
-        _areas = [NSMutableArray array];
-        
-    }
-    return _areas;
-}
+
+
 -(NSMutableArray *)dataSourceCityArray{
     if (!_dataSourceCityArray) {
         _dataSourceCityArray = [NSMutableArray array];
@@ -117,126 +119,52 @@
     
     [cycleScrollView2 adjustWhenControllerViewWillAppera];
     
-    currentCityDic = [[NSUserDefaults standardUserDefaults]objectForKey:@"currentCityDic"] ? [[NSUserDefaults standardUserDefaults]objectForKey:@"currentCityDic"] :[[NSUserDefaults standardUserDefaults]objectForKey:@"locationCityDic"] ;
-    
-//    _classifys = [[NSMutableArray alloc]initWithArray:@[@"全部分类",@"美容",@"美发",@"养发",@"美甲",@"足疗按摩",@"皮革养护",@"汽车服务",@"洗衣",@"瑜伽舞蹈",@"瘦身纤体",@"宠物店",@"电影院",@"运动健身",@"零售连锁",@"餐饮食品",@"医药",@"游乐场",@"娱乐KTV",@"婚纱摄影",@"游泳馆",@"超市购物",@"甜点饮品",@"酒店",@"教育培训",@"商务会所"]];
-    
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    currentCityDic = [[NSUserDefaults standardUserDefaults]objectForKey:@"locationCityDic"] ? [[NSUserDefaults standardUserDefaults]objectForKey:@"locationCityDic"] :[[NSUserDefaults standardUserDefaults]objectForKey:@"currentCityDic"] ;
     
     
-    [[JFAreaDataManager shareManager] areaData:[[NSUserDefaults standardUserDefaults] objectForKey:@"cityNumber"] areaData:^(NSMutableArray *areaData) {
-        
-        
-        appdelegate.areaListArray =areaData;
-        
-        
-    }];
-    
-  
-    if ([appdelegate.menuString isEqualToString:@""]) {
-        self.classifyString =@"";
-    }else
-        self.classifyString = appdelegate.menuString;
-    if ([appdelegate.addressDistrite isEqualToString:@""]) {
-        self.ereaString = appdelegate.cityChoice;
-    }else
-        
-        self.ereaString = [NSString stringWithFormat:@"%@%@",appdelegate.cityChoice,appdelegate.addressDistrite];
-    
-//    self.navigationController.navigationBarHidden = YES;
-    [_mapView viewWillAppear];
-    _mapView.delegate = self;
-    _locService.delegate = self;
-    _geocodesearch.delegate = self;
-    [_locService startUserLocationService];
-    self.areas = [[NSMutableArray alloc]init];
-    
-    
-    self.view.backgroundColor = [UIColor whiteColor];
-    _locService = [[BMKLocationService alloc]init];
-    _geocodesearch = [[BMKGeoCodeSearch alloc]init];
-    
-    
-    if (self.areas.count>0) {
-        [self.areas removeAllObjects];
-    }
-    
-    for (int i=0; i<appdelegate.areaListArray.count; i++) {
-        [self.areas addObject:[appdelegate.areaListArray objectAtIndex:i] ];
-    }
-    for (int i=0; i<self.classifys.count; i++)
-    {
-        if([appdelegate.menuString isEqualToString:[self.classifys objectAtIndex:i]])
-            
-        {
-            [self.classifys removeObjectAtIndex:i];
-            break;
-        }
-        
-    }
-    for (int i=0; i<self.areas.count; i++)
-    {
-        if([appdelegate.addressDistrite isEqualToString:[self.areas objectAtIndex:i]])
-            
-        {
-            [self.areas removeObjectAtIndex:i];
-            break;
-        }
-        
-    }
-    
-    //数据
-    if (appdelegate.menuString!=nil&&![appdelegate.menuString isEqualToString:@""]) {
-        [self.classifys insertObject:appdelegate.menuString atIndex:0];
-    }
-    if (appdelegate.addressDistrite!=nil&&![appdelegate.addressDistrite isEqualToString:@""]) {
-        [self.areas insertObject:appdelegate.addressDistrite atIndex:0];
-    }
+
     
     
     
-    
-    if (arr != [[NSUserDefaults standardUserDefaults]objectForKey:@"currentEreaList"] || [[NSUserDefaults standardUserDefaults]objectForKey:@"currentEareDic"] != curentEare) {
-        curentEare = [[NSUserDefaults standardUserDefaults]objectForKey:@"currentEareDic"];
-        NSLog(@"getData");
-        [self getData];
-    }
+//    if (arr != [[NSUserDefaults standardUserDefaults]objectForKey:@"currentEreaList"] || [[NSUserDefaults standardUserDefaults]objectForKey:@"currentEareDic"] != curentEare) {
+//        curentEare = [[NSUserDefaults standardUserDefaults]objectForKey:@"currentEareDic"];
+//        NSLog(@"getData");
+//        [self getData];
+//    }
     [_menu selectDefalutIndexPath];
-    //     [self getIcons];
+
+
+
 }
--(void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    [_mapView viewWillDisappear];
-    _mapView.delegate = nil;
-    _locService.delegate = nil;
-    _geocodesearch.delegate = nil;
-    [_locService stopUserLocationService];
-    
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.indexss=1;
-    NSLog(@"viewDidLoad");
+    
+    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    self.address = self.city = appdelegate.city.length==0?@"西安市":appdelegate.city;
+    self.sort_string = @"";
+
+    
     curentEare = [[NSUserDefaults standardUserDefaults]objectForKey:@"currentEareDic"];
     
-    currentCityDic = [[NSUserDefaults standardUserDefaults]objectForKey:@"currentCityDic"] ? [[NSUserDefaults standardUserDefaults]objectForKey:@"currentCityDic"] :[[NSUserDefaults standardUserDefaults]objectForKey:@"locationCityDic"] ;
+    currentCityDic = [[NSUserDefaults standardUserDefaults]objectForKey:@"locationCityDic"] ? [[NSUserDefaults standardUserDefaults]objectForKey:@"locationCityDic"] :[[NSUserDefaults standardUserDefaults]objectForKey:@"currentCityDic"] ;
     
     [self getData];
     
     
-//    [self _initView];
     [self _initTable];
     [self _initFootTab];
     
+    [self storeFilter_getData];
 }
 
 
 -(void)_initFootTab
 {
     // 添加下拉菜单
-    DOPDropDownMenu *menu = [[DOPDropDownMenu alloc] initWithOrigin:CGPointMake(0, 0) andHeight:44];
+    DOPDropDownMenu *menu = [[DOPDropDownMenu alloc] initWithOrigin:CGPointMake(0, 0) andHeight:44 andSuperView:self.view];
     menu.delegate = self;
     menu.dataSource = self;
     menu.isClickHaveItemValid = YES;
@@ -250,61 +178,19 @@
 
 
 
-//创建顶部控件;
-//-(void)_initView
-//{
-//    //    顶部地理位置
-//    UIView *back_v =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 50)];
-//    back_v.backgroundColor = NavBackGroundColor;
-//    [self.view addSubview:back_v];
-//    
-//    
-//    
-//    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-//    NSLog(@"appdelegate.addressInfo%@",appdelegate.addressInfo);
-//    UILabel *GpsLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, SCREENWIDTH, 30)];
-//    GpsLabel.text = appdelegate.addressInfo;
-//    GpsLabel.backgroundColor = NavBackGroundColor;
-//    GpsLabel.textAlignment = NSTextAlignmentCenter;
-//    GpsLabel.font = [UIFont systemFontOfSize:10];
-//    [GpsLabel setTextColor:[UIColor whiteColor]];
-//    [self.view addSubview:GpsLabel];
-//    self.GpsLabel = GpsLabel;
-//    
-//    UIView *Fview = [[UIView alloc]initWithFrame:CGRectMake(0, 50, SCREENWIDTH, 45)];
-//    Fview.backgroundColor = [UIColor whiteColor];
-//    Fview.layer.borderWidth = 1;
-//    Fview.layer.borderColor = [UIColor grayColor].CGColor;
-//    Fview.alpha = 0.3;
-//    [self.view addSubview:Fview];
-//    
-//    LZDButton *backBtn = [LZDButton creatLZDButton];
-//    backBtn.frame = CGRectMake(0, 20, 50, 30);
-//    [backBtn setImage:[UIImage imageNamed:@"返回箭头"] forState:0];
-//    [self.view addSubview:backBtn];
-//    
-//    backBtn.block = ^(LZDButton *btn) {
-//        POP
-//    };
-//
-//    
-//    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 109-60, SCREENWIDTH, 1)];
-//    lineView.backgroundColor = [UIColor grayColor];
-//    lineView.alpha = 0.3;
-//    [self.view addSubview: lineView];
-//    //
-//}
 
 //商户列表
 -(void)_initTable
 {
-    UITableView *shopTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 44, SCREENWIDTH, SCREENHEIGHT-(44-64)) style:UITableViewStylePlain];
+    UITableView *shopTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 44, SCREENWIDTH, SCREENHEIGHT-(44+64)) style:UITableViewStyleGrouped];
     shopTable.delegate = self;
     shopTable.dataSource = self;
     shopTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    shopTable.backgroundColor = RGB(240, 240, 240);
+
     self.shopTabel = shopTable;
     [self.view addSubview:shopTable];
-    //self.shopTabel.bounces = NO;
+
     
     _refreshheader = [SDRefreshHeaderView refreshView];
     [_refreshheader addToScrollView:self.shopTabel];
@@ -315,7 +201,7 @@
         blockSelf.indexss=1;
         
         [blockSelf.data1 removeAllObjects];
-        [blockSelf getAdverListRequestWithIndePath:blockSelf.indexpathSelect];
+        [blockSelf storeFilter_getFilterStores];
     };
     
     
@@ -324,93 +210,15 @@
     
     _refreshFooter.beginRefreshingOperation =^{
         blockSelf.indexss++;
-        [blockSelf postRequestShopWithAddress:blockSelf.ereaString];
+        
+        [blockSelf StoreFilter_dropLoad];
         
     };
     
 }
 
-/**
- *用户位置更新后，会调用此函数
- *@param userLocation 新的用户位置
- */
-- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
-{
-    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
-    [_mapView updateLocationData:userLocation];
-    [_locService stopUserLocationService];
-    
-    
-    CLLocationCoordinate2D pt = (CLLocationCoordinate2D){0, 0};
-    pt = (CLLocationCoordinate2D){userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude};
-    BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
-    reverseGeocodeSearchOption.reverseGeoPoint = pt;
-    BOOL flag = [_geocodesearch reverseGeoCode:reverseGeocodeSearchOption];
-    if(flag)
-    {
-        NSLog(@"检索发送成功");
-    }
-    else
-    {
-        NSLog(@"检索发送失败");
-    }
-}
-
-//反向地理编码
--(void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
-{
-    
-    if (error == 0) {
-        BMKPointAnnotation* item = [[BMKPointAnnotation alloc]init];
-        item.coordinate = result.location;
-        item.title = result.address;
-        [_mapView addAnnotation:item];
-        _mapView.centerCoordinate = result.location;
-        NSString* showmeg;
-        showmeg = [NSString stringWithFormat:@"%@",item.title];
-        self.GpsLabel.text = [NSString stringWithFormat:@"%@%@",@"当前:",showmeg];
-    }
-}
 
 
--(void)postRequestShopWithAddress:(NSString *)address
-{
-    
-    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/search/get",BASEURL];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:[NSString stringWithFormat:@"%d",self.indexss] forKey:@"index"];
-    [params setObject:address forKey:@"eare"];
-    [params setObject:self.classifyString forKey:@"trade"];
-    DebugLog(@"===url=%@\n===paramer==%@",url,params);
-    
-    
-    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
-         NSLog(@"postRequestShop-----%@",result);
-        if ([result isKindOfClass:[NSArray class]]) {
-            if (self.indexss==1) {
-                
-                self.data1=[NSMutableArray arrayWithArray:result];
-                
-            }else{
-                for (int i=0; i<[result count]; i++) {
-                    [self.data1 addObject:result[i]];
-                }
-            }
-            [_refreshheader endRefreshing];
-            [_refreshFooter endRefreshing];
-            
-            [self.shopTabel reloadData];
-        }
-        
-    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [_refreshheader endRefreshing];
-        [_refreshFooter endRefreshing];
-        
-        NSLog(@"%@", error);
-        
-    }];
-    
-}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     // 进入下层入口
@@ -492,7 +300,7 @@
     }else if (column == 1){
         
         return self.dataSourceProvinceArray.count;
-        //        return self.areas.count;
+
     }else {
         return self.sorts.count;
     }
@@ -549,23 +357,14 @@
 - (void)menu:(DOPDropDownMenu *)menu didSelectRowAtIndexPath:(DOPIndexPath *)indexPath
 {
     
-    NSLog(@"currentSelectRowArray----%@",menu.currentSelectRowArray);
-    NSLog(@"点击了 %ld - %ld - %ld 项目",indexPath.column,indexPath.row,indexPath.item);
-    
-    
-    if (indexPath.item >= 0) {
-        self.indexpathSelect =indexPath;
-        
-        
-        [self getAdverListRequestWithIndePath:indexPath];
-        // [self postRequestShop];
-    }else {
+
         
         if (indexPath.column == 0) {
             if([[self.classifys objectAtIndex:indexPath.row] isEqualToString:@"全部分类"]){
                 self.classifyString =@"";
             }else
                 self.classifyString = [self.classifys objectAtIndex:indexPath.row];
+            
         }else if (indexPath.column == 1 ) {
             self.indexpathSelect =indexPath;
             
@@ -574,20 +373,59 @@
             
             [self getcityDataById:m.code AndIndexPath:indexPath];
             
+            if (indexPath.item >= 0) {
+                
+                if (indexPath.row!=0) {
+                    CityModel *m = _dataSourceCityArray[indexPath.item];
+                    
+                    self.address = [NSString stringWithFormat:@"%@%@%@",_city,_ereaString,m.name];
+                }else{
+                    self.address = _city;
+                }
+                
+                [self  storeFilter_getFilterStores];
+
+                
+            }else{
+               
+                if (indexPath.row!=0) {
+                    self.ereaString = m.name;
+                    
+                }
+                
+            }
+            
+        }else if (indexPath.column==2){
+            
+            self.sort_string = _sorts[indexPath.row];
+            
+            
+            [self  storeFilter_getFilterStores];
+
         }
         
         self.indexss=1;
-        NSLog(@"点击了 %@ - %@",self.classifyString,self.ereaString);
+
         
-        [self getAdverListRequestWithIndePath:self.indexpathSelect];
+
         
         
-    }
+   
     
 }
 
 
 //店铺列表的代理方法
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 0.01;
+    
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
@@ -664,12 +502,7 @@
         cell.starView.currentScore=[starsss floatValue];
         
         
-        
-//        NSString *discount =[NSString getTheNoNullStr:[dic objectForKey:@"discount"] andRepalceStr:@""];
-//        
-//        
-//        NSString *giveString =[NSString getTheNoNullStr:[dic objectForKey:@"add"] andRepalceStr:@""];
-//        
+
         NSDictionary *pri_dic = dic[@"pri"];
         
         
@@ -756,18 +589,18 @@
     
     
     
-    arr = [[NSUserDefaults standardUserDefaults]objectForKey:@"currentEreaList"];
+    arr = [[NSUserDefaults standardUserDefaults]objectForKey:@"locationCityEreaList"];
     
     
     
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+//    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     
-    NSString *currentEare = appdelegate.districtString.length>0?appdelegate.districtString:appdelegate.cityChoice;
+//    NSString *currentEare = appdelegate.districtString.length>0?appdelegate.districtString:appdelegate.cityChoice;
     
     
     
     ProvinceModel *MM = [[ProvinceModel alloc]init];
-    [MM setName:@"全城"];
+    [MM setName:_city];
     
     for (int i = 0; i < arr.count; i ++) {
         NSDictionary *dic = arr[i];
@@ -775,14 +608,14 @@
         ProvinceModel *model = [[ProvinceModel alloc] init];
         [model setValuesForKeysWithDictionary:dic];
         //        NSLog(@"%@ * %@", model.fullname, model.id);
-        if ([currentEare isEqualToString:model.name]) {
-            [self.dataSourceProvinceArray insertObject:model atIndex:0];
-            if (i ==0) {
-                [self.dataSourceProvinceArray insertObject:MM atIndex:1];
-                
-            }
-            
-        }else{
+//        if ([currentEare isEqualToString:model.name]) {
+//            [self.dataSourceProvinceArray insertObject:model atIndex:0];
+//            if (i ==0) {
+//                [self.dataSourceProvinceArray insertObject:MM atIndex:1];
+//                
+//            }
+//            
+//        }else{
             [self.dataSourceProvinceArray addObject:model];
             
             if (i ==0) {
@@ -790,7 +623,7 @@
                 
             }
             
-        }
+//        }
         
     }
     
@@ -873,9 +706,9 @@
             [_menu reloadData];
             
             
-            [self getAdverListRequestWithIndePath:self.indexpathSelect];
+
             
-            //            [self performSelector:@selector(setdefaultTitle) withObject:nil afterDelay:0.2];
+
             
         }
         
@@ -891,227 +724,149 @@
     
     
 }
-//-(void)setdefaultTitle{
-//
-//    if ([_menu.dataSource respondsToSelector:@selector(menu:numberOfItemsInRow:column:)]) {
-//
-//        NSLog(@"setdefaultTitle======%ld===%ld===%ld",self.indexpathSelect.column,self.indexpathSelect.row,self.indexpathSelect.item);
-//
-//        [_menu selectIndexPath:self.indexpathSelect];
-//
-//    }
-//
-//
-//}
-//获取广告请求
 
--(void)getAdverListRequestWithIndePath:(DOPIndexPath*)indexPath{
+
+//一进入页面获取数据
+-(void)storeFilter_getData{
+    
+    NSString *url = [NSString stringWithFormat:@"%@UserType/StoreFilter/getData",BASEURL];
     
     
+    NSMutableDictionary*paramer = [NSMutableDictionary dictionary];
+    [paramer setValue:_icon_dic[@"text"] forKey:@"trade"];
     
-    //    ProvinceModel*provinceM =self.dataSourceProvinceArray[indexPath.row];
-    ProvinceModel*provinceM;
-    CityModel *cityM;
-    if (_dataSourceProvinceArray.count!=0) {
-        provinceM =self.dataSourceProvinceArray[indexPath.row];
-        self.ereaString = provinceM.name;
+    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        
+        self.data1 = [result[@"stores"] mutableCopy];
+        
+        [self.shopTabel reloadData];
+        
+        
+        
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+ 
+    
+    
+}
+
+
+
+
+//筛选数据
+-(void)storeFilter_getFilterStores{
+    
+    [self showHudInView:self.view hint:@"加载中..."];
+    NSString *url = [NSString stringWithFormat:@"%@UserType/StoreFilter/getFilterStores",BASEURL];
+    
+    AppDelegate*app = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    NSMutableDictionary*paramer = [NSMutableDictionary dictionary];
+    [paramer setValue:_icon_dic[@"text"] forKey:@"trade"];
+    [paramer setValue:_address forKey:@"location"];
+    
+    [paramer setValue:[NSString stringWithFormat:@"%lf",app.userLocation.location.coordinate.latitude] forKey:@"lat"];
+    
+    [paramer setValue:[NSString stringWithFormat:@"%lf",app.userLocation.location.coordinate.longitude] forKey:@"lng"];
+    
+    if ([_sort_string isEqualToString:_sorts[1]]) {
+        [paramer setValue:@"best" forKey:@"pri"];
+        
+    }else if ([_sort_string isEqualToString:_sorts[2]]){
+        [paramer setValue:@"near" forKey:@"pri"];
+        
+    }else{
+        [paramer setValue:@"" forKey:@"pri"];
         
     }
-    if (_dataSourceCityArray.count!=0 && indexPath.item>=0) {
+    
+    NSLog(@"getFilterStores==%@",paramer);
+    
+    
+    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        [_refreshheader endRefreshing];
         
-        cityM = self.dataSourceCityArray[indexPath.item];
-        self.streetString = [NSString getTheNoNullStr:cityM.name andRepalceStr:@""];
+        [self hideHud];
         
-    }
-    //    CityModel *cityM = self.dataSourceCityArray[indexPath.item];
-    
-    
-    
-    NSLog(@"----%ld==%ld==%ld",(long)indexPath.column,(long)indexPath.row,(long)indexPath.item);
-    
-    NSString *address = [NSString stringWithFormat:@"%@%@%@",currentCityDic[@"name"],[NSString getTheNoNullStr:provinceM.name andRepalceStr:@""],[NSString getTheNoNullStr:cityM.name andRepalceStr:@""]];
-    
-    
-    NSLog(@"=componentsSeparatedByString===%@==+%@",address,[address componentsSeparatedByString:@"全城"]);
-    
-    if ([address containsString:@"全城"]) {
-        
-        address = [[address componentsSeparatedByString:@"全城"] firstObject];
+        NSLog(@"getFilterStores==%@",result);
         
         
+        self.data1 = [result[@"stores"] mutableCopy];
         
-    }
-    
-    self.ereaString = address;
-    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/search/multiGet",BASEURL];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
-    [params setObject:address forKey:@"eare"];
-    [params setObject:self.classifyString forKey:@"trade"];
-    DebugLog(@"===url=%@\n===paramer==%@",url,params);
-    
-    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
-                      NSLog(@"getAdverListRequestWithIndePath-----%@",result);
-        if ([result isKindOfClass:[NSDictionary class]]) {
-            
-            
-            NSArray *ad_A = result[@"advert"];
-            
-            // NSArray *shop_A = result[@"merchant"];
-            
-            [self.adverList removeAllObjects];
-            
-            
-            for (NSDictionary *dic in ad_A) {
-                [self.adverList addObject:dic];
-                
-                
-            }
-            //            for (NSDictionary *dic in shop_A) {
-            //                [self.adverList addObject:dic];
-            //
-            //
-            //            }
-            
-            
-            
-            [self postRequestShopWithAddress:address];
-            
-            [_refreshheader endRefreshing];
-            [_refreshFooter endRefreshing];
-            
-            [self.shopTabel reloadData];
-        }
+        [self.shopTabel reloadData];
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         [_refreshheader endRefreshing];
-        [_refreshFooter endRefreshing];
         
-        NSLog(@"%@", error);
+        [self hideHud];
         
     }];
     
     
     
-    
 }
 
 
-//BaiduMap释放
-- (void)dealloc {
-    if (_geocodesearch != nil) {
-        _geocodesearch = nil;
+//下拉加载数据
+-(void)StoreFilter_dropLoad{
+    [self showHudInView:self.view hint:@"加载中..."];
+    
+    NSString *url = [NSString stringWithFormat:@"%@UserType/StoreFilter/dropLoad",BASEURL];
+    
+    
+    AppDelegate*app = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    NSMutableDictionary*paramer = [NSMutableDictionary dictionary];
+    [paramer setValue:_icon_dic[@"text"] forKey:@"trade"];
+    [paramer setValue:_address forKey:@"location"];
+    
+    [paramer setValue:[NSString stringWithFormat:@"%lf",app.userLocation.location.coordinate.latitude] forKey:@"lat"];
+    
+    [paramer setValue:[NSString stringWithFormat:@"%lf",app.userLocation.location.coordinate.longitude] forKey:@"lng"];
+    
+    if ([_sort_string isEqualToString:_sorts[1]]) {
+        [paramer setValue:@"best" forKey:@"pri"];
+        
+    }else if ([_sort_string isEqualToString:_sorts[2]]){
+        [paramer setValue:@"near" forKey:@"pri"];
+        
+    }else{
+        [paramer setValue:@"" forKey:@"pri"];
+        
     }
-    if (_mapView) {
-        _mapView = nil;
-    }
-}
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
     
-    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    appdelegate.menuString = self.classifyString;
-    appdelegate.addressDistrite = @"";
+    [paramer setValue:[NSString stringWithFormat:@"%d",_indexss] forKey:@"index"];
+    NSLog(@"dropLoad==%@",paramer);
+    
+    
+    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        [_refreshFooter endRefreshing];
+        
+        [self hideHud];
+        
+        NSLog(@"dropLoad==%@",result);
+        [self.data1 addObjectsFromArray:result[@"stores"]];
+        
+        
+        
+        
+        
+        
+        [self.shopTabel reloadData];
+        
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [_refreshFooter endRefreshing];
+        
+        [self hideHud];
+        
+    }];
+    
+    
 }
 
 
-//-(void)getIcons{
-//    
-//    NSString *url =[[NSString alloc]initWithFormat:@"%@Extra/Source/tradeIconGet",BASEURL];
-//    [KKRequestDataService requestWithURL:url params:nil httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-//     {
-//         NSLog(@"%@",result);
-//         self.classifys=[[NSMutableArray alloc]initWithCapacity:0];
-//         for (NSDictionary *dic in result) {
-//             if (![dic[@"text"] isEqualToString:@"全部"]) {
-//                 [self.classifys addObject:dic[@"text"]];
-//             }
-//         }
-//         [self.classifys insertObject:@"全部分类" atIndex:0];
-//         [_menu reloadData];
-//         
-//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-//         
-//         NSLog(@"%@", error);
-//     }];
-//}
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    if (section==0) {
-//        return bottomView.bottom+0.01;
-//    }else{
-        return 0.01;
-//    }
-    
-}
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.01;
-}
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    if (section==0) {
-//        self.headerView=[self creatHeadView];
-//        return self.headerView;
-//    }else{
-//        return nil;
-//    }
-//    
-//}
-//-(UIView *)creatHeadView{
-//    UIView *bgView=[[UIView alloc]init];
-//    bgView.backgroundColor=RGB(240, 240, 240);
-//    
-//    UIView *topView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, (SCREENWIDTH-24)*95/350+24)];
-//    topView.backgroundColor=[UIColor whiteColor];
-//    [bgView addSubview:topView];
-//    
-//    
-//    
-//    bottomView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, topView.bottom+10, SCREENWIDTH, 90)];
-//    bottomView.backgroundColor=[UIColor whiteColor];
-//    bottomView.showsHorizontalScrollIndicator=NO;
-//    [bgView addSubview:bottomView];
-//    
-//    for (int i=0; i<3; i++) {
-//        UIImageView *placeImageView=[[UIImageView alloc]initWithFrame:CGRectMake(10+i%3*(145+10), 10, 145, 70)];
-//        placeImageView.image=[UIImage imageNamed:@"icon3.png"];
-//        [bottomView addSubview:placeImageView];
-//        bottomView.contentSize=CGSizeMake(placeImageView.right+10, 0);
-//    }
-//    [self.adverImages removeAllObjects];
-//    [self.adverImages addObject:@"新店入住banner2 拷贝.jpg"];
-//    [self.adverImages addObject:@"新店入住banner1 拷贝.jpg"];
-//    
-//    if (_adverImages.count !=0) {
-//        cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(12, 12, SCREENWIDTH-24, (SCREENWIDTH-24)*95/350) delegate:self placeholderImage:[UIImage imageNamed:@""]];
-//        cycleScrollView2.imageURLStringsGroup = _adverImages;
-//        cycleScrollView2.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-//        //           cycleScrollView2.titlesGroup = self.titles;
-//        cycleScrollView2.currentPageDotColor = [UIColor whiteColor]; // 自定义分页控件小圆标颜色
-//        cycleScrollView2.hidesForSinglePage = YES;
-//        [topView addSubview:cycleScrollView2];
-//        
-//    }else{
-//        
-//        UIImageView *imgView = [[UIImageView alloc]initWithFrame:topView.frame];
-//        imgView.image = [UIImage imageNamed:@"首页顶部海报"];
-//        [topView addSubview:imgView];
-//    }
-//    
-//    
-//    
-//    
-//    return bgView;
-//}
-//-(NSMutableArray*)adverImages{
-//    if (!_adverImages) {
-//        _adverImages = [NSMutableArray array];
-//    }
-//    return _adverImages;
-//}
-//-(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-//    
-//    
-//}
+
 - (CGFloat)calculateRowWidth:(NSString *)string {
     NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:10]};  //指定字号
     CGRect rect = [string boundingRectWithSize:CGSizeMake(0, 12)/*计算宽度时要确定高度*/ options:NSStringDrawingUsesLineFragmentOrigin |
