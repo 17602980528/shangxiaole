@@ -183,7 +183,7 @@
     dropDownMenu.delegate = self;
     dropDownMenu.dataSource = self;
     [bottomV addSubview:dropDownMenu];
-    [self.dropDownMenu selectDefalutIndexPath];
+//    [self.dropDownMenu selectDefalutIndexPath];
 
     self.dropDownMenu = dropDownMenu;
 

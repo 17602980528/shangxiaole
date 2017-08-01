@@ -53,7 +53,8 @@
     [baiduMapManager startUserLocationService];
     baiduMapManager.userAddressBlock = ^(BMKReverseGeoCodeResult *result) {
     
-        if ([self.addressLab.text isEqualToString:result.addressDetail.district]) {
+        NSLog(@"----%@",result.address);
+        if (![self.addressLab.text isEqualToString:result.addressDetail.district]) {
             
             self.addressLab.text =result.addressDetail.district;
             

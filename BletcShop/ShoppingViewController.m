@@ -33,7 +33,6 @@
     
     NSArray *arr;
     
-    NSDictionary *curentEare;
     
     NSDictionary *currentCityDic;
     SDCycleScrollView *cycleScrollView2;
@@ -43,7 +42,7 @@
 }
 @property (nonatomic,copy)NSString *classifyString;
 @property (nonatomic,copy)NSString *ereaString;
-@property (nonatomic,copy)NSString *streetString;
+
 @property (nonatomic,copy)NSString *city;
 
 @property (nonatomic,copy)NSString *address;
@@ -51,7 +50,6 @@
 
 @property(nonatomic)int indexss;
 
-@property(nonatomic,strong)NSMutableArray* adverImages;
 @property(nonatomic,strong)UIView *headerView;//头view
 @property(nonatomic,strong)DOPIndexPath *indexpathSelect;
 
@@ -67,7 +65,6 @@
 @property (nonatomic, strong) NSMutableArray *classifys;// 分类数组
 
 
-@property (nonatomic, strong) NSMutableArray *adverList;// 上面的广告数组
 
 
 @end
@@ -76,12 +73,7 @@
 
 
 
--(NSMutableArray *)adverList{
-    if (!_adverList) {
-        _adverList = [NSMutableArray array];
-    }
-    return _adverList;
-}
+
 -(NSMutableArray *)classifys{
     if (!_classifys) {
         
@@ -94,6 +86,7 @@
             [_classifys addObject:dic[@"text"]];
         }
         
+        [_classifys insertObject:_icon_dic[@"text"] atIndex:0];
         
     }
     return _classifys;
@@ -126,12 +119,8 @@
     
     
     
-//    if (arr != [[NSUserDefaults standardUserDefaults]objectForKey:@"currentEreaList"] || [[NSUserDefaults standardUserDefaults]objectForKey:@"currentEareDic"] != curentEare) {
-//        curentEare = [[NSUserDefaults standardUserDefaults]objectForKey:@"currentEareDic"];
-//        NSLog(@"getData");
-//        [self getData];
-//    }
-    [_menu selectDefalutIndexPath];
+
+//    [_menu selectDefalutIndexPath];
 
 
 
@@ -145,9 +134,9 @@
     
     self.address = self.city = appdelegate.city.length==0?@"西安市":appdelegate.city;
     self.sort_string = @"";
+    self.classifyString =_icon_dic[@"text"];
 
     
-    curentEare = [[NSUserDefaults standardUserDefaults]objectForKey:@"currentEareDic"];
     
     currentCityDic = [[NSUserDefaults standardUserDefaults]objectForKey:@"locationCityDic"] ? [[NSUserDefaults standardUserDefaults]objectForKey:@"locationCityDic"] :[[NSUserDefaults standardUserDefaults]objectForKey:@"currentCityDic"] ;
     
@@ -172,7 +161,7 @@
     _menu = menu;
     
     // 创建menu 第一次显示 不会调用点击代理，可以用这个手动调用
-    [menu selectDefalutIndexPath];
+//    [menu selectDefalutIndexPath];
     
 }
 
@@ -222,25 +211,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     // 进入下层入口
-    NSMutableDictionary *dic;
+    NSMutableDictionary *dic = [self.data1 objectAtIndex:indexPath.row];
     
-    if (indexPath.section==0) {
-        dic = [[self.adverList objectAtIndex:indexPath.row][@"info"] firstObject];
-        NSDictionary *para = [self.adverList objectAtIndex:indexPath.row][@"para"];
-        
-        if (para) {
-            if ([para[@"pay_type"] isEqualToString:@"click"]) {
-                
-                [self postRemainClickCount:para];
-                
-            }
-            
-        }
-        
-    }else{
-        dic = [self.data1 objectAtIndex:indexPath.row];
-        
-    }
     
     NewShopDetailVC *vc= [self startSellerView:dic];
     vc.videoID=@"";
@@ -264,27 +236,27 @@
 }
 
 //点击广告处理
--(void)postRemainClickCount:(NSDictionary *)dic{
-    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/advert/click",BASEURL];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    //获取商家手机号
-    [params setObject:dic[@"muid"] forKey:@"muid"];
-    [params setObject:@"near" forKey:@"advert_type"];
-    [params setObject:[getUUID getUUID] forKey:@"local_id"];
-    [params setObject:dic[@"address"] forKey:@"advert_id"];
-    [params setObject:dic[@"position"] forKey:@"advert_position"];
-    NSLog(@"%@",params);
-    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
-     {
-         NSLog(@"result==%@",result);
-         
-         
-     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-         NSLog(@"%@", error);
-         
-     }];
-    
-}
+//-(void)postRemainClickCount:(NSDictionary *)dic{
+//    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/advert/click",BASEURL];
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    //获取商家手机号
+//    [params setObject:dic[@"muid"] forKey:@"muid"];
+//    [params setObject:@"near" forKey:@"advert_type"];
+//    [params setObject:[getUUID getUUID] forKey:@"local_id"];
+//    [params setObject:dic[@"address"] forKey:@"advert_id"];
+//    [params setObject:dic[@"position"] forKey:@"advert_position"];
+//    NSLog(@"%@",params);
+//    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
+//     {
+//         NSLog(@"result==%@",result);
+//         
+//         
+//     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//         NSLog(@"%@", error);
+//         
+//     }];
+//    
+//}
 
 
 //下拉列表的代理方法
@@ -365,6 +337,9 @@
             }else
                 self.classifyString = [self.classifys objectAtIndex:indexPath.row];
             
+            [self  storeFilter_getFilterStores];
+
+            
         }else if (indexPath.column == 1 ) {
             self.indexpathSelect =indexPath;
             
@@ -427,14 +402,12 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    if (section==0) {
-        return _adverList.count;
-    }else
+  
         return self.data1.count;
     
 }
@@ -455,23 +428,11 @@
         
     }
     
-    NSDictionary *dic ;
-    if (indexPath.section==0) {
-        
-        if (self.adverList.count>0) {
-            dic=[[self.adverList objectAtIndex:indexPath.row][@"info"] firstObject];
-        }
-        
-    }else{
+
         
         if (self.data1.count>0) {
-            dic=[self.data1 objectAtIndex:indexPath.row];
-        }
-        
-    }
-    
-    if (dic) {
-        
+            NSDictionary *dic=[self.data1 objectAtIndex:indexPath.row];
+           
         
         //店铺名
         cell.nameLabel.text=[dic objectForKey:@"store"];
@@ -567,13 +528,13 @@
             }
         }
 
-        
+            cell.tradeLable.text=dic[@"trade"];
+            CGRect trade_frame = cell.tradeLable.frame;
+            trade_frame.size.width =[self calculateRowWidth: cell.tradeLable.text];
+            cell.tradeLable.frame = trade_frame;
         
     }
-    cell.tradeLable.text=dic[@"trade"];
-    CGRect trade_frame = cell.tradeLable.frame;
-    trade_frame.size.width =[self calculateRowWidth: cell.tradeLable.text];
-    cell.tradeLable.frame = trade_frame;
+    
     
     return cell;
     
@@ -763,7 +724,7 @@
     AppDelegate*app = (AppDelegate*)[UIApplication sharedApplication].delegate;
     
     NSMutableDictionary*paramer = [NSMutableDictionary dictionary];
-    [paramer setValue:_icon_dic[@"text"] forKey:@"trade"];
+    [paramer setValue:_classifyString forKey:@"trade"];
     [paramer setValue:_address forKey:@"location"];
     
     [paramer setValue:[NSString stringWithFormat:@"%lf",app.userLocation.location.coordinate.latitude] forKey:@"lat"];
