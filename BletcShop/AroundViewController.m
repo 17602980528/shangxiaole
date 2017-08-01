@@ -19,7 +19,7 @@
 #import "ChouJiangVC.h"
 
 #import "BaiduMapManager.h"
-
+#import "CustomSearchVC.h"
 @interface AroundViewController ()<UITableViewDelegate,UITableViewDataSource,BMKLocationServiceDelegate>
 {
     LZDButton *oldBtn;
@@ -80,7 +80,7 @@
 - (IBAction)searchClcik:(UITapGestureRecognizer *)sender {
     
     NSLog(@"--searchClick--");
-    PUSH(SearchTableViewController)
+    PUSH(CustomSearchVC)
 
 }
 - (void)viewDidLoad {
