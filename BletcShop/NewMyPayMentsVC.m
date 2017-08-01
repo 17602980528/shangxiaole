@@ -50,6 +50,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+
+    LZDButton *back =[LZDButton creatLZDButton];
+    back.frame = CGRectMake(13, 31, 10, 20);
+    [back setImage:[UIImage imageNamed:@"返回箭头"] forState:0];
+    back.block = ^(LZDButton *sender) {
+    
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    };
+    
+    
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:back];
+    
     _apriseOrPublish=0;
     _tableView.estimatedRowHeight=200;
     _tableView.rowHeight=UITableViewAutomaticDimension;

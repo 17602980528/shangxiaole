@@ -35,7 +35,7 @@
     self.navigationItem.title = @"交易结果";
     
     UIButton *back =[UIButton buttonWithType:UIButtonTypeCustom];
-    back.frame = CGRectMake(9, 30, 12, 20);
+    back.frame = CGRectMake(13, 31, 10, 20);
     [back setImage:[UIImage imageNamed:@"返回箭头"] forState:0];
     [back addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     
