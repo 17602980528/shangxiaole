@@ -12,7 +12,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BeautyIndustryVC">
             <connections>
                 <outlet property="navTitleLab" destination="LKb-8K-a0R" id="Elw-yv-vJc"/>
+                <outlet property="nav_topView" destination="zBw-LR-TEc" id="VpQ-wp-EHE"/>
                 <outlet property="table_view" destination="UbR-Tb-Ggh" id="Oam-w3-Omv"/>
+                <outlet property="tabview_top" destination="nKI-fd-chW" id="hv0-T0-mfg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,6 +23,14 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="UbR-Tb-Ggh">
+                    <rect key="frame" x="0.0" y="65" width="375" height="602"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="27Y-fm-Adn"/>
+                        <outlet property="delegate" destination="-1" id="MEK-2I-BEU"/>
+                    </connections>
+                </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zBw-LR-TEc">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <subviews>
@@ -115,26 +125,18 @@
                         <constraint firstAttribute="height" constant="64" id="zEg-D8-h7j"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="UbR-Tb-Ggh">
-                    <rect key="frame" x="0.0" y="65" width="375" height="602"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="27Y-fm-Adn"/>
-                        <outlet property="delegate" destination="-1" id="MEK-2I-BEU"/>
-                    </connections>
-                </tableView>
             </subviews>
             <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="UbR-Tb-Ggh" secondAttribute="trailing" id="2il-Sv-lie"/>
                 <constraint firstItem="zBw-LR-TEc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7KF-Mn-7ql"/>
-                <constraint firstItem="UbR-Tb-Ggh" firstAttribute="top" secondItem="zBw-LR-TEc" secondAttribute="bottom" constant="1" id="CiY-jg-fy9"/>
                 <constraint firstAttribute="trailing" secondItem="zBw-LR-TEc" secondAttribute="trailing" id="VHA-R3-Pq9"/>
                 <constraint firstItem="UbR-Tb-Ggh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kc1-qd-TdH"/>
                 <constraint firstAttribute="bottom" secondItem="UbR-Tb-Ggh" secondAttribute="bottom" id="lZ1-dB-Kk0"/>
+                <constraint firstItem="UbR-Tb-Ggh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="nKI-fd-chW"/>
                 <constraint firstItem="zBw-LR-TEc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vF0-cT-qVg"/>
             </constraints>
-            <point key="canvasLocation" x="-3" y="-396"/>
+            <point key="canvasLocation" x="-300" y="-291"/>
         </view>
     </objects>
     <resources>

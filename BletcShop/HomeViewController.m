@@ -1008,7 +1008,7 @@
     [paramer setValue:[NSString stringWithFormat:@"%lf",appdelegate.userLocation.location.coordinate.longitude] forKey:@"lng"];
 
     [_refreshheader endRefreshing];
-    [self showHudInView:self.view hint:@"加载中..."];
+//    [self showHudInView:self.view hint:@"加载中..."];
     NSLog(@"-----%@",paramer);
     
     [KKRequestDataService requestWithURL:urls params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {

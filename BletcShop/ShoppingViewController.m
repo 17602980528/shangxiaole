@@ -753,8 +753,12 @@
         
         self.data1 = [result[@"stores"] mutableCopy];
         
-        [self initNoDataView];
-
+        if (_data1.count==0) {
+            
+            
+            [self initNoDataView];
+            
+        }
         [self.shopTabel reloadData];
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
