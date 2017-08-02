@@ -91,6 +91,8 @@
 		184C72091EC305000065EE65 /* ChangeLoginOrPayVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184C72071EC305000065EE65 /* ChangeLoginOrPayVC.xib */; };
 		184C720E1EC310CA0065EE65 /* ChangePayPassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C720D1EC310CA0065EE65 /* ChangePayPassVC.m */; };
 		184C72131EC31A770065EE65 /* ChangePayPassLastVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C72121EC31A770065EE65 /* ChangePayPassLastVC.m */; };
+		184CB0B31F31B33F00180927 /* NewUserAccessCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CB0B11F31B33F00180927 /* NewUserAccessCodeVC.m */; };
+		184CB0B41F31B33F00180927 /* NewUserAccessCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184CB0B21F31B33F00180927 /* NewUserAccessCodeVC.xib */; };
 		18518D571E7945A000067D95 /* s_money_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 18518D541E7945A000067D95 /* s_money_n.png */; };
 		18518D581E7945A000067D95 /* s_money_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18518D551E7945A000067D95 /* s_money_n@2x.png */; };
 		18518D591E7945A000067D95 /* s_money_n@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18518D561E7945A000067D95 /* s_money_n@3x.png */; };
@@ -266,8 +268,6 @@
 		18F50E061D1E365800811CD1 /* -2-02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18F50DEC1D1E365800811CD1 /* -2-02.jpg */; };
 		18F50E071D1E365800811CD1 /* -2-03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18F50DED1D1E365800811CD1 /* -2-03.jpg */; };
 		18F6C16C1DAB7D50004E6FCA /* 1234567890.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18F6C16B1DAB7D50004E6FCA /* 1234567890.jpg */; };
-		18FA58D21EEA769C00F458F2 /* NewUserAccessCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FA58CA1EEA769C00F458F2 /* NewUserAccessCodeVC.m */; };
-		18FA58D31EEA769C00F458F2 /* NewUserAccessCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FA58CB1EEA769C00F458F2 /* NewUserAccessCodeVC.xib */; };
 		18FA58D41EEA769C00F458F2 /* NewUserRegistVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FA58CD1EEA769C00F458F2 /* NewUserRegistVC.m */; };
 		18FA58D51EEA769C00F458F2 /* NewUserRegistVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FA58CE1EEA769C00F458F2 /* NewUserRegistVC.xib */; };
 		18FA58D61EEA769C00F458F2 /* NewUserSetPassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FA58D01EEA769C00F458F2 /* NewUserSetPassVC.m */; };
@@ -1224,6 +1224,9 @@
 		184C720D1EC310CA0065EE65 /* ChangePayPassVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePayPassVC.m; sourceTree = "<group>"; };
 		184C72111EC31A770065EE65 /* ChangePayPassLastVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePayPassLastVC.h; sourceTree = "<group>"; };
 		184C72121EC31A770065EE65 /* ChangePayPassLastVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePayPassLastVC.m; sourceTree = "<group>"; };
+		184CB0B01F31B33F00180927 /* NewUserAccessCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserAccessCodeVC.h; sourceTree = "<group>"; };
+		184CB0B11F31B33F00180927 /* NewUserAccessCodeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserAccessCodeVC.m; sourceTree = "<group>"; };
+		184CB0B21F31B33F00180927 /* NewUserAccessCodeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserAccessCodeVC.xib; sourceTree = "<group>"; };
 		18518D541E7945A000067D95 /* s_money_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s_money_n.png; sourceTree = "<group>"; };
 		18518D551E7945A000067D95 /* s_money_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "s_money_n@2x.png"; sourceTree = "<group>"; };
 		18518D561E7945A000067D95 /* s_money_n@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "s_money_n@3x.png"; sourceTree = "<group>"; };
@@ -1444,9 +1447,6 @@
 		18F50DEC1D1E365800811CD1 /* -2-02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "-2-02.jpg"; sourceTree = "<group>"; };
 		18F50DED1D1E365800811CD1 /* -2-03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "-2-03.jpg"; sourceTree = "<group>"; };
 		18F6C16B1DAB7D50004E6FCA /* 1234567890.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1234567890.jpg; path = ../BletcShop/1234567890.jpg; sourceTree = "<group>"; };
-		18FA58C91EEA769C00F458F2 /* NewUserAccessCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserAccessCodeVC.h; sourceTree = "<group>"; };
-		18FA58CA1EEA769C00F458F2 /* NewUserAccessCodeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserAccessCodeVC.m; sourceTree = "<group>"; };
-		18FA58CB1EEA769C00F458F2 /* NewUserAccessCodeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserAccessCodeVC.xib; sourceTree = "<group>"; };
 		18FA58CC1EEA769C00F458F2 /* NewUserRegistVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserRegistVC.h; sourceTree = "<group>"; };
 		18FA58CD1EEA769C00F458F2 /* NewUserRegistVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserRegistVC.m; sourceTree = "<group>"; };
 		18FA58CE1EEA769C00F458F2 /* NewUserRegistVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserRegistVC.xib; sourceTree = "<group>"; };
@@ -4408,9 +4408,9 @@
 				18FA58CC1EEA769C00F458F2 /* NewUserRegistVC.h */,
 				18FA58CD1EEA769C00F458F2 /* NewUserRegistVC.m */,
 				18FA58CE1EEA769C00F458F2 /* NewUserRegistVC.xib */,
-				18FA58C91EEA769C00F458F2 /* NewUserAccessCodeVC.h */,
-				18FA58CA1EEA769C00F458F2 /* NewUserAccessCodeVC.m */,
-				18FA58CB1EEA769C00F458F2 /* NewUserAccessCodeVC.xib */,
+				184CB0B01F31B33F00180927 /* NewUserAccessCodeVC.h */,
+				184CB0B11F31B33F00180927 /* NewUserAccessCodeVC.m */,
+				184CB0B21F31B33F00180927 /* NewUserAccessCodeVC.xib */,
 				18FA58CF1EEA769C00F458F2 /* NewUserSetPassVC.h */,
 				18FA58D01EEA769C00F458F2 /* NewUserSetPassVC.m */,
 				18FA58D11EEA769C00F458F2 /* NewUserSetPassVC.xib */,
@@ -6246,7 +6246,6 @@
 				D9FF0D8F1D53304C00443312 /* 图标-01new.png in Resources */,
 				D95869341E4D9C9600E91A47 /* ResetPhoneViewController.xib in Resources */,
 				1883724A1F29876D0076D2D8 /* ComplainProcessNormalVC.xib in Resources */,
-				18FA58D31EEA769C00F458F2 /* NewUserAccessCodeVC.xib in Resources */,
 				D93027E11CFEB641007447D2 /* star_selected.png in Resources */,
 				D95BAE531D542FD500ED0CDC /* award_09.png in Resources */,
 				1CB53C1A1C573BA7002B6CC1 /* CardVipCell.xib in Resources */,
@@ -6583,6 +6582,7 @@
 				D9AA10CE1F04914F00F7EDE8 /* MealAndExpCardManageVC.xib in Resources */,
 				18148E5D1F16237B001C86AC /* NewAppriseVC.xib in Resources */,
 				1CF6E4801C61E4350001159C /* guanggao@2x.png in Resources */,
+				184CB0B41F31B33F00180927 /* NewUserAccessCodeVC.xib in Resources */,
 				D986A1C81DE57849007B798B /* PaySuccessVc.xib in Resources */,
 				D98E5C211E51525E009D56BF /* SRVideoPlayer.bundle in Resources */,
 				D92ACE081F0F341F00858727 /* ShopDetailCouponsCell.xib in Resources */,
@@ -6725,7 +6725,6 @@
 				18EDCF701D46039D004C40B7 /* NSString+Addition.m in Sources */,
 				D986A1C71DE57849007B798B /* PaySuccessVc.m in Sources */,
 				D95A87711E728AE000BDAC75 /* JFCityViewController.m in Sources */,
-				18FA58D21EEA769C00F458F2 /* NewUserAccessCodeVC.m in Sources */,
 				D93BE8671CFD6B6300000E0D /* FavorateViewController.m in Sources */,
 				D99760F41E695CFD008E21FE /* CityModel.m in Sources */,
 				18148E6C1F173C83001C86AC /* NewCardBuyTableViewCell.m in Sources */,
@@ -7103,6 +7102,7 @@
 				1C07697C1C7C324400F3D29B /* LandingController.m in Sources */,
 				D9B3A4A31D73D6A900F3F27E /* LZDContentView.m in Sources */,
 				D971FABB1E2DE82A00C5387C /* CardMarketSearchVC.m in Sources */,
+				184CB0B31F31B33F00180927 /* NewUserAccessCodeVC.m in Sources */,
 				D9B3A5BF1D74255700F3F27E /* PSTCollectionViewData.m in Sources */,
 				D958AD641E654CF200B0776F /* JHChart.m in Sources */,
 				D987872E1E272A3200C7A828 /* ComplaintDetailVC.m in Sources */,
