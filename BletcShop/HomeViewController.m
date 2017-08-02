@@ -1559,10 +1559,15 @@
 - (void)currentLocation:(NSDictionary *)locationDictionary {
     NSLog(@"定位成功------%@",locationDictionary);
 
-    [self initTopView];
-    
-    [self getIcons:@""];
+    if (![dingweiBtn.titleLabel.text isEqualToString:locationDictionary[@"SubLocality"]]) {
+        
+        [self initTopView];
+        
+        
+        [self getIcons:@""];
 
+    }
+   
     NSString *city = [locationDictionary valueForKey:@"City"];
     //    if (![_resultLabel.text isEqualToString:city]) {
     //        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"您定位到%@，确定切换城市吗？",city] preferredStyle:UIAlertControllerStyleAlert];
