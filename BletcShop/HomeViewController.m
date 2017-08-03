@@ -895,7 +895,7 @@
        
         
         UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        button1.frame = CGRectMake(i%2*((SCREENWIDTH-1)/2+1), 10 +i/2*(81*LZDScale+1), (SCREENWIDTH-1)/2, 81*LZDScale);
+        button1.frame = CGRectMake(i%2*((SCREENWIDTH-1)/2+1), 10 +i/2*(101*LZDScale+1), (SCREENWIDTH-1)/2, 101*LZDScale);
         button1.backgroundColor = [UIColor whiteColor];
         [button1 addTarget:self action:@selector(advertiseClick:) forControlEvents:UIControlEventTouchUpInside];
         button1.tag=i;
@@ -905,13 +905,13 @@
         
         UILabel *lab1_2 = [[UILabel alloc]initWithFrame:CGRectMake(13, (button1.height-12)/2, button1.width/2, 12)];
         lab1_2.text = @"优惠停不下来";
-        lab1_2.font = [UIFont systemFontOfSize:12];
+        lab1_2.font = [UIFont systemFontOfSize:10];
         lab1_2.textColor = RGB(119,119,119);
         lab1_2.textAlignment = NSTextAlignmentLeft;
         [button1 addSubview:lab1_2];
         
         
-        UILabel *lab1_1 = [[UILabel alloc]initWithFrame:CGRectMake(13, lab1_2.top-11-14, button1.width/2, 14)];
+        UILabel *lab1_1 = [[UILabel alloc]initWithFrame:CGRectMake(13, 20, button1.width/2-13, 14)];
         lab1_1.text = @"新店入住";
         lab1_1.font = [UIFont systemFontOfSize:14];
         lab1_1.textColor = RGB(51,51,51);
@@ -922,7 +922,7 @@
         
         NSArray *arr = @[@"NEW",@"优惠",@"活动",@"VIP"];
 
-        UILabel *lab1_3 = [[UILabel alloc]initWithFrame:CGRectMake(13, lab1_2.bottom+11, button1.width/2, 13)];
+        UILabel *lab1_3 = [[UILabel alloc]initWithFrame:CGRectMake(13, button1.height-13-23, button1.width/2, 13)];
         lab1_3.text = arr[i];
         lab1_3.font = [UIFont systemFontOfSize:10];
         lab1_3.textColor = RGB(226,102,102);
@@ -945,7 +945,6 @@
         img_1.contentMode = UIViewContentModeScaleAspectFit;
         [button1 addSubview:img_1];
         
-        
        
         
         NSDictionary *dic ;
@@ -964,7 +963,7 @@
     
     //长条广告
     _longAdvertise_btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _longAdvertise_btn.frame = CGRectMake(0, (81*LZDScale+1)*2+20, SCREENWIDTH, 76);
+    _longAdvertise_btn.frame = CGRectMake(0, (101*LZDScale+1)*2+20, SCREENWIDTH, 76);
 //    _longAdvertise_btn.backgroundColor = [UIColor orangeColor];
     
     if (self.longAdvertise_dic) {

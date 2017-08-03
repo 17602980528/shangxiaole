@@ -108,7 +108,7 @@
 //    [self addSubview:starLabel];
     
     //距离
-    UILabel *distanceLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 44, SCREENWIDTH-12, 12)];
+    UILabel *distanceLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, SCREENWIDTH-12, 12)];
     distanceLabel.textColor = RGB(102,102,102);
     distanceLabel.textAlignment = NSTextAlignmentRight;
     distanceLabel.font = [UIFont systemFontOfSize:12];

@@ -34,39 +34,52 @@
 
     
     UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(SCREENWIDTH/2-50, 18, 100, 44)];
-    label.font=[UIFont systemFontOfSize:19.0f];
+    label.font=[UIFont systemFontOfSize:18.0f];
     label.text=@"修改密码";
     label.textAlignment=1;
     label.textColor=RGB(51,51,51);
     [navView addSubview:label];
     
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 30+64, SCREENWIDTH, 100)];
-    view.backgroundColor=[UIColor whiteColor];
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 30+64, SCREENWIDTH, 1)];
+    view.backgroundColor=RGB(217,216,217);
     [self.view addSubview:view];
-    UILabel *passLab=[[UILabel alloc]initWithFrame:CGRectMake(0, 5, 100, 40)];
+    
+    UILabel *passLab=[[UILabel alloc]initWithFrame:CGRectMake(0, view.bottom+5, 100, 40)];
     passLab.text=@"新密码:";
+    passLab.font = [UIFont systemFontOfSize:13];
+    
     passLab.textAlignment=1;
-    [view addSubview:passLab];
+    [self.view addSubview:passLab];
     //新密码
-    passTF=[[UITextField alloc]initWithFrame:CGRectMake(100, 5, SCREENWIDTH-115, 40)];
+    passTF=[[UITextField alloc]initWithFrame:CGRectMake(100, view.bottom+5, SCREENWIDTH-115, 40)];
     passTF.placeholder=@"请输入6-16位数字，字母或符号";
     passTF.secureTextEntry=YES;
+    passTF.font = [UIFont systemFontOfSize:13];
     passTF.clearButtonMode=UITextFieldViewModeWhileEditing;
-    [view addSubview:passTF];
-    UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, 50, SCREENWIDTH, 0.5)];
-    lineView.backgroundColor=[UIColor lightGrayColor];
-    [view addSubview:lineView];
-    //确认密码
-    UILabel *newPassLab=[[UILabel alloc]initWithFrame:CGRectMake(0, 50.5, 100, 40)];
-    newPassLab.text=@"确认密码:";
-    newPassLab.textAlignment=1;
-    [view addSubview:newPassLab];
+    [self.view addSubview:passTF];
     
-    newPassTF=[[UITextField alloc]initWithFrame:CGRectMake(100, 50, SCREENWIDTH-115, 40)];
+    UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, passTF.bottom+5, SCREENWIDTH, 1)];
+    lineView.backgroundColor=RGB(217,216,217);
+    [self.view addSubview:lineView];
+    //确认密码
+    
+    UILabel *newPassLab=[[UILabel alloc]initWithFrame:CGRectMake(0, lineView.bottom+5, 100, 40)];
+    newPassLab.text=@"确认密码:";
+    newPassLab.font = [UIFont systemFontOfSize:13];
+    newPassLab.textAlignment=1;
+    [self.view addSubview:newPassLab];
+    
+    newPassTF=[[UITextField alloc]initWithFrame:CGRectMake(100, newPassLab.top, SCREENWIDTH-115, 40)];
     newPassTF.placeholder=@"请再次输入密码";
+    newPassTF.font = [UIFont systemFontOfSize:13];
     newPassTF.secureTextEntry=YES;
     newPassTF.clearButtonMode=UITextFieldViewModeWhileEditing;
-    [view addSubview:newPassTF];
+    [self.view addSubview:newPassTF];
+    
+    UIView *lineView2=[[UIView alloc]initWithFrame:CGRectMake(0, newPassTF.bottom+5, SCREENWIDTH, 1)];
+    lineView2.backgroundColor=RGB(217,216,217);
+    [self.view addSubview:lineView2];
+
     
     UIButton *loginBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     [loginBtn setBackgroundColor:RGB(243,73,78)];

@@ -144,7 +144,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 96;
+    return 100.5;
 
 }
 
@@ -431,8 +431,14 @@
     [bgView addSubview:line2];
 
     
-    bgView.frame = CGRectMake(0, 0, SCREENWIDTH, like_lab.bottom);
+    UIView *line3 = [[UIView alloc]init];
+    line3.frame = CGRectMake( 0, like_lab.bottom, SCREENWIDTH, 1);
+    line3.backgroundColor = RGB(240, 240, 240);
+    [bgView addSubview:line3];
+
+    bgView.frame = CGRectMake(0, 0, SCREENWIDTH, line3.bottom);
     
+   
     self.tabview.tableHeaderView =  bgView;
 }
 

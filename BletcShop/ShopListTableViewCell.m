@@ -23,12 +23,12 @@
 -(void)crectSubviews{
     
     
-    UIImageView *shopImageView = [[UIImageView alloc]initWithFrame:CGRectMake(13, 10+5, 65, 65)];
+    UIImageView *shopImageView = [[UIImageView alloc]initWithFrame:CGRectMake(13, 10, 65, 65)];
     shopImageView.layer.cornerRadius = 5;
     shopImageView.layer.masksToBounds = YES;
     [self addSubview:shopImageView];
     //店名
-    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(shopImageView.right+15, 14+5, SCREENWIDTH-(shopImageView.right+15), 14)];
+    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(shopImageView.right+15, 14, SCREENWIDTH-(shopImageView.right+15), 14)];
     nameLabel.backgroundColor = [UIColor clearColor];
     nameLabel.textAlignment = NSTextAlignmentLeft;
     nameLabel.font = [UIFont systemFontOfSize:15];
@@ -38,7 +38,7 @@
     [self addSubview:nameLabel];
     
     //距离
-    UILabel *distanceLabel = [[UILabel alloc]initWithFrame:CGRectMake(90, 44+5, SCREENWIDTH-90-13, 12)];
+    UILabel *distanceLabel = [[UILabel alloc]initWithFrame:CGRectMake(90, 44, SCREENWIDTH-90-13, 12)];
     distanceLabel.backgroundColor = [UIColor clearColor];
     distanceLabel.textAlignment = NSTextAlignmentRight;
     distanceLabel.font = [UIFont systemFontOfSize:12];
@@ -97,12 +97,12 @@
     self.delete_btn = delete_btn;
     
     
-    UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 5)];
+    UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, sellerLabel.bottom+10, SCREENWIDTH, 5)];
     
     lineView.backgroundColor=RGB(240,240,240);
     [self addSubview:lineView];
     
-    
+//    NSLog(@"------%lf",lineView.bottom);
     self.starView = starView;
     self.shopImageView = shopImageView;
     self.nameLabel = nameLabel;
