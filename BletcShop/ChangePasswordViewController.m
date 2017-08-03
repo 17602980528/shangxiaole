@@ -8,6 +8,7 @@
 
 #import "ChangePasswordViewController.h"
 #import "NewPasswordViewController.h"
+
 @interface ChangePasswordViewController ()
 {
     UITextField *phoneTF;
@@ -20,68 +21,99 @@
 
 @implementation ChangePasswordViewController
 
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor=[[UIColor alloc]initWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1.0];
+    self.view.backgroundColor=RGB(240, 240, 240);
     UIView *navView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 64)];
-    navView.backgroundColor = NavBackGroundColor;
+    navView.backgroundColor = [UIColor whiteColor];
     UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 18, 70, 44)];
     [btn setTitle:@"返回" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(backRegist) forControlEvents:UIControlEventTouchUpInside];
+    [btn setTitleColor:RGB(51,51,51) forState:0];
     [self.view addSubview:navView];
     [navView addSubview:btn];
     UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(SCREENWIDTH/2-50, 18, 100, 44)];
-    label.font=[UIFont systemFontOfSize:19.0f];
+    label.font=[UIFont systemFontOfSize:18.0f];
     label.text=@"忘记密码";
     label.textAlignment=1;
-    label.textColor=[UIColor whiteColor];
+    label.textColor=RGB(51,51,51);
     [navView addSubview:label];
     
-    phoneTF=[[UITextField alloc]initWithFrame:CGRectMake(15, 84, SCREENWIDTH-25, 40)];
-    phoneTF.borderStyle=UITextBorderStyleRoundedRect;
-    phoneTF.keyboardType=UIKeyboardTypeNumberPad;
-    phoneTF.placeholder=@"手机号码";
-    [self.view addSubview:phoneTF];
-    //用户信息
-    UILabel *userInfoLab=[[UILabel alloc]initWithFrame:CGRectMake(15, 80+64, 100, 40)];
+
+    UILabel *userInfoLab=[[UILabel alloc]initWithFrame:CGRectMake(19, 108, 100, 13)];
     userInfoLab.text=@"用户信息";
     [self.view addSubview:userInfoLab];
-    //real姓名
-    nameTF=[[UITextField alloc]initWithFrame:CGRectMake(15, 120+64, SCREENWIDTH-30, 40)];
-    nameTF.placeholder=@"真实姓名";
-    nameTF.borderStyle=UITextBorderStyleRoundedRect;
-    [self.view addSubview:nameTF];
-    //用户身份号码
-    cardTF=[[UITextField alloc]initWithFrame:CGRectMake(15, 175+64, SCREENWIDTH-30, 40)];
-    cardTF.placeholder=@"身份证号码";
-    cardTF.borderStyle=UITextBorderStyleRoundedRect;
-    [self.view addSubview:cardTF];
-    //短信校验码
-    certifyTF=[[UITextField alloc]initWithFrame:CGRectMake(15, 225+64, 120, 40)];
-    certifyTF.placeholder=@"短信校验码";
-    certifyTF.keyboardType=UIKeyboardTypeNumberPad;
-    certifyTF.borderStyle=UITextBorderStyleRoundedRect;
-    [self.view addSubview:certifyTF];
-    //点击校验
-    UIButton *phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    phoneBtn.frame = CGRectMake(145, 225+64, SCREENWIDTH-145-15, 40);
-    [phoneBtn setTitle:@"获取短信验证码" forState:UIControlStateNormal];
-    [phoneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [phoneBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    [phoneBtn setBackgroundColor:[UIColor colorWithRed:84/255.0 green:188/255.0 blue:156/255.0 alpha:1.0]];
-    phoneBtn.layer.cornerRadius = 5;
-    //self.getCodeBtn = phoneBtn;
-    [phoneBtn addTarget:self action:@selector(getProCode) forControlEvents:UIControlEventTouchUpInside];
-    phoneBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-    [self.view addSubview:phoneBtn];
-    self.getCodeBtn=phoneBtn;
-    //下一步
+    
+    
+  
+    //用户信息
+    
+    NSArray *place_H_A = @[@"请输入真实姓名",@"请输入身份证号码",@"请输入11位手机号码",@"请输入您的验证码"];
+    
+    for (int i = 0; i <place_H_A.count; i ++) {
+        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, userInfoLab.bottom +18+i*51, SCREENWIDTH, 1)];
+        line.backgroundColor = RGB(217,216,217);
+        [self.view addSubview:line];
+        
+        
+        UITextField *TF=[[UITextField alloc]initWithFrame:CGRectMake(19,line.bottom, SCREENWIDTH-25, 50)];
+        TF.placeholder=place_H_A[i];
+        TF.font = [UIFont systemFontOfSize:13];
+        
+        [self.view addSubview:TF];
+        if (i==0) {
+            nameTF= TF;
+        }
+        if (i==1) {
+            cardTF = TF;
+        }
+       
+
+        if (i==2) {
+            phoneTF = TF;
+            phoneTF.keyboardType=UIKeyboardTypeNumberPad;
+
+            UIButton *phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            phoneBtn.bounds = CGRectMake(0, 0, 115, 32);
+            phoneBtn.center = CGPointMake(SCREENWIDTH-19-115/2, TF.center.y);
+            [phoneBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+            [phoneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [phoneBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+            [phoneBtn setBackgroundColor:RGB(243,73,78)];
+            phoneBtn.layer.cornerRadius = 12;
+            [phoneBtn addTarget:self action:@selector(getProCode) forControlEvents:UIControlEventTouchUpInside];
+            phoneBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+            [self.view addSubview:phoneBtn];
+            self.getCodeBtn=phoneBtn;
+
+            
+        }
+       
+        if (i ==3) {
+            certifyTF = TF;
+            certifyTF.keyboardType=UIKeyboardTypeNumberPad;
+
+            UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(0, TF.bottom, SCREENWIDTH, 1)];
+            line1.backgroundColor = RGB(217,216,217);
+            [self.view addSubview:line1];
+        }
+        
+    }
+    
+    
+    
+  
+       //点击校验
+       //下一步
     UIButton *nextBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [nextBtn setBackgroundColor:[UIColor colorWithRed:66/255.0 green:68/255.0 blue:70/255.0 alpha:1.0]];
-    nextBtn.frame=CGRectMake(15, 280+64, SCREENWIDTH-30, 40);
-    nextBtn.layer.cornerRadius=5.0;
+    [nextBtn setBackgroundColor:RGB(243,73,78)];
+    nextBtn.frame=CGRectMake(20, 375, SCREENWIDTH-40, 40);
+    nextBtn.layer.cornerRadius=12.0;
     [nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
-    nextBtn.titleLabel.font=[UIFont systemFontOfSize:17];
+    nextBtn.titleLabel.font=[UIFont systemFontOfSize:13];
     [nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.view addSubview:nextBtn];
     [nextBtn addTarget:self action:@selector(nextBtnClick) forControlEvents:UIControlEventTouchUpInside];
@@ -139,9 +171,9 @@
                 dispatch_source_cancel(_timer);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     //设置界面的按钮显示 根据自己需求设置
-                    [self.getCodeBtn setTitle:@"获取短息验证码" forState:UIControlStateNormal];
+                    [self.getCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
                     self.getCodeBtn.userInteractionEnabled = YES;
-                    [self.getCodeBtn setBackgroundColor:[UIColor colorWithRed:84/255.0 green:188/255.0 blue:156/255.0 alpha:1.0]];
+                    [self.getCodeBtn setBackgroundColor:RGB(243,73,78)];
                 });
             }else{
                 int seconds = timeout % 60 ;

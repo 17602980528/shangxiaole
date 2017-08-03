@@ -36,7 +36,7 @@
 
 #import "EMSDK.h"
 
-
+#import "Base64.h"
 #import "LZDRootViewController.h"
 #import "XLAlertView.h"
 
@@ -89,11 +89,62 @@
     }
     return _shopInfoDic;
 }
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
       
     if ([self exist]) {
         NSLog(@"数据库存在");
     }
+    
+    NSString *sss= @"123456789";
+
+    NSLog(@"倒序:%@",[sss stringByReversed]);
+    
+    
+    char a[]="MyPassword";        /*要加密的密码*/
+    char b[]="cryptographic";     /*密钥*/
+    int k;
+    
+    sss = [NSString stringWithCString:a encoding:NSUTF8StringEncoding];
+    NSString *data_ =[sss base64EncodedString];
+    
+    NSLog(@"-----%@$$$$$$%@",data_,[data_ base64DecodedString]);
+    NSLog(@"-----%@",sss);
+
+    
+    /*加密代码*/
+    for(k=0;a[k]!='\0';k++)
+        a[k]=a[k]^b[k];
+    
+    printf("You Password encrypted: %s\n",a);
+
+    /*解密代码*/
+    for(k=0;a[k]!='\0';k++)
+        a[k]=a[k]^b[k];
+    printf("You Password: %s\n",a);
+    
+    NSString *phon = @"17629002328";
+    
+    
+    NSMutableString *muta_s = [NSMutableString stringWithString:@"abcdefghijklmnopqrst"];
+    
+    for (int i =0; i <phon.length; i ++) {
+        
+        char rr = [phon characterAtIndex:i];
+
+       NSString *str =  [NSString stringWithFormat:@"%c",rr];
+        
+        [muta_s insertString:str atIndex:i*2+1];
+
+    }
+    
+    NSLog(@"解密代码===%@",muta_s);
+    
+    
+
+    
+    
+    
     //    [NSThread sleepForTimeInterval:5];
     _superAccoutArray=[NSArray array];
     [self superAccountTextListGet];

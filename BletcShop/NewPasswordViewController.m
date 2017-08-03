@@ -19,19 +19,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor=[[UIColor alloc]initWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1.0];
+    
+    
+    
+    self.view.backgroundColor=RGB(240, 240, 240);
     UIView *navView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 64)];
-    navView.backgroundColor = NavBackGroundColor;
+    navView.backgroundColor = [UIColor whiteColor];
     UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 18, 70, 44)];
     [btn setTitle:@"返回" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(backRegist) forControlEvents:UIControlEventTouchUpInside];
+    [btn setTitleColor:RGB(51,51,51) forState:0];
     [self.view addSubview:navView];
     [navView addSubview:btn];
+
+    
     UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(SCREENWIDTH/2-50, 18, 100, 44)];
     label.font=[UIFont systemFontOfSize:19.0f];
     label.text=@"修改密码";
     label.textAlignment=1;
-    label.textColor=[UIColor whiteColor];
+    label.textColor=RGB(51,51,51);
     [navView addSubview:label];
     
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 30+64, SCREENWIDTH, 100)];
@@ -43,7 +49,7 @@
     [view addSubview:passLab];
     //新密码
     passTF=[[UITextField alloc]initWithFrame:CGRectMake(100, 5, SCREENWIDTH-115, 40)];
-    passTF.placeholder=@"请输入6-16位数字，字母活符号";
+    passTF.placeholder=@"请输入6-16位数字，字母或符号";
     passTF.secureTextEntry=YES;
     passTF.clearButtonMode=UITextFieldViewModeWhileEditing;
     [view addSubview:passTF];
@@ -63,9 +69,11 @@
     [view addSubview:newPassTF];
     
     UIButton *loginBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [loginBtn setBackgroundColor:[UIColor colorWithRed:24/255.0 green:123/255.0 blue:242/255.0 alpha:1.0]];
-    loginBtn.frame=CGRectMake(25, 150+64, SCREENWIDTH-50, 50);
-    loginBtn.titleLabel.font=[UIFont systemFontOfSize:20.0];
+    [loginBtn setBackgroundColor:RGB(243,73,78)];
+    loginBtn.frame=CGRectMake(20, 150+64, SCREENWIDTH-40, 40);
+    loginBtn.titleLabel.font=[UIFont systemFontOfSize:13.0];
+    loginBtn.layer.cornerRadius = 12;
+    loginBtn.layer.masksToBounds = YES;
     [loginBtn setTitle:@"提交" forState:UIControlStateNormal];
     [self.view addSubview:loginBtn];
     [loginBtn addTarget:self action:@selector(loginClick) forControlEvents:UIControlEventTouchUpInside];

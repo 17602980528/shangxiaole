@@ -251,6 +251,17 @@
                    NSStringDrawingUsesFontLeading attributes:dic context:nil];
     return rect.size.width;
 }
+
+
+
+- (NSString *)stringByReversed
+{
+    NSMutableString *s = [NSMutableString string];
+    for (NSUInteger i=self.length; i>0; i--) {
+        [s appendString:[self substringWithRange:NSMakeRange(i-1, 1)]];
+    }
+    return s;
+}
 @end
 
 

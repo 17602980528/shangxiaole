@@ -436,6 +436,7 @@
 		D9026B221F0B758F005CA5F4 /* CardDetailShowProdictCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9026B201F0B758F005CA5F4 /* CardDetailShowProdictCell.m */; };
 		D9026B231F0B758F005CA5F4 /* CardDetailShowProdictCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9026B211F0B758F005CA5F4 /* CardDetailShowProdictCell.xib */; };
 		D90F51701F2EF4C10005EB05 /* BaiduMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F516F1F2EF4C10005EB05 /* BaiduMapManager.m */; };
+		D90F51781F31BEAA0005EB05 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F51761F31BEAA0005EB05 /* Base64.m */; };
 		D91395B11CF4589400509491 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D91395B01CF4589400509491 /* mapapi.bundle */; };
 		D920B95D1DD05164001AC7F5 /* AdvertiseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D920B95B1DD05164001AC7F5 /* AdvertiseCell.m */; };
 		D920B95E1DD05164001AC7F5 /* AdvertiseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D920B95C1DD05164001AC7F5 /* AdvertiseCell.xib */; };
@@ -1702,6 +1703,8 @@
 		D9026B211F0B758F005CA5F4 /* CardDetailShowProdictCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardDetailShowProdictCell.xib; sourceTree = "<group>"; };
 		D90F516E1F2EF4C00005EB05 /* BaiduMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMapManager.h; sourceTree = "<group>"; };
 		D90F516F1F2EF4C10005EB05 /* BaiduMapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduMapManager.m; sourceTree = "<group>"; };
+		D90F51761F31BEAA0005EB05 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		D90F51771F31BEAA0005EB05 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		D91395B01CF4589400509491 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		D920B95A1DD05164001AC7F5 /* AdvertiseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertiseCell.h; sourceTree = "<group>"; };
 		D920B95B1DD05164001AC7F5 /* AdvertiseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvertiseCell.m; sourceTree = "<group>"; };
@@ -2839,6 +2842,8 @@
 		0793867E1C55B5CA0021B385 /* BletcShop */ = {
 			isa = PBXGroup;
 			children = (
+				D90F51771F31BEAA0005EB05 /* Base64.h */,
+				D90F51761F31BEAA0005EB05 /* Base64.m */,
 				189ED03D1E8CD50900A762C7 /* BletcShop.entitlements */,
 				D969815A1ED57CFD00A44142 /* imgS */,
 				079386821C55B5CA0021B385 /* AppDelegate.h */,
@@ -6805,6 +6810,7 @@
 				1A4173CC1D787FF200A70601 /* BaseTableViewCell.m in Sources */,
 				D9ABB1AD1EC9408E00FBE080 /* ApriseVC.m in Sources */,
 				079386C91C55BC5E0021B385 /* MoreViewController.m in Sources */,
+				D90F51781F31BEAA0005EB05 /* Base64.m in Sources */,
 				D9B3A5B11D74255700F3F27E /* EMSDWebImagePrefetcher.m in Sources */,
 				187E94BE1ED2D8FF007EF19F /* OFFLINEVC.m in Sources */,
 				1CB53C191C573BA7002B6CC1 /* CardVipCell.m in Sources */,
