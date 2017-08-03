@@ -572,10 +572,7 @@
     
     NSLog(@"----%@",_phone_tf.text);
     if (_phone_tf.text.length==11) {
-        
-        [self TimeNumAction];
-
-        
+            
         NSString *url  = @"http://101.201.100.191/cnconsum/App/Extra/VerifyCode/sendSignMsg";
         
         NSMutableDictionary *paramer = [NSMutableDictionary dictionaryWithObject:[NSString getSecretStringWithPhone:_phone_tf.text] forKey:@"base_str"];;
