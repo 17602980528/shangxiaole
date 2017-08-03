@@ -34,7 +34,8 @@
 + (BOOL) isMobileNum:(NSString *)mobNum;
 + (CGFloat)calculateRowWidth:(UILabel *)lable;
 - (NSString *)stringByReversed;//字符串倒序
-
++(NSString*)getCurrentTimestamp;
++(NSString *)getSecretStringWithPhone:(NSString *)phone;
 @end
 
 
