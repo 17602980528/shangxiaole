@@ -344,9 +344,7 @@
             self.indexpathSelect =indexPath;
             
             
-            ProvinceModel *m = _dataSourceProvinceArray[indexPath.row];
-            
-            [self getcityDataById:m.code AndIndexPath:indexPath];
+           
             
             if (indexPath.item >= 0) {
                 
@@ -358,17 +356,28 @@
                     self.address = _city;
                 }
                 
-                [self  storeFilter_getFilterStores];
 
                 
             }else{
                
+                ProvinceModel *m = _dataSourceProvinceArray[indexPath.row];
+                
+                [self getcityDataById:m.code AndIndexPath:indexPath];
+                
                 if (indexPath.row!=0) {
                     self.ereaString = m.name;
                     
+                    self.address = [NSString stringWithFormat:@"%@%@",_city,_ereaString];
+
+                }else{
+                    self.address = _city;
+ 
                 }
                 
+
             }
+            [self  storeFilter_getFilterStores];
+
             
         }else if (indexPath.column==2){
             

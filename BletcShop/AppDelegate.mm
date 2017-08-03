@@ -96,8 +96,8 @@
         NSLog(@"数据库存在");
     }
     //    [NSThread sleepForTimeInterval:5];
-    _superAccoutArray=[NSArray array];
-    [self superAccountTextListGet];
+//    _superAccoutArray=[NSArray array];
+//    [self superAccountTextListGet];
     self.whoPay = 0;
     self.payMoney = 0.0;
     self.paymentType = 0;

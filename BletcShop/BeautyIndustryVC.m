@@ -958,19 +958,28 @@
                     self.address = city;
                 }
                
-                [self  getFilterStores];
 
                 
             }else{
                 ProvinceModel *m = _dataSourceProvinceArray[indexPath.row];
                 
+               
+                
                 if (indexPath.row!=0) {
                     distrt = m.name;
-                    
+
+                    self.address = [NSString stringWithFormat:@"%@%@",city,distrt];
+                }else{
+                    self.address = city;
                 }
+                
                 [self getcityDataById:m.code AndIndexPath:indexPath];
+
  
             }
+            
+            [self  getFilterStores];
+
             
         }
         

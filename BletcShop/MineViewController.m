@@ -35,7 +35,7 @@
 
 //#import "LZDUserInfoVC.h"
 #import "PersonalEricCell.h"
-#import "LZDCenterViewController.h"
+#import "MemberCenterVC.h"
 //#import "UMSocial.h"
 #import <UMSocialCore/UMSocialCore.h>
 #import "QRcodeUIViewController.h"
@@ -275,7 +275,7 @@
         Myitem *item13 = [Myitem itemsWithImg:@"优惠券ss" title:@"我的优惠券" vcClass:[MyCashCouponViewController class]];
         Myitem *item14 = [Myitem itemsWithImg:@"消费" title:@"我的消费" vcClass:[NewMyPayMentsVC class]];//
         
-        Myitem *item12=[Myitem itemsWithImg:@"积分商城" title:@"积分商城" vcClass:[LZDCenterViewController class]];
+        Myitem *item12=[Myitem itemsWithImg:@"积分商城" title:@"积分商城" vcClass:[MemberCenterVC class]];
         Mygroup *group1 = [[Mygroup alloc] init];
         group1.items = @[item10,item13,item11,item14,item12];
         [_data addObject:group1];
@@ -663,7 +663,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     CGFloat offset_Y = scrollView.contentOffset.y+186;
-    NSLog(@"======%f",offset_Y);
+//    NSLog(@"======%f",offset_Y);
     if  (offset_Y < 0) {
         CGRect frame =mom.frame;
         

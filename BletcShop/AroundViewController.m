@@ -284,7 +284,11 @@
         cell.delete_btn.hidden = NO;
         cell.delete_btn.block = ^(LZDButton *sender) {
             [self.data_M_A removeObjectAtIndex:indexPath.row];
+            [[tableView viewWithTag:9999]removeFromSuperview];
             
+            if (_data_M_A.count==0) {
+                [self initNoDataView];
+            }
             [tableView reloadData];
         };
     }
@@ -447,6 +451,9 @@
     
     [self showHudInView:self.view hint:@"加载中..."];
     
+    
+    [[self.tabview viewWithTag:9999]removeFromSuperview];
+    
     NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/NB/getData",BASEURL];
     
     
@@ -500,6 +507,9 @@
             
         }
         
+        if (_data_M_A.count==0) {
+            [self initNoDataView];
+        }
         [self.tabview reloadData];
 
         
@@ -522,12 +532,11 @@
     [self showHudInView:self.view hint:@"加载中..."];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
 
-    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/search/get",BASEURL];
+    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/NB/dropLoad",BASEURL];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[NSString stringWithFormat:@"%ld",_page] forKey:@"index"];
     
-    [params setObject:address forKey:@"eare"];
     [params setObject:_classifyString forKey:@"trade"];
     
     
@@ -539,7 +548,7 @@
     
 
     
-    
+    NSLog(@"----%@",params);
     
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         [_refreshheader endRefreshing];
@@ -550,11 +559,11 @@
         if ([result isKindOfClass:[NSArray class]]) {
             if (self.page==1) {
 //
-                self.data_M_A=[NSMutableArray arrayWithArray:result];
+                self.data_M_A=[NSMutableArray arrayWithArray:result[@"stores"]];
 //
             }else{
-                for (int i=0; i<[result count]; i++) {
-                    [self.data_M_A addObject:result[i]];
+                for (int i=0; i<[result[@"stores"] count]; i++) {
+                    [self.data_M_A addObject:result[@"stores"][i]];
                 }
             }
             
@@ -575,6 +584,30 @@
     
 }
 
+
+-(void)initNoDataView{
+    
+    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, (SCREENHEIGHT-64-40 -150)/2, SCREENWIDTH, 150)];
+    backView.backgroundColor = RGB(240, 240, 240);
+    
+    backView.tag=9999;
+    [self.tabview addSubview:backView];
+    
+    
+    UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREENWIDTH/2-30, 30, 60, 60)];
+    imgView.image = [UIImage imageNamed:@"无数据"];
+    [backView addSubview:imgView];
+    
+    
+    UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, imgView.bottom +10, SCREENWIDTH, 20)];
+    
+    lab.textColor= RGB(51, 51, 51);
+    lab.text = @"暂时没有数据哦!!!";
+    lab.textAlignment = NSTextAlignmentCenter;
+    lab.font = [UIFont systemFontOfSize:14];
+    [backView addSubview:lab];
+    
+}
 
 
 #pragma mark 懒加载
