@@ -58,6 +58,20 @@
 
 
 
+//二级分类图片地址
+
+//顶部
+#define UP_TOPAD_IMAGE @"http://101.201.100.191/cnconsum/Public/Uploads/iconImage/up/topAd/"
+
+//中部
+#define UP_MIDAD_IMAGE @"http://101.201.100.191/cnconsum/Public/Uploads/iconImage/up/midAd/"
+
+//周边广告图
+
+#define AROUND_NB_IMAGE @"http://101.201.100.191/cnconsum/Public/Uploads/NBImage/"
+
+
+
 //图片前缀
 #define IMG_URL @"http://101.201.100.191/cnconsum/Public/Uploads/"
 

@@ -83,10 +83,15 @@
         NSArray *icons = [[NSUserDefaults standardUserDefaults]objectForKey:@"allIcon"];
         
         for (NSDictionary *dic in icons) {
-            [_classifys addObject:dic[@"text"]];
+            if (![dic[@"text"]isEqualToString:_icon_dic[@"text"]]) {
+                [_classifys addObject:dic[@"text"]];
+
+            }
+            
         }
         
         [_classifys insertObject:_icon_dic[@"text"] atIndex:0];
+        [_classifys insertObject:@"全部分类" atIndex:1];
         
     }
     return _classifys;
@@ -792,7 +797,7 @@
     AppDelegate*app = (AppDelegate*)[UIApplication sharedApplication].delegate;
     
     NSMutableDictionary*paramer = [NSMutableDictionary dictionary];
-    [paramer setValue:_icon_dic[@"text"] forKey:@"trade"];
+    [paramer setValue:_classifyString forKey:@"trade"];
     [paramer setValue:_address forKey:@"location"];
     
     [paramer setValue:[NSString stringWithFormat:@"%lf",app.userLocation.location.coordinate.latitude] forKey:@"lat"];

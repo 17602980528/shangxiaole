@@ -390,7 +390,7 @@
     
     
     if (_adverImages.count !=0) {
-       SDCycleScrollView* cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 54, SCREENWIDTH, 119*LZDScale) delegate:nil placeholderImage:[UIImage imageNamed:@"icon3"]];
+       SDCycleScrollView* cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 54, SCREENWIDTH, 119*LZDScale) delegate:nil placeholderImage:[UIImage imageNamed:@"icon2"]];
         cycleScrollView2.imageURLStringsGroup = _adverImages;
         cycleScrollView2.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
         //           cycleScrollView2.titlesGroup = self.titles;
@@ -402,7 +402,7 @@
           
             PUSH(ChouJiangVC)
             vc.urlString = [NSString stringWithFormat:@"http://%@",self.advert_A[currentIndex][@"url"]];
-            
+            vc.title = self.advert_A[currentIndex][@"title"];
             NSLog(@"-----%ld",currentIndex);
         };
         
@@ -492,7 +492,7 @@
             for (int i=0; i<[result[@"advert"] count]; i++) {
                 
 
-                [self.adverImages addObject:[NSString stringWithFormat:@"%@%@",HOME_LUNBO_IMAGE,result[@"advert"][i][@"image"]]];
+                [self.adverImages addObject:[NSString stringWithFormat:@"%@%@",AROUND_NB_IMAGE,result[@"advert"][i][@"image"]]];
                 
 
             }

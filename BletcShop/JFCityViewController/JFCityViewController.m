@@ -139,13 +139,15 @@
             [KCURRENTCITYINFODEFAULTS setObject:cityDic forKey:CURRENTCityDic];
             
             [KCURRENTCITYINFODEFAULTS removeObjectForKey:CURRENTEareDic];
+            [KCURRENTCITYINFODEFAULTS synchronize];
 
             //根据城市ID获取所有区列表,本地存储
             [_manager areaData:cityDic[@"code"] areaData:^(NSMutableArray *areaData)
              {
                  
                  [KCURRENTCITYINFODEFAULTS setObject:areaData forKey:@"currentEreaList"];
-                 
+                 [KCURRENTCITYINFODEFAULTS synchronize];
+
              }];
 
             
@@ -158,7 +160,8 @@
             //存贮当前区
             [KCURRENTCITYINFODEFAULTS setObject:cityDic forKey:@"currentEareDic"];
             
-            
+            [KCURRENTCITYINFODEFAULTS synchronize];
+
             _headerView.cityName = [_headerView.cityName stringByAppendingString:cityName];
 
         }
@@ -300,6 +303,8 @@
             
             [KCURRENTCITYINFODEFAULTS setObject:[cityData valueForKey:@"city_number"] forKey:@"cityNumber"];
             
+            [KCURRENTCITYINFODEFAULTS synchronize];
+
             if (weakSelf.choseCityBlock) {
                 weakSelf.choseCityBlock(cityData[@"super"],[cityData valueForKey:@"city"]);
             }
@@ -429,6 +434,8 @@
     [KCURRENTCITYINFODEFAULTS setValue:cityData forKey:@"cityData"];
     [KCURRENTCITYINFODEFAULTS setObject:sectionData forKey:@"sectionData"];
     success(@"成功");
+    [KCURRENTCITYINFODEFAULTS synchronize];
+
 }
 
 #pragma mark - 匹配是不是字母开头
@@ -567,12 +574,15 @@ NSArray *currentArray = _sectionMutableArray[0][_characterMutableArray[indexPath
     [KCURRENTCITYINFODEFAULTS setObject:dic forKey:CURRENTCityDic];
 
     [KCURRENTCITYINFODEFAULTS removeObjectForKey:CURRENTEareDic];
+    [KCURRENTCITYINFODEFAULTS synchronize];
+
     //根据城市ID获取所有区列表,本地存储
     [_manager areaData:[KCURRENTCITYINFODEFAULTS objectForKey:@"cityNumber"] areaData:^(NSMutableArray *areaData)
     {
         
         [KCURRENTCITYINFODEFAULTS setObject:areaData forKey:@"currentEreaList"];
-        
+        [KCURRENTCITYINFODEFAULTS synchronize];
+
     }];
     
     //添加到访问历史中
@@ -637,6 +647,8 @@ NSArray *currentArray = _sectionMutableArray[0][_characterMutableArray[indexPath
     }
     NSData *historyCityData = [NSKeyedArchiver archivedDataWithRootObject:self.historyCityMutableArray];
     [KCURRENTCITYINFODEFAULTS setObject:historyCityData forKey:@"historyCity"];
+    [KCURRENTCITYINFODEFAULTS synchronize];
+
 }
 
 /// 拒绝定位

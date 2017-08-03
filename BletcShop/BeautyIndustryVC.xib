@@ -136,7 +136,7 @@
                 <constraint firstItem="UbR-Tb-Ggh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="nKI-fd-chW"/>
                 <constraint firstItem="zBw-LR-TEc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vF0-cT-qVg"/>
             </constraints>
-            <point key="canvasLocation" x="-300" y="-291"/>
+            <point key="canvasLocation" x="-24" y="-304"/>
         </view>
     </objects>
     <resources>

@@ -29,7 +29,9 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"商消乐优惠券";
-    self.tableView.rowHeight = 150+11;
+    self.tableView.rowHeight = 126;
+
+    
     [self postRequestCashCoupon];
     
     
@@ -39,6 +41,12 @@
 
 #pragma mark - Table view data source
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.01;
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -66,29 +74,40 @@
         NSLog(@"colors===%@",cell.gradientLayer.colors);
         NSDictionary *dic = self.couponArray[indexPath.row];
         
-//        [cell.headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHOPIMAGE_ADDIMAGE,dic[@"image_url"]]]];
-        cell.headImg.hidden= YES;
+
+        [cell.headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHOPIMAGE_ADDIMAGE,dic[@"image_url"]]] placeholderImage:[UIImage imageNamed:@"icon3"]];
+
+        //        cell.headImg.hidden= YES;
         cell.shopNamelab.text=[NSString stringWithFormat:@"%@券",dic[@"coupon_type"]];
         CGRect frame = cell.shopNamelab.frame;
-        frame.origin.x = 20;
-        frame.size.width = (SCREENWIDTH-24)*2/3-20;
+        frame.origin.y = 22;
         cell.shopNamelab.frame = frame;
-        cell.shopNamelab.font = [UIFont systemFontOfSize:27];
-        cell.couponMoney.text=dic[@"sum"];
+//        cell.shopNamelab.font = [UIFont systemFontOfSize:27];
+        cell.couponMoney.text=[[NSString getTheNoNullStr:dic[@"sum"] andRepalceStr:@"0"] stringByAppendingString:@"元"];
+        cell.couponMoney.font = [UIFont systemFontOfSize:22];
+        
+        NSMutableAttributedString *muta_att = [[NSMutableAttributedString  alloc]initWithString:cell.couponMoney.text];
+        
+        [muta_att setAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} range:NSMakeRange(cell.couponMoney.text.length-1, 1)];
+        cell.couponMoney.attributedText = muta_att;
+        
+        
         cell.deadTime.text= [NSString stringWithFormat:@"有效期:%@~%@",dic[@"date_start"],dic[@"date_end"]];
-        cell.limitLab.text=[NSString stringWithFormat:@"满%@元%@",dic[@"pri_condition"],dic[@"content"]];
-//        if ([dic[@"validate"] isEqualToString:@"true"]) {
+        cell.detail.text=[NSString stringWithFormat:@"满%@元%@",dic[@"pri_condition"],dic[@"content"]];
+        if ([dic[@"validate"] isEqualToString:@"true"]) {
             cell.showImg.hidden = YES ;
-//        }else{
-//            cell.showImg.hidden = NO ;
-//            
-//        }
-        cell.onlineState.hidden = YES;
+        }else{
+            cell.showImg.hidden = NO ;
+            
+        }
+//        cell.onlineState.hidden = YES;
         
 //        if ([dic[@"coupon_type"] isEqualToString:@"ONLINE"]||[dic[@"coupon_type"] isEqualToString:@"null"]) {
-//            cell.onlineState.image=[UIImage imageNamed:@"线上角标"];
+            cell.onlineState.image=[UIImage imageNamed:@"线上shop"];
+            cell.youjian.hidden=YES;
 //        }else{
-//            cell.onlineState.image=[UIImage imageNamed:@"线下角标"];
+//            cell.onlineState.image=[UIImage imageNamed:@"线下shop"];
+//            cell.youjian.hidden=NO;
 //        }
         
     }
@@ -176,39 +195,7 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark - Table view delegate
@@ -226,6 +213,8 @@
     
     
 }
+
+
 
 
 /*

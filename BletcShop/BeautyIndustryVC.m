@@ -95,8 +95,8 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets=NO;
 
-    self.navigationItem.title = _icon_dic[@"text"];
-    if ([_icon_dic[@"text"] isEqualToString:@"健康养生"]) {
+    self.navTitleLab.text = _icon_dic[@"text"];
+    if ([_icon_dic[@"id"]intValue]==200) {
         self.nav_topView.backgroundColor = [UIColor clearColor];
 
         for (UIView *v in self.nav_topView.subviews) {
@@ -370,9 +370,9 @@
             vc.navigationItem.title =dic[@"title"];
         };
         
-        [img_btn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOME_LUNBO_IMAGE,dic[@"mid_advert"][i][@"image"]]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon3"]];
+        [img_btn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UP_MIDAD_IMAGE,dic[@"mid_advert"][i][@"image"]]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon3"]];
         
-        [img_btn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOME_LUNBO_IMAGE,dic[@"mid_advert"][i][@"image"]]] forState:UIControlStateHighlighted placeholderImage:[UIImage imageNamed:@"icon3"]];
+        [img_btn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UP_MIDAD_IMAGE,dic[@"mid_advert"][i][@"image"]]] forState:UIControlStateHighlighted placeholderImage:[UIImage imageNamed:@"icon3"]];
 
         
     }
@@ -384,7 +384,7 @@
 
     
     
-    if ([_icon_dic[@"text"] isEqualToString:@"健康养生"]) {
+    if ([_icon_dic[@"id"]intValue]==200) {
     
         cycleScrollView.frame =CGRectMake(0, 0, SCREENWIDTH, 161*LZDScale);
         middle_scrollView.hidden = YES;
@@ -477,9 +477,9 @@
         NSDictionary *dic = _mid_advert_img[i];
         
         LZDButton *img_btn = [LZDButton creatLZDButton];
-        img_btn.frame = CGRectMake(13 +i*((SCREENWIDTH-13-10)/3+13), 0, (SCREENWIDTH-13-10)/3, bottom_scrollView.height-44);
+        img_btn.frame = CGRectMake(13 +i*((SCREENWIDTH-13*2-10)/3+5), 0, (SCREENWIDTH-13*2-10)/3, bottom_scrollView.height);
         [bottom_scrollView addSubview: img_btn];
-        
+       
         img_btn.block = ^(LZDButton *sender) {
             
             PUSH(ChouJiangVC)
@@ -487,38 +487,27 @@
             vc.navigationItem.title =dic[@"title"];
         };
         
-        bottom_scrollView.contentSize = CGSizeMake(img_btn.right+15, 0);
+        bottom_scrollView.contentSize = CGSizeMake(img_btn.right+13, 0);
         
         UIImageView *imgView = [[UIImageView alloc]init];
         
-        [imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SUBICONIMAGE,dic[@"icon_url"]]] placeholderImage:[UIImage imageNamed:@"icon3"]];
+        [imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UP_MIDAD_IMAGE,dic[@"image"]]] placeholderImage:[UIImage imageNamed:@"icon3"]];
+        imgView.layer.cornerRadius = 6;
+        imgView.layer.masksToBounds = YES;
+        imgView.frame = CGRectMake(0, 0, img_btn.width, 71);
+
         [img_btn addSubview:imgView];
-        
-        
-        [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.height.mas_equalTo(71);
-            make.width.mas_equalTo((SCREENWIDTH-13-10)/3);
-            make.top.mas_offset(0);
-            make.centerX.equalTo(img_btn);
-        }];
         
         
         UILabel *titlelab = [[UILabel alloc]init];
         titlelab.textColor = RGB(51,51,51);
-        titlelab.text = [NSString getTheNoNullStr:dic[@"text"] andRepalceStr:@"爽肤水"];
+        titlelab.text = [NSString getTheNoNullStr:dic[@"title"] andRepalceStr:@"爽肤水"];
         titlelab.font = [UIFont systemFontOfSize:13];
         titlelab.textAlignment = NSTextAlignmentCenter;
         [img_btn addSubview:titlelab];
         
-        [titlelab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(71+5);
-            make.width.equalTo(img_btn);
-            make.height.mas_equalTo(13);
-            make.centerX.equalTo(imgView);
-            
-        }];
-
+        titlelab.frame = CGRectMake(0, imgView.bottom+7, img_btn.width, 13);
+       
         
         
         
@@ -528,7 +517,7 @@
         
     }
     
-    if ([_icon_dic[@"text"] isEqualToString:@"母婴亲子"]) {
+    if ([_icon_dic[@"id"] intValue]==500) {
     
         for (UIView *view in bottom_scrollView.subviews) {
             [view removeFromSuperview];
@@ -552,29 +541,31 @@
             
             btn.block = ^(LZDButton *btn) {
                 
-                PUSH(ShoppingViewController);
-                vc.navigationItem.title = dic[@"text"];
-                vc.icon_dic = dic;
+                PUSH(ChouJiangVC)
+                vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+                vc.navigationItem.title =dic[@"title"];
+
                 
                 
             };
 
             UILabel *topLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 12, btn.width, 13)];
-            topLab.text = @"育儿知识";
+            topLab.text = [NSString getTheNoNullStr:dic[@"title"] andRepalceStr:@"育儿知识"];
             topLab.textAlignment = NSTextAlignmentCenter;
             topLab.textColor = RGB(51,51,51);
             topLab.font = [UIFont systemFontOfSize:14];
             [btn addSubview:topLab];
             
             UILabel *midLab = [[UILabel alloc]initWithFrame:CGRectMake(0, topLab.bottom+6, btn.width, 10)];
-            midLab.text = @"带娃宝典";
+            midLab.text =[NSString getTheNoNullStr:dic[@"content"] andRepalceStr:@"带娃宝典"] ;
             midLab.textAlignment = NSTextAlignmentCenter;
             midLab.textColor = RGB(143,143,143);
             midLab.font = [UIFont systemFontOfSize:10];
             [btn addSubview:midLab];
 
             UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake((btn.width-43)/2,midLab.bottom+ 6, 43, 51)];
-            imgV.image = [UIImage imageNamed:@"icon3"];
+            [imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UP_MIDAD_IMAGE,dic[@"image"]]] placeholderImage:[UIImage imageNamed:@"icon3"]];
+            
             [btn addSubview:imgV];
             
             
@@ -585,7 +576,7 @@
     }
     
     
-    if ([_icon_dic[@"text"] isEqualToString:@"休闲娱乐"]||[_icon_dic[@"text"] isEqualToString:@"生活服务"]) {
+    if ([_icon_dic[@"id"] intValue]==300||[_icon_dic[@"id"] intValue]==400) {
     
         cycleScrollView.frame = CGRectMake(0, 0, SCREENWIDTH, 133*LZDScale);
         
@@ -616,47 +607,41 @@
             
             bottom_scrollView.contentSize = CGSizeMake(img_btn.right+15, 0);
             
-            UIImageView *imgView = [[UIImageView alloc]init];
-            
-            [imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SUBICONIMAGE,dic[@"icon_url"]]] placeholderImage:[UIImage imageNamed:@"icon3"]];
-            [img_btn addSubview:imgView];
-            
-            
-            [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.height.mas_equalTo(71);
-                make.width.mas_equalTo(71);
-                make.centerX.equalTo(img_btn);
-                make.top.mas_offset(15);
-
-                if ([_icon_dic[@"text"] isEqualToString:@"生活服务"]) {
-                    make.top.mas_offset(39);
-
-                }
-
-            }];
-            
-            imgView.layer.cornerRadius = 71/2;
-            imgView.layer.masksToBounds = YES;
             
             UILabel *titlelab = [[UILabel alloc]init];
             titlelab.textColor = RGB(51,51,51);
-            titlelab.text = [NSString getTheNoNullStr:dic[@"text"] andRepalceStr:@"爽肤水"];
+            titlelab.text = [NSString getTheNoNullStr:dic[@"title"] andRepalceStr:@"爽肤水"];
             titlelab.font = [UIFont systemFontOfSize:13];
             titlelab.textAlignment = NSTextAlignmentCenter;
             [img_btn addSubview:titlelab];
             
-            [titlelab mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(71+15+10);
-                if ([_icon_dic[@"text"] isEqualToString:@"生活服务"]) {
-                    make.top.mas_offset(15);
-                    
-                }
-                make.width.mas_equalTo(img_btn);
-                make.height.mas_equalTo(13);
-                make.centerX.mas_equalTo(img_btn);
+            titlelab.frame = CGRectMake(0, 71+15+10, img_btn.width, 13);
+            if ([_icon_dic[@"text"] isEqualToString:@"生活服务"]) {
+                titlelab.frame = CGRectMake(0, 15, img_btn.width, 13);
                 
-            }];
+            }
+            
+            
+
+            
+            UIImageView *imgView = [[UIImageView alloc]init];
+            
+            [imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UP_MIDAD_IMAGE,dic[@"image"]]] placeholderImage:[UIImage imageNamed:@"icon3"]];
+            [img_btn addSubview:imgView];
+            
+     
+            imgView.frame = CGRectMake((img_btn.width-71)/2, 15, 71, 71);
+            
+        
+            
+            if ([_icon_dic[@"id"] intValue]==400) {
+                imgView.frame = CGRectMake((img_btn.width-71)/2, 39, 71, 71);
+
+            }
+
+            
+            imgView.layer.cornerRadius = 71/2;
+            imgView.layer.masksToBounds = YES;
             
             
             
@@ -1194,7 +1179,7 @@
         for (int i=0; i<[result[@"top_advert"] count]; i++) {
             
             
-            [self.topImg_M_A addObject:[NSString stringWithFormat:@"%@%@",HOME_LUNBO_IMAGE,result[@"top_advert"][i][@"image"]]];
+            [self.topImg_M_A addObject:[NSString stringWithFormat:@"%@%@",UP_TOPAD_IMAGE,result[@"top_advert"][i][@"image"]]];
             
             
         }

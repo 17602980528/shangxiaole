@@ -25,6 +25,8 @@ static NSString *identifier = @"couponCellId";
 @property (nonatomic , strong) UIImageView *showImg;// 过期
 @property (nonatomic , strong) UIImageView *onlineState;//线上线下
 //
+@property (nonatomic , strong) UILabel *detail;// 
+
 @property (nonatomic,strong)UIView *bgView;
 @property (nonatomic,strong)UIButton *turnButton;
 @property (nonatomic,strong)UILabel *contentLable;

@@ -187,6 +187,8 @@
         [KCURRENTCITYINFODEFAULTS removeObjectForKey:@"currentCityDic"];
         
         
+        [KCURRENTCITYINFODEFAULTS synchronize];
+        
         NSLog(@"TARGET_IPHONE_SIMULATOR------%@",dic);
         
         [self.manager areaData:dic[@"code"] areaData:^(NSMutableArray *areaData) {
@@ -196,7 +198,8 @@
             
             [KCURRENTCITYINFODEFAULTS setObject:areaData forKey:@"locationCityEreaList"];
 
-            
+            [KCURRENTCITYINFODEFAULTS synchronize];
+
             
         }];
         
@@ -1589,6 +1592,7 @@
         [KCURRENTCITYINFODEFAULTS removeObjectForKey:@"currentEareDic"];
         
         [KCURRENTCITYINFODEFAULTS removeObjectForKey:@"currentCityDic"];
+        [KCURRENTCITYINFODEFAULTS synchronize];
 
         
         NSLog(@"定位成功------%@",dic);
@@ -1600,6 +1604,7 @@
             
             [KCURRENTCITYINFODEFAULTS setObject:areaData forKey:@"locationCityEreaList"];
 
+            [KCURRENTCITYINFODEFAULTS synchronize];
 
             
         }];
@@ -1623,7 +1628,8 @@
         
         [KCURRENTCITYINFODEFAULTS removeObjectForKey:@"currentCityDic"];
         
-        
+        [KCURRENTCITYINFODEFAULTS synchronize];
+
         NSLog(@"TARGET_IPHONE_SIMULATOR------%@",dic);
         
         [self.manager areaData:dic[@"code"] areaData:^(NSMutableArray *areaData) {
@@ -1633,7 +1639,8 @@
             
             [KCURRENTCITYINFODEFAULTS setObject:areaData forKey:@"locationCityEreaList"];
 
-            
+            [KCURRENTCITYINFODEFAULTS synchronize];
+
         }];
         
     }];
@@ -1650,7 +1657,8 @@
         [KCURRENTCITYINFODEFAULTS removeObjectForKey:@"currentEareDic"];
         
         [KCURRENTCITYINFODEFAULTS removeObjectForKey:@"currentCityDic"];
-        
+        [KCURRENTCITYINFODEFAULTS synchronize];
+
         
         NSLog(@"TARGET_IPHONE_SIMULATOR------%@",dic);
         
@@ -1661,7 +1669,8 @@
             
             [KCURRENTCITYINFODEFAULTS setObject:areaData forKey:@"locationCityEreaList"];
 
-            
+            [KCURRENTCITYINFODEFAULTS synchronize];
+
         }];
         
     }];
@@ -1750,14 +1759,14 @@
 
 -(void)getAllIconData{
     
-    NSString *url = [NSString stringWithFormat:@"%@Extra/Trade/getUp",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@Extra/trade/getSub",BASEURL];
     
     
     [KKRequestDataService requestWithURL:url params:nil httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         NSLog(@"getAllIconData-----%@",result);
         
-        
         [[NSUserDefaults standardUserDefaults] setObject:result forKey:@"allIcon"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
         
         
         

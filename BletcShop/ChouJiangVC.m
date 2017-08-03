@@ -23,8 +23,8 @@
 //    self.navigationItem.title = @"积分抽奖";
 //    self.navigationItem.title = @"周边";
 
-    hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    hud.userInteractionEnabled = YES;
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.userInteractionEnabled = NO;
     
     
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5];
@@ -46,6 +46,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [hud hideAnimated:YES afterDelay:0.0f];
 
+    
+}
 
 @end

@@ -145,6 +145,8 @@
     if(![[NSUserDefaults standardUserDefaults] boolForKey:app_Version]) {
         
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:app_Version];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        
         //        DebugLog("app_Version===%@",app_Version);
         WelcomViewController *WelcomVC = [[WelcomViewController alloc]init];
         self.window.rootViewController = WelcomVC;
