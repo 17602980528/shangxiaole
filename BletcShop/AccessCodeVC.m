@@ -61,9 +61,9 @@
     
 }
 -(void)getCodeNumber{
-    NSString *url  = @"http://101.201.100.191/smsVertify/Demo/SendTemplateSMS.php";
+    NSString *url  = @"http://101.201.100.191/cnconsum/App/Extra/VerifyCode/verifySign";
     
-    NSMutableDictionary *paramer = [NSMutableDictionary dictionaryWithObject:self.phone.text forKey:@"phone"];
+    NSMutableDictionary *paramer = [NSMutableDictionary dictionaryWithObject:[NSString getSecretStringWithPhone:self.phone.text] forKey:@"base_str"];
     [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         NSLog(@"-result---%@",result);
         [self TimeNumAction];

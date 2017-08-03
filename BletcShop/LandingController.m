@@ -753,37 +753,37 @@
     }
 }
 
--(void)getProCode
-{
-    if (UserText.text.length==11) {
-        NSLog(@"%@",_proText.text);
-        [self TimeNumAction];
-        //[self showIndicatorView];
-        
-        NSString *url  = @"http://101.201.100.191/smsVertify/Demo/SendTemplateSMS.php";
-        
-        NSMutableDictionary *paramer = [NSMutableDictionary dictionaryWithObject:UserText.text forKey:@"phone"];;
-        [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
-            NSLog(@"-result---%@",result);
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                _array_code = result;
-                
-            });
-            
-        } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发送失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alertView show];
-            
-        }];
-        
-        
-    }else{
-        UIAlertView *alertView=[[UIAlertView alloc]initWithTitle:@"提示" message:@"手机号码格式有误" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil];
-        [alertView show];
-    }
-    
-}
+//-(void)getProCode
+//{
+//    if (UserText.text.length==11) {
+//        NSLog(@"%@",_proText.text);
+//        [self TimeNumAction];
+//        //[self showIndicatorView];
+//        
+//        NSString *url  = @"http://101.201.100.191/smsVertify/Demo/SendTemplateSMS.php";
+//        
+//        NSMutableDictionary *paramer = [NSMutableDictionary dictionaryWithObject:UserText.text forKey:@"phone"];;
+//        [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+//            NSLog(@"-result---%@",result);
+//            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                _array_code = result;
+//                
+//            });
+//            
+//        } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发送失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//            [alertView show];
+//            
+//        }];
+//        
+//        
+//    }else{
+//        UIAlertView *alertView=[[UIAlertView alloc]initWithTitle:@"提示" message:@"手机号码格式有误" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil];
+//        [alertView show];
+//    }
+//    
+//}
 - (void)validationCode {
     // 校验验证码
     NSLog(@"=%@==%@",_array_code,_proText.text);
