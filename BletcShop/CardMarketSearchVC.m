@@ -7,9 +7,11 @@
 //
 
 #import "CardMarketSearchVC.h"
-#import "CardMarketCell.h"
+//#import "CardMarketCell.h"
 #import "CardMarketModel.h"
 #import "CardmarketDetailVC.h"
+#import "AddFriendVC.h"
+#import "CardBusinessTableViewCell.h"
 
 @interface CardMarketSearchVC ()<UISearchControllerDelegate,UISearchBarDelegate,UISearchResultsUpdating>
 @property(nonatomic,strong)NSMutableArray *searchList;
@@ -90,11 +92,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    CardMarketCell *cell = [CardMarketCell creatCellWithTableView:tableView];
+    CardBusinessTableViewCell *cell = [CardBusinessTableViewCell creatCellWithTableView:tableView];
+    
     if (self.searchList.count !=0) {
         cell.model = self.searchList[indexPath.row];
+        
     }
-    NSLog(@"self.searchList.count---_%ld",self.searchList.count);
+    [cell.addFriendBtn addTarget:self action:@selector(addFriendBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    cell.addFriendBtn.tag=indexPath.row;
+
     
     return cell;
 }
@@ -171,6 +177,14 @@
 //    [self.tableView reloadData];
 
 }
+
+-(void)addFriendBtnClick:(UIButton *)sender{
+    AddFriendVC *vc=[[AddFriendVC alloc]init];
+    CardMarketModel *M=self.searchList[sender.tag];
+    vc.dic=M.dic;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
