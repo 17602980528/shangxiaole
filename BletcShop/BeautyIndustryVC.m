@@ -322,7 +322,7 @@
         [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.height.mas_equalTo(32);
-            make.width.mas_equalTo(24);
+            make.width.mas_equalTo(32);
             make.top.mas_offset(0);
             make.centerX.equalTo(btn);
         }];

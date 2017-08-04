@@ -75,7 +75,7 @@
         NSDictionary *dic = self.couponArray[indexPath.row];
         
 
-        [cell.headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHOPIMAGE_ADDIMAGE,dic[@"image_url"]]] placeholderImage:[UIImage imageNamed:@"icon3"]];
+        [cell.headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHOPIMAGE_ADDIMAGE,dic[@"image_url"]]] placeholderImage:[UIImage imageNamed:@"商消乐——优惠券用 2"]];
 
         //        cell.headImg.hidden= YES;
         cell.shopNamelab.text=[NSString stringWithFormat:@"%@券",dic[@"coupon_type"]];

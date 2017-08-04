@@ -219,7 +219,7 @@
 
 -(void)initTableView{
     
-    UIView *selectView = [[UIView alloc]initWithFrame:CGRectMake(0, 64+10, SCREENWIDTH, 42)];
+    UIView *selectView = [[UIView alloc]initWithFrame:CGRectMake(0, 64+1, SCREENWIDTH, 42)];
     selectView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:selectView];
     NSArray *arr = @[@"二手卡",@"蹭卡"];
