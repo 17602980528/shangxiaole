@@ -224,7 +224,7 @@
     whiteView.backgroundColor = [UIColor whiteColor];
     [headerView addSubview:whiteView];
     
-    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 13, SCREENWIDTH, 119*LZDScale) delegate:nil placeholderImage:[UIImage imageNamed:@"首页顶部海报"]];
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 13, SCREENWIDTH, 119*LZDScale) delegate:nil placeholderImage:[UIImage imageNamed:@"icon2"]];
     
     cycleScrollView.imageURLStringsGroup = self.topImg_M_A;
     cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
@@ -370,10 +370,40 @@
             vc.navigationItem.title =dic[@"title"];
         };
         
-        [img_btn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UP_MIDAD_IMAGE,dic[@"mid_advert"][i][@"image"]]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon3"]];
+        [img_btn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UP_MIDAD_IMAGE,dic[@"image"]]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon3"]];
         
-        [img_btn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UP_MIDAD_IMAGE,dic[@"mid_advert"][i][@"image"]]] forState:UIControlStateHighlighted placeholderImage:[UIImage imageNamed:@"icon3"]];
+        [img_btn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UP_MIDAD_IMAGE,dic[@"image"]]] forState:UIControlStateHighlighted placeholderImage:[UIImage imageNamed:@"icon3"]];
 
+        
+        
+        
+        
+        UILabel *topLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, img_btn.width, 13)];
+        topLab.text = [NSString getTheNoNullStr:dic[@"title"] andRepalceStr:@"育儿知识"];
+        topLab.textAlignment = NSTextAlignmentCenter;
+        topLab.textColor = RGB(255,255,255);
+        topLab.font = [UIFont systemFontOfSize:12];
+        [img_btn addSubview:topLab];
+        
+        UILabel *midLab = [[UILabel alloc]initWithFrame:CGRectMake(0, topLab.bottom+9, img_btn.width, 10)];
+        midLab.text =[NSString getTheNoNullStr:dic[@"content"] andRepalceStr:@"带娃宝典"] ;
+        midLab.textAlignment = NSTextAlignmentCenter;
+        midLab.textColor = RGB(255,255,255);
+        midLab.font = [UIFont systemFontOfSize:10];
+        [img_btn addSubview:midLab];
+
+        
+        UILabel *bottomLab = [[UILabel alloc]initWithFrame:CGRectMake((img_btn.width-30)/2, midLab.bottom+10, 28, 9)];
+        bottomLab.text =[NSString getTheNoNullStr:dic[@"key"] andRepalceStr:@"NEW"] ;
+        bottomLab.textAlignment = NSTextAlignmentCenter;
+        bottomLab.textColor = RGB(81,80,80);
+        bottomLab.font = [UIFont systemFontOfSize:9];
+        bottomLab.backgroundColor = [UIColor whiteColor];
+        bottomLab.layer.cornerRadius =2;
+        bottomLab.layer.masksToBounds = YES;
+        [img_btn addSubview:bottomLab];
+        
+        
         
     }
     
@@ -387,6 +417,10 @@
     if ([_icon_dic[@"id"]intValue]==200) {
     
         cycleScrollView.frame =CGRectMake(0, 0, SCREENWIDTH, 161*LZDScale);
+        cycleScrollView.clickItemOperationBlock = ^(NSInteger currentIndex) {
+            NSLog(@"健康养生");
+        };
+        
         middle_scrollView.hidden = YES;
         
         UIScrollView *top_scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, cycleScrollView.height-45-41, SCREENWIDTH, 45+41)];
