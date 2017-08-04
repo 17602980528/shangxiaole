@@ -224,7 +224,7 @@
     whiteView.backgroundColor = [UIColor whiteColor];
     [headerView addSubview:whiteView];
     
-    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 13, SCREENWIDTH, 119*LZDScale) delegate:nil placeholderImage:[UIImage imageNamed:@"icon2"]];
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 13, SCREENWIDTH, 119*LZDScale) delegate:nil placeholderImage:[UIImage imageNamed:@"icon3"]];
     
     cycleScrollView.imageURLStringsGroup = self.topImg_M_A;
     cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
@@ -236,9 +236,12 @@
         NSDictionary *dic = self.upSort_data_dic[@"top_advert"][currentIndex];
         
         
-        PUSH(ChouJiangVC)
-        vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
-        vc.navigationItem.title =dic[@"title"];
+        if (![dic[@"state"] isEqualToString:@"false"]) {
+            
+            PUSH(ChouJiangVC)
+            vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+            vc.navigationItem.title =dic[@"title"];
+        }
 
     };
     
@@ -365,9 +368,13 @@
         
         img_btn.block = ^(LZDButton *sender) {
             
-            PUSH(ChouJiangVC)
-            vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
-            vc.navigationItem.title =dic[@"title"];
+            if (![dic[@"state"] isEqualToString:@"false"]) {
+                PUSH(ChouJiangVC)
+                vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+                vc.navigationItem.title =dic[@"title"];
+            }
+            
+           
         };
         
         [img_btn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UP_MIDAD_IMAGE,dic[@"image"]]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon3"]];
@@ -395,6 +402,11 @@
         
         UILabel *bottomLab = [[UILabel alloc]initWithFrame:CGRectMake((img_btn.width-30)/2, midLab.bottom+10, 28, 9)];
         bottomLab.text =[NSString getTheNoNullStr:dic[@"key"] andRepalceStr:@"NEW"] ;
+
+        if (i==1) {
+            bottomLab.text =@"HOT";
+
+        }
         bottomLab.textAlignment = NSTextAlignmentCenter;
         bottomLab.textColor = RGB(81,80,80);
         bottomLab.font = [UIFont systemFontOfSize:9];
@@ -516,9 +528,11 @@
        
         img_btn.block = ^(LZDButton *sender) {
             
-            PUSH(ChouJiangVC)
-            vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
-            vc.navigationItem.title =dic[@"title"];
+            if (![dic[@"state"] isEqualToString:@"false"]) {
+                PUSH(ChouJiangVC)
+                vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+                vc.navigationItem.title =dic[@"title"];
+            }
         };
         
         bottom_scrollView.contentSize = CGSizeMake(img_btn.right+13, 0);
@@ -575,9 +589,11 @@
             
             btn.block = ^(LZDButton *btn) {
                 
-                PUSH(ChouJiangVC)
-                vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
-                vc.navigationItem.title =dic[@"title"];
+                if (![dic[@"state"] isEqualToString:@"false"]) {
+                    PUSH(ChouJiangVC)
+                    vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+                    vc.navigationItem.title =dic[@"title"];
+                }
 
                 
                 
@@ -634,9 +650,11 @@
             
             img_btn.block = ^(LZDButton *sender) {
                 
-                PUSH(ChouJiangVC)
-                vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
-                vc.navigationItem.title =dic[@"title"];
+                if (![dic[@"state"] isEqualToString:@"false"]) {
+                    PUSH(ChouJiangVC)
+                    vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+                    vc.navigationItem.title =dic[@"title"];
+                }
             };
             
             bottom_scrollView.contentSize = CGSizeMake(img_btn.right+15, 0);
