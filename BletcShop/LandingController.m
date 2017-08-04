@@ -246,7 +246,7 @@
         [otherLoginView addSubview:buttonlog];
         
         UIImageView *imagev = [[UIImageView alloc]init];
-        imagev.bounds = CGRectMake(0, 0, 44, 44);
+        imagev.bounds = CGRectMake(0, 0, 40, 44);
         imagev.center = buttonlog.center;
         
         UILabel *thirdlab = [[UILabel alloc]init];

@@ -1561,14 +1561,14 @@
 - (void)currentLocation:(NSDictionary *)locationDictionary {
     NSLog(@"定位成功------%@",locationDictionary);
 
-    if (![dingweiBtn.titleLabel.text isEqualToString:locationDictionary[@"SubLocality"]]) {
-        
+//    if (![dingweiBtn.titleLabel.text isEqualToString:locationDictionary[@"SubLocality"]]) {
+//        
         [self initTopView];
         
         
         [self getIcons:@""];
 
-    }
+//    }
    
     NSString *city = [locationDictionary valueForKey:@"City"];
     //    if (![_resultLabel.text isEqualToString:city]) {

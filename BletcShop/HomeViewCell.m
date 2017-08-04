@@ -278,6 +278,12 @@
     self.brandLabel.text=self.model.trade;
     
     
+    for (UIView *view in self.subviews) {
+        if (view.tag>=999) {
+            [view removeFromSuperview];
+        }
+    }
+    
     
     for (int i = 0; i <self.muta_A.count; i ++) {
         
@@ -286,6 +292,7 @@
         UILabel *sheLab=[[UILabel alloc]initWithFrame:CGRectMake(90+(15+13)*i, 42, 16, 16)];
         sheLab.text=_muta_A[i];
         sheLab.textAlignment=1;
+        sheLab.tag = i+999;
         sheLab.textColor=[UIColor whiteColor];
         sheLab.font=[UIFont systemFontOfSize:12.0f];
         sheLab.layer.cornerRadius =2;

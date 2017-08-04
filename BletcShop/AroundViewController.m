@@ -556,7 +556,7 @@
 
         [self hideHud];
         NSLog(@"postRequestShop-----%@",result);
-        if ([result isKindOfClass:[NSArray class]]) {
+//        if ([result isKindOfClass:[n class]]) {
             if (self.page==1) {
 //
                 self.data_M_A=[NSMutableArray arrayWithArray:result[@"stores"]];
@@ -565,9 +565,9 @@
                 for (int i=0; i<[result[@"stores"] count]; i++) {
                     [self.data_M_A addObject:result[@"stores"][i]];
                 }
-            }
+//            }
             
-            
+            NSLog(@"-----%ld",_data_M_A.count);
         
             [self.tabview reloadData];
         }
