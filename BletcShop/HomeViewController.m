@@ -304,7 +304,7 @@
     
     
     dingwei_img = [[UIImageView alloc]initWithFrame:CGRectMake(dingweiBtn.right, dingweiBtn.top+(44-12)/2, 12, 12)];
-    dingwei_img.image = [UIImage imageNamed:@"首页最上面"];
+    dingwei_img.image = [UIImage imageNamed:@"下拉1"];
     [topView addSubview:dingwei_img];
     
     
@@ -415,7 +415,7 @@
             dingweiXiaImg.image = [UIImage imageNamed:@"定位icon"];
             searchView.backgroundColor=RGB(255,255,255);
             
-            dingwei_img.image = [UIImage imageNamed:@"首页最上面"];
+            dingwei_img.image = [UIImage imageNamed:@"下拉1"];
             [dingweiBtn setTitleColor:RGB(51,51,51) forState:UIControlStateNormal];
             
             erweimaImg.image = [UIImage imageNamed:@"二维码扫描"];
@@ -1434,7 +1434,7 @@
                 dingweiXiaImg.image = [UIImage imageNamed:@"定位icon"];
                 searchView.backgroundColor=RGB(255,255,255);
                 
-                dingwei_img.image = [UIImage imageNamed:@"首页最上面"];
+                dingwei_img.image = [UIImage imageNamed:@"下拉1"];
                 [dingweiBtn setTitleColor:RGB(51,51,51) forState:UIControlStateNormal];
                 
                 erweimaImg.image = [UIImage imageNamed:@"二维码扫描"];
