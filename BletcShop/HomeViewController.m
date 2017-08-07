@@ -304,7 +304,7 @@
     
     
     dingwei_img = [[UIImageView alloc]initWithFrame:CGRectMake(dingweiBtn.right, dingweiBtn.top+(44-12)/2, 12, 12)];
-    dingwei_img.image = [UIImage imageNamed:@"下拉1"];
+    dingwei_img.image = [UIImage imageNamed:@"下拉（黑）"];
     [topView addSubview:dingwei_img];
     
     
@@ -403,7 +403,7 @@
             dingweiXiaImg.image = [UIImage imageNamed:@"红色定位icon"];
             searchView.backgroundColor=RGB(221,221,221);
             
-            dingwei_img.image = [UIImage imageNamed:@"下A"];
+            dingwei_img.image = [UIImage imageNamed:@"下拉（灰）"];
             [dingweiBtn setTitleColor:RGB(119,119,119) forState:UIControlStateNormal];
             
             erweimaImg.image = [UIImage imageNamed:@"灰色二维码扫描"];
@@ -415,7 +415,7 @@
             dingweiXiaImg.image = [UIImage imageNamed:@"定位icon"];
             searchView.backgroundColor=RGB(255,255,255);
             
-            dingwei_img.image = [UIImage imageNamed:@"下拉1"];
+            dingwei_img.image = [UIImage imageNamed:@"下拉（黑）"];
             [dingweiBtn setTitleColor:RGB(51,51,51) forState:UIControlStateNormal];
             
             erweimaImg.image = [UIImage imageNamed:@"二维码扫描"];
@@ -1423,7 +1423,7 @@
                 dingweiXiaImg.image = [UIImage imageNamed:@"红色定位icon"];
                 searchView.backgroundColor=RGB(221,221,221);
                 
-                dingwei_img.image = [UIImage imageNamed:@"下A"];
+                dingwei_img.image = [UIImage imageNamed:@"下拉（灰）"];
                 [dingweiBtn setTitleColor:RGB(119,119,119) forState:UIControlStateNormal];
                 search1.image = [UIImage imageNamed:@"灰色搜索icon"];
 
@@ -1434,7 +1434,7 @@
                 dingweiXiaImg.image = [UIImage imageNamed:@"定位icon"];
                 searchView.backgroundColor=RGB(255,255,255);
                 
-                dingwei_img.image = [UIImage imageNamed:@"下拉1"];
+                dingwei_img.image = [UIImage imageNamed:@"下拉（黑）"];
                 [dingweiBtn setTitleColor:RGB(51,51,51) forState:UIControlStateNormal];
                 
                 erweimaImg.image = [UIImage imageNamed:@"二维码扫描"];
