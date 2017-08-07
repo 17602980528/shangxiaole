@@ -33,6 +33,10 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
     NSString *_lastRefreshingTimeString;
     // 记录原始contentEdgeInsets
     UIEdgeInsets _originalEdgeInsets;
+    UIImageView *_trasfrom_img;
+    UIImageView *_trasfrom_img1;
+
+     CGFloat angle;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -47,11 +51,23 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
         _activityIndicatorView = activity;
         
         // 状态提示图片
-        UIImageView *stateIndicator = [[UIImageView alloc] init];
-        stateIndicator.image = [UIImage imageNamed:@"sdRefeshView_arrow"];
-        [self addSubview:stateIndicator];
-        _stateIndicatorView = stateIndicator;
-        _stateIndicatorView.bounds = CGRectMake(0, 0, 15, 40);
+//        UIImageView *stateIndicator = [[UIImageView alloc] init];
+//        stateIndicator.image = [UIImage imageNamed:@"sdRefeshView_arrow"];
+//        [self addSubview:stateIndicator];
+//        _stateIndicatorView = stateIndicator;
+//        _stateIndicatorView.bounds = CGRectMake(0, 0, 15, 40);
+        
+        UIImageView *trasfrom_img = [[UIImageView alloc]init];
+        trasfrom_img.image = [UIImage imageNamed:@"ddd"];
+        [self addSubview:trasfrom_img];
+        trasfrom_img.bounds = CGRectMake(0, 0, 21, 21);
+        _trasfrom_img= trasfrom_img;
+        
+        UIImageView *trasfrom_img1 = [[UIImageView alloc]init];
+        trasfrom_img1.image = [UIImage imageNamed:@"刷新——logo"];
+        [self addSubview:trasfrom_img1];
+        trasfrom_img1.bounds = CGRectMake(0, 0, 9, 13);
+        _trasfrom_img1= trasfrom_img1;
         
         // 状态提示label
         UILabel *textIndicator = [[UILabel alloc] init];
@@ -63,14 +79,16 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
         [self addSubview:textIndicator];
         _textIndicator = textIndicator;
         
+        [self startAnimation];
+
         // 更新时间提示label
-        UILabel *timeIndicator = [[UILabel alloc] init];
-        timeIndicator.bounds = CGRectMake(0, 0, 200, 16);;
-        timeIndicator.textAlignment = NSTextAlignmentCenter;
-        timeIndicator.textColor = [UIColor lightGrayColor];
-        timeIndicator.font = [UIFont systemFontOfSize:12];
-        [self addSubview:timeIndicator];
-        _timeIndicator = timeIndicator;
+//        UILabel *timeIndicator = [[UILabel alloc] init];
+//        timeIndicator.bounds = CGRectMake(0, 0, 200, 16);;
+//        timeIndicator.textAlignment = NSTextAlignmentCenter;
+//        timeIndicator.textColor = [UIColor lightGrayColor];
+//        timeIndicator.font = [UIFont systemFontOfSize:12];
+//        [self addSubview:timeIndicator];
+//        _timeIndicator = timeIndicator;
     }
     return self;
 }
@@ -88,13 +106,21 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
-    _activityIndicatorView.hidden = !_isManuallyRefreshing;
+    _activityIndicatorView.hidden = YES;
+
+//    _activityIndicatorView.hidden = !_isManuallyRefreshing;
     _activityIndicatorView.center = CGPointMake(SDActivityIndicatorViewMargin, self.sd_height * 0.5);
     _stateIndicatorView.center = _activityIndicatorView.center;
     
-    _textIndicator.center = CGPointMake(self.sd_width * 0.5, _activityIndicatorView.sd_height * 0.5 + SDTextIndicatorMargin);
-    _timeIndicator.center = CGPointMake(self.sd_width * 0.5, self.sd_height - _timeIndicator.sd_height * 0.5 - SDTimeIndicatorMargin);
+//    _textIndicator.center = CGPointMake(self.sd_width * 0.5, _activityIndicatorView.sd_height * 0.5 + SDTextIndicatorMargin);
+//    _timeIndicator.center = CGPointMake(self.sd_width * 0.5, self.sd_height - _timeIndicator.sd_height * 0.5 - SDTimeIndicatorMargin);
+    
+    
+   _textIndicator.center = CGPointMake(self.sd_width * 0.5, self.sd_height - 16 * 0.5 - SDTimeIndicatorMargin);
+    
+    _trasfrom_img.center = CGPointMake(self.sd_width * 0.5,_activityIndicatorView.sd_height * 0.5 + SDTextIndicatorMargin);
+    _trasfrom_img1.center = _trasfrom_img.center;
+
 }
 
 - (NSString *)lastRefreshingTimeString
@@ -213,6 +239,19 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
 {
     ;
 }
+
+- (void)startAnimation
+{
+    CGAffineTransform endAngle = CGAffineTransformMakeRotation(angle * (M_PI / 180.0f));
+    
+    [UIView animateWithDuration:0.01 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        _trasfrom_img.transform = endAngle;
+    } completion:^(BOOL finished) {
+        angle += 10;
+        [self startAnimation];
+    }];
+}
+
 
 - (void)dealloc
 {
