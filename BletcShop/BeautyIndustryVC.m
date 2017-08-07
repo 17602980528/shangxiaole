@@ -224,7 +224,7 @@
     whiteView.backgroundColor = [UIColor whiteColor];
     [headerView addSubview:whiteView];
     
-    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 13, SCREENWIDTH, 119*LZDScale) delegate:nil placeholderImage:[UIImage imageNamed:@"icon3"]];
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 13, SCREENWIDTH, 119*LZDScale) delegate:nil placeholderImage:[UIImage imageNamed:@""]];
     
     cycleScrollView.imageURLStringsGroup = self.topImg_M_A;
     cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
