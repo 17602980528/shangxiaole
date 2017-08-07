@@ -22,6 +22,7 @@
     [super viewDidLoad];
     self.view.backgroundColor=RGB(240, 240, 240);
     self.navigationItem.title=@"登录密码";
+    LEFTBACK
     UIBarButtonItem *saveButton=[[UIBarButtonItem alloc]initWithTitle:@"修改" style:UIBarButtonItemStylePlain target:self action:@selector(saveBtnClick)];
     self.navigationItem.rightBarButtonItem=saveButton;
 

@@ -73,6 +73,7 @@
     self.view.backgroundColor=RGB(234, 234, 234);
     self.navigationItem.title=@"积分商城";
     
+    LEFTBACK
     
     LZDButton *rightBtn = [LZDButton creatLZDButton];
     rightBtn.bounds = CGRectMake(0, 0, 80, 44);

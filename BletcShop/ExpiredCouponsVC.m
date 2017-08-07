@@ -33,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title=@"不可用优惠券";
+    LEFTBACK
     heights=0;
     _page=1;
     

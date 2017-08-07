@@ -41,7 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"订单详情";
-    
+    LEFTBACK
     self.product_name.text = self.product_dic[@"name"];
     self.product_price.text = self.product_dic[@"price"];
     self.acturePrice.text = self.product_dic[@"price"];

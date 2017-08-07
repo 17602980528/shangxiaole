@@ -17,8 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"钱包提现";
+    self.navigationItem.title = @"提现";
     self.view.backgroundColor = RGB(240, 240, 240);
+    LEFTBACK
     UIImageView *image_view = [[UIImageView alloc]initWithFrame:CGRectMake((SCREENWIDTH-215)/2, 80, 215, 110)];
     
 //    image_view.image = [UIImage imageNamed:@"QQ20161219-0"];

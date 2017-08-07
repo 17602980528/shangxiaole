@@ -38,6 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title=@"全部商品";
+    LEFTBACK
     XHStarRateView *view=[[XHStarRateView alloc] initWithFrame:self.aprise.frame];
     view.userInteractionEnabled=NO;
      view.isAnimation = YES;

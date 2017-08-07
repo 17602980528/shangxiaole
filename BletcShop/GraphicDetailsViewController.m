@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    LEFTBACK
     self.title = @"图文详情";
     self.pictureArray = [[NSMutableArray alloc]init];
     self.contentArray = [[NSMutableArray alloc]init];

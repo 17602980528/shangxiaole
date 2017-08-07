@@ -70,7 +70,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = RGB(234, 234, 234);
     self.navigationItem.title = @"店铺详情";
-
+    LEFTBACK
     scrollViewOffSet = 0.0f;
     title_old_btn = [UIButton buttonWithType:UIButtonTypeCustom];
     

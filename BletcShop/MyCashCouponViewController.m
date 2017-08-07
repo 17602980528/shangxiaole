@@ -43,7 +43,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    LEFTBACK
     self.title = @"我的优惠券";
     
     self.view.backgroundColor = RGB(240, 240, 240);

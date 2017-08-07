@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    LEFTBACK
     if (self.type==9999)
     {
         self.title = @"安全保障";

@@ -85,7 +85,7 @@
     
         self.navigationItem.title = @"消息";
         self.view.backgroundColor = RGB(240, 240, 240);
-    
+    LEFTBACK
     
     
     // 创建tableview

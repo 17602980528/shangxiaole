@@ -35,7 +35,7 @@
 //15129025544
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    LEFTBACK
     self.navigationItem.title = @"支付密码";
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     if ([appdelegate.userInfoDic[@"pay_passwd"] isEqualToString:@"未设置"] ||[appdelegate.userInfoDic[@"pay_passwd"] isEqualToString:@""]) {

@@ -121,7 +121,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+LEFTBACK
     self.navigationItem.title = @"卡片详情";
     self.view.backgroundColor = RGB(240, 240, 240);
 

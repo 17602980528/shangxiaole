@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"我的推荐";
-    
+    LEFTBACK
     self.view.backgroundColor = RGB(240, 240, 240);
     
     _array=[[NSMutableArray alloc]initWithCapacity:0];

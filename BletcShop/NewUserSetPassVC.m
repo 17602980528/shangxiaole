@@ -195,6 +195,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    LEFTBACK
     self.navigationItem.title=@"设置密码";
     [self setTextFieldLeftImageView:_firstPass leftImageName:@"锁"];
     [self setTextFieldLeftImageView:_confirmPass leftImageName:@"锁"];

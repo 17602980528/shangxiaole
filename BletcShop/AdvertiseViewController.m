@@ -30,7 +30,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     _page=1;
     _dataAray = [[NSMutableArray alloc]initWithCapacity:0];
-    
+    LEFTBACK
     table_View = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-self.tabBarController.tabBar.frame.size.height) style:UITableViewStyleGrouped];
     table_View.dataSource = self;
     table_View.delegate = self;

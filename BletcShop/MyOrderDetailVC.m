@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    LEFTBACK
     self.navigationItem.title = @"交易详情";
     self.view.backgroundColor = RGB(240, 240, 240);
    [self createDemoView];

@@ -47,6 +47,7 @@
     [super viewDidLoad];
     self.navigationItem.title=@"评价";
     _indoorStars=5.0;
+    LEFTBACK
     XHStarRateView *star = [[XHStarRateView alloc] initWithFrame:CGRectMake(0, 0, _starsView.frame.size.width,_starsView.frame.size.height)];
     star.delegate=self;
     star.isAnimation = YES;

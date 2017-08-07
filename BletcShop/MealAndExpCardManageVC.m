@@ -52,7 +52,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"会员卡";
-
+LEFTBACK
     
     self.tabheaderView.frame = CGRectMake(13, 212*LZDScale-21, SCREENWIDTH-26, 99);
     

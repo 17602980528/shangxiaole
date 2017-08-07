@@ -20,7 +20,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"更换手机号";
 
-    
+    LEFTBACK
    
 }
 - (IBAction)nextBtn:(UIButton *)sender {

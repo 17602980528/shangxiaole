@@ -59,7 +59,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"扫描二维码";
-    
+    LEFTBACK
     self.view.backgroundColor = [UIColor whiteColor];
     [self scanCode];
     

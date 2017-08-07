@@ -25,7 +25,7 @@
     [super viewDidLoad];
     self.navigationItem.title=@"支付密码";
     self.view.backgroundColor=RGB(238, 238, 238);
-    
+    LEFTBACK
     UILabel *noticeLable=[[UILabel alloc]initWithFrame:CGRectMake(0, 60, SCREENWIDTH, 30)];
     noticeLable.font=[UIFont systemFontOfSize:14.0f];
     noticeLable.textAlignment=NSTextAlignmentCenter;

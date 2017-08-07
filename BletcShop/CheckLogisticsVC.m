@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title  = @"物流信息";
-    
+    LEFTBACK
     [self showHudInView:self.view hint:@"记载中..."];
     
     _progressLayer = [WYWebProgressLayer new];

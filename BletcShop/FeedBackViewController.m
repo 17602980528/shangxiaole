@@ -19,6 +19,7 @@
     [super viewDidLoad];
     self.view.userInteractionEnabled = YES;
     self.title = @"意见反馈";
+    LEFTBACK
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
     [self.view addGestureRecognizer:singleTap];
     [self initFeedView];

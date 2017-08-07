@@ -40,7 +40,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     _page=1;
-    
+    LEFTBACK
     table_View = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64) style:UITableViewStyleGrouped];
     table_View.dataSource = self;
     table_View.delegate = self;

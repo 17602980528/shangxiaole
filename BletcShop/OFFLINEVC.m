@@ -28,7 +28,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = RGB(240, 240, 240);
     openState=NO;
-    
+    LEFTBACK
     self.navigationItem.title = @"优惠券二维码";
     NSLog(@"self.dic======%@",self.dic);
     

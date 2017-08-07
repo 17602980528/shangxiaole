@@ -165,6 +165,7 @@ enum PayTypes {
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    LEFTBACK
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"支付";
     orderType_A = @[@"",@"办卡",@"续卡",@"充值",@"升级"];

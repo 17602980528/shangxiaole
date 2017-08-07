@@ -31,7 +31,7 @@
 //    self.navigationItem.title = @"顶部轮播广告";
     self.tableView.estimatedRowHeight = 130;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
+    LEFTBACK
     
     [self getDate];
 }

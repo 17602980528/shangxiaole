@@ -43,7 +43,8 @@
     self.socketHost = SOCKETHOST;//@"http://192.168.0.117";
     self.navigationItem.title = @"用户登录";
     self.view.backgroundColor = [UIColor whiteColor];
-    //    self.ifCIASuccess=NO;
+
+    LEFTBACK
     self.ifRemeber = YES;
     self.view.userInteractionEnabled = YES;
     

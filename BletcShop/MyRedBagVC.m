@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     currentIndex=1;
-    
+    LEFTBACK
     self.navigationItem.title = @"我的红包";
     self.view.backgroundColor = [UIColor whiteColor];
     UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithTitle:@"提现" style:UIBarButtonItemStylePlain target:self action:@selector(withdrawCash)];

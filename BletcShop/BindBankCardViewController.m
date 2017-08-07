@@ -16,7 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.cardArray = @[@[]];
+
+    LEFTBACK
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"绑定银行卡";
     UIButton *menuBt = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 32, 32)];

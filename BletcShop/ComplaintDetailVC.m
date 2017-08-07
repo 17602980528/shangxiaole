@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"投诉";
-    
+    LEFTBACK
     self.button.backgroundColor = NavBackGroundColor;
     
     

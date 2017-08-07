@@ -33,7 +33,7 @@
     self.navigationItem.title = @"升级";
     self.cha = 0.0;
     self.level =self.card_dic[@"card_level"];
-    
+    LEFTBACK
 
     self.card_level.text = self.level;
     self.price_lab.text = @"0.00";

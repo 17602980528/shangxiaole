@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    LEFTBACK
     self.navigationItem.title = @"交易结果";
     self.money_lab.text = self.money_s;
     self.sureBtn.hidden = YES;

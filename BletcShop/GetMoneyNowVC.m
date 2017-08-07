@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"提现";
-    
+    LEFTBACK
     self.view.backgroundColor = RGB(240, 240, 240);
     
     UIView *View1 = [[UIView alloc]initWithFrame:CGRectMake(0, 10, SCREENWIDTH, 88)];

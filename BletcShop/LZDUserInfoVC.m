@@ -139,7 +139,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"资料";
-    
+    LEFTBACK
     self.tishiview.frame = CGRectMake(0, 0, SCREENWIDTH,SCREENHEIGHT);
     self.cancleBtn.layer.borderColor = NavBackGroundColor.CGColor;
     self.cancleBtn.layer.borderWidth =1;

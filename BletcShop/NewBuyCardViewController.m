@@ -154,7 +154,7 @@
     self.Type = 888;
     self.canUsePoint = 0;
     
-    
+    LEFTBACK
  
     
     

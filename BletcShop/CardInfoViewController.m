@@ -27,7 +27,7 @@
     NSLog(@"%@",self.card_dic);
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     appdelegate.cardInfo_dic = self.card_dic;
-    
+    LEFTBACK
 
     [self initTableView];
 

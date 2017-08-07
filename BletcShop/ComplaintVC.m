@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"投诉";
-   
+   LEFTBACK
     self.view.backgroundColor = RGB(240, 240, 240);
     
     UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 30)];

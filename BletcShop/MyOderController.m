@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    LEFTBACK
     self.title = @"我的消费";
     self.orderArray = [[NSMutableArray alloc]init];
     [self postRequstOrderInfo];

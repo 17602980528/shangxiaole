@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BletcShop/BankListViewController.m"
-            timestampString = "500888126.667091"
+            timestampString = "523766370.96896"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "-getAllbankList:"
             landmarkType = "7">
             <Locations>

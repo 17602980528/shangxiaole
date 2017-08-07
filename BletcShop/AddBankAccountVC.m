@@ -70,11 +70,12 @@
     
     self.navigationItem.title = @"添加银行卡";
     
+    
     UIButton *back =[UIButton buttonWithType:UIButtonTypeCustom];
-    back.frame = CGRectMake(9, 30, 12, 20);
+    back.frame = CGRectMake(13, 31, 10, 20);
     [back setImage:[UIImage imageNamed:@"返回箭头"] forState:0];
     [back addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
-    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:back];
 
     
     UITableView *table_view = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64) style:UITableViewStyleGrouped];

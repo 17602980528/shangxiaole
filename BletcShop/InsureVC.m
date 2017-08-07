@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"保障详情";
-    
+    LEFTBACK
     
     
 }

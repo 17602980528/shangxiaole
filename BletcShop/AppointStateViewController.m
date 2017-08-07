@@ -20,6 +20,7 @@
     [super viewDidLoad];
     self.view.backgroundColor=RGB(240, 240, 240);
     self.navigationItem.title=@"我的预约";
+    LEFTBACK
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64) style:UITableViewStyleGrouped];
     _tableView.delegate=self;
     _tableView.dataSource=self;

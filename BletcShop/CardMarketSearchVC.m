@@ -55,6 +55,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"搜索";
+    LEFTBACK
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableHeaderView = self.searchController.searchBar;
 

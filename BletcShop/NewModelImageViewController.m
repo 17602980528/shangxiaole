@@ -21,6 +21,7 @@
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
     self.navigationItem.title=@"系统头像";
+    LEFTBACK
     imageView=[[UIImageView alloc]initWithFrame:CGRectMake(SCREENWIDTH/2-40, 20, 80, 80)];
     imageView.image=self.image;
     imageView.layer.borderWidth=1;

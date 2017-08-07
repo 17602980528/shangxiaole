@@ -32,6 +32,8 @@
     [super viewDidLoad];
     self.navigationItem.title = @"选择银行卡";
     self.view.backgroundColor= [UIColor whiteColor];
+    
+    LEFTBACK
     table_View = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-self.tabBarController.tabBar.frame.size.height) style:UITableViewStyleGrouped];
     table_View.dataSource = self;
     table_View.delegate = self;

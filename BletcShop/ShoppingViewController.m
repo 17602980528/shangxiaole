@@ -134,6 +134,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.indexss=1;
+    LEFTBACK
     
     AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     

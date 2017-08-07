@@ -21,7 +21,7 @@
     [super viewDidLoad];
     self.navigationItem.title=@"积分明细";
     self.view.backgroundColor=[UIColor whiteColor];
-    
+    LEFTBACK
     _dataArray=[[NSArray alloc]init];
     
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64) style:UITableViewStyleGrouped];

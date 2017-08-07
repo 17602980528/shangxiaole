@@ -27,7 +27,7 @@
     self.view.backgroundColor=RGB(234, 234, 234);
     self.navigationItem.title=@"计次卡支付";
     NSLog(@"%@",self.card_dic);
-    
+    LEFTBACK
     
 //    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 50)];
 //    backView.backgroundColor = [UIColor whiteColor];

@@ -138,7 +138,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    LEFTBACK
     self.navigationItem.title = @"会员卡";
     
     titles_array = @[@"我要续卡",@"我要升级",@"申请延期",@"我要预约",@"家庭共享",@"卡片转让",@"我要分享",@"投诉理赔"];

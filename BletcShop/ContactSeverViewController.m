@@ -21,6 +21,8 @@
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
     self.navigationItem.title=@"联系客服";
+    LEFTBACK
+    
     _imageNameArr=@[@"more_icon_tel_n",@"more_icon_wechatl_n",@"more_icon_sina_n",@"more_icon_public_n"];
     _nameArr=@[@"拨打电话",@"微信",@"微博",@"公众号"];
     UITableView *_tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64)];

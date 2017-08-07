@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"登录遇到问题";
-    
+    LEFTBACK
 
 }
 

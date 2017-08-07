@@ -21,7 +21,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor=RGB(240, 240, 240);
-    
+    LEFTBACK
     self.navigationItem.title=@"转让状态";
     if (self.index==1 && self.state ==0) {
         self.navigationItem.title=@"分享状态";

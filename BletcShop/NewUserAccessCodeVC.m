@@ -139,6 +139,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    LEFTBACK
     self.navigationItem.title=@"获取验证码";
     _proCodeTF.delegate=self;
     _proCodeTF.returnKeyType=UIReturnKeyDone;

@@ -19,7 +19,7 @@
     [super viewDidLoad];
 
     self.navigationItem.title = @"图文详情";
-    
+    LEFTBACK
     NSLog(@"----%@",self.picAndText_A);
 
 }

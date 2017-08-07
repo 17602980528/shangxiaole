@@ -59,10 +59,7 @@
     
         [self.navigationController popToRootViewControllerAnimated:YES];
     };
-    
-    
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:back];
+      self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:back];
     
     _apriseOrPublish=0;
     _tableView.estimatedRowHeight=200;

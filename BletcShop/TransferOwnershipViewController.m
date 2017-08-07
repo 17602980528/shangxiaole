@@ -18,7 +18,7 @@
     [super viewDidLoad];
     self.navigationItem.title=@"会员卡转让";
     self.view.backgroundColor=RGB(240, 240, 240);
-    
+    LEFTBACK
     UIView *bgView=[[UIView alloc]initWithFrame:CGRectMake(0, 10, SCREENWIDTH, SCREENHEIGHT-64-10-90)];
     bgView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:bgView];

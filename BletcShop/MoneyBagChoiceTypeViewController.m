@@ -69,9 +69,11 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    LEFTBACK
     self.view.backgroundColor = [UIColor whiteColor];
     [self _inittable];
-    // Do any additional setup after loading the view.
+
+
 }
 -(void)_inittable
 {

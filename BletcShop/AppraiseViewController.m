@@ -32,7 +32,7 @@
     self.navigationItem.title = @"评价";
     self.view.backgroundColor = [UIColor whiteColor];
     _indoorStars=5.0;
-    
+    LEFTBACK
     [self _inittable];
 
 }

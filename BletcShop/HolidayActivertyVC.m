@@ -28,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=RGB(240, 240, 240);
+    LEFTBACK
     _page=1;
     _dataAray = [[NSMutableArray alloc]initWithCapacity:0];
     //[self creatHeaderView];

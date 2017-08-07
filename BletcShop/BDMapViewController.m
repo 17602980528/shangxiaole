@@ -19,6 +19,7 @@
     self.view.backgroundColor =[UIColor whiteColor];
     NSLog(@"latitude = %@,longitude = %@",[NSString stringWithFormat:@"%f",_latitude],[NSString stringWithFormat:@"%f",_longitude]);
     // 启动定位
+    LEFTBACK;
     [self locService];
     CLLocationCoordinate2D loc = {_latitude, _longitude};
     

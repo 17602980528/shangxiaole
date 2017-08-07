@@ -21,6 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    LEFTBACK
+
+    
     self.view.backgroundColor=RGB(238, 238, 238);
     self.navigationItem.title=@"积分兑换";
     _scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64-100)];

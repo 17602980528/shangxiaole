@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"套餐卡支付";
-    
+    LEFTBACK
     selectRow = -1;
     self.table_view.estimatedRowHeight = 100;
     self.table_view.rowHeight = UITableViewAutomaticDimension;

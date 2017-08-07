@@ -51,7 +51,7 @@
     [super viewDidLoad];
     self.title = @"我要预约";
     self.pickerView = [[ValuePickerView alloc]init];
-
+LEFTBACK
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(SCREENWIDTH-75, 0, 60, 40);

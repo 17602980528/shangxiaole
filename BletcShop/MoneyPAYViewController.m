@@ -25,7 +25,7 @@
     [super viewDidLoad];
     self.view.backgroundColor=RGB(234, 234, 234);
     self.navigationItem.title=@"储值卡支付";
-    
+    LEFTBACK
     UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 50)];
     backView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:backView];

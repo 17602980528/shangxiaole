@@ -202,6 +202,10 @@
 #define MISSALERT   UIAlertController *alterVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"请求出错!" preferredStyle:UIAlertControllerStyleAlert];UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {POP }];[alterVC addAction:sureAction];[self presentViewController:alterVC animated:YES completion:nil];
 
 
+
+#define LEFTBACK  LZDButton *back =[LZDButton creatLZDButton];back.frame = CGRectMake(13, 31, 10, 20);[back setImage:[UIImage imageNamed:@"返回箭头"] forState:0];back.block = ^(LZDButton *sender) {POP};self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:back];
+
+
 #define  ORDER_PAY_NOTIFICATION @"order_pay_result"
 
 

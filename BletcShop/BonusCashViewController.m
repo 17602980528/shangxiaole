@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    LEFTBACK
     self.navigationItem.title = @"红包提现";
     self.view.backgroundColor = RGB(240, 240, 240);
     

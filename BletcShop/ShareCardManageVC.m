@@ -35,7 +35,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"会员卡";
 
-    
+    LEFTBACK
     self.headView.frame = CGRectMake(13, 212*LZDScale-52, SCREENWIDTH-26, 667);
     
     [self.view addSubview:self.headView];

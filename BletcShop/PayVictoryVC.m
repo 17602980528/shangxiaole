@@ -39,6 +39,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title=@"支付完成";
+    LEFTBACK
     
     self.leftView.layer.cornerRadius=8.0f;
     self.leftView.clipsToBounds=YES;

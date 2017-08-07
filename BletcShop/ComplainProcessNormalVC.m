@@ -24,10 +24,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    LEFTBACK
+
     [self.view sendSubviewToBack:_topBgView];
     self.compReason.text=self.complainReason;
     self.navigationItem.title=@"投诉处理中";
-    //self.view.layer.cornerRadius
 }
 - (IBAction)revealComplainBtnClick:(id)sender {
 }

@@ -46,6 +46,7 @@
     [super viewDidLoad];
     self.bgView.layer.cornerRadius=6.0f;
     self.bgView.clipsToBounds=YES;
+    LEFTBACK
     self.navigationItem.title=@"资料";
 }
 

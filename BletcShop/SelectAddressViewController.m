@@ -36,7 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    LEFTBACK
     self.navigationItem.title = @"添加收货地址";
     self.sureBtn.backgroundColor = NavBackGroundColor;
 

@@ -33,7 +33,7 @@
     [super viewDidLoad];
     self.navigationItem.title=@"已兑换商品";
     self.view.backgroundColor=[UIColor whiteColor];
-    
+    LEFTBACK
      _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64) style:UITableViewStyleGrouped];
     _tableView.delegate=self;
     _tableView.dataSource=self;

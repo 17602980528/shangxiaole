@@ -82,7 +82,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     payIndex=-1;
-    
+    LEFTBACK
     self.view.backgroundColor=RGB(240, 240, 240);
     self.navigationItem.title=@"充值";
     UIView *backView=[[UIView alloc]initWithFrame:CGRectMake(0, 10, SCREENWIDTH, 132+2)];

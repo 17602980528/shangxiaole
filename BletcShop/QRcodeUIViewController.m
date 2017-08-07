@@ -24,7 +24,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"分享二维码";
-
+    LEFTBACK
     self.QRView = [[UIView alloc]initWithFrame:CGRectMake(20, 50, SCREENWIDTH-40, SCREENWIDTH-40)];
     [self.view addSubview:_QRView];
     

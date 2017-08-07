@@ -48,7 +48,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = RGB(240, 240, 240);
     self.navigationItem.title = @"设置";
-    
+    LEFTBACK
     [self _initTable];
     
     

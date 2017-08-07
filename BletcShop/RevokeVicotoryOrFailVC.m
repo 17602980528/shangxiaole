@@ -31,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title=@"理赔结果";
-    
+    LEFTBACK
     UIBarButtonItem *rightItem=[[UIBarButtonItem alloc]initWithTitle:@"继续申请" style:UIBarButtonItemStylePlain target:self action:@selector(buttonClick)];
     self.navigationItem.rightBarButtonItem=rightItem;
     

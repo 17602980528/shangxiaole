@@ -26,7 +26,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = RGB(240, 240, 240);
     self.title = @"我的收藏";
-    
+    LEFTBACK
     [self _inittable];
 
     [self postRequestFavorate];

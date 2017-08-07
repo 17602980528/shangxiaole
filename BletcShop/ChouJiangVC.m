@@ -22,7 +22,7 @@
     [super viewDidLoad];
 //    self.navigationItem.title = @"积分抽奖";
 //    self.navigationItem.title = @"周边";
-
+    LEFTBACK
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.userInteractionEnabled = NO;
     

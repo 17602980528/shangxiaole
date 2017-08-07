@@ -50,7 +50,7 @@
     self.view.backgroundColor = RGB(240, 240, 240);
     self.title = @"我的会员卡";
     
-    
+    LEFTBACK
     topBackView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 92)];
     topBackView.backgroundColor=[UIColor whiteColor];
     topBackView.showsHorizontalScrollIndicator = NO;

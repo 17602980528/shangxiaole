@@ -110,6 +110,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    LEFTBACK
     self.navigationItem.title=@"填写手机号";
     _phoneTF.delegate=self;
     _phoneTF.returnKeyType=UIReturnKeyDone;

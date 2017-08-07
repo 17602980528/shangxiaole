@@ -72,7 +72,7 @@
     [super viewDidLoad];
     [[self.contentTF.subviews firstObject] removeFromSuperview];
   
-  
+  LEFTBACK
     
     self.navigationItem.title = [NSString stringWithFormat:@"修改%@",self.leibie];
     self.title_lab.text = self.leibie;

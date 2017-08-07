@@ -22,7 +22,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"我的延期";
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    LEFTBACK
 
     
     self.table_View =[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64) style:UITableViewStyleGrouped];

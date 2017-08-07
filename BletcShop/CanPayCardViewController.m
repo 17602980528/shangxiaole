@@ -37,7 +37,7 @@
     self.view.backgroundColor = RGB(234, 234, 234);
     
     self.navigationItem.title = @"我的会员卡";
-
+    LEFTBACK
     [self getCardList];
 
     

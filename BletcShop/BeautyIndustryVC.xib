@@ -54,7 +54,7 @@
                             </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="返回箭头" translatesAutoresizingMaskIntoConstraints="NO" id="24N-zT-g0V">
-                            <rect key="frame" x="13" y="31.5" width="10" height="20"/>
+                            <rect key="frame" x="15" y="31.5" width="10" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="10" id="M2Z-dJ-5MG"/>
                                 <constraint firstAttribute="height" constant="20" id="hGE-ak-ttZ"/>
@@ -120,7 +120,7 @@
                         <constraint firstItem="LKb-8K-a0R" firstAttribute="centerX" secondItem="zBw-LR-TEc" secondAttribute="centerX" id="VVJ-TR-B1a"/>
                         <constraint firstItem="Dtq-KB-Tz9" firstAttribute="top" secondItem="zBw-LR-TEc" secondAttribute="top" constant="20" id="Xez-HH-eLM"/>
                         <constraint firstItem="Dtq-KB-Tz9" firstAttribute="leading" secondItem="zBw-LR-TEc" secondAttribute="leading" id="eRM-X3-tcJ"/>
-                        <constraint firstItem="24N-zT-g0V" firstAttribute="leading" secondItem="zBw-LR-TEc" secondAttribute="leading" constant="13" id="h2A-VL-472"/>
+                        <constraint firstItem="24N-zT-g0V" firstAttribute="leading" secondItem="zBw-LR-TEc" secondAttribute="leading" constant="15" id="h2A-VL-472"/>
                         <constraint firstItem="LKb-8K-a0R" firstAttribute="top" secondItem="zBw-LR-TEc" secondAttribute="top" constant="33" id="mQJ-uG-Rqc"/>
                         <constraint firstAttribute="height" constant="64" id="zEg-D8-h7j"/>
                     </constraints>
@@ -136,7 +136,7 @@
                 <constraint firstItem="UbR-Tb-Ggh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="nKI-fd-chW"/>
                 <constraint firstItem="zBw-LR-TEc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vF0-cT-qVg"/>
             </constraints>
-            <point key="canvasLocation" x="-24" y="-304"/>
+            <point key="canvasLocation" x="-63" y="-240"/>
         </view>
     </objects>
     <resources>

@@ -94,7 +94,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title=@"理赔申请";
-    
+    LEFTBACK
     _proceedView.hidden=YES;
     
     NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString: _complainChoosement.text];

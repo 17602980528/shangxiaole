@@ -37,7 +37,7 @@
     [super viewDidLoad];
 
     self.navigationItem.title = @"登录设置";
-
+LEFTBACK
 
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 45, SCREENWIDTH, SCREENHEIGHT-45) ];
     _scrollView.bounces= YES;

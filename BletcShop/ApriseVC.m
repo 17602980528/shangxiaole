@@ -25,6 +25,8 @@
     [super viewDidLoad];
     NSLog(@"%@",self.muid);
     self.navigationItem.title=@"用户评价";
+    
+    LEFTBACK
     _page=1;
     _dataAray = [[NSMutableArray alloc]initWithCapacity:0];
 //    NSDictionary *dic1=@{@"head":@"头像-19",@"nick":@"阿娇鲍鱼",@"content":@"今天天气不错是风和日丽的，我们一起出去玩吧！",@"time":@"2017-5-12"};

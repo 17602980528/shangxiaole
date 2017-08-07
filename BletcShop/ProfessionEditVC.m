@@ -49,7 +49,7 @@
     [super viewDidLoad];
     self.tabVIew.rowHeight = 44;
     self.navigationItem.title = @"职业";
-    
+    LEFTBACK
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(sureClick)];
 

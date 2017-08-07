@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"搜索商家";
-    
+    LEFTBACK
     _indexss=1;
     self.searchList=[[NSMutableArray alloc]initWithCapacity:0];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

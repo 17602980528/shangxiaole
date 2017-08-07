@@ -51,7 +51,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = RGB(240, 240, 240);
     self.title = @"申请延期";
-    
+    LEFTBACK
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(SCREENWIDTH-75, 0, 60, 40);

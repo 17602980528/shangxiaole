@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"扫描结果";
-    
+    LEFTBACK
     self.errrotextView.text = self.errorString;
 
 }

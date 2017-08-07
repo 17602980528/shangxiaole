@@ -33,7 +33,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    LEFTBACK
 //    self.title = @"我要续卡";
     
     self.view.backgroundColor = RGB(240, 240, 240);
