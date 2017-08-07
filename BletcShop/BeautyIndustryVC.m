@@ -147,7 +147,7 @@
     
     
     
-    [self creatTableViewHeaderView];
+//    [self creatTableViewHeaderView];
     
     
     
@@ -218,37 +218,53 @@
 
 -(void)creatTableViewHeaderView{
     
+    NSLog(@"creatTableViewHeaderView");
     UIView *headerView = [[UIView alloc]init];
     headerView.backgroundColor = RGB(240, 240, 240);
     UIView *whiteView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 13)];
     whiteView.backgroundColor = [UIColor whiteColor];
     [headerView addSubview:whiteView];
     
-    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 13, SCREENWIDTH, 119*LZDScale) delegate:nil placeholderImage:[UIImage imageNamed:@""]];
+    UIView *slipBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 13, SCREENWIDTH, 119*LZDScale)];
     
-    cycleScrollView.imageURLStringsGroup = self.topImg_M_A;
-    cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-    cycleScrollView.currentPageDotColor = [UIColor whiteColor];
-    
-    [cycleScrollView setValue:@"NO" forKeyPath:@"mainView.scrollsToTop"];
-    
-    cycleScrollView.clickItemOperationBlock = ^(NSInteger currentIndex) {
-        NSDictionary *dic = self.upSort_data_dic[@"top_advert"][currentIndex];
-        
-        
-        if (![dic[@"state"] isEqualToString:@"false"]) {
-            
-            PUSH(ChouJiangVC)
-            vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
-            vc.navigationItem.title =dic[@"title"];
-        }
+    [headerView addSubview:slipBackView];
 
-    };
     
-    [headerView addSubview:cycleScrollView];
+    if (self.topImg_M_A.count==0) {
+        UIImageView *imgView = [[UIImageView alloc]initWithFrame:slipBackView.frame];
+        imgView.image = [UIImage imageNamed:@"首页顶部海报"];
+        [slipBackView addSubview:imgView];
+
+        
+    }else{
+        SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 13, SCREENWIDTH, 119*LZDScale) delegate:nil placeholderImage:[UIImage imageNamed:@""]];
+
+        cycleScrollView.imageURLStringsGroup = self.topImg_M_A;
+        cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+        cycleScrollView.currentPageDotColor = [UIColor whiteColor];
+        
+        [cycleScrollView setValue:@"NO" forKeyPath:@"mainView.scrollsToTop"];
+        
+        cycleScrollView.clickItemOperationBlock = ^(NSInteger currentIndex) {
+            NSDictionary *dic = self.upSort_data_dic[@"top_advert"][currentIndex];
+            
+            
+            if (![dic[@"state"] isEqualToString:@"false"]) {
+                
+                PUSH(ChouJiangVC)
+                vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+                vc.navigationItem.title =dic[@"title"];
+            }
+            
+        };
+        
+        [slipBackView addSubview:cycleScrollView];
+ 
+    }
     
     
-     middle_scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, cycleScrollView.bottom+10, SCREENWIDTH, 110)];
+    
+     middle_scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, slipBackView.bottom+10, SCREENWIDTH, 110)];
     middle_scrollView.backgroundColor = [UIColor whiteColor];
     middle_scrollView.showsVerticalScrollIndicator = NO;
     middle_scrollView.showsHorizontalScrollIndicator = NO;
@@ -276,10 +292,10 @@
     CGFloat hh = 32+10+13;
     
     if ([_upSort_data_dic[@"sub_sort"] count]>4) {
-        middle_scrollView.frame = CGRectMake(0, cycleScrollView.bottom+10, SCREENWIDTH, 21+(hh+20)*2);
+        middle_scrollView.frame = CGRectMake(0, slipBackView.bottom+10, SCREENWIDTH, 21+(hh+20)*2);
         
     }else{
-        middle_scrollView.frame = CGRectMake(0, cycleScrollView.bottom+10, SCREENWIDTH, 21+(hh+20));
+        middle_scrollView.frame = CGRectMake(0, slipBackView.bottom+10, SCREENWIDTH, 21+(hh+20));
         
     }
     
@@ -428,14 +444,18 @@
     
     if ([_icon_dic[@"id"]intValue]==200) {
     
-        cycleScrollView.frame =CGRectMake(0, 0, SCREENWIDTH, 161*LZDScale);
-        cycleScrollView.clickItemOperationBlock = ^(NSInteger currentIndex) {
+        slipBackView.frame =CGRectMake(0, 0, SCREENWIDTH, 161*LZDScale);
+        
+        SDCycleScrollView *cyVIew = slipBackView.subviews[0];
+        
+        
+        cyVIew.clickItemOperationBlock = ^(NSInteger currentIndex) {
             NSLog(@"健康养生");
         };
         
         middle_scrollView.hidden = YES;
         
-        UIScrollView *top_scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, cycleScrollView.height-45-41, SCREENWIDTH, 45+41)];
+        UIScrollView *top_scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, slipBackView.height-45-41, SCREENWIDTH, 45+41)];
         
         top_scrollView.showsVerticalScrollIndicator = NO;
         top_scrollView.showsHorizontalScrollIndicator = NO;
@@ -499,7 +519,7 @@
 
         
     
-    UIView *bottom_view = [[UIView alloc]initWithFrame:CGRectMake(0, cycleScrollView.bottom+10, SCREENWIDTH, 44)];
+    UIView *bottom_view = [[UIView alloc]initWithFrame:CGRectMake(0, slipBackView.bottom+10, SCREENWIDTH, 44)];
     bottom_view.backgroundColor = [UIColor whiteColor];
     [headerView addSubview:bottom_view];
     
@@ -510,7 +530,7 @@
     [bottom_view addSubview:labe];
     
         
-        bottom_scrollView.frame = CGRectMake(0, cycleScrollView.bottom+10+44, SCREENWIDTH, 148-44);
+        bottom_scrollView.frame = CGRectMake(0, slipBackView.bottom+10+44, SCREENWIDTH, 148-44);
     
         for (UIView *view in bottom_scrollView.subviews) {
             [view removeFromSuperview];
@@ -628,7 +648,7 @@
     
     if ([_icon_dic[@"id"] intValue]==300||[_icon_dic[@"id"] intValue]==400) {
     
-        cycleScrollView.frame = CGRectMake(0, 0, SCREENWIDTH, 133*LZDScale);
+        slipBackView.frame = CGRectMake(0, 0, SCREENWIDTH, 133*LZDScale);
         
         CGRect fra = bottom_scrollView.frame;
         fra.size.height = 123;

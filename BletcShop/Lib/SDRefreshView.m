@@ -47,7 +47,7 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
         UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] init];
         activity.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
         [activity startAnimating];
-        [self addSubview:activity];
+//        [self addSubview:activity];
         _activityIndicatorView = activity;
         
         // 状态提示图片
@@ -79,7 +79,6 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
         [self addSubview:textIndicator];
         _textIndicator = textIndicator;
         
-        [self startAnimation];
 
         // 更新时间提示label
 //        UILabel *timeIndicator = [[UILabel alloc] init];
@@ -170,6 +169,7 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
         // 进入刷新状态
         case SDRefreshViewStateRefreshing:
             {
+                NSLog(@"--SDRefreshViewStateRefreshing-----");
                 _originalEdgeInsets = self.scrollView.contentInset;
 
                 _scrollView.contentInset = [self syntheticalEdgeInsetsWithEdgeInsets:self.scrollViewEdgeInsets];
@@ -195,6 +195,9 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
             
         case SDRefreshViewStateWillRefresh:
             {
+                NSLog(@"--SDRefreshViewStateWillRefresh-----");
+                [self startAnimation];
+
                 _textIndicator.text = SDRefreshViewWillRefreshStateText;
                 [UIView animateWithDuration:0.5 animations:^{
                     _stateIndicatorView.transform = CGAffineTransformMakeRotation(self.stateIndicatorViewWillRefreshStateTransformAngle);
@@ -203,11 +206,15 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
             break;
             
         case SDRefreshViewStateNormal:
+            NSLog(@"--SDRefreshViewStateNormal-----");
+            [_trasfrom_img.layer removeAllAnimations];
             _textIndicator.text = self.textForNormalState;
             _stateIndicatorView.transform = CGAffineTransformMakeRotation(self.stateIndicatorViewNormalTransformAngle);
             _timeIndicator.text = [NSString stringWithFormat:@"最后更新：%@", [self lastRefreshingTimeString]];
             _stateIndicatorView.hidden = NO;
             _activityIndicatorView.hidden = YES;
+            
+
             break;
             
         default:
@@ -221,6 +228,10 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
     [UIView animateWithDuration:0.6 animations:^{
         _scrollView.contentInset = _originalEdgeInsets;
     } completion:^(BOOL finished) {
+        
+        NSLog(@"----------------------------");
+
+        
         [self setRefreshState:SDRefreshViewStateNormal];
     }];
 }
@@ -242,14 +253,25 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
 
 - (void)startAnimation
 {
-    CGAffineTransform endAngle = CGAffineTransformMakeRotation(angle * (M_PI / 180.0f));
     
-    [UIView animateWithDuration:0.01 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        _trasfrom_img.transform = endAngle;
-    } completion:^(BOOL finished) {
-        angle += 10;
-        [self startAnimation];
-    }];
+    CABasicAnimation *animation =  [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    //默认是顺时针效果，若将fromValue和toValue的值互换，则为逆时针效果
+    animation.fromValue = [NSNumber numberWithFloat:0.f];
+    animation.toValue =  [NSNumber numberWithFloat: M_PI *2];
+    animation.duration  = 0.7;
+    animation.autoreverses = NO;
+    animation.fillMode =kCAFillModeForwards;
+    animation.repeatCount = MAXFLOAT; //如果这里想设置成一直自旋转，可以设置为MAXFLOAT，否则设置具体的数值则代表执行多少次
+    [_trasfrom_img.layer addAnimation:animation forKey:nil];
+    
+//    CGAffineTransform endAngle = CGAffineTransformMakeRotation(angle * (M_PI / 180.0f));
+//    
+//    [UIView animateWithDuration:0.01 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+//        _trasfrom_img.transform = endAngle;
+//    } completion:^(BOOL finished) {
+//        angle += 10;
+//        [self startAnimation];
+//    }];
 }
 
 
