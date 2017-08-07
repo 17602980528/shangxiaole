@@ -32,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"添加好友";
+    LEFTBACK
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 240;

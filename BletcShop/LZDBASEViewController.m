@@ -42,7 +42,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    LEFTBACK
     NSDictionary *dic =[[NSUserDefaults standardUserDefaults]objectForKey:@"FriendRequest"];
     self.dicFriendRequest =[NSMutableDictionary dictionaryWithDictionary:dic];
     
@@ -70,7 +70,7 @@
     rightBtn.frame = CGRectMake(kWeChatScreenWidth-50, 0, 30, 30);
     
     [rightBtn setTitle:@"+" forState:UIControlStateNormal];
-    [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [rightBtn setTitleColor:RGB(51, 51, 51) forState:UIControlStateNormal];
     rightBtn.titleLabel.font = [UIFont boldSystemFontOfSize:30];
     
     self.navigationItem.rightBarButtonItem = nil;

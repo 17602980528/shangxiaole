@@ -96,6 +96,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    LEFTBACK
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 
     

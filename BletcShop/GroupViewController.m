@@ -49,7 +49,7 @@
     [super viewDidLoad];
     self.title = @"群组";
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    LEFTBACK
 //    self.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
 //    [self.view addSubview:self.searchBar];
     

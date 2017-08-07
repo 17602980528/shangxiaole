@@ -45,7 +45,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    LEFTBACK
     self.title = @"申请与通知";
     //获取 好友申请列表
     [self getdata];
