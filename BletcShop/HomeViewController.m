@@ -316,7 +316,7 @@
     [topView addSubview:searchView];
     
     
-     search1= [[UIImageView alloc]initWithFrame:CGRectMake(11, 5, 18, 18)];
+     search1= [[UIImageView alloc]initWithFrame:CGRectMake(11, 5+2, 14, 14)];
     search1.image = [UIImage imageNamed:@"搜索icon"];
     [searchView addSubview:search1];
     
@@ -360,7 +360,7 @@
 //            redView.clipsToBounds = YES;
 //            [img_mine addSubview:redView];
             
-            img_mine.frame =CGRectMake(2.5+3, 5.5+3, 18, 18);
+//            img_mine.frame =CGRectMake(2.5+3, 5.5+3, 18, 18);
             img_mine.image = [UIImage imageNamed:@"提醒icon"];
             
             //            UIImageView *whitePoint = [[UIImageView alloc]initWithFrame:CGRectMake(img_mine.width-6-2, 0, 6, 6)];

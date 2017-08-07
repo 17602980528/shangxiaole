@@ -175,7 +175,7 @@
     [topView addSubview:searchView];
     
     
-    UIImageView *search1= [[UIImageView alloc]initWithFrame:CGRectMake(11, 5, 18, 18)];
+    UIImageView *search1= [[UIImageView alloc]initWithFrame:CGRectMake(11, 5+2, 14, 14)];
     search1.image = [UIImage imageNamed:@"灰色搜索icon"];
     [searchView addSubview:search1];
     

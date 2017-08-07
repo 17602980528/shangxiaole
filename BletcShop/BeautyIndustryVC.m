@@ -20,7 +20,7 @@
 #import "ShoppingViewController.h"
 
 #import "CustomSearchVC.h"
-
+#import "NewShopDetailVC.h"
 @interface BeautyIndustryVC ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,DOPDropDownMenuDelegate,DOPDropDownMenuDataSource>
 {
     NSArray *arr;
@@ -907,6 +907,17 @@
     
 }
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSDictionary *dic = self.data_M_A [indexPath.row];
+    NSLog(@"-----%@",dic);
+    
+    PUSH(NewShopDetailVC)
+    vc.infoDic = [dic mutableCopy];
+    vc.videoID=[NSString getTheNoNullStr:dic[@"video"] andRepalceStr:@""];
+
+}
 #pragma mark DOPDownMenu 代理
 -(NSInteger)numberOfColumnsInMenu:(DOPDropDownMenu *)menu{
     return 2;
