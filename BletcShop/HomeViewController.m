@@ -289,7 +289,7 @@
     
     
     [dingweiBtn setTitle:appdelegate.districtString.length>0?appdelegate.districtString:appdelegate.cityChoice forState:UIControlStateNormal];
-    [dingweiBtn setTitleColor:RGB(255,255,255) forState:UIControlStateNormal];
+    [dingweiBtn setTitleColor:RGB(51,51,51) forState:UIControlStateNormal];
     dingweiBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [topView addSubview:dingweiBtn];
     
@@ -416,7 +416,7 @@
             searchView.backgroundColor=RGB(255,255,255);
             
             dingwei_img.image = [UIImage imageNamed:@"首页最上面"];
-            [dingweiBtn setTitleColor:RGB(255,255,255) forState:UIControlStateNormal];
+            [dingweiBtn setTitleColor:RGB(51,51,51) forState:UIControlStateNormal];
             
             erweimaImg.image = [UIImage imageNamed:@"二维码扫描"];
             xiaoxiImg.image = [UIImage imageNamed:@"提醒icon"];
@@ -1435,7 +1435,7 @@
                 searchView.backgroundColor=RGB(255,255,255);
                 
                 dingwei_img.image = [UIImage imageNamed:@"首页最上面"];
-                [dingweiBtn setTitleColor:RGB(255,255,255) forState:UIControlStateNormal];
+                [dingweiBtn setTitleColor:RGB(51,51,51) forState:UIControlStateNormal];
                 
                 erweimaImg.image = [UIImage imageNamed:@"二维码扫描"];
                 xiaoxiImg.image = [UIImage imageNamed:@"提醒icon"];
