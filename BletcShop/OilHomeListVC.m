@@ -8,6 +8,7 @@
 
 #import "OilHomeListVC.h"
 #import "OilListTableViewCell.h"
+#import "OilDetailsPageVC.h"
 @interface OilHomeListVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableVeiw;
 
@@ -18,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title=@"加油站列表";
+    LEFTBACK
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 12;
@@ -33,6 +35,10 @@
     }
     
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    OilDetailsPageVC *vc=[[OilDetailsPageVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

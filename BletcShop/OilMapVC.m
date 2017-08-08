@@ -7,7 +7,8 @@
 //
 
 #import "OilMapVC.h"
-#import "OilHomeListVC.h"
+#import "OilHomeListVC.h"//加油点列表
+#import "OneKeyOilVC.h"//一键加油
 @interface OilMapVC ()
 {
     UIView *topViw;
@@ -18,9 +19,14 @@
 @end
 
 @implementation OilMapVC
+//加油点列表
 -(void)goOilShopList{
     OilHomeListVC *oilHomeListVC=[[OilHomeListVC alloc]init];
     [self.navigationController pushViewController:oilHomeListVC animated:YES];
+}
+-(void)oneKeyOilBtnClicks:(UITapGestureRecognizer *)tap{
+    OneKeyOilVC *vc=[[OneKeyOilVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)mapRelationBtnClick:(UIButton *)sender{
     switch (sender.tag) {
@@ -53,6 +59,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title=@"常用油品";
+    LEFTBACK
     onlyOnce=NO;
     
     UIButton *rightItemButoon=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -110,13 +117,20 @@
     
     UIImageView *letfImage=[[UIImageView alloc]initWithFrame:CGRectMake(25, 12, 20, 20)];
     letfImage.image=[UIImage imageNamed:@"一件加油icon"];
+    letfImage.userInteractionEnabled=YES;
     [oneKeyOil addSubview:letfImage];
     
     UILabel *leftLab=[[UILabel alloc]initWithFrame:CGRectMake(letfImage.right+10, 15, oneKeyOil.width-letfImage.right-10, 14) ];
     leftLab.font=[UIFont systemFontOfSize:14];
     leftLab.text=@"一键加油";
+    leftLab.userInteractionEnabled=YES;
     leftLab.textColor=[UIColor whiteColor];
     [oneKeyOil addSubview:leftLab];
+    
+    UITapGestureRecognizer *tap1=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(oneKeyOilBtnClicks:)];
+    
+    [oneKeyOil addGestureRecognizer:tap1];
+    
     
     //购买加油卡
     UIView *buyOilCard=[[UIView alloc ]initWithFrame:CGRectMake(SCREENWIDTH/2+20, SCREENHEIGHT-64-54, 136, 44)];

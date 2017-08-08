@@ -189,6 +189,16 @@
 		18E3DA151D82460A0089597B /* SoundPaly.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E3DA141D82460A0089597B /* SoundPaly.m */; };
 		18E3DA1A1D8287450089597B /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E3DA171D8287450089597B /* ChangePasswordViewController.m */; };
 		18E3DA1B1D8287450089597B /* NewPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E3DA191D8287450089597B /* NewPasswordViewController.m */; };
+		18E838DB1F394C1900E743A7 /* OneKeyOilVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E838D91F394C1900E743A7 /* OneKeyOilVC.m */; };
+		18E838DC1F394C1900E743A7 /* OneKeyOilVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E838DA1F394C1900E743A7 /* OneKeyOilVC.xib */; };
+		18E838E31F39683A00E743A7 /* OilDetailsPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E838E11F39683A00E743A7 /* OilDetailsPageVC.m */; };
+		18E838E41F39683A00E743A7 /* OilDetailsPageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E838E21F39683A00E743A7 /* OilDetailsPageVC.xib */; };
+		18E838E81F3987A700E743A7 /* OilAppriseAndAunserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E838E61F3987A700E743A7 /* OilAppriseAndAunserTableViewCell.m */; };
+		18E838E91F3987A700E743A7 /* OilAppriseAndAunserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E838E71F3987A700E743A7 /* OilAppriseAndAunserTableViewCell.xib */; };
+		18E838EE1F3998E500E743A7 /* OrderConfirmForOilVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E838EC1F3998E500E743A7 /* OrderConfirmForOilVC.m */; };
+		18E838EF1F3998E500E743A7 /* OrderConfirmForOilVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E838ED1F3998E500E743A7 /* OrderConfirmForOilVC.xib */; };
+		18E838F31F39AAE900E743A7 /* PayWaysForOilTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E838F11F39AAE900E743A7 /* PayWaysForOilTableViewCell.m */; };
+		18E838F41F39AAE900E743A7 /* PayWaysForOilTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E838F21F39AAE900E743A7 /* PayWaysForOilTableViewCell.xib */; };
 		18EB36A31D4B1F5D0087CE1A /* 滑动选择-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EB36991D4B1F5D0087CE1A /* 滑动选择-01.png */; };
 		18EB36A61D4B1F5D0087CE1A /* 滑动选择-04.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EB369C1D4B1F5D0087CE1A /* 滑动选择-04.png */; };
 		18EB36A71D4B1F5D0087CE1A /* 滑动选择-05.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EB369D1D4B1F5D0087CE1A /* 滑动选择-05.png */; };
@@ -1378,6 +1388,21 @@
 		18E3DA171D8287450089597B /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
 		18E3DA181D8287450089597B /* NewPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPasswordViewController.h; sourceTree = "<group>"; };
 		18E3DA191D8287450089597B /* NewPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPasswordViewController.m; sourceTree = "<group>"; };
+		18E838D81F394C1900E743A7 /* OneKeyOilVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneKeyOilVC.h; sourceTree = "<group>"; };
+		18E838D91F394C1900E743A7 /* OneKeyOilVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneKeyOilVC.m; sourceTree = "<group>"; };
+		18E838DA1F394C1900E743A7 /* OneKeyOilVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneKeyOilVC.xib; sourceTree = "<group>"; };
+		18E838E01F39683A00E743A7 /* OilDetailsPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilDetailsPageVC.h; sourceTree = "<group>"; };
+		18E838E11F39683A00E743A7 /* OilDetailsPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OilDetailsPageVC.m; sourceTree = "<group>"; };
+		18E838E21F39683A00E743A7 /* OilDetailsPageVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OilDetailsPageVC.xib; sourceTree = "<group>"; };
+		18E838E51F3987A700E743A7 /* OilAppriseAndAunserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilAppriseAndAunserTableViewCell.h; sourceTree = "<group>"; };
+		18E838E61F3987A700E743A7 /* OilAppriseAndAunserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OilAppriseAndAunserTableViewCell.m; sourceTree = "<group>"; };
+		18E838E71F3987A700E743A7 /* OilAppriseAndAunserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OilAppriseAndAunserTableViewCell.xib; sourceTree = "<group>"; };
+		18E838EB1F3998E500E743A7 /* OrderConfirmForOilVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderConfirmForOilVC.h; sourceTree = "<group>"; };
+		18E838EC1F3998E500E743A7 /* OrderConfirmForOilVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConfirmForOilVC.m; sourceTree = "<group>"; };
+		18E838ED1F3998E500E743A7 /* OrderConfirmForOilVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderConfirmForOilVC.xib; sourceTree = "<group>"; };
+		18E838F01F39AAE900E743A7 /* PayWaysForOilTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayWaysForOilTableViewCell.h; sourceTree = "<group>"; };
+		18E838F11F39AAE900E743A7 /* PayWaysForOilTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayWaysForOilTableViewCell.m; sourceTree = "<group>"; };
+		18E838F21F39AAE900E743A7 /* PayWaysForOilTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayWaysForOilTableViewCell.xib; sourceTree = "<group>"; };
 		18EB36991D4B1F5D0087CE1A /* 滑动选择-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "滑动选择-01.png"; sourceTree = "<group>"; };
 		18EB369C1D4B1F5D0087CE1A /* 滑动选择-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "滑动选择-04.png"; sourceTree = "<group>"; };
 		18EB369D1D4B1F5D0087CE1A /* 滑动选择-05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "滑动选择-05.png"; sourceTree = "<group>"; };
@@ -3330,12 +3355,9 @@
 				1849A0FA1F38450000483CE8 /* OilMapVC.h */,
 				1849A0FB1F38450000483CE8 /* OilMapVC.m */,
 				1849A0FC1F38450000483CE8 /* OilMapVC.xib */,
-				1849A0F01F383DCB00483CE8 /* OilHomeListVC.h */,
-				1849A0F11F383DCB00483CE8 /* OilHomeListVC.m */,
-				1849A0F21F383DCB00483CE8 /* OilHomeListVC.xib */,
-				1849A0F51F383E5A00483CE8 /* OilListTableViewCell.h */,
-				1849A0F61F383E5A00483CE8 /* OilListTableViewCell.m */,
-				1849A0F71F383E5A00483CE8 /* OilListTableViewCell.xib */,
+				18E838EA1F39989000E743A7 /* 订单确认 */,
+				18E838D71F394BE200E743A7 /* 一键加油 */,
+				18E838D61F394B6A00E743A7 /* 加油点列表 */,
 			);
 			name = "加油卡";
 			sourceTree = "<group>";
@@ -3489,6 +3511,64 @@
 				18B1399D1F3012DD00283CED /* 时间.png */,
 			);
 			name = "带历史搜索记录的新搜索";
+			sourceTree = "<group>";
+		};
+		18E838D61F394B6A00E743A7 /* 加油点列表 */ = {
+			isa = PBXGroup;
+			children = (
+				18E838DF1F3967FC00E743A7 /* 加油点 */,
+				18E838DD1F3967DB00E743A7 /* 加油点详情 */,
+			);
+			name = "加油点列表";
+			sourceTree = "<group>";
+		};
+		18E838D71F394BE200E743A7 /* 一键加油 */ = {
+			isa = PBXGroup;
+			children = (
+				18E838D81F394C1900E743A7 /* OneKeyOilVC.h */,
+				18E838D91F394C1900E743A7 /* OneKeyOilVC.m */,
+				18E838DA1F394C1900E743A7 /* OneKeyOilVC.xib */,
+			);
+			name = "一键加油";
+			sourceTree = "<group>";
+		};
+		18E838DD1F3967DB00E743A7 /* 加油点详情 */ = {
+			isa = PBXGroup;
+			children = (
+				18E838E01F39683A00E743A7 /* OilDetailsPageVC.h */,
+				18E838E11F39683A00E743A7 /* OilDetailsPageVC.m */,
+				18E838E21F39683A00E743A7 /* OilDetailsPageVC.xib */,
+				18E838E51F3987A700E743A7 /* OilAppriseAndAunserTableViewCell.h */,
+				18E838E61F3987A700E743A7 /* OilAppriseAndAunserTableViewCell.m */,
+				18E838E71F3987A700E743A7 /* OilAppriseAndAunserTableViewCell.xib */,
+			);
+			name = "加油点详情";
+			sourceTree = "<group>";
+		};
+		18E838DF1F3967FC00E743A7 /* 加油点 */ = {
+			isa = PBXGroup;
+			children = (
+				1849A0F01F383DCB00483CE8 /* OilHomeListVC.h */,
+				1849A0F11F383DCB00483CE8 /* OilHomeListVC.m */,
+				1849A0F21F383DCB00483CE8 /* OilHomeListVC.xib */,
+				1849A0F51F383E5A00483CE8 /* OilListTableViewCell.h */,
+				1849A0F61F383E5A00483CE8 /* OilListTableViewCell.m */,
+				1849A0F71F383E5A00483CE8 /* OilListTableViewCell.xib */,
+			);
+			name = "加油点";
+			sourceTree = "<group>";
+		};
+		18E838EA1F39989000E743A7 /* 订单确认 */ = {
+			isa = PBXGroup;
+			children = (
+				18E838EB1F3998E500E743A7 /* OrderConfirmForOilVC.h */,
+				18E838EC1F3998E500E743A7 /* OrderConfirmForOilVC.m */,
+				18E838ED1F3998E500E743A7 /* OrderConfirmForOilVC.xib */,
+				18E838F01F39AAE900E743A7 /* PayWaysForOilTableViewCell.h */,
+				18E838F11F39AAE900E743A7 /* PayWaysForOilTableViewCell.m */,
+				18E838F21F39AAE900E743A7 /* PayWaysForOilTableViewCell.xib */,
+			);
+			name = "订单确认";
 			sourceTree = "<group>";
 		};
 		18EB36981D4B1F5D0087CE1A /* 动画效果 */ = {
@@ -6243,6 +6323,7 @@
 				182F3C6D1F0CEFD900540FAE /* MineInfoVCSecond.xib in Resources */,
 				1C9E82421C60557E0007BF02 /* 5(7)@2x.png in Resources */,
 				D93027E21CFEB641007447D2 /* star_default.png in Resources */,
+				18E838F41F39AAE900E743A7 /* PayWaysForOilTableViewCell.xib in Resources */,
 				D98FDF851E601C280057C206 /* AD_ad_is@3x.png in Resources */,
 				18518D581E7945A000067D95 /* s_money_n@2x.png in Resources */,
 				D9FF0D9E1D53304C00443312 /* 图标-16new.png in Resources */,
@@ -6345,6 +6426,7 @@
 				D9D50D901D879CA800A5E469 /* chatBar_face@2x.png in Resources */,
 				1CF2838C1C58C48900F3952A /* all.png in Resources */,
 				D9FF0DA11D53304C00443312 /* 图标-19new.png in Resources */,
+				18E838EF1F3998E500E743A7 /* OrderConfirmForOilVC.xib in Resources */,
 				1CF2839B1C58C48900F3952A /* mine_default.png in Resources */,
 				D9AA10BA1F023BCA00F7EDE8 /* MealCardPayVC.xib in Resources */,
 				0793868F1C55B5CA0021B385 /* LaunchScreen.storyboard in Resources */,
@@ -6507,6 +6589,7 @@
 				188372561F29DE060076D2D8 /* OtherCardComplainVC.xib in Resources */,
 				1CF2839C1C58C48900F3952A /* mine_selected.png in Resources */,
 				1CF6E47F1C61E4350001159C /* tuihuo@2x.png in Resources */,
+				18E838E91F3987A700E743A7 /* OilAppriseAndAunserTableViewCell.xib in Resources */,
 				D9AB25401D88E4ED000E9288 /* VoiceSearchFeedback018@2x.png in Resources */,
 				D947E4511D7D0EB100F9FEE8 /* group_participant_addHL@2x.png in Resources */,
 				D9F5E2611E2341FC008B5000 /* ad_image.png in Resources */,
@@ -6607,6 +6690,7 @@
 				1C9E82311C603B7A0007BF02 /* 首页最上面@2x.png in Resources */,
 				D96981591ED57A3D00A44142 /* 引导页3.png in Resources */,
 				D987872F1E272A3200C7A828 /* ComplaintDetailVC.xib in Resources */,
+				18E838E41F39683A00E743A7 /* OilDetailsPageVC.xib in Resources */,
 				18F27EEB1D640E84002DD03A /* 头像-3.png in Resources */,
 				18F0320A1E5ED79300ACD261 /* tempProducts_05.jpg in Resources */,
 				1CBE67D11C5828CD00706AE9 /* icon_chose_bottom@2x.png in Resources */,
@@ -6712,6 +6796,7 @@
 				182F3C5B1F0CEDD800540FAE /* 导航栏定位.png in Resources */,
 				D986A1C31DE55EC0007B798B /* GetMoneyFailVC.xib in Resources */,
 				D94DF2611CAE0DB8000D5B69 /* result_small_star_highlight_iphone.png in Resources */,
+				18E838DC1F394C1900E743A7 /* OneKeyOilVC.xib in Resources */,
 				180D0D431F0DDC5C00A39790 /* 店铺icon.png in Resources */,
 				18EB36BE1D4B4B5B0087CE1A /* 未标题-1-09.png in Resources */,
 				D93027DE1CFEB26B007447D2 /* share_grade_star.png in Resources */,
@@ -6868,6 +6953,7 @@
 				D9B3A5C71D74255700F3F27E /* PSTGridLayoutSection.m in Sources */,
 				1CB53C121C572019002B6CC1 /* LookAgoController.m in Sources */,
 				D958AD651E654CF200B0776F /* JHColumnChart.m in Sources */,
+				18E838EE1F3998E500E743A7 /* OrderConfirmForOilVC.m in Sources */,
 				184C72031EC2F9150065EE65 /* SYPasswordView.m in Sources */,
 				D97B70301E2C90FE00CEAFC1 /* CardMarketModel.m in Sources */,
 				18F031F41E5ED34300ACD261 /* PointAllGetAndCostsVC.m in Sources */,
@@ -6911,6 +6997,7 @@
 				D94112E51CE968D8008E231F /* Product.m in Sources */,
 				182988431E723F4200164F32 /* TADotView.m in Sources */,
 				D9C0E95B1DCC81DE00FD1199 /* ShaperView.m in Sources */,
+				18E838DB1F394C1900E743A7 /* OneKeyOilVC.m in Sources */,
 				D949EC2B1CE192970023B6D6 /* BCurrentCityCell.m in Sources */,
 				D94DF24D1CAE0AA4000D5B69 /* DLStarView.m in Sources */,
 				185A45A51F137D010033AFE3 /* MorePubTableViewCell.m in Sources */,
@@ -7032,6 +7119,7 @@
 				D9DEED1B1CACED7C00ACDD00 /* NSData+ImageContentType.m in Sources */,
 				079387131C5620290021B385 /* Mycell.m in Sources */,
 				185A45951F132F5B0033AFE3 /* LZDUserInfoVC.m in Sources */,
+				18E838F31F39AAE900E743A7 /* PayWaysForOilTableViewCell.m in Sources */,
 				D9B3A5B01D74255700F3F27E /* EMSDWebImageManager.m in Sources */,
 				184C72131EC31A770065EE65 /* ChangePayPassLastVC.m in Sources */,
 				D9FF0D721D52D6E900443312 /* ShopListTableViewCell.m in Sources */,
@@ -7096,6 +7184,7 @@
 				D9B3A5B31D74255700F3F27E /* NSData+EMImageContentType.m in Sources */,
 				D9DEED271CACED7C00ACDD00 /* UIImage+WebP.m in Sources */,
 				D941135A1CE9A3D7008E231F /* DataVerifier.m in Sources */,
+				18E838E31F39683A00E743A7 /* OilDetailsPageVC.m in Sources */,
 				1CDCCD181C7594040094E70D /* AFHTTPRequestOperationManager.m in Sources */,
 				188372491F29876D0076D2D8 /* ComplainProcessNormalVC.m in Sources */,
 				D9824F501F134B9600301076 /* InsureVC.m in Sources */,
@@ -7127,6 +7216,7 @@
 				D958AD6F1E654CF200B0776F /* JHTableDataRowModel.m in Sources */,
 				182988451E723F4200164F32 /* SDCollectionViewCell.m in Sources */,
 				182988461E723F4200164F32 /* SDCycleScrollView.m in Sources */,
+				18E838E81F3987A700E743A7 /* OilAppriseAndAunserTableViewCell.m in Sources */,
 				1A9B3AD31D77123D00919CDC /* MessageCell.m in Sources */,
 				D9DEED2A1CACED7C00ACDD00 /* UIView+WebCacheOperation.m in Sources */,
 				D94432C01D18FC6800B45135 /* UserProtocolViewController.m in Sources */,
