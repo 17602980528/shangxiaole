@@ -43,7 +43,7 @@
 #import "ShoppingViewController.h"
 #import "MemberCenterVC.h"
 #import "CustomSearchVC.h"
-
+#import "OilMapVC.h"
 @interface HomeViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,GYChangeTextViewDelegate,SelectCityDelegate,JFLocationDelegate,SDCycleScrollViewDelegate>
 {
     
@@ -1354,9 +1354,10 @@
            
             //            [self showHint:@"暂未开通!"];
             
-            [self twoActiveClcik:dic];
+           // [self twoActiveClcik:dic];
 
-          
+            OilMapVC *mapvc=[[OilMapVC alloc]init];
+            [self.navigationController pushViewController:mapvc animated:YES];
             
         }
 
