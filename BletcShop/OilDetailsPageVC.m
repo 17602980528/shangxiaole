@@ -10,6 +10,7 @@
 #import "OneKeyOilVC.h"
 #import "OilAppriseAndAunserTableViewCell.h"
 #import "XHStarRateView.h"
+#import "BuyOilCardVC.h"
 @interface OilDetailsPageVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *tableHeaderView;
@@ -25,6 +26,10 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)buyOilCardsBtnClick:(id)sender {
+    
+    PUSH(BuyOilCardVC)
+
+    
     
 }
 

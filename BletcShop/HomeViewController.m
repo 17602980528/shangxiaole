@@ -44,7 +44,7 @@
 #import "MemberCenterVC.h"
 #import "CustomSearchVC.h"
 #import "OilMapVC.h"
-#import "BuyOilCardVC.h"
+
 @interface HomeViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,GYChangeTextViewDelegate,SelectCityDelegate,JFLocationDelegate,SDCycleScrollViewDelegate>
 {
     
@@ -1287,9 +1287,8 @@
         
 //        [self showHint:@"暂未开放!"];
         
-PUSH(BuyOilCardVC)
-//        NewMessageVC *VC = [[NewMessageVC alloc]init];
-//        [self.navigationController pushViewController:VC animated:YES];
+        NewMessageVC *VC = [[NewMessageVC alloc]init];
+        [self.navigationController pushViewController:VC animated:YES];
     }
 }
 //定位

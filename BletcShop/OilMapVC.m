@@ -9,6 +9,7 @@
 #import "OilMapVC.h"
 #import "OilHomeListVC.h"//加油点列表
 #import "OneKeyOilVC.h"//一键加油
+#import "BuyOilCardVC.h"
 @interface OilMapVC ()
 {
     UIView *topViw;
