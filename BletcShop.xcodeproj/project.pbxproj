@@ -708,6 +708,10 @@
 		D96AA13B1CB399CA00F2003B /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = D96AA13A1CB399CA00F2003B /* NIDropDown.m */; };
 		D971EB411EF287210038614E /* 首页顶部海报.png in Resources */ = {isa = PBXBuildFile; fileRef = D971EB401EF287210038614E /* 首页顶部海报.png */; };
 		D971FABB1E2DE82A00C5387C /* CardMarketSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D971FABA1E2DE82A00C5387C /* CardMarketSearchVC.m */; };
+		D97227411F3947DF009D0E2A /* OilCardManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D972273F1F3947DE009D0E2A /* OilCardManagerVC.m */; };
+		D97227421F3947DF009D0E2A /* OilCardManagerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97227401F3947DE009D0E2A /* OilCardManagerVC.xib */; };
+		D97227471F39571B009D0E2A /* OilManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D97227451F39571B009D0E2A /* OilManagerCell.m */; };
+		D97227481F39571B009D0E2A /* OilManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97227461F39571B009D0E2A /* OilManagerCell.xib */; };
 		D9728A021F21F9400030EE9B /* ShareCardManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9728A001F21F9400030EE9B /* ShareCardManageVC.m */; };
 		D9728A031F21F9400030EE9B /* ShareCardManageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9728A011F21F9400030EE9B /* ShareCardManageVC.xib */; };
 		D97338C11ED666600093A2FB /* 下角标ss.png in Resources */ = {isa = PBXBuildFile; fileRef = D97338C01ED666600093A2FB /* 下角标ss.png */; };
@@ -2174,6 +2178,12 @@
 		D971EB401EF287210038614E /* 首页顶部海报.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "首页顶部海报.png"; path = "../BletcShop/首页顶部海报.png"; sourceTree = "<group>"; };
 		D971FAB91E2DE82A00C5387C /* CardMarketSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardMarketSearchVC.h; sourceTree = "<group>"; };
 		D971FABA1E2DE82A00C5387C /* CardMarketSearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardMarketSearchVC.m; sourceTree = "<group>"; };
+		D972273E1F3947DE009D0E2A /* OilCardManagerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilCardManagerVC.h; sourceTree = "<group>"; };
+		D972273F1F3947DE009D0E2A /* OilCardManagerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OilCardManagerVC.m; sourceTree = "<group>"; };
+		D97227401F3947DE009D0E2A /* OilCardManagerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OilCardManagerVC.xib; sourceTree = "<group>"; };
+		D97227441F39571B009D0E2A /* OilManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilManagerCell.h; sourceTree = "<group>"; };
+		D97227451F39571B009D0E2A /* OilManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OilManagerCell.m; sourceTree = "<group>"; };
+		D97227461F39571B009D0E2A /* OilManagerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OilManagerCell.xib; sourceTree = "<group>"; };
 		D97289FF1F21F9400030EE9B /* ShareCardManageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCardManageVC.h; sourceTree = "<group>"; };
 		D9728A001F21F9400030EE9B /* ShareCardManageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCardManageVC.m; sourceTree = "<group>"; };
 		D9728A011F21F9400030EE9B /* ShareCardManageVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareCardManageVC.xib; sourceTree = "<group>"; };
@@ -3805,6 +3815,7 @@
 				D94040391CBDEB7100EC98EA /* CardManagerViewController.h */,
 				D940403A1CBDEB7100EC98EA /* CardManagerViewController.m */,
 				D9824F621F188E2200301076 /* CardManagerViewController.xib */,
+				D97227431F3947E5009D0E2A /* 加油卡管理 */,
 				D97289FE1F21F8F20030EE9B /* 共享卡管理 */,
 				D9AA10C91F0490C400F7EDE8 /* 体验卡与套餐卡管理 */,
 				D9AA10BD1F0389F200F7EDE8 /* 体验卡支付 */,
@@ -4883,6 +4894,19 @@
 				D971FABA1E2DE82A00C5387C /* CardMarketSearchVC.m */,
 			);
 			name = "搜索页面";
+			sourceTree = "<group>";
+		};
+		D97227431F3947E5009D0E2A /* 加油卡管理 */ = {
+			isa = PBXGroup;
+			children = (
+				D972273E1F3947DE009D0E2A /* OilCardManagerVC.h */,
+				D972273F1F3947DE009D0E2A /* OilCardManagerVC.m */,
+				D97227401F3947DE009D0E2A /* OilCardManagerVC.xib */,
+				D97227441F39571B009D0E2A /* OilManagerCell.h */,
+				D97227451F39571B009D0E2A /* OilManagerCell.m */,
+				D97227461F39571B009D0E2A /* OilManagerCell.xib */,
+			);
+			name = "加油卡管理";
 			sourceTree = "<group>";
 		};
 		D97289FE1F21F8F20030EE9B /* 共享卡管理 */ = {
@@ -6287,6 +6311,7 @@
 				D95BAE531D542FD500ED0CDC /* award_09.png in Resources */,
 				1CB53C1A1C573BA7002B6CC1 /* CardVipCell.xib in Resources */,
 				D93C0D6A1D251E7B001A1AC1 /* health_11.png in Resources */,
+				D97227481F39571B009D0E2A /* OilManagerCell.xib in Resources */,
 				D949EC241CE192750023B6D6 /* cities.plist in Resources */,
 				18F032021E5ED79300ACD261 /* coupon.jpeg in Resources */,
 				18A4B6F31D33933B00EFBCC1 /* 椭圆-01.png in Resources */,
@@ -6667,6 +6692,7 @@
 				D9ABB1AE1EC9408E00FBE080 /* ApriseVC.xib in Resources */,
 				D971EB411EF287210038614E /* 首页顶部海报.png in Resources */,
 				18FA58D51EEA769C00F458F2 /* NewUserRegistVC.xib in Resources */,
+				D97227421F3947DF009D0E2A /* OilCardManagerVC.xib in Resources */,
 				D987BB371E792C8E008AE24D /* UserInfoEditVC.xib in Resources */,
 				18D7C48A1D5B12BA00AEF545 /* mohu-06.png in Resources */,
 				185A458D1F132F2A0033AFE3 /* UserInfoCell.xib in Resources */,
@@ -7072,7 +7098,9 @@
 				D958AD6B1E654CF200B0776F /* JHRingChart.m in Sources */,
 				D9F3A3BA1D790FB900F06E0C /* LZDConversationViewController.m in Sources */,
 				D9B3A5B91D74255700F3F27E /* UIImageView+EMWebCache.m in Sources */,
+				D97227411F3947DF009D0E2A /* OilCardManagerVC.m in Sources */,
 				D99760F51E695CFD008E21FE /* ProvinceModel.m in Sources */,
+				D97227471F39571B009D0E2A /* OilManagerCell.m in Sources */,
 				1CDCCD1F1C7594040094E70D /* AFURLSessionManager.m in Sources */,
 				180D0D491F0E11BB00A39790 /* MoreViewCell.m in Sources */,
 				D9345E6F1E76984F006B2AC1 /* TopActiveCell.m in Sources */,

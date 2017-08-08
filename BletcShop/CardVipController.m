@@ -21,7 +21,7 @@
 
 
 #import "ShareCardManageVC.h"
-
+#import "OilCardManagerVC.h"
 
 @interface CardVipController()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,weak)UITableView *Cardtable;
@@ -178,13 +178,13 @@
         NSArray *meal_A = result[@"meal"];
         NSArray *experience_A = result[@"experience"];
         NSArray *share_A = result[@"share"];
-
+        NSArray *oil_A = [NSArray arrayWithObject:@{@"store":@"商消乐",@"card_temp_color":@"#7B68EE",@"card_type":@"加油卡",@"card_remain":@"1000",@"store":@"商消乐"}];
         
         [self.wholeDataArray removeAllObjects];
-        [self.wholeDataArray addObjectsFromArray:@[value_A,count_A,meal_A,experience_A,share_A]];
+        [self.wholeDataArray addObjectsFromArray:@[value_A,count_A,meal_A,experience_A,share_A,oil_A]];
         
         
-        if (value_A.count+count_A.count+meal_A.count+experience_A.count+share_A.count==0 ) {
+        if (value_A.count+count_A.count+meal_A.count+experience_A.count+share_A.count+oil_A.count==0 ) {
             placeHoderlab.hidden= NO;
         }else{
             placeHoderlab.hidden= YES;
@@ -457,11 +457,13 @@
         cell.cardStyleAndLevel.text = [NSString stringWithFormat:@"%@(%@)",dic[@"card_type"],dic[@"card_level"]];
         
         //套餐卡 体验卡
-        if ([dic[@"card_type"] isEqualToString:@"套餐卡"] || [dic[@"card_type"] isEqualToString:@"体验卡"]) {
+        if ([dic[@"card_type"] isEqualToString:@"套餐卡"] || [dic[@"card_type"] isEqualToString:@"体验卡"] || [dic[@"card_type"] isEqualToString:@"加油卡"]) {
             
             cell.cardStyleAndLevel.text = [NSString stringWithFormat:@"%@",dic[@"card_type"]];
             
         }
+        
+        
         
 
         
@@ -605,6 +607,11 @@
             [self postRequestVipCard];
             
         };
+    }else if (indexPath.section==5){
+        
+        
+        PUSH(OilCardManagerVC)
+        vc.card_dic = dic;
     }
     
     
@@ -614,7 +621,7 @@
 
 -(NSArray *)kindArray{
     if (!_kindArray) {
-        _kindArray = @[@{@"mainTitle":@"全部",@"title":@"全",@"color":@"#F3494E"},@{@"mainTitle":@"储值卡",@"title":@"储",@"color":@"#40B9B0"},@{@"mainTitle":@"计次卡",@"title":@"次",@"color":@"#BD4EFD"},@{@"mainTitle":@"套餐卡",@"title":@"餐",@"color":@"#FF712F"},@{@"mainTitle":@"体验卡",@"title":@"验",@"color":@"#1CB5FA"},@{@"mainTitle":@"分享卡",@"title":@"享",@"color":@"#FF5885"}];
+        _kindArray = @[@{@"mainTitle":@"全部",@"title":@"全",@"color":@"#F3494E"},@{@"mainTitle":@"储值卡",@"title":@"储",@"color":@"#40B9B0"},@{@"mainTitle":@"计次卡",@"title":@"次",@"color":@"#BD4EFD"},@{@"mainTitle":@"套餐卡",@"title":@"餐",@"color":@"#FF712F"},@{@"mainTitle":@"体验卡",@"title":@"验",@"color":@"#1CB5FA"},@{@"mainTitle":@"分享卡",@"title":@"享",@"color":@"#FF5885"},@{@"mainTitle":@"加油卡",@"title":@"油",@"color":@"#40B9B0"}];
     }
     return _kindArray;
 }
