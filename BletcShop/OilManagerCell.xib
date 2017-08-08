@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OilManagerCellID" id="KGk-i7-Jjw" customClass="OilManagerCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="37.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-240.png" translatesAutoresizingMaskIntoConstraints="NO" id="FbE-Hd-mj6">
+                        <rect key="frame" x="40" y="11" width="13" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="7iA-68-0Jf"/>
+                            <constraint firstAttribute="width" constant="13" id="opS-FE-wUN"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="youjiantou" translatesAutoresizingMaskIntoConstraints="NO" id="thZ-IJ-hMl">
+                        <rect key="frame" x="278" y="12.5" width="6" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="6" id="BWQ-OD-cxz"/>
+                            <constraint firstAttribute="height" constant="12" id="o6p-K3-CN0"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中国石化（西三环一站加油站）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7c-66-dlF">
+                        <rect key="frame" x="67" y="11.5" width="206" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="l3Y-Z2-hkV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DMH-W1-pg8">
+                        <rect key="frame" x="24" y="37" width="272" height="1"/>
+                        <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="TPy-Wo-zT2"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="DMH-W1-pg8" firstAttribute="top" secondItem="FbE-Hd-mj6" secondAttribute="bottom" constant="11" id="1EJ-gM-InZ"/>
+                    <constraint firstItem="q7c-66-dlF" firstAttribute="centerY" secondItem="FbE-Hd-mj6" secondAttribute="centerY" id="1xz-QH-MOU"/>
+                    <constraint firstItem="thZ-IJ-hMl" firstAttribute="leading" secondItem="q7c-66-dlF" secondAttribute="trailing" constant="5" id="36I-L2-pV7"/>
+                    <constraint firstAttribute="trailing" secondItem="DMH-W1-pg8" secondAttribute="trailing" constant="24" id="4Ur-6k-mGK"/>
+                    <constraint firstItem="FbE-Hd-mj6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="87R-73-n8I"/>
+                    <constraint firstItem="q7c-66-dlF" firstAttribute="leading" secondItem="FbE-Hd-mj6" secondAttribute="trailing" constant="14" id="cuY-5d-yaX"/>
+                    <constraint firstItem="FbE-Hd-mj6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="ggH-2E-iug"/>
+                    <constraint firstAttribute="bottom" secondItem="DMH-W1-pg8" secondAttribute="bottom" constant="-0.5" id="lNd-EM-llZ"/>
+                    <constraint firstItem="thZ-IJ-hMl" firstAttribute="centerY" secondItem="FbE-Hd-mj6" secondAttribute="centerY" id="vIF-ea-tSU"/>
+                    <constraint firstAttribute="trailing" secondItem="thZ-IJ-hMl" secondAttribute="trailing" constant="36" id="zOt-BT-H1H"/>
+                    <constraint firstItem="DMH-W1-pg8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="zsU-RS-ue8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addresslab" destination="q7c-66-dlF" id="JPg-pJ-5Rb"/>
+            </connections>
+            <point key="canvasLocation" x="-669" y="-12"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Icon-240.png" width="240" height="240"/>
+        <image name="youjiantou" width="7" height="13"/>
+    </resources>
+</document>
