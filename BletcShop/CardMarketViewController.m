@@ -162,7 +162,7 @@
     dingweiBtn.frame = btn_frame;
     
     dingwei_img = [[UIImageView alloc]initWithFrame:CGRectMake(dingweiBtn.right, dingweiBtn.top+(44-12)/2, 12, 12)];
-    dingwei_img.image = [UIImage imageNamed:@"下A"];
+    dingwei_img.image = [UIImage imageNamed:@"下拉（灰）"];
     [topView addSubview:dingwei_img];
     
     
