@@ -8,7 +8,7 @@
 //
 
 #import "OneKeyOilVC.h"
-
+#import "OrderConfirmForOilVC.h"
 @interface OneKeyOilVC ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
@@ -30,6 +30,8 @@
     
     if ([_oilGunTF.text noWhiteSpaceString].length>0&&[_oilMoneyTF.text noWhiteSpaceString].length>0&&[_carNum.text noWhiteSpaceString].length>0) {
         //
+        OrderConfirmForOilVC *vc=[[OrderConfirmForOilVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 -(void)cancelButtonClick:(UIButton *)sender{

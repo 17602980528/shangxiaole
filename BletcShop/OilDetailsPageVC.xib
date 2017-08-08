@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OilDetailsPageVC">
             <connections>
+                <outlet property="sectionHeadView" destination="vaB-ih-coo" id="8rH-Q7-wAJ"/>
                 <outlet property="shopStars" destination="7wO-La-cnL" id="z5l-hU-fpN"/>
                 <outlet property="tableHeaderView" destination="aFU-An-8gi" id="X6F-dC-2hd"/>
                 <outlet property="tableView" destination="6pw-WW-LC3" id="lpv-eQ-f3b"/>
@@ -268,7 +269,7 @@
                                 <constraint firstAttribute="height" constant="14" id="jMq-9R-9aG"/>
                             </constraints>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="导航栏定位.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y9a-gU-5vf">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="定位icon" translatesAutoresizingMaskIntoConstraints="NO" id="Y9a-gU-5vf">
                             <rect key="frame" x="14" y="106" width="8" height="8"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="8" id="QXP-CX-hX6"/>
@@ -328,12 +329,54 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="22.5" y="640"/>
         </view>
+        <view contentMode="scaleToFill" id="vaB-ih-coo">
+            <rect key="frame" x="0.0" y="0.0" width="491" height="38"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qV6-cv-Efb">
+                    <rect key="frame" x="13" y="12.5" width="4" height="13"/>
+                    <color key="backgroundColor" red="0.95294117647058818" green="0.28627450980392155" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="4" id="8EK-xL-DjA"/>
+                        <constraint firstAttribute="height" constant="13" id="GNK-kl-jiN"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评论详情" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWF-bJ-JoQ">
+                    <rect key="frame" x="28" y="0.0" width="463" height="38"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cKM-Kh-Gra">
+                    <rect key="frame" x="0.0" y="37" width="491" height="1"/>
+                    <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="n9X-VF-0Pt"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="bWF-bJ-JoQ" secondAttribute="bottom" id="BvV-ps-BTP"/>
+                <constraint firstItem="bWF-bJ-JoQ" firstAttribute="top" secondItem="vaB-ih-coo" secondAttribute="top" id="C3b-k2-t5B"/>
+                <constraint firstItem="bWF-bJ-JoQ" firstAttribute="leading" secondItem="qV6-cv-Efb" secondAttribute="trailing" constant="11" id="DiD-M4-ZcI"/>
+                <constraint firstItem="qV6-cv-Efb" firstAttribute="leading" secondItem="vaB-ih-coo" secondAttribute="leading" constant="13" id="EAg-e8-ujb"/>
+                <constraint firstItem="qV6-cv-Efb" firstAttribute="centerY" secondItem="vaB-ih-coo" secondAttribute="centerY" id="M8s-uI-54b"/>
+                <constraint firstAttribute="bottom" secondItem="cKM-Kh-Gra" secondAttribute="bottom" id="g5w-pk-ECz"/>
+                <constraint firstAttribute="trailing" secondItem="bWF-bJ-JoQ" secondAttribute="trailing" id="lkf-gr-Ncw"/>
+                <constraint firstItem="cKM-Kh-Gra" firstAttribute="leading" secondItem="vaB-ih-coo" secondAttribute="leading" id="mVg-hP-IyH"/>
+                <constraint firstAttribute="trailing" secondItem="cKM-Kh-Gra" secondAttribute="trailing" id="w0U-AQ-YRX"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="22.5" y="832"/>
+        </view>
     </objects>
     <resources>
         <image name="icon3.png" width="227" height="152"/>
         <image name="youjiantou" width="7" height="13"/>
         <image name="一件加油icon" width="40" height="40"/>
-        <image name="导航栏定位.png" width="20" height="28"/>
+        <image name="定位icon" width="26" height="26"/>
         <image name="购买加油卡icon" width="40" height="40"/>
     </resources>
 </document>

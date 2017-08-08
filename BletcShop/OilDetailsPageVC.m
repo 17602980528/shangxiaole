@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIView *tableHeaderView;
 @property (strong,nonatomic)XHStarRateView *starRateView;
 @property (weak, nonatomic) IBOutlet UIView *shopStars;
+@property (strong, nonatomic) IBOutlet UIView *sectionHeadView;
 
 @end
 
@@ -52,6 +53,15 @@
         return 200;
     }
     return 0.01;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 38;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return self.sectionHeadView;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     OilAppriseAndAunserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OilAppriseAndAunserCell"];
