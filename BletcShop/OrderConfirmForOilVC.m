@@ -21,7 +21,7 @@
     self.navigationItem.title=@"订单确认";
     LEFTBACK
     self.tableView.tableHeaderView=self.tableHeaderView;
-    NSArray *array=@[@{@"image":@"支付宝ｉｃｏｎ",@"title":@"支付宝支付",@"state":@"yes"},@{@"image":@"银联icon",@"title":@"银联支付",@"state":@"no"},@{@"image":@"商消乐钱包icon",@"title":@"商消乐钱包",@"state":@"no"},@{@"image":@"加油卡icon",@"title":@"加油卡",@"state":@"no"}];
+    NSArray *array=@[@{@"image":@"支付宝icon",@"title":@"支付宝支付",@"state":@"yes"},@{@"image":@"银联icon",@"title":@"银联支付",@"state":@"no"},@{@"image":@"商消乐钱包icon",@"title":@"商消乐钱包",@"state":@"no"},@{@"image":@"加油卡icon",@"title":@"加油卡",@"state":@"no"}];
     self.dataArr=[[NSMutableArray alloc]initWithArray:array];
     
 }
