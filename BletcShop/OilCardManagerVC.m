@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-
+    LEFTBACK
      self.storelab1.text = self.card_dic[@"store"];
     self.card_img.backgroundColor = [UIColor colorWithHexString:self.card_dic[@"card_temp_color"]];
     
@@ -46,11 +46,12 @@
     tabView.delegate = self;
     tabView.dataSource = self;
     tabView.estimatedRowHeight = 100;
+    tabView.rowHeight = UITableViewAutomaticDimension;
     [self.view addSubview:tabView];
     
     self.tabView =tabView;
     
-    self.headerView.frame = CGRectMake(13, 212*LZDScale-52, SCREENWIDTH-26, 667);
+    self.headerView.frame = CGRectMake(13, 212*LZDScale-21, SCREENWIDTH-26, 667);
     
     [self.view addSubview:self.headerView];
 

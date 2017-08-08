@@ -712,6 +712,14 @@
 		D97227421F3947DF009D0E2A /* OilCardManagerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97227401F3947DE009D0E2A /* OilCardManagerVC.xib */; };
 		D97227471F39571B009D0E2A /* OilManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D97227451F39571B009D0E2A /* OilManagerCell.m */; };
 		D97227481F39571B009D0E2A /* OilManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97227461F39571B009D0E2A /* OilManagerCell.xib */; };
+		D972274D1F3982F0009D0E2A /* BuyOilCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D972274B1F3982F0009D0E2A /* BuyOilCardVC.m */; };
+		D972274E1F3982F0009D0E2A /* BuyOilCardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D972274C1F3982F0009D0E2A /* BuyOilCardVC.xib */; };
+		D97227531F3987C6009D0E2A /* GasStationAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D97227511F3987C6009D0E2A /* GasStationAddressCell.m */; };
+		D97227541F3987C6009D0E2A /* GasStationAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97227521F3987C6009D0E2A /* GasStationAddressCell.xib */; };
+		D97227581F398EA7009D0E2A /* GasStaionContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D97227561F398EA7009D0E2A /* GasStaionContentCell.m */; };
+		D97227591F398EA7009D0E2A /* GasStaionContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97227571F398EA7009D0E2A /* GasStaionContentCell.xib */; };
+		D972275D1F399E3C009D0E2A /* BuyOilDetailInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D972275B1F399E3C009D0E2A /* BuyOilDetailInfoVC.m */; };
+		D972275E1F399E3D009D0E2A /* BuyOilDetailInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D972275C1F399E3C009D0E2A /* BuyOilDetailInfoVC.xib */; };
 		D9728A021F21F9400030EE9B /* ShareCardManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9728A001F21F9400030EE9B /* ShareCardManageVC.m */; };
 		D9728A031F21F9400030EE9B /* ShareCardManageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9728A011F21F9400030EE9B /* ShareCardManageVC.xib */; };
 		D97338C11ED666600093A2FB /* 下角标ss.png in Resources */ = {isa = PBXBuildFile; fileRef = D97338C01ED666600093A2FB /* 下角标ss.png */; };
@@ -2184,6 +2192,18 @@
 		D97227441F39571B009D0E2A /* OilManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilManagerCell.h; sourceTree = "<group>"; };
 		D97227451F39571B009D0E2A /* OilManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OilManagerCell.m; sourceTree = "<group>"; };
 		D97227461F39571B009D0E2A /* OilManagerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OilManagerCell.xib; sourceTree = "<group>"; };
+		D972274A1F3982F0009D0E2A /* BuyOilCardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyOilCardVC.h; sourceTree = "<group>"; };
+		D972274B1F3982F0009D0E2A /* BuyOilCardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyOilCardVC.m; sourceTree = "<group>"; };
+		D972274C1F3982F0009D0E2A /* BuyOilCardVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyOilCardVC.xib; sourceTree = "<group>"; };
+		D97227501F3987C6009D0E2A /* GasStationAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GasStationAddressCell.h; sourceTree = "<group>"; };
+		D97227511F3987C6009D0E2A /* GasStationAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GasStationAddressCell.m; sourceTree = "<group>"; };
+		D97227521F3987C6009D0E2A /* GasStationAddressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GasStationAddressCell.xib; sourceTree = "<group>"; };
+		D97227551F398EA7009D0E2A /* GasStaionContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GasStaionContentCell.h; sourceTree = "<group>"; };
+		D97227561F398EA7009D0E2A /* GasStaionContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GasStaionContentCell.m; sourceTree = "<group>"; };
+		D97227571F398EA7009D0E2A /* GasStaionContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GasStaionContentCell.xib; sourceTree = "<group>"; };
+		D972275A1F399E3C009D0E2A /* BuyOilDetailInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyOilDetailInfoVC.h; sourceTree = "<group>"; };
+		D972275B1F399E3C009D0E2A /* BuyOilDetailInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyOilDetailInfoVC.m; sourceTree = "<group>"; };
+		D972275C1F399E3C009D0E2A /* BuyOilDetailInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyOilDetailInfoVC.xib; sourceTree = "<group>"; };
 		D97289FF1F21F9400030EE9B /* ShareCardManageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCardManageVC.h; sourceTree = "<group>"; };
 		D9728A001F21F9400030EE9B /* ShareCardManageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCardManageVC.m; sourceTree = "<group>"; };
 		D9728A011F21F9400030EE9B /* ShareCardManageVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareCardManageVC.xib; sourceTree = "<group>"; };
@@ -3306,6 +3326,7 @@
 		1849A0EF1F383D9500483CE8 /* 加油卡 */ = {
 			isa = PBXGroup;
 			children = (
+				D97227491F39829A009D0E2A /* 购买加油卡 */,
 				1849A0FA1F38450000483CE8 /* OilMapVC.h */,
 				1849A0FB1F38450000483CE8 /* OilMapVC.m */,
 				1849A0FC1F38450000483CE8 /* OilMapVC.xib */,
@@ -4909,6 +4930,33 @@
 			name = "加油卡管理";
 			sourceTree = "<group>";
 		};
+		D97227491F39829A009D0E2A /* 购买加油卡 */ = {
+			isa = PBXGroup;
+			children = (
+				D972274F1F3985CA009D0E2A /* 购买加油卡cell */,
+				D972274A1F3982F0009D0E2A /* BuyOilCardVC.h */,
+				D972274B1F3982F0009D0E2A /* BuyOilCardVC.m */,
+				D972274C1F3982F0009D0E2A /* BuyOilCardVC.xib */,
+				D972275A1F399E3C009D0E2A /* BuyOilDetailInfoVC.h */,
+				D972275B1F399E3C009D0E2A /* BuyOilDetailInfoVC.m */,
+				D972275C1F399E3C009D0E2A /* BuyOilDetailInfoVC.xib */,
+			);
+			name = "购买加油卡";
+			sourceTree = "<group>";
+		};
+		D972274F1F3985CA009D0E2A /* 购买加油卡cell */ = {
+			isa = PBXGroup;
+			children = (
+				D97227501F3987C6009D0E2A /* GasStationAddressCell.h */,
+				D97227511F3987C6009D0E2A /* GasStationAddressCell.m */,
+				D97227521F3987C6009D0E2A /* GasStationAddressCell.xib */,
+				D97227551F398EA7009D0E2A /* GasStaionContentCell.h */,
+				D97227561F398EA7009D0E2A /* GasStaionContentCell.m */,
+				D97227571F398EA7009D0E2A /* GasStaionContentCell.xib */,
+			);
+			name = "购买加油卡cell";
+			sourceTree = "<group>";
+		};
 		D97289FE1F21F8F20030EE9B /* 共享卡管理 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6212,6 +6260,7 @@
 				D9345E6B1E769805006B2AC1 /* TopActiveListTableVC.xib in Resources */,
 				180D0D451F0DDFAC00A39790 /* 加好友——评价——店铺icon.png in Resources */,
 				180D0D4E1F0E291300A39790 /* 设置.png in Resources */,
+				D972275E1F399E3D009D0E2A /* BuyOilDetailInfoVC.xib in Resources */,
 				18148E621F173B67001C86AC /* NewMyPayMentsVC.xib in Resources */,
 				18F4BF6A1D41BB21003F0F66 /* c_se.png in Resources */,
 				D95BAE511D542FD500ED0CDC /* award_07.png in Resources */,
@@ -6467,6 +6516,7 @@
 				D9FF0D9A1D53304C00443312 /* 图标-12new.png in Resources */,
 				D9AB25371D88E4ED000E9288 /* VoiceSearchFeedback009@2x.png in Resources */,
 				D92302591D152443008FB9A9 /* merchant_ed.png in Resources */,
+				D97227541F3987C6009D0E2A /* GasStationAddressCell.xib in Resources */,
 				D953B7741D3F1B7100C5D5A9 /* 小标-24.png in Resources */,
 				D9824F581F15BBD500301076 /* BeautyIndustryVC.xib in Resources */,
 				D977C1461EC97BE800CA5AF5 /* WechatIMG16.png in Resources */,
@@ -6632,6 +6682,7 @@
 				18518D591E7945A000067D95 /* s_money_n@3x.png in Resources */,
 				D947E4651D7D3BBA00F9FEE8 /* 聊天键盘-icon-选择照片@2x.png in Resources */,
 				1C9E82411C60557E0007BF02 /* 5(8)@2x.png in Resources */,
+				D972274E1F3982F0009D0E2A /* BuyOilCardVC.xib in Resources */,
 				18EFA0BD1F205D3700360C8A /* 上A.png in Resources */,
 				185A45A01F1371060033AFE3 /* 默认sex.png in Resources */,
 				18148E791F186EF1001C86AC /* VipCardHomeTableViewCell.xib in Resources */,
@@ -6679,6 +6730,7 @@
 				D93C0D561D251E7B001A1AC1 /* 小标-03.png in Resources */,
 				1A83127A1D885444001BC3B6 /* chat_receiver_audio_playing001@2x.png in Resources */,
 				D981FD101E2616080026E4B2 /* README.txt in Resources */,
+				D97227591F398EA7009D0E2A /* GasStaionContentCell.xib in Resources */,
 				1CDA9DF61C59C0AA00DFE518 /* 首页60-01@2x.png in Resources */,
 				D92483801D1A75CA00AE252C /* alipay_img.png in Resources */,
 				D9D50DB51D87DE0E00A5E469 /* Emoticons.bundle in Resources */,
@@ -6936,6 +6988,7 @@
 				1CF283641C5862A200F3952A /* UIViewExt.m in Sources */,
 				D9A06B5C1D8679C30037795B /* EMCDDeviceManager+Media.m in Sources */,
 				D9824F741F2092CE00301076 /* MemberCenterVC.m in Sources */,
+				D97227531F3987C6009D0E2A /* GasStationAddressCell.m in Sources */,
 				079386841C55B5CA0021B385 /* AppDelegate.mm in Sources */,
 				D9B3A5B41D74255700F3F27E /* UIButton+EMWebCache.m in Sources */,
 				1CDCCCFF1C7572130094E70D /* BaseModel.m in Sources */,
@@ -6961,6 +7014,7 @@
 				D95A876D1E728ADF00BDAC75 /* JFCityCollectionFlowLayout.m in Sources */,
 				D96503D91CE02B21006907EF /* AsyncSocket.m in Sources */,
 				1A4173C91D787F8200A70601 /* EMSearchDisplayController.m in Sources */,
+				D972274D1F3982F0009D0E2A /* BuyOilCardVC.m in Sources */,
 				D9B3A49E1D73D5BF00F3F27E /* LZDChartViewController.m in Sources */,
 				D99A5DB61DD5754A006FF158 /* GetMoneyViewController.m in Sources */,
 				D9B3A5C11D74255700F3F27E /* PSTCollectionViewItemKey.m in Sources */,
@@ -7058,6 +7112,7 @@
 				D95A876E1E728AE000BDAC75 /* JFCityCollectionViewCell.m in Sources */,
 				D9A06B5E1D8679C30037795B /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				D9B3A5AC1D74255700F3F27E /* EMSDWebImageCompat.m in Sources */,
+				D97227581F398EA7009D0E2A /* GasStaionContentCell.m in Sources */,
 				D947E44D1D7D0B5400F9FEE8 /* ContactView.m in Sources */,
 				18F4CD4D1D6FD6F2008FBAD1 /* CardVipController.m in Sources */,
 				D95F03241DD95D5600F9DC2F /* GetMoneyNowVC.m in Sources */,
@@ -7166,6 +7221,7 @@
 				D9824F571F15BBD500301076 /* BeautyIndustryVC.m in Sources */,
 				18E3CA8D1D532C6000789065 /* EndOrBeginningViewController.m in Sources */,
 				D941135E1CE9A3D7008E231F /* RSADataSigner.m in Sources */,
+				D972275D1F399E3C009D0E2A /* BuyOilDetailInfoVC.m in Sources */,
 				D98E5C0E1E515210009D56BF /* ViewController+MASAdditions.m in Sources */,
 				D923024D1D14DEDF008FB9A9 /* WelcomViewController.m in Sources */,
 				D9DEED1C1CACED7C00ACDD00 /* SDImageCache.m in Sources */,

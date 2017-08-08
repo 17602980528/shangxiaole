@@ -515,6 +515,7 @@
 
 -(IBAction)shouSuoClick:(UIButton*)sender{
     
+    
     if (sender.selected) {
 
         [UIView animateWithDuration:0.3 animations:^{
