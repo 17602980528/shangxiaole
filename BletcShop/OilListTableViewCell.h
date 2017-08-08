@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "XHStarRateView.h"
 @interface OilListTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *shopImage;
 @property (weak, nonatomic) IBOutlet UILabel *shopName;
@@ -15,5 +15,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *shopSale;
 @property (weak, nonatomic) IBOutlet UILabel *shopDistance;
 @property (weak, nonatomic) IBOutlet UILabel *shopAddtress;
-
+@property (strong,nonatomic)XHStarRateView *starRateView;
 @end
