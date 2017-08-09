@@ -62,7 +62,7 @@
         
     };
 
-    
+    [self showLoadingView];
 //    [self creatHeaderView];
     
     [self getDate];
@@ -70,7 +70,7 @@
 }
 -(void)getDate{
     
-    [self showHUd];
+//    [self showHUd];
     NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/advertActivity/getList",BASEURL];
     NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
     [paramer setValue:self.activityId forKey:@"advert_id"];
@@ -84,12 +84,12 @@
                  [_dataAray addObject:result[i]];
              }
          }
-         [self hideHud];
+         [self hintLoadingView];
          [_refreshFooter endRefreshing];
          [_refreshheader endRefreshing];
          [table_View reloadData];
      } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-         [self hideHud];
+         [self hintLoadingView];
 
          [_refreshFooter endRefreshing];
          [_refreshheader endRefreshing];

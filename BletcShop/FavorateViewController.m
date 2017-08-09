@@ -28,7 +28,7 @@
     self.title = @"我的收藏";
     LEFTBACK
     [self _inittable];
-
+    [self showLoadingView];
     [self postRequestFavorate];
 }
 -(void)_inittable
@@ -57,7 +57,7 @@
 -(void)postRequestFavorate
 {
     
-    [self showHudInView:self.view hint:@"加载中..."];
+
     NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/collect/storeGet",BASEURL];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -67,7 +67,7 @@
 
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
      {
-         [self hideHud];
+         [self hintLoadingView];
          NSLog(@"result===%@", result);
          if (result&&[result count]>0) {
              self.favorateShopArray = [result mutableCopy];
@@ -81,7 +81,7 @@
          
         
      } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-         [self hideHud];
+         [self hintLoadingView];
          NSLog(@"%@", error);
      }];
     

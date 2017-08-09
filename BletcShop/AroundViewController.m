@@ -88,6 +88,7 @@
     [super viewDidLoad];
     self.title  = @"周边";
 
+
     self.page =1;
     self.classifyString = @"";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.topRightView];
@@ -449,7 +450,7 @@
 
 -(void)postGetMutiAdvertistShops:(NSString*)address{
     
-    [self showHudInView:self.view hint:@"加载中..."];
+   //    [self showHudInView:self.view hint:@"加载中..."];;
     
     
     [[self.tabview viewWithTag:9999]removeFromSuperview];
@@ -474,8 +475,8 @@
     [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         [_refreshheader endRefreshing];
         [_refreshFooter endRefreshing];
-        [self hideHud];
 
+        
         NSLog(@"getAdverListRequestWithIndePath-----%@",result);
         if ([result isKindOfClass:[NSDictionary class]]) {
             
@@ -516,7 +517,7 @@
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         [_refreshheader endRefreshing];
         [_refreshFooter endRefreshing];
-        [self hideHud];
+//        [self hideHud];
 
         NSLog(@"%@", error);
         
@@ -529,7 +530,7 @@
 -(void)postRequestShopWithAddress:(NSString *)address
 {
     
-    [self showHudInView:self.view hint:@"加载中..."];
+//    //    [self showHudInView:self.view hint:@"加载中..."];;
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
 
     NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/NB/dropLoad",BASEURL];
@@ -554,7 +555,7 @@
         [_refreshheader endRefreshing];
         [_refreshFooter endRefreshing];
 
-        [self hideHud];
+//        [self hideHud];
         NSLog(@"postRequestShop-----%@",result);
 //        if ([result isKindOfClass:[n class]]) {
             if (self.page==1) {
@@ -573,7 +574,7 @@
         }
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self hideHud];
+//        [self hideHud];
 
         [_refreshheader endRefreshing];
         [_refreshFooter endRefreshing];
