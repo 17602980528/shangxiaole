@@ -23,5 +23,13 @@
 - (void)showHint:(NSString *)hint yOffset:(float)yOffset;
 
 -(void)showHUd;
+/**
+ 显示加载动画页
+ */
+-(void)showLoadingView;
+/**
+ 移除加载动画页
+ */
+-(void)hintLoadingView;
 
 @end

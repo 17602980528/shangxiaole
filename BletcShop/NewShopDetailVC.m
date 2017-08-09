@@ -76,7 +76,7 @@
     
     title_old_btn.tag = 1;
     
-    
+    [self showLoadingView];
     NSLog(@"------%ld",title_old_btn.tag);
     
         [self initTableView];
@@ -1097,6 +1097,8 @@
         }
     }else{
         card_cell.discountLable.hidden = YES;
+        
+        
     }
     
     
@@ -1108,9 +1110,20 @@
     frame.size.width = ww +5;
     card_cell.discountLable.frame = frame;
     
-    CGRect timeFrame = card_cell.timeLable.frame;
-    timeFrame.origin.x = card_cell.discountLable.right+5;
-    card_cell.timeLable.frame = timeFrame;
+    if (card_cell.discountLable.isHidden) {
+        
+        CGRect timeFrame = card_cell.timeLable.frame;
+        timeFrame.origin.x = card_cell.discountLable.left;
+        card_cell.timeLable.frame = timeFrame;
+        
+    }else{
+        
+        CGRect timeFrame = card_cell.timeLable.frame;
+        timeFrame.origin.x = card_cell.discountLable.right+5;
+        card_cell.timeLable.frame = timeFrame;
+
+    }
+    
     
     if ([[NSString getTheNoNullStr:[dic objectForKey:@"indate"] andRepalceStr:@"0"] isEqualToString:@"0"]) {
         card_cell.timeLable.text=[NSString stringWithFormat:@"有效期: 无期限(%@)",[NSString getTheNoNullStr:[dic objectForKey:@"type"] andRepalceStr:@"---"]];
@@ -1119,93 +1132,93 @@
     }
     
     
-    if ([dic[@"type"] isEqualToString:@"套餐卡"]) {
-        
-        
-        CGRect price_frame = card_cell.cardPriceLable.frame;
-        price_frame.origin.x = card_cell.content_lab.left;
-        price_frame.origin.y = card_cell.content_lab.bottom +9;
-        card_cell.cardPriceLable.frame = price_frame;
-        
-        
-        card_cell.old_pricelab.text = [NSString stringWithFormat:@"¥%@",dic[@"option_sum"]];
-        
-        CGFloat price_W = [card_cell.cardPriceLable.text boundingRectWithSize:CGSizeMake(1000, 100) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:card_cell.old_pricelab.font} context:nil].size.width;
-        
-        
-        card_cell.old_pricelab.frame = CGRectMake(card_cell.cardPriceLable.left+price_W+9, card_cell.cardPriceLable.center.y-6, 100, 10);
-    
-        NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:card_cell.old_pricelab.text];
-        
-        
-        [attributedString addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(0, card_cell.old_pricelab.text.length)];
-        
-        
-        card_cell.old_pricelab.attributedText = attributedString;
-        
-        card_cell.detaillab.text =[NSString getTheNoNullStr:[dic objectForKey:@"des"] andRepalceStr:@"暂无优惠!"];
-        
-        CGRect card_frame = card_cell.detaillab.frame;
-        
-        
-        CGFloat detail_h =[card_cell.detaillab.text boundingRectWithSize:CGSizeMake(SCREENWIDTH-13*2-7-43, 100) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName :card_cell.detaillab.font} context:nil].size.height;
-        
-        
-        card_frame.size.height = detail_h;
-        card_cell.detaillab.frame = card_frame;
-        
-        
-        CGRect back_fram = card_cell.back_view.frame;
-        
-        back_fram.size.height = card_cell.detaillab.bottom+10;
-        card_cell.back_view.frame = back_fram;
-        
-        
-        
-        
-        CGRect line_fram = card_cell.line.frame;
-        
-        line_fram.origin.y = card_cell.back_view.height-0.5;
-        card_cell.line.frame = line_fram;
-        
-        
-        CGRect shu_fram =  card_cell.shulabView.frame ;
-        
-        shu_fram.size.height = card_cell.back_view.height-26;
-        card_cell.shulabView.frame = shu_fram;
-        
-    }else{
-        
-        
-        card_cell.old_pricelab.text = @"";
-        
-         card_cell.old_pricelab.frame =CGRectZero;
-
-
-        CGRect price_frame = card_cell.cardPriceLable.frame;
-        price_frame = CGRectMake(card_cell.back_view.width-87, card_cell.content_lab.top, 50, 14);
-        
-        card_cell.cardPriceLable.frame = price_frame;
-        
-        card_cell.detaillab.text =@"";
-        
-        
-        CGRect back_fram = card_cell.back_view.frame;
-        
-        back_fram.size.height = card_cell.cardImg.bottom+10;
-        card_cell.back_view.frame = back_fram;
-        
-        CGRect line_fram = card_cell.line.frame;
-        
-        line_fram.origin.y = card_cell.back_view.height-0.5;
-        card_cell.line.frame = line_fram;
-  
-        CGRect shu_fram =  card_cell.shulabView.frame ;
-        
-        shu_fram.size.height = card_cell.back_view.height-26;
-        card_cell.shulabView.frame = shu_fram;
-
-    }
+//    if ([dic[@"type"] isEqualToString:@"套餐卡"]) {
+//        
+//        
+//        CGRect price_frame = card_cell.cardPriceLable.frame;
+//        price_frame.origin.x = card_cell.content_lab.left;
+//        price_frame.origin.y = card_cell.content_lab.bottom +9;
+//        card_cell.cardPriceLable.frame = price_frame;
+//        
+//        
+//        card_cell.old_pricelab.text = [NSString stringWithFormat:@"¥%@",dic[@"option_sum"]];
+//        
+//        CGFloat price_W = [card_cell.cardPriceLable.text boundingRectWithSize:CGSizeMake(1000, 100) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:card_cell.old_pricelab.font} context:nil].size.width;
+//        
+//        
+//        card_cell.old_pricelab.frame = CGRectMake(card_cell.cardPriceLable.left+price_W+9, card_cell.cardPriceLable.center.y-6, 100, 10);
+//    
+//        NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:card_cell.old_pricelab.text];
+//        
+//        
+//        [attributedString addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(0, card_cell.old_pricelab.text.length)];
+//        
+//        
+//        card_cell.old_pricelab.attributedText = attributedString;
+//        
+//        card_cell.detaillab.text =[NSString getTheNoNullStr:[dic objectForKey:@"des"] andRepalceStr:@"暂无优惠!"];
+//        
+//        CGRect card_frame = card_cell.detaillab.frame;
+//        
+//        
+//        CGFloat detail_h =[card_cell.detaillab.text boundingRectWithSize:CGSizeMake(SCREENWIDTH-13*2-7-43, 100) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName :card_cell.detaillab.font} context:nil].size.height;
+//        
+//        
+//        card_frame.size.height = detail_h;
+//        card_cell.detaillab.frame = card_frame;
+//        
+//        
+//        CGRect back_fram = card_cell.back_view.frame;
+//        
+//        back_fram.size.height = card_cell.detaillab.bottom+10;
+//        card_cell.back_view.frame = back_fram;
+//        
+//        
+//        
+//        
+//        CGRect line_fram = card_cell.line.frame;
+//        
+//        line_fram.origin.y = card_cell.back_view.height-0.5;
+//        card_cell.line.frame = line_fram;
+//        
+//        
+//        CGRect shu_fram =  card_cell.shulabView.frame ;
+//        
+//        shu_fram.size.height = card_cell.back_view.height-26;
+//        card_cell.shulabView.frame = shu_fram;
+//        
+//    }else{
+//        
+//        
+//        card_cell.old_pricelab.text = @"";
+//        
+//         card_cell.old_pricelab.frame =CGRectZero;
+//
+//
+//        CGRect price_frame = card_cell.cardPriceLable.frame;
+//        price_frame = CGRectMake(card_cell.back_view.width-87, card_cell.content_lab.top, 50, 14);
+//        
+//        card_cell.cardPriceLable.frame = price_frame;
+//        
+//        card_cell.detaillab.text =@"";
+//        
+//        
+//        CGRect back_fram = card_cell.back_view.frame;
+//        
+//        back_fram.size.height = card_cell.cardImg.bottom+10;
+//        card_cell.back_view.frame = back_fram;
+//        
+//        CGRect line_fram = card_cell.line.frame;
+//        
+//        line_fram.origin.y = card_cell.back_view.height-0.5;
+//        card_cell.line.frame = line_fram;
+//  
+//        CGRect shu_fram =  card_cell.shulabView.frame ;
+//        
+//        shu_fram.size.height = card_cell.back_view.height-26;
+//        card_cell.shulabView.frame = shu_fram;
+//
+//    }
     
     
     CGRect cell_fram =  card_cell.frame;
@@ -1379,7 +1392,7 @@
 //获取商家所有信息
 -(void)postRequestWholeInfo{
     
-    [self showHudInView:self.view hint:@"加载中..."];
+    //    [self showHudInView:self.view hint:@"加载中..."];;
     
     AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/merchant/contentGet",BASEURL];
@@ -1399,7 +1412,7 @@
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
      {
          [_refreshheader endRefreshing];
-         [self hideHud];
+         [self hintLoadingView];
          
          NSLog(@"result====%@", result);
          NSDictionary *card_Arr_dic=result[@"card_list"];
@@ -1435,7 +1448,7 @@
          
      } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
          [_refreshheader endRefreshing];
-         [self hideHud];
+         [self hintLoadingView];
 
          //         [self noIntenet];
          NSLog(@"%@", error);

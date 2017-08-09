@@ -51,6 +51,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self showLoadingView];
 
     LZDButton *back =[LZDButton creatLZDButton];
     back.frame = CGRectMake(13, 31, 10, 20);
@@ -243,7 +244,7 @@ NSString *myString =@"";
 -(void)postRequstOrderInfo
 {
     
-    [self showHudInView:self.view hint:@"加载中..."];
+    //    [self showHudInView:self.view hint:@"加载中..."];;
     NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/Record/pay",BASEURL];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -251,7 +252,7 @@ NSString *myString =@"";
     
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
      {
-         [self hideHud];
+         [self hintLoadingView];
 
          NSLog(@"result%@", result);
          if (result&&[result count]>0) {
@@ -265,7 +266,7 @@ NSString *myString =@"";
          }
          
      } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-         [self hideHud];
+         [self hintLoadingView];
 
          NSLog(@"%@", error);
      }];
@@ -372,7 +373,7 @@ NSString *myString =@"";
 #pragma mark ---办卡记录
 
 -(void)buyCardsRecorsPostRequest{
-    [self showHudInView:self.view hint:@"加载中..."];
+    //    [self showHudInView:self.view hint:@"加载中..."];;
 
      NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/Record/card",BASEURL];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];

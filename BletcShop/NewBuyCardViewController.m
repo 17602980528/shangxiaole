@@ -1182,7 +1182,7 @@
 -(void)payUseTheWalletBuyMealOrExperienceCard{
     
     
-    [self showHudInView:self.view hint:@"加载中..."];
+    //    [self showHudInView:self.view hint:@"加载中..."];;
     
     
     NSString *url;
@@ -1283,7 +1283,7 @@
 -(void)payUseTheWallet{
 
     
-    [self showHudInView:self.view hint:@"加载中..."];
+    //    [self showHudInView:self.view hint:@"加载中..."];;
     NSString *url = [NSString stringWithFormat:@"%@UserType/wallet/card_buy",BASEURL];
     
     
