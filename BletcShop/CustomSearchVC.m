@@ -83,6 +83,7 @@
     self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, navView.bottom, SCREENWIDTH, SCREENHEIGHT-64) style:UITableViewStyleGrouped];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     self.tableView.hidden=YES;
     
