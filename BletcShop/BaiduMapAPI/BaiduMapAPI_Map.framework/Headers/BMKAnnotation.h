@@ -14,7 +14,7 @@
 
 ///标注view中心坐标.
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-
+@property (nonatomic, readonly) NSDictionary *dic;
 @optional
 
 /**

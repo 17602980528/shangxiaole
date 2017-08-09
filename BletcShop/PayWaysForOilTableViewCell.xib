@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon3.png" translatesAutoresizingMaskIntoConstraints="NO" id="sFA-vF-rwK">
@@ -39,9 +39,19 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ShZ-CB-xkZ">
+                        <rect key="frame" x="13" y="43" width="294" height="1"/>
+                        <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="t9C-qg-IeL"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="ShZ-CB-xkZ" secondAttribute="trailing" constant="13" id="7hx-3K-OVh"/>
                     <constraint firstAttribute="bottomMargin" secondItem="aUw-uI-1MN" secondAttribute="bottom" id="GQz-yZ-dQX"/>
+                    <constraint firstItem="ShZ-CB-xkZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="JeY-4n-bRk"/>
+                    <constraint firstAttribute="bottom" secondItem="ShZ-CB-xkZ" secondAttribute="bottom" id="Z2V-bK-hn7"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ERx-eJ-Z5m" secondAttribute="trailing" constant="13" id="aLP-XS-ReG"/>
                     <constraint firstItem="aUw-uI-1MN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="gZT-jd-Q0l"/>
                     <constraint firstItem="sFA-vF-rwK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="14" id="o8F-M2-iNI"/>

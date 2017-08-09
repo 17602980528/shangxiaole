@@ -10,6 +10,7 @@
 #import "OilHomeListVC.h"//加油点列表
 #import "OneKeyOilVC.h"//一键加油
 #import "BuyOilCardVC.h"
+#import "BuyOilCardVC.h"
 @interface OilMapVC ()
 {
     UIView *topViw;
@@ -27,6 +28,10 @@
 }
 -(void)oneKeyOilBtnClicks:(UITapGestureRecognizer *)tap{
     OneKeyOilVC *vc=[[OneKeyOilVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+-(void)buyOilCardsBtnClick:(UITapGestureRecognizer *)tap{
+    BuyOilCardVC *vc=[[BuyOilCardVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)mapRelationBtnClick:(UIButton *)sender{
@@ -142,13 +147,20 @@
     
     UIImageView *rightImage=[[UIImageView alloc]initWithFrame:CGRectMake(18, 12, 20, 20)];
     rightImage.image=[UIImage imageNamed:@"购买加油卡icon"];
+    rightImage.userInteractionEnabled=YES;
     [buyOilCard addSubview:rightImage];
     
     UILabel *rightLab=[[UILabel alloc]initWithFrame:CGRectMake(rightImage.right+10, 15, buyOilCard.width-rightImage.right-10, 14) ];
+    rightLab.userInteractionEnabled=YES;
     rightLab.font=[UIFont systemFontOfSize:14];
     rightLab.text=@"购买加油卡";
     rightLab.textColor=[UIColor whiteColor];
     [buyOilCard addSubview:rightLab];
+    
+    
+    UITapGestureRecognizer *tap2=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(buyOilCardsBtnClick:)];
+    [buyOilCard addGestureRecognizer:tap2];
+    
     
     NSArray *mapRelationImage=@[@"刷新",@"放大A",@"位置矫正",@"缩小"];
     
@@ -263,7 +275,7 @@
 }
 //  Override每当添加一个大头针就会调用这个方法(对大头针没有进行封装)
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
-    
+
     // 这里的BMKAnnotationView 就相当于是UITableViewCell一样 其实就是一个View我们也是通过复用的样子一样进行使用。 而传进来的annotation 就是一个模型，它里面装的全都是数据！
     if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
         // 如果大头针类型 是我们自定义的百度的 而且是后加的大头针模型类 的话 才执行
@@ -282,7 +294,13 @@
     // 这里是说定位自己本身的那个大头针模型 返回nil 自动就变成蓝色点点
     return nil;
 }
-
+- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view{
+    if ([view.annotation isKindOfClass:[BMKPinAnnotationView class]]) {
+        
+       
+        
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -18,5 +18,4 @@
 }
 ///该点的坐标
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
-
 @end
