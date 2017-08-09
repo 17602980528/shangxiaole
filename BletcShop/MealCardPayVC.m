@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 //
 //  MealCardPayVC.m
 //  BletcShop
@@ -286,4 +285,3 @@
     return _data_A;
 }
 @end
->>>>>>> 23a26604fb108efd846470f38aeae09acd0e9d63
