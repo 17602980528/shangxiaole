@@ -25,7 +25,8 @@
     [super viewDidLoad];
     NSLog(@"%@",self.muid);
     self.navigationItem.title=@"用户评价";
-    
+    [self showLoadingView];
+
     LEFTBACK
     _page=1;
     _dataAray = [[NSMutableArray alloc]initWithCapacity:0];
@@ -104,7 +105,7 @@
 -(void)postRequest
 {
     
-    [self showHudInView:self.view hint:@"加载中..."];
+//        [self showHudInView:self.view hint:@"加载中..."];;
     NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/evaluate/get",BASEURL];
      NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSString *pages=[NSString stringWithFormat:@"%ld",_page];
@@ -113,7 +114,8 @@
     NSLog(@"%@",params);
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
      {
-         [self hideHud];
+         [self hintLoadingView];
+//         [self hideHud];
          NSLog(@"%@",result);
          if (result&&[result count]>0) {
              for (int i=0; i<[result count]; i++) {
@@ -124,7 +126,7 @@
          [_refreshheader endRefreshing];
          [table_View reloadData];
      } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-         [self hideHud];
+         [self hintLoadingView];
 
          NSLog(@"%@", error);
          [_refreshFooter endRefreshing];

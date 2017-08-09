@@ -135,7 +135,7 @@
     [super viewDidLoad];
     self.indexss=1;
     LEFTBACK
-    
+    [self showLoadingView];
     AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     
     self.address = self.city = appdelegate.city.length==0?@"西安市":appdelegate.city;
@@ -153,6 +153,11 @@
     [self _initFootTab];
     
     [self storeFilter_getData];
+    
+    
+   
+    
+    
 }
 
 
@@ -703,7 +708,8 @@
     [paramer setValue:_icon_dic[@"text"] forKey:@"trade"];
     
     [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
-        
+        [self hintLoadingView];
+
         self.data1 = [result[@"stores"] mutableCopy];
         
         if (_data1.count==0) {
@@ -717,7 +723,8 @@
         
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        [self hintLoadingView];
+
     }];
  
     
@@ -731,7 +738,7 @@
 -(void)storeFilter_getFilterStores{
     [[self.shopTabel viewWithTag:9999] removeFromSuperview];
 
-    [self showHudInView:self.view hint:@"加载中..."];
+    //    [self showHudInView:self.view hint:@"加载中..."];;
     NSString *url = [NSString stringWithFormat:@"%@UserType/StoreFilter/getFilterStores",BASEURL];
     
     AppDelegate*app = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -761,7 +768,6 @@
     [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         [_refreshheader endRefreshing];
         
-        [self hideHud];
         
         NSLog(@"getFilterStores==%@",result);
         
@@ -779,7 +785,6 @@
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         [_refreshheader endRefreshing];
         
-        [self hideHud];
         
     }];
     
@@ -790,7 +795,7 @@
 
 //下拉加载数据
 -(void)StoreFilter_dropLoad{
-    [self showHudInView:self.view hint:@"加载中..."];
+    //    [self showHudInView:self.view hint:@"加载中..."];;
     
     NSString *url = [NSString stringWithFormat:@"%@UserType/StoreFilter/dropLoad",BASEURL];
     

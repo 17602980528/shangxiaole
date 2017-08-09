@@ -80,4 +80,20 @@ static const void *HttpRequestHUDKey = &HttpRequestHUDKey;
     [[self HUD] hide:YES];
 }
 
+
+-(void)showLoadingView;
+{
+    LZDLoadingView *loadingView = [[LZDLoadingView alloc]init];
+    [loadingView show];
+}
+-(void)hintLoadingView;
+{
+    
+    for (UIView *view in [[UIApplication sharedApplication].delegate window].subviews) {
+        if ([view isKindOfClass:[LZDLoadingView class]]) {
+            [view removeFromSuperview];
+        }
+    }
+    
+}
 @end

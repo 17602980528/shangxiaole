@@ -24,7 +24,7 @@
 @interface BeautyIndustryVC ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,DOPDropDownMenuDelegate,DOPDropDownMenuDataSource>
 {
     NSArray *arr;
-    
+
     NSDictionary *curentEare;
 
     NSDictionary *currentCityDic;
@@ -149,10 +149,13 @@
     
 //    [self creatTableViewHeaderView];
     
-    
+    [self showLoadingView];
     
     [self creatScreenView];
     
+    
+    
+  
     
      [self getData];
     
@@ -237,7 +240,7 @@
 
         
     }else{
-        SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 13, SCREENWIDTH, 119*LZDScale) delegate:nil placeholderImage:[UIImage imageNamed:@""]];
+        SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREENWIDTH, 119*LZDScale) delegate:nil placeholderImage:[UIImage imageNamed:@""]];
 
         cycleScrollView.imageURLStringsGroup = self.topImg_M_A;
         cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
@@ -445,9 +448,9 @@
     if ([_icon_dic[@"id"]intValue]==200) {
     
         slipBackView.frame =CGRectMake(0, 0, SCREENWIDTH, 161*LZDScale);
-        
+        slipBackView.backgroundColor = [UIColor redColor];
         SDCycleScrollView *cyVIew = slipBackView.subviews[0];
-        
+        cyVIew.frame = slipBackView.frame;
         
         cyVIew.clickItemOperationBlock = ^(NSInteger currentIndex) {
             NSLog(@"健康养生");
@@ -650,9 +653,21 @@
     
         slipBackView.frame = CGRectMake(0, 0, SCREENWIDTH, 133*LZDScale);
         
-        CGRect fra = bottom_scrollView.frame;
-        fra.size.height = 123;
-        bottom_scrollView.frame = fra;
+        
+        SDCycleScrollView *cyVIew = slipBackView.subviews[0];
+        cyVIew.frame = slipBackView.frame;
+        
+        CGRect fra =  middle_scrollView.frame;
+        fra.origin.y =slipBackView.bottom+10;
+           middle_scrollView.frame = fra ;
+
+        
+
+      bottom_scrollView.frame =  CGRectMake(0, middle_scrollView.bottom+10, SCREENWIDTH, 123)
+        ;
+//        CGRect fra = bottom_scrollView.frame;
+//        fra.size.height = 123;
+//        bottom_scrollView.frame = fra;
         
         for (UIView *view in bottom_scrollView.subviews) {
             [view removeFromSuperview];
@@ -1187,7 +1202,7 @@
 //筛选数据
 -(void)getFilterStores{
     
-    [self showHudInView:self.view hint:@"加载中..."];
+//    //    [self showHudInView:self.view hint:@"加载中..."];;
     NSString *url = [NSString stringWithFormat:@"%@UserType/UPSort/getFilterStores",BASEURL];
     
     AppDelegate*app = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -1217,7 +1232,7 @@
     [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         [_refreshheader endRefreshing];
         
-        [self hideHud];
+//        [self hideHud];
         
 //        NSLog(@"getFilterStores==%@",result);
         
@@ -1229,7 +1244,7 @@
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         [_refreshheader endRefreshing];
 
-        [self hideHud];
+//        [self hideHud];
 
     }];
 
@@ -1244,7 +1259,7 @@
 -(void)getData_UPSort{
     
     
-    [self showHudInView:self.view hint:@"加载中..."];
+    //    [self showHudInView:self.view hint:@"加载中..."];;
     
     NSString *url = [NSString stringWithFormat:@"%@UserType/UPSort/getData",BASEURL];
     
@@ -1254,8 +1269,9 @@
 
     [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         NSLog(@"getData_UPSort---%@",result);
-
-        [self hideHud];
+        [self hintLoadingView];
+        
+//        [self hideHud];
 
         self.upSort_data_dic = [result copy];
         
@@ -1279,16 +1295,16 @@
         
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        [self hintLoadingView];
+
         NSLog(@"getData_UPSort---%@",error);
-        [self hideHud];
     }];
 
     
 }
 //下拉加载数据
 -(void)UPSort_dropLoad{
-    [self showHudInView:self.view hint:@"加载中..."];
+    //    [self showHudInView:self.view hint:@"加载中..."];;
 
     NSString *url = [NSString stringWithFormat:@"%@UserType/UPSort/dropLoad",BASEURL];
     

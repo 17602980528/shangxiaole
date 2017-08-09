@@ -730,6 +730,7 @@
 		D97227591F398EA7009D0E2A /* GasStaionContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97227571F398EA7009D0E2A /* GasStaionContentCell.xib */; };
 		D972275D1F399E3C009D0E2A /* BuyOilDetailInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D972275B1F399E3C009D0E2A /* BuyOilDetailInfoVC.m */; };
 		D972275E1F399E3D009D0E2A /* BuyOilDetailInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D972275C1F399E3C009D0E2A /* BuyOilDetailInfoVC.xib */; };
+		D97227611F3ABC31009D0E2A /* LZDLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = D97227601F3ABC31009D0E2A /* LZDLoadingView.m */; };
 		D9728A021F21F9400030EE9B /* ShareCardManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9728A001F21F9400030EE9B /* ShareCardManageVC.m */; };
 		D9728A031F21F9400030EE9B /* ShareCardManageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9728A011F21F9400030EE9B /* ShareCardManageVC.xib */; };
 		D97338C11ED666600093A2FB /* 下角标ss.png in Resources */ = {isa = PBXBuildFile; fileRef = D97338C01ED666600093A2FB /* 下角标ss.png */; };
@@ -2229,6 +2230,8 @@
 		D972275A1F399E3C009D0E2A /* BuyOilDetailInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyOilDetailInfoVC.h; sourceTree = "<group>"; };
 		D972275B1F399E3C009D0E2A /* BuyOilDetailInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyOilDetailInfoVC.m; sourceTree = "<group>"; };
 		D972275C1F399E3C009D0E2A /* BuyOilDetailInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyOilDetailInfoVC.xib; sourceTree = "<group>"; };
+		D972275F1F3ABC31009D0E2A /* LZDLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZDLoadingView.h; sourceTree = "<group>"; };
+		D97227601F3ABC31009D0E2A /* LZDLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZDLoadingView.m; sourceTree = "<group>"; };
 		D97289FF1F21F9400030EE9B /* ShareCardManageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCardManageVC.h; sourceTree = "<group>"; };
 		D9728A001F21F9400030EE9B /* ShareCardManageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCardManageVC.m; sourceTree = "<group>"; };
 		D9728A011F21F9400030EE9B /* ShareCardManageVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareCardManageVC.xib; sourceTree = "<group>"; };
@@ -3009,6 +3012,8 @@
 				18EDCF6F1D46039D004C40B7 /* NSString+Addition.m */,
 				D97CD7DE1EFB90C9000C49ED /* CALayer+LZDLayColor.h */,
 				D97CD7DF1EFB90C9000C49ED /* CALayer+LZDLayColor.m */,
+				D972275F1F3ABC31009D0E2A /* LZDLoadingView.h */,
+				D97227601F3ABC31009D0E2A /* LZDLoadingView.m */,
 				D9442ADB1D1E330A00956AB4 /* Singleton.h */,
 				D9442ADC1D1E330A00956AB4 /* Singleton.m */,
 				D9DEED2D1CACF1A600ACDD00 /* BaseObject.h */,
@@ -7072,6 +7077,7 @@
 				D9853F7B1DD463FA0028BF94 /* UILabel+extension.m in Sources */,
 				18C0389B1E693C8B005F7AA9 /* HotNewsVC.m in Sources */,
 				18D89C641D51CE1000717B11 /* GoShopViewController.m in Sources */,
+				D97227611F3ABC31009D0E2A /* LZDLoadingView.m in Sources */,
 				1CF283641C5862A200F3952A /* UIViewExt.m in Sources */,
 				D9A06B5C1D8679C30037795B /* EMCDDeviceManager+Media.m in Sources */,
 				D9824F741F2092CE00301076 /* MemberCenterVC.m in Sources */,

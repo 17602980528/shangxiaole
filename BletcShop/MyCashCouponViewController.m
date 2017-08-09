@@ -19,7 +19,7 @@
     SDRefreshFooterView *_refreshFooter;
     SDRefreshHeaderView *_refreshheader;
     UITableView *_tableView;
-    __block MBProgressHUD *hud;
+
 }
 @property(nonatomic)NSInteger page;
 @end
@@ -75,6 +75,7 @@
         
     };
 
+    [self showLoadingView];
     
 }
 //无活动显示无活动
@@ -94,7 +95,6 @@
 }
 -(void)postRequestCashCoupon
 {
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/coupon/validateGet",BASEURL];
     
@@ -113,8 +113,8 @@
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         [_refreshFooter endRefreshing];
         [_refreshheader endRefreshing];
-        [hud hideAnimated:YES];
-       
+
+        
         DebugLog(@"result---%@",result);
         
         NSArray *arr = (NSArray*)result;
@@ -150,9 +150,12 @@
         }
         
         [_tableView reloadData];
+        [self hintLoadingView];
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [hud hideAnimated:YES afterDelay:3.f];
+        [self hintLoadingView];
+        
+        
         [_refreshFooter endRefreshing];
         [_refreshheader endRefreshing];
 

@@ -187,6 +187,8 @@
 #import "Database.h"
 #import "UILabel+extension.h"
 #import "Masonry.h"
+#import "LZDLoadingView.h"
+
 #define kWeChatPadding 10
 #define kWeChatScreenHeight [UIScreen mainScreen].bounds.size.height
 #define kWeChatScreenWidth [UIScreen mainScreen].bounds.size.width

@@ -193,7 +193,7 @@ LEFTBACK
 -(void)getDataPost{
     
     
-    [self showHudInView:self.view hint:@"加载中..."];
+    //    [self showHudInView:self.view hint:@"加载中..."];;
     
     NSString *url = [NSString stringWithFormat:@"%@UserType/MealCard/getOption",BASEURL];
     

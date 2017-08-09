@@ -88,7 +88,7 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
     
-    
+    [self showLoadingView];
     
    
     
@@ -892,7 +892,7 @@
     
     
 
-    [self showHudInView:self.view hint:@"加载中..."];
+    //    [self showHudInView:self.view hint:@"加载中..."];;
     
     NSString *url = [NSString stringWithFormat:@"%@Extra/mall/getExchange",BASEURL];
     NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
@@ -955,7 +955,7 @@
 -(void)postGetCouponRequest{
     
     
-    [self showHudInView:self.view hint:@"加载中..."];
+    //    [self showHudInView:self.view hint:@"加载中..."];;
 
     NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/coupon/marketGet",BASEURL];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -1040,12 +1040,12 @@
 }
 
 -(void)getShopList{
-    [self showHudInView:self.view hint:@"加载中..."];
+    //    [self showHudInView:self.view hint:@"加载中..."];;
     
     NSString *url =[[NSString alloc]initWithFormat:@"%@Extra/mall/getGoods",BASEURL ];
     
     [KKRequestDataService requestWithURL:url params:nil httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
-        [self hideHud];
+        [self hintLoadingView];
         NSLog(@"result==%@", result);//POINT_LUNBO
         if (result) {
             
@@ -1058,7 +1058,7 @@
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
 
-        [self hideHud];
+        [self hintLoadingView];
 
         NSLog(@"%@", error);
         

@@ -21,7 +21,7 @@
 
 @implementation ExpiredCouponsVC
 {
-    __block MBProgressHUD *hud;
+
 }
 -(NSMutableArray *)couponArray{
     if (!_couponArray) {
@@ -61,11 +61,11 @@
     };
 
     
+    [self showLoadingView];
     [self postRequestCashCoupon];
 }
 -(void)postRequestCashCoupon
 {
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/coupon/invalidateGet",BASEURL];
     
@@ -78,7 +78,6 @@
     NSLog(@"params---%@",params);
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         
-        [hud hideAnimated:YES];
         
         [_refreshFooter endRefreshing];
         [_refreshheader endRefreshing];
@@ -94,9 +93,11 @@
                 NSLog(@"couponArray====%@",self.couponArray);
             }
         [_tableView reloadData];
+        [self hintLoadingView];
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [hud hideAnimated:YES afterDelay:3.f];
+        [self hintLoadingView];
+
         [_refreshFooter endRefreshing];
         [_refreshheader endRefreshing];
         NSLog(@"%@", error);

@@ -74,6 +74,8 @@
     };
     
     
+    
+    [self showLoadingView];
 }
 -(void)getDate{
     
@@ -91,14 +93,14 @@
          NSLog(@"=====%@===%@",[result class],result);
          [_refreshFooter endRefreshing];
          [_refreshheader endRefreshing];
-         [self hideHud];
+         [self hintLoadingView];
          
          [self.data_A  addObjectsFromArray:result];
          
          [table_View reloadData];
          
      } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-         [self hideHud];
+         [self hintLoadingView];
          [_refreshFooter endRefreshing];
          [_refreshheader endRefreshing];
          NSLog(@"%@", error);
@@ -211,7 +213,7 @@
 
 -(void)getTopImgList{
     
-    [self showHudInView:self.view hint:@"加载中..."];
+    //    [self showHudInView:self.view hint:@"加载中..."];;
     NSString *url = [NSString stringWithFormat:@"%@MerchantType/advert/settleGet",BASEURL];
   
     [KKRequestDataService requestWithURL:url params:nil httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {

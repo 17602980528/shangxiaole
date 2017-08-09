@@ -56,7 +56,7 @@
     topBackView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:topBackView];
 
-
+    [self showLoadingView];
     
     [self initCatergray];
     [self _inittable];
@@ -161,6 +161,9 @@
             [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         }
     }
+    
+    [self hintLoadingView];
+
 }
 -(void)postRequestVipCard
 {
@@ -172,6 +175,7 @@
     [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
     
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        
         
         NSArray *value_A = result[@"value"];
         NSArray *count_A = result[@"count"];
@@ -192,11 +196,13 @@
         }
        
         [self changeTitleColorAndRefreshCard:title_btn];
-       
+        
+
         NSLog(@"result===%@", result);
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        [self showHint:@"服务器出错了..."];
+        [self hintLoadingView];
+
+//        [self showHint:@"服务器出错了..."];
         NSLog(@"%@", error);
     }];
     
