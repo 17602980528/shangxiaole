@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.navigationItem.title = @"会员卡";
     LEFTBACK
      self.storelab1.text = self.card_dic[@"store"];
     self.card_img.backgroundColor = [UIColor colorWithHexString:self.card_dic[@"card_temp_color"]];

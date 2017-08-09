@@ -12,6 +12,7 @@
 #import "BuyOilCardVC.h"
 #import "BuyOilCardVC.h"
 #import "EricAnnotition.h"
+#import "BaiduMapManager.h"
 @interface OilMapVC ()<BMKMapViewDelegate>
 {
     UIView *topViw;
@@ -326,7 +327,19 @@
         // 后台也定位 并且屏幕上方有蓝条提示
         //_locService.allowsBackgroundLocationUpdates = YES;
     }else{
-        [_locService startUserLocationService];
+        
+        BaiduMapManager *manager = [BaiduMapManager shareBaiduMapManager];
+        
+        [manager startUserLocationService];
+        
+        manager.userLocationBlock = ^(BMKUserLocation *location) {
+          
+            [self didUpdateBMKUserLocation:location];
+            
+            
+        };
+        
+//        [_locService startUserLocationService];
     }
     //启动LocationService
     NSLog(@"_locService==================%@",_locService);
@@ -336,6 +349,10 @@
 //处理位置坐标更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
+    
+    NSLog(@"userLocation=============%@",userLocation);
+
+    
     CLLocationCoordinate2D locss = {userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude};
     userLoc=locss;
     [self.mapView setCenterCoordinate:locss];
