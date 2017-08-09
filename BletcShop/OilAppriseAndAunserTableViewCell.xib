@@ -23,12 +23,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="340" height="111"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon3.png" translatesAutoresizingMaskIntoConstraints="NO" id="OA0-EE-5Lp">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="头像.png" translatesAutoresizingMaskIntoConstraints="NO" id="OA0-EE-5Lp">
                         <rect key="frame" x="21" y="21" width="34" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="5pV-dB-fwN"/>
                             <constraint firstAttribute="height" constant="34" id="iH2-GU-cEf"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="17"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m6j-ww-h7U">
                         <rect key="frame" x="250" y="25" width="70" height="12"/>
@@ -123,6 +126,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon3.png" width="227" height="152"/>
+        <image name="头像.png" width="178" height="178"/>
     </resources>
 </document>

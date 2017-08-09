@@ -205,12 +205,15 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCD-bu-hZW">
                     <rect key="frame" x="0.0" y="0.0" width="491" height="131"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon3.png" translatesAutoresizingMaskIntoConstraints="NO" id="36C-AW-OlE">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oil0.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="36C-AW-OlE">
                             <rect key="frame" x="13" y="13" width="65" height="65"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="65" id="Osn-vm-ndZ"/>
                                 <constraint firstAttribute="width" constant="65" id="oBg-DF-88i"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                            </userDefinedRuntimeAttributes>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="距离1.9km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U24-Fx-a38">
                             <rect key="frame" x="421" y="21" width="58" height="13"/>
@@ -373,7 +376,7 @@
         </view>
     </objects>
     <resources>
-        <image name="icon3.png" width="227" height="152"/>
+        <image name="oil0.jpg" width="1600" height="1200"/>
         <image name="youjiantou" width="7" height="13"/>
         <image name="一件加油icon" width="40" height="40"/>
         <image name="定位icon" width="26" height="26"/>

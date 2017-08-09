@@ -136,6 +136,14 @@
 		189619441D92319D003BA40C /* ContactSeverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189619431D92319D003BA40C /* ContactSeverViewController.m */; };
 		189757491E9B16A400AB1D00 /* WebViewJavascriptBridge.js.txt in Resources */ = {isa = PBXBuildFile; fileRef = 189757471E9B16A400AB1D00 /* WebViewJavascriptBridge.js.txt */; };
 		1897574A1E9B16A400AB1D00 /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 189757481E9B16A400AB1D00 /* WebViewJavascriptBridge.m */; };
+		189899EB1F3AA061004D1543 /* EricAnnotition.m in Sources */ = {isa = PBXBuildFile; fileRef = 189899EA1F3AA061004D1543 /* EricAnnotition.m */; };
+		189899F31F3AC0E8004D1543 /* oil0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 189899EC1F3AC0E8004D1543 /* oil0.jpg */; };
+		189899F41F3AC0E8004D1543 /* oil1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 189899ED1F3AC0E8004D1543 /* oil1.jpg */; };
+		189899F51F3AC0E8004D1543 /* oil2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 189899EE1F3AC0E8004D1543 /* oil2.jpg */; };
+		189899F61F3AC0E8004D1543 /* oil3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 189899EF1F3AC0E8004D1543 /* oil3.jpg */; };
+		189899F71F3AC0E8004D1543 /* oil4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 189899F01F3AC0E8004D1543 /* oil4.jpg */; };
+		189899F81F3AC0E8004D1543 /* oil5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 189899F11F3AC0E8004D1543 /* oil5.jpg */; };
+		189899F91F3AC0E8004D1543 /* oil6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 189899F21F3AC0E8004D1543 /* oil6.jpg */; };
 		189ED0421E8CD53600A762C7 /* getUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 189ED03F1E8CD53600A762C7 /* getUUID.m */; };
 		189ED0431E8CD53600A762C7 /* KeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 189ED0411E8CD53600A762C7 /* KeyChainStore.m */; };
 		189F4CF41D50672E00461830 /* ActiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F4CF31D50672E00461830 /* ActiveViewController.m */; };
@@ -1315,6 +1323,15 @@
 		189757461E9B16A400AB1D00 /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
 		189757471E9B16A400AB1D00 /* WebViewJavascriptBridge.js.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WebViewJavascriptBridge.js.txt; sourceTree = "<group>"; };
 		189757481E9B16A400AB1D00 /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
+		189899E91F3AA061004D1543 /* EricAnnotition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EricAnnotition.h; sourceTree = "<group>"; };
+		189899EA1F3AA061004D1543 /* EricAnnotition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EricAnnotition.m; sourceTree = "<group>"; };
+		189899EC1F3AC0E8004D1543 /* oil0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil0.jpg; sourceTree = "<group>"; };
+		189899ED1F3AC0E8004D1543 /* oil1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil1.jpg; sourceTree = "<group>"; };
+		189899EE1F3AC0E8004D1543 /* oil2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil2.jpg; sourceTree = "<group>"; };
+		189899EF1F3AC0E8004D1543 /* oil3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil3.jpg; sourceTree = "<group>"; };
+		189899F01F3AC0E8004D1543 /* oil4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil4.jpg; sourceTree = "<group>"; };
+		189899F11F3AC0E8004D1543 /* oil5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil5.jpg; sourceTree = "<group>"; };
+		189899F21F3AC0E8004D1543 /* oil6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil6.jpg; sourceTree = "<group>"; };
 		189ED03D1E8CD50900A762C7 /* BletcShop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BletcShop.entitlements; sourceTree = "<group>"; };
 		189ED03E1E8CD53600A762C7 /* getUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getUUID.h; sourceTree = "<group>"; };
 		189ED03F1E8CD53600A762C7 /* getUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = getUUID.m; sourceTree = "<group>"; };
@@ -3355,6 +3372,8 @@
 				1849A0FA1F38450000483CE8 /* OilMapVC.h */,
 				1849A0FB1F38450000483CE8 /* OilMapVC.m */,
 				1849A0FC1F38450000483CE8 /* OilMapVC.xib */,
+				189899E91F3AA061004D1543 /* EricAnnotition.h */,
+				189899EA1F3AA061004D1543 /* EricAnnotition.m */,
 				18E838EA1F39989000E743A7 /* 订单确认 */,
 				18E838D71F394BE200E743A7 /* 一键加油 */,
 				18E838D61F394B6A00E743A7 /* 加油点列表 */,
@@ -5013,6 +5032,13 @@
 		D97227491F39829A009D0E2A /* 购买加油卡 */ = {
 			isa = PBXGroup;
 			children = (
+				189899EC1F3AC0E8004D1543 /* oil0.jpg */,
+				189899ED1F3AC0E8004D1543 /* oil1.jpg */,
+				189899EE1F3AC0E8004D1543 /* oil2.jpg */,
+				189899EF1F3AC0E8004D1543 /* oil3.jpg */,
+				189899F01F3AC0E8004D1543 /* oil4.jpg */,
+				189899F11F3AC0E8004D1543 /* oil5.jpg */,
+				189899F21F3AC0E8004D1543 /* oil6.jpg */,
 				D972274F1F3985CA009D0E2A /* 购买加油卡cell */,
 				D972274A1F3982F0009D0E2A /* BuyOilCardVC.h */,
 				D972274B1F3982F0009D0E2A /* BuyOilCardVC.m */,
@@ -6475,6 +6501,7 @@
 				18EB36A71D4B1F5D0087CE1A /* 滑动选择-05.png in Resources */,
 				D94DF25F1CAE0DB8000D5B69 /* result_small_star_disable.png in Resources */,
 				18B139AB1F3066D000283CED /* PayVictoryVC.xib in Resources */,
+				189899F71F3AC0E8004D1543 /* oil4.jpg in Resources */,
 				18F27EEA1D640E84002DD03A /* 头像-2.png in Resources */,
 				18D7C48C1D5B12BA00AEF545 /* mohu-08.png in Resources */,
 				18D8464C1ED591630048F010 /* 线下角标.png in Resources */,
@@ -6558,6 +6585,7 @@
 				1C9E824A1C6058550007BF02 /* erweima@2x.png in Resources */,
 				18B1399C1F3012D400283CED /* HistoryTableViewCell.xib in Resources */,
 				D94DF2621CAE0DB8000D5B69 /* result_small_star_highlight_iphone@2x.png in Resources */,
+				189899F61F3AC0E8004D1543 /* oil3.jpg in Resources */,
 				18F032061E5ED79300ACD261 /* tempProducts_01.jpeg in Resources */,
 				D981FD091E2616080026E4B2 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				1829884C1E727DF200164F32 /* SweetNoticeVC.xib in Resources */,
@@ -6726,6 +6754,7 @@
 				D9ED52061D2A467700267729 /* grey_add.png in Resources */,
 				185A459F1F1371060033AFE3 /* 垃圾桶@2x.png in Resources */,
 				18D846491ED570510048F010 /* 下角标.png in Resources */,
+				189899F31F3AC0E8004D1543 /* oil0.jpg in Resources */,
 				D981FD051E2616080026E4B2 /* UShare进阶.html in Resources */,
 				D9AB253E1D88E4ED000E9288 /* VoiceSearchFeedback016@2x.png in Resources */,
 				18F27EFD1D640E84002DD03A /* 头像-21.png in Resources */,
@@ -6738,6 +6767,7 @@
 				D980B6651D77FB0F00CC6637 /* user@2x.png in Resources */,
 				D980B6631D77FB0900CC6637 /* group@2x.png in Resources */,
 				1CF283A01C58C48900F3952A /* wash.png in Resources */,
+				189899F91F3AC0E8004D1543 /* oil6.jpg in Resources */,
 				D9FF0DA31D53304C00443312 /* 图标-21new.png in Resources */,
 				1C9E82551C60A7480007BF02 /* 333-01.png in Resources */,
 				D95BAE4F1D542FD500ED0CDC /* award_05.png in Resources */,
@@ -6823,6 +6853,7 @@
 				185A458F1F132F2A0033AFE3 /* UserInfoHeaderCell.xib in Resources */,
 				D947E45E1D7D3AE700F9FEE8 /* 聊天键盘-icon-拍照@3x.png in Resources */,
 				1C2ED10F1C5B1827003EE93B /* 4.1-02@2x.png in Resources */,
+				189899F41F3AC0E8004D1543 /* oil1.jpg in Resources */,
 				D9B57F181D337DD700E9654A /* areaAll.plist in Resources */,
 				D9AB253A1D88E4ED000E9288 /* VoiceSearchFeedback012@2x.png in Resources */,
 				D94DF2521CAE0AA4000D5B69 /* star_highlighted.png in Resources */,
@@ -6839,6 +6870,7 @@
 				D925D1811E70F89C0000B8B1 /* OrderDetailViewController.xib in Resources */,
 				D99C11A61DE28CF100E45B64 /* UPgradeVC.xib in Resources */,
 				D920B95E1DD05164001AC7F5 /* AdvertiseCell.xib in Resources */,
+				189899F51F3AC0E8004D1543 /* oil2.jpg in Resources */,
 				D980B66C1D7801A600CC6637 /* group_creategroup@2x.png in Resources */,
 				D94B52531D4AE6D800C067B3 /* 代金券-01.jpg in Resources */,
 				1CDA9DFF1C59FAB300DFE518 /* ad_eff.jpg in Resources */,
@@ -6863,6 +6895,7 @@
 				1C9E822E1C603B7A0007BF02 /* jiantou.png in Resources */,
 				18FA58D71EEA769C00F458F2 /* NewUserSetPassVC.xib in Resources */,
 				D98FDF871E601C280057C206 /* AD_ad_tb@3x.png in Resources */,
+				189899F81F3AC0E8004D1543 /* oil5.jpg in Resources */,
 				D97F60031D62BFF8000EE794 /* line@2x.png in Resources */,
 				18EFA0BE1F205D3700360C8A /* 下A.png in Resources */,
 				18EB36C01D4B5A2E0087CE1A /* 反1-01.png in Resources */,
@@ -7055,6 +7088,7 @@
 				185A45901F132F2A0033AFE3 /* UserInfoSexyCell.m in Sources */,
 				D98E5C061E515210009D56BF /* NSArray+MASAdditions.m in Sources */,
 				D94113571CE9A3D7008E231F /* Order.m in Sources */,
+				189899EB1F3AA061004D1543 /* EricAnnotition.m in Sources */,
 				D958AD701E654CF200B0776F /* JHWaveChart.m in Sources */,
 				D9541EA41E1F7D0E003022E5 /* LZDRootViewController.m in Sources */,
 				D936F5831D473CBF00424B22 /* MyCashCouponViewController.m in Sources */,

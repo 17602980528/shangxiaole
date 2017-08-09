@@ -17,5 +17,4 @@
 @property (copy) NSString *title;
 /// 要显示的副标题
 @property (copy) NSString *subtitle;
-
 @end
