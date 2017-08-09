@@ -72,6 +72,15 @@
 
     [self startAnimation];
     
+    UILabel *lab = [[UILabel alloc]init];
+    lab.center = CGPointMake(self.center.x+3, trasfrom_img.bottom+15);
+    lab.bounds = CGRectMake(0, 0, 100, 13);
+    lab.textAlignment=  NSTextAlignmentCenter;
+    lab.font = [UIFont systemFontOfSize:13];
+    lab.text = @"加载中...";
+    lab.textColor = RGB(51, 51, 51);
+    [self addSubview:lab];
+    
 }
 
 - (void)startAnimation
