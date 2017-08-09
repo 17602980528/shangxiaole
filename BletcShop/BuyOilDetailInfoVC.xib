@@ -129,6 +129,13 @@
                                                         <constraint firstAttribute="height" constant="20" id="PR7-cC-N8x"/>
                                                     </constraints>
                                                 </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k5a-3e-jbt">
+                                                    <rect key="frame" x="13" y="46" width="349" height="1"/>
+                                                    <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="82d-S7-7hJ"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <gestureRecognizers/>
@@ -136,7 +143,10 @@
                                                 <constraint firstItem="01a-fA-Uu7" firstAttribute="leading" secondItem="Ih3-YV-2rv" secondAttribute="trailing" constant="15" id="58k-YO-lXM"/>
                                                 <constraint firstItem="1SP-ee-JV7" firstAttribute="centerY" secondItem="rKR-Xk-jZb" secondAttribute="centerY" id="8iu-h2-9tW"/>
                                                 <constraint firstItem="Ih3-YV-2rv" firstAttribute="centerY" secondItem="rKR-Xk-jZb" secondAttribute="centerY" id="F56-Fe-Q3S"/>
+                                                <constraint firstAttribute="trailing" secondItem="k5a-3e-jbt" secondAttribute="trailing" constant="13" id="HuJ-zf-Vhx"/>
+                                                <constraint firstAttribute="bottom" secondItem="k5a-3e-jbt" secondAttribute="bottom" id="NV7-S7-S7C"/>
                                                 <constraint firstItem="01a-fA-Uu7" firstAttribute="centerY" secondItem="rKR-Xk-jZb" secondAttribute="centerY" id="SEI-aX-Tys"/>
+                                                <constraint firstItem="k5a-3e-jbt" firstAttribute="leading" secondItem="rKR-Xk-jZb" secondAttribute="leading" constant="13" id="WdJ-ju-qPP"/>
                                                 <constraint firstAttribute="height" constant="47" id="fZg-iy-f8f"/>
                                                 <constraint firstItem="Ih3-YV-2rv" firstAttribute="leading" secondItem="rKR-Xk-jZb" secondAttribute="leading" constant="13" id="qbf-X1-d5X"/>
                                                 <constraint firstAttribute="trailing" secondItem="1SP-ee-JV7" secondAttribute="trailing" constant="13" id="tPh-YT-dov"/>
@@ -174,6 +184,13 @@
                                                         <constraint firstAttribute="height" constant="20" id="XwS-Iy-3J9"/>
                                                     </constraints>
                                                 </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Cd-Me-sf7">
+                                                    <rect key="frame" x="13" y="46" width="349" height="1"/>
+                                                    <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="Ymb-AT-t1q"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <gestureRecognizers/>
@@ -185,6 +202,9 @@
                                                 <constraint firstItem="ouL-VH-DZf" firstAttribute="leading" secondItem="5nM-BG-IeX" secondAttribute="trailing" constant="15" id="ic7-F1-epB"/>
                                                 <constraint firstItem="5nM-BG-IeX" firstAttribute="centerY" secondItem="2np-Ql-moT" secondAttribute="centerY" id="kMY-KA-Kza"/>
                                                 <constraint firstItem="ouL-VH-DZf" firstAttribute="centerY" secondItem="2np-Ql-moT" secondAttribute="centerY" id="nXM-02-rw2"/>
+                                                <constraint firstAttribute="bottom" secondItem="9Cd-Me-sf7" secondAttribute="bottom" id="naT-Hr-nMw"/>
+                                                <constraint firstAttribute="trailing" secondItem="9Cd-Me-sf7" secondAttribute="trailing" constant="13" id="smX-SR-qVA"/>
+                                                <constraint firstItem="9Cd-Me-sf7" firstAttribute="leading" secondItem="2np-Ql-moT" secondAttribute="leading" constant="13" id="uU9-Xx-oPr"/>
                                             </constraints>
                                             <connections>
                                                 <outletCollection property="gestureRecognizers" destination="M8S-HT-j4O" appends="YES" id="XmR-yx-5wH"/>

@@ -16,10 +16,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="138.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-240.png" translatesAutoresizingMaskIntoConstraints="NO" id="18V-zE-HPL">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oil0.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="18V-zE-HPL">
                         <rect key="frame" x="13" y="13" width="65" height="65"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="65" id="G4a-eE-eD0"/>
@@ -65,15 +65,15 @@
                             <constraint firstAttribute="height" constant="1" id="psd-Ge-Qbj"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="导航栏定位.png" translatesAutoresizingMaskIntoConstraints="NO" id="7s0-y2-hAN">
-                        <rect key="frame" x="13" y="106" width="10" height="14"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="定位icon" translatesAutoresizingMaskIntoConstraints="NO" id="7s0-y2-hAN">
+                        <rect key="frame" x="13" y="106" width="14" height="14"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="10" id="IIH-i3-cZc"/>
+                            <constraint firstAttribute="width" constant="14" id="IIH-i3-cZc"/>
                             <constraint firstAttribute="height" constant="14" id="JoG-cq-Ne8"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="西安市西三环路与鱼斗路交汇向南100m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dss-iH-s4I">
-                        <rect key="frame" x="34" y="93" width="311" height="41"/>
+                        <rect key="frame" x="38" y="93" width="307" height="41"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="height" constant="41" id="ViE-VI-IM8"/>
@@ -127,8 +127,8 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="Icon-240.png" width="240" height="240"/>
+        <image name="oil0.jpg" width="1600" height="1200"/>
         <image name="youjiantou" width="7" height="13"/>
-        <image name="导航栏定位.png" width="20" height="28"/>
+        <image name="定位icon" width="26" height="26"/>
     </resources>
 </document>
