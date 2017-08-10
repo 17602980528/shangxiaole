@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="329"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="393" height="328.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="393" height="329"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eti-lz-Uwr">
@@ -113,6 +113,9 @@
                                         <color key="textColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJj-Zg-VLy">
+                                        <rect key="frame" x="0.0" y="0.0" width="229" height="25"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -122,11 +125,15 @@
                                     <constraint firstAttribute="bottom" secondItem="QeH-OJ-IaA" secondAttribute="bottom" constant="5" id="Ggq-EF-ZYF"/>
                                     <constraint firstAttribute="bottom" secondItem="DUe-l8-VL6" secondAttribute="bottom" constant="7" id="IUa-fA-4No"/>
                                     <constraint firstItem="QeH-OJ-IaA" firstAttribute="top" secondItem="KTG-fV-TPQ" secondAttribute="top" constant="5" id="O5M-Cg-4rf"/>
+                                    <constraint firstItem="dJj-Zg-VLy" firstAttribute="top" secondItem="KTG-fV-TPQ" secondAttribute="top" id="X0K-xK-iuS"/>
                                     <constraint firstItem="QeH-OJ-IaA" firstAttribute="leading" secondItem="KTG-fV-TPQ" secondAttribute="leading" constant="15" id="dI1-qu-Nps"/>
+                                    <constraint firstAttribute="trailing" secondItem="dJj-Zg-VLy" secondAttribute="trailing" id="jFE-vZ-bg4"/>
                                     <constraint firstAttribute="trailing" secondItem="DUe-l8-VL6" secondAttribute="trailing" constant="14" id="lbZ-DX-cbQ"/>
                                     <constraint firstAttribute="bottom" secondItem="j63-DV-L4m" secondAttribute="bottom" id="pCF-fa-1u3"/>
                                     <constraint firstItem="j63-DV-L4m" firstAttribute="top" secondItem="KTG-fV-TPQ" secondAttribute="top" id="pDj-Ay-BK5"/>
                                     <constraint firstItem="DUe-l8-VL6" firstAttribute="top" secondItem="KTG-fV-TPQ" secondAttribute="top" constant="7" id="vOf-6b-56i"/>
+                                    <constraint firstAttribute="bottom" secondItem="dJj-Zg-VLy" secondAttribute="bottom" id="wr3-JQ-eE0"/>
+                                    <constraint firstItem="dJj-Zg-VLy" firstAttribute="leading" secondItem="KTG-fV-TPQ" secondAttribute="leading" id="y34-6K-YwI"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -168,9 +175,17 @@
             <connections>
                 <outlet property="appriseStars" destination="zDQ-YP-jr0" id="teW-ul-SGv"/>
                 <outlet property="bgView" destination="Eti-lz-Uwr" id="vgv-pa-4pE"/>
+                <outlet property="cardRemain" destination="Waq-sg-Hzy" id="Zlm-rj-1lJ"/>
+                <outlet property="cardTrade" destination="nk9-Om-Vjz" id="u0g-dc-ZHR"/>
+                <outlet property="discription" destination="khf-OH-D09" id="95A-hc-UKM"/>
+                <outlet property="goShopBtn" destination="dJj-Zg-VLy" id="2oT-au-mPu"/>
+                <outlet property="publishDate" destination="RgU-Og-0k6" id="xX6-Ys-GNs"/>
+                <outlet property="shopName" destination="j63-DV-L4m" id="4Xx-DG-lnC"/>
                 <outlet property="shopNameBgView" destination="KTG-fV-TPQ" id="71e-Ac-ZkB"/>
+                <outlet property="userHead" destination="Cla-Sg-lBb" id="afP-vm-Ye8"/>
+                <outlet property="userNick" destination="s5m-DX-nIV" id="xK1-Xc-WFW"/>
             </connections>
-            <point key="canvasLocation" x="-40" y="-11"/>
+            <point key="canvasLocation" x="-40.5" y="-11.5"/>
         </tableViewCell>
     </objects>
     <resources>

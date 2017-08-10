@@ -49,6 +49,9 @@
         center.x=sender.center.x;
         self.moveView.center=center;
     }];
+    [self.noEvaluateShopArray removeAllObjects];
+    [self.tableView reloadData];
+    
     [self postRequestEvaluate];
     
 }
@@ -62,7 +65,9 @@
         center.x=sender.center.x;
         self.moveView.center=center;
     }];
-    [_tableView reloadData];
+    [self.noEvaluateShopArray removeAllObjects];
+    self.noEvaluateShopArray=[NSMutableArray arrayWithObject:self.dic];
+   [self.tableView reloadData];
     
 }
 
@@ -101,7 +106,9 @@
     self.navigationController.navigationBar.hidden=YES;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    [_appriseButton setTitle:[NSString stringWithFormat:@"她的评价(%lu)",(unsigned long)self.noEvaluateShopArray.count] forState:UIControlStateNormal];
+    if (_apriseOrPublish==0) {
+         [_appriseButton setTitle:[NSString stringWithFormat:@"她的评价(%lu)",(unsigned long)self.noEvaluateShopArray.count] forState:UIControlStateNormal];
+    }
     return self.sectionHeadView;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -137,6 +144,24 @@
             cell2.selectionStyle = UITableViewCellSelectionStyleNone;
             cell2.backgroundColor=[UIColor clearColor];
         }
+        cell2.goShopBtn.tag=indexPath.row;
+        [cell2.goShopBtn addTarget:self action:@selector(goNextVC:) forControlEvents:UIControlEventTouchUpInside];
+        
+        cell2.userNick.text=self.noEvaluateShopArray[indexPath.row][@"nickname"];
+        NSString *string=[NSString stringWithFormat:@"%@%@",HEADIMAGE,self.noEvaluateShopArray[indexPath.row][@"headimage"]];
+        NSURL * nurl1=[NSURL URLWithString:[string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+        [cell2.userHead sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"userHeader"] options:SDWebImageRetryFailed];
+       cell2.starRateView.currentScore=5;
+       cell2.publishDate.text=self.noEvaluateShopArray[indexPath.row][@"datetime"];
+       cell2.cardTrade.text=self.noEvaluateShopArray[indexPath.row][@"trade"];
+       cell2.cardRemain.text=[NSString stringWithFormat:@"￥%@",self.noEvaluateShopArray[indexPath.row][@"card_remain"]];
+        cell2.shopName.text=self.noEvaluateShopArray[indexPath.row][@"store"];
+        if ([self.noEvaluateShopArray[indexPath.row][@"method"] isEqualToString:@"transfer"]) {
+            cell2.discription.text = [NSString stringWithFormat:@"【转让】现有%@%@元%@%@一张(%.1f折卡),%.1f折转让,需要的朋友尽快下手",self.noEvaluateShopArray[indexPath.row][@"store"],self.noEvaluateShopArray[indexPath.row][@"card_remain"],self.noEvaluateShopArray[indexPath.row][@"card_level"],self.noEvaluateShopArray[indexPath.row][@"card_type"],[self.noEvaluateShopArray[indexPath.row][@"rule"] floatValue]*0.1,[self.noEvaluateShopArray[indexPath.row][@"rate"] floatValue]*0.1];
+        }else{
+            cell2.discription.text = [NSString stringWithFormat:@"【分享】现有%@%@元%@%@一张(%g折卡),需要的朋友尽快下手,手续费仅(%@%%)",self.noEvaluateShopArray[indexPath.row][@"store"],self.noEvaluateShopArray[indexPath.row][@"card_remain"],self.noEvaluateShopArray[indexPath.row][@"card_level"],self.noEvaluateShopArray[indexPath.row][@"card_type"],[self.noEvaluateShopArray[indexPath.row][@"rule"] floatValue]*0.1,self.noEvaluateShopArray[indexPath.row][@"rate"]];
+        }
+
         return cell2;
     }
 }
@@ -177,6 +202,13 @@
     NSMutableDictionary *dic=[self.noEvaluateShopArray[sender.tag] mutableCopy];
     [dic setObject:dic[@"merchant"] forKey:@"muid"];
     controller.infoDic=dic;
+    controller.title = @"商铺信息";
+    [self.navigationController pushViewController:controller animated:YES];
+}
+-(void)goNextVC:(UIButton *)sender{
+    NewShopDetailVC *controller = [[NewShopDetailVC alloc]init];
+    controller.videoID=@"";
+    controller.infoDic=self.noEvaluateShopArray[sender.tag];
     controller.title = @"商铺信息";
     [self.navigationController pushViewController:controller animated:YES];
 }

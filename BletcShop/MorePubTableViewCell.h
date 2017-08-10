@@ -13,4 +13,13 @@
 @property (weak, nonatomic) IBOutlet UIView *shopNameBgView;
 @property (weak, nonatomic) IBOutlet UIView *appriseStars;
 @property (strong,nonatomic)XHStarRateView *starRateView;
+@property (weak, nonatomic) IBOutlet UILabel *cardTrade;
+@property (weak, nonatomic) IBOutlet UILabel *cardRemain;
+@property (weak, nonatomic) IBOutlet UILabel *discription;
+@property (weak, nonatomic) IBOutlet UIImageView *userHead;
+@property (weak, nonatomic) IBOutlet UILabel *userNick;
+@property (weak, nonatomic) IBOutlet UILabel *publishDate;
+@property (weak, nonatomic) IBOutlet UILabel *shopName;
+@property (weak, nonatomic) IBOutlet UIButton *goShopBtn;
+
 @end
