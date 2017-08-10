@@ -14,10 +14,41 @@
 @interface ConvertCostVC ()<UIWebViewDelegate>
 {
     UIScrollView *_scrollView;
+    NSDictionary *pointAndSign_dic;
+    UILabel *totalPointLable;
+    UILabel *noticeLabel;
+    UIButton *convertButton;
 }
 @end
 
 @implementation ConvertCostVC
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    AppDelegate *delegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
+
+    
+    if (delegate.IsLogin) {
+        [self postRequestPointWithSign:delegate.userInfoDic[@"uuid"]];
+        
+        if ([self.totalPoint floatValue]<[self.shopNeedPoint floatValue]) {
+            noticeLabel.text=@"亲！您的积分还不够哦～";
+            convertButton.backgroundColor=[UIColor lightGrayColor];
+            [convertButton setTitle:@"积分不够" forState:UIControlStateNormal];
+            convertButton.userInteractionEnabled = NO;
+        }else{
+            convertButton.userInteractionEnabled = YES;
+
+            noticeLabel.text=@"恭喜！积分可兑换该商品";
+            convertButton.backgroundColor=[UIColor orangeColor];
+            [convertButton setTitle:@"立即兑换" forState:UIControlStateNormal];
+            [convertButton addTarget:self action:@selector(costPoint:) forControlEvents:UIControlEventTouchUpInside];
+        }
+
+        
+    }
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,7 +91,7 @@
     lineView.backgroundColor=RGB(238, 238, 238);
     [topBgView addSubview:lineView];
     
-    UILabel *totalPointLable=[[UILabel alloc]initWithFrame:CGRectMake(0, 291, SCREENWIDTH/2, 35)];
+     totalPointLable=[[UILabel alloc]initWithFrame:CGRectMake(0, 291, SCREENWIDTH/2, 35)];
     
     totalPointLable.text=[NSString stringWithFormat:@"我的积分:%@",[NSString getTheNoNullStr:_totalPoint andRepalceStr:@"0"]];
     totalPointLable.textAlignment=1;
@@ -77,13 +108,15 @@
     bottomView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:bottomView];
     
-    UILabel *noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 40)];
+    noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 40)];
     noticeLabel.textAlignment=1;
     noticeLabel.textColor=[UIColor redColor];
     noticeLabel.font=[UIFont systemFontOfSize:13.0f];
     [bottomView addSubview:noticeLabel];
     
-    UIButton *convertButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    
+    
+    convertButton=[UIButton buttonWithType:UIButtonTypeCustom];
     convertButton.frame=CGRectMake(20, 40, SCREENWIDTH-40, 40);
     [convertButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     convertButton.layer.cornerRadius=20;
@@ -126,19 +159,38 @@
     _scrollView.contentSize=CGSizeMake(SCREENWIDTH, 336+webViewHeight);
     
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+
+
+-(void)postRequestPointWithSign:(NSString *)uuid {
+    
+    //请求乐点数
+    NSString *url =[[NSString alloc]initWithFormat:@"%@Extra/mall/getIntegral",BASEURL ];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:uuid forKey:@"uuid"];
+    
+    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        
+        NSLog(@"result==%@", result);
+        if (result) {
+            
+            pointAndSign_dic = [NSDictionary dictionaryWithDictionary:result];
+            _totalPoint = pointAndSign_dic[@"integral"];
+            
+            totalPointLable.text=[NSString stringWithFormat:@"我的积分:%@",[NSString getTheNoNullStr:_totalPoint andRepalceStr:@"0"]];
+            
+            
+        }
+        
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"%@", error);
+        
+    }];
+    
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
