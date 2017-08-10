@@ -35,7 +35,11 @@
     }
 }
 -(void)cancelButtonClick:(UIButton *)sender{
-    windowBgView.hidden=YES;
+    [UIView animateWithDuration:0.3 animations:^{
+        windowBgView.frame=CGRectMake(0, SCREENHEIGHT, SCREENWIDTH, SCREENHEIGHT);
+    } completion:^(BOOL finished) {
+        windowBgView.hidden=YES;
+    }];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,7 +53,7 @@
     [_carNum addTarget:self  action:@selector(valueChanged:)  forControlEvents:UIControlEventAllEditingEvents];
     UIWindow *window=[UIApplication sharedApplication].keyWindow;
     
-    windowBgView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
+    windowBgView=[[UIView alloc]initWithFrame:CGRectMake(0, SCREENHEIGHT, SCREENWIDTH, SCREENHEIGHT)];
     windowBgView.backgroundColor=[UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:0.2];
     windowBgView.hidden=YES;
     [window addSubview:windowBgView];
@@ -98,7 +102,11 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    windowBgView.hidden=YES;
+    [UIView animateWithDuration:0.3 animations:^{
+        windowBgView.frame=CGRectMake(0, SCREENHEIGHT, SCREENWIDTH, SCREENHEIGHT);
+    } completion:^(BOOL finished) {
+        windowBgView.hidden=YES;
+    }];
     _oilGunTF.text=dataArr[indexPath.row];
 }
 -(void)valueChanged:(UITextField *)tf{
@@ -115,6 +123,9 @@
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     if (textField==_oilGunTF) {
         windowBgView.hidden=NO;
+        [UIView animateWithDuration:0.3 animations:^{
+            windowBgView.frame=CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT);
+        }];
         return NO;
     }else{
         return YES;
