@@ -898,7 +898,15 @@
     NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
     
     AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    [paramer setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
+    
+    if (appdelegate.IsLogin) {
+        [paramer setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
+        
+    }else{
+        [paramer setObject:@"" forKey:@"uuid"];
+        
+    }
+    
     
     [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         
@@ -925,8 +933,16 @@
     NSString *url =[[NSString alloc]initWithFormat:@"%@Extra/mall/getConsume",BASEURL ];
     AppDelegate *del=(AppDelegate *)[UIApplication sharedApplication].delegate;
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:del.userInfoDic[@"uuid"] forKey:@"uuid"];
     
+    if (del.IsLogin) {
+        [params setObject:del.userInfoDic[@"uuid"] forKey:@"uuid"];
+
+    }else{
+        [params setObject:@"" forKey:@"uuid"];
+
+    }
+    NSLog(@"params==%@", params);
+
     
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         

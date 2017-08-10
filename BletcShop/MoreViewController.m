@@ -177,11 +177,12 @@
             [self.navigationController pushViewController:severVC animated:YES];
         }else{
             
-            HotNewsVC *VC = [[HotNewsVC alloc]init];
-            VC.title = @"帮助中心";
-            VC.href = @"http://www.cnconsum.com/cnconsum/helpCenter/user";
+            
+            PUSH(HotNewsVC)
 
-            [self presentViewController:VC animated:YES completion:nil];
+            vc.title = @"帮助中心";
+            vc.href = @"http://www.cnconsum.com/cnconsum/helpCenter/user";
+
             
         }
         

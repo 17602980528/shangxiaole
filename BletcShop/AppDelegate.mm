@@ -391,7 +391,8 @@
         appdelegate.userInfoDic = nil;
         
         
-        
+        self.IsLogin = NO;
+
         
         UIViewController *view =[self topViewController];
         
@@ -1838,6 +1839,10 @@
     
     
     [defaults removeObjectForKey:@"shopselectedIndex"];
+    
+    
+    self.IsLogin = NO;
+
     
     [defaults synchronize];
     self.socketCutBy=1;
