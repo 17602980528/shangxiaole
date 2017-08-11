@@ -64,7 +64,7 @@
                             <rect key="frame" x="123" y="45" width="239" height="48"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="x4e-63-rj7"/>
                             </connections>
