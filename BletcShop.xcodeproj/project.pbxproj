@@ -99,6 +99,14 @@
 		184C72131EC31A770065EE65 /* ChangePayPassLastVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C72121EC31A770065EE65 /* ChangePayPassLastVC.m */; };
 		184CB0B31F31B33F00180927 /* NewUserAccessCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CB0B11F31B33F00180927 /* NewUserAccessCodeVC.m */; };
 		184CB0B41F31B33F00180927 /* NewUserAccessCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184CB0B21F31B33F00180927 /* NewUserAccessCodeVC.xib */; };
+		184E84671F3D923600D8140F /* FriendInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184E84651F3D923600D8140F /* FriendInfoVC.m */; };
+		184E84681F3D923600D8140F /* FriendInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184E84661F3D923600D8140F /* FriendInfoVC.xib */; };
+		184E846C1F3D9B6F00D8140F /* InvatedFriendsShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184E846A1F3D9B6F00D8140F /* InvatedFriendsShowVC.m */; };
+		184E846D1F3D9B6F00D8140F /* InvatedFriendsShowVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184E846B1F3D9B6F00D8140F /* InvatedFriendsShowVC.xib */; };
+		184E84711F3DB0A500D8140F /* CreatTempGroupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184E846F1F3DB0A500D8140F /* CreatTempGroupVC.m */; };
+		184E84721F3DB0A500D8140F /* CreatTempGroupVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184E84701F3DB0A500D8140F /* CreatTempGroupVC.xib */; };
+		184E84761F3DB28E00D8140F /* GroupMemberTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184E84741F3DB28E00D8140F /* GroupMemberTableViewCell.m */; };
+		184E84771F3DB28E00D8140F /* GroupMemberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184E84751F3DB28E00D8140F /* GroupMemberTableViewCell.xib */; };
 		18518D571E7945A000067D95 /* s_money_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 18518D541E7945A000067D95 /* s_money_n.png */; };
 		18518D581E7945A000067D95 /* s_money_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18518D551E7945A000067D95 /* s_money_n@2x.png */; };
 		18518D591E7945A000067D95 /* s_money_n@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18518D561E7945A000067D95 /* s_money_n@3x.png */; };
@@ -1274,6 +1282,18 @@
 		184CB0B01F31B33F00180927 /* NewUserAccessCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserAccessCodeVC.h; sourceTree = "<group>"; };
 		184CB0B11F31B33F00180927 /* NewUserAccessCodeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserAccessCodeVC.m; sourceTree = "<group>"; };
 		184CB0B21F31B33F00180927 /* NewUserAccessCodeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserAccessCodeVC.xib; sourceTree = "<group>"; };
+		184E84641F3D923600D8140F /* FriendInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendInfoVC.h; sourceTree = "<group>"; };
+		184E84651F3D923600D8140F /* FriendInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendInfoVC.m; sourceTree = "<group>"; };
+		184E84661F3D923600D8140F /* FriendInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendInfoVC.xib; sourceTree = "<group>"; };
+		184E84691F3D9B6F00D8140F /* InvatedFriendsShowVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvatedFriendsShowVC.h; sourceTree = "<group>"; };
+		184E846A1F3D9B6F00D8140F /* InvatedFriendsShowVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvatedFriendsShowVC.m; sourceTree = "<group>"; };
+		184E846B1F3D9B6F00D8140F /* InvatedFriendsShowVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvatedFriendsShowVC.xib; sourceTree = "<group>"; };
+		184E846E1F3DB0A500D8140F /* CreatTempGroupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatTempGroupVC.h; sourceTree = "<group>"; };
+		184E846F1F3DB0A500D8140F /* CreatTempGroupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatTempGroupVC.m; sourceTree = "<group>"; };
+		184E84701F3DB0A500D8140F /* CreatTempGroupVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreatTempGroupVC.xib; sourceTree = "<group>"; };
+		184E84731F3DB28D00D8140F /* GroupMemberTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMemberTableViewCell.h; sourceTree = "<group>"; };
+		184E84741F3DB28E00D8140F /* GroupMemberTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMemberTableViewCell.m; sourceTree = "<group>"; };
+		184E84751F3DB28E00D8140F /* GroupMemberTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupMemberTableViewCell.xib; sourceTree = "<group>"; };
 		18518D541E7945A000067D95 /* s_money_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s_money_n.png; sourceTree = "<group>"; };
 		18518D551E7945A000067D95 /* s_money_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "s_money_n@2x.png"; sourceTree = "<group>"; };
 		18518D561E7945A000067D95 /* s_money_n@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "s_money_n@3x.png"; sourceTree = "<group>"; };
@@ -3440,6 +3460,49 @@
 			name = "登录或支付";
 			sourceTree = "<group>";
 		};
+		184E84631F3D91D300D8140F /* 聊天新页面-2017-8-11 */ = {
+			isa = PBXGroup;
+			children = (
+				184E84781F3DB2A200D8140F /* 详情页首页 */,
+				184E84791F3DB2B300D8140F /* 添加成员后的页面 */,
+				184E847A1F3DB2CE00D8140F /* 选好友加入群聊 */,
+				184E84731F3DB28D00D8140F /* GroupMemberTableViewCell.h */,
+				184E84741F3DB28E00D8140F /* GroupMemberTableViewCell.m */,
+				184E84751F3DB28E00D8140F /* GroupMemberTableViewCell.xib */,
+			);
+			name = "聊天新页面-2017-8-11";
+			sourceTree = "<group>";
+		};
+		184E84781F3DB2A200D8140F /* 详情页首页 */ = {
+			isa = PBXGroup;
+			children = (
+				184E84641F3D923600D8140F /* FriendInfoVC.h */,
+				184E84651F3D923600D8140F /* FriendInfoVC.m */,
+				184E84661F3D923600D8140F /* FriendInfoVC.xib */,
+			);
+			name = "详情页首页";
+			sourceTree = "<group>";
+		};
+		184E84791F3DB2B300D8140F /* 添加成员后的页面 */ = {
+			isa = PBXGroup;
+			children = (
+				184E84691F3D9B6F00D8140F /* InvatedFriendsShowVC.h */,
+				184E846A1F3D9B6F00D8140F /* InvatedFriendsShowVC.m */,
+				184E846B1F3D9B6F00D8140F /* InvatedFriendsShowVC.xib */,
+			);
+			name = "添加成员后的页面";
+			sourceTree = "<group>";
+		};
+		184E847A1F3DB2CE00D8140F /* 选好友加入群聊 */ = {
+			isa = PBXGroup;
+			children = (
+				184E846E1F3DB0A500D8140F /* CreatTempGroupVC.h */,
+				184E846F1F3DB0A500D8140F /* CreatTempGroupVC.m */,
+				184E84701F3DB0A500D8140F /* CreatTempGroupVC.xib */,
+			);
+			name = "选好友加入群聊";
+			sourceTree = "<group>";
+		};
 		1857EBB91F145FA600CE4172 /* SHE.S Aprise Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -4118,6 +4181,7 @@
 				079386BE1C55BB9E0021B385 /* 周边 */,
 				D97B70251E2C5E3900CEAFC1 /* 卡市 */,
 				079386BF1C55BBA80021B385 /* 我的 */,
+				184E84631F3D91D300D8140F /* 聊天新页面-2017-8-11 */,
 				079386C01C55BBBF0021B385 /* 更多 */,
 				D9B3A4841D73CF3400F3F27E /* 聊天 */,
 			);
@@ -6353,6 +6417,7 @@
 			files = (
 				182F3C6D1F0CEFD900540FAE /* MineInfoVCSecond.xib in Resources */,
 				1C9E82421C60557E0007BF02 /* 5(7)@2x.png in Resources */,
+				184E84681F3D923600D8140F /* FriendInfoVC.xib in Resources */,
 				D93027E21CFEB641007447D2 /* star_default.png in Resources */,
 				18E838F41F39AAE900E743A7 /* PayWaysForOilTableViewCell.xib in Resources */,
 				D98FDF851E601C280057C206 /* AD_ad_is@3x.png in Resources */,
@@ -6479,6 +6544,7 @@
 				18A4B6F31D33933B00EFBCC1 /* 椭圆-01.png in Resources */,
 				1836B8411E559DD700B587A6 /* Active_top4.jpg in Resources */,
 				D9BA5F041D7564090067E7A2 /* FriendRequest.plist in Resources */,
+				184E846D1F3D9B6F00D8140F /* InvatedFriendsShowVC.xib in Resources */,
 				18148E6D1F173C83001C86AC /* NewCardBuyTableViewCell.xib in Resources */,
 				D9ABB1B01EC9408E00FBE080 /* TableViewCell.xib in Resources */,
 				D95BAE4E1D542FD500ED0CDC /* award_04.png in Resources */,
@@ -6795,6 +6861,7 @@
 				D981FD031E2616080026E4B2 /* UShare常见问题.html in Resources */,
 				18D89C671D51EF4900717B11 /* select_false.png in Resources */,
 				D93C0D591D251E7B001A1AC1 /* 小标-07.png in Resources */,
+				184E84721F3DB0A500D8140F /* CreatTempGroupVC.xib in Resources */,
 				18EB36C31D4B5A7C0087CE1A /* 反1-02.png in Resources */,
 				D99E9CF11DFAB62C009D67F4 /* 消息home.png in Resources */,
 				D97ED8051D926EFC00E29C7E /* vip_cash_icon_n.png in Resources */,
@@ -6918,6 +6985,7 @@
 				D94DF24F1CAE0AA4000D5B69 /* star@2x.png in Resources */,
 				D95BAE541D542FD500ED0CDC /* award_10.png in Resources */,
 				D95BAE561D542FD500ED0CDC /* award_12.png in Resources */,
+				184E84771F3DB28E00D8140F /* GroupMemberTableViewCell.xib in Resources */,
 				D9824F4B1F13480500301076 /* PictureAndTextVC.xib in Resources */,
 				D98FDF841E601C280057C206 /* AD_ad_is@2x.png in Resources */,
 				D9AA10C81F03B43400F7EDE8 /* NewBuyOptionsCell.xib in Resources */,
@@ -7096,6 +7164,7 @@
 				189899EB1F3AA061004D1543 /* EricAnnotition.m in Sources */,
 				D958AD701E654CF200B0776F /* JHWaveChart.m in Sources */,
 				D9541EA41E1F7D0E003022E5 /* LZDRootViewController.m in Sources */,
+				184E84671F3D923600D8140F /* FriendInfoVC.m in Sources */,
 				D936F5831D473CBF00424B22 /* MyCashCouponViewController.m in Sources */,
 				D9D50DB31D87DE0E00A5E469 /* Emoji.m in Sources */,
 				D9764E801DD591A500B088DE /* AddBankAccountVC.m in Sources */,
@@ -7121,6 +7190,7 @@
 				1CDCCCFF1C7572130094E70D /* BaseModel.m in Sources */,
 				D9B3A4871D73CF7400F3F27E /* LZDContactViewController.m in Sources */,
 				D9B3A5AE1D74255700F3F27E /* EMSDWebImageDownloader.m in Sources */,
+				184E84711F3DB0A500D8140F /* CreatTempGroupVC.m in Sources */,
 				D947E4851D7D710200F9FEE8 /* FMDatabasePool.m in Sources */,
 				D94743931CE56A6000D1D3EE /* LNLocationGeocoder.m in Sources */,
 				D98E5BFE1E515210009D56BF /* MASConstraintMaker.m in Sources */,
@@ -7129,6 +7199,7 @@
 				D9ACF1AF1E24CB4200BCC877 /* thirdlogVC.m in Sources */,
 				18EFA0B61F205D1E00360C8A /* ExpiredCouponsVC.m in Sources */,
 				D9345E6A1E769805006B2AC1 /* TopActiveListTableVC.m in Sources */,
+				184E84761F3DB28E00D8140F /* GroupMemberTableViewCell.m in Sources */,
 				D98E5B8F1E5150FC009D56BF /* GetDiscountCouponVC.m in Sources */,
 				18148E611F173B67001C86AC /* NewMyPayMentsVC.m in Sources */,
 				18F031F11E5EB8C100ACD261 /* ConvertRecordVC.m in Sources */,
@@ -7172,6 +7243,7 @@
 				D9B3A4901D73CFE800F3F27E /* LZDButton.m in Sources */,
 				18B139AA1F3066D000283CED /* PayVictoryVC.m in Sources */,
 				182988421E723F4200164F32 /* TAAnimatedDotView.m in Sources */,
+				184E846C1F3D9B6F00D8140F /* InvatedFriendsShowVC.m in Sources */,
 				1C0BEF8A1C7DA14400519481 /* SuccessController.m in Sources */,
 				D92ACE071F0F341F00858727 /* ShopDetailCouponsCell.m in Sources */,
 				D947E4861D7D710200F9FEE8 /* FMDatabaseQueue.m in Sources */,
