@@ -355,6 +355,10 @@
         time_L.font=[UIFont systemFontOfSize:12];
         [cell.contentView addSubview:time_L];
         
+        CGRect red_frame =rednumbel.frame;
+        red_frame.origin.y =user_L.top-(rednumbel.height-user_L.height)/2;
+        rednumbel.frame = red_frame;
+        
 
         UIView *line =[[UIView alloc]initWithFrame:CGRectMake(10, 76-1, SCREENWIDTH, 1)];
         line.backgroundColor = RGB(217,216,217);

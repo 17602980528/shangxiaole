@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"详情";
     Person *uer_p= [[Database searchPersonFromID:_conversationID] firstObject];
     
     NSString *header_S = [[uer_p.idstring componentsSeparatedByString:@"_"] firstObject];
