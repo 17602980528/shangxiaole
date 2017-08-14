@@ -29,6 +29,9 @@
 }
 
 -(void)getdata{
+    
+    [[self.view viewWithTag:777]removeFromSuperview];
+    
     NSDictionary *dic =[[NSUserDefaults standardUserDefaults]objectForKey:@"FriendRequest"];
     self.file_dic =[NSMutableDictionary dictionaryWithDictionary:dic];
     
@@ -41,6 +44,22 @@
         [self.arrModel addObject:msgModel];
         
     }
+    
+    if (_arrModel.count==0) {
+        
+        
+        UILabel *lab = [[UILabel alloc]init];
+        lab.tag =777;
+        lab.bounds = CGRectMake(0, 0, 200, 35);
+        lab.center = CGPointMake(self.view.center.x, self.view.center.y-80);
+        lab.font = [UIFont systemFontOfSize:13];
+        lab.text = @"您没有收到任何通知和消息!!!";
+        lab.numberOfLines =2;
+        lab.textColor = RGB(165,164,164);
+        lab.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:lab];
+    }
+
     [self.table_View reloadData];
 }
 - (void)viewDidLoad {

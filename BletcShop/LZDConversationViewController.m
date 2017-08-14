@@ -39,6 +39,8 @@
 
 -(void)getDataSourse{
 
+    [[self.view viewWithTag:777]removeFromSuperview];
+    
     [self.data_array removeAllObjects];
    NSArray *da_array  =[[EMClient sharedClient].chatManager getAllConversations];
     
@@ -52,6 +54,23 @@
 
     }
     NSLog(@"data_array.count---%ld",self.data_array.count);
+    
+    if (_data_array.count==0) {
+        
+        
+        UILabel *lab = [[UILabel alloc]init];
+        lab.tag =777;
+        lab.bounds = CGRectMake(0, 0, 200, 35);
+        lab.center = CGPointMake(self.view.center.x, self.view.center.y-80);
+        lab.font = [UIFont systemFontOfSize:13];
+        lab.text = @"您还没有会话记录哦!\n快去找一个好友和她聊聊吧";
+        lab.numberOfLines =2;
+        lab.textColor = RGB(165,164,164);
+        lab.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:lab];
+    }
+    
+    
     [_refesh endRefreshing];
     [self.myTableView reloadData];
 }
@@ -110,7 +129,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return kWeChatScreenWidth*0.2;
+    return 76;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -131,6 +150,30 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
+    
+    UIView *deleteBgView = [UIView new];
+    deleteBgView.backgroundColor = RGB(243, 73, 78);
+    [cell.contentView addSubview:deleteBgView];
+    
+    UIButton *deleteBtn = [UIButton new];
+    
+    [deleteBtn setImage:[UIImage imageNamed:@"垃圾桶"] forState:UIControlStateNormal];
+    [deleteBgView addSubview:deleteBtn];
+    
+    [deleteBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset([UIScreen mainScreen].bounds.size.width);
+        make.top.equalTo(cell.contentView);
+        make.bottom.equalTo(cell.contentView).offset(1);
+        make.width.equalTo(cell.contentView);
+    }];
+    
+    [deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.offset(70);
+        make.top.equalTo(deleteBgView);
+        make.bottom.equalTo(deleteBgView);
+        make.left.equalTo(deleteBgView);
+    }];
+
     
     
     
@@ -166,7 +209,9 @@
         
         
         
-        UIImageView*image=[[UIImageView alloc]initWithFrame:CGRectMake(kWeChatScreenWidth*0.03, kWeChatScreenWidth*0.03, kWeChatScreenWidth*0.14, kWeChatScreenWidth*0.14)];
+        UIImageView*image=[[UIImageView alloc]initWithFrame:CGRectMake(13, (76-51)/2, 51, 51)];
+        image.layer.cornerRadius = image.width/2;
+        image.layer.masksToBounds = YES;
         [cell.contentView addSubview:image];
         
         NSLog(@"essage.ext---%@",essage.ext);
@@ -174,14 +219,14 @@
         
         NSString *countRed =[NSString stringWithFormat:@"%lu",(unsigned long)[conver unreadMessagesCount]];
         
-        UILabel*rednumbel=[[UILabel alloc]initWithFrame:CGRectMake(kWeChatScreenWidth-15-10, 49/2, 15, 15)];
-        rednumbel.backgroundColor=[UIColor redColor];
+        UILabel*rednumbel=[[UILabel alloc]initWithFrame:CGRectMake(kWeChatScreenWidth-19-14, (76-19)/2, 19, 19)];
+        rednumbel.backgroundColor=RGB(243,73,78);
         rednumbel.text=countRed;
         if ([rednumbel.text intValue]==0) {
             rednumbel.hidden=YES;
         }
         rednumbel.textColor =[UIColor whiteColor];
-        rednumbel.font=[UIFont systemFontOfSize:13];
+        rednumbel.font=[UIFont systemFontOfSize:11];
         rednumbel.layer.cornerRadius=rednumbel.height/2;
         rednumbel.clipsToBounds=YES;
         rednumbel.textAlignment=NSTextAlignmentCenter;
@@ -190,18 +235,16 @@
         
         CGFloat width_red = [rednumbel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:rednumbel.font} context:nil].size.width+7;
         NSLog(@"----%f",width_red);
-        if (width_red>15) {
-            rednumbel.frame = CGRectMake(kWeChatScreenWidth-width_red-10, 49/2, width_red, 15);
+            rednumbel.frame = CGRectMake(kWeChatScreenWidth-width_red-10, 49/2, MAX(width_red, 19), 19);
 
-        }
+//        
+//        UIView *kuang=[[UIView alloc]initWithFrame:CGRectMake(kWeChatScreenWidth*0.03-2, kWeChatScreenWidth*0.03-2, kWeChatScreenWidth*0.14+4, kWeChatScreenWidth*0.14+4)];
+//        kuang.layer.borderColor=RGB(234, 234, 234).CGColor;
+//        kuang.layer.borderWidth=1;
+//        [cell.contentView addSubview:kuang];
         
-        UIView *kuang=[[UIView alloc]initWithFrame:CGRectMake(kWeChatScreenWidth*0.03-2, kWeChatScreenWidth*0.03-2, kWeChatScreenWidth*0.14+4, kWeChatScreenWidth*0.14+4)];
-        kuang.layer.borderColor=RGB(234, 234, 234).CGColor;
-        kuang.layer.borderWidth=1;
-        [cell.contentView addSubview:kuang];
         
-        
-        UILabel*label=[[UILabel alloc]initWithFrame:CGRectMake(kWeChatScreenWidth*0.2, kWeChatScreenWidth*0.03, kWeChatScreenWidth*0.44, kWeChatScreenWidth*0.07)];
+        UILabel*label=[[UILabel alloc]initWithFrame:CGRectMake(image.right +13, 17, kWeChatScreenWidth*0.44, 14)];
         
         
         
@@ -262,8 +305,8 @@
         
         
         label.textAlignment=NSTextAlignmentLeft;
-        label.textColor=[UIColor blackColor];
-        label.font=[UIFont systemFontOfSize:14];
+        label.textColor=RGB(51,51,51);
+        label.font=[UIFont systemFontOfSize:15];
         [cell.contentView addSubview:label];
         
         NSString*info;
@@ -284,12 +327,12 @@
         
         
         //信息
-        UILabel*user_L=[[UILabel alloc]initWithFrame:CGRectMake(kWeChatScreenWidth*0.2, kWeChatScreenWidth*0.1, rednumbel.left-kWeChatScreenWidth*0.2-5, kWeChatScreenWidth*0.07)];
+        UILabel*user_L=[[UILabel alloc]initWithFrame:CGRectMake(label.left, label.bottom+13, rednumbel.left-kWeChatScreenWidth*0.2-5, 12)];
 
         user_L.text=[NSString stringWithFormat:@"%@",[ConvertToCommonEmoticonsHelper convertToSystemEmoticons:info]];
         user_L.textAlignment=NSTextAlignmentLeft;
-        user_L.textColor=[UIColor grayColor];
-        user_L.font=[UIFont systemFontOfSize:14];
+        user_L.textColor=RGB(119,119,119);
+        user_L.font=[UIFont systemFontOfSize:12];
         [cell.contentView addSubview:user_L];
         
         
@@ -305,16 +348,16 @@
         NSLog(@"essage.timestamp----%lld===%@==%@",essage.timestamp,date,newDate);
 
         
-        UILabel*time_L=[[UILabel alloc]initWithFrame:CGRectMake(kWeChatScreenWidth*0.65, 0, kWeChatScreenWidth*0.35-12, 32)];
+        UILabel*time_L=[[UILabel alloc]initWithFrame:CGRectMake(kWeChatScreenWidth*0.65, 19, kWeChatScreenWidth*0.35-12, 12)];
         time_L.text=[NSString stringWithFormat:@"%@",newDate];
         time_L.textAlignment=NSTextAlignmentRight;
-        time_L.textColor=[UIColor grayColor];
+        time_L.textColor=RGB(119,119,119);
         time_L.font=[UIFont systemFontOfSize:12];
         [cell.contentView addSubview:time_L];
         
 
-        UIView *line =[[UIView alloc]initWithFrame:CGRectMake(10, kWeChatScreenWidth*0.2-1, SCREENWIDTH, 1)];
-        line.backgroundColor = RGB(234, 234, 234);
+        UIView *line =[[UIView alloc]initWithFrame:CGRectMake(10, 76-1, SCREENWIDTH, 1)];
+        line.backgroundColor = RGB(217,216,217);
         [cell.contentView addSubview:line];
 
         

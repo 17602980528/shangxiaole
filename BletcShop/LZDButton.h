@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class LZDButton;
-typedef void(^LZDButtonClickBlock)(LZDButton*);
+typedef void(^LZDButtonClickBlock)(LZDButton*sender);
 
 @interface LZDButton : UIButton
 
