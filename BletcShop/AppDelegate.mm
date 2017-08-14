@@ -474,8 +474,10 @@
     
     [dic2 setObject:@{@"userName":aUsername,@"message":aMessage} forKey:aUsername];
     
+    NSMutableDictionary *orgin_dic = [NSMutableDictionary dictionary];
+    [orgin_dic setValue:dic2 forKey:self.userInfoDic[@"uuid"]];
     
-    [[NSUserDefaults standardUserDefaults]setObject:dic2 forKey:@"FriendRequest"];
+    [[NSUserDefaults standardUserDefaults]setObject:orgin_dic forKey:@"FriendRequest"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     
     

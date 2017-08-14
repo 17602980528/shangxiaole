@@ -182,7 +182,9 @@
     //获取 好友申请列表
 
     NSDictionary *dic =[[NSUserDefaults standardUserDefaults]objectForKey:@"FriendRequest"];
-    self.file_dic =[NSMutableDictionary dictionaryWithDictionary:dic];
+    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+
+    self.file_dic =[NSMutableDictionary dictionaryWithDictionary:dic[appdelegate.userInfoDic[@"uuid"]]];
 
 
     NSLog(@"好友请求===%@===%ld",self.file_dic, self.file_dic.count);

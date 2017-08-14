@@ -51,7 +51,9 @@
     [super viewWillAppear:animated];
     LEFTBACK
     NSDictionary *dic =[[NSUserDefaults standardUserDefaults]objectForKey:@"FriendRequest"];
-    self.dicFriendRequest =[NSMutableDictionary dictionaryWithDictionary:dic];
+    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+
+    self.dicFriendRequest =[NSMutableDictionary dictionaryWithDictionary:dic[appdelegate.userInfoDic[@"uuid"]]];
     
    
     NSLog(@"-dicFriendRequest---%ld",self.dicFriendRequest.count);
@@ -71,7 +73,9 @@
     title_A = @[@"会话列表",@"通讯录"];
 
     NSDictionary *dic =[[NSUserDefaults standardUserDefaults]objectForKey:@"FriendRequest"];
-    self.dicFriendRequest =[NSMutableDictionary dictionaryWithDictionary:dic];
+    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+
+    self.dicFriendRequest =[NSMutableDictionary dictionaryWithDictionary:dic[appdelegate.userInfoDic[@"uuid"]]];
     
     rightBtn = [LZDButton creatLZDButton];
     rightBtn.frame = CGRectMake(kWeChatScreenWidth-50, 0, 30, 30);
@@ -125,7 +129,7 @@
     [self creatFootView];
     
     
-    self.right_back_imgview = [[UIImageView alloc]initWithFrame:CGRectMake(SCREENWIDTH-84-10, 52, 84, 58)];
+    self.right_back_imgview = [[UIImageView alloc]initWithFrame:CGRectMake(SCREENWIDTH-90-10, 52, 90, 58)];
     _right_back_imgview.backgroundColor =[UIColor blackColor];
     _right_back_imgview.layer.cornerRadius = 4;
     _right_back_imgview.layer.masksToBounds = YES;
@@ -137,7 +141,7 @@
         
         LZDButton *btn = [LZDButton creatLZDButton];
         btn.frame = CGRectMake(24, i*(57/2+1), 60, 57/2);
-        btn.titleLabel.font = [UIFont systemFontOfSize:14];
+        btn.titleLabel.font = [UIFont systemFontOfSize:12];
         btn.tag = i;
         [_right_back_imgview addSubview:btn];
         

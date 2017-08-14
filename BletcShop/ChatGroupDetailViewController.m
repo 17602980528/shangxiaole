@@ -108,7 +108,7 @@
 {
     [super viewDidLoad];
 
-    
+    self.tableView.backgroundColor = RGB(240, 240, 240);
 
     self.title = @"详情";
     self.tableView.tableFooterView = self.footerView;
@@ -152,28 +152,31 @@
     
     return _scrollView;
 }
-
-- (UIButton *)clearButton
-{
-    if (_clearButton == nil) {
-        _clearButton = [[UIButton alloc] init];
-        [_clearButton setTitle:NSLocalizedString(@"group.removeAllMessages", @"remove all messages") forState:UIControlStateNormal];
-        [_clearButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_clearButton addTarget:self action:@selector(clearAction) forControlEvents:UIControlEventTouchUpInside];
-        [_clearButton setBackgroundColor:NavBackGroundColor];
-    }
-    
-    return _clearButton;
-}
+//
+//- (UIButton *)clearButton
+//{
+//    if (_clearButton == nil) {
+//        _clearButton = [[UIButton alloc] init];
+//        [_clearButton setTitle:NSLocalizedString(@"group.removeAllMessages", @"remove all messages") forState:UIControlStateNormal];
+//        [_clearButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [_clearButton addTarget:self action:@selector(clearAction) forControlEvents:UIControlEventTouchUpInside];
+//        [_clearButton setBackgroundColor:NavBackGroundColor];
+//    }
+//    
+//    return _clearButton;
+//}
 
 - (UIButton *)dissolveButton
 {
     if (_dissolveButton == nil) {
         _dissolveButton = [[UIButton alloc] init];
+        _dissolveButton.layer.cornerRadius = 7;
+        _dissolveButton.titleLabel.font = [UIFont systemFontOfSize:15];
+
         [_dissolveButton setTitle:NSLocalizedString(@"group.destroy", @"dissolution of the group") forState:UIControlStateNormal];
         [_dissolveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_dissolveButton addTarget:self action:@selector(dissolveAction) forControlEvents:UIControlEventTouchUpInside];
-        [_dissolveButton setBackgroundColor: [UIColor colorWithRed:191 / 255.0 green:48 / 255.0 blue:49 / 255.0 alpha:1.0]];
+        [_dissolveButton setBackgroundColor: RGB(243,73,78)];
     }
     
     return _dissolveButton;
@@ -183,10 +186,12 @@
 {
     if (_exitButton == nil) {
         _exitButton = [[UIButton alloc] init];
+        _exitButton.layer.cornerRadius = 7;
+        _exitButton.titleLabel.font = [UIFont systemFontOfSize:15];
         [_exitButton setTitle:NSLocalizedString(@"group.leave", @"quit the group") forState:UIControlStateNormal];
         [_exitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_exitButton addTarget:self action:@selector(exitAction) forControlEvents:UIControlEventTouchUpInside];
-        [_exitButton setBackgroundColor:NavBackGroundColor];
+        [_exitButton setBackgroundColor:RGB(243,73,78)];
     }
     
     return _exitButton;
@@ -195,15 +200,15 @@
 - (UIView *)footerView
 {
     if (_footerView == nil) {
-        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 160)];
+        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 50)];
         _footerView.backgroundColor = [UIColor clearColor];
         
-        self.clearButton.frame = CGRectMake(20, 40, _footerView.frame.size.width - 40, 35);
-        [_footerView addSubview:self.clearButton];
+//        self.clearButton.frame = CGRectMake(20, 40, _footerView.frame.size.width - 40, 35);
+//        [_footerView addSubview:self.clearButton];
         
-        self.dissolveButton.frame = CGRectMake(20, CGRectGetMaxY(self.clearButton.frame) + 30, _footerView.frame.size.width - 40, 35);
+        self.dissolveButton.frame = CGRectMake(13, 10, _footerView.frame.size.width - 26, 40);
         
-        self.exitButton.frame = CGRectMake(20, CGRectGetMaxY(self.clearButton.frame) + 30, _footerView.frame.size.width - 40, 35);
+        self.exitButton.frame = self.dissolveButton.frame;
     }
     
     return _footerView;
@@ -214,21 +219,21 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+//    if (self.occupantType == GroupOccupantTypeOwner)
+//    {
+        return 3+3;
+//    }
+//    else
+//    {
+//        return 2+3;
+//    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (self.occupantType == GroupOccupantTypeOwner)
-    {
-        return 7-4;
+    return 1;
     }
-    else
-    {
-        return 6-4;
-    }
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -237,39 +242,47 @@
     // Configure the cell...
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        cell.textLabel.textColor = RGB(51,51,51);
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
+        cell.detailTextLabel.textColor = RGB(119,119,119);
     }
     
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.contentView addSubview:self.scrollView];
     }
-    else if (indexPath.row == 1)
+    else if (indexPath.section == 1)
     {
         cell.textLabel.text = NSLocalizedString(@"group.id", @"group ID");
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.detailTextLabel.text = _chatGroup.groupId;
     }
-    else if (indexPath.row == 2)
+    else if (indexPath.section == 2)
     {
         cell.textLabel.text = NSLocalizedString(@"group.occupantCount", @"members count");
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%i / %i", (int)[_chatGroup.occupants count], (int)_chatGroup.setting.maxUsersCount];
     }
-//    else if (indexPath.row == 3)
-//    {
-//        cell.textLabel.text = NSLocalizedString(@"title.groupSetting", @"Group Setting");
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    }
-//    else if (indexPath.row == 4)
-//    {
-//        cell.textLabel.text = NSLocalizedString(@"title.groupSubjectChanging", @"Change group name");
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    }
-//    else if (indexPath.row == 5)
-//    {
-//        cell.textLabel.text = NSLocalizedString(@"title.groupSearchMessage", @"Search Message from History");
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    }
+    else if (indexPath.section == 3)
+    {
+        cell.textLabel.text = @"群组名称";
+        cell.detailTextLabel.text = _chatGroup.subject;
+
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    else if (indexPath.section == 4)
+    {
+        cell.textLabel.text = @"群组简介";
+        cell.detailTextLabel.text = _chatGroup.description;
+
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    else if (indexPath.section == 5)
+    {
+        cell.textLabel.text = @"清空聊天记录";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
 //    else if (indexPath.row == 6)
 //    {
 //        cell.textLabel.text = NSLocalizedString(@"title.groupBlackList", @"Group black list");
@@ -281,14 +294,18 @@
 
 #pragma mark - Table view delegate
 
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 10;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int row = (int)indexPath.row;
-    if (row == 0) {
+    int section = (int)indexPath.section;
+    if (section == 0) {
         return self.scrollView.frame.size.height + 40;
     }
     else {
-        return 50;
+        return 40;
     }
 }
 
@@ -296,20 +313,22 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.row == 3) {
+    if (indexPath.section == 3) {
 //        GroupSettingViewController *settingController = [[GroupSettingViewController alloc] initWithGroup:_chatGroup];
 //        [self.navigationController pushViewController:settingController animated:YES];
     }
-    else if (indexPath.row == 4)
+    else if (indexPath.section == 4)
     {
 //        GroupSubjectChangingViewController *changingController = [[GroupSubjectChangingViewController alloc] initWithGroup:_chatGroup];
 //        [self.navigationController pushViewController:changingController animated:YES];
     }
-    else if (indexPath.row == 5) {
+    else if (indexPath.section == 5) {
+        
+        [self clearAction];
 //        SearchMessageViewController *bansController = [[SearchMessageViewController alloc] initWithConversationId:_chatGroup.groupId conversationType:EMConversationTypeGroupChat];
 //        [self.navigationController pushViewController:bansController animated:YES];
     }
-    else if (indexPath.row == 6) {
+    else if (indexPath.section == 6) {
 //        GroupBansViewController *bansController = [[GroupBansViewController alloc] initWithGroup:_chatGroup];
 //        [self.navigationController pushViewController:bansController animated:YES];
     }
@@ -318,6 +337,8 @@
 #pragma mark - EMChooseViewDelegate
 - (BOOL)viewController:(EMChooseViewController *)viewController didFinishSelectedSources:(NSArray *)selectedSources
 {
+    
+    NSLog(@"------%@",selectedSources);
     NSInteger maxUsersCount = _chatGroup.setting.maxUsersCount;
     if (([selectedSources count] + _chatGroup.membersCount) > maxUsersCount) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"group.maxUserCount", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
@@ -339,6 +360,7 @@
         NSString *messageStr = [NSString stringWithFormat:NSLocalizedString(@"group.somebodyInvite", @"%@ invite you to join group \'%@\'"), username, weakSelf.chatGroup.subject];
         EMError *error = nil;
         weakSelf.chatGroup = [[EMClient sharedClient].groupManager addOccupants:source toGroup:weakSelf.chatGroup.groupId welcomeMessage:messageStr error:&error];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!error) {
                 [weakSelf reloadDataSource];
@@ -489,10 +511,10 @@
                 }
 
                 
-                contactView.remark =p.name;
+//                contactView.remark =p.name;
                 if (!p) {
                     
-                contactView.image = [UIImage imageNamed:@"chatListCellHead.png"];
+                contactView.image = [UIImage imageNamed:@"userHeader"];
                 contactView.remark = username;
                 }
 
@@ -619,7 +641,7 @@
 {
 //    __weak typeof(self) weakSelf = self;
     
-    UIAlertView *alteView =  [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"sureToDelete", @"please make sure to delete") delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    UIAlertView *alteView =  [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:@"确定要清空聊天记录?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     [alteView show];
 //    [EMAlertView showAlertWithTitle:NSLocalizedString(@"prompt", @"Prompt")
 //                            message:NSLocalizedString(@"sureToDelete", @"please make sure to delete")

@@ -34,7 +34,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = NavBackGroundColor;
+        self.backgroundColor = [UIColor whiteColor];
         // 添加子控件
         // 1. 语音按钮
         LZDButton *voiceBtn = [LZDButton creatLZDButton];
@@ -46,6 +46,9 @@
         UITextView *inputView = [[UITextView alloc]init];
         inputView.backgroundColor = [UIColor whiteColor];
         inputView.returnKeyType = UIReturnKeyDone;
+        inputView.layer.cornerRadius = 18;
+        inputView.layer.borderColor = RGB(221,221,221).CGColor;
+        inputView.layer.borderWidth = 1;
         inputView.delegate = self;
         [self addSubview:inputView];
         
@@ -53,6 +56,11 @@
         LZDButton *sendVoiceBtn = [LZDButton creatLZDButton];
         [sendVoiceBtn setTitle:@"按住说话" forState:UIControlStateNormal];
         [sendVoiceBtn setTitle:@"松开发送" forState:UIControlStateHighlighted];
+        
+        [sendVoiceBtn setTitleColor:RGB(51, 51, 51) forState:UIControlStateNormal];
+        [sendVoiceBtn setTitleColor:RGB(51, 51, 51) forState:UIControlStateHighlighted];
+
+        
         [sendVoiceBtn addTarget:self action:@selector(startVoice:) forControlEvents:UIControlEventTouchDown];
         [sendVoiceBtn addTarget:self action:@selector(stopVoice:) forControlEvents:UIControlEventTouchUpInside];
         [sendVoiceBtn addTarget:self action:@selector(cancelVoice:) forControlEvents:UIControlEventTouchUpOutside];
@@ -136,16 +144,30 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.my_voiceBtn.frame = CGRectMake(kWeChatPadding, kWeChatPadding/2 , self.height - kWeChatPadding , self.height - kWeChatPadding);
     
-    self.my_inputView.frame = CGRectMake(self.my_voiceBtn.right + kWeChatPadding, self.my_voiceBtn.top, kWeChatScreenWidth - (self.my_voiceBtn.right + kWeChatPadding)*3+kWeChatPadding*2, self.my_voiceBtn.height);
+    self.my_moreBtn.frame = CGRectMake(kWeChatPadding, kWeChatPadding/2, self.height - kWeChatPadding, self.height - kWeChatPadding);
     
+    self.my_emtionBtn.frame = CGRectMake(_my_moreBtn.right+kWeChatPadding, _my_moreBtn.top, _my_moreBtn.width, _my_moreBtn.width);
+    
+    
+    self.my_voiceBtn.frame = CGRectMake(SCREENWIDTH-_my_moreBtn.width-kWeChatPadding, _my_moreBtn.top, _my_moreBtn.width, _my_moreBtn.width);
+    
+    self.my_inputView.frame = CGRectMake(self.my_emtionBtn.right +kWeChatPadding, self.my_moreBtn.top, self.my_voiceBtn.left-(self.my_emtionBtn.right +kWeChatPadding)-kWeChatPadding, self.my_voiceBtn.height);
+    
+    
+
     self.my_sendVoiceBtn.frame = self.my_inputView.frame;
+
     
-    self.my_emtionBtn.frame = CGRectMake(self.my_inputView.right+kWeChatPadding, self.my_voiceBtn.top,self.my_voiceBtn.width, self.my_voiceBtn.height);
-    
-    
-    self.my_moreBtn.frame = CGRectMake(self.my_emtionBtn.right, self.my_voiceBtn.top, self.my_voiceBtn.width, self.my_voiceBtn.height);
+//    self.my_voiceBtn.frame = CGRectMake(kWeChatPadding, kWeChatPadding/2 , self.height - kWeChatPadding , self.height - kWeChatPadding);
+//    
+//    self.my_inputView.frame = CGRectMake(self.my_voiceBtn.right + kWeChatPadding, self.my_voiceBtn.top, kWeChatScreenWidth - (self.my_voiceBtn.right + kWeChatPadding)*3+kWeChatPadding*2, self.my_voiceBtn.height);
+//    
+//    
+//    self.my_emtionBtn.frame = CGRectMake(self.my_inputView.right+kWeChatPadding, self.my_voiceBtn.top,self.my_voiceBtn.width, self.my_voiceBtn.height);
+//    
+//    
+//    self.my_moreBtn.frame = CGRectMake(self.my_emtionBtn.right, self.my_voiceBtn.top, self.my_voiceBtn.width, self.my_voiceBtn.height);
     
 }
 
@@ -154,7 +176,7 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     NSString *txt =  [textView.text stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-//    NSLog(@"=textView.text.length===%lu",(unsigned long)txt.length);
+    NSLog(@"%@=textView.text.length===%lu",textView.text,(unsigned long)txt.length);
 
     if (txt.length <1) return;
     
@@ -174,4 +196,6 @@
     }
     return YES;
 }
+
+
 @end

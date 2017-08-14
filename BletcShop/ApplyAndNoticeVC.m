@@ -33,7 +33,9 @@
     [[self.view viewWithTag:777]removeFromSuperview];
     
     NSDictionary *dic =[[NSUserDefaults standardUserDefaults]objectForKey:@"FriendRequest"];
-    self.file_dic =[NSMutableDictionary dictionaryWithDictionary:dic];
+    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    self.file_dic =[NSMutableDictionary dictionaryWithDictionary:dic[appdelegate.userInfoDic[@"uuid"]]];
     
 
     [self.arrModel removeAllObjects];
@@ -67,7 +69,6 @@
     LEFTBACK
     self.title = @"申请与通知";
     //获取 好友申请列表
-    [self getdata];
     self.view.backgroundColor =[UIColor whiteColor];
   
 
@@ -84,6 +85,7 @@
     self.table_View = tableView;
 
 
+    [self getdata];
 
 }
 

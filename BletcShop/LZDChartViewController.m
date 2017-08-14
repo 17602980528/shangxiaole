@@ -22,6 +22,7 @@
 #import "MWPhotoBrowser.h"
 #import "ExpressionKeyboardView.h"
 #import "ExpressionCL.h"
+#import "FriendInfoVC.h"
 
 
 @interface LZDChartViewController ()<UITableViewDataSource,UITableViewDelegate,EMChatManagerDelegate,LZDToolViewVoiceDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,LZDChartCellShowImageDelegate,MWPhotoBrowserDelegate,ExpressionKeyboardDelegate>
@@ -69,7 +70,7 @@
 - (UIView *)recordView
 {
     if (_recordView == nil) {
-        _recordView = [[EaseRecordView alloc] initWithFrame:CGRectMake(90, 130, 140, 140)];
+        _recordView = [[EaseRecordView alloc] initWithFrame:CGRectMake((SCREENWIDTH-140)/2, 130, 140, 140)];
     }
     
     return _recordView;
@@ -97,6 +98,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     LEFTBACK
+    self.view.backgroundColor = RGB(240, 240, 240);
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 
     
@@ -106,38 +108,51 @@
     
     rightBtn = [LZDButton creatLZDButton];
     rightBtn.frame = CGRectMake(kWeChatScreenWidth-50, 0, 30, 30);
-    if (self.chatType ==EMChatTypeChat) {
-        [rightBtn setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+//    if (self.chatType ==EMChatTypeChat) {
+//        [rightBtn setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+//
+//    }else if (self.chatType == EMChatTypeGroupChat){
+//        
+        rightBtn.frame = CGRectMake(kWeChatScreenWidth-70, 0, 50, 30);
 
-    }else if (self.chatType == EMChatTypeGroupChat){
-        [rightBtn setImage:[UIImage imageNamed:@"group_detail"] forState:UIControlStateNormal];
+        [rightBtn setTitle:@"详情" forState:0];
+        rightBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        [rightBtn setTitleColor:RGB(51,51,51) forState:0];
+        
+//        [rightBtn setImage:[UIImage imageNamed:@"group_detail"] forState:UIControlStateNormal];
 
-    }
+//    }
     
-    [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    rightBtn.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+//    [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    rightBtn.titleLabel.font = [UIFont boldSystemFontOfSize:30];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];;
     
     __weak typeof(self) weakSelf = self;
     rightBtn.block = ^(LZDButton *btn){
         if (weakSelf.chatType==EMChatTypeChat) {
-            UIAlertController *alertVC= [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要删除该对话吗?" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
-            }];
-            UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleCancel handler:^(UIAlertAction *_Nonnull action){
-                [[EMClient sharedClient].chatManager deleteConversation:weakSelf.username isDeleteMessages:YES completion:^(NSString *aConversationId, EMError *aError) {
-                    if (!aError) {
-                        [weakSelf.navigationController popViewControllerAnimated:YES];
-                    }
-                }];
-                
-            }];
-           
-            [alertVC addAction:OKAction];
-            [alertVC addAction:cancle];
-            [weakSelf presentViewController:alertVC animated:YES completion:nil];
+            
+        FriendInfoVC *vc =    [[FriendInfoVC alloc]init];
+            vc.conversationID = weakSelf.username;
+
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+//            
+//            UIAlertController *alertVC= [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要删除该对话吗?" preferredStyle:UIAlertControllerStyleAlert];
+//            UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                
+//            }];
+//            UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleCancel handler:^(UIAlertAction *_Nonnull action){
+//                [[EMClient sharedClient].chatManager deleteConversation:weakSelf.username isDeleteMessages:YES completion:^(NSString *aConversationId, EMError *aError) {
+//                    if (!aError) {
+//                        [weakSelf.navigationController popViewControllerAnimated:YES];
+//                    }
+//                }];
+//                
+//            }];
+//           
+//            [alertVC addAction:OKAction];
+//            [alertVC addAction:cancle];
+//            [weakSelf presentViewController:alertVC animated:YES completion:nil];
             
         }
 
@@ -160,6 +175,8 @@
     DebugLog(@"=====%f",kWeChatScreenWidth);
     tableView.delegate = self;
     tableView.dataSource = self;
+    tableView.backgroundColor = RGB(240, 240, 240);
+
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.contentView addSubview:tableView];
     
@@ -501,6 +518,9 @@
         mytype = EMConversationTypeChat;
     }else if(self.chatType == EMChatTypeGroupChat){
         mytype = EMConversationTypeGroupChat;
+
+    }else{
+        mytype = EMConversationTypeChatRoom;
 
     }
 //    DebugLog(@"=self.username,mytype===%@==%u",self.username,mytype);

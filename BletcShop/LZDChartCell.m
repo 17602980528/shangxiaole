@@ -40,7 +40,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         // 添加子控件
         // 时间
-        
+        self.backgroundColor = RGB(240, 240, 240);
         for (UIView *view in self.contentView.subviews) {
             [view removeFromSuperview];
         }

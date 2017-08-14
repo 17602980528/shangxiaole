@@ -10,4 +10,7 @@
 
 @interface FriendInfoVC : UIViewController
 
+@property (nonatomic,copy)NSString *conversationID;// 会话ID
+
+
 @end

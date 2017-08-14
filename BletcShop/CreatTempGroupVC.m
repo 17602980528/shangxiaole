@@ -7,8 +7,9 @@
 //
 
 #import "CreatTempGroupVC.h"
-
-@interface CreatTempGroupVC ()
+#import "GroupMemberTableViewCell.h"
+@interface CreatTempGroupVC ()<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tabView;
 
 @end
 
@@ -16,8 +17,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    self.tabView.estimatedRowHeight = 100;
+    self.tabView.rowHeight = UITableViewAutomaticDimension;
+
+
 }
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    GroupMemberTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupMemberCell"];
+    if (!cell) {
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"GroupMemberTableViewCell" owner:self options:nil] firstObject];
+    }
+    
+    
+    return cell;
+    
+    
+}
+
 
 -(void)creatNoticeViewWhenNoneData{
     UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake((SCREENWIDTH-222)/2, 222, 160, 60)];
@@ -28,19 +51,9 @@
     label.numberOfLines=0;
     [self.view addSubview:label];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
+
 
 @end

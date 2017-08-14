@@ -394,11 +394,22 @@
     if (self.mulChoice) {
         [self.footerScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
+        
+        NSMutableArray *resultArray = [NSMutableArray array];
+        for (NSString *username in self.selectedContacts) {
+            if(![self isBlockUsername:username])
+            {
+                [resultArray addObject:username];
+            }
+        }
+
+        
+        
         CGFloat imageSize = self.footerScrollView.frame.size.height;
-        NSInteger count = [self.selectedContacts count];
+        NSInteger count = [resultArray count];
         self.footerScrollView.contentSize = CGSizeMake(imageSize * count, imageSize);
         for (int i = 0; i < count; i++) {
-            NSString *username = [self.selectedContacts objectAtIndex:i];
+            NSString *username = [resultArray objectAtIndex:i];
             Person *p= [[Database searchPersonFromID:username] firstObject];
             
             EMRemarkImageView *remarkView = [[EMRemarkImageView alloc] initWithFrame:CGRectMake(i * imageSize, 0, imageSize, imageSize)];
@@ -423,11 +434,11 @@
             [self.footerScrollView addSubview:remarkView];
         }
         
-        if ([self.selectedContacts count] == 0) {
+        if ([resultArray count] == 0) {
             [_doneButton setTitle:NSLocalizedString(@"ok", @"OK") forState:UIControlStateNormal];
         }
         else{
-            [_doneButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"doneWithCount", @"Done(%i)"), [self.selectedContacts count]] forState:UIControlStateNormal];
+            [_doneButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"doneWithCount", @"Done(%i)"), [resultArray count]] forState:UIControlStateNormal];
         }
     }
 }
@@ -448,8 +459,14 @@
         
         NSArray *buddyList = [[EMClient sharedClient].contactManager getContacts];
         for (NSString *username in buddyList) {
+            
+
             [self.contactsSource addObject:username];
         }
+        
+        
+        
+        
         
         [_dataSource addObjectsFromArray:[self sortRecords:self.contactsSource]];
         
@@ -464,7 +481,13 @@
 - (void)doneAction:(id)sender
 {
 
+//    _blockSelectedUsernames = [_selectedContacts mutableCopy];
+    
+    NSLog(@"self.selectedContacts====%@",self.selectedContacts);
+
     NSLog(@"_blockSelectedUsernames====%@",_blockSelectedUsernames);
+    
+    
     BOOL isPop = YES;
     
     if (_delegate && [_delegate respondsToSelector:@selector(viewController:didFinishSelectedSources:)]) {
@@ -480,6 +503,7 @@
                 }
             }
             isPop = [_delegate viewController:self didFinishSelectedSources:resultArray];
+            
         }
     }
     

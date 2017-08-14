@@ -74,7 +74,6 @@
     [[EMClient sharedClient].groupManager removeDelegate:self];
     [[EMClient sharedClient].groupManager addDelegate:self delegateQueue:nil];
     
-    [self reloadDataSource];
 
     // 创建tableview
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0 , kWeChatScreenWidth, kWeChatScreenHeight-64-44) style:UITableViewStylePlain];
@@ -96,7 +95,8 @@
     };
     _refesh.isEffectedByNavigationController=NO;
 
-    
+    [self reloadDataSource];
+
 
 }
 
