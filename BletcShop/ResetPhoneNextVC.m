@@ -12,7 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *topLab;
 @property (weak, nonatomic) IBOutlet UITextField *codeTF;
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
-@property(nonatomic,strong)NSArray *array_code;
+@property(nonatomic,copy)NSString *array_code;
 
 @end
 
@@ -20,9 +20,9 @@
 {
      BindCustomView *myalertView;
 }
--(NSArray *)array_code{
+-(NSString *)array_code{
     if (!_array_code) {
-        _array_code = [[NSArray alloc]init];
+        _array_code = [[NSString alloc]init];
     }
     return _array_code;
 }
@@ -51,9 +51,9 @@
     
     [self.codeTF resignFirstResponder];
     
-    NSLog(@"----/%@/====/%@/",self.codeTF.text,self.array_code[0]);
+    //NSLog(@"----/%@/====/%@/",self.codeTF.text,self.array_code[0]);
     
-    if ([self.codeTF.text isEqualToString:self.array_code[0]]) {
+    if ([self.codeTF.text isEqualToString:self.array_code]) {
         if ([self.whoPush isEqualToString:@"商户"]) {
             [self postShopRequest];
         }else{
@@ -236,7 +236,7 @@
                 [self TimeNumAction];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    _array_code = result[@"sms_code"];
+                    self.array_code = [NSString stringWithFormat:@"%@",result[@"sms_code"]];
                 });
             }else if ([result[@"state"] isEqualToString:@"sign_check_fail"]){
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"验签失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
