@@ -59,24 +59,32 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     NSLog(@"搜所Return");
+    
+    [textField resignFirstResponder];
     [self getData];
     
     return YES;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 40+2*kWeChatPadding;
+    return 70;
 }
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [UIView new];
-    view.backgroundColor = RGB(224, 224, 224);
-    UITextField *textFiled = [[UITextField alloc]initWithFrame:CGRectMake(kWeChatPadding, kWeChatPadding, kWeChatScreenWidth-2*kWeChatPadding, 40)];
+    view.backgroundColor = RGB(240 , 240, 240);
+    UITextField *textFiled = [[UITextField alloc]initWithFrame:CGRectMake(13, 16, kWeChatScreenWidth-2*13, 38)];
     textFiled.backgroundColor = [UIColor whiteColor];
-    textFiled.textColor = [UIColor blackColor];
-    textFiled.font = [UIFont systemFontOfSize:15];
-    textFiled.placeholder = @"输入要查找的好友";
+    textFiled.textColor = RGB(51,51,51);
+    textFiled.font = [UIFont systemFontOfSize:13];
+    textFiled.layer.cornerRadius = 10;
+    textFiled.layer.masksToBounds = YES;
+    textFiled.placeholder = @"  输入要查找的好友";
     textFiled.delegate = self;
     textFiled.returnKeyType = UIReturnKeySearch;
+    UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(textFiled.width-13-13, (textFiled.height-13)/2, 13, 13)];
+    imgView.image =[UIImage imageNamed:@"灰色搜索icon"];
+   
+    [textFiled addSubview:imgView];
     [view addSubview:textFiled];
     self.textFiled = textFiled;
     return view;
@@ -101,10 +109,10 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    [cell.acceptBtn setTitle:@"添加" forState:UIControlStateNormal];
-    cell.acceptBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [cell.acceptBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [cell.acceptBtn setBackgroundColor:NavBackGroundColor];
+//    [cell.acceptBtn setTitle:@"添加" forState:UIControlStateNormal];
+//    cell.acceptBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+//    [cell.acceptBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [cell.acceptBtn setBackgroundColor:NavBackGroundColor];
 
     [cell.acceptBtn addTarget:self action:@selector(addFriend:) forControlEvents:UIControlEventTouchUpInside];
     cell.acceptBtn.tag = indexPath.row;
@@ -188,6 +196,9 @@
 }
 //获取好友数据
 -(void)getData{
+    
+    [[[UIApplication sharedApplication].delegate.window viewWithTag:777]removeFromSuperview];
+
     NSString *url = [NSString stringWithFormat:@"%@Extra/IM/search",BASEURL];
     NSMutableDictionary *mdic = [NSMutableDictionary dictionary];
     [mdic setValue:self.textFiled.text forKey:@"account"];
@@ -202,10 +213,14 @@
     [KKRequestDataService requestWithURL:url params:mdic httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         self.friendList = (NSArray*)result;
         
-        if (self.friendList.count!=0) {
-            [self.tableView reloadData];
+        if (self.friendList.count==0) {
+            [self creatNodataView];
+            
+                   }
+        
+        [self.tableView reloadData];
 
-        }
+        
         NSLog(@"result===%@",result);
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -240,6 +255,67 @@
 }
 
 
+
+-(void)creatNodataView{
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
+    
+    view.tag =777;
+    view.backgroundColor = RGBA_COLOR(51, 51, 51, 0.2);
+    
+    
+    [[UIApplication sharedApplication].delegate.window addSubview:view];
+    
+    
+    UIView *backView = [[UIView alloc]init];
+    backView.bounds = CGRectMake(0, 0, 250, 128);
+    backView.center = CGPointMake(view.center.x, view.center.y-80);
+    backView.layer.cornerRadius = 12;
+    backView.backgroundColor = [UIColor whiteColor];
+    backView.layer.masksToBounds = YES;
+    [view addSubview:backView];
+    
+    
+    
+    UILabel *lab = [[UILabel alloc]init];
+    lab.bounds = CGRectMake(0, 0, backView.width, 14);
+    lab.center = CGPointMake(backView.width/2, 15+7);
+    lab.font = [UIFont systemFontOfSize:14];
+    lab.text = @"该用户不存在";
+    lab.textColor = RGB(51,51,51);
+    lab.textAlignment = NSTextAlignmentCenter;
+    [backView addSubview:lab];
+    
+    UILabel *lab1 = [[UILabel alloc]init];
+    lab1.frame = CGRectMake(18, lab.bottom +15, backView.width-36, 32);
+    
+    lab1.font = [UIFont systemFontOfSize:12];
+    lab1.text = @"无法找到该用户，请检查您输入的账号是否正确。";
+    lab1.numberOfLines = 2;
+    lab1.textColor = RGB(172,173,173);
+    lab1.textAlignment = NSTextAlignmentCenter;
+    [backView addSubview:lab1];
+    
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, backView.height-35, backView.width, 0.5)];
+    line.backgroundColor = RGB(172,173,173);
+    [backView addSubview:line];
+    
+    
+    LZDButton *cancel_btn = [LZDButton creatLZDButton];
+    cancel_btn.frame = CGRectMake(0, line.bottom, backView.width, backView.height-line.bottom);
+    [cancel_btn setTitle:@"我知道了" forState:0];
+    [cancel_btn setTitleColor:RGB(243,73,78) forState:0];
+    cancel_btn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [backView addSubview:cancel_btn];
+    
+    cancel_btn.block = ^(LZDButton *sender) {
+        
+        [[[UIApplication sharedApplication].delegate.window viewWithTag:777]removeFromSuperview];
+        
+        
+    };
+    
+
+}
 /**
  *  判断是不是数字,是返回yes
  */

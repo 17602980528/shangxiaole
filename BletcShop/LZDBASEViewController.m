@@ -11,6 +11,7 @@
 #import "LZDContactViewController.h"
 #import "AddFriendTableViewController.h"
 #import "LZDButton.h"
+#import "CreatGroupVC.h"
 @interface LZDBASEViewController ()<UIScrollViewDelegate>
 {
     UIButton *oldBtn;
@@ -22,11 +23,12 @@
     UILabel *lab2;
     LZDButton *rightBtn;
     UILabel*rednumbel;
+    
 
 }
 @property (nonatomic, strong) UIScrollView *bottomScrollView;
 @property(nonatomic,strong) NSMutableDictionary *dicFriendRequest;
-
+@property(nonatomic,strong)UIImageView *right_back_imgview;
 @end
 
 @implementation LZDBASEViewController
@@ -39,7 +41,12 @@
     return _dicFriendRequest;
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    _right_back_imgview.hidden = YES;
 
+}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     LEFTBACK
@@ -73,13 +80,30 @@
     [rightBtn setTitleColor:RGB(51, 51, 51) forState:UIControlStateNormal];
     rightBtn.titleLabel.font = [UIFont boldSystemFontOfSize:30];
     
-    self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
+    
+    
+    
+    
     
     __weak typeof(self) weakSelf = self;
     rightBtn.block = ^(LZDButton *btn){
         
-        AddFriendTableViewController *VC = [[AddFriendTableViewController alloc]init];
-        [weakSelf.navigationController pushViewController:VC animated:YES];
+        
+        if (oldBtn.tag ==1) {
+            AddFriendTableViewController *VC = [[AddFriendTableViewController alloc]init];
+            [weakSelf.navigationController pushViewController:VC animated:YES];
+
+        }else{
+            
+            NSLog(@"------");
+            
+            
+            weakSelf.right_back_imgview.hidden = !weakSelf.right_back_imgview.isHidden;
+
+           
+            
+        }
         
        
     };
@@ -101,6 +125,56 @@
     [self creatFootView];
     
     
+    self.right_back_imgview = [[UIImageView alloc]initWithFrame:CGRectMake(SCREENWIDTH-84-10, 52, 84, 58)];
+    _right_back_imgview.backgroundColor =[UIColor blackColor];
+    _right_back_imgview.layer.cornerRadius = 4;
+    _right_back_imgview.layer.masksToBounds = YES;
+    _right_back_imgview.userInteractionEnabled = YES;
+    _right_back_imgview.hidden = YES;
+    [[UIApplication sharedApplication].delegate.window addSubview:_right_back_imgview];
+    
+    for (NSInteger i = 0; i <2; i++) {
+        
+        LZDButton *btn = [LZDButton creatLZDButton];
+        btn.frame = CGRectMake(24, i*(57/2+1), 60, 57/2);
+        btn.titleLabel.font = [UIFont systemFontOfSize:14];
+        btn.tag = i;
+        [_right_back_imgview addSubview:btn];
+        
+        UIImageView *title_img = [[UIImageView alloc]initWithFrame:CGRectMake(7, (btn.height-13)/2+i*(57/2+1), 13, 13)];
+        title_img.backgroundColor = [UIColor redColor];
+        [_right_back_imgview addSubview:title_img];
+        
+        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(6, btn.bottom, 84-12, 0.5)];
+        line.backgroundColor = [UIColor whiteColor];
+        [_right_back_imgview addSubview:line];
+        
+        if (i==0) {
+            [btn setTitle:@"添加好友" forState:0];
+            
+        }else{
+            [btn setTitle:@"创建组群" forState:0];
+            
+        }
+        
+        
+        btn.block = ^(LZDButton *sender) {
+            
+            if (sender.tag==0) {
+                
+                PUSH(AddFriendTableViewController)
+            }else{
+                
+                PUSH(CreatGroupVC)
+
+                
+            }
+        };
+        
+    }
+    
+
+
 }
 
 -(void)creatFootView{
@@ -278,7 +352,7 @@
 
     
     if (sender.tag==0) {
-        self.navigationItem.rightBarButtonItem = nil;
+//        self.navigationItem.rightBarButtonItem = nil;
         
         
         img1.image = [UIImage imageNamed:@"icontabbar_mainframeHL"];
@@ -287,8 +361,9 @@
         lab2.textColor = [UIColor lightGrayColor];
         
     }else if(sender.tag==1){
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
-        
+//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
+        _right_back_imgview.hidden = YES;
+
         img1.image = [UIImage imageNamed:@"消息"];
         lab1.textColor = [UIColor lightGrayColor];
         img2.image = [UIImage imageNamed:@"iconfont-icontongxunlu"];
@@ -299,5 +374,8 @@
 
 }
 
+-(void)dealloc{
+    [_right_back_imgview removeFromSuperview];
+}
 
 @end

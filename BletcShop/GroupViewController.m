@@ -53,6 +53,24 @@
 //    self.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
 //    [self.view addSubview:self.searchBar];
     
+    LZDButton *rightBtn = [LZDButton creatLZDButton];
+    rightBtn.frame = CGRectMake(kWeChatScreenWidth-50, 0, 40, 30);
+    
+    [rightBtn setTitle:@"创建" forState:UIControlStateNormal];
+    [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [rightBtn setTitleColor:RGB(51,51,51) forState:0];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
+    
+    rightBtn.block = ^(LZDButton *btn){
+
+        PUSH(CreatGroupVC)
+        
+    };
+
+    
+    
     [[EMClient sharedClient].groupManager removeDelegate:self];
     [[EMClient sharedClient].groupManager addDelegate:self delegateQueue:nil];
     
@@ -82,32 +100,32 @@
 
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section==1) {
-        return 30;
-    }
-    return 0.01;
-}
--(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *view = [UIView new];
-    view.backgroundColor = RGB(244, 244, 244);
-    
-    if (section==1) {
-        UILabel *lable = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SCREENWIDTH, 30)];
-        lable.text = @"我的群";
-        lable.textColor = [UIColor blackColor];
-        [view addSubview:lable];
-    }
-    
-    return view;
-}
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    if (section==1) {
+//        return 30;
+//    }
+//    return 0.01;
+//}
+//-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    UIView *view = [UIView new];
+//    view.backgroundColor = RGB(244, 244, 244);
+//    
+//    if (section==1) {
+//        UILabel *lable = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SCREENWIDTH, 30)];
+//        lable.text = @"我的群";
+//        lable.textColor = [UIColor blackColor];
+//        [view addSubview:lable];
+//    }
+//    
+//    return view;
+//}
+//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+//    return 2;
+//}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section==0) {
-        return 1;
-    }else
+//    if (section==0) {
+//        return 1;
+//    }else
     return [self.dataSource count];
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -120,24 +138,24 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    switch (indexPath.section) {
-        case 0:
-            if (indexPath.row==0) {
-                cell.headerImg.image= [UIImage imageNamed:@"group_creategroup@2x"];
-                cell.labLe_cell.text = @"新建群聊";
-
-            }
-//            else if (indexPath.row ==1){
-//                cell.headerImg.image= [UIImage imageNamed:@"group_joinpublicgroup"];
-//                cell.labLe_cell.text = @"添加公开群";
+//    switch (indexPath.section) {
+//        case 0:
+//            if (indexPath.row==0) {
+//                cell.headerImg.image= [UIImage imageNamed:@"group_creategroup@2x"];
+//                cell.labLe_cell.text = @"新建群聊";
 //
 //            }
-//            
-//            
-                       break;
-        case 1:
-        {
-            
+////            else if (indexPath.row ==1){
+////                cell.headerImg.image= [UIImage imageNamed:@"group_joinpublicgroup"];
+////                cell.labLe_cell.text = @"添加公开群";
+////
+////            }
+////            
+////            
+//                       break;
+//        case 1:
+//        {
+    
             if (self.dataSource.count>0) {
                 EMGroup *group = [self.dataSource objectAtIndex:indexPath.row];
                 NSString *imageName = @"group";
@@ -151,34 +169,34 @@
                 }
 
             }
-        }
-            
-            break;
-
-            
-        default:
-            break;
-    }
+//        }
+//            
+//            break;
+//
+//            
+//        default:
+//            break;
+//    }
     return cell;
 
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section==0) {
-        if (indexPath.row==0) {
-            CreatGroupVC *VC= [[CreatGroupVC alloc]init];
-            [self.navigationController pushViewController:VC animated:YES];
-        }
-//        else{
-//            
-//            
-//            PublicGroupViewController *VC= [[PublicGroupViewController alloc]init];
+//    if (indexPath.section==0) {
+//        if (indexPath.row==0) {
+//            CreatGroupVC *VC= [[CreatGroupVC alloc]init];
 //            [self.navigationController pushViewController:VC animated:YES];
-//
 //        }
-       
-    }else{
-        
+////        else{
+////            
+////            
+////            PublicGroupViewController *VC= [[PublicGroupViewController alloc]init];
+////            [self.navigationController pushViewController:VC animated:YES];
+////
+////        }
+//       
+//    }else{
+    
         EMGroup *group = [self.dataSource objectAtIndex:indexPath.row];
 
         NSString *url = [NSString stringWithFormat:@"%@Extra/IM/get",BASEURL];
@@ -222,7 +240,7 @@
         }];
         
 
-    }
+//    }
 }
 
 
@@ -247,6 +265,8 @@
 
 - (void)reloadDataSource
 {
+    
+    [[self.view viewWithTag:777]removeFromSuperview];
     [self.dataSource removeAllObjects];
     
     NSArray *rooms = [[EMClient sharedClient].groupManager getJoinedGroups];
@@ -254,6 +274,24 @@
     
     [_refesh endRefreshing];
     [self.myTableView reloadData];
+    
+    
+    if (_dataSource.count==0) {
+        
+        
+        UILabel *lab = [[UILabel alloc]init];
+        lab.tag =777;
+        lab.bounds = CGRectMake(0, 0, 200, 35);
+        lab.center = CGPointMake(self.view.center.x, self.view.center.y-80);
+        lab.font = [UIFont systemFontOfSize:13];
+        lab.text = @"暂无聊天的群哦\n快快创建一个吧";
+        lab.numberOfLines =2;
+        lab.textColor = RGB(165,164,164);
+        lab.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:lab];
+    }
+
+    
 }
 
 

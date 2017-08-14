@@ -31,7 +31,7 @@
 -(void)setModel:(Message *)model{
     _model = model;
     DebugLog(@"model.avatar---%@",model.avatar);
-    [self.imgV sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:[UIImage imageNamed:@"-1-01"]];
+    [self.imgV sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:[UIImage imageNamed:@"userHeader"]];
     
     self.titlelab.text = model.title;
     self.desLab.text = model.subTitle;

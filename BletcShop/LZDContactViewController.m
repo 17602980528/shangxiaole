@@ -133,7 +133,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-LEFTBACK
+    LEFTBACK
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
 //    self.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
@@ -148,12 +148,13 @@ LEFTBACK
     
     
     // 创建tableview
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0 , kWeChatScreenWidth, kWeChatScreenHeight-64-44) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0 , kWeChatScreenWidth, kWeChatScreenHeight-64-44) style:UITableViewStyleGrouped];
     tableView.delegate = self;
     tableView.dataSource = self;
-    tableView.separatorColor=[UIColor clearColor];
+
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView];
-    tableView.rowHeight=60;
+    tableView.rowHeight=55;
 
     self.myTableView = tableView;
     
@@ -256,23 +257,26 @@ LEFTBACK
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section==1) {
-        return 30;
+        return 10;
     }
     return 0.01;
 }
--(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *view = [UIView new];
-    view.backgroundColor = RGB(244, 244, 244);
-
-    if (section==1) {
-        UILabel *lable = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SCREENWIDTH, 30)];
-        lable.text = @"我的好友";
-        lable.textColor = [UIColor blackColor];
-        [view addSubview:lable];
-    }
-    
-    return view;
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
 }
+//-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    UIView *view = [UIView new];
+//    view.backgroundColor = RGB(244, 244, 244);
+//
+//    if (section==1) {
+//        UILabel *lable = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SCREENWIDTH, 30)];
+//        lable.text = @"我的好友";
+//        lable.textColor = [UIColor blackColor];
+//        [view addSubview:lable];
+//    }
+//    
+//    return view;
+//}
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifire = @"identifier";
@@ -299,22 +303,23 @@ LEFTBACK
 
                 cell.headerImg.image = [UIImage imageNamed:@"newFriends"];
                 
-                rednumbel=[[UILabel alloc]initWithFrame:CGRectMake(kWeChatScreenWidth-15, 0, 15, 15)];
-                rednumbel.backgroundColor=[UIColor redColor];
+                rednumbel=[[UILabel alloc]initWithFrame:CGRectMake(kWeChatScreenWidth-22-19, 0, 22, 22)];
+                rednumbel.backgroundColor=RGB(243,73,78);
                 rednumbel.text=[NSString stringWithFormat:@"%lu",(unsigned long)self.file_dic.count];
                 rednumbel.textColor= [UIColor whiteColor];
 
                 if ([rednumbel.text intValue]==0) {
                     rednumbel.hidden=YES;
                 }
-                rednumbel.font=[UIFont systemFontOfSize:13];
-                rednumbel.layer.cornerRadius=7.5;
+                rednumbel.font=[UIFont systemFontOfSize:14];
+                rednumbel.layer.cornerRadius=rednumbel.width/2;
                 rednumbel.clipsToBounds=YES;
                 rednumbel.textAlignment=NSTextAlignmentCenter;
                 [cell.contentView addSubview:rednumbel];
                 
                 CGFloat width_red = [rednumbel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:rednumbel.font} context:nil].size.width+7+2;
-                rednumbel.frame = CGRectMake(kWeChatScreenWidth-width_red-10, 49/2, width_red, 15);
+                
+                rednumbel.frame = CGRectMake(kWeChatScreenWidth-width_red-10, (55-22)/2, MAX(width_red, 22) , 22);
                 
             }else if (indexPath.row==1){
                 cell.headerImg.image = [UIImage imageNamed:@"group"];
@@ -346,6 +351,8 @@ LEFTBACK
                 [cell.headerImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHOPIMAGE_ADDIMAGE,p.imgStr]] placeholderImage:[UIImage imageNamed:@"user"]];
 
             }
+            cell.headerImg.layer.cornerRadius = cell.headerImg.width/2;
+            cell.headerImg.layer.masksToBounds = YES;
             if (!p) {
                 cell.labLe_cell.text =[_arrFriends objectAtIndex:indexPath.row];
                 
