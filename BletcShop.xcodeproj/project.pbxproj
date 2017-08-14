@@ -131,6 +131,8 @@
 		185ABD621D8021B100BD8097 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185ABD611D8021B100BD8097 /* Foundation.framework */; };
 		185ABD641D8021C100BD8097 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185ABD631D8021C100BD8097 /* UIKit.framework */; };
 		185ABD661D8021EA00BD8097 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185ABD651D8021EA00BD8097 /* CoreVideo.framework */; };
+		185F484D1F41A37D00A6CE6A /* NewAllCouponsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F484B1F41A37D00A6CE6A /* NewAllCouponsVC.m */; };
+		185F484E1F41A37D00A6CE6A /* NewAllCouponsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185F484C1F41A37D00A6CE6A /* NewAllCouponsVC.xib */; };
 		187E94BE1ED2D8FF007EF19F /* OFFLINEVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 187E94BD1ED2D8FF007EF19F /* OFFLINEVC.m */; };
 		188372441F2748270076D2D8 /* HobbyChooseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188372421F2748270076D2D8 /* HobbyChooseVC.m */; };
 		188372451F2748270076D2D8 /* HobbyChooseVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188372431F2748270076D2D8 /* HobbyChooseVC.xib */; };
@@ -1324,6 +1326,9 @@
 		185ABD611D8021B100BD8097 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		185ABD631D8021C100BD8097 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		185ABD651D8021EA00BD8097 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		185F484A1F41A37D00A6CE6A /* NewAllCouponsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAllCouponsVC.h; sourceTree = "<group>"; };
+		185F484B1F41A37D00A6CE6A /* NewAllCouponsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAllCouponsVC.m; sourceTree = "<group>"; };
+		185F484C1F41A37D00A6CE6A /* NewAllCouponsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewAllCouponsVC.xib; sourceTree = "<group>"; };
 		187E94BC1ED2D8FF007EF19F /* OFFLINEVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFFLINEVC.h; sourceTree = "<group>"; };
 		187E94BD1ED2D8FF007EF19F /* OFFLINEVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFFLINEVC.m; sourceTree = "<group>"; };
 		188372411F2748270076D2D8 /* HobbyChooseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HobbyChooseVC.h; sourceTree = "<group>"; };
@@ -4603,6 +4608,9 @@
 				18EFA0B51F205D1E00360C8A /* ExpiredCouponsVC.xib */,
 				187E94BC1ED2D8FF007EF19F /* OFFLINEVC.h */,
 				187E94BD1ED2D8FF007EF19F /* OFFLINEVC.m */,
+				185F484A1F41A37D00A6CE6A /* NewAllCouponsVC.h */,
+				185F484B1F41A37D00A6CE6A /* NewAllCouponsVC.m */,
+				185F484C1F41A37D00A6CE6A /* NewAllCouponsVC.xib */,
 				18EFA0B81F205D3700360C8A /* 上A.png */,
 				18EFA0B91F205D3700360C8A /* 下A.png */,
 				18EFA0BA1F205D3700360C8A /* 已过期-线上.png */,
@@ -6510,6 +6518,7 @@
 				1A9B3AD41D77123D00919CDC /* MessageCell.xib in Resources */,
 				1C9E82591C60AD530007BF02 /* 2-01.png in Resources */,
 				D93027DD1CFEB26B007447D2 /* share_grade_star_highlighted.png in Resources */,
+				185F484E1F41A37D00A6CE6A /* NewAllCouponsVC.xib in Resources */,
 				1836B83D1E559D5600B587A6 /* Active_top2.jpg in Resources */,
 				D95A876A1E728ADF00BDAC75 /* hotCitylist.plist in Resources */,
 				182F3C531F0CEDA800540FAE /* b27_icon_star_yellow@2x.png in Resources */,
@@ -7281,6 +7290,7 @@
 				D94113591CE9A3D7008E231F /* DataSigner.m in Sources */,
 				D9DEED1D1CACED7C00ACDD00 /* SDWebImageCompat.m in Sources */,
 				182F3C491F0CED8E00540FAE /* AddFriendTableViewCell.m in Sources */,
+				185F484D1F41A37D00A6CE6A /* NewAllCouponsVC.m in Sources */,
 				D947E4831D7D710200F9FEE8 /* FMDatabase.m in Sources */,
 				D96AA13B1CB399CA00F2003B /* NIDropDown.m in Sources */,
 				D924837A1D1A72B400AE252C /* ChoicePayTypeViewController.m in Sources */,
