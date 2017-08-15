@@ -42,7 +42,7 @@
 
 
 #import "Database.h"
-@interface AppDelegate ()<EMClientDelegate,EMContactManagerDelegate,EMGroupManagerDelegate>
+@interface AppDelegate ()<EMClientDelegate,EMContactManagerDelegate,EMGroupManagerDelegate,EMChatManagerDelegate>
 {
     BMKGeoCodeSearch *_geocodesearch;
     BMKMapManager* _mapManager;
@@ -133,10 +133,28 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+  
     
 #pragma mark 环信
     [self initHuanXin];
     
+    
+    
+    
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        [application registerForRemoteNotifications];
+        
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        //        DebugLog("--[application respondsToSelector:@selector(registerForRemoteNotifications)]---");
+        
+    }  else {
+        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
+        //        DebugLog(@"--registerForRemoteNotificationTypes---");
+        
+    }
+
     //设置根控制器
     NSDictionary *infoDic = [[NSBundle mainBundle]infoDictionary];
     // app版本
@@ -204,19 +222,6 @@
     //这里主要是针对iOS 8.0,相应的8.1,8.2等版本各程序员可自行发挥，如果苹果以后推出更高版本还不会使用这个注册方式就不得而知了……
     
     //    #ifdef __IPHONE_8_0
-    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        [application registerForRemoteNotifications];
-        
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        //        DebugLog("--[application respondsToSelector:@selector(registerForRemoteNotifications)]---");
-        
-    }  else {
-        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
-        //        DebugLog(@"--registerForRemoteNotificationTypes---");
-        
-    }
     
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc]init];
@@ -321,16 +326,16 @@
     EMOptions *options = [EMOptions optionsWithAppkey:@"kb0824#vipcard"];
     
     
-    //    options.apnsCertName = @"push_d";
+        options.apnsCertName = @"push_dev";
 #else
     EMOptions *options = [EMOptions optionsWithAppkey:@"kb0824#vipcard"];
     
-    //    options.apnsCertName = @"release";
+        options.apnsCertName = @"pusd_prod";
     
 #endif
     
     [[EMClient sharedClient] initializeSDKWithOptions:options];
-    
+    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
     //添加代理
     [[EMClient sharedClient]removeDelegate:self];
     [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
@@ -346,13 +351,62 @@
     
     [[EMClient sharedClient]getPushNotificationOptionsFromServerWithCompletion:^(EMPushOptions *aOptions, EMError *aError) {
         
-        //        aOptions.displayStyle=EMPushDisplayStyleMessageSummary;
-        //        DebugLog("aOptions----%@",aOptions);
+             aOptions.displayStyle=EMPushDisplayStyleMessageSummary;
+
+        
+              DebugLog(@"aOptions----%@",aOptions);
     }];
     
 }
+-(void)messagesDidReceive:(NSArray *)aMessages{
+    
+    for (EMMessage *message in aMessages) {
+        
+        UIApplicationState state = [[UIApplication sharedApplication] applicationState];
+        switch (state) {
+            case UIApplicationStateBackground:
+                [self showNotificationWithMessage:message];
+                break;
+            default:
+                break;
+        }
+        
+    }
+    
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"收到环信通知" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//    [alertView show];
+    
+
+}
+
+-(void)showNotificationWithMessage:(EMMessage*)message{
+    
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    
+    // 时区
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    // 设置重复的间隔
+    notification.repeatInterval = kCFCalendarUnitSecond;
+    notification.repeatCalendar = [NSCalendar currentCalendar];
+    // 通知内容
+    notification.alertBody =  [NSString stringWithFormat:@"您有新的消息,请注意查收"];
+    NSInteger badge = [UIApplication sharedApplication].applicationIconBadgeNumber;
+    
+    notification.applicationIconBadgeNumber = (badge+1);
+    // 通知被触发时播放的声音
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    // 通知参数
+    NSDictionary *userDict = [NSDictionary dictionaryWithObject:@"sdjfkhs" forKey:@"mykey"];
+    notification.userInfo = userDict;
+    
+    
+    // 执行通知注册
+    //    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    [[UIApplication sharedApplication]presentLocalNotificationNow:notification];
 
 
+    
+}
 /**
  在别的设备登录环信
  */
@@ -460,6 +514,8 @@
     
     
 }
+
+
 -(void)didReceiveFriendInvitationFromUsername:(NSString *)aUsername message:(NSString *)aMessage{
     
     
@@ -1856,6 +1912,8 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     //    NSLog(@"noti:%@======%ld",notification,(long)application.applicationState);
     
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+
     
     
     
@@ -1870,16 +1928,16 @@
 -(void)superAccountTextListGet{
     
     
-    NSString *url = [NSString stringWithFormat:@"%@Extra/source/superAccount",BASEURL];
-    
-    [KKRequestDataService requestWithURL:url params:nil httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
-        NSLog(@"===--%@",result);
-        if (result) {
-            _superAccoutArray=result;
-        }
-    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
+//    NSString *url = [NSString stringWithFormat:@"%@Extra/source/superAccount",BASEURL];
+//    
+//    [KKRequestDataService requestWithURL:url params:nil httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+//        NSLog(@"===--%@",result);
+//        if (result) {
+//            _superAccoutArray=result;
+//        }
+//    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//    }];
     
 }
 @end
