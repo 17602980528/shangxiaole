@@ -14,6 +14,8 @@
     CGFloat heights;
     SDRefreshFooterView *_refreshFooter;
     SDRefreshHeaderView *_refreshheader;
+    UIImageView *imageView;
+    UILabel *noticeLabel;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic)NSInteger page;
@@ -94,6 +96,16 @@
             }
         [_tableView reloadData];
         [self hintLoadingView];
+        if (self.couponArray.count==0) {
+            [self initNoneActiveView];
+        }else{
+            if (imageView) {
+                [imageView removeFromSuperview];
+            }
+            if (noticeLabel) {
+                [noticeLabel removeFromSuperview];
+            }
+        }
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self hintLoadingView];
@@ -103,6 +115,27 @@
         NSLog(@"%@", error);
     }];
     
+}
+//无活动显示无活动
+-(void)initNoneActiveView{
+    self.view.backgroundColor=RGB(240, 240, 240);
+    
+    if (imageView) {
+        [imageView removeFromSuperview];
+    }
+    if (noticeLabel) {
+        [noticeLabel removeFromSuperview];
+    }
+    imageView=[[UIImageView alloc]initWithFrame:CGRectMake(SCREENWIDTH/2-92, 63+60, 184, 117)];
+    imageView.image=[UIImage imageNamed:@"CC588055F2B4764AA006CD2B6ACDD25C.jpg"];
+    [self.view addSubview:imageView];
+    
+    noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imageView.frame)+46, SCREENWIDTH, 30)];
+    noticeLabel.font=[UIFont systemFontOfSize:15.0f];
+    noticeLabel.textColor=RGB(153, 153, 153);
+    noticeLabel.textAlignment=NSTextAlignmentCenter;
+    noticeLabel.text=@"没有可用的代金券哦";
+    [self.view addSubview:noticeLabel];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.couponArray.count;
