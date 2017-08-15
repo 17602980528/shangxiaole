@@ -60,17 +60,6 @@ LEFTBACK
     
     if (self.couponArray.count!=0) {
 
-        /*
-         
-( 0.0784314 0.584314 0.854902 1 ),( 0.270588 0.172549 0.396078 1 )
-( 0.631373 0.619608 0.329412 1 ),( 0.756863 0.717647 0.435294 1 )
-
-         cell.gradientLayer.colors = @[(__bridge id)RGB( arc4random()%200,  arc4random()%200,  arc4random()%200).CGColor,(__bridge id)RGB( arc4random()%256,  arc4random()%256,  arc4random()%256).CGColor];
-
-         
-         */
-   
-        
         NSLog(@"colors===%@",cell.gradientLayer.colors);
         NSDictionary *dic = self.couponArray[indexPath.row];
         

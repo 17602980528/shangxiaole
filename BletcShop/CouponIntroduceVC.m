@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    LEFTBACK
     self.view.backgroundColor=RGB(238, 238, 238);
     self.navigationItem.title=@"代金券";
     
