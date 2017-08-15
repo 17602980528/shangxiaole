@@ -57,6 +57,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
     [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
     
     
@@ -76,13 +77,13 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[EMClient sharedClient].chatManager removeDelegate:self];
-    
+
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;
         self.navigationItem.title = @"消息";
         self.view.backgroundColor = RGB(240, 240, 240);
     LEFTBACK

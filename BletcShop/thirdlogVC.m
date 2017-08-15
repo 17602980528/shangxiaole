@@ -715,7 +715,12 @@ LEFTBACK
                         AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
                         appdelegate.userInfoDic = [NSMutableDictionary dictionaryWithDictionary:user_dic];
                         appdelegate.IsLogin = YES;
-                        
+                        [[EMClient sharedClient] updatePushNotifiationDisplayName:[NSString getTheNoNullStr:appdelegate.userInfoDic[@"nickname"] andRepalceStr:@"陌生人"] completion:^(NSString *aDisplayName, EMError *aError) {
+                            
+                            NSLog(@"-aDisplayName--%@===aError=%@",aDisplayName,aError);
+                            
+                        }];
+
                         
                         
                     });

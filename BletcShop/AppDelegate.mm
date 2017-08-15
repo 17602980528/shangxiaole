@@ -42,6 +42,8 @@
 
 
 #import "Database.h"
+
+#import "NewMessageVC.h"
 @interface AppDelegate ()<EMClientDelegate,EMContactManagerDelegate,EMGroupManagerDelegate,EMChatManagerDelegate>
 {
     BMKGeoCodeSearch *_geocodesearch;
@@ -135,6 +137,8 @@
     
   
     
+    
+    
 #pragma mark 环信
     [self initHuanXin];
     
@@ -172,6 +176,7 @@
         
         MainTabBarController *mainTB = [[MainTabBarController alloc]init];
         self.window.rootViewController = mainTB;
+        
         
         
         //加载广页
@@ -326,11 +331,11 @@
     EMOptions *options = [EMOptions optionsWithAppkey:@"kb0824#vipcard"];
     
     
-        options.apnsCertName = @"push_dev";
+        options.apnsCertName = @"apns_dev";
 #else
     EMOptions *options = [EMOptions optionsWithAppkey:@"kb0824#vipcard"];
     
-        options.apnsCertName = @"pusd_prod";
+        options.apnsCertName = @"apns_prod";
     
 #endif
     
@@ -349,13 +354,25 @@
     }
     
     
+    
     [[EMClient sharedClient]getPushNotificationOptionsFromServerWithCompletion:^(EMPushOptions *aOptions, EMError *aError) {
         
              aOptions.displayStyle=EMPushDisplayStyleMessageSummary;
-
+        aOptions.displayName = [NSString getTheNoNullStr:self.userInfoDic[@"nickname"] andRepalceStr:@"陌生人"];
         
+        NSLog(@"%@-aOptions.displayName-----%@",self.userInfoDic,aOptions.displayName);
+        
+        
+        [[EMClient sharedClient] updatePushNotificationOptionsToServerWithCompletion:^(EMError *aError) {
+            DebugLog(@"aError----%@",aError);
+
+        }];
+
               DebugLog(@"aOptions----%@",aOptions);
     }];
+    
+    
+    
     
 }
 -(void)messagesDidReceive:(NSArray *)aMessages{
@@ -389,15 +406,45 @@
     notification.repeatInterval = kCFCalendarUnitSecond;
     notification.repeatCalendar = [NSCalendar currentCalendar];
     // 通知内容
-    notification.alertBody =  [NSString stringWithFormat:@"您有新的消息,请注意查收"];
+    
+    NSString *message_text =@"您有一条新消息";
+    
+    EMMessageBody *messageBody = message.body;
+    
+    switch (messageBody.type) {
+        case EMMessageBodyTypeText://文字
+        {
+            EMTextMessageBody *textBody = (EMTextMessageBody*)messageBody;
+            message_text= textBody.text;
+            
+        }
+            break;
+        case EMMessageBodyTypeImage://图片
+        {
+
+            
+        }
+            break;
+
+        case EMMessageBodyTypeVoice://语音
+        {
+            
+        }
+            break;
+
+            
+        default:
+            break;
+    }
+    notification.alertBody =  message_text;
     NSInteger badge = [UIApplication sharedApplication].applicationIconBadgeNumber;
     
     notification.applicationIconBadgeNumber = (badge+1);
     // 通知被触发时播放的声音
     notification.soundName = UILocalNotificationDefaultSoundName;
     // 通知参数
-    NSDictionary *userDict = [NSDictionary dictionaryWithObject:@"sdjfkhs" forKey:@"mykey"];
-    notification.userInfo = userDict;
+//    NSDictionary *userDict = [NSDictionary dictionaryWithObject:@"sdjfkhs" forKey:@"mykey"];
+//    notification.userInfo = userDict;
     
     
     // 执行通知注册
@@ -1220,7 +1267,7 @@
         return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
     } else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController* navigationController = (UINavigationController*)rootViewController;
-        return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
+        return [self topViewControllerWithRootViewController:navigationController.topViewController];
     } else if (rootViewController.presentedViewController) {
         UIViewController* presentedViewController = rootViewController.presentedViewController;
         return [self topViewControllerWithRootViewController:presentedViewController];
@@ -1277,6 +1324,11 @@
             self.IsLogin = YES;
             //            [self socketConnectHost];
             
+            [[EMClient sharedClient] updatePushNotifiationDisplayName:[NSString getTheNoNullStr:self.userInfoDic[@"nickname"] andRepalceStr:@"陌生人"] completion:^(NSString *aDisplayName, EMError *aError) {
+               
+                NSLog(@"-aDisplayName--%@===aError=%@",aDisplayName,aError);
+                
+            }];
             
             
         }
@@ -1819,10 +1871,19 @@
 }
 
 
-
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
     
+//    NSInteger badge = [UIApplication sharedApplication].applicationIconBadgeNumber;
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+
     NSLog(@"didReceiveRemoteNotification---%@",userInfo);
+    
+    
+    
+    UIViewController *topVC =  [self topViewController];
+    
+    [topVC.navigationController pushViewController:[[NewMessageVC alloc]init] animated:YES];
     
 }
 
@@ -1910,12 +1971,16 @@
 
 // 本地通知回调函数，当应用程序在前台时调用
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    //    NSLog(@"noti:%@======%ld",notification,(long)application.applicationState);
-    
-    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        NSLog(@"noti:%@======%ld",notification,(long)application.applicationState);
 
     
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+
     
+   UIViewController *topVC =  [self topViewController];
+    
+    [topVC.navigationController pushViewController:[[NewMessageVC alloc]init] animated:YES];
     
     
     
