@@ -19,7 +19,8 @@
     CGFloat heights;
      SDRefreshFooterView *_refreshFooter;
      SDRefreshHeaderView *_refreshheader;
-   
+    UIImageView *imageView;
+    UILabel *noticeLabel;
 }
 @property (weak, nonatomic) IBOutlet UIView *indicatorView;//红线
 @property (nonatomic,strong)NSMutableArray *shopCouponArray;//商家优惠券
@@ -48,8 +49,9 @@
     _page=1;
     [self.shopCouponArray removeAllObjects];
     [self.tableView reloadData];
-    [self postRequestCashCoupon];
-    
+    if ([_sign isEqualToString:@"shop"]) {
+         [self postRequestCashCoupon];
+    }
     self.navigationController.navigationBarHidden = NO;
 }
 
@@ -58,6 +60,12 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)getShopOrPlatCoupons:(UIButton *)sender {
+    if (imageView) {
+        [imageView removeFromSuperview];
+    }
+    if (noticeLabel) {
+        [noticeLabel removeFromSuperview];
+    }
     _page=1;
     [self.shopCouponArray removeAllObjects];
     [self.platCouponArray removeAllObjects];
@@ -127,11 +135,17 @@
 -(void)initNoneActiveView{
     self.view.backgroundColor=RGB(240, 240, 240);
     
-    UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(SCREENWIDTH/2-92, 63, 184, 117)];
+    if (imageView) {
+        [imageView removeFromSuperview];
+    }
+    if (noticeLabel) {
+        [noticeLabel removeFromSuperview];
+    }
+    imageView=[[UIImageView alloc]initWithFrame:CGRectMake(SCREENWIDTH/2-92, 63+60, 184, 117)];
     imageView.image=[UIImage imageNamed:@"CC588055F2B4764AA006CD2B6ACDD25C.jpg"];
     [self.view addSubview:imageView];
     
-    UILabel *noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imageView.frame)+46, SCREENWIDTH, 30)];
+    noticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imageView.frame)+46, SCREENWIDTH, 30)];
     noticeLabel.font=[UIFont systemFontOfSize:15.0f];
     noticeLabel.textColor=RGB(153, 153, 153);
     noticeLabel.textAlignment=NSTextAlignmentCenter;
@@ -171,6 +185,13 @@
             
             [self initNoneActiveView];
             
+        }else{
+            if (imageView) {
+                [imageView removeFromSuperview];
+            }
+            if (noticeLabel) {
+                [noticeLabel removeFromSuperview];
+            }
         }
         
         [_tableView reloadData];
@@ -366,6 +387,13 @@
             
             [self initNoneActiveView];
             
+        }else{
+            if (imageView) {
+                [imageView removeFromSuperview];
+            }
+            if (noticeLabel) {
+                [noticeLabel removeFromSuperview];
+            }
         }
         [self.tableView reloadData];
         [_refreshFooter endRefreshing];
