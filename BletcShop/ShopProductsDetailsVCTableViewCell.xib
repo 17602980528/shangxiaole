@@ -38,8 +38,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥68/份" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHN-Qd-QAM">
-                        <rect key="frame" x="174.5" y="54" width="45.5" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥68" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHN-Qd-QAM">
+                        <rect key="frame" x="174.5" y="54" width="26.5" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="rbd-zW-UlU"/>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="xjN-Cc-eF9"/>
@@ -49,7 +49,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="约300克" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pl3-xl-dOX">
-                        <rect key="frame" x="225" y="54" width="55" height="15"/>
+                        <rect key="frame" x="206" y="54" width="55" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="kzc-q4-HUA"/>
                         </constraints>

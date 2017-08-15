@@ -80,7 +80,7 @@
         cell.backgroundColor=[UIColor clearColor];
     }
     cell.productName.text=_dataSourseArr[indexPath.row][@"name"];
-    cell.productPrice.text=[NSString stringWithFormat:@"¥%@/份",_dataSourseArr[indexPath.row][@"price"]];
+    cell.productPrice.text=[NSString stringWithFormat:@"¥%@",_dataSourseArr[indexPath.row][@"price"]];
     
     NSURL * nurl1=[[NSURL alloc] initWithString:[[SOURCE_PRODUCT stringByAppendingString:_dataSourseArr[indexPath.row][@"image_url"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
     [cell.productImage sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3"]];
@@ -89,6 +89,35 @@
     UITapGestureRecognizer *tap1=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(scanBigImageClick1:)];
     cell.productImage.userInteractionEnabled=YES;
     [ cell.productImage addGestureRecognizer:tap1];
+    
+    cell.productMoreDes.hidden=YES;
+    
+    if (self.wholeInfoDic[@"card_list"]) {
+        if ([self.wholeInfoDic[@"card_list"][@"count"] count]>0||[self.wholeInfoDic[@"card_list"][@"experience"] count]>0||[self.wholeInfoDic[@"card_list"][@"meal"] count]>0||[self.wholeInfoDic[@"card_list"][@"value"] count]>0) {
+            cell.cardCanUse.text=@"会员卡可用";
+            cell.cardCanUse.hidden=NO;
+            if (self.wholeInfoDic[@"coupon_list"]&&[self.wholeInfoDic[@"coupon_list"] count]>0) {
+                cell.couponCanuse.text=@"优惠券可用";
+                cell.couponCanuse.hidden=NO;
+            }else{
+                cell.couponCanuse.text=@"";
+                cell.couponCanuse.hidden=YES;
+            }
+        }else{
+            if (self.wholeInfoDic[@"coupon_list"]&&[self.wholeInfoDic[@"coupon_list"] count]>0) {
+                cell.cardCanUse.text=@"优惠券可用";
+                cell.cardCanUse.hidden=NO;
+                cell.couponCanuse.text=@"";
+                cell.couponCanuse.hidden=YES;
+            }else{
+                cell.cardCanUse.text=@"";
+                cell.couponCanuse.text=@"";
+                cell.cardCanUse.hidden=YES;
+                cell.couponCanuse.hidden=YES;
+            }
+        }
+    }
+
     return cell;
 }
 
