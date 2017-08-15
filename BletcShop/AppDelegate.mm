@@ -40,7 +40,7 @@
 #import "LZDRootViewController.h"
 #import "XLAlertView.h"
 
-
+#import "Person.h"
 #import "Database.h"
 
 #import "NewMessageVC.h"
@@ -407,6 +407,9 @@
     notification.repeatCalendar = [NSCalendar currentCalendar];
     // 通知内容
     
+    Person *p= [[Database searchPersonFromID:message.from] firstObject];
+
+    
     NSString *message_text =@"您有一条新消息";
     
     EMMessageBody *messageBody = message.body;
@@ -415,7 +418,7 @@
         case EMMessageBodyTypeText://文字
         {
             EMTextMessageBody *textBody = (EMTextMessageBody*)messageBody;
-            message_text= textBody.text;
+            message_text= [NSString stringWithFormat:@"%@:%@",p.name.length==0 ? @"陌生人" :p.name,textBody.text];
             
         }
             break;
