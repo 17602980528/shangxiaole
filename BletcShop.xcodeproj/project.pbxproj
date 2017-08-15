@@ -158,6 +158,7 @@
 		189ED0431E8CD53600A762C7 /* KeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 189ED0411E8CD53600A762C7 /* KeyChainStore.m */; };
 		189F4CF41D50672E00461830 /* ActiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F4CF31D50672E00461830 /* ActiveViewController.m */; };
 		189F4CF71D508EF300461830 /* ActiveMoreRuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F4CF61D508EF200461830 /* ActiveMoreRuleViewController.m */; };
+		18A0FC0F1F42A6F600C9BD9D /* PlatCouponTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A0FC0E1F42A6F600C9BD9D /* PlatCouponTableViewCell.m */; };
 		18A4B6F21D33933B00EFBCC1 /* 椭圆-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A4B6F01D33933B00EFBCC1 /* 椭圆-02.png */; };
 		18A4B6F31D33933B00EFBCC1 /* 椭圆-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A4B6F11D33933B00EFBCC1 /* 椭圆-01.png */; };
 		18A72C5B1ED563E9005FDF87 /* 线上角标.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A72C5A1ED563E8005FDF87 /* 线上角标.png */; };
@@ -1367,6 +1368,8 @@
 		189F4CF31D50672E00461830 /* ActiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveViewController.m; sourceTree = "<group>"; };
 		189F4CF51D508EF200461830 /* ActiveMoreRuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveMoreRuleViewController.h; sourceTree = "<group>"; };
 		189F4CF61D508EF200461830 /* ActiveMoreRuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveMoreRuleViewController.m; sourceTree = "<group>"; };
+		18A0FC0D1F42A6F600C9BD9D /* PlatCouponTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatCouponTableViewCell.h; sourceTree = "<group>"; };
+		18A0FC0E1F42A6F600C9BD9D /* PlatCouponTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatCouponTableViewCell.m; sourceTree = "<group>"; };
 		18A4B6F01D33933B00EFBCC1 /* 椭圆-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "椭圆-02.png"; sourceTree = "<group>"; };
 		18A4B6F11D33933B00EFBCC1 /* 椭圆-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "椭圆-01.png"; sourceTree = "<group>"; };
 		18A72C5A1ED563E8005FDF87 /* 线上角标.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "线上角标.png"; sourceTree = "<group>"; };
@@ -4594,6 +4597,8 @@
 			children = (
 				D9026B191F0B737F005CA5F4 /* CouponCell.h */,
 				D9026B1A1F0B737F005CA5F4 /* CouponCell.m */,
+				18A0FC0D1F42A6F600C9BD9D /* PlatCouponTableViewCell.h */,
+				18A0FC0E1F42A6F600C9BD9D /* PlatCouponTableViewCell.m */,
 				D9F80ED51DE6EF0900DB42D8 /* CC588055F2B4764AA006CD2B6ACDD25C.jpg */,
 				D9329CCF1D49AFFE00BC84F4 /* 代金券.png */,
 				D94B52521D4AE6D800C067B3 /* 代金券-01.jpg */,
@@ -7369,6 +7374,7 @@
 				D99760F51E695CFD008E21FE /* ProvinceModel.m in Sources */,
 				D97227471F39571B009D0E2A /* OilManagerCell.m in Sources */,
 				1CDCCD1F1C7594040094E70D /* AFURLSessionManager.m in Sources */,
+				18A0FC0F1F42A6F600C9BD9D /* PlatCouponTableViewCell.m in Sources */,
 				180D0D491F0E11BB00A39790 /* MoreViewCell.m in Sources */,
 				D9345E6F1E76984F006B2AC1 /* TopActiveCell.m in Sources */,
 				18148E781F186EF1001C86AC /* VipCardHomeTableViewCell.m in Sources */,

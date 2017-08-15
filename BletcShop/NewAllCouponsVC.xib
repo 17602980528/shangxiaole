@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewAllCouponsVC">
             <connections>
                 <outlet property="indicatorView" destination="gsG-RC-RVY" id="RmO-gz-h9s"/>
+                <outlet property="tableView" destination="pMl-vc-F0a" id="AUu-gR-Dpv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -43,23 +44,21 @@
                             <state key="normal" title="商消乐优惠券">
                                 <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="getShopOrPlatCoupons:" destination="-1" eventType="touchUpInside" id="pPf-PV-B8a"/>
+                            </connections>
                         </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gsG-RC-RVY">
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gsG-RC-RVY">
                             <rect key="frame" x="49" y="44" width="90" height="2"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.28627450980392155" blue="0.30588235294117649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="2" id="PPV-7d-T65"/>
-                                <constraint firstAttribute="width" constant="90" id="mQk-q3-Q9f"/>
-                            </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="7MJ-0Q-Z5p" firstAttribute="leading" secondItem="KBY-EP-kNV" secondAttribute="leading" id="0rk-EO-LWI"/>
                         <constraint firstAttribute="trailing" secondItem="Vwz-pe-uIs" secondAttribute="trailing" id="4M1-wV-IlW"/>
-                        <constraint firstItem="gsG-RC-RVY" firstAttribute="centerX" secondItem="7MJ-0Q-Z5p" secondAttribute="centerX" id="EeF-DM-pjB"/>
                         <constraint firstItem="7MJ-0Q-Z5p" firstAttribute="top" secondItem="KBY-EP-kNV" secondAttribute="top" id="FOo-hi-ShP"/>
-                        <constraint firstAttribute="bottom" secondItem="gsG-RC-RVY" secondAttribute="bottom" id="Nvr-cp-K7x"/>
                         <constraint firstAttribute="height" constant="46" id="RQj-fL-Z3z"/>
                         <constraint firstItem="Vwz-pe-uIs" firstAttribute="top" secondItem="KBY-EP-kNV" secondAttribute="top" id="g8j-zy-FA8"/>
                         <constraint firstItem="Vwz-pe-uIs" firstAttribute="width" secondItem="7MJ-0Q-Z5p" secondAttribute="width" id="gmc-5w-40s"/>
@@ -97,7 +96,7 @@
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pMl-vc-F0a">
                     <rect key="frame" x="0.0" y="46" width="375" height="572"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="qPi-dt-Ow5"/>
                         <outlet property="delegate" destination="-1" id="JLY-Ww-V1H"/>

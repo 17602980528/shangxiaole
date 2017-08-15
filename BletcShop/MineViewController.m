@@ -42,6 +42,7 @@
 #import "MineInfoVCSecond.h"
 #import "MoreViewController.h"
 #import "NewMyPayMentsVC.h"
+#import "NewAllCouponsVC.h"
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UIView *shareView;
@@ -272,7 +273,7 @@
         //一区
         Myitem *item10 = [Myitem itemsWithImg:@"会员卡ss" title:@"我的会员卡" vcClass:[CardVipController class]];
         Myitem *item11 = [Myitem itemsWithImg:@"钱包" title:@"我的钱包" vcClass:[MyMoneybagController class]];
-        Myitem *item13 = [Myitem itemsWithImg:@"优惠券ss" title:@"我的优惠券" vcClass:[MyCashCouponViewController class]];
+        Myitem *item13 = [Myitem itemsWithImg:@"优惠券ss" title:@"我的优惠券" vcClass:[NewAllCouponsVC class]];//MyCashCouponViewController
         Myitem *item14 = [Myitem itemsWithImg:@"消费" title:@"我的消费" vcClass:[NewMyPayMentsVC class]];//
         
         Myitem *item12=[Myitem itemsWithImg:@"积分商城" title:@"积分商城" vcClass:[MemberCenterVC class]];
