@@ -20,6 +20,7 @@
 #import "BaseNavigationController.h"
 #import "CardBusinessTableViewCell.h"
 #import "AddFriendVC.h"
+#import "LZDChartViewController.h"
 @interface CardMarketViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SelectCityDelegate>
 
 {
@@ -327,12 +328,67 @@
         cell.model = self.data_A[indexPath.row];
         
     }
+     cell.addFriendBtn.tag=indexPath.row;
     [cell.addFriendBtn addTarget:self action:@selector(addFriendBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    cell.addFriendBtn.tag=indexPath.row;
+    
+    cell.contactButton.tag=indexPath.row;
+     [cell.contactButton addTarget:self action:@selector(contactButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
+//-(void)saveInfo:(NSString*)auserName{
+//    NSString *url = [NSString stringWithFormat:@"%@Extra/IM/get",BASEURL];
+//    
+//    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
+//    
+//    [paramer setObject:auserName forKey:@"account"];
+//    NSLog(@"-saveInfo--%@",paramer);
+//    
+//    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+//        
+//        NSArray *arr = (NSArray *)result;
+//        if (arr.count!=0) {
+//            Person *p = [Person modalWith:arr[0][@"nickname"] imgStr:arr[0][@"headimage"]  idstring:arr[0][@"account"]];
+//            
+//            [Database savePerdon:p];
+//        }
+//        
+//        
+//    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//    }];
+//    
+//    
+//}
 
+-(void)contactButtonClick:(UIButton *)sender{
+    
+    
+    
+   
+    
+    CardMarketModel *M=self.data_A[sender.tag];
+    NSDictionary *dic=M.dic;
+//     [self saveInfo:dic[@"uuid"]];
+    
+    Person *p = [Person modalWith:dic[@"nickname"] imgStr:dic[@"headimage"]  idstring:dic[@"uuid"]];
+    
+    [Database savePerdon:p];
+    
+    
+    NSLog(@"dic--dic==%@",dic);
+    LZDChartViewController *chatCtr = [[LZDChartViewController alloc]init];
+    [chatCtr setHidesBottomBarWhenPushed:YES];
+    chatCtr.title=dic[@"nickname"];
+    chatCtr.username = dic[@"uuid"];
+
+    NSLog(@"chatCtr.username---%@",chatCtr.username);
+    
+   
+    chatCtr.chatType = EMChatTypeChat;
+    
+    [self.navigationController pushViewController:chatCtr animated:YES];
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [_refreshFooter endRefreshing];

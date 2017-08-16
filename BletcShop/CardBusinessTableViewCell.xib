@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -186,6 +186,13 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Lt-Bf-0P1">
+                                <rect key="frame" x="373" y="110" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Hkv-BP-G8J"/>
+                                    <constraint firstAttribute="width" constant="100" id="abr-l4-eoS"/>
+                                </constraints>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -206,6 +213,7 @@
                             <constraint firstAttribute="trailing" secondItem="hj7-K4-GFa" secondAttribute="trailing" constant="5" id="L2V-4x-tuj"/>
                             <constraint firstItem="uDA-J6-leM" firstAttribute="leading" secondItem="8W8-of-oLk" secondAttribute="leading" id="MYa-sq-Utr"/>
                             <constraint firstItem="zlR-qj-WJp" firstAttribute="trailing" secondItem="2Dr-Fs-Wnl" secondAttribute="trailing" id="R9q-KU-ThY"/>
+                            <constraint firstAttribute="trailing" secondItem="8Lt-Bf-0P1" secondAttribute="trailing" id="RBk-f7-WMy"/>
                             <constraint firstItem="uDA-J6-leM" firstAttribute="top" secondItem="wFB-zS-uag" secondAttribute="bottom" constant="12" id="RRp-vS-tD5"/>
                             <constraint firstItem="fzg-xf-ycG" firstAttribute="leading" secondItem="ide-a2-dfj" secondAttribute="trailing" constant="8" id="S1a-co-1lh"/>
                             <constraint firstItem="Zc0-ol-jdr" firstAttribute="top" secondItem="yNI-Oh-WiV" secondAttribute="top" id="VP2-2p-YAB"/>
@@ -215,6 +223,7 @@
                             <constraint firstItem="alc-tN-ReS" firstAttribute="bottom" secondItem="2Dr-Fs-Wnl" secondAttribute="bottom" id="a0r-2T-iRb"/>
                             <constraint firstItem="MkT-TB-I1z" firstAttribute="leading" secondItem="vZW-hR-A7a" secondAttribute="trailing" constant="10" id="bRN-qC-9n2"/>
                             <constraint firstItem="Zc0-ol-jdr" firstAttribute="leading" secondItem="yNI-Oh-WiV" secondAttribute="trailing" constant="3" id="biZ-YR-Q9l"/>
+                            <constraint firstItem="8Lt-Bf-0P1" firstAttribute="top" secondItem="uDA-J6-leM" secondAttribute="bottom" id="byM-Oh-qss"/>
                             <constraint firstItem="hlx-4A-3oB" firstAttribute="top" secondItem="alc-tN-ReS" secondAttribute="top" id="caf-yq-gIt"/>
                             <constraint firstItem="i6d-pW-z8a" firstAttribute="top" secondItem="MkT-TB-I1z" secondAttribute="bottom" constant="5" id="fan-vF-DK1"/>
                             <constraint firstItem="hj7-K4-GFa" firstAttribute="leading" secondItem="2Dr-Fs-Wnl" secondAttribute="trailing" constant="10" id="fhw-k7-glf"/>
@@ -247,6 +256,7 @@
                 <outlet property="bgView" destination="8W8-of-oLk" id="xHY-gE-WHr"/>
                 <outlet property="cardImageView" destination="2Dr-Fs-Wnl" id="Q0Y-SY-zED"/>
                 <outlet property="card_Level" destination="zlR-qj-WJp" id="SzD-8N-zvp"/>
+                <outlet property="contactButton" destination="8Lt-Bf-0P1" id="Fro-wl-HTi"/>
                 <outlet property="descripLab" destination="hlx-4A-3oB" id="61n-K8-Iuz"/>
                 <outlet property="headDescripLab" destination="alc-tN-ReS" id="A0u-e3-i84"/>
                 <outlet property="imgView" destination="vZW-hR-A7a" id="BvW-NE-H5O"/>
@@ -258,7 +268,7 @@
                 <outlet property="timeLab" destination="wFB-zS-uag" id="pNh-qI-hg4"/>
                 <outlet property="tradeLable" destination="ybq-fU-E4P" id="riQ-4T-y5A"/>
             </connections>
-            <point key="canvasLocation" x="-154" y="38"/>
+            <point key="canvasLocation" x="-154.5" y="37.5"/>
         </tableViewCell>
     </objects>
     <resources>
