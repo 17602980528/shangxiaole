@@ -96,7 +96,53 @@
     self.head.clipsToBounds=YES;
     
     self.nick.text=self.dic[@"nickname"];
+    
+    [self.addFrdBtn addTarget:self action:@selector(addFriend:) forControlEvents:UIControlEventTouchUpInside];
 }
+//添加好友
+-(void)addFriend:(UIButton*)sender{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"说点什么吧" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    // 请求信息
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"";
+    }];
+    
+    // 获取alert中的文本输入框
+    UITextField *descriptionFiled = [alert.textFields lastObject];
+    
+    // 添加按钮
+    UIAlertAction *comitAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        // 如果附带信息输入为空,那么就自定义一个
+        NSString *message = (descriptionFiled.text.length == 0)?@"我想加你":descriptionFiled.text;
+        // 发送好友请求
+        
+        NSLog(@"account===%@",self.dic[@"uuid"]);
+        [[EMClient sharedClient].contactManager addContact:self.dic[@"uuid"] message:message completion:^(NSString *aUsername, EMError *aError) {
+            if (!aError) {
+                NSLog(@"添加成功");
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                NSLog(@"添加失败");
+                
+            }
+            
+        }];
+        
+        
+    }];
+    // 取消按钮
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    // 添加两个按钮
+    [alert addAction:cancelAction];
+    [alert addAction:comitAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden=NO;
