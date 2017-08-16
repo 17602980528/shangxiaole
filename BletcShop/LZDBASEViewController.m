@@ -80,9 +80,12 @@
     rightBtn = [LZDButton creatLZDButton];
     rightBtn.frame = CGRectMake(kWeChatScreenWidth-50, 0, 30, 30);
     
-    [rightBtn setTitle:@"+" forState:UIControlStateNormal];
-    [rightBtn setTitleColor:RGB(51, 51, 51) forState:UIControlStateNormal];
-    rightBtn.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+    [rightBtn setImage:[UIImage imageNamed:@"首页 添加"] forState:0];
+    
+    rightBtn.contentEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
+//    [rightBtn setTitle:@"+" forState:UIControlStateNormal];
+//    [rightBtn setTitleColor:RGB(51, 51, 51) forState:UIControlStateNormal];
+//    rightBtn.titleLabel.font = [UIFont systemFontOfSize:30];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
     
@@ -141,12 +144,12 @@
         
         LZDButton *btn = [LZDButton creatLZDButton];
         btn.frame = CGRectMake(24, i*(57/2+1), 60, 57/2);
-        btn.titleLabel.font = [UIFont systemFontOfSize:12];
+        btn.titleLabel.font = [UIFont systemFontOfSize:13];
         btn.tag = i;
         [_right_back_imgview addSubview:btn];
         
         UIImageView *title_img = [[UIImageView alloc]initWithFrame:CGRectMake(7, (btn.height-13)/2+i*(57/2+1), 13, 13)];
-        title_img.backgroundColor = [UIColor redColor];
+
         [_right_back_imgview addSubview:title_img];
         
         UIView *line = [[UIView alloc]initWithFrame:CGRectMake(6, btn.bottom, 84-12, 0.5)];
@@ -155,10 +158,12 @@
         
         if (i==0) {
             [btn setTitle:@"添加好友" forState:0];
+            title_img.image = [UIImage imageNamed:@"首页添加好友icon"];
             
         }else{
             [btn setTitle:@"创建组群" forState:0];
-            
+            title_img.image = [UIImage imageNamed:@"首页创建群组icon"];
+
         }
         
         
@@ -191,7 +196,7 @@
         button.frame = CGRectMake(i*SCREENWIDTH/2, 0, SCREENWIDTH/2, 44);
         
         UIImageView *imageV = [[UIImageView alloc]init];
-        imageV.frame =CGRectMake((SCREENWIDTH/2-27)/2, 2, 27, 27);
+        imageV.frame =CGRectMake((SCREENWIDTH/2-19)/2, 5, 19, 19);
         [button addSubview:imageV];
         UILabel *labe = [[UILabel alloc]initWithFrame:CGRectMake(0, imageV.bottom-1, SCREENWIDTH/2, 44-imageV.bottom)];
         labe.text = title_A[i];
@@ -227,9 +232,9 @@
             NSLog(@"rednumbel.text=======%@",rednumbel.text);
  
         }
-        img1.image = [UIImage imageNamed:@"icontabbar_mainframeHL"];
+        img1.image = [UIImage imageNamed:@"会话 红色icon"];
         lab1.textColor = NavBackGroundColor;
-        img2.image = [UIImage imageNamed:@"联系人"];
+        img2.image = [UIImage imageNamed:@"通讯录 灰色icon"];
         lab2.textColor = [UIColor lightGrayColor];
 
         button.tag =i;
@@ -359,18 +364,18 @@
 //        self.navigationItem.rightBarButtonItem = nil;
         
         
-        img1.image = [UIImage imageNamed:@"icontabbar_mainframeHL"];
+        img1.image = [UIImage imageNamed:@"会话 红色icon"];
         lab1.textColor = NavBackGroundColor;
-        img2.image = [UIImage imageNamed:@"联系人"];
+        img2.image = [UIImage imageNamed:@"通讯录 灰色icon"];
         lab2.textColor = [UIColor lightGrayColor];
         
     }else if(sender.tag==1){
 //        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
         _right_back_imgview.hidden = YES;
 
-        img1.image = [UIImage imageNamed:@"消息"];
+        img1.image = [UIImage imageNamed:@"会话  灰色"];
         lab1.textColor = [UIColor lightGrayColor];
-        img2.image = [UIImage imageNamed:@"iconfont-icontongxunlu"];
+        img2.image = [UIImage imageNamed:@"通讯录 红色"];
         lab2.textColor = NavBackGroundColor;
         
     }

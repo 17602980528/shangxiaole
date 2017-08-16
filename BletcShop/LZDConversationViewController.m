@@ -257,10 +257,10 @@
             NSString *header_S = [[p.idstring componentsSeparatedByString:@"_"] firstObject];
             
             if ([header_S isEqualToString:@"u"]) {
-                [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,p.imgStr]] placeholderImage:[UIImage imageNamed:@"user"]];
+                [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,p.imgStr]] placeholderImage:[UIImage imageNamed:@"userHeader"]];
                 
             }else{
-                [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHOPIMAGE_ADDIMAGE,p.imgStr]] placeholderImage:[UIImage imageNamed:@"user"]];
+                [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHOPIMAGE_ADDIMAGE,p.imgStr]] placeholderImage:[UIImage imageNamed:@"userHeader"]];
 
                 
                 
@@ -295,7 +295,7 @@
             //
             //         }];
             
-            image.image=[UIImage imageNamed:@"group"];
+            image.image=[UIImage imageNamed:@"群组LD"];
             
         }
         

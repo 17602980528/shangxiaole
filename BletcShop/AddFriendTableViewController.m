@@ -128,7 +128,7 @@
         
         if ([header_S isEqualToString:@"m"]) {
 
-            [cell.imgV sd_setImageWithURL:[NSURL URLWithString:[[SHOPIMAGE_ADDIMAGE stringByAppendingString:self.friendList[indexPath.row][@"headimage"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]] placeholderImage:[UIImage imageNamed:@"user"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            [cell.imgV sd_setImageWithURL:[NSURL URLWithString:[[SHOPIMAGE_ADDIMAGE stringByAppendingString:self.friendList[indexPath.row][@"headimage"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]] placeholderImage:[UIImage imageNamed:@"userHeader"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 
                 NSLog(@"=%@==%@",cell.titlelab.text,[SHOPIMAGE_ADDIMAGE stringByAppendingString:self.friendList[indexPath.row][@"headimage"]]);
 
@@ -138,7 +138,7 @@
 //            [cell.imgV sd_setImageWithURL:[NSURL URLWithString:[SHOPIMAGE_ADDIMAGE stringByAppendingString:self.friendList[indexPath.row][2]]] placeholderImage:[UIImage imageNamed:@"user"]];
             
         }else{
-            [cell.imgV sd_setImageWithURL:[NSURL URLWithString:[[HEADIMAGE stringByAppendingString:self.friendList[indexPath.row][@"headimage"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]] placeholderImage:[UIImage imageNamed:@"user"]];
+            [cell.imgV sd_setImageWithURL:[NSURL URLWithString:[[HEADIMAGE stringByAppendingString:self.friendList[indexPath.row][@"headimage"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]] placeholderImage:[UIImage imageNamed:@"userHeader"]];
             NSLog(@"=%@==%@",cell.titlelab.text,[HEADIMAGE stringByAppendingString:self.friendList[indexPath.row][@"headimage"]]);
 
         }
