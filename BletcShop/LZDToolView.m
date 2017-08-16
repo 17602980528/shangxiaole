@@ -71,7 +71,7 @@
         
         // 4. 更多按钮
         LZDButton *moreBtn = [LZDButton creatLZDButton];
-        [moreBtn setImage:[UIImage imageNamed:@"TypeSelectorBtn_Black"] forState:UIControlStateNormal];
+        [moreBtn setImage:[UIImage imageNamed:@"聊天+icon"] forState:UIControlStateNormal];
         
         moreBtn.block = ^(LZDButton*btn){
             _moreBtnBlock();
@@ -146,6 +146,7 @@
     [super layoutSubviews];
     
     self.my_moreBtn.frame = CGRectMake(kWeChatPadding, kWeChatPadding/2, self.height - kWeChatPadding, self.height - kWeChatPadding);
+    self.my_moreBtn.contentEdgeInsets = UIEdgeInsetsMake(2.5, 2.5, 2.5, 2.5);
     
     self.my_emtionBtn.frame = CGRectMake(_my_moreBtn.right+kWeChatPadding, _my_moreBtn.top, _my_moreBtn.width, _my_moreBtn.width);
     
