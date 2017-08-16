@@ -27,6 +27,13 @@
     self.starRateView.currentScore=5.0;
     [self.appriseStars addSubview:self.starRateView];
     
+    self.cardImageView.layer.cornerRadius=10.0f;
+    self.cardImageView.clipsToBounds=YES;
+    self.cardImageView.layer.borderWidth = 0.5;
+    self.cardImageView.layer.borderColor = RGB(80,80,80).CGColor;
+    
+    self.lllable.frame=CGRectMake(0, 0, self.cardImageView.width, self.cardImageView.height-40);
+    [self.cardImageView addSubview:self.lllable];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

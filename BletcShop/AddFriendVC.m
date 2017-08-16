@@ -58,6 +58,7 @@
 //已发布
 - (IBAction)publishBtnClick:(UIButton *)sender {
     noneData.hidden=YES;
+    [noneData removeFromSuperview];
     _apriseOrPublish=1;
     
     [UIView animateWithDuration:0.2 animations:^{
@@ -207,7 +208,20 @@
         }else{
             cell2.discription.text = [NSString stringWithFormat:@"【分享】现有%@%@元%@%@一张(%g折卡),需要的朋友尽快下手,手续费仅(%@%%)",self.noEvaluateShopArray[indexPath.row][@"store"],self.noEvaluateShopArray[indexPath.row][@"card_remain"],self.noEvaluateShopArray[indexPath.row][@"card_level"],self.noEvaluateShopArray[indexPath.row][@"card_type"],[self.noEvaluateShopArray[indexPath.row][@"rule"] floatValue]*0.1,self.noEvaluateShopArray[indexPath.row][@"rate"]];
         }
-
+        cell2.lllable.backgroundColor=[UIColor colorWithHexString:self.noEvaluateShopArray[indexPath.row][@"card_temp_color"]];
+        
+        cell2.lllable.text = [NSString stringWithFormat:@"VIP%@",self.noEvaluateShopArray[indexPath.row][@"card_level"]];
+        
+        NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:cell2.lllable.text];
+        
+        [attr setAttributes:@{NSForegroundColorAttributeName:RGB(253,108,110),NSFontAttributeName:[UIFont boldSystemFontOfSize:25]} range:NSMakeRange(0, 3)];
+        
+        [attr setAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18]} range:NSMakeRange(3, cell2.lllable.text.length-3)];
+        
+        cell2.lllable.attributedText = attr;
+        
+        
+        
         return cell2;
     }
 }

@@ -21,6 +21,7 @@
 #import "CardBusinessTableViewCell.h"
 #import "AddFriendVC.h"
 #import "LZDChartViewController.h"
+#import "LandingController.h"
 @interface CardMarketViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SelectCityDelegate>
 
 {
@@ -363,31 +364,33 @@
 
 -(void)contactButtonClick:(UIButton *)sender{
     
-    
-    
-   
-    
-    CardMarketModel *M=self.data_A[sender.tag];
-    NSDictionary *dic=M.dic;
-//     [self saveInfo:dic[@"uuid"]];
-    
-    Person *p = [Person modalWith:dic[@"nickname"] imgStr:dic[@"headimage"]  idstring:dic[@"uuid"]];
-    
-    [Database savePerdon:p];
-    
-    
-    NSLog(@"dic--dic==%@",dic);
-    LZDChartViewController *chatCtr = [[LZDChartViewController alloc]init];
-    [chatCtr setHidesBottomBarWhenPushed:YES];
-    chatCtr.title=dic[@"nickname"];
-    chatCtr.username = dic[@"uuid"];
-
-    NSLog(@"chatCtr.username---%@",chatCtr.username);
-    
-   
-    chatCtr.chatType = EMChatTypeChat;
-    
-    [self.navigationController pushViewController:chatCtr animated:YES];
+    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    if (!appdelegate.IsLogin) {
+        LandingController *landVc = [[LandingController alloc]init];
+        [self.navigationController pushViewController:landVc animated:YES];
+    }else{
+        CardMarketModel *M=self.data_A[sender.tag];
+        NSDictionary *dic=M.dic;
+        //     [self saveInfo:dic[@"uuid"]];
+        
+        Person *p = [Person modalWith:dic[@"nickname"] imgStr:dic[@"headimage"]  idstring:dic[@"uuid"]];
+        
+        [Database savePerdon:p];
+        
+        
+        NSLog(@"dic--dic==%@",dic);
+        LZDChartViewController *chatCtr = [[LZDChartViewController alloc]init];
+        [chatCtr setHidesBottomBarWhenPushed:YES];
+        chatCtr.title=dic[@"nickname"];
+        chatCtr.username = dic[@"uuid"];
+        chatCtr.state=YES;
+        NSLog(@"chatCtr.username---%@",chatCtr.username);
+        
+        
+        chatCtr.chatType = EMChatTypeChat;
+        
+        [self.navigationController pushViewController:chatCtr animated:YES];
+    }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -580,10 +583,16 @@
 }
 //
 -(void)addFriendBtnClick:(UIButton *)sender{
-    AddFriendVC *vc=[[AddFriendVC alloc]init];
-    CardMarketModel *M=self.data_A[sender.tag];
-    vc.dic=M.dic;
-    [self.navigationController pushViewController:vc animated:YES];
+    AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    if (!appdelegate.IsLogin) {
+        LandingController *landVc = [[LandingController alloc]init];
+        [self.navigationController pushViewController:landVc animated:YES];
+    }else{
+        AddFriendVC *vc=[[AddFriendVC alloc]init];
+        CardMarketModel *M=self.data_A[sender.tag];
+        vc.dic=M.dic;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 

@@ -17,6 +17,6 @@
 
 //头像昵称用
 @property (nonatomic , strong) NSArray *userInfo;// 用户信息
-
+@property(nonatomic)BOOL state;
 
 @end

@@ -56,8 +56,9 @@
                                     <constraint firstAttribute="width" constant="70" id="CK4-gA-z8u"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon3.png" translatesAutoresizingMaskIntoConstraints="NO" id="tVE-42-hTa">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tVE-42-hTa">
                                 <rect key="frame" x="69" y="64" width="229" height="131"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="tVE-42-hTa" secondAttribute="height" multiplier="215:123" id="s0A-re-lIO"/>
                                 </constraints>
@@ -136,6 +137,13 @@
                                     <constraint firstItem="dJj-Zg-VLy" firstAttribute="leading" secondItem="KTG-fV-TPQ" secondAttribute="leading" id="y34-6K-YwI"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="vip会员卡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUc-Td-8Ea">
+                                <rect key="frame" x="70" y="65" width="75" height="20.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -175,10 +183,12 @@
             <connections>
                 <outlet property="appriseStars" destination="zDQ-YP-jr0" id="teW-ul-SGv"/>
                 <outlet property="bgView" destination="Eti-lz-Uwr" id="vgv-pa-4pE"/>
+                <outlet property="cardImageView" destination="tVE-42-hTa" id="pyp-OW-QWa"/>
                 <outlet property="cardRemain" destination="Waq-sg-Hzy" id="Zlm-rj-1lJ"/>
                 <outlet property="cardTrade" destination="nk9-Om-Vjz" id="u0g-dc-ZHR"/>
                 <outlet property="discription" destination="khf-OH-D09" id="95A-hc-UKM"/>
                 <outlet property="goShopBtn" destination="dJj-Zg-VLy" id="2oT-au-mPu"/>
+                <outlet property="lllable" destination="AUc-Td-8Ea" id="uVu-Q1-pfd"/>
                 <outlet property="publishDate" destination="RgU-Og-0k6" id="xX6-Ys-GNs"/>
                 <outlet property="shopName" destination="j63-DV-L4m" id="4Xx-DG-lnC"/>
                 <outlet property="shopNameBgView" destination="KTG-fV-TPQ" id="71e-Ac-ZkB"/>
@@ -189,7 +199,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon3.png" width="227" height="152"/>
         <image name="youjiantou" width="7" height="13"/>
         <image name="加好友——评价——店铺icon.png" width="30" height="30"/>
         <image name="头像.png" width="178" height="178"/>

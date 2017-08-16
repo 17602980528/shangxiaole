@@ -127,7 +127,9 @@
 //    rightBtn.titleLabel.font = [UIFont boldSystemFontOfSize:30];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];;
-    
+    if (self.state) {
+        self.navigationItem.rightBarButtonItem=nil;
+    }
     __weak typeof(self) weakSelf = self;
     rightBtn.block = ^(LZDButton *btn){
         if (weakSelf.chatType==EMChatTypeChat) {

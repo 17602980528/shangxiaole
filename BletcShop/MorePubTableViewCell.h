@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *publishDate;
 @property (weak, nonatomic) IBOutlet UILabel *shopName;
 @property (weak, nonatomic) IBOutlet UIButton *goShopBtn;
-
+@property (weak, nonatomic) IBOutlet UIImageView *cardImageView;
+@property (weak, nonatomic) IBOutlet UILabel *lllable;
 @end
