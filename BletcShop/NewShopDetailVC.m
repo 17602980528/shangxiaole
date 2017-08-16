@@ -1620,11 +1620,9 @@
     
     
     
-    UIImageView *addressimg = [[UIImageView alloc]initWithFrame:CGRectMake(13, lab1.bottom+10, 13, 16)];
-    addressimg.image = [UIImage imageNamed:@"location"];
-    [backView addSubview:addressimg];
+   
     
-    UILabel *addressLabel = [[UILabel alloc]initWithFrame:CGRectMake(addressimg.right+4, addressimg.top+6, SCREENWIDTH-(addressimg.right+4+20), 34)];
+    UILabel *addressLabel = [[UILabel alloc]initWithFrame:CGRectMake(28+4, lab1.bottom+13, SCREENWIDTH-(28+4+20), 34)];
     addressLabel.font = [UIFont systemFontOfSize:11];
     addressLabel.text = [wholeInfoDic objectForKey:@"address"];
     addressLabel.textColor =RGB(98,98,98);
@@ -1636,6 +1634,7 @@
     addressLabel.numberOfLines=0;
     [backView addSubview:addressLabel];
 
+    
     
 //    UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoMapView)];
 //    [addressLabel addGestureRecognizer:tapGesture];
@@ -1651,7 +1650,13 @@
 
     addressLabel.frame = address_f;
     
+    UIImageView *addressimg = [[UIImageView alloc]init];
+    addressimg.bounds = CGRectMake(0, 0, 15, 15);
+    addressimg.center = CGPointMake(13+7.5, addressLabel.center.y);
+    addressimg.image = [UIImage imageNamed:@"红色定位icon"];
+    [backView addSubview:addressimg];
     
+
     UIButton *gotomapBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     gotomapBtn.frame = CGRectMake(0, addressLabel.top, SCREENWIDTH, addressLabel.bottom+14- addressLabel.top);
     [gotomapBtn addTarget:self action:@selector(gotoMapView) forControlEvents:UIControlEventTouchUpInside];

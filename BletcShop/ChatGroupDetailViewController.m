@@ -142,8 +142,8 @@
         _scrollView.tag = 0;
         
         _addButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, kContactSize - 10, kContactSize - 10)];
-        [_addButton setImage:[UIImage imageNamed:@"group_participant_add"] forState:UIControlStateNormal];
-        [_addButton setImage:[UIImage imageNamed:@"group_participant_addHL"] forState:UIControlStateHighlighted];
+        [_addButton setImage:[UIImage imageNamed:@"聊天+icon"] forState:UIControlStateNormal];
+        [_addButton setImage:[UIImage imageNamed:@"聊天+icon"] forState:UIControlStateHighlighted];
         [_addButton addTarget:self action:@selector(addContact:) forControlEvents:UIControlEventTouchUpInside];
         
         _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(deleteContactBegin:)];
@@ -603,7 +603,7 @@
                         return;
                     }
                     _selectedContact = contactView;
-                    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"cancel") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"delete", @"deleting member..."), NSLocalizedString(@"friend.block", @"add to black list"), nil];
+                    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"cancel") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"delete", @"deleting member..."),  nil];
                     [sheet showInView:self.view];
                 }
             }
@@ -732,30 +732,30 @@
         //delete
         _selectedContact.deleteContact(index);
     }
-    else if (buttonIndex == 1)
-    {
-        //add to black list
-        [self showHudInView:self.view hint:NSLocalizedString(@"group.ban.adding", @"Adding to black list..")];
-        NSArray *occupants = [NSArray arrayWithObject:[self.dataSource objectAtIndex:_selectedContact.index]];
-        __weak ChatGroupDetailViewController *weakSelf = self;
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(){
-            EMError *error = nil;
-            EMGroup *group = [[EMClient sharedClient].groupManager blockOccupants:occupants
-                                                                       fromGroup:weakSelf.chatGroup.groupId
-                                                                           error:&error];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf hideHud];
-                if (!error) {
-                    weakSelf.chatGroup = group;
-                    [weakSelf.dataSource removeObjectAtIndex:index];
-                    [weakSelf refreshScrollView];
-                }
-                else{
-                    [weakSelf showHint:error.errorDescription];
-                }
-            });
-        });
-    }
+//    else if (buttonIndex == 1)
+//    {
+//        //add to black list
+//        [self showHudInView:self.view hint:NSLocalizedString(@"group.ban.adding", @"Adding to black list..")];
+//        NSArray *occupants = [NSArray arrayWithObject:[self.dataSource objectAtIndex:_selectedContact.index]];
+//        __weak ChatGroupDetailViewController *weakSelf = self;
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(){
+//            EMError *error = nil;
+//            EMGroup *group = [[EMClient sharedClient].groupManager blockOccupants:occupants
+//                                                                       fromGroup:weakSelf.chatGroup.groupId
+//                                                                           error:&error];
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [weakSelf hideHud];
+//                if (!error) {
+//                    weakSelf.chatGroup = group;
+//                    [weakSelf.dataSource removeObjectAtIndex:index];
+//                    [weakSelf refreshScrollView];
+//                }
+//                else{
+//                    [weakSelf showHint:error.errorDescription];
+//                }
+//            });
+//        });
+//    }
     _selectedContact = nil;
 }
 

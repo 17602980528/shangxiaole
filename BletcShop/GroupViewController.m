@@ -158,7 +158,7 @@
     
             if (self.dataSource.count>0) {
                 EMGroup *group = [self.dataSource objectAtIndex:indexPath.row];
-                NSString *imageName = @"group";
+                NSString *imageName = @"群组LD";
                 //        NSString *imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
                 cell.headerImg.image = [UIImage imageNamed:imageName];
                 if (group.subject && group.subject.length > 0) {

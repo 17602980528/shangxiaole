@@ -130,7 +130,7 @@
         }
         newAnnotationView.pinColor = BMKPinAnnotationColorPurple;
         newAnnotationView.animatesDrop = YES; // 设置该标注点动画显示
-        newAnnotationView.image = [UIImage imageNamed:@"location"];
+        newAnnotationView.image = [UIImage imageNamed:@"红色定位icon"];
         return newAnnotationView;
     }
     // 这里是说定位自己本身的那个大头针模型 返回nil 自动就变成蓝色点点

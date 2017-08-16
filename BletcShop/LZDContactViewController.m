@@ -303,7 +303,7 @@
 
                 NSLog(@"cell===好友请求===%@===%ld",self.file_dic, self.file_dic.count);
 
-                cell.headerImg.image = [UIImage imageNamed:@"newFriends"];
+                cell.headerImg.image = [UIImage imageNamed:@"通讯录 申请与通知"];
                 
                 rednumbel=[[UILabel alloc]initWithFrame:CGRectMake(kWeChatScreenWidth-22-19, 0, 22, 22)];
                 rednumbel.backgroundColor=RGB(243,73,78);
@@ -324,7 +324,7 @@
                 rednumbel.frame = CGRectMake(kWeChatScreenWidth-width_red-10, (55-22)/2, MAX(width_red, 22) , 22);
                 
             }else if (indexPath.row==1){
-                cell.headerImg.image = [UIImage imageNamed:@"group"];
+                cell.headerImg.image = [UIImage imageNamed:@"群组LD"];
 
             }
             NSString *key =[_arrSystem objectAtIndex:indexPath.row];
@@ -347,10 +347,10 @@
             NSLog(@"p.imgStr--%@",p.imgStr);
             
             if ([header_S isEqualToString:@"u"]) {
-                [cell.headerImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,p.imgStr]] placeholderImage:[UIImage imageNamed:@"user"]];
+                [cell.headerImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HEADIMAGE,p.imgStr]] placeholderImage:[UIImage imageNamed:@"userHeader"]];
 
             }else{
-                [cell.headerImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHOPIMAGE_ADDIMAGE,p.imgStr]] placeholderImage:[UIImage imageNamed:@"user"]];
+                [cell.headerImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHOPIMAGE_ADDIMAGE,p.imgStr]] placeholderImage:[UIImage imageNamed:@"userHeader"]];
 
             }
             cell.headerImg.layer.cornerRadius = cell.headerImg.width/2;

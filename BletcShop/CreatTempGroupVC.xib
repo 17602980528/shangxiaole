@@ -36,6 +36,9 @@
                     <state key="normal" title="确定">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="surebtn:" destination="-1" eventType="touchUpInside" id="LPp-4P-wDT"/>
+                    </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2Sa-CR-M5z">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="616"/>
