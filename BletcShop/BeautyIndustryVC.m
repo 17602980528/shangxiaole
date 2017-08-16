@@ -29,7 +29,7 @@
 
     NSDictionary *currentCityDic;
     UIScrollView *middle_scrollView;
-    
+    UITapGestureRecognizer *_tap;
     
     NSString *city;
     NSString *distrt;;
@@ -164,6 +164,7 @@
 }
 
 
+
 -(void)creatScreenView{
     
     _back_scressn_view = [[UIView alloc]initWithFrame:CGRectMake(SCREENWIDTH, 0, SCREENWIDTH, SCREENHEIGHT)];
@@ -177,10 +178,8 @@
     topV.backgroundColor = [UIColor whiteColor];
     [_back_scressn_view addSubview:topV];
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideScreenView)];
-
-    [topV addGestureRecognizer:tap];
-
+    _tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideScreenView)];
+    [_back_scressn_view addGestureRecognizer:_tap];
     
     UILabel *title_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 33, topV.width, 17)];
     title_lab.text = @"筛选条件";
@@ -206,7 +205,12 @@
         
         if (!show) {
             [self hideScreenView];
+        }else{
+            [_back_scressn_view removeGestureRecognizer:_tap];
+
         }
+        
+        
     };
     dropDownMenu.backgroundColor = [UIColor whiteColor];
     dropDownMenu.delegate = self;
@@ -1002,7 +1006,9 @@
     
 }
 -(void)hideScreenView{
-   
+
+    [_back_scressn_view addGestureRecognizer:_tap];
+
     [UIView animateWithDuration:0.3 animations:^{
         CGRect fram = _back_scressn_view.frame;
         fram.origin.x = SCREENWIDTH;
