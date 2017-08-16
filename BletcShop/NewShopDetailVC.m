@@ -1653,7 +1653,7 @@
     UIImageView *addressimg = [[UIImageView alloc]init];
     addressimg.bounds = CGRectMake(0, 0, 15, 15);
     addressimg.center = CGPointMake(13+7.5, addressLabel.center.y);
-    addressimg.image = [UIImage imageNamed:@"红色定位icon"];
+    addressimg.image = [UIImage imageNamed:@"定位icon"];
     [backView addSubview:addressimg];
     
 
