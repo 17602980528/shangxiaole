@@ -77,10 +77,21 @@
     _apriseOrPublish=0;
     NSLog(@"self.dic====%@",self.dic);
     self.navigationController.navigationBar.hidden=YES;
-    self.addFrdBtn.layer.borderWidth=1.0f;
-    self.addFrdBtn.layer.borderColor=[RGB(237, 72, 77)CGColor];
-    self.addFrdBtn.layer.cornerRadius=6.0f;
-    self.addFrdBtn.clipsToBounds=YES;
+//    self.addFrdBtn.layer.borderWidth=1.0f;
+//    self.addFrdBtn.layer.borderColor=[RGB(237, 72, 77)CGColor];
+//    self.addFrdBtn.layer.cornerRadius=6.0f;
+//    self.addFrdBtn.clipsToBounds=YES;
+
+    [[EMClient sharedClient].contactManager getContactsFromServerWithCompletion:^(NSArray *aList, EMError *aError) {
+        
+        AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+
+        
+        if ([aList containsObject:_dic[@"uuid"]] ||[appdelegate.userInfoDic[@"uuid"] isEqualToString:_dic[@"uuid"]]) {
+            _addFrdBtn.hidden = YES;
+        }
+        
+    }];
     
     _tableView.tableHeaderView=self.headerView;
     _tableView.estimatedRowHeight=500;

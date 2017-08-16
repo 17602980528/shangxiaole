@@ -34,8 +34,8 @@
     
     self.daohangBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.daohangBtn.frame = CGRectMake(SCREENWIDTH-SCREENWIDTH*0.15-20, SCREENHEIGHT-SCREENWIDTH*0.15-30-64, SCREENWIDTH*0.15, SCREENWIDTH*0.15);
-    [self.daohangBtn setBackgroundImage:[UIImage imageNamed:@"danghan"] forState:UIControlStateNormal];
-    [self.daohangBtn setBackgroundImage:[UIImage imageNamed:@"danghan"] forState:UIControlStateHighlighted];
+    [self.daohangBtn setBackgroundImage:[UIImage imageNamed:@"飞机icon"] forState:UIControlStateNormal];
+    [self.daohangBtn setBackgroundImage:[UIImage imageNamed:@"飞机icon"] forState:UIControlStateHighlighted];
 
     
     
