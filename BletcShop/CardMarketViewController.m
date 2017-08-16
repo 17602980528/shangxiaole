@@ -336,10 +336,46 @@
     return cell;
 }
 
+//-(void)saveInfo:(NSString*)auserName{
+//    NSString *url = [NSString stringWithFormat:@"%@Extra/IM/get",BASEURL];
+//    
+//    NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
+//    
+//    [paramer setObject:auserName forKey:@"account"];
+//    NSLog(@"-saveInfo--%@",paramer);
+//    
+//    [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+//        
+//        NSArray *arr = (NSArray *)result;
+//        if (arr.count!=0) {
+//            Person *p = [Person modalWith:arr[0][@"nickname"] imgStr:arr[0][@"headimage"]  idstring:arr[0][@"account"]];
+//            
+//            [Database savePerdon:p];
+//        }
+//        
+//        
+//    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//    }];
+//    
+//    
+//}
+
 -(void)contactButtonClick:(UIButton *)sender{
+    
+    
+    
+   
     
     CardMarketModel *M=self.data_A[sender.tag];
     NSDictionary *dic=M.dic;
+//     [self saveInfo:dic[@"uuid"]];
+    
+    Person *p = [Person modalWith:dic[@"nickname"] imgStr:dic[@"headimage"]  idstring:dic[@"uuid"]];
+    
+    [Database savePerdon:p];
+    
+    
     NSLog(@"dic--dic==%@",dic);
     LZDChartViewController *chatCtr = [[LZDChartViewController alloc]init];
     [chatCtr setHidesBottomBarWhenPushed:YES];
