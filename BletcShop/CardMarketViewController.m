@@ -20,6 +20,7 @@
 #import "BaseNavigationController.h"
 #import "CardBusinessTableViewCell.h"
 #import "AddFriendVC.h"
+#import "LZDChartViewController.h"
 @interface CardMarketViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SelectCityDelegate>
 
 {
@@ -327,12 +328,31 @@
         cell.model = self.data_A[indexPath.row];
         
     }
+     cell.addFriendBtn.tag=indexPath.row;
     [cell.addFriendBtn addTarget:self action:@selector(addFriendBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    cell.addFriendBtn.tag=indexPath.row;
+    
+    cell.contactButton.tag=indexPath.row;
+     [cell.contactButton addTarget:self action:@selector(contactButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
+-(void)contactButtonClick:(UIButton *)sender{
+    
+    CardMarketModel *M=self.data_A[sender.tag];
+    NSDictionary *dic=M.dic;
+    NSLog(@"dic--dic==%@",dic);
+    LZDChartViewController *chatCtr = [[LZDChartViewController alloc]init];
+    [chatCtr setHidesBottomBarWhenPushed:YES];
+    chatCtr.title=dic[@"nickname"];
+    chatCtr.username = dic[@"uuid"];
 
+    NSLog(@"chatCtr.username---%@",chatCtr.username);
+    
+   
+    chatCtr.chatType = EMChatTypeChat;
+    
+    [self.navigationController pushViewController:chatCtr animated:YES];
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [_refreshFooter endRefreshing];
