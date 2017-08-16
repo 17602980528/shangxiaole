@@ -538,6 +538,13 @@
                         appdelegate.userInfoDic = [NSMutableDictionary dictionaryWithDictionary:user_dic];
                         
                         
+                        [[EMClient sharedClient] updatePushNotifiationDisplayName:[NSString getTheNoNullStr:appdelegate.userInfoDic[@"nickname"] andRepalceStr:@"陌生人"] completion:^(NSString *aDisplayName, EMError *aError) {
+                            
+                            NSLog(@"-aDisplayName--%@===aError=%@",aDisplayName,aError);
+                            
+                        }];
+
+                        
                         appdelegate.IsLogin = YES;
                         //                        [appdelegate socketConnectHost];
                         
@@ -1001,7 +1008,12 @@
                          //                        [appdelegate socketConnectHost];
                          
                          
-                       
+                         [[EMClient sharedClient] updatePushNotifiationDisplayName:[NSString getTheNoNullStr:appdelegate.userInfoDic[@"nickname"] andRepalceStr:@"陌生人"] completion:^(NSString *aDisplayName, EMError *aError) {
+                             
+                             NSLog(@"-aDisplayName--%@===aError=%@",aDisplayName,aError);
+                             
+                         }];
+
                          
                      });
                      
