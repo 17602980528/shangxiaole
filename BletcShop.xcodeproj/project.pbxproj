@@ -86,6 +86,11 @@
 		1836B83D1E559D5600B587A6 /* Active_top2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1836B83C1E559D5600B587A6 /* Active_top2.jpg */; };
 		1836B83F1E559D5B00B587A6 /* Active_top3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1836B83E1E559D5B00B587A6 /* Active_top3.jpg */; };
 		1836B8411E559DD700B587A6 /* Active_top4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1836B8401E559DD700B587A6 /* Active_top4.jpg */; };
+		183B17901F43F2D2001377B6 /* oil7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 183B178F1F43F2D2001377B6 /* oil7.jpg */; };
+		183B17951F43F2E6001377B6 /* oil11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 183B17911F43F2E6001377B6 /* oil11.jpg */; };
+		183B17961F43F2E6001377B6 /* oil10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 183B17921F43F2E6001377B6 /* oil10.jpg */; };
+		183B17971F43F2E6001377B6 /* oil9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 183B17931F43F2E6001377B6 /* oil9.jpg */; };
+		183B17981F43F2E6001377B6 /* oil8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 183B17941F43F2E6001377B6 /* oil8.jpg */; };
 		1849A0F31F383DCB00483CE8 /* OilHomeListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849A0F11F383DCB00483CE8 /* OilHomeListVC.m */; };
 		1849A0F41F383DCB00483CE8 /* OilHomeListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1849A0F21F383DCB00483CE8 /* OilHomeListVC.xib */; };
 		1849A0F81F383E5A00483CE8 /* OilListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849A0F61F383E5A00483CE8 /* OilListTableViewCell.m */; };
@@ -1264,6 +1269,11 @@
 		1836B83C1E559D5600B587A6 /* Active_top2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Active_top2.jpg; sourceTree = "<group>"; };
 		1836B83E1E559D5B00B587A6 /* Active_top3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Active_top3.jpg; sourceTree = "<group>"; };
 		1836B8401E559DD700B587A6 /* Active_top4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Active_top4.jpg; sourceTree = "<group>"; };
+		183B178F1F43F2D2001377B6 /* oil7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil7.jpg; sourceTree = "<group>"; };
+		183B17911F43F2E6001377B6 /* oil11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil11.jpg; sourceTree = "<group>"; };
+		183B17921F43F2E6001377B6 /* oil10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil10.jpg; sourceTree = "<group>"; };
+		183B17931F43F2E6001377B6 /* oil9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil9.jpg; sourceTree = "<group>"; };
+		183B17941F43F2E6001377B6 /* oil8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil8.jpg; sourceTree = "<group>"; };
 		1849A0F01F383DCB00483CE8 /* OilHomeListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilHomeListVC.h; sourceTree = "<group>"; };
 		1849A0F11F383DCB00483CE8 /* OilHomeListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OilHomeListVC.m; sourceTree = "<group>"; };
 		1849A0F21F383DCB00483CE8 /* OilHomeListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OilHomeListVC.xib; sourceTree = "<group>"; };
@@ -5121,6 +5131,11 @@
 				189899F01F3AC0E8004D1543 /* oil4.jpg */,
 				189899F11F3AC0E8004D1543 /* oil5.jpg */,
 				189899F21F3AC0E8004D1543 /* oil6.jpg */,
+				183B178F1F43F2D2001377B6 /* oil7.jpg */,
+				183B17941F43F2E6001377B6 /* oil8.jpg */,
+				183B17931F43F2E6001377B6 /* oil9.jpg */,
+				183B17921F43F2E6001377B6 /* oil10.jpg */,
+				183B17911F43F2E6001377B6 /* oil11.jpg */,
 				D972274F1F3985CA009D0E2A /* 购买加油卡cell */,
 				D972274A1F3982F0009D0E2A /* BuyOilCardVC.h */,
 				D972274B1F3982F0009D0E2A /* BuyOilCardVC.m */,
@@ -6530,6 +6545,7 @@
 				D9637DFC1D59BAF900C19D0B /* register_pp.png in Resources */,
 				D9AB25341D88E4ED000E9288 /* VoiceSearchFeedback006@2x.png in Resources */,
 				D95BAE5C1D542FD500ED0CDC /* award_18.png in Resources */,
+				183B17961F43F2E6001377B6 /* oil10.jpg in Resources */,
 				18F50E061D1E365800811CD1 /* -2-02.jpg in Resources */,
 				D9E28FC71D2F75A9004514DF /* icon3.png in Resources */,
 				D93C0D581D251E7B001A1AC1 /* 小标-05.png in Resources */,
@@ -6774,6 +6790,7 @@
 				1849A0FE1F38450000483CE8 /* OilMapVC.xib in Resources */,
 				1852FADB1D559319009CF1B2 /* award_ac.png in Resources */,
 				D9D50D911D879CA800A5E469 /* chatBar_faceSelected@2x.png in Resources */,
+				183B17901F43F2D2001377B6 /* oil7.jpg in Resources */,
 				D924837F1D1A75CA00AE252C /* unionpay_img.png in Resources */,
 				D97F60051D62C011000EE794 /* pick_bg@2x.png in Resources */,
 				1CF6E4671C619D0F0001159C /* 6-01.png in Resources */,
@@ -6919,6 +6936,7 @@
 				1849A0F41F383DCB00483CE8 /* OilHomeListVC.xib in Resources */,
 				18EFA0C11F205D3700360C8A /* 已过期——印章.png in Resources */,
 				1C9E82571C60AD390007BF02 /* 0-01.png in Resources */,
+				183B17951F43F2E6001377B6 /* oil11.jpg in Resources */,
 				18FA58DE1EEA92C900F458F2 /* 姓名she@3x.png in Resources */,
 				1CDA9E021C59FAB300DFE518 /* buyer.png in Resources */,
 				18BCCDCD1D3C9EE8005E145D /* user_ed1.png in Resources */,
@@ -6933,6 +6951,7 @@
 				D981FD101E2616080026E4B2 /* README.txt in Resources */,
 				D97227591F398EA7009D0E2A /* GasStaionContentCell.xib in Resources */,
 				1CDA9DF61C59C0AA00DFE518 /* 首页60-01@2x.png in Resources */,
+				183B17971F43F2E6001377B6 /* oil9.jpg in Resources */,
 				D92483801D1A75CA00AE252C /* alipay_img.png in Resources */,
 				D9D50DB51D87DE0E00A5E469 /* Emoticons.bundle in Resources */,
 				18D7C48B1D5B12BA00AEF545 /* mohu-07.png in Resources */,
@@ -7001,6 +7020,7 @@
 				D95BAE561D542FD500ED0CDC /* award_12.png in Resources */,
 				184E84771F3DB28E00D8140F /* GroupMemberTableViewCell.xib in Resources */,
 				D9824F4B1F13480500301076 /* PictureAndTextVC.xib in Resources */,
+				183B17981F43F2E6001377B6 /* oil8.jpg in Resources */,
 				D98FDF841E601C280057C206 /* AD_ad_is@2x.png in Resources */,
 				D9AA10C81F03B43400F7EDE8 /* NewBuyOptionsCell.xib in Resources */,
 				D9699E511D348EF7001DEC06 /* 小标-21.png in Resources */,
