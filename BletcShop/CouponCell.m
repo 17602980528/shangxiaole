@@ -108,15 +108,16 @@
     rightCircle.clipsToBounds=YES;
     [view addSubview:rightCircle];
     
-    UILabel *detail=[[UILabel alloc]initWithFrame:CGRectMake(18, line.bottom+10, SCREENWIDTH-18, 12)];
+    UILabel *detail=[[UILabel alloc]initWithFrame:CGRectMake(18, line.bottom+10, 30, 12)];
     detail.font=[UIFont systemFontOfSize:12];
     detail.textColor=RGB(132, 132, 132);
     detail.text=@"详情";
     [view addSubview:detail];
     self.detail = detail;
+    
     UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    button.frame=CGRectMake(0, 100-44+10, 80, 40);
+    button.frame=CGRectMake(0, 100-44+10, 100, 40);
     [view addSubview:button];
     
     self.turnButton=button;
