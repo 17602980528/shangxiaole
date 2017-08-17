@@ -1151,7 +1151,6 @@
         
         [self.unfold_dic setValue:ss forKey:row];
         
-        NSLog(@"-----%@",self.unfold_dic);
 
         [self.shopTableView reloadData];
     
@@ -1159,7 +1158,6 @@
     };
     
     card_cell.isUnfold =[self.unfold_dic[row] boolValue];
-    NSLog(@"收缩===%@",self.unfold_dic);
 
     if (card_cell.isUnfold) {
         [card_cell.shouSuoBtn setImage: [UIImage imageNamed:@"下A"] forState:0];
