@@ -122,7 +122,8 @@
         cell.distance.text = [[NSString alloc]initWithFormat:@"%.1fkm",meter/1000.0];
     }else
         cell.distance.text = [[NSString alloc]initWithFormat:@"%dm",meter];
-    
+    cell.item1.hidden=YES;
+    cell.item2.hidden=YES;
     return cell;
 
 }
