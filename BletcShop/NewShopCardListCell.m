@@ -21,12 +21,13 @@
 }
 -(void)initSubviews{
    
-    UIImageView *back_view = [[UIImageView alloc]initWithFrame:CGRectMake(13, 0, SCREENWIDTH-26, 90)];
+    UIImageView *back_view = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 90)];
+    back_view.userInteractionEnabled = YES;
     [self addSubview:back_view];
     self.back_view = back_view;
     
     
-    UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(6, 8, 131, 74)];
+    UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(13, 8, 131, 74)];
     imageView.layer.cornerRadius = 6;
     imageView.layer.masksToBounds = YES;
     imageView.layer.borderWidth = 1;
@@ -45,21 +46,28 @@
     [imageView addSubview:vipLab];
     self.vipLab = vipLab;
     
+    
+    UILabel *typeLab = [[UILabel alloc]initWithFrame:CGRectMake(imageView.right+8, 17,45, 14)];
+    typeLab.textColor = RGB(51,51,51);
+    typeLab.font = [UIFont systemFontOfSize:14];
+    [back_view addSubview:typeLab];
+    self.typeLable = typeLab;
+    
     UILabel *content_lab = [[UILabel alloc]init];
     self.content_lab = content_lab;
 
-    content_lab.font = [UIFont systemFontOfSize:13];
+    content_lab.font = [UIFont systemFontOfSize:12];
     content_lab.numberOfLines =1;
     content_lab.textColor = RGB(51,51,51);
     
-    content_lab.frame = CGRectMake(imageView.right+8, 17, back_view.width-(imageView.right+8)-87, 14);
+    content_lab.frame = CGRectMake(imageView.right+8, 8+(74-12)/2, back_view.width-(imageView.right+8)-45, 12);
     [back_view addSubview:content_lab];
     
     
-    UILabel *cardPriceLable=[[UILabel alloc]initWithFrame:CGRectMake(back_view.width-87, content_lab.top, 50, 14)];
+    UILabel *cardPriceLable=[[UILabel alloc]initWithFrame:CGRectMake(typeLab.right+10, typeLab.top, 150, 14)];
     cardPriceLable.textAlignment=NSTextAlignmentLeft;
     cardPriceLable.font=[UIFont systemFontOfSize:14.0f];
-    cardPriceLable.textColor=RGB(253,108,110);
+    cardPriceLable.textColor=RGB(243,73,78);
     [back_view addSubview:cardPriceLable];
     
     self.cardPriceLable = cardPriceLable;
@@ -73,7 +81,7 @@
     
     self.shulabView =shulabView;
     
-    UILabel *discountLable=[[UILabel alloc]initWithFrame:CGRectMake(content_lab.left, imageView.bottom-11-14, 35, 14)];
+    UILabel *discountLable=[[UILabel alloc]initWithFrame:CGRectMake(content_lab.left, content_lab.bottom+10, 35, 14)];
     discountLable.font=[UIFont systemFontOfSize:12.0f];
     discountLable.textColor=[UIColor whiteColor];
     discountLable.backgroundColor = RGB(253,108,110);
@@ -139,6 +147,26 @@
 
     self.old_pricelab = old_pricelab;
 
+    
+    LZDButton *btn = [LZDButton creatLZDButton];
+    btn.frame = CGRectMake(0, imageView.bottom, 100, 30);
+    [btn setTitle:@"详情" forState:0];
+    [btn setImage: [UIImage imageNamed:@"上A"] forState:0];
+    btn.titleLabel.font =[UIFont systemFontOfSize:11];
+    [btn setTitleColor:RGB(119,119,119) forState:0] ;
+    btn.imageEdgeInsets = UIEdgeInsetsMake(10, 50, 10, 40);
+    btn.titleEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 20);
+
+    [back_view addSubview:btn];
+    
+    self.shouSuoBtn = btn;
+    
+    UILabel *detail_content_lab = [[UILabel alloc]initWithFrame:CGRectMake(13, btn.bottom, SCREENWIDTH-26, 15)];
+    detail_content_lab.textColor = RGB(119,119,119);
+    detail_content_lab.font = [UIFont systemFontOfSize:11];
+    detail_content_lab.numberOfLines = 0;
+    [back_view addSubview:detail_content_lab];
+    self.detail_content_lab = detail_content_lab;
 
 }
 
