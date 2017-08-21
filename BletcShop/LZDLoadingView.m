@@ -7,7 +7,7 @@
 //
 
 #import "LZDLoadingView.h"
-
+#import "UIImage+GIF.h"
 @interface LZDLoadingView ()
 {
     UIImageView *_trasfrom_img;
@@ -55,22 +55,25 @@
     
     
     UIImageView *trasfrom_img = [[UIImageView alloc]init];
-    trasfrom_img.image = [UIImage imageNamed:@"ddd"];
+//    trasfrom_img.image = [UIImage imageNamed:@"ddd"];
+
     [self addSubview:trasfrom_img];
     trasfrom_img.bounds = CGRectMake(0, 0, 21*2, 21*2);
     trasfrom_img.center = self.center;
 
+    trasfrom_img.image = [UIImage sd_animatedGIFNamed:@"aep_dx"];
+    
     _trasfrom_img= trasfrom_img;
     
-    UIImageView *trasfrom_img1 = [[UIImageView alloc]init];
-    trasfrom_img1.image = [UIImage imageNamed:@"刷新——logo"];
-    [self addSubview:trasfrom_img1];
-    trasfrom_img1.bounds = CGRectMake(0, 0, 9*2, 13*2);
-    trasfrom_img1.center = self.center;
-
-    _trasfrom_img1= trasfrom_img1;
-
-    [self startAnimation];
+//    UIImageView *trasfrom_img1 = [[UIImageView alloc]init];
+//    trasfrom_img1.image = [UIImage imageNamed:@"刷新——logo"];
+//    [self addSubview:trasfrom_img1];
+//    trasfrom_img1.bounds = CGRectMake(0, 0, 9*2, 13*2);
+//    trasfrom_img1.center = self.center;
+//
+//    _trasfrom_img1= trasfrom_img1;
+//
+//    [self startAnimation];
     
     UILabel *lab = [[UILabel alloc]init];
     lab.center = CGPointMake(self.center.x+3, trasfrom_img.bottom+15);

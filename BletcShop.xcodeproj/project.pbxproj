@@ -479,6 +479,7 @@
 		D900717C1F4AA712003BD522 /* 欢迎页3.png in Resources */ = {isa = PBXBuildFile; fileRef = D90071791F4AA712003BD522 /* 欢迎页3.png */; };
 		D900717D1F4AA712003BD522 /* 欢迎页1.png in Resources */ = {isa = PBXBuildFile; fileRef = D900717A1F4AA712003BD522 /* 欢迎页1.png */; };
 		D900717E1F4AA712003BD522 /* 欢迎页2.png in Resources */ = {isa = PBXBuildFile; fileRef = D900717B1F4AA712003BD522 /* 欢迎页2.png */; };
+		D90071801F4AC808003BD522 /* aep_dx.gif in Resources */ = {isa = PBXBuildFile; fileRef = D900717F1F4AC808003BD522 /* aep_dx.gif */; };
 		D9026B1B1F0B737F005CA5F4 /* CouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9026B1A1F0B737F005CA5F4 /* CouponCell.m */; };
 		D9026B1E1F0B7428005CA5F4 /* XieYiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9026B1D1F0B7428005CA5F4 /* XieYiViewController.m */; };
 		D9026B221F0B758F005CA5F4 /* CardDetailShowProdictCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9026B201F0B758F005CA5F4 /* CardDetailShowProdictCell.m */; };
@@ -1821,6 +1822,7 @@
 		D90071791F4AA712003BD522 /* 欢迎页3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "欢迎页3.png"; sourceTree = "<group>"; };
 		D900717A1F4AA712003BD522 /* 欢迎页1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "欢迎页1.png"; sourceTree = "<group>"; };
 		D900717B1F4AA712003BD522 /* 欢迎页2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "欢迎页2.png"; sourceTree = "<group>"; };
+		D900717F1F4AC808003BD522 /* aep_dx.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = aep_dx.gif; sourceTree = "<group>"; };
 		D9026B191F0B737F005CA5F4 /* CouponCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponCell.h; sourceTree = "<group>"; };
 		D9026B1A1F0B737F005CA5F4 /* CouponCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponCell.m; sourceTree = "<group>"; };
 		D9026B1C1F0B7428005CA5F4 /* XieYiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XieYiViewController.h; sourceTree = "<group>"; };
@@ -4345,6 +4347,7 @@
 		1CF283721C58C48900F3952A /* image */ = {
 			isa = PBXGroup;
 			children = (
+				D900717F1F4AC808003BD522 /* aep_dx.gif */,
 				D973D58B1D9E4588003F82FB /* tanhao.png */,
 				D9E1D4251D642DCB0078EF02 /* custom4.jpg */,
 				D923025E1D1528BB008FB9A9 /* entrance_default.png */,
@@ -6864,6 +6867,7 @@
 				18F0320A1E5ED79300ACD261 /* tempProducts_05.jpg in Resources */,
 				1CBE67D11C5828CD00706AE9 /* icon_chose_bottom@2x.png in Resources */,
 				D947E45D1D7D3AE700F9FEE8 /* 聊天键盘-icon-拍照@2x.png in Resources */,
+				D90071801F4AC808003BD522 /* aep_dx.gif in Resources */,
 				1CF2838A1C58C48900F3952A /* 1@2x.png in Resources */,
 				18F50E071D1E365800811CD1 /* -2-03.jpg in Resources */,
 				18F4BF691D41BB21003F0F66 /* c_de.png in Resources */,
