@@ -91,6 +91,8 @@
 		183B17961F43F2E6001377B6 /* oil10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 183B17921F43F2E6001377B6 /* oil10.jpg */; };
 		183B17971F43F2E6001377B6 /* oil9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 183B17931F43F2E6001377B6 /* oil9.jpg */; };
 		183B17981F43F2E6001377B6 /* oil8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 183B17941F43F2E6001377B6 /* oil8.jpg */; };
+		183B17D91F46D567001377B6 /* NewAddCardDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B17D71F46D567001377B6 /* NewAddCardDetailVC.m */; };
+		183B17DA1F46D567001377B6 /* NewAddCardDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183B17D81F46D567001377B6 /* NewAddCardDetailVC.xib */; };
 		1849A0F31F383DCB00483CE8 /* OilHomeListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849A0F11F383DCB00483CE8 /* OilHomeListVC.m */; };
 		1849A0F41F383DCB00483CE8 /* OilHomeListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1849A0F21F383DCB00483CE8 /* OilHomeListVC.xib */; };
 		1849A0F81F383E5A00483CE8 /* OilListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849A0F61F383E5A00483CE8 /* OilListTableViewCell.m */; };
@@ -1274,6 +1276,9 @@
 		183B17921F43F2E6001377B6 /* oil10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil10.jpg; sourceTree = "<group>"; };
 		183B17931F43F2E6001377B6 /* oil9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil9.jpg; sourceTree = "<group>"; };
 		183B17941F43F2E6001377B6 /* oil8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil8.jpg; sourceTree = "<group>"; };
+		183B17D61F46D567001377B6 /* NewAddCardDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAddCardDetailVC.h; sourceTree = "<group>"; };
+		183B17D71F46D567001377B6 /* NewAddCardDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAddCardDetailVC.m; sourceTree = "<group>"; };
+		183B17D81F46D567001377B6 /* NewAddCardDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewAddCardDetailVC.xib; sourceTree = "<group>"; };
 		1849A0F01F383DCB00483CE8 /* OilHomeListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilHomeListVC.h; sourceTree = "<group>"; };
 		1849A0F11F383DCB00483CE8 /* OilHomeListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OilHomeListVC.m; sourceTree = "<group>"; };
 		1849A0F21F383DCB00483CE8 /* OilHomeListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OilHomeListVC.xib; sourceTree = "<group>"; };
@@ -4021,6 +4026,9 @@
 				D94040391CBDEB7100EC98EA /* CardManagerViewController.h */,
 				D940403A1CBDEB7100EC98EA /* CardManagerViewController.m */,
 				D9824F621F188E2200301076 /* CardManagerViewController.xib */,
+				183B17D61F46D567001377B6 /* NewAddCardDetailVC.h */,
+				183B17D71F46D567001377B6 /* NewAddCardDetailVC.m */,
+				183B17D81F46D567001377B6 /* NewAddCardDetailVC.xib */,
 				D97227431F3947E5009D0E2A /* 加油卡管理 */,
 				D97289FE1F21F8F20030EE9B /* 共享卡管理 */,
 				D9AA10C91F0490C400F7EDE8 /* 体验卡与套餐卡管理 */,
@@ -6861,6 +6869,7 @@
 				D9AB253E1D88E4ED000E9288 /* VoiceSearchFeedback016@2x.png in Resources */,
 				18F27EFD1D640E84002DD03A /* 头像-21.png in Resources */,
 				1CF6E47C1C61E4350001159C /* yanqi@2x.png in Resources */,
+				183B17DA1F46D567001377B6 /* NewAddCardDetailVC.xib in Resources */,
 				182F3C521F0CEDA800540FAE /* b27_icon_star_gray@2x.png in Resources */,
 				D93C0D681D251E7B001A1AC1 /* 小标-23.png in Resources */,
 				1CBE67D01C5828CD00706AE9 /* icon_chose_arrow_sel@2x.png in Resources */,
@@ -7491,6 +7500,7 @@
 				D9BB4DDE1E05019400971BCC /* DelayScanVC.m in Sources */,
 				185A459A1F134DDB0033AFE3 /* FavorateTableViewCell.m in Sources */,
 				D98533341DDE9B21004E1E6F /* NameSignViewController.m in Sources */,
+				183B17D91F46D567001377B6 /* NewAddCardDetailVC.m in Sources */,
 				D9B3A5BA1D74255700F3F27E /* UIView+EMWebCacheOperation.m in Sources */,
 				D9B3A4911D73CFE800F3F27E /* LZDToolView.m in Sources */,
 				D94432C71D18FC9900B45135 /* BookItem.m in Sources */,
