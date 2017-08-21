@@ -402,7 +402,13 @@
         cycleScrollView2.clickItemOperationBlock = ^(NSInteger currentIndex) {
           
             PUSH(ChouJiangVC)
-            vc.urlString = [NSString stringWithFormat:@"http://%@",self.advert_A[currentIndex][@"url"]];
+            if ([self.advert_A[currentIndex][@"url"] hasPrefix:@"http"]) {
+                vc.urlString = [NSString stringWithFormat:@"%@",self.advert_A[currentIndex][@"url"]];
+
+            }else{
+                vc.urlString = [NSString stringWithFormat:@"http://%@",self.advert_A[currentIndex][@"url"]];
+  
+            }
             vc.title = self.advert_A[currentIndex][@"title"];
             NSLog(@"-----%ld",currentIndex);
         };

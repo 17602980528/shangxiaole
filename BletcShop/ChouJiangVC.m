@@ -25,7 +25,7 @@
     LEFTBACK
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.userInteractionEnabled = NO;
-    
+    NSLog(@"--------%@",self.urlString);
     
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5];
     

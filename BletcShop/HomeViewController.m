@@ -699,7 +699,7 @@ static NSString *headerID = @"headerID";
             [_smallSV bringSubviewToFront:btn];
             
             UIImageView *imag = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, btn.width, btn.height-25)];
-            imag.backgroundColor = RGB(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255));
+
             [btn addSubview:imag];
             
             UILabel *lable_S =[[UILabel alloc]initWithFrame:CGRectMake(0, imag.bottom, btn.frame.size.width, 25)];
@@ -924,7 +924,9 @@ static NSString *headerID = @"headerID";
 
     _right_btn = [LZDButton creatLZDButton];
     _right_btn.frame = CGRectMake(cainixihuan_view.width-50, 0, 40, cainixihuan_view.height);
-    _right_btn.backgroundColor = [UIColor redColor];
+    [_right_btn setImage:[UIImage imageNamed:@"图标切换（列表式)"] forState:UIControlStateSelected];
+    [_right_btn setImage:[UIImage imageNamed:@"图标切换（卡片式)"] forState:0];
+
     _right_btn.selected = NO;
     [cainixihuan_view addSubview:_right_btn];
     __weak typeof(self) weakSelf = self;
@@ -933,7 +935,6 @@ static NSString *headerID = @"headerID";
       
         sender.selected = !sender.selected;
         if (sender.selected) {
-            sender.backgroundColor = [UIColor greenColor];
 
             weakSelf.flowlayout.colCount = 2;
             weakSelf.flowlayout.rolMargin = 10;
@@ -941,7 +942,6 @@ static NSString *headerID = @"headerID";
             weakSelf.flowlayout.itemHeight = 0;
             [weakSelf.collectionView reloadData];
         }else{
-            sender.backgroundColor = [UIColor redColor];
 
             weakSelf.flowlayout.colCount = 1;
             weakSelf.flowlayout.rolMargin = 1;

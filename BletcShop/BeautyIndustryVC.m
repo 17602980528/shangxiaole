@@ -259,7 +259,13 @@
             if (![dic[@"state"] isEqualToString:@"false"]) {
                 
                 PUSH(ChouJiangVC)
-                vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+                if ([dic[@"url"] hasPrefix:@"http"]) {
+                    vc.urlString = [NSString stringWithFormat:@"%@",dic[@"url"]];
+                    
+                }else{
+                    vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+                    
+                }
                 vc.navigationItem.title =dic[@"title"];
             }
             
@@ -393,7 +399,13 @@
             
             if (![dic[@"state"] isEqualToString:@"false"]) {
                 PUSH(ChouJiangVC)
-                vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+                if ([dic[@"url"] hasPrefix:@"http"]) {
+                    vc.urlString = [NSString stringWithFormat:@"%@",dic[@"url"]];
+                    
+                }else{
+                    vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+                    
+                }
                 vc.navigationItem.title =dic[@"title"];
             }
             
@@ -557,7 +569,14 @@
             
             if (![dic[@"state"] isEqualToString:@"false"]) {
                 PUSH(ChouJiangVC)
-                vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+                if ([dic[@"url"] hasPrefix:@"http"]) {
+                    vc.urlString = [NSString stringWithFormat:@"%@",dic[@"url"]];
+
+                }else{
+                    vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+
+                }
+
                 vc.navigationItem.title =dic[@"title"];
             }
         };
@@ -618,7 +637,13 @@
                 
                 if (![dic[@"state"] isEqualToString:@"false"]) {
                     PUSH(ChouJiangVC)
-                    vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+                    if ([dic[@"url"] hasPrefix:@"http"]) {
+                        vc.urlString = [NSString stringWithFormat:@"%@",dic[@"url"]];
+
+                    }else{
+                        vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+
+                    }
                     vc.navigationItem.title =dic[@"title"];
                 }
 
@@ -691,7 +716,14 @@
                 
                 if (![dic[@"state"] isEqualToString:@"false"]) {
                     PUSH(ChouJiangVC)
-                    vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+                    if ([dic[@"url"] hasPrefix:@"http"]) {
+                        vc.urlString = [NSString stringWithFormat:@"%@",dic[@"url"]];
+                        
+                    }else{
+                        vc.urlString = [NSString stringWithFormat:@"http://%@",dic[@"url"]];
+                        
+                    }
+
                     vc.navigationItem.title =dic[@"title"];
                 }
             };
