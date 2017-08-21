@@ -287,7 +287,7 @@
         Myitem *item20 = [Myitem itemsWithImg:@"收藏" title:@"我的收藏" vcClass:[FavorateViewController class]];
         Myitem *item21 = [Myitem itemsWithImg:@"评价" title:@"我的评价" vcClass:[NoEvaluateController class]];
         Myitem *item30 = [Myitem itemsWithImg:@"推荐" title:@"我的推荐" vcClass:[FriendController class]];
-        Myitem *item31 = [Myitem itemsWithImg:@"乐社区" title:@"我的好友" vcClass:[LZDBASEViewController class]];
+        Myitem *item31 = [Myitem itemsWithImg:@"乐社区" title:@"乐社区" vcClass:[LZDBASEViewController class]];
         Myitem *item32 = [Myitem itemsWithImg:@"邀请好友" title:@"邀请好友使用" vcClass:[ShareViewController class]];
         
         Mygroup *group2 = [[Mygroup alloc] init];
@@ -340,11 +340,11 @@
         cell.bgImageView.image=[UIImage imageNamed:@""];
         cell.bgImageView.backgroundColor=[UIColor whiteColor];
     }
-//    if (indexPath.section==1&&indexPath.row==0) {
+    if (indexPath.section==1&&indexPath.row==0) {
         cell.desLale.hidden=NO;
-//    }else{
-//        cell.desLale.hidden=YES;
-//    }
+    }else{
+        cell.desLale.hidden=YES;
+    }
     return cell;
     
 }

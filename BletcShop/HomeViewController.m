@@ -11,10 +11,8 @@
 #import "HomeViewController.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
-#import "ShaperView.h"
-#import "DLStarRatingControl.h"
-#import "HomeViewCell.h"
-#import "AddressPickerDemo.h"
+
+
 #import "SearchTableViewController.h"
 #import "GYChangeTextView.h"
 #import "NewShopDetailVC.h"
@@ -24,7 +22,6 @@
 #import "PointConvertViewController.h"
 #import "NewMessageVC.h"
 
-//#import "LZDCenterViewController.h"
 #import "TopActiveListTableVC.h"
 #import "SDCycleScrollView.h"
 
@@ -44,8 +41,12 @@
 #import "MemberCenterVC.h"
 #import "CustomSearchVC.h"
 #import "OilMapVC.h"
+#import "HomeCollectionCell.h"
+#import "WaterfallColectionLayout.h"
+#import "HomeGridCollectionCell.h"
 
-@interface HomeViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,GYChangeTextViewDelegate,SelectCityDelegate,JFLocationDelegate,SDCycleScrollViewDelegate>
+
+@interface HomeViewController ()<UITextFieldDelegate,UIScrollViewDelegate,GYChangeTextViewDelegate,JFLocationDelegate,SDCycleScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 {
     
     int currentIndex3;//请求页码
@@ -71,7 +72,6 @@
     UITextField*search_tf; // placeholder
     UIView *topView;
     
-    UITableView *table_View;
     
     SDRefreshFooterView *_refreshFooter;
     SDRefreshHeaderView *_refreshheader;
@@ -88,6 +88,8 @@
     UIImageView *erweimaImg;
     UIImageView *xiaoxiImg;
     UIImageView *search1;
+    
+    LZDButton *_right_btn;
 
 }
 
@@ -124,10 +126,24 @@
 @property (nonatomic, strong) JFLocation *locationManager;
 @property (nonatomic, strong) JFAreaDataManager *manager;
 
+@property(nonatomic,strong)NSMutableArray* heightArr;
+@property(nonatomic,strong)WaterfallColectionLayout *flowlayout;
 
 @end
 
 @implementation HomeViewController
+static NSString *girdCellId = @"girdCellId";
+
+static NSString *cellID = @"cellID";
+static NSString *headerID = @"headerID";
+
+-(NSMutableArray *)heightArr{
+    if (!_heightArr) {
+        _heightArr = [NSMutableArray array];
+    }
+    return _heightArr;
+}
+
 - (JFAreaDataManager *)manager {
     if (!_manager) {
         _manager = [JFAreaDataManager shareManager];
@@ -142,6 +158,70 @@
     }
     return _titles;
 }
+
+-(WaterfallColectionLayout *)flowlayout{
+    if (!_flowlayout) {
+        _flowlayout =[[WaterfallColectionLayout alloc]initWithItemsHeightBlock:^CGFloat(NSIndexPath *index) {
+            return [self.heightArr[index.item] floatValue];
+        }];
+        _flowlayout.itemHeight = 93;
+        _flowlayout.colCount= 1;
+        _flowlayout.rolMargin = 1;
+        _flowlayout.colMargin = 0;
+
+    }
+    return _flowlayout;
+}
+- (UICollectionView *)collectionView
+{
+    if (!_collectionView)
+    {
+       
+      
+        
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0 , 0 , SCREENWIDTH, SCREENHEIGHT-self.tabBarController.tabBar.frame.size.height) collectionViewLayout:self.flowlayout];
+
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        [_collectionView setBackgroundColor:RGB(240, 240, 240)];
+        //注册cell
+        
+        [_collectionView registerNib:[UINib nibWithNibName:@"HomeCollectionCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellID];
+        
+        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:headerID];
+
+        [_collectionView registerNib:[UINib nibWithNibName:@"HomeGridCollectionCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:girdCellId];
+
+        
+        _refreshheader = [SDRefreshHeaderView refreshView];
+        [_refreshheader addToScrollView:_collectionView];
+        _refreshheader.isEffectedByNavigationController = NO;
+        
+        __block HomeViewController *blockSelf = self;
+        _refreshheader.beginRefreshingOperation = ^{
+            currentIndex3 = 1;
+            
+            [blockSelf getIcons:@""];
+        };
+        
+        
+        _refreshFooter = [SDRefreshFooterView refreshView];
+        [_refreshFooter addToScrollView:_collectionView];
+        
+        _refreshFooter.beginRefreshingOperation =^{
+            [blockSelf postRequestAdv3WithMore:@"more"];
+            
+        };
+        
+
+
+        
+    }
+    return _collectionView;
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     PopupAdvertiseView.hidden=NO;
@@ -168,16 +248,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-
+ 
     self.locationManager = [[JFLocation alloc] init];
     _locationManager.delegate = self;
 
 #if TARGET_IPHONE_SIMULATOR
     
-//    [KCURRENTCITYINFODEFAULTS setObject:@"西安市" forKey:@"locationCity"];
-//    [KCURRENTCITYINFODEFAULTS setObject:@"西安市" forKey:@"currentcity"];
-//    
-//
+
     
     [self.manager currentCityDic:@"西安市" currentCityDic:^(NSDictionary *dic) {
         
@@ -226,7 +303,11 @@
     }
 
     
-    [self initTableView];
+    [self.view addSubview:self.collectionView];
+    
+    [self getIcons:@""];
+
+//    [self initTableView];
 
     
     
@@ -388,7 +469,7 @@
     
     UIColor *color=[UIColor whiteColor];
     UIColor *lineCOlor =[UIColor lightGrayColor];
-    CGFloat offset=table_View.contentOffset.y;
+    CGFloat offset=self.collectionView.contentOffset.y;
     if (offset<0) {
         top_line.backgroundColor = [lineCOlor colorWithAlphaComponent:0];
         topView.backgroundColor = [color colorWithAlphaComponent:0];
@@ -434,41 +515,56 @@
     
 }
 
--(void)initTableView{
-    table_View = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-self.tabBarController.tabBar.frame.size.height) style:UITableViewStyleGrouped];
-    table_View.dataSource = self;
-    table_View.delegate = self;
-    table_View.separatorStyle= UITableViewCellSeparatorStyleNone;
-    [self.view addSubview: table_View];
+
+
+#pragma mark 代理collectionDelegate
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return  self.data_A3.count;
+}
+
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
+{
     
-    _refreshheader = [SDRefreshHeaderView refreshView];
-    [_refreshheader addToScrollView:table_View];
-    _refreshheader.isEffectedByNavigationController = NO;
-    
-    __block HomeViewController *blockSelf = self;
-    _refreshheader.beginRefreshingOperation = ^{
-        currentIndex3 = 1;
+
+    if (!_right_btn.selected) {
+        HomeCollectionCell  *cell = (HomeCollectionCell*)[collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+
+        cell.model = self.data_A3[indexPath.row];
+        return cell;
+
+    }else{
         
-        [blockSelf getIcons:@""];
-    };
-    
-    
-    _refreshFooter = [SDRefreshFooterView refreshView];
-    [_refreshFooter addToScrollView:table_View];
-    
-    _refreshFooter.beginRefreshingOperation =^{
-        [blockSelf postRequestAdv3WithMore:@"more"];
+        HomeGridCollectionCell *cell = (HomeGridCollectionCell*)[collectionView dequeueReusableCellWithReuseIdentifier:girdCellId forIndexPath:indexPath];
+        cell.model = self.data_A3[indexPath.row];
+
+        return cell;
         
-    };
-
+    }
     
-    
-
-    [self getIcons:@""];
-
     
     
 
+    
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    HomeShopModel *model = self.data_A3[indexPath.row];
+    if (model.remark.length>0) {
+        NSLog(@"---长条广告不可点击--");
+    }else{
+        NSMutableDictionary *shopInfoDic = [self.shopData_A objectAtIndex:indexPath.row];
+        NSLog(@"---%@--==%@",model.title_S,shopInfoDic);
+        
+        
+        NewShopDetailVC *vc= [self startSellerView:shopInfoDic];
+        vc.videoID=model.video;
+        
+        
+        [self.navigationController pushViewController:vc animated:YES];
+        
+        
+    }
 }
 
 /**
@@ -503,227 +599,6 @@
 }
 
 
--(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-//    if (section==0) {
-//        NSLog(@"--viewForHeaderInSection---%@",self.headerView);
-//            return self.headerView;
-//        
-//    }else
-    
-        if(section ==1){
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 40)];
-        view.backgroundColor = [UIColor whiteColor];
-        UILabel *like_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, view.height)];
-        like_lab.text = @"猜你喜欢";
-        like_lab.textColor = RGB(102, 102, 102);
-        like_lab.textAlignment = NSTextAlignmentCenter;
-        like_lab.font = [UIFont systemFontOfSize:14];
-        like_lab.backgroundColor = [UIColor whiteColor];
-        [view addSubview:like_lab];
-        
-        CGFloat  WW = [like_lab.text boundingRectWithSize:CGSizeMake(200, 50) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:like_lab.font} context:nil].size.width;
-        
-        UIView *line1 = [[UIView alloc]init];
-        line1.frame = CGRectMake(75, (like_lab.height-1)/2+like_lab.top, SCREENWIDTH/2-75-WW/2-20, 1);
-        line1.backgroundColor = RGB(221,221,221);
-        [view addSubview:line1];
-        
-        UIView *line2 = [[UIView alloc]init];
-        line2.frame = CGRectMake( SCREENWIDTH/2+WW/2+20, line1.top, line1.width, line1.height);
-        line2.backgroundColor = RGB(221,221,221);
-        [view addSubview:line2];
-        
-        
-        UIView *line3 = [[UIView alloc]init];
-        line3.frame = CGRectMake(0, view.height-1, SCREENWIDTH, 1);
-        line3.backgroundColor = RGB(229,229,229);
-        [view addSubview:line3];
-
-        
-        return view;
-    }else
-        return nil;
-    
-
-    
-}
--(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    
-     if (section ==0) {
-         
-       return   self.secondheaderView;
-         
-     }else
-         return nil;
-
-}
-
-
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    if (section==0) {
-//        NSLog(@"self.headerView.height-----%lf",self.headerView.height);
-//
-//        if (!self.headerView) {
-//            return self.headerView.height;
-//        }else{
-//            self.headerView = [self creatHeaderView];
-//            
-//
-//        }
-//        
-//        return self.headerView.height;
-//
-//    }else
-        if(section==1){
-        return 40;
-    }else
-        return 0.01;
-}
-
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-     if (section==0){
-        
-        return [self creatSecondheardView].height;
-    }else
-        return 0.01;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section==0) {
-        return 0.01;
-    }else{
-        HomeShopModel *model;
-        
-        if (self.data_A3.count!=0) {
-            model = self.data_A3[indexPath.row];
-            
-        }
-        
-        return model.remark.length>0 ? 76:model.cellHight;
-        
-          }
-}
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
-    return 2;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section==0) {
-        return 0;
-    }else
-    return self.data_A3.count;
-}
-
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    HomeShopModel *model;
-    
-    if (self.data_A3.count!=0) {
-         model = self.data_A3[indexPath.row];
-        
-        if (model.remark.length>0) {
-            
-            static NSString *cellID = @"homeCellId";
-            
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-            if (!cell) {
-                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            }
-            for (UIView *view in cell.contentView.subviews) {
-                [view removeFromSuperview];
-            }
-            
-            UIImageView *img_view = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 76-1)];
-            [img_view sd_setImageWithURL:[NSURL URLWithString:model.long_img_url] placeholderImage:[UIImage imageNamed:@"icon3"]];
-            NSLog(@"long_img_url----_%@",model.long_img_url);
-            [cell.contentView addSubview:img_view];
-            
-            
-            UIView* lineView=[[UIView alloc]initWithFrame:CGRectMake(0, img_view.bottom, SCREENWIDTH, 1)];
-            lineView.backgroundColor=[UIColor colorWithRed:234/255.0f green:234/255.0f blue:234/255.0f alpha:1.0f];
-            
-            [cell.contentView addSubview:lineView];
-            
-            
-            return cell;
-            
-        }else{
-            HomeViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-            if (!cell) {
-                cell = [HomeViewCell homeViewCellWithTableView:tableView];
-            }
-            cell.model = model;
-            
-            return cell;
-            
-        }
-
-        
-    }else{
-        return nil;
-    }
-    
-}
-
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    HomeShopModel *model = self.data_A3[indexPath.row];
-    if (model.remark.length>0) {
-        NSLog(@"---长条广告不可点击--");
-    }else{
-        NSMutableDictionary *shopInfoDic = [self.shopData_A objectAtIndex:indexPath.row];
-        NSLog(@"---%@--==%@",model.title_S,shopInfoDic);
-
-        
-        NewShopDetailVC *vc= [self startSellerView:shopInfoDic];
-        vc.videoID=model.video;
-        
-        
-        [self.navigationController pushViewController:vc animated:YES];
-
-//        NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/merchant/videoGet",BASEURL];
-//        NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//        //获取商家手机号
-//        
-//        [params setObject:shopInfoDic[@"muid"] forKey:@"muid"];
-//        [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, NSArray* result)
-//         {
-//             NSLog(@"%@",result);
-//             if (result.count>0) {
-//                 __block HomeViewController* tempSelf = self;
-//                 
-//                 if ([result[0][@"state"] isEqualToString:@"true"]) {
-//                     vc.videoID=result[0][@"video"];
-//                     
-//                 }else{
-//                     vc.videoID=@"";
-//                     
-//                 }
-//                 [tempSelf.navigationController pushViewController:vc animated:YES];
-//             }else{
-//                 __block HomeViewController* tempSelf = self;
-//                 vc.videoID=@"";
-//                 [tempSelf.navigationController pushViewController:vc animated:YES];
-//             }
-//             
-//         } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-//             NSLog(@"%@", error);
-//             __block HomeViewController* tempSelf = self;
-//             vc.videoID=@"";
-//             [tempSelf.navigationController pushViewController:vc animated:YES];
-//         }];
-        
-
-
-    }
-}
 
 -(NewShopDetailVC *)startSellerView:(NSMutableDictionary*)dic{
     
@@ -738,8 +613,8 @@
 }
 //一区区头
 -(UIView*)creatHeaderView{
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH/2+50)];
-    
+    UIView *back_view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH/2+50)];
+    back_view.backgroundColor = [UIColor whiteColor];
     
     //广告轮播
     UIView *slipBackView=[[UIView alloc]init];
@@ -747,7 +622,7 @@
     slipBackView.frame = CGRectMake(0, 0, SCREENWIDTH, 182*LZDScale);
 
     slipBackView.backgroundColor=RGB(240, 240, 240);
-    [view addSubview:slipBackView];
+    [back_view addSubview:slipBackView];
 
     
     if (_adverImages.count !=0) {
@@ -778,11 +653,14 @@
     _smallSV.backgroundColor = [UIColor whiteColor];
     _smallSV.showsVerticalScrollIndicator = NO;
     _smallSV.showsHorizontalScrollIndicator = NO;
-    [view addSubview:_smallSV];
+    [back_view addSubview:_smallSV];
     
     
     NSInteger yeshu = 0;
-
+    CGFloat ww = (SCREENWIDTH-80)/5;
+    CGFloat hh = ww*45/58+25;
+    
+    
     if (self.icon_A.count%10==0) {
         yeshu = self.icon_A.count/10;
     }else{
@@ -798,20 +676,35 @@
             int X = (i-j*10)%5;
             int Y = (i-j*10)/5;
             
-            UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(X *SCREENWIDTH/5+ SCREENWIDTH*j,5+Y *(SCREENWIDTH/5+10), SCREENWIDTH/5, SCREENWIDTH/5)];
+            UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(20+X *(ww+10)+ SCREENWIDTH*j,10+Y *(hh+17), ww, hh)];
             [btn addTarget:self action:@selector(topClick:) forControlEvents:UIControlEventTouchUpInside];
+           
+            btn.layer.shadowOffset = CGSizeMake(0, 5);
+            btn.backgroundColor = [UIColor whiteColor];
+            btn.layer.shadowOpacity = 0.1;
+            
+            CALayer *corner_lay = [CALayer layer];
+            corner_lay.cornerRadius = 4;
+            corner_lay.masksToBounds = YES;
+            corner_lay.borderWidth = 1;
+            corner_lay.frame = btn.bounds;
+            corner_lay.borderColor = RGB(219,219,219).CGColor;
+            [btn.layer addSublayer:corner_lay];
             
             
+//            btn.backgroundColor = [UIColor redColor];
             btn.tag = i;
             [_smallSV addSubview:btn];
             
-            UIImageView *imag = [[UIImageView alloc]initWithFrame:CGRectMake((btn.width-35)/2, (btn.width-35)/2, 35, 35)];
+            UIImageView *imag = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, btn.width, btn.height-25)];
+            imag.backgroundColor = RGB(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255));
             [btn addSubview:imag];
             
-            UILabel *lable_S =[[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imag.frame)+5, btn.frame.size.width, 25)];
+            UILabel *lable_S =[[UILabel alloc]initWithFrame:CGRectMake(0, imag.bottom, btn.frame.size.width, 25)];
             lable_S.textColor = RGB(51,51,51);
             lable_S.font = [UIFont systemFontOfSize:12];
             lable_S.textAlignment = NSTextAlignmentCenter;
+            lable_S.adjustsFontSizeToFitWidth = YES;
             [btn addSubview:lable_S];
             
             NSDictionary *dic  = self.icon_A[i];
@@ -825,14 +718,14 @@
 
 
     
-    _smallSV.frame  = CGRectMake(0, slipBackView.bottom, SCREENWIDTH, 10+ 2*(SCREENWIDTH/5+10)+10);
+    _smallSV.frame  = CGRectMake(0, slipBackView.bottom, SCREENWIDTH, 10 +10+2*hh+17+9);
 
     
     _pc=[[UIPageControl alloc]initWithFrame:CGRectMake(SCREENWIDTH*0.2, _smallSV.bottom-20, SCREENWIDTH*0.6, 20)];
     _pc.currentPageIndicatorTintColor=NavBackGroundColor;
     _pc.pageIndicatorTintColor = [UIColor lightGrayColor];
     [_pc addTarget:self action:@selector(pcClick:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:_pc];
+    [back_view addSubview:_pc];
     
     if (self.icon_A.count%10==0) {
         _smallSV.contentSize = CGSizeMake(SCREENWIDTH*self.icon_A.count/10, 0);
@@ -844,9 +737,9 @@
     }
     _pc.hidesForSinglePage = YES;
     
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, _smallSV.bottom, SCREENWIDTH, 10)];
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, _smallSV.bottom, SCREENWIDTH, 1)];
     line.backgroundColor =RGB(239,239,244);
-    [view addSubview:line];
+    [back_view addSubview:line];
     
     UILabel *hot_label = [[UILabel alloc]initWithFrame:CGRectMake(0, line.bottom, SCREENWIDTH, 32)];
     hot_label.text = @"   今日头条";
@@ -854,7 +747,7 @@
     hot_label.textColor = RGB(226,102,102);
     
     hot_label.backgroundColor = [UIColor whiteColor];
-    [view addSubview:hot_label];
+    [back_view addSubview:hot_label];
     
     
     CGFloat hot_ww = [self getSizeWithLab:hot_label andMaxSize:CGSizeMake(100, 100)].width;
@@ -864,7 +757,7 @@
     [tView setValue:[UIFont systemFontOfSize:12] forKeyPath:@"textLabel.font"];
 
     tView.delegate = self;
-    [view addSubview:tView];
+    [back_view addSubview:tView];
     self.tView = tView;
     
     NSMutableArray *mut = [NSMutableArray array];
@@ -879,35 +772,54 @@
     }
     
     
-    
-    
+    UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(0, tView.bottom, SCREENWIDTH, 1)];
+    line1.backgroundColor =RGB(239,239,244);
+    [back_view addSubview:line1];
 
-    view.frame = CGRectMake(0, 0, SCREENWIDTH, CGRectGetMaxY(hot_label.frame));
     
+    CGFloat four_ww = (SCREENWIDTH- 13*2-9)/2;
+    CGFloat four_hh = (four_ww*96)/170;
     
-    NSLog(@"view.bottom-----%lf",view.bottom);
-
-
-    return view;
-}
-
-//二区区头
--(UIView*)creatSecondheardView{
-    UIView *back_view = [UIView new];
-    
+    NSLog(@"----%f=%f",four_ww,four_hh);
     for (int i =0 ; i <4; i++) {
-       
+        
         
         UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        button1.frame = CGRectMake(i%2*((SCREENWIDTH-1)/2+1), 10 +i/2*(101*LZDScale+1), (SCREENWIDTH-1)/2, 101*LZDScale);
-        button1.backgroundColor = [UIColor whiteColor];
+        button1.frame = CGRectMake(13+i%2*(four_ww+9), line1.bottom+21 +i/2*(four_hh+10), four_ww, four_hh);
+        button1.backgroundColor = RGB(242,242,242);
         [button1 addTarget:self action:@selector(advertiseClick:) forControlEvents:UIControlEventTouchUpInside];
         button1.tag=i;
+        button1.layer.shadowOpacity = 0.1;
+        button1.layer.shadowOffset = CGSizeMake(0, 5);
+        
+        CALayer *corner_lay = [CALayer layer];
+        corner_lay.cornerRadius = 4;
+        corner_lay.masksToBounds = YES;
+        corner_lay.borderWidth = 1;
+        corner_lay.frame = button1.bounds;
+        corner_lay.borderColor = RGB(219,219,219).CGColor;
+        [button1.layer addSublayer:corner_lay];
 
+        
         [back_view addSubview:button1];
         
+        UIImageView *img_1 = [[UIImageView alloc]initWithFrame:CGRectMake(10,10, button1.height-20, button1.height-20)];
+        img_1.contentMode = UIViewContentModeScaleAspectFit;
+        img_1.backgroundColor = [UIColor whiteColor];
+        img_1.layer.cornerRadius = img_1.width/2;
+        img_1.layer.masksToBounds = YES;
+        [button1 addSubview:img_1];
+
+        UILabel *lab1_1 = [[UILabel alloc]initWithFrame:CGRectMake(img_1.right +10, 20, button1.width-img_1.right-10, 14)];
+        lab1_1.text = @"新店入住";
+        lab1_1.font = [UIFont systemFontOfSize:14];
+        lab1_1.textColor = RGB(51,51,51);
+        lab1_1.textAlignment = NSTextAlignmentLeft;
         
-        UILabel *lab1_2 = [[UILabel alloc]initWithFrame:CGRectMake(13, (button1.height-12)/2, button1.width/2, 12)];
+        [button1 addSubview:lab1_1];
+
+        
+        UILabel *lab1_2 = [[UILabel alloc]initWithFrame:CGRectMake(lab1_1.left, (button1.height-12)/2, lab1_1.width, 12)];
         lab1_2.text = @"优惠停不下来";
         lab1_2.font = [UIFont systemFontOfSize:10];
         lab1_2.textColor = RGB(119,119,119);
@@ -915,18 +827,11 @@
         [button1 addSubview:lab1_2];
         
         
-        UILabel *lab1_1 = [[UILabel alloc]initWithFrame:CGRectMake(13, 20, button1.width/2-13, 14)];
-        lab1_1.text = @"新店入住";
-        lab1_1.font = [UIFont systemFontOfSize:14];
-        lab1_1.textColor = RGB(51,51,51);
-        lab1_1.textAlignment = NSTextAlignmentLeft;
-        
-        [button1 addSubview:lab1_1];
         
         
         NSArray *arr = @[@"NEW",@"优惠",@"活动",@"VIP"];
-
-        UILabel *lab1_3 = [[UILabel alloc]initWithFrame:CGRectMake(13, button1.height-13-23, button1.width/2, 13)];
+        
+        UILabel *lab1_3 = [[UILabel alloc]initWithFrame:CGRectMake(lab1_1.left, button1.height-13-23, button1.width/2, 13)];
         lab1_3.text = arr[i];
         lab1_3.font = [UIFont systemFontOfSize:10];
         lab1_3.textColor = RGB(226,102,102);
@@ -936,20 +841,17 @@
         lab1_3.layer.masksToBounds = YES;
         lab1_3.textAlignment = NSTextAlignmentCenter;
         [button1 addSubview:lab1_3];
-
+        
         CGFloat ww = [lab1_3.text boundingRectWithSize:CGSizeMake(100, 100) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName :lab1_3.font} context:nil].size.width;
         
-        lab1_3.frame = CGRectMake(13, lab1_2.bottom+11, ww+3, 13);
+        lab1_3.frame = CGRectMake(lab1_1.left, lab1_2.bottom+11, ww+3, 13);
         
         
         
-
         
-        UIImageView *img_1 = [[UIImageView alloc]initWithFrame:CGRectMake(lab1_1.right, (button1.height-(button1.width-(lab1_1.right+15)))/2, button1.width-(lab1_1.right+15), button1.width-(lab1_1.right+15))];
-        img_1.contentMode = UIViewContentModeScaleAspectFit;
-        [button1 addSubview:img_1];
         
-       
+        
+        
         
         NSDictionary *dic ;
         if (self.data_A2.count!=0) {
@@ -967,27 +869,102 @@
     
     //长条广告
     _longAdvertise_btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _longAdvertise_btn.frame = CGRectMake(0, (101*LZDScale+1)*2+20, SCREENWIDTH, 76);
-//    _longAdvertise_btn.backgroundColor = [UIColor orangeColor];
+    _longAdvertise_btn.frame = CGRectMake(0, line1.bottom+21 +(four_hh*2+10)+21, SCREENWIDTH, 76);
+    //    _longAdvertise_btn.backgroundColor = [UIColor orangeColor];
     
     if (self.longAdvertise_dic) {
         NSString *_longimg_str = [NSString stringWithFormat:@"%@%@",LONGADVERTIMAGE,self.longAdvertise_dic[@"image_url"]];
         
         [_longAdvertise_btn sd_setImageWithURL:[NSURL URLWithString:_longimg_str] forState:0 placeholderImage:[UIImage imageNamed:@"-2-01.jpg"]];
         [_longAdvertise_btn sd_setImageWithURL:[NSURL URLWithString:_longimg_str] forState:UIControlStateHighlighted placeholderImage:[UIImage imageNamed:@"-2-01.jpg"]];
-
-
+        
+        
     }
     
     [back_view addSubview:_longAdvertise_btn];
     
-
+    
+    
+    UIView *cainixihuan_view =[[UIView alloc]initWithFrame:CGRectMake(0, _longAdvertise_btn.bottom, SCREENWIDTH, 40)];
+    cainixihuan_view.backgroundColor = [UIColor whiteColor];
+    [back_view addSubview:cainixihuan_view];
+    
+    
 
     
-    back_view.frame = CGRectMake(0, 0, SCREENWIDTH, _longAdvertise_btn.bottom+10);
+    UILabel *like_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, cainixihuan_view.height)];
+    like_lab.text = @"猜你喜欢";
+    like_lab.textColor = RGB(51,51,51);
+    like_lab.textAlignment = NSTextAlignmentCenter;
+    like_lab.font = [UIFont systemFontOfSize:18];
+    like_lab.backgroundColor = [UIColor whiteColor];
+    [cainixihuan_view addSubview:like_lab];
     
+    CGFloat  WW = [like_lab.text boundingRectWithSize:CGSizeMake(200, 50) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:like_lab.font} context:nil].size.width;
+    
+    UIView *line2 = [[UIView alloc]init];
+    line2.frame = CGRectMake(75, (like_lab.height-1)/2+like_lab.top, SCREENWIDTH/2-75-WW/2-20, 1);
+    line2.backgroundColor = RGB(221,221,221);
+    [cainixihuan_view addSubview:line2];
+    
+    UIView *line3 = [[UIView alloc]init];
+    line3.frame = CGRectMake( SCREENWIDTH/2+WW/2+20, line2.top, line2.width, line2.height);
+    line3.backgroundColor = RGB(221,221,221);
+    [cainixihuan_view addSubview:line3];
+    
+    
+    UIView *line4 = [[UIView alloc]init];
+    line4.frame = CGRectMake(0, cainixihuan_view.height-1, SCREENWIDTH, 1);
+    line4.backgroundColor = RGB(229,229,229);
+    [cainixihuan_view addSubview:line4];
+    
+
+    _right_btn = [LZDButton creatLZDButton];
+    _right_btn.frame = CGRectMake(cainixihuan_view.width-50, 0, 40, cainixihuan_view.height);
+    _right_btn.backgroundColor = [UIColor redColor];
+    _right_btn.selected = NO;
+    [cainixihuan_view addSubview:_right_btn];
+    __weak typeof(self) weakSelf = self;
+
+    _right_btn.block = ^(LZDButton *sender) {
+      
+        sender.selected = !sender.selected;
+        if (sender.selected) {
+            sender.backgroundColor = [UIColor greenColor];
+
+            weakSelf.flowlayout.colCount = 2;
+            weakSelf.flowlayout.rolMargin = 10;
+            weakSelf.flowlayout.colMargin = 10;
+            weakSelf.flowlayout.itemHeight = 0;
+            [weakSelf.collectionView reloadData];
+        }else{
+            sender.backgroundColor = [UIColor redColor];
+
+            weakSelf.flowlayout.colCount = 1;
+            weakSelf.flowlayout.rolMargin = 1;
+            weakSelf.flowlayout.colMargin = 0;
+            weakSelf.flowlayout.itemHeight = 93;
+
+            [weakSelf.collectionView reloadData];
+
+        }
+    };
+    
+    
+    
+    back_view.frame = CGRectMake(0, 0, SCREENWIDTH, cainixihuan_view.bottom);
+
+    
+    
+
+    
+    
+    NSLog(@"view.bottom-----%lf",back_view.bottom);
+
+
     return back_view;
 }
+
 
 
 #pragma  mark 数据请求
@@ -1036,9 +1013,8 @@
             [self.titles addObject:_circleAdverlist[i][@"title"]];
         }
         
-        self.headerView = [self creatHeaderView];
+//
 
-        table_View.tableHeaderView = self.headerView;
         
         
         self.data_A2 = result[@"activity_ad"];
@@ -1049,13 +1025,25 @@
             
         }
         
-        self.secondheaderView = [self creatSecondheardView];
+//        self.secondheaderView = [self creatSecondheardView];
         
         
         NSArray *arr = result[@"stores"];
         
         [self.data_A3 removeAllObjects];
         [self.shopData_A removeAllObjects];
+        [self.heightArr removeAllObjects];
+
+        
+        if (!self.headerView)
+         {
+            self.headerView = [self creatHeaderView];
+            
+             [self.collectionView addSubview:_headerView];
+             self.flowlayout.header_height = _headerView.height;
+        }
+
+        
         
         for (NSDictionary *dic in arr) {
             
@@ -1074,8 +1062,8 @@
         });
 
         
-        
-        [table_View reloadData];
+        [self reloadCollectionViewItemHeight:arr];
+
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"-----%@",error);
@@ -1126,6 +1114,9 @@
 
               [self.data_A3 addObject:model];
               [self.shopData_A addObject:result[@"insert_ad"]];
+
+             [self reloadCollectionViewItemHeight:@[@""]];
+             
          }
          
          
@@ -1135,11 +1126,12 @@
              
              [self.data_A3 addObject:model];
              [self.shopData_A addObject:dic];
-             
+
          }
-    
          
-       [table_View reloadData];
+         [self reloadCollectionViewItemHeight:result[@"stores"]];
+
+    
          
      } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
          [self hideHud];
@@ -1400,7 +1392,7 @@
     }
     
     
-    if (scrollView ==table_View) {
+    if (scrollView ==_collectionView) {
         UIColor *color=[UIColor whiteColor];
         UIColor *lineCOlor =[UIColor lightGrayColor];
 
@@ -1735,10 +1727,23 @@
     
 }
 
+-(void)reloadCollectionViewItemHeight:(NSArray *)arr{
+    
+    for (int i = 0; i < arr.count;i ++ ) {
+        
+            [self.heightArr addObject:@(arc4random()%50+190)];
+
+        
+    }
+    
+    [self.collectionView reloadData];
+
+    
+}
 
 //弹出广告点击
 -(void)popImgClick{
-    AppDelegate *delegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
+//    AppDelegate *delegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
     
     NSLog(@"--popImgClick--%@",pop_data_Dic);
 //    if (delegate.IsLogin) {

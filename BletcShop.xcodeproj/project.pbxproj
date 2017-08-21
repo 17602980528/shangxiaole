@@ -91,8 +91,6 @@
 		183B17961F43F2E6001377B6 /* oil10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 183B17921F43F2E6001377B6 /* oil10.jpg */; };
 		183B17971F43F2E6001377B6 /* oil9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 183B17931F43F2E6001377B6 /* oil9.jpg */; };
 		183B17981F43F2E6001377B6 /* oil8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 183B17941F43F2E6001377B6 /* oil8.jpg */; };
-		183B17D91F46D567001377B6 /* NewAddCardDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B17D71F46D567001377B6 /* NewAddCardDetailVC.m */; };
-		183B17DA1F46D567001377B6 /* NewAddCardDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183B17D81F46D567001377B6 /* NewAddCardDetailVC.xib */; };
 		1849A0F31F383DCB00483CE8 /* OilHomeListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849A0F11F383DCB00483CE8 /* OilHomeListVC.m */; };
 		1849A0F41F383DCB00483CE8 /* OilHomeListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1849A0F21F383DCB00483CE8 /* OilHomeListVC.xib */; };
 		1849A0F81F383E5A00483CE8 /* OilListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849A0F61F383E5A00483CE8 /* OilListTableViewCell.m */; };
@@ -473,6 +471,11 @@
 		1CF6E4821C61E4350001159C /* dianpu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CF6E4791C61E4350001159C /* dianpu@2x.png */; };
 		1CF6E4831C61E4350001159C /* guanliyuan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CF6E47A1C61E4350001159C /* guanliyuan@2x.png */; };
 		1CF6E4881C61F1C90001159C /* huiyuanzhi.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CF6E4871C61F1C90001159C /* huiyuanzhi.png */; };
+		D90071661F467821003BD522 /* WaterfallColectionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D90071651F467821003BD522 /* WaterfallColectionLayout.m */; };
+		D900716A1F46832F003BD522 /* HomeCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D90071681F46832F003BD522 /* HomeCollectionCell.m */; };
+		D900716B1F46832F003BD522 /* HomeCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D90071691F46832F003BD522 /* HomeCollectionCell.xib */; };
+		D900716F1F46CC11003BD522 /* HomeGridCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D900716D1F46CC11003BD522 /* HomeGridCollectionCell.m */; };
+		D90071701F46CC11003BD522 /* HomeGridCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D900716E1F46CC11003BD522 /* HomeGridCollectionCell.xib */; };
 		D9026B1B1F0B737F005CA5F4 /* CouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9026B1A1F0B737F005CA5F4 /* CouponCell.m */; };
 		D9026B1E1F0B7428005CA5F4 /* XieYiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9026B1D1F0B7428005CA5F4 /* XieYiViewController.m */; };
 		D9026B221F0B758F005CA5F4 /* CardDetailShowProdictCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9026B201F0B758F005CA5F4 /* CardDetailShowProdictCell.m */; };
@@ -1276,9 +1279,6 @@
 		183B17921F43F2E6001377B6 /* oil10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil10.jpg; sourceTree = "<group>"; };
 		183B17931F43F2E6001377B6 /* oil9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil9.jpg; sourceTree = "<group>"; };
 		183B17941F43F2E6001377B6 /* oil8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil8.jpg; sourceTree = "<group>"; };
-		183B17D61F46D567001377B6 /* NewAddCardDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAddCardDetailVC.h; sourceTree = "<group>"; };
-		183B17D71F46D567001377B6 /* NewAddCardDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAddCardDetailVC.m; sourceTree = "<group>"; };
-		183B17D81F46D567001377B6 /* NewAddCardDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewAddCardDetailVC.xib; sourceTree = "<group>"; };
 		1849A0F01F383DCB00483CE8 /* OilHomeListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilHomeListVC.h; sourceTree = "<group>"; };
 		1849A0F11F383DCB00483CE8 /* OilHomeListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OilHomeListVC.m; sourceTree = "<group>"; };
 		1849A0F21F383DCB00483CE8 /* OilHomeListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OilHomeListVC.xib; sourceTree = "<group>"; };
@@ -1807,6 +1807,14 @@
 		1CF6E4791C61E4350001159C /* dianpu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dianpu@2x.png"; sourceTree = "<group>"; };
 		1CF6E47A1C61E4350001159C /* guanliyuan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guanliyuan@2x.png"; sourceTree = "<group>"; };
 		1CF6E4871C61F1C90001159C /* huiyuanzhi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = huiyuanzhi.png; sourceTree = "<group>"; };
+		D90071641F467821003BD522 /* WaterfallColectionLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterfallColectionLayout.h; sourceTree = "<group>"; };
+		D90071651F467821003BD522 /* WaterfallColectionLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterfallColectionLayout.m; sourceTree = "<group>"; };
+		D90071671F46832F003BD522 /* HomeCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCollectionCell.h; sourceTree = "<group>"; };
+		D90071681F46832F003BD522 /* HomeCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionCell.m; sourceTree = "<group>"; };
+		D90071691F46832F003BD522 /* HomeCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCollectionCell.xib; sourceTree = "<group>"; };
+		D900716C1F46CC11003BD522 /* HomeGridCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeGridCollectionCell.h; sourceTree = "<group>"; };
+		D900716D1F46CC11003BD522 /* HomeGridCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeGridCollectionCell.m; sourceTree = "<group>"; };
+		D900716E1F46CC11003BD522 /* HomeGridCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeGridCollectionCell.xib; sourceTree = "<group>"; };
 		D9026B191F0B737F005CA5F4 /* CouponCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponCell.h; sourceTree = "<group>"; };
 		D9026B1A1F0B737F005CA5F4 /* CouponCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponCell.m; sourceTree = "<group>"; };
 		D9026B1C1F0B7428005CA5F4 /* XieYiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XieYiViewController.h; sourceTree = "<group>"; };
@@ -4026,9 +4034,6 @@
 				D94040391CBDEB7100EC98EA /* CardManagerViewController.h */,
 				D940403A1CBDEB7100EC98EA /* CardManagerViewController.m */,
 				D9824F621F188E2200301076 /* CardManagerViewController.xib */,
-				183B17D61F46D567001377B6 /* NewAddCardDetailVC.h */,
-				183B17D71F46D567001377B6 /* NewAddCardDetailVC.m */,
-				183B17D81F46D567001377B6 /* NewAddCardDetailVC.xib */,
 				D97227431F3947E5009D0E2A /* 加油卡管理 */,
 				D97289FE1F21F8F20030EE9B /* 共享卡管理 */,
 				D9AA10C91F0490C400F7EDE8 /* 体验卡与套餐卡管理 */,
@@ -4514,6 +4519,21 @@
 			name = "业务中心";
 			sourceTree = "<group>";
 		};
+		D90071711F46E8CA003BD522 /* 首页自定义 */ = {
+			isa = PBXGroup;
+			children = (
+				D90071641F467821003BD522 /* WaterfallColectionLayout.h */,
+				D90071651F467821003BD522 /* WaterfallColectionLayout.m */,
+				D900716C1F46CC11003BD522 /* HomeGridCollectionCell.h */,
+				D900716D1F46CC11003BD522 /* HomeGridCollectionCell.m */,
+				D900716E1F46CC11003BD522 /* HomeGridCollectionCell.xib */,
+				D90071671F46832F003BD522 /* HomeCollectionCell.h */,
+				D90071681F46832F003BD522 /* HomeCollectionCell.m */,
+				D90071691F46832F003BD522 /* HomeCollectionCell.xib */,
+			);
+			name = "首页自定义";
+			sourceTree = "<group>";
+		};
 		D9026B241F0B7B75005CA5F4 /* 其他类别 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4946,6 +4966,7 @@
 				D967F9331EB075D300D77ED6 /* 今日头条.png */,
 				D9C0E9561DCC201700FD1199 /* HomeViewController.h */,
 				D9C0E9571DCC201700FD1199 /* HomeViewController.m */,
+				D90071711F46E8CA003BD522 /* 首页自定义 */,
 				D9C0E95C1DCC886D00FD1199 /* HomeViewCell.h */,
 				D9C0E95D1DCC886D00FD1199 /* HomeViewCell.m */,
 				D9C0E95F1DCC891500FD1199 /* HomeShopModel.h */,
@@ -6757,6 +6778,7 @@
 				18EB36A61D4B1F5D0087CE1A /* 滑动选择-04.png in Resources */,
 				18F27F051D640E84002DD03A /* 头像-29.png in Resources */,
 				18F032051E5ED79300ACD261 /* tempActiverty.jpg in Resources */,
+				D900716B1F46832F003BD522 /* HomeCollectionCell.xib in Resources */,
 				1CF2836F1C58899900F3952A /* FirstLikeCell.xib in Resources */,
 				18D8464A1ED570510048F010 /* 上角标.png in Resources */,
 				18FA58DC1EEA89C000F458F2 /* RailNameConfirmVC.xib in Resources */,
@@ -6869,7 +6891,6 @@
 				D9AB253E1D88E4ED000E9288 /* VoiceSearchFeedback016@2x.png in Resources */,
 				18F27EFD1D640E84002DD03A /* 头像-21.png in Resources */,
 				1CF6E47C1C61E4350001159C /* yanqi@2x.png in Resources */,
-				183B17DA1F46D567001377B6 /* NewAddCardDetailVC.xib in Resources */,
 				182F3C521F0CEDA800540FAE /* b27_icon_star_gray@2x.png in Resources */,
 				D93C0D681D251E7B001A1AC1 /* 小标-23.png in Resources */,
 				1CBE67D01C5828CD00706AE9 /* icon_chose_arrow_sel@2x.png in Resources */,
@@ -6983,6 +7004,7 @@
 				1CF2839E1C58C48900F3952A /* more_selected.png in Resources */,
 				D925D1811E70F89C0000B8B1 /* OrderDetailViewController.xib in Resources */,
 				D99C11A61DE28CF100E45B64 /* UPgradeVC.xib in Resources */,
+				D90071701F46CC11003BD522 /* HomeGridCollectionCell.xib in Resources */,
 				D920B95E1DD05164001AC7F5 /* AdvertiseCell.xib in Resources */,
 				189899F51F3AC0E8004D1543 /* oil2.jpg in Resources */,
 				D980B66C1D7801A600CC6637 /* group_creategroup@2x.png in Resources */,
@@ -7102,6 +7124,7 @@
 				D9B3A5C71D74255700F3F27E /* PSTGridLayoutSection.m in Sources */,
 				1CB53C121C572019002B6CC1 /* LookAgoController.m in Sources */,
 				D958AD651E654CF200B0776F /* JHColumnChart.m in Sources */,
+				D900716F1F46CC11003BD522 /* HomeGridCollectionCell.m in Sources */,
 				18E838EE1F3998E500E743A7 /* OrderConfirmForOilVC.m in Sources */,
 				184C72031EC2F9150065EE65 /* SYPasswordView.m in Sources */,
 				D97B70301E2C90FE00CEAFC1 /* CardMarketModel.m in Sources */,
@@ -7282,6 +7305,7 @@
 				D9B3A5BD1D74255700F3F27E /* PSTCollectionViewCell.m in Sources */,
 				D9DEED1A1CACED7C00ACDD00 /* MKAnnotationView+WebCache.m in Sources */,
 				D949EC301CE192AE0023B6D6 /* AddressPickerDemo.m in Sources */,
+				D90071661F467821003BD522 /* WaterfallColectionLayout.m in Sources */,
 				18E3DA1B1D8287450089597B /* NewPasswordViewController.m in Sources */,
 				D9B3A4901D73CFE800F3F27E /* LZDButton.m in Sources */,
 				18B139AA1F3066D000283CED /* PayVictoryVC.m in Sources */,
@@ -7432,6 +7456,7 @@
 				D98011D31DF7B0DD00CE09CA /* ErrorQRViewController.m in Sources */,
 				D949EC101CE1917E0023B6D6 /* BAddressPickerController.m in Sources */,
 				D9B3A5C21D74255700F3F27E /* PSTCollectionViewLayout.m in Sources */,
+				D900716A1F46832F003BD522 /* HomeCollectionCell.m in Sources */,
 				D94C5F3D1D912DC10063EB27 /* UIColor+Hex.m in Sources */,
 				182E7D441EC5604D009CAC02 /* PayCustomView.m in Sources */,
 				D947E4741D7D4CB000F9FEE8 /* SDRefreshHeaderView.m in Sources */,
@@ -7500,7 +7525,6 @@
 				D9BB4DDE1E05019400971BCC /* DelayScanVC.m in Sources */,
 				185A459A1F134DDB0033AFE3 /* FavorateTableViewCell.m in Sources */,
 				D98533341DDE9B21004E1E6F /* NameSignViewController.m in Sources */,
-				183B17D91F46D567001377B6 /* NewAddCardDetailVC.m in Sources */,
 				D9B3A5BA1D74255700F3F27E /* UIView+EMWebCacheOperation.m in Sources */,
 				D9B3A4911D73CFE800F3F27E /* LZDToolView.m in Sources */,
 				D94432C71D18FC9900B45135 /* BookItem.m in Sources */,
