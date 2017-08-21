@@ -825,74 +825,65 @@
     UIView *backView = [[UIView alloc]init];
     backView.backgroundColor = [UIColor whiteColor];
     
-    UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(13, 14, 4, 4)];
-    view1.backgroundColor=RGB(243,117,33);
-    view1.layer.cornerRadius=2.0f;
-    view1.clipsToBounds=YES;
+    UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(13, 10, 3, 15)];
+    view1.backgroundColor=RGB(253,108,110);
     [backView addSubview:view1];
     
     UILabel *timeLable=[[UILabel alloc]initWithFrame:CGRectMake(22, 10, SCREENWIDTH-13, 13)];
     timeLable.textAlignment=NSTextAlignmentLeft;
     timeLable.text=@"使用时间:";
-    timeLable.textColor=RGB(243, 117, 33);
     timeLable.font=[UIFont systemFontOfSize:15.0f];
     [backView addSubview:timeLable];
     NSString *time=[NSString getTheNoNullStr:wholeInfoDic[@"time"] andRepalceStr:@"周一到周日  遇到节假日工作时间会有调整"];
     
-    CGFloat labelHeight = [time getTextHeightWithShowWidth:SCREENWIDTH AndTextFont:[UIFont systemFontOfSize:12.0] AndInsets:5];
+    CGFloat labelHeight = [time getTextHeightWithShowWidth:SCREENWIDTH AndTextFont:[UIFont systemFontOfSize:15.0] AndInsets:5];
     
     UILabel *timeContent=[[UILabel alloc]initWithFrame:CGRectMake(13, 34, SCREENWIDTH-13, labelHeight)];
     timeContent.numberOfLines=0;
-    timeContent.font=[UIFont systemFontOfSize:12.0f];
+    timeContent.font=[UIFont systemFontOfSize:15.0f];
     timeContent.textAlignment=NSTextAlignmentLeft;
-    timeContent.textColor=RGB(61, 61, 61);
+    timeContent.textColor=[UIColor grayColor];
     timeContent.text=time;
     [backView addSubview:timeContent];
     
-    UIView *view2=[[UIView alloc]initWithFrame:CGRectMake(13, 34+labelHeight+13+4, 4, 4)];
+    UIView *view2=[[UIView alloc]initWithFrame:CGRectMake(13, 34+labelHeight+13, 3, 15)];
     view2.backgroundColor=view1.backgroundColor;
-    view2.layer.cornerRadius=2.0f;
-    view2.clipsToBounds=YES;
     [backView addSubview:view2];
     
     NSString *notice=[NSString getTheNoNullStr:wholeInfoDic[@"notice"] andRepalceStr:@"本店会员卡优惠多多"];
     
-    CGFloat labelHeight2 = [notice getTextHeightWithShowWidth:SCREENWIDTH AndTextFont:[UIFont systemFontOfSize:12.0] AndInsets:5];
+    CGFloat labelHeight2 = [notice getTextHeightWithShowWidth:SCREENWIDTH AndTextFont:[UIFont systemFontOfSize:15.0] AndInsets:5];
     
     
     UILabel *noticeLable=[[UILabel alloc]initWithFrame:CGRectMake(22, 34+labelHeight+13, SCREENWIDTH-13, 13)];
     noticeLable.textAlignment=NSTextAlignmentLeft;
     noticeLable.text=@"注意事项";
-    noticeLable.textColor=RGB(243, 117, 33);
     noticeLable.font=[UIFont systemFontOfSize:15.0f];
     [backView addSubview:noticeLable];
     
     UILabel *noticeContent=[[UILabel alloc]initWithFrame:CGRectMake(13, 34+labelHeight+13+13+11, SCREENWIDTH-26, labelHeight2)];
     noticeContent.numberOfLines=0;
-    noticeContent.font=[UIFont systemFontOfSize:12.0f];
+    noticeContent.font=[UIFont systemFontOfSize:15.0f];
     noticeContent.text=notice;
     noticeContent.textAlignment=NSTextAlignmentLeft;
-    noticeContent.textColor=RGB(61, 61, 61);
+    noticeContent.textColor=[UIColor grayColor];
     [backView addSubview:noticeContent];
     
-    UIView *view3=[[UIView alloc]initWithFrame:CGRectMake(13, CGRectGetMaxY(noticeContent.frame)+11+4, 4, 4)];
-    view3.layer.cornerRadius=2.0f;
-    view3.clipsToBounds=YES;
+    UIView *view3=[[UIView alloc]initWithFrame:CGRectMake(13, CGRectGetMaxY(noticeContent.frame)+11, 3, 15)];
     view3.backgroundColor=view1.backgroundColor;
     [backView addSubview:view3];
     
     UILabel *phoneLable=[[UILabel alloc]initWithFrame:CGRectMake(22, CGRectGetMaxY(noticeContent.frame)+11, SCREENWIDTH-13, 13)];
     phoneLable.textAlignment=NSTextAlignmentLeft;
     phoneLable.text=@"商家电话:";
-    phoneLable.textColor=RGB(243, 117, 33);
     phoneLable.font=[UIFont systemFontOfSize:15.0f];
     [backView addSubview:phoneLable];
     
     UILabel *phoneContent=[[UILabel alloc]initWithFrame:CGRectMake(13, CGRectGetMaxY(noticeContent.frame)+11+13+11, SCREENWIDTH-13, 13)];
-    phoneContent.font=[UIFont systemFontOfSize:12.0f];
+    phoneContent.font=[UIFont systemFontOfSize:15.0f];
     phoneContent.numberOfLines=0;
     phoneContent.textAlignment=NSTextAlignmentLeft;
-    phoneContent.textColor=RGB(61, 61, 61);
+    phoneContent.textColor=[UIColor grayColor];
     phoneContent.text=[NSString getTheNoNullStr:[wholeInfoDic objectForKey:@"store_number"] andRepalceStr:[wholeInfoDic objectForKey:@"phone"]];
     [backView addSubview:phoneContent];
     
@@ -1012,8 +1003,6 @@
             UIImageView *ImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, b_v.width, b_v.width)];
             NSURL * nurl1=[[NSURL alloc] initWithString:[[SOURCE_PRODUCT stringByAppendingString:dic_comm[@"image_url"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
             [ImgView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3"]];
-            ImgView.layer.cornerRadius=6.0f;
-            ImgView.clipsToBounds=YES;
             [b_v addSubview:ImgView];
             
             
