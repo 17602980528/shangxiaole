@@ -679,22 +679,24 @@ static NSString *headerID = @"headerID";
             UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(20+X *(ww+10)+ SCREENWIDTH*j,10+Y *(hh+17), ww, hh)];
             [btn addTarget:self action:@selector(topClick:) forControlEvents:UIControlEventTouchUpInside];
            
-            btn.layer.shadowOffset = CGSizeMake(0, 5);
-            btn.backgroundColor = [UIColor whiteColor];
-            btn.layer.shadowOpacity = 0.1;
-            
-            CALayer *corner_lay = [CALayer layer];
-            corner_lay.cornerRadius = 4;
-            corner_lay.masksToBounds = YES;
-            corner_lay.borderWidth = 1;
-            corner_lay.frame = btn.bounds;
-            corner_lay.borderColor = RGB(219,219,219).CGColor;
-            [btn.layer addSublayer:corner_lay];
+          
+             btn.layer.cornerRadius = 4;
+             btn.layer.masksToBounds = YES;
+             btn.layer.borderWidth = 1;
+             btn.layer.borderColor = RGB(219,219,219).CGColor;
             
             
-//            btn.backgroundColor = [UIColor redColor];
             btn.tag = i;
             [_smallSV addSubview:btn];
+            
+            UIView *b_view = [[UIView alloc]initWithFrame:btn.frame];
+            b_view.backgroundColor = [UIColor whiteColor];
+            b_view.layer.shadowOffset = CGSizeMake(0, 5);
+            b_view.layer.shadowOpacity = 0.1;
+            b_view.layer.cornerRadius = 4;
+            [_smallSV addSubview:b_view];
+            
+            [_smallSV bringSubviewToFront:btn];
             
             UIImageView *imag = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, btn.width, btn.height-25)];
             imag.backgroundColor = RGB(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255));
@@ -705,6 +707,7 @@ static NSString *headerID = @"headerID";
             lable_S.font = [UIFont systemFontOfSize:12];
             lable_S.textAlignment = NSTextAlignmentCenter;
             lable_S.adjustsFontSizeToFitWidth = YES;
+
             [btn addSubview:lable_S];
             
             NSDictionary *dic  = self.icon_A[i];

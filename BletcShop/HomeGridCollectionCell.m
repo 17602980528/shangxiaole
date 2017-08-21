@@ -56,7 +56,7 @@
     self.star_v.currentScore = [_model.stars floatValue];
     
     
-    self.trade_lab.text = [NSString stringWithFormat:@"%@ ",_model.trade];
+    self.trade_lab.text = [NSString stringWithFormat:@"%@   ",_model.trade];
     if ([_model.pri[@"discount"] boolValue]) {
         self.zheLab.text = @"折 ";
         

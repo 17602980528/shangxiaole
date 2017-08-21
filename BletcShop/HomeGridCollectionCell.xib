@@ -132,8 +132,8 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="足浴按摩 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yP-bc-CGN">
-                                <rect key="frame" x="0.0" y="5" width="39.5" height="12"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="足浴按摩 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yP-bc-CGN">
+                                <rect key="frame" x="-3" y="5" width="39.5" height="12"/>
                                 <color key="backgroundColor" red="0.95294117647058818" green="0.28627450980392155" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="apv-Ax-keb"/>
@@ -142,6 +142,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NIC-yU-Owc">
                                 <rect key="frame" x="0.0" y="0.0" width="171" height="268"/>
@@ -172,7 +177,7 @@
                             <constraint firstItem="fng-oA-nyn" firstAttribute="leading" secondItem="7x9-fy-v6g" secondAttribute="trailing" constant="5" id="bCF-nu-Kbi"/>
                             <constraint firstAttribute="trailing" secondItem="lVU-VT-Y7g" secondAttribute="trailing" constant="5" id="e76-Fu-Ym3"/>
                             <constraint firstAttribute="trailing" secondItem="kvg-mf-sgL" secondAttribute="trailing" id="i0q-Gk-aea"/>
-                            <constraint firstItem="1yP-bc-CGN" firstAttribute="leading" secondItem="eEn-DW-EQm" secondAttribute="leading" id="jss-rk-djN"/>
+                            <constraint firstItem="1yP-bc-CGN" firstAttribute="leading" secondItem="eEn-DW-EQm" secondAttribute="leading" constant="-3" id="jss-rk-djN"/>
                             <constraint firstItem="7x9-fy-v6g" firstAttribute="centerY" secondItem="VH0-gC-iks" secondAttribute="centerY" id="kdc-2y-FBF"/>
                             <constraint firstItem="1yP-bc-CGN" firstAttribute="top" secondItem="eEn-DW-EQm" secondAttribute="top" constant="5" id="lJx-QU-nAQ"/>
                             <constraint firstAttribute="bottom" secondItem="NIC-yU-Owc" secondAttribute="bottom" id="lnD-ec-Jod"/>
@@ -202,6 +207,9 @@
                 </userDefinedRuntimeAttribute>
                 <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
                     <color key="value" red="0.71764705882352942" green="0.71764705882352942" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="4"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
