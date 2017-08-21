@@ -45,7 +45,7 @@
 
 }
 -(void)makeBannerView{
-     imageArray = @[@"引导页1",@"引导页2",@"引导页3"];
+    imageArray = @[@"欢迎页1",@"欢迎页2",@"欢迎页3"];
 //    imageArray = @[@"引导页-01",@"引导页-02",@"引导页-03-01"];
 
     _scrollView.contentSize = CGSizeMake(SCREENWIDTH*imageArray.count,_scrollView.frame.size.height);
@@ -62,19 +62,15 @@
         
         if (i==imageArray.count-1) {
             imageView.userInteractionEnabled = YES;
-            _loginBt = [[UIButton alloc]initWithFrame:CGRectMake((SCREENWIDTH-105)/2, SCREENHEIGHT-103, 105, 30)];
-//            [_loginBt setBackgroundImage:[UIImage imageNamed:@"entrance_selected"] forState:UIControlStateNormal];
-//            [_loginBt setBackgroundImage:[UIImage imageNamed:@"entrance_default"] forState:UIControlStateSelected];
-//            _loginBt.layer.borderColor =[UIColor colorWithHexString:@"f29118"].CGColor;
-//            _loginBt.layer.borderWidth = 1;
-//            _loginBt.backgroundColor = NavBackGroundColor;
-            _loginBt.layer.borderColor = RGB(238, 179, 152).CGColor;
-            _loginBt.layer.borderWidth = 1;
-
-            _loginBt.layer.cornerRadius = 15;
-            [_loginBt setTitle:@"GO" forState:0];
-            [_loginBt setTitleColor:RGB(238, 179, 152) forState:0];
-            _loginBt.titleLabel.font = [UIFont systemFontOfSize:18];
+            _loginBt = [[UIButton alloc]initWithFrame:CGRectMake((SCREENWIDTH-165)/2, SCREENHEIGHT-136, 165, 43)];
+            //            _loginBt.layer.borderColor = RGB(238, 179, 152).CGColor;
+            //            _loginBt.layer.borderWidth = 1;
+            
+            _loginBt.backgroundColor = RGB(243,73,78);
+            _loginBt.layer.cornerRadius = 21;
+            [_loginBt setTitle:@"点击进入" forState:0];
+            [_loginBt setTitleColor:[UIColor whiteColor] forState:0];
+            _loginBt.titleLabel.font = [UIFont systemFontOfSize:15];
             
             [_loginBt addTarget:self action:@selector(firstView) forControlEvents:UIControlEventTouchUpInside];
             [imageView addSubview:_loginBt];
