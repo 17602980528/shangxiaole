@@ -89,7 +89,7 @@
         }
         
         //两个按钮
-        if (cancleTitle && sureTitle) {
+        if (cancleTitle && sureTitle&&![cancleTitle isEqualToString:@""]) {
             
             self.cancleBtn = [UIButton buttonWithType:UIButtonTypeSystem];
             self.cancleBtn.frame = CGRectMake(AlertW/2-105, CGRectGetMaxY(self.msgLbl.frame)+30, 90, 25);
@@ -103,9 +103,7 @@
             [self.cancleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [self.cancleBtn addTarget:self action:@selector(buttonEvent:) forControlEvents:UIControlEventTouchUpInside];
             [self.alertView addSubview:self.cancleBtn];
-        }
-        
-        if(sureTitle && cancleTitle){
+            
             
             self.sureBtn = [UIButton buttonWithType:UIButtonTypeSystem];
             self.sureBtn.frame = CGRectMake(AlertW/2+15,CGRectGetMaxY(self.msgLbl.frame)+30,90,25);
@@ -116,17 +114,41 @@
             [self.sureBtn addTarget:self action:@selector(buttonEvent:) forControlEvents:UIControlEventTouchUpInside];
             self.sureBtn.layer.cornerRadius=5.0f;
             self.sureBtn.clipsToBounds=YES;
-//            self.sureBtn.layer.borderWidth=1.0f;
-//            self.sureBtn.layer.borderColor=[[UIColor lightGrayColor]CGColor];
             [self.alertView addSubview:self.sureBtn];
+            
+            
+            //计算高度
+            CGFloat alertHeight =CGRectGetMaxY(self.cancleBtn.frame)+35;
+            self.alertView.frame = CGRectMake(0, 0, AlertW, alertHeight);
+            self.alertView.layer.position = self.center;
+            
+            [self addSubview:self.alertView];
+            
+        }else if(sureTitle){
+            
+            self.sureBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+            self.sureBtn.frame = CGRectMake(AlertW/2-45,CGRectGetMaxY(self.msgLbl.frame)+30,90,25);
+            self.sureBtn.backgroundColor=[UIColor colorWithRed:237/255.0f green:72/255.0f blue:77/255.0f alpha:1.0f];
+            [self.sureBtn setTitle:sureTitle forState:UIControlStateNormal];
+            [self.sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            self.sureBtn.tag = 2;
+            [self.sureBtn addTarget:self action:@selector(buttonEvent:) forControlEvents:UIControlEventTouchUpInside];
+            self.sureBtn.layer.cornerRadius=5.0f;
+            self.sureBtn.clipsToBounds=YES;
+            
+            [self.alertView addSubview:self.sureBtn];
+            
+            
+            
+            //计算高度
+            CGFloat alertHeight =CGRectGetMaxY(self.sureBtn.frame)+35;
+            self.alertView.frame = CGRectMake(0, 0, AlertW, alertHeight);
+            self.alertView.layer.position = self.center;
+            
+            [self addSubview:self.alertView];
         }
         
-        //计算高度
-        CGFloat alertHeight =CGRectGetMaxY(self.cancleBtn.frame)+35;
-        self.alertView.frame = CGRectMake(0, 0, AlertW, alertHeight);
-        self.alertView.layer.position = self.center;
-        
-        [self addSubview:self.alertView];
+       
     }
     
     return self;
