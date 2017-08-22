@@ -28,6 +28,8 @@
     self.tradeLable.clipsToBounds=YES;
     self.bgView.layer.cornerRadius=5.0f;
     self.bgView.clipsToBounds=YES;
+    self.bgView.layer.borderWidth=1.0f;
+    self.bgView.layer.borderColor=RGB(216, 216, 216).CGColor;
 }
 +(instancetype)creatCellWithTableView:(UITableView*)tableView
 {
