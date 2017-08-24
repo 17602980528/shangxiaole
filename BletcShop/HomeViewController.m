@@ -360,7 +360,7 @@ static NSString *headerID = @"headerID";
     
     
     dingweiXiaImg = [[UIImageView alloc]initWithFrame:CGRectMake(11, 30, 15, 15)];
-    dingweiXiaImg.image = [UIImage imageNamed:@"定位icon"];
+    dingweiXiaImg.image = [UIImage imageNamed:@"黑色定位icon"];
     [topView addSubview:dingweiXiaImg];
     
     
@@ -494,7 +494,7 @@ static NSString *headerID = @"headerID";
 
             
         }else{
-            dingweiXiaImg.image = [UIImage imageNamed:@"定位icon"];
+            dingweiXiaImg.image = [UIImage imageNamed:@"黑色定位icon"];
             searchView.backgroundColor=RGB(255,255,255);
             
             dingwei_img.image = [UIImage imageNamed:@"下拉（黑）"];
@@ -1427,7 +1427,7 @@ static NSString *headerID = @"headerID";
                 xiaoxiImg.image = [UIImage imageNamed:@"灰色提醒icon"];
                 
             }else{
-                dingweiXiaImg.image = [UIImage imageNamed:@"定位icon"];
+                dingweiXiaImg.image = [UIImage imageNamed:@"黑色定位icon"];
                 searchView.backgroundColor=RGB(255,255,255);
                 
                 dingwei_img.image = [UIImage imageNamed:@"下拉（黑）"];
