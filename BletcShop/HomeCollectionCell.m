@@ -42,7 +42,7 @@
     
     self.star_v = star_View;
 
-    
+    self.trade_lab.backgroundColor=RGB(243, 73, 78);
     NSLog(@"-----awakeFromNib------");
 }
 

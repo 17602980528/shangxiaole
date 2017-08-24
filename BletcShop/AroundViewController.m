@@ -279,7 +279,13 @@
         
         cell.tradeLable.text=dic[@"trade"];
         CGRect trade_frame = cell.tradeLable.frame;
-        trade_frame.size.width =[NSString calculateRowWidth: cell.tradeLable];
+        if ([NSString calculateRowWidth: cell.tradeLable]<65) {
+            trade_frame.size.width =[NSString calculateRowWidth: cell.tradeLable];
+        }else{
+            trade_frame.size.width=65;
+        }
+        cell.tradeLable.backgroundColor=RGB(243, 73, 78);
+        cell.tradeLable.textColor=[UIColor whiteColor];
         cell.tradeLable.frame = trade_frame;
         
         cell.delete_btn.hidden = NO;
@@ -343,7 +349,7 @@
         btn.block = ^(LZDButton *sender) {
           
             if (sender !=oldBtn) {
-                sender.backgroundColor = RGB(228,96,98);
+                sender.backgroundColor = RGB(243,73,78);
                 [sender setTitleColor:[UIColor whiteColor] forState:0];
                 
                 oldBtn.backgroundColor = [UIColor whiteColor];
@@ -366,7 +372,7 @@
         if (oldBtn) {
             if (i==oldBtn.tag) {
                 oldBtn = btn;
-                btn.backgroundColor = RGB(228,96,98);
+                btn.backgroundColor = RGB(243,73,78);
                 
                 [btn setTitleColor:[UIColor whiteColor] forState:0];
 
@@ -374,7 +380,7 @@
         }else{
             if (i==0) {
                 oldBtn = btn;
-                btn.backgroundColor = RGB(228,96,98);
+                btn.backgroundColor = RGB(243,73,78);
                 
                 [btn setTitleColor:[UIColor whiteColor] forState:0];
                 
