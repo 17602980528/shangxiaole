@@ -41,7 +41,7 @@
         LZDButton *rightBtn = [LZDButton creatLZDButton];
         rightBtn.frame = CGRectMake(kWeChatScreenWidth-50, 20,40, 30);
     [rightBtn setTitle:@"添加" forState:0];
-
+    [rightBtn setTitleColor:RGB(51, 51, 51) forState:0];
     
         rightBtn.titleLabel.font = [UIFont systemFontOfSize:17];
         UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
