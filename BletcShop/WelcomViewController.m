@@ -62,7 +62,7 @@
         
         if (i==imageArray.count-1) {
             imageView.userInteractionEnabled = YES;
-            _loginBt = [[UIButton alloc]initWithFrame:CGRectMake((SCREENWIDTH-165)/2, SCREENHEIGHT-136, 165, 43)];
+            _loginBt = [[UIButton alloc]initWithFrame:CGRectMake((SCREENWIDTH-200)/2, SCREENHEIGHT-136, 200, 43)];
             //            _loginBt.layer.borderColor = RGB(238, 179, 152).CGColor;
             //            _loginBt.layer.borderWidth = 1;
             
