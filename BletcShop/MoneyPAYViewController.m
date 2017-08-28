@@ -12,10 +12,12 @@
 #import "PayCustomView.h"
 #import "AccessCodeVC.h"
 #import "PayVictoryVC.h"
-@interface MoneyPAYViewController ()<UIAlertViewDelegate,PayCustomViewDelegate>
+@interface MoneyPAYViewController ()<UIAlertViewDelegate,PayCustomViewDelegate,UITextFieldDelegate>
 {
     UITextField *textTF;
     PayCustomView *view;
+    UILabel *discount;
+    UILabel *realPay;
 }
 @end
 
@@ -26,20 +28,33 @@
     self.view.backgroundColor=RGB(234, 234, 234);
     self.navigationItem.title=@"储值卡支付";
     LEFTBACK
-    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 50)];
+    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 100)];
     backView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:backView];
     
-    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(12, 0, 80, 50)];
+    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(12, 5, 80, 40)];
     label.text=@"输入金额:";
+    label.font=[UIFont systemFontOfSize:15.0f];
     label.textAlignment=0;
     [backView addSubview:label];
     
-    textTF=[[UITextField alloc]initWithFrame:CGRectMake(label.right, 0, SCREENWIDTH-180, 50)];
+    textTF=[[UITextField alloc]initWithFrame:CGRectMake(label.right, 5, SCREENWIDTH-180, 40)];
     textTF.borderStyle=UITextBorderStyleNone;
+    textTF.delegate=self;
+    textTF.font=[UIFont systemFontOfSize:15.0f];
     textTF.keyboardType=UIKeyboardTypeNumbersAndPunctuation;
-    textTF.placeholder=@"请输入消费金额";
+    textTF.placeholder=@"请按商品原价输入消费金额";
     [backView addSubview:textTF];
+    
+    discount=[[UILabel alloc]initWithFrame:CGRectMake(12, 50, 200, 15)];
+    discount.text=@"优惠金额：0.0元";
+    discount.font=[UIFont systemFontOfSize:14.0f];
+    [backView addSubview:discount];
+    
+    realPay=[[UILabel alloc]initWithFrame:CGRectMake(12, 75, 200, 15)];
+    realPay.text=@"实际支付金额：0.0元";
+    realPay.font=[UIFont systemFontOfSize:14.0f];
+    [backView addSubview:realPay];
     
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, SCREENHEIGHT-64-44, SCREENWIDTH, 44);
@@ -48,6 +63,7 @@
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
+    NSLog(@"self.card_dic=====%@",self.card_dic);
 }
 -(void)btnClick:(UIButton *)sender{
     [textTF resignFirstResponder];
@@ -286,6 +302,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    CGFloat disc=[self.card_dic[@"rule"] floatValue]/100;
+    CGFloat inputMoney=[textTF.text floatValue];
+    
+    realPay.text=[NSString stringWithFormat:@"实际支付金额：%.2f元",disc*inputMoney];
+    discount.text=[NSString stringWithFormat:@"优惠金额：%.2f元",inputMoney-disc*inputMoney];
+    return YES;
+}
 
 @end
