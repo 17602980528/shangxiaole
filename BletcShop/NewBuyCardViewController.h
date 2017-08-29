@@ -20,7 +20,7 @@ enum OrderTypes{
 @property enum OrderTypes Type;
 
 @property (nonatomic,retain)NSString *allPoint;
-@property float canUsePoint;
+@property int canUsePoint;
 @property (nonatomic,retain)NSString *userCouponPrice;
 @property (nonatomic,retain)UILabel *contentLabel;
 

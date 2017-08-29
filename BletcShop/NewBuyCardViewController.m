@@ -618,7 +618,7 @@
                 float diXian =self.canUsePoint;
                 if(!((([self.moneyString floatValue])/2)<1))
                 {
-                    contentlabel.text = [[NSString alloc]initWithFormat:@"可用%.2f红包抵用%.2f元现金",self.canUsePoint,diXian ];
+                    contentlabel.text = [[NSString alloc]initWithFormat:@"可用%d红包抵用%.2f元现金",self.canUsePoint,diXian ];
                 }else
                     contentlabel.text =@"不可使用红包";
                 
@@ -1122,7 +1122,7 @@
     else if (self.Type == points)
     {//使用红包
         [params setObject:@"rp" forKey:@"pay_type"];
-        [params setObject:[[NSString alloc]initWithFormat:@"%.f",self.canUsePoint] forKey:@"content"];
+        [params setObject:[[NSString alloc]initWithFormat:@"%d",self.canUsePoint] forKey:@"content"];
     }else if(self.Type ==plat_Ware){
         //使用平台优惠券
         [params setObject:@"scp" forKey:@"pay_type"];
@@ -1222,7 +1222,7 @@
     else if (self.Type == points)
     {//使用红包
         [params setObject:@"rp" forKey:@"pay_type"];
-        [params setObject:[[NSString alloc]initWithFormat:@"%.f",self.canUsePoint] forKey:@"content"];
+        [params setObject:[[NSString alloc]initWithFormat:@"%d",self.canUsePoint] forKey:@"content"];
     }else if(self.Type ==plat_Ware){
         //使用平台优惠券
         [params setObject:@"scp" forKey:@"pay_type"];
@@ -1314,7 +1314,7 @@
     else if (self.Type == points)
     {//使用红包
         [params setObject:@"rp" forKey:@"pay_type"];
-        [params setObject:[[NSString alloc]initWithFormat:@"%.f",self.canUsePoint] forKey:@"content"];
+        [params setObject:[[NSString alloc]initWithFormat:@"%d",self.canUsePoint] forKey:@"content"];
     }else if(self.Type ==plat_Ware){
         //使用平台优惠券
         [params setObject:@"scp" forKey:@"pay_type"];
@@ -1414,7 +1414,7 @@
     else if (self.Type == points)
     {//使用红包
         [params setObject:@"rp" forKey:@"pay_type"];
-        [params setObject:[[NSString alloc]initWithFormat:@"%.f",self.canUsePoint] forKey:@"content"];
+        [params setObject:[[NSString alloc]initWithFormat:@"%d",self.canUsePoint] forKey:@"content"];
     }else if(self.Type ==plat_Ware){
         //使用平台优惠券
         [params setObject:@"scp" forKey:@"pay_type"];
@@ -1649,7 +1649,7 @@
         
     }else if (self.Type == points) {
         [paramer setValue:@"rp" forKey:@"privi"];
-        [paramer setValue:[NSString stringWithFormat:@"%g",self.canUsePoint] forKey:@"privi_con"];
+        [paramer setValue:[NSString stringWithFormat:@"%d",self.canUsePoint] forKey:@"privi_con"];
         
         
     }else{
@@ -1865,7 +1865,7 @@
         
     }else if (self.Type == points) {
         [paramer setValue:@"rp" forKey:@"privi"];
-        [paramer setValue:[NSString stringWithFormat:@"%g",self.canUsePoint] forKey:@"privi_con"];
+        [paramer setValue:[NSString stringWithFormat:@"%d",self.canUsePoint] forKey:@"privi_con"];
 
         
     }else{
