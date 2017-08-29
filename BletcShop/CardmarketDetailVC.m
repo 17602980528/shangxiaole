@@ -650,7 +650,7 @@ LEFTBACK
         NSArray *arr = result;
         
 #ifdef DEBUG
-        [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:APPScheme mode:@"00" viewController:self];
+        [[UPPaymentControl defaultControl] startPay:[arr objectAtIndex:0] fromScheme:APPScheme mode:@"01" viewController:self];
         
         
 #else
