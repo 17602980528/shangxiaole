@@ -33,6 +33,13 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (self.data_A.count!=0) {
+        if (self.data_A[section][@"reason"]) {
+            return 4;
+        }else{
+            return 3;
+        }
+    }
     return 3;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -62,32 +69,71 @@
         NSDictionary *dic = self.data_A[indexPath.section];
         UILabel *huiyuanLabel = [cell viewWithTag:900];
         UILabel *huiyuanText = [cell viewWithTag:901];
-        switch (indexPath.row) {
-            case 0:
-            {
-                huiyuanLabel.text = @"预约时间:";
-                huiyuanText.text = dic[@"time"];
-                
+        if (self.data_A[indexPath.section][@"reason"]) {
+            switch (indexPath.row) {
+                case 0:
+                {
+                    huiyuanLabel.text = @"拒绝原因:";
+                    huiyuanText.text = dic[@"reason"];
+                    huiyuanText.textColor=RGB(241,122,18);
+                }
+                    break;
+                case 1:
+                {
+                    huiyuanLabel.text = @"预约时间:";
+                    huiyuanText.text = dic[@"time"];
+                    huiyuanText.textColor=RGB(51,51,51);
+                }
+                    break;
+                case 2:
+                {
+                    huiyuanLabel.text = @"预约内容";
+                    huiyuanText.text = dic[@"content"];
+                    huiyuanText.textColor=RGB(51,51,51);
+                }
+                    break;
+                case 3:
+                {
+                    huiyuanLabel.text = @"申请日期:";
+                    huiyuanText.text = [NSString stringWithFormat:@"%@",dic[@"date"]];
+                    huiyuanText.textColor=RGB(51,51,51);
+                    
+                }
+                    break;
+                    
+                default:
+                    break;
             }
-                break;
-            case 1:
-            {
-                huiyuanLabel.text = @"预约内容";
-                huiyuanText.text = dic[@"content"];
-                
+
+        }else{
+            switch (indexPath.row) {
+                case 0:
+                {
+                    huiyuanLabel.text = @"预约时间:";
+                    huiyuanText.text = dic[@"time"];
+                    
+                }
+                    break;
+                case 1:
+                {
+                    huiyuanLabel.text = @"预约内容";
+                    huiyuanText.text = dic[@"content"];
+                    
+                }
+                    break;
+                case 2:
+                {
+                    huiyuanLabel.text = @"申请日期:";
+                    huiyuanText.text = [NSString stringWithFormat:@"%@",dic[@"date"]];
+                    
+                    
+                }
+                    break;
+                    
+                default:
+                    break;
             }
-                break;
-            case 2:
-            {
-                huiyuanLabel.text = @"申请日期:";
-                huiyuanText.text = [NSString stringWithFormat:@"%@",dic[@"date"]];
-                
-                
-            }
-                break;
-    
-            default:
-                break;
+
         }
         
     }
@@ -126,7 +172,7 @@
     UILabel *card_code_lab = [[UILabel alloc]initWithFrame:CGRectMake(102, line0.bottom, SCREENWIDTH-100, 40)];
     card_code_lab.text = @"";
     card_code_lab.font = [UIFont systemFontOfSize:15];
-    card_code_lab.textColor = RGB(51,51,51);
+    card_code_lab.textColor = RGB(241,122,18);
     card_code_lab.textAlignment = NSTextAlignmentLeft;
     [view addSubview:card_code_lab];
     
