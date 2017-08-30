@@ -1038,6 +1038,7 @@
 		D9C3A3011E9642890062B17D /* ChouJiangVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9C3A2FF1E9642890062B17D /* ChouJiangVC.xib */; };
 		D9C4CDEA1DE4161E009C76C1 /* MyOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C4CDE91DE4161E009C76C1 /* MyOrderDetailVC.m */; };
 		D9C4CDED1DE44587009C76C1 /* ValuePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C4CDEC1DE44587009C76C1 /* ValuePickerView.m */; };
+		D9C7B2C51F555BEC00406BC9 /* awpp启动页2.png in Resources */ = {isa = PBXBuildFile; fileRef = D9C7B2C41F555BEC00406BC9 /* awpp启动页2.png */; };
 		D9C7D45E1E2F3BEB00ADB6A1 /* MoneybagDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C7D45D1E2F3BEB00ADB6A1 /* MoneybagDetailVC.m */; };
 		D9CACCFC1ED7BEBF002DC49A /* PlatCouponsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9CACCFA1ED7BEBF002DC49A /* PlatCouponsVC.m */; };
 		D9CACCFD1ED7BEBF002DC49A /* PlatCouponsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9CACCFB1ED7BEBF002DC49A /* PlatCouponsVC.xib */; };
@@ -2746,6 +2747,7 @@
 		D9C4CDE91DE4161E009C76C1 /* MyOrderDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderDetailVC.m; sourceTree = "<group>"; };
 		D9C4CDEB1DE44587009C76C1 /* ValuePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValuePickerView.h; sourceTree = "<group>"; };
 		D9C4CDEC1DE44587009C76C1 /* ValuePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValuePickerView.m; sourceTree = "<group>"; };
+		D9C7B2C41F555BEC00406BC9 /* awpp启动页2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "awpp启动页2.png"; sourceTree = "<group>"; };
 		D9C7D45C1E2F3BEB00ADB6A1 /* MoneybagDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneybagDetailVC.h; sourceTree = "<group>"; };
 		D9C7D45D1E2F3BEB00ADB6A1 /* MoneybagDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneybagDetailVC.m; sourceTree = "<group>"; };
 		D9CACCF91ED7BEBF002DC49A /* PlatCouponsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatCouponsVC.h; sourceTree = "<group>"; };
@@ -3098,6 +3100,7 @@
 				0793868D1C55B5CA0021B385 /* LaunchScreen.storyboard */,
 				079386901C55B5CA0021B385 /* Info.plist */,
 				D9962F6E1D98F60600E63218 /* langchchng.png */,
+				D9C7B2C41F555BEC00406BC9 /* awpp启动页2.png */,
 				D9541EA51E1FA994003022E5 /* 商消乐002.png */,
 				D9BA5F031D7564090067E7A2 /* FriendRequest.plist */,
 				D9A06B661D86A73B0037795B /* ToolManager.h */,
@@ -4087,11 +4090,11 @@
 		1CB53BE71C57077F002B6CC1 /* 我的消费 */ = {
 			isa = PBXGroup;
 			children = (
+				18148E631F173BE9001C86AC /* 新消费记录 */,
 				1CB53C041C571FB1002B6CC1 /* MyOderController.h */,
 				1CB53C051C571FB1002B6CC1 /* MyOderController.m */,
 				D9C4CDE81DE4161E009C76C1 /* MyOrderDetailVC.h */,
 				D9C4CDE91DE4161E009C76C1 /* MyOrderDetailVC.m */,
-				18148E631F173BE9001C86AC /* 新消费记录 */,
 			);
 			name = "我的消费";
 			sourceTree = "<group>";
@@ -6808,6 +6811,7 @@
 				D9FF0D9C1D53304C00443312 /* 图标-14new.png in Resources */,
 				1CF6E4831C61E4350001159C /* guanliyuan@2x.png in Resources */,
 				188372451F2748270076D2D8 /* HobbyChooseVC.xib in Resources */,
+				D9C7B2C51F555BEC00406BC9 /* awpp启动页2.png in Resources */,
 				D94DF23B1CAE08F7000D5B69 /* location.png in Resources */,
 				18EB36A31D4B1F5D0087CE1A /* 滑动选择-01.png in Resources */,
 				18BCCDCB1D3C9EE8005E145D /* merchant_ed1.png in Resources */,

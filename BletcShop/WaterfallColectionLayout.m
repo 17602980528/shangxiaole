@@ -36,7 +36,7 @@
             longest = rolHeight;
         }
     }
-    return CGSizeMake(self.collectionView.frame.size.width, longest.floatValue);
+    return CGSizeMake(self.collectionView.frame.size.width, longest.floatValue+10);
 }
 -(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewLayoutAttributes* attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];

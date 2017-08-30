@@ -50,7 +50,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationItem.title = @"我的消费";
     [self showLoadingView];
 
     LZDButton *back =[LZDButton creatLZDButton];

@@ -200,11 +200,13 @@
                 self.refresheDate();
                 
                 PayVictoryVC *vc=[[PayVictoryVC alloc]init];
+                
                 NSMutableDictionary *dictionary=[NSMutableDictionary dictionaryWithDictionary:paramer];
                 [dictionary setObject:self.card_dic[@"store"] forKey:@"store"];
                 [dictionary setObject:option_dic[@"name"] forKey:@"oldNeed"];
                 [dictionary setObject:self.card_dic[@"card_type"] forKey:@"cardType"];
                 vc.dic=dictionary;
+                
                 [self.navigationController pushViewController:vc animated:YES];
                 //[self.navigationController popViewControllerAnimated:YES];
                 
