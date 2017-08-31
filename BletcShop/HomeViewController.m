@@ -682,12 +682,15 @@ static NSString *headerID = @"headerID";
           
              btn.layer.cornerRadius = 4;
              btn.layer.masksToBounds = YES;
-             btn.layer.borderWidth = 1;
+             btn.layer.borderWidth = 0.5;
              btn.layer.borderColor = RGB(219,219,219).CGColor;
             
             
             btn.tag = i;
             [_smallSV addSubview:btn];
+            
+          
+            
             
             UIView *b_view = [[UIView alloc]initWithFrame:btn.frame];
             b_view.backgroundColor = [UIColor whiteColor];
@@ -702,7 +705,7 @@ static NSString *headerID = @"headerID";
 
             [btn addSubview:imag];
             
-            UILabel *lable_S =[[UILabel alloc]initWithFrame:CGRectMake(0, imag.bottom, btn.frame.size.width, 25)];
+            UILabel *lable_S =[[UILabel alloc]initWithFrame:CGRectMake(0, imag.bottom, btn.frame.size.width, 24)];
             lable_S.textColor = RGB(51,51,51);
             lable_S.font = [UIFont systemFontOfSize:12];
             lable_S.textAlignment = NSTextAlignmentCenter;
@@ -792,20 +795,27 @@ static NSString *headerID = @"headerID";
         button1.backgroundColor = RGB(242,242,242);
         [button1 addTarget:self action:@selector(advertiseClick:) forControlEvents:UIControlEventTouchUpInside];
         button1.tag=i;
-        button1.layer.shadowOpacity = 0.1;
-        button1.layer.shadowOffset = CGSizeMake(0, 5);
         
-        CALayer *corner_lay = [CALayer layer];
-        corner_lay.cornerRadius = 4;
-        corner_lay.masksToBounds = YES;
-        corner_lay.borderWidth = 1;
-        corner_lay.frame = button1.bounds;
-        corner_lay.borderColor = RGB(219,219,219).CGColor;
-        [button1.layer addSublayer:corner_lay];
+//        CALayer *corner_lay = [CALayer layer];
+        button1.layer.cornerRadius = 4;
+        button1.layer.masksToBounds = YES;
+        button1.layer.borderWidth = 1;
+//        corner_lay.frame = button1.bounds;
+        button1.layer.borderColor = RGB(219,219,219).CGColor;
+//        [button1.layer addSublayer:corner_lay];
+        
+        
+        UIView *vi =[[UIView alloc]initWithFrame:button1.frame];
+        vi.layer.shadowOpacity = 0.1;
+        vi.layer.shadowOffset = CGSizeMake(0, 5);
+        vi.backgroundColor = back_view.backgroundColor;
+        vi.layer.shadowRadius = 4;
+        vi.layer.cornerRadius = 4;
 
-        
+        [back_view addSubview:vi];
+
         [back_view addSubview:button1];
-        
+
         UIImageView *img_1 = [[UIImageView alloc]initWithFrame:CGRectMake(10,10, button1.height-20, button1.height-20)];
         img_1.contentMode = UIViewContentModeScaleAspectFit;
         img_1.backgroundColor = [UIColor whiteColor];
@@ -924,11 +934,14 @@ static NSString *headerID = @"headerID";
 
     _right_btn = [LZDButton creatLZDButton];
     _right_btn.frame = CGRectMake(cainixihuan_view.width-50, 0, 40, cainixihuan_view.height);
+    _right_btn.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
     [_right_btn setImage:[UIImage imageNamed:@"图标切换（列表式)"] forState:UIControlStateSelected];
     [_right_btn setImage:[UIImage imageNamed:@"图标切换（卡片式)"] forState:0];
 
     _right_btn.selected = NO;
     [cainixihuan_view addSubview:_right_btn];
+    
+    
     __weak typeof(self) weakSelf = self;
 
     _right_btn.block = ^(LZDButton *sender) {
@@ -1065,7 +1078,7 @@ static NSString *headerID = @"headerID";
         });
 
         
-        [self reloadCollectionViewItemHeight:arr];
+        [self reloadCollectionViewItemHeight:arr WithRatio_W:3 andRatio_h:2];
 
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -1118,7 +1131,7 @@ static NSString *headerID = @"headerID";
               [self.data_A3 addObject:model];
               [self.shopData_A addObject:result[@"insert_ad"]];
 
-             [self reloadCollectionViewItemHeight:@[@""]];
+             [self reloadCollectionViewItemHeight:@[@""]WithRatio_W:5 andRatio_h:1];
              
          }
          
@@ -1132,7 +1145,7 @@ static NSString *headerID = @"headerID";
 
          }
          
-         [self reloadCollectionViewItemHeight:result[@"stores"]];
+         [self reloadCollectionViewItemHeight:result[@"stores"] WithRatio_W:3 andRatio_h:2];
 
     
          
@@ -1730,11 +1743,11 @@ static NSString *headerID = @"headerID";
     
 }
 
--(void)reloadCollectionViewItemHeight:(NSArray *)arr{
+-(void)reloadCollectionViewItemHeight:(NSArray *)arr WithRatio_W:(CGFloat)w andRatio_h:(CGFloat)h{
     
     for (int i = 0; i < arr.count;i ++ ) {
         
-            [self.heightArr addObject:@(arc4random()%50+190)];
+            [self.heightArr addObject:@((SCREENWIDTH-30)/2*h/w+42)];
 
         
     }

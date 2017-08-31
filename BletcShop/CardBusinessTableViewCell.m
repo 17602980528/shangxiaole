@@ -27,9 +27,11 @@
     self.tradeLable.layer.cornerRadius=2.0f;
     self.tradeLable.clipsToBounds=YES;
     self.bgView.layer.cornerRadius=5.0f;
-    self.bgView.clipsToBounds=YES;
     self.bgView.layer.borderWidth=1.0f;
     self.bgView.layer.borderColor=RGB(216, 216, 216).CGColor;
+    self.bgView.layer.shadowOffset = CGSizeMake(0, 5);
+    self.bgView.layer.shadowOpacity = 0.1;
+    self.bgView.layer.cornerRadius = 4;
 }
 +(instancetype)creatCellWithTableView:(UITableView*)tableView
 {
