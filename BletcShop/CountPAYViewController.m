@@ -29,32 +29,49 @@
     NSLog(@"%@",self.card_dic);
     LEFTBACK
     
-//    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 50)];
-//    backView.backgroundColor = [UIColor whiteColor];
-//    [self.view addSubview:backView];
-    
     NSArray *array= [self.card_dic[@"price"] componentsSeparatedByString:@"元"];
     
     self.all=[array[0] floatValue];
+    //修改
+    UIView *bgView=[[UIView alloc]initWithFrame:CGRectMake(0, 10, SCREENWIDTH, 206)];
+    bgView.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:bgView];
+    
+    UILabel *titleLable=[[UILabel alloc]initWithFrame:CGRectMake(0, 28, SCREENWIDTH, 20)];
+    titleLable.font=[UIFont systemFontOfSize:16];
+    titleLable.textAlignment=NSTextAlignmentCenter;
+    titleLable.textColor=RGB(51, 51, 51);
+    titleLable.text=@"请创建消费次数";
+    [bgView addSubview:titleLable];
     
     UIButton *redBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [redBtn setImage:[UIImage imageNamed:@"grey_red"] forState:UIControlStateNormal];
     redBtn.backgroundColor = [UIColor whiteColor];
-    redBtn.frame=CGRectMake(40, 75, 50, 50);
+    //[redBtn setTitle:@"-" forState:UIControlStateNormal];
+    [redBtn setImage:[UIImage imageNamed:@"-"] forState:UIControlStateNormal];
+    [redBtn setTitleColor:RGB(243, 73, 78) forState:UIControlStateNormal];
+    redBtn.titleLabel.font=[UIFont systemFontOfSize:32];
+    redBtn.frame=CGRectMake(40, 100, 40, 40);
+    redBtn.layer.cornerRadius=20;
+    redBtn.clipsToBounds=YES;
     redBtn.layer.borderWidth=1.0;
-    redBtn.layer.borderColor=[[UIColor grayColor]CGColor];
+    redBtn.layer.borderColor=[RGB(243, 73, 78) CGColor];
     [redBtn addTarget:self action:@selector(redBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:redBtn];
+    [bgView addSubview:redBtn];
     //右加
     UIButton *addBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [addBtn setImage:[UIImage imageNamed:@"grey_add"] forState:UIControlStateNormal];
-    addBtn.frame=CGRectMake(SCREENWIDTH-40-50, 75, 50, 50);
+    addBtn.frame=CGRectMake(SCREENWIDTH-40-40, 100, 40,40);
+    [addBtn setTitleColor:RGB(243, 73, 78) forState:UIControlStateNormal];
+   // [addBtn setTitle:@"+" forState:UIControlStateNormal];
+    [addBtn setImage:[UIImage imageNamed:@"+"] forState:UIControlStateNormal];
+    addBtn.titleLabel.font=[UIFont systemFontOfSize:32];
+    addBtn.layer.cornerRadius=20;
+    addBtn.clipsToBounds=YES;
     addBtn.layer.borderWidth=1.0;
-    addBtn.layer.borderColor=[[UIColor grayColor]CGColor];
+    addBtn.layer.borderColor=[RGB(243, 73, 78) CGColor];
     [addBtn addTarget:self action:@selector(addBtnClick) forControlEvents:UIControlEventTouchUpInside];
     addBtn.backgroundColor = [UIColor whiteColor];
 
-    [self.view addSubview:addBtn];
+    [bgView addSubview:addBtn];
     //立即购买
     UIButton *buyBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     buyBtn.frame=CGRectMake(0, SCREENHEIGHT-64-44, SCREENWIDTH, 44);
@@ -64,18 +81,17 @@
     [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.view addSubview:buyBtn];
     //显示次数的label
-    textTF=[[UITextField alloc]initWithFrame:CGRectMake(SCREENWIDTH/2-25, 75, 50, 50)];
+    textTF=[[UITextField alloc]initWithFrame:CGRectMake(SCREENWIDTH/2-60, 95, 120, 50)];
     textTF.textAlignment=1;
+    textTF.backgroundColor=RGB(243, 73, 78);
+    textTF.textColor=[UIColor whiteColor];
     textTF.text=@"0";
     textTF.delegate=self;
-    textTF.borderStyle=UITextBorderStyleRoundedRect;
-    [self.view addSubview:textTF];
-    //    countLab=[[UILabel alloc]initWithFrame:CGRectMake(SCREENWIDTH/2-25, 75, 50, 50)];
-    //    countLab.textColor=[UIColor redColor];
-    //    countLab.text=[[NSString alloc]initWithFormat:@"%ld",(long)count];
-    //    countLab.font=[UIFont systemFontOfSize:20.0f];
-    //    countLab.textAlignment=1;
-    [self.view addSubview:textTF];
+    textTF.layer.cornerRadius=15;
+    textTF.clipsToBounds=YES;
+    [bgView addSubview:textTF];
+    
+    [bgView addSubview:textTF];
     
 }
 -(void)redBtnClick{
@@ -352,6 +368,10 @@
     [super didReceiveMemoryWarning];
     
 }
-
-
+-(void)missPayAlert{
+    
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [view removeFromSuperview];
+}
 @end

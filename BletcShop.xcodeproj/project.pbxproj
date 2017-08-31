@@ -91,6 +91,10 @@
 		183B17961F43F2E6001377B6 /* oil10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 183B17921F43F2E6001377B6 /* oil10.jpg */; };
 		183B17971F43F2E6001377B6 /* oil9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 183B17931F43F2E6001377B6 /* oil9.jpg */; };
 		183B17981F43F2E6001377B6 /* oil8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 183B17941F43F2E6001377B6 /* oil8.jpg */; };
+		184437221F57DC00001D5046 /* +@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1844371E1F57DC00001D5046 /* +@2x.png */; };
+		184437231F57DC00001D5046 /* +@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1844371F1F57DC00001D5046 /* +@3x.png */; };
+		184437241F57DC00001D5046 /* -@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184437201F57DC00001D5046 /* -@2x.png */; };
+		184437251F57DC00001D5046 /* -@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184437211F57DC00001D5046 /* -@3x.png */; };
 		1849A0F31F383DCB00483CE8 /* OilHomeListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849A0F11F383DCB00483CE8 /* OilHomeListVC.m */; };
 		1849A0F41F383DCB00483CE8 /* OilHomeListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1849A0F21F383DCB00483CE8 /* OilHomeListVC.xib */; };
 		1849A0F81F383E5A00483CE8 /* OilListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849A0F61F383E5A00483CE8 /* OilListTableViewCell.m */; };
@@ -1284,6 +1288,10 @@
 		183B17921F43F2E6001377B6 /* oil10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil10.jpg; sourceTree = "<group>"; };
 		183B17931F43F2E6001377B6 /* oil9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil9.jpg; sourceTree = "<group>"; };
 		183B17941F43F2E6001377B6 /* oil8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oil8.jpg; sourceTree = "<group>"; };
+		1844371E1F57DC00001D5046 /* +@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+@2x.png"; sourceTree = "<group>"; };
+		1844371F1F57DC00001D5046 /* +@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+@3x.png"; sourceTree = "<group>"; };
+		184437201F57DC00001D5046 /* -@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "-@2x.png"; sourceTree = "<group>"; };
+		184437211F57DC00001D5046 /* -@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "-@3x.png"; sourceTree = "<group>"; };
 		1849A0F01F383DCB00483CE8 /* OilHomeListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilHomeListVC.h; sourceTree = "<group>"; };
 		1849A0F11F383DCB00483CE8 /* OilHomeListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OilHomeListVC.m; sourceTree = "<group>"; };
 		1849A0F21F383DCB00483CE8 /* OilHomeListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OilHomeListVC.xib; sourceTree = "<group>"; };
@@ -3430,6 +3438,17 @@
 				183577491EC437F900F321F1 /* AccessCodeVC.xib */,
 			);
 			name = "获取支付验码";
+			sourceTree = "<group>";
+		};
+		1844371D1F57DC00001D5046 /* 计次卡支付+-icon */ = {
+			isa = PBXGroup;
+			children = (
+				1844371E1F57DC00001D5046 /* +@2x.png */,
+				1844371F1F57DC00001D5046 /* +@3x.png */,
+				184437201F57DC00001D5046 /* -@2x.png */,
+				184437211F57DC00001D5046 /* -@3x.png */,
+			);
+			path = "计次卡支付+-icon";
 			sourceTree = "<group>";
 		};
 		1849A0EF1F383D9500483CE8 /* 加油卡 */ = {
@@ -5819,6 +5838,7 @@
 			children = (
 				18F4CD471D6FD6BD008FBAD1 /* CountPAYViewController.h */,
 				18F4CD481D6FD6BD008FBAD1 /* CountPAYViewController.m */,
+				1844371D1F57DC00001D5046 /* 计次卡支付+-icon */,
 			);
 			name = "计次卡支付";
 			sourceTree = "<group>";
@@ -6812,6 +6832,7 @@
 				1CF6E4831C61E4350001159C /* guanliyuan@2x.png in Resources */,
 				188372451F2748270076D2D8 /* HobbyChooseVC.xib in Resources */,
 				D9C7B2C51F555BEC00406BC9 /* awpp启动页2.png in Resources */,
+				184437231F57DC00001D5046 /* +@3x.png in Resources */,
 				D94DF23B1CAE08F7000D5B69 /* location.png in Resources */,
 				18EB36A31D4B1F5D0087CE1A /* 滑动选择-01.png in Resources */,
 				18BCCDCB1D3C9EE8005E145D /* merchant_ed1.png in Resources */,
@@ -6873,6 +6894,7 @@
 				D947E45D1D7D3AE700F9FEE8 /* 聊天键盘-icon-拍照@2x.png in Resources */,
 				D90071801F4AC808003BD522 /* aep_dx.gif in Resources */,
 				1CF2838A1C58C48900F3952A /* 1@2x.png in Resources */,
+				184437251F57DC00001D5046 /* -@3x.png in Resources */,
 				18F50E071D1E365800811CD1 /* -2-03.jpg in Resources */,
 				18F4BF691D41BB21003F0F66 /* c_de.png in Resources */,
 				182F3C581F0CEDCA00540FAE /* CardBusinessTableViewCell.xib in Resources */,
@@ -6886,6 +6908,7 @@
 				D95BAE571D542FD500ED0CDC /* award_13.png in Resources */,
 				1CF6E4811C61E4350001159C /* huiyuan@2x.png in Resources */,
 				18A4B6F21D33933B00EFBCC1 /* 椭圆-02.png in Resources */,
+				184437221F57DC00001D5046 /* +@2x.png in Resources */,
 				D947E4721D7D4CB000F9FEE8 /* sdRefeshView_arrow@2x.png in Resources */,
 				D9FF0D981D53304C00443312 /* 图标-10new.png in Resources */,
 				18D8464F1ED591C90048F010 /* 优惠券背景线下.png in Resources */,
@@ -7075,6 +7098,7 @@
 				D98FDF841E601C280057C206 /* AD_ad_is@2x.png in Resources */,
 				D9AA10C81F03B43400F7EDE8 /* NewBuyOptionsCell.xib in Resources */,
 				D9699E511D348EF7001DEC06 /* 小标-21.png in Resources */,
+				184437241F57DC00001D5046 /* -@2x.png in Resources */,
 				D9AB25381D88E4ED000E9288 /* VoiceSearchFeedback010@2x.png in Resources */,
 				D9B9231D1F26D447003AA113 /* CardmarketDetailVC.xib in Resources */,
 				1C31F8141C632A4E00CB1A9E /* tianjiavip@2x.png in Resources */,
