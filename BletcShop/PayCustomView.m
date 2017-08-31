@@ -62,5 +62,8 @@
 }
 -(void)dismissCustomView{
     [self removeFromSuperview];
+    if ([_delegate respondsToSelector:@selector(missPayAlert)]) {
+        [_delegate missPayAlert];
+    }
 }
 @end

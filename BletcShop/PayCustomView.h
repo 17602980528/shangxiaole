@@ -17,5 +17,5 @@
 @protocol PayCustomViewDelegate <NSObject>
 
 -(void)confirmPassRightOrWrong:(NSString *)pass;
-
+-(void)missPayAlert;
 @end

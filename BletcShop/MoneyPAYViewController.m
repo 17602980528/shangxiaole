@@ -18,6 +18,7 @@
     PayCustomView *view;
     UILabel *discount;
     UILabel *realPay;
+    UIView *bigView;
 }
 @end
 
@@ -28,9 +29,14 @@
     self.view.backgroundColor=RGB(234, 234, 234);
     self.navigationItem.title=@"储值卡支付";
     LEFTBACK
+    
+    bigView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64)];
+    bigView.backgroundColor=RGB(234, 234, 234);
+    [self.view addSubview:bigView];
+    
     UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 113)];
     backView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:backView];
+    [bigView addSubview:backView];
     
     UILabel *titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 20, SCREENWIDTH, 16)];
     titleLabel.text=@"输入金额";
@@ -67,7 +73,7 @@
     
     UIView *bottomBackView=[[UIView alloc]initWithFrame:CGRectMake(0, backView.bottom+10, SCREENWIDTH, 170)];
     bottomBackView.backgroundColor=[UIColor whiteColor];
-    [self.view addSubview:bottomBackView];
+    [bigView addSubview:bottomBackView];
     
     UILabel *discountLable=[[UILabel alloc]initWithFrame:CGRectMake(13, 0, 120, 56)];
     discountLable.textAlignment=NSTextAlignmentLeft;
@@ -133,7 +139,7 @@
     [button setTitle:@"确认支付" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+    [bigView addSubview:button];
     NSLog(@"self.card_dic=====%@",self.card_dic);
 }
 -(void)btnClick:(UIButton *)sender{
@@ -159,6 +165,8 @@
             [alt show];
             
         }else{
+            
+             bigView.frame=CGRectMake(0, -113, SCREENWIDTH, SCREENHEIGHT-64);
             
             view=[[PayCustomView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
             view.delegate=self;
@@ -213,9 +221,15 @@
     
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         
+       
+
+        
         NSLog(@"result---_%@",result);
         if ([result[@"result_code"] isEqualToString:@"access"]) {
             [view removeFromSuperview];
+            
+             bigView.frame=CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64);
+            
             [self postSocketCardPayAction];
             
         }else{
@@ -359,9 +373,12 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
+    [view removeFromSuperview];
+    bigView.frame=CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64);
 }
 
 -(void)confirmPassRightOrWrong:(NSString *)pass{
+   
     [self checkPayPassWd:pass];
 }
 -(void)forgetPayPass{
@@ -391,5 +408,7 @@
     realPay.attributedText=AttributedStr;
     return YES;
 }
-
+-(void)missPayAlert{
+    bigView.frame=CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64);
+}
 @end
