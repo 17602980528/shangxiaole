@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MealCardPayVC">
             <connections>
+                <outlet property="headerView" destination="bmB-au-dhw" id="5TG-ac-Po3"/>
                 <outlet property="table_view" destination="tqV-j2-FFy" id="e9j-eL-8O9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,8 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tqV-j2-FFy">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tqV-j2-FFy">
+                    <rect key="frame" x="0.0" y="10" width="375" height="607"/>
                     <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="eki-uP-d1F"/>
@@ -30,7 +31,7 @@
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CdB-4D-4TZ">
                     <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                    <color key="backgroundColor" red="0.88627450980392153" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.92941176469999998" green="0.28235294119999998" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="KAw-hQ-SB5"/>
                     </constraints>
@@ -47,10 +48,43 @@
                 <constraint firstAttribute="trailing" secondItem="tqV-j2-FFy" secondAttribute="trailing" id="IIC-Pc-Zmz"/>
                 <constraint firstItem="tqV-j2-FFy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="KpY-EK-YvV"/>
                 <constraint firstAttribute="bottom" secondItem="CdB-4D-4TZ" secondAttribute="bottom" id="LKE-Z8-B4y"/>
-                <constraint firstItem="tqV-j2-FFy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eHW-5y-V9q"/>
+                <constraint firstItem="tqV-j2-FFy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="eHW-5y-V9q"/>
                 <constraint firstAttribute="trailing" secondItem="CdB-4D-4TZ" secondAttribute="trailing" id="jP0-eF-huj"/>
             </constraints>
-            <point key="canvasLocation" x="-343" y="-50"/>
+            <point key="canvasLocation" x="35" y="-183"/>
+        </view>
+        <view contentMode="scaleToFill" id="bmB-au-dhw">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择消费项目" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMi-lU-qBi">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NyQ-mk-hvN">
+                    <rect key="frame" x="0.0" y="55" width="375" height="1"/>
+                    <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="aPK-DS-6cD"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="NyQ-mk-hvN" firstAttribute="leading" secondItem="bmB-au-dhw" secondAttribute="leading" id="0XX-WP-x1v"/>
+                <constraint firstAttribute="trailing" secondItem="eMi-lU-qBi" secondAttribute="trailing" id="M3i-8j-sc7"/>
+                <constraint firstAttribute="bottom" secondItem="eMi-lU-qBi" secondAttribute="bottom" id="XBp-De-Ojm"/>
+                <constraint firstItem="eMi-lU-qBi" firstAttribute="leading" secondItem="bmB-au-dhw" secondAttribute="leading" id="ciW-YQ-YAL"/>
+                <constraint firstAttribute="trailing" secondItem="NyQ-mk-hvN" secondAttribute="trailing" id="czI-RJ-m9t"/>
+                <constraint firstItem="eMi-lU-qBi" firstAttribute="top" secondItem="bmB-au-dhw" secondAttribute="top" id="hpQ-JQ-NV1"/>
+                <constraint firstAttribute="bottom" secondItem="NyQ-mk-hvN" secondAttribute="bottom" id="jMA-Bu-oXn"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-394.5" y="-541.5"/>
         </view>
     </objects>
 </document>

@@ -27,7 +27,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"体验卡支付";
     LEFTBACK
-    self.card_des.text = [NSString stringWithFormat:@"%@元",_card_dic[@"price"]];
+    self.card_des.text = [NSString stringWithFormat:@"¥:%@",_card_dic[@"price"]];
     
     
 //    [self goToPayClick:self.sureBtn];

@@ -20,6 +20,7 @@
     PayCustomView * Payview;
 }
 @property (weak, nonatomic) IBOutlet UITableView *table_view;
+@property (strong, nonatomic) IBOutlet UIView *headerView;
 
 @property(nonatomic,strong)NSArray *data_A;
 @end
@@ -31,6 +32,7 @@
     self.navigationItem.title = @"套餐卡支付";
     LEFTBACK
     selectRow = -1;
+    self.table_view.tableHeaderView = self.headerView;
     self.table_view.estimatedRowHeight = 100;
     self.table_view.rowHeight = UITableViewAutomaticDimension;
     
@@ -60,9 +62,9 @@
     
     
     if (indexPath.row ==selectRow) {
-        cell.selectImg.image = [UIImage imageNamed:@"settlement_choose_n"];
+        cell.selectImg.image = [UIImage imageNamed:@"选中sex"];
     }else{
-        cell.selectImg.image = [UIImage imageNamed:@"settlement_unchoose_n"];
+        cell.selectImg.image = [UIImage imageNamed:@"默认sex"];
  
     }
     return cell;

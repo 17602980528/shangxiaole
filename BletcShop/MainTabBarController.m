@@ -27,7 +27,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    self.tabBar.translucent = NO;
+    self.tabBar.translucent = NO;
+    UIView *view = [[UIView alloc]init];
+    view.backgroundColor = [UIColor whiteColor];
+    view.frame = self.tabBar.bounds;
+    [[UITabBar appearance]insertSubview:view atIndex:0];
+    
     [self addchildVc];
     
 }
