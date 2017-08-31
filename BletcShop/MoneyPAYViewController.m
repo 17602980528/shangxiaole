@@ -28,33 +28,104 @@
     self.view.backgroundColor=RGB(234, 234, 234);
     self.navigationItem.title=@"储值卡支付";
     LEFTBACK
-    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 100)];
+    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 113)];
     backView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:backView];
     
-    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(12, 5, 80, 40)];
-    label.text=@"输入金额:";
-    label.font=[UIFont systemFontOfSize:15.0f];
-    label.textAlignment=0;
-    [backView addSubview:label];
+    UILabel *titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 20, SCREENWIDTH, 16)];
+    titleLabel.text=@"输入金额";
+    titleLabel.textColor=RGB(51, 51, 51);
+    titleLabel.font=[UIFont systemFontOfSize:16.0f];
+    titleLabel.textAlignment=NSTextAlignmentCenter;
+    [backView addSubview:titleLabel];
     
-    textTF=[[UITextField alloc]initWithFrame:CGRectMake(label.right, 5, SCREENWIDTH-180, 40)];
+    UILabel *dol=[[UILabel alloc]initWithFrame:CGRectMake(SCREENWIDTH/2-50, titleLabel.bottom+10, 30, 25)];
+    dol.text=@"￥:";
+    dol.font=[UIFont systemFontOfSize:20];
+    dol.textAlignment=NSTextAlignmentCenter;
+    dol.textColor=RGB(51, 51, 51);
+    [backView addSubview:dol];
+    
+    textTF=[[UITextField alloc]initWithFrame:CGRectMake(dol.right, titleLabel.bottom+10, 150,25)];
     textTF.borderStyle=UITextBorderStyleNone;
+    textTF.returnKeyType=UIReturnKeyDone;
     textTF.delegate=self;
-    textTF.font=[UIFont systemFontOfSize:15.0f];
+    textTF.font=[UIFont systemFontOfSize:20.0f];
     textTF.keyboardType=UIKeyboardTypeNumbersAndPunctuation;
-    textTF.placeholder=@"请按商品原价输入消费金额";
+    textTF.placeholder=@"";
     [backView addSubview:textTF];
     
-    discount=[[UILabel alloc]initWithFrame:CGRectMake(12, 50, 200, 15)];
-    discount.text=@"优惠金额：0.0元";
-    discount.font=[UIFont systemFontOfSize:14.0f];
-    [backView addSubview:discount];
+    [textTF becomeFirstResponder];
     
-    realPay=[[UILabel alloc]initWithFrame:CGRectMake(12, 75, 200, 15)];
-    realPay.text=@"实际支付金额：0.0元";
-    realPay.font=[UIFont systemFontOfSize:14.0f];
-    [backView addSubview:realPay];
+    UILabel *noticeLable=[[UILabel alloc]initWithFrame:CGRectMake(0, textTF.bottom+10, SCREENWIDTH, 15)];
+    noticeLable.textAlignment=NSTextAlignmentCenter;
+    noticeLable.textColor=RGB(153,153,153);
+    noticeLable.font=[UIFont systemFontOfSize:14];
+    noticeLable.text=@"请按商铺原价输入消费金额";
+    [backView addSubview:noticeLable];
+    
+    
+    UIView *bottomBackView=[[UIView alloc]initWithFrame:CGRectMake(0, backView.bottom+10, SCREENWIDTH, 170)];
+    bottomBackView.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:bottomBackView];
+    
+    UILabel *discountLable=[[UILabel alloc]initWithFrame:CGRectMake(13, 0, 120, 56)];
+    discountLable.textAlignment=NSTextAlignmentLeft;
+    discountLable.font=[UIFont systemFontOfSize:16];
+    discountLable.text=@"折扣力度:";
+    discountLable.textColor=RGB(51, 51, 51);
+    [bottomBackView addSubview:discountLable];
+    
+    UILabel *disPercent=[[UILabel alloc]initWithFrame:CGRectMake(discountLable.right, 0, SCREENWIDTH-13-120-13, 56)];
+    disPercent.textAlignment=NSTextAlignmentRight;
+    disPercent.textColor=RGB(51, 51, 51);
+    disPercent.font=[UIFont systemFontOfSize:16];
+    disPercent.text=[NSString stringWithFormat:@"%@%%",self.card_dic[@"rule"]];
+    [bottomBackView addSubview:disPercent];
+    
+    UIView *line1=[[UIView alloc]initWithFrame:CGRectMake(0, disPercent.bottom, SCREENWIDTH, 1)];
+    line1.backgroundColor=RGB(220, 220, 220);
+    [bottomBackView addSubview:line1];
+    
+    UILabel *deceaseMoney=[[UILabel alloc]initWithFrame:CGRectMake(13, line1.bottom,120, 56)];
+    deceaseMoney.textAlignment=NSTextAlignmentLeft;
+    deceaseMoney.font=[UIFont systemFontOfSize:16];
+    deceaseMoney.text=@"优惠金额:";
+    deceaseMoney.textColor=RGB(51, 51, 51);
+    [bottomBackView addSubview:deceaseMoney];
+    
+    discount=[[UILabel alloc]initWithFrame:CGRectMake(deceaseMoney.right, line1.bottom, SCREENWIDTH-13-120-13, 56)];
+    discount.textAlignment=NSTextAlignmentRight;
+    discount.text=@"￥：0.00元";
+    discount.textColor=RGB(51, 51, 51);
+    discount.font=[UIFont systemFontOfSize:16.0f];
+    [bottomBackView addSubview:discount];
+
+    UIView *line2=[[UIView alloc]initWithFrame:CGRectMake(0, discount.bottom, SCREENWIDTH, 1)];
+    line2.backgroundColor=RGB(220, 220, 220);
+    [bottomBackView addSubview:line2];
+    
+    UILabel *realPayLable=[[UILabel alloc]initWithFrame:CGRectMake(13, line2.bottom,120, 56)];
+    realPayLable.textAlignment=NSTextAlignmentLeft;
+    realPayLable.font=[UIFont systemFontOfSize:16];
+    realPayLable.text=@"实际消费金额:";
+    realPayLable.textColor=RGB(51, 51, 51);
+    [bottomBackView addSubview:realPayLable];
+    
+    realPay=[[UILabel alloc]initWithFrame:CGRectMake(realPayLable.right, line2.bottom, SCREENWIDTH-13-120-13, 56)];
+    realPay.text=@"￥：0.00元";
+    realPay.textAlignment=NSTextAlignmentRight;
+    realPay.textColor=RGB(51, 51, 51);
+    realPay.font=[UIFont systemFontOfSize:16.0f];
+    [bottomBackView addSubview:realPay];
+    
+    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:realPay.text];
+
+    [AttributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:23.0] range:NSMakeRange(2, realPay.text.length-3)];
+    
+    [AttributedStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(2,  realPay.text.length-3)];
+    realPay.attributedText=AttributedStr;
+    
     
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, SCREENHEIGHT-64-44, SCREENWIDTH, 44);
@@ -301,13 +372,23 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return NO;
+}
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
     CGFloat disc=[self.card_dic[@"rule"] floatValue]/100;
     CGFloat inputMoney=[textTF.text floatValue];
     
-    realPay.text=[NSString stringWithFormat:@"实际支付金额：%.2f元",disc*inputMoney];
-    discount.text=[NSString stringWithFormat:@"优惠金额：%.2f元",inputMoney-disc*inputMoney];
+    realPay.text=[NSString stringWithFormat:@"￥：%.2f元",disc*inputMoney];
+    discount.text=[NSString stringWithFormat:@"￥：%.2f元",inputMoney-disc*inputMoney];
+    
+    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:realPay.text];
+    
+    [AttributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:23.0] range:NSMakeRange(2, realPay.text.length-3)];
+    
+    [AttributedStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(2,  realPay.text.length-3)];
+    realPay.attributedText=AttributedStr;
     return YES;
 }
 
