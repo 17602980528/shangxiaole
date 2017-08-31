@@ -184,4 +184,7 @@
     }
     
 }
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [Payview removeFromSuperview];
+}
 @end
