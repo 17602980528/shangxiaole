@@ -25,7 +25,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j7V-zB-9fb">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d1C-3b-HZ8">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="时间123456.png" translatesAutoresizingMaskIntoConstraints="NO" id="d1C-3b-HZ8">
                             <rect key="frame" x="115" y="50" width="90" height="90"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="90" id="1k6-gc-sPB"/>
@@ -146,4 +146,7 @@
             <point key="canvasLocation" x="18" y="65"/>
         </view>
     </objects>
+    <resources>
+        <image name="时间123456.png" width="90" height="90"/>
+    </resources>
 </document>

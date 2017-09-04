@@ -10,14 +10,16 @@
 #import "BankListViewController.h"
 #import "GetMoneySuccessVC.h"
 #import "GetMoneyFailVC.h"
+#import "NewPayCustomView.h"
 
-
-@interface GetMoneyNowVC ()<UITextFieldDelegate,UIAlertViewDelegate>
+@interface GetMoneyNowVC ()<UITextFieldDelegate,UIAlertViewDelegate,PayCustomViewDelegate>
 {
     UILabel *bankName;
     UILabel *bankAccount;
     UILabel *allMoney_lab;
     UITextField *text_Field;
+    NewPayCustomView *payView;
+
 }
 @property(nonatomic,strong)NSArray*bankArray;  //绑定银行卡
 @end
@@ -165,25 +167,29 @@
     }else
         
     if ([self.moneyString floatValue]>=[text_Field.text floatValue]) {
+        //
+        payView = [[NewPayCustomView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64)];
+        payView.delegate=self;
+        [self.view addSubview:payView];
         
-        NSString *ss = [NSString stringWithFormat:@"本次提现金额%@元",text_Field.text];
-        
-        
-
-        
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:ss message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            
-        }];
-        
-        UIAlertAction *sure = [UIAlertAction actionWithTitle:@"提现" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self postSocketGetMoney];
-        }];
-        [alertController addAction:cancle];
-        [alertController addAction:sure];
-        
-        
-        [self presentViewController:alertController animated:YES completion:nil];
+//        NSString *ss = [NSString stringWithFormat:@"本次提现金额%@元",text_Field.text];
+//        
+//        
+//
+//        
+//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:ss message:@"" preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//            
+//        }];
+//        
+//        UIAlertAction *sure = [UIAlertAction actionWithTitle:@"提现" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//            [self postSocketGetMoney];
+//        }];
+//        [alertController addAction:cancle];
+//        [alertController addAction:sure];
+//        
+//        
+//        [self presentViewController:alertController animated:YES completion:nil];
         
         NSLog(@"立即===%@",text_Field.text);
 
@@ -198,8 +204,6 @@
 
 -(void)postSocketGetMoney
 {
-    
-    
     NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/user/withdraw",BASEURL];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -254,9 +258,7 @@
     
     GetMoneySuccessVC *VC = [[GetMoneySuccessVC alloc]init];
     [self.navigationController pushViewController:VC animated:YES];
-    
-    
-    
+
 }
 
 -(void)postSocketMoney
@@ -323,25 +325,7 @@
     
 }
 
-//-(void)textFieldDidEndEditing:(UITextField *)textField{
-//    
-//    int sss = [textField.text intValue]/100;
-//    
-//    text_Field.text = [NSString stringWithFormat:@"%d",sss*100];
-//
-//    
-//}
 
-//-(void)textFieldChange:(UITextField*)textField{
-//    
-//    if (textField.text.length>=3) {
-//        int sss = [textField.text intValue]/100;
-//        
-//        text_Field.text = [NSString stringWithFormat:@"%d",sss*100];
-//    }
-//    
-//    
-//}
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
@@ -350,6 +334,7 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
+    [payView removeFromSuperview];
 }
 
 
@@ -367,5 +352,49 @@
     hud.frame = CGRectMake(25, SCREENHEIGHT/2, SCREENWIDTH-50, 100);
     [hud hideAnimated:YES afterDelay:2.f];
 
+}
+//
+-(void)confirmPassRightOrWrong:(NSString *)pass{
+    [self checkPayPassWd:pass];
+}
+-(void)checkPayPassWd:(NSString *)payPassWd{
+    
+    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    
+    NSString *url =[[NSString alloc]initWithFormat:@"%@Extra/passwd/checkPayPasswd",BASEURL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    
+    [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
+    [params setObject:payPassWd forKey:@"pay_passwd"];
+    
+    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        
+        
+        
+        
+        NSLog(@"result---_%@",result);
+        if ([result[@"result_code"] isEqualToString:@"access"]) {
+            [payView removeFromSuperview];
+            
+            [self postSocketGetMoney];
+           //
+            
+        }else{
+            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.label.text = @"支付密码错误,请重新输入!";
+            hud.mode = MBProgressHUDModeText;
+            hud.label.font =[UIFont systemFontOfSize:13];
+            [hud hideAnimated:YES afterDelay:1.5];
+        }
+        
+        
+        
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 @end

@@ -143,6 +143,9 @@
 		185F484D1F41A37D00A6CE6A /* NewAllCouponsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F484B1F41A37D00A6CE6A /* NewAllCouponsVC.m */; };
 		185F484E1F41A37D00A6CE6A /* NewAllCouponsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185F484C1F41A37D00A6CE6A /* NewAllCouponsVC.xib */; };
 		187E94BE1ED2D8FF007EF19F /* OFFLINEVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 187E94BD1ED2D8FF007EF19F /* OFFLINEVC.m */; };
+		1882F1571F5D1C2B00D9B7D1 /* NewPayCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1882F1561F5D1C2B00D9B7D1 /* NewPayCustomView.m */; };
+		1882F15A1F5D23A800D9B7D1 /* 时间123456@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1882F1581F5D23A800D9B7D1 /* 时间123456@2x.png */; };
+		1882F15B1F5D23A800D9B7D1 /* 时间123456@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1882F1591F5D23A800D9B7D1 /* 时间123456@3x.png */; };
 		188372441F2748270076D2D8 /* HobbyChooseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188372421F2748270076D2D8 /* HobbyChooseVC.m */; };
 		188372451F2748270076D2D8 /* HobbyChooseVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188372431F2748270076D2D8 /* HobbyChooseVC.xib */; };
 		188372491F29876D0076D2D8 /* ComplainProcessNormalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188372471F29876D0076D2D8 /* ComplainProcessNormalVC.m */; };
@@ -1360,6 +1363,10 @@
 		185F484C1F41A37D00A6CE6A /* NewAllCouponsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewAllCouponsVC.xib; sourceTree = "<group>"; };
 		187E94BC1ED2D8FF007EF19F /* OFFLINEVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFFLINEVC.h; sourceTree = "<group>"; };
 		187E94BD1ED2D8FF007EF19F /* OFFLINEVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFFLINEVC.m; sourceTree = "<group>"; };
+		1882F1551F5D1C2B00D9B7D1 /* NewPayCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPayCustomView.h; sourceTree = "<group>"; };
+		1882F1561F5D1C2B00D9B7D1 /* NewPayCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPayCustomView.m; sourceTree = "<group>"; };
+		1882F1581F5D23A800D9B7D1 /* 时间123456@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "时间123456@2x.png"; path = "../BletcShop/时间123456@2x.png"; sourceTree = "<group>"; };
+		1882F1591F5D23A800D9B7D1 /* 时间123456@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "时间123456@3x.png"; path = "../BletcShop/时间123456@3x.png"; sourceTree = "<group>"; };
 		188372411F2748270076D2D8 /* HobbyChooseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HobbyChooseVC.h; sourceTree = "<group>"; };
 		188372421F2748270076D2D8 /* HobbyChooseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HobbyChooseVC.m; sourceTree = "<group>"; };
 		188372431F2748270076D2D8 /* HobbyChooseVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HobbyChooseVC.xib; sourceTree = "<group>"; };
@@ -4080,6 +4087,8 @@
 				18E3DA141D82460A0089597B /* SoundPaly.m */,
 				182E7D421EC5604D009CAC02 /* PayCustomView.h */,
 				182E7D431EC5604D009CAC02 /* PayCustomView.m */,
+				1882F1551F5D1C2B00D9B7D1 /* NewPayCustomView.h */,
+				1882F1561F5D1C2B00D9B7D1 /* NewPayCustomView.m */,
 				D9C009E21E28C29C009EAA62 /* 分享和转让 */,
 				D98787251E27223800C7A828 /* 我要投诉 */,
 				D9BB4DDF1E050E7A00971BCC /* 预约 */,
@@ -4369,6 +4378,8 @@
 		1CF283721C58C48900F3952A /* image */ = {
 			isa = PBXGroup;
 			children = (
+				1882F1581F5D23A800D9B7D1 /* 时间123456@2x.png */,
+				1882F1591F5D23A800D9B7D1 /* 时间123456@3x.png */,
 				D900717F1F4AC808003BD522 /* aep_dx.gif */,
 				D973D58B1D9E4588003F82FB /* tanhao.png */,
 				D9E1D4251D642DCB0078EF02 /* custom4.jpg */,
@@ -6846,6 +6857,7 @@
 				D94DF2511CAE0AA4000D5B69 /* star_highlighted-darker@2x.png in Resources */,
 				1CF6E4821C61E4350001159C /* dianpu@2x.png in Resources */,
 				D9AB253B1D88E4ED000E9288 /* VoiceSearchFeedback013@2x.png in Resources */,
+				1882F15A1F5D23A800D9B7D1 /* 时间123456@2x.png in Resources */,
 				D981FD0F1E2616080026E4B2 /* read_me.txt in Resources */,
 				D9AB25321D88E4ED000E9288 /* VoiceSearchFeedback004@2x.png in Resources */,
 				1CF6E47B1C61E4350001159C /* shenji@2x.png in Resources */,
@@ -6917,6 +6929,7 @@
 				D94DF2601CAE0DB8000D5B69 /* result_small_star_disable@2x.png in Resources */,
 				18F27F041D640E84002DD03A /* 头像-28.png in Resources */,
 				D9F1301A1D8E8E3700E82F38 /* zhoubianHL@2x.png in Resources */,
+				1882F15B1F5D23A800D9B7D1 /* 时间123456@3x.png in Resources */,
 				D94DF23C1CAE08F7000D5B69 /* share.png in Resources */,
 				1C2ED1241C5B5868003EE93B /* 1-02(1)@2x.png in Resources */,
 				D949C15B1CBF7E4D0091D8FC /* bankcard.png in Resources */,
@@ -7230,6 +7243,7 @@
 				D90F51781F31BEAA0005EB05 /* Base64.m in Sources */,
 				D9B3A5B11D74255700F3F27E /* EMSDWebImagePrefetcher.m in Sources */,
 				187E94BE1ED2D8FF007EF19F /* OFFLINEVC.m in Sources */,
+				1882F1571F5D1C2B00D9B7D1 /* NewPayCustomView.m in Sources */,
 				1CB53C191C573BA7002B6CC1 /* CardVipCell.m in Sources */,
 				D9C4CDEA1DE4161E009C76C1 /* MyOrderDetailVC.m in Sources */,
 				D9DEED261CACED7C00ACDD00 /* UIImage+MultiFormat.m in Sources */,
