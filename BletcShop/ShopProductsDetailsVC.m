@@ -37,6 +37,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"%@",self.wholeInfoDic);
     self.navigationItem.title=@"全部商品";
     LEFTBACK
     XHStarRateView *view=[[XHStarRateView alloc] initWithFrame:self.aprise.frame];
@@ -65,8 +66,8 @@
     
     NSURL * nurl1=[[NSURL alloc] initWithString:[[SHOPIMAGE_ADDIMAGE stringByAppendingString:[self.wholeInfoDic objectForKey:@"image_url"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
     [_shopImage sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
-    
-    _dataSourseArr=[NSArray arrayWithArray:self.wholeInfoDic[@"commodity_list"]];
+    [self postRequest];
+   
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _dataSourseArr.count;
@@ -142,6 +143,27 @@
     UIImageView *clickedImageView = (UIImageView *)tap.view;
     [XWScanImage scanBigImageWithImageView:clickedImageView];
 }
+//商品数据
+-(void)postRequest
+{
+    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/commodity/get",BASEURL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    [params setObject:[self.wholeInfoDic objectForKey:@"muid"] forKey:@"muid"];
+    
+    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        NSLog(@"%@",result);
+         _dataSourseArr=[NSArray arrayWithArray:result];
+        [_tableview reloadData];
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"%@", error);
+        
+    }];
+    
+}
+
 /*
 #pragma mark - Navigation
 
