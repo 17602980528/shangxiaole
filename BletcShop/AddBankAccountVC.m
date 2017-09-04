@@ -177,7 +177,7 @@
 
 -(void)sureClick{
     NSLog(@"确定");
-    
+    [self.view endEditing:YES];
     if (bankNameTF.text.length==0) {
         [self tishiSting:@"请输入开户行"];
         return;
@@ -254,7 +254,6 @@
         if ([result[@"result_code"] intValue]==1)
             
         {
-            [self tishiSting:@"添加成功!"];
             [self setdefaultBank];
             
             
@@ -290,7 +289,14 @@
         NSLog(@"%@", result);
         
         if ([result[@"result_code"] intValue]==1) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"添加成功！" message:@"" preferredStyle:UIAlertControllerStyleAlert];
             
+            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            [sureAction setValue:RGB(243, 73, 78) forKey:@"titleTextColor"];
+            [alert addAction:sureAction];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         
     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -315,8 +321,8 @@
     
     hud.label.text = NSLocalizedString(tishi, @"HUD message title");
     hud.label.font = [UIFont systemFontOfSize:13];
-    hud.frame = CGRectMake(25, SCREENHEIGHT/2, SCREENWIDTH-50, 100);
-    [hud hideAnimated:YES afterDelay:4.f];
+    hud.frame = CGRectMake(25, SCREENHEIGHT/3, SCREENWIDTH-50, 100);
+    [hud hideAnimated:YES afterDelay:3.f];
 
     
 }
