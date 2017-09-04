@@ -67,54 +67,82 @@
     imageView1.image = [UIImage imageNamed:@"arraw_right"];
     [View1 addSubview:imageView1];
 
-    
-    
-    NSArray *title_A = @[@"可提金额",@"提现金额"];
 
-    UIView *View2 = [[UIView alloc]initWithFrame:CGRectMake(0, View1.bottom+10, SCREENWIDTH, title_A.count*45)];
+    UIView *View2 = [[UIView alloc]initWithFrame:CGRectMake(0, View1.bottom+10, SCREENWIDTH, 285)];
     View2.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:View2];
     
-    for (int i = 0; i < title_A.count; i ++) {
-        UILabel *title_lab = [[UILabel alloc]initWithFrame:CGRectMake(12, i*45, 100, 45)];
-        title_lab.text = title_A[i];
-        title_lab.textColor = RGB(51,51,51);
-        title_lab.font = [UIFont systemFontOfSize:16];
-        [View2 addSubview:title_lab];
-        if (i==0) {
-             allMoney_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH-15, 45)];
-            allMoney_lab.text = @"0.00";
-            allMoney_lab.textColor = RGB(153,153,153);
-            allMoney_lab.font = [UIFont systemFontOfSize:16];
-            allMoney_lab.textAlignment = NSTextAlignmentRight;
-            [View2 addSubview:allMoney_lab];
-        }
-        if (i==1) {
-            
-             text_Field = [[UITextField alloc]initWithFrame:CGRectMake(SCREENWIDTH-265, 45+(45-30)/2, 250, 30)];
-            text_Field.textAlignment= NSTextAlignmentRight;
-            text_Field.placeholder= @"输入提现金额";
-            text_Field.keyboardType = UIKeyboardTypeNumberPad;
-            text_Field.textColor= RGB(51,51,51);
-            text_Field.font = [UIFont systemFontOfSize:16];
-            text_Field.clearsOnBeginEditing = YES;
-            text_Field.delegate= self;
-            [View2 addSubview:text_Field];
-        }
-    }
+    UILabel *title_lab1 = [[UILabel alloc]initWithFrame:CGRectMake(12, 0, 100, 55)];
+    title_lab1.text = @"可提金额";
+    title_lab1.textColor = RGB(51,51,51);
+    title_lab1.font = [UIFont systemFontOfSize:16];
+    [View2 addSubview:title_lab1];
     
+    UIButton *allCashButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    allCashButton.frame=CGRectMake(SCREENWIDTH-80, 0, 70, 55);
+    [allCashButton setTitle:@"全部提现" forState:UIControlStateNormal];
+    allCashButton.titleLabel.font=[UIFont systemFontOfSize:13];
+    [allCashButton setTitleColor:RGB(56,185,234) forState:UIControlStateNormal];
+    [allCashButton addTarget:self action:@selector(getAllCashesClick:) forControlEvents:UIControlEventTouchUpInside];
+    [View2 addSubview:allCashButton];
+    
+    allMoney_lab = [[UILabel alloc]initWithFrame:CGRectMake(title_lab1.right, 0, SCREENWIDTH-112-80, 55)];
+    allMoney_lab.text = @"￥0.00";
+    allMoney_lab.textColor = RGB(136,136,136);
+    allMoney_lab.font = [UIFont systemFontOfSize:13];
+    allMoney_lab.textAlignment = NSTextAlignmentRight;
+    [View2 addSubview:allMoney_lab];
+    
+    UIView *line1=[[UIView alloc]initWithFrame:CGRectMake(13, allMoney_lab.bottom, SCREENWIDTH-26, 1)];
+    line1.backgroundColor=RGB(220,220,220);
+    [View2 addSubview:line1];
+    
+    UILabel *title_lab2 = [[UILabel alloc]initWithFrame:CGRectMake(12, line1.bottom,100 , 55)];
+    title_lab2.text = @"提现金额";
+    title_lab2.textColor = RGB(51,51,51);
+    title_lab2.font = [UIFont systemFontOfSize:16];
+    [View2 addSubview:title_lab2];
+    
+    UILabel *hh=[[UILabel alloc]initWithFrame:CGRectMake(12, title_lab2.bottom+8, 15, 15)];
+    hh.text=@"￥";
+    hh.font=[UIFont systemFontOfSize:20];
+    [View2 addSubview:hh];
+    
+    text_Field = [[UITextField alloc]initWithFrame:CGRectMake(hh.right+5, title_lab2.bottom, SCREENWIDTH-40, 30)];
+    //text_Field.placeholder= @"输入提现金额";
+    text_Field.keyboardType = UIKeyboardTypeNumberPad;
+    text_Field.textColor= RGB(51,51,51);
+    text_Field.font = [UIFont systemFontOfSize:20];
+    text_Field.clearsOnBeginEditing = YES;
+    text_Field.delegate= self;
+    [View2 addSubview:text_Field];
+    
+    UIView *line2=[[UIView alloc]initWithFrame:CGRectMake(12, hh.bottom+27, SCREENWIDTH-26, 1)];
+    line2.backgroundColor=RGB(220,220,220);
+    [View2 addSubview:line2];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(12, View2.bottom +37, SCREENWIDTH-24, 50);
+    button.frame = CGRectMake(56, line2.bottom +35, SCREENWIDTH-112, 36);
     button.backgroundColor = NavBackGroundColor;
     [button setTitle:@"立即提现" forState:0];
-    button.titleLabel.font = [UIFont systemFontOfSize:18];
-    button.layer.cornerRadius =5;
+    button.titleLabel.font = [UIFont systemFontOfSize:16];
+    button.layer.cornerRadius =12;
     button.layer.masksToBounds = YES;
     [button addTarget:self action:@selector(sureClick) forControlEvents:UIControlEventTouchUpInside];
     [button setTitleColor:RGB(255,255,255) forState:0];
-    [self.view addSubview: button];
-
+    [View2 addSubview: button];
+    
+    UILabel *notice=[[UILabel alloc]initWithFrame:CGRectMake(0, button.bottom+15, SCREENWIDTH, 20)];
+    notice.textAlignment=NSTextAlignmentCenter;
+    notice.text=@"3至5个工作日内到账";
+    notice.font=[UIFont systemFontOfSize:13];
+    notice.textColor=RGB(136,136,136);
+    [View2 addSubview:notice];
+    
+}
+//全部提现
+-(void)getAllCashesClick:(UIButton *)sender{
+    text_Field.text=[allMoney_lab.text stringByReplacingOccurrencesOfString:@"￥" withString:@""];
 }
 
 -(void)selectBank{
