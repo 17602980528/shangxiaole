@@ -676,7 +676,7 @@ static NSString *headerID = @"headerID";
             int X = (i-j*10)%5;
             int Y = (i-j*10)/5;
             
-            UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(20+X *(ww+10)+ SCREENWIDTH*j,10+Y *(hh+17), ww, hh)];
+            UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(20+X *(ww+10)+ SCREENWIDTH*j,10+10+Y *(hh+17), ww, hh)];
             [btn addTarget:self action:@selector(topClick:) forControlEvents:UIControlEventTouchUpInside];
            
           
@@ -724,7 +724,7 @@ static NSString *headerID = @"headerID";
 
 
     
-    _smallSV.frame  = CGRectMake(0, slipBackView.bottom, SCREENWIDTH, 10 +10+2*hh+17+9);
+    _smallSV.frame  = CGRectMake(0, slipBackView.bottom, SCREENWIDTH, 10 +10+10+2*hh+17+9);
 
     
     _pc=[[UIPageControl alloc]initWithFrame:CGRectMake(SCREENWIDTH*0.2, _smallSV.bottom-20, SCREENWIDTH*0.6, 20)];
@@ -743,7 +743,7 @@ static NSString *headerID = @"headerID";
     }
     _pc.hidesForSinglePage = YES;
     
-    UIImageView *img_bg_top = [[UIImageView alloc]initWithFrame:CGRectMake(0, slipBackView.bottom-8, SCREENWIDTH, 8)];
+    UIImageView *img_bg_top = [[UIImageView alloc]initWithFrame:CGRectMake(0, _smallSV.top-8, SCREENWIDTH, 8)];
     img_bg_top.image = [UIImage imageNamed:@"圆角1"];
     [back_view addSubview:img_bg_top];
     
