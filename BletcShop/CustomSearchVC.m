@@ -44,6 +44,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self postRequestHotSearch];//
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(popSelfVC)];
     
     UIView *navView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 64)];
@@ -109,60 +110,6 @@
     };
 
     //历史搜索tableview
-    UIView *tableHeaderView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 118)];
-    tableHeaderView.backgroundColor=RGB(240, 240, 240);
-    
-    UILabel *hotSearch=[[UILabel alloc]initWithFrame:CGRectMake(13, 13, SCREENWIDTH-13, 13)];
-    hotSearch.font=[UIFont systemFontOfSize:14];
-    hotSearch.text=@"热门搜索";
-    hotSearch.textAlignment=NSTextAlignmentLeft;
-    hotSearch.textColor=RGB(243, 73, 78);
-    [tableHeaderView addSubview:hotSearch];
-    
-    UIView *hotView=[[UIView alloc]initWithFrame:CGRectMake(0, hotSearch.bottom+13, SCREENWIDTH, 40)];
-    hotView.backgroundColor=[UIColor whiteColor];
-    [tableHeaderView addSubview:hotView];
-    NSArray *hotNameArray=@[@"商消乐",@"季节风",@"尚艺轩",@"孙小妖果铺"];
-    for (int i=0; i<4; i++) {
-        UIButton *hotButton=[UIButton buttonWithType:UIButtonTypeCustom];
-        hotButton.frame=CGRectMake(i*SCREENWIDTH/4, 0, SCREENWIDTH/4, 40);
-        [hotButton setTitle:hotNameArray[i] forState:UIControlStateNormal];
-        [hotButton setTitleColor:RGB(87, 87, 87) forState:UIControlStateNormal];
-        hotButton.titleLabel.font=[UIFont systemFontOfSize:14];
-        [hotView addSubview:hotButton];
-        hotButton.tag=i;
-        [hotButton addTarget:self action:@selector(goSearch:) forControlEvents:UIControlEventTouchUpInside];
-        
-    }
-    
-    UILabel *historySearch=[[UILabel alloc]initWithFrame:CGRectMake(13, hotView.bottom+13, SCREENWIDTH-13, 13)];
-    historySearch.font=[UIFont systemFontOfSize:14];
-    historySearch.text=@"历史搜索";
-    historySearch.textColor=RGB(87, 87, 87);
-    [tableHeaderView addSubview:historySearch];
-    
-    historyTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 64, SCREENWIDTH, SCREENHEIGHT-64-216-40)];
-    historyTableView.delegate=self;
-    historyTableView.dataSource=self;
-    historyTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:historyTableView];
-    
-    historyTableView.tableHeaderView=tableHeaderView;
-    
-    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    fileName = [path stringByAppendingPathComponent:@"historydata.plist"];
-    
-//    NSArray *array = @[@"123", @"456", @"789"];
-//    [array writeToFile:fileName atomically:YES];
-    
-    NSArray *result = [NSArray arrayWithContentsOfFile:fileName];
-    
-    NSLog(@"result===%@", result);
-    if (result) {
-        self.historyArray=[NSMutableArray arrayWithArray:result];
-    }else{
-        self.historyArray=[NSMutableArray arrayWithCapacity:0];
-    }
     
 }
 
@@ -456,6 +403,82 @@
     CGRect rect = [string boundingRectWithSize:CGSizeMake(0, 12)/*计算宽度时要确定高度*/ options:NSStringDrawingUsesLineFragmentOrigin |
                    NSStringDrawingUsesFontLeading attributes:dic context:nil];
     return rect.size.width;
+}
+//获取热门搜索
+-(void)postRequestHotSearch{
+    
+    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/search/getHotSearch",BASEURL];
+
+    [KKRequestDataService requestWithURL:url params:nil httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result)
+     {
+         NSLog(@"%@",result);
+         if (result&&[result [@"hot_search"] count]>0) {
+             UIView *tableHeaderView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 118)];
+             tableHeaderView.backgroundColor=RGB(240, 240, 240);
+             
+             UILabel *hotSearch=[[UILabel alloc]initWithFrame:CGRectMake(13, 13, SCREENWIDTH-13, 13)];
+             hotSearch.font=[UIFont systemFontOfSize:14];
+             hotSearch.text=@"热门搜索";
+             hotSearch.textAlignment=NSTextAlignmentLeft;
+             hotSearch.textColor=RGB(243, 73, 78);
+             [tableHeaderView addSubview:hotSearch];
+             
+             UIView *hotView=[[UIView alloc]initWithFrame:CGRectMake(0, hotSearch.bottom+13, SCREENWIDTH, 40)];
+             hotView.backgroundColor=[UIColor whiteColor];
+             [tableHeaderView addSubview:hotView];
+             NSArray *hotNameArray=(NSArray *)result[@"hot_search"];// @[@"商消乐",@"季节风",@"尚艺轩",@"孙小妖果铺"];
+             for (int i=0; i<hotNameArray.count; i++) {
+                 UIButton *hotButton=[UIButton buttonWithType:UIButtonTypeCustom];
+                 hotButton.frame=CGRectMake(i%4*SCREENWIDTH/4, i/4*40, SCREENWIDTH/4, 40);
+                 [hotButton setTitle:hotNameArray[i] forState:UIControlStateNormal];
+                 [hotButton setTitleColor:RGB(87, 87, 87) forState:UIControlStateNormal];
+                 hotButton.titleLabel.font=[UIFont systemFontOfSize:14];
+                 [hotView addSubview:hotButton];
+                 hotButton.tag=i;
+                 [hotButton addTarget:self action:@selector(goSearch:) forControlEvents:UIControlEventTouchUpInside];
+             }
+             CGRect frameForHotView=hotView.frame;
+             frameForHotView.size.height=(hotNameArray.count+4-1)/4*40;
+             hotView.frame=frameForHotView;
+             
+             CGRect frameForHeadView=tableHeaderView.frame;
+             frameForHeadView.size.height=118-40+(hotNameArray.count+4-1)/4*40;
+             tableHeaderView.frame=frameForHeadView;
+             
+             UILabel *historySearch=[[UILabel alloc]initWithFrame:CGRectMake(13, hotView.bottom+13, SCREENWIDTH-13, 13)];
+             historySearch.font=[UIFont systemFontOfSize:14];
+             historySearch.text=@"历史搜索";
+             historySearch.textColor=RGB(87, 87, 87);
+             [tableHeaderView addSubview:historySearch];
+             
+             historyTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 64, SCREENWIDTH, SCREENHEIGHT-64-216-40)];
+             historyTableView.delegate=self;
+             historyTableView.dataSource=self;
+             historyTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+             [self.view addSubview:historyTableView];
+             
+             historyTableView.tableHeaderView=tableHeaderView;
+             
+             NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+             fileName = [path stringByAppendingPathComponent:@"historydata.plist"];
+             
+             
+             NSArray *resultss = [NSArray arrayWithContentsOfFile:fileName];
+             
+             NSLog(@"result===%@", result);
+             if (resultss) {
+                 self.historyArray=[NSMutableArray arrayWithArray:resultss];
+             }else{
+                 self.historyArray=[NSMutableArray arrayWithCapacity:0];
+             }
+
+         }
+         
+     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+      
+         NSLog(@"%@", error);
+     }];
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

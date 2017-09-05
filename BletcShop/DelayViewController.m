@@ -55,8 +55,8 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(SCREENWIDTH-75, 0, 60, 40);
+    [button setTitleColor:RGB(51, 51, 51) forState:UIControlStateNormal];
     [button setTitle:@"查看" forState:0];
-    [button setTitleColor:[UIColor whiteColor] forState:0];
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     button.titleLabel.font = [UIFont systemFontOfSize:14];
    

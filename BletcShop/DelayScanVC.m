@@ -39,15 +39,18 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    
-    
     return self.data_A.count;
-    
-    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (self.data_A.count!=0) {
+        if (self.data_A[section][@"reason"]&&![[NSString getTheNoNullStr:self.data_A[section][@"reason"] andRepalceStr:@""] isEqualToString:@""]) {
+            return 5;
+        }else{
+            return 4;
+        }
+    }
     return 4;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,8 +68,6 @@
 
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    
     
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 41+10)];
     view.backgroundColor = [UIColor whiteColor];
@@ -95,7 +96,7 @@
     
     UILabel *state_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, line0.bottom, SCREENWIDTH-43, 40)];
     state_lab.font = [UIFont systemFontOfSize:12];
-    state_lab.textColor = RGB(153,153,153);
+    state_lab.textColor = RGB(241,122,18);//RGB(153,153,153);
     state_lab.textAlignment = NSTextAlignmentRight;
     [view addSubview:state_lab];
     
@@ -157,46 +158,100 @@
         NSDictionary *dic = self.data_A[indexPath.section];
         UILabel *huiyuanLabel = [cell viewWithTag:900];
         UILabel *huiyuanText = [cell viewWithTag:901];
-        switch (indexPath.row) {
-           
-            case 0:
-            {
-                huiyuanLabel.text = @"卡片类型:";
-                huiyuanText.text = dic[@"card_type"];
-                
-                
+        if (self.data_A[indexPath.section][@"reason"]&&![[NSString getTheNoNullStr:self.data_A[indexPath.section][@"reason"] andRepalceStr:@""] isEqualToString:@""]) {
+            
+            switch (indexPath.row) {
+                    
+                case 0:
+                {
+                    
+                    huiyuanLabel.text = @"拒绝原因:";
+                    huiyuanText.text = dic[@"reason"];
+                    huiyuanText.textColor=RGB(241,122,18);
+                }
+                    break;
+                case 1:
+                {
+                    huiyuanLabel.text = @"卡片类型:";
+                    huiyuanText.text = dic[@"card_type"];
+                    huiyuanText.textColor=RGB(51,51,51);
+                    
+                }
+                    break;
+                case 2:
+                {
+                   
+                    huiyuanLabel.text = @"卡片级别:";
+                    huiyuanText.text = dic[@"card_level"];
+                    huiyuanText.textColor=RGB(51,51,51);
+                    
+                }
+                    break;
+                    
+                case 3:
+                {
+                    
+                    huiyuanLabel.text = @"延长期限:";
+                    huiyuanText.text = [self.deadLine_dic objectForKey:dic[@"postpone"]];
+                    huiyuanText.textColor=RGB(51,51,51);
+                    
+                }
+                    break;
+                case 4:
+                {
+                    huiyuanLabel.text = @"申请时间:";
+                    huiyuanText.text = dic[@"datetime"];
+                    huiyuanText.textColor=RGB(51,51,51);
+                }
+                    
+                default:
+                    break;
             }
-                break;
-            case 1:
-            {
-                huiyuanLabel.text = @"卡片级别:";
-                huiyuanText.text = dic[@"card_level"];
-                
-                
-            }
-                break;
-            case 2:
-            {
-                huiyuanLabel.text = @"延长期限:";
-                huiyuanText.text = [self.deadLine_dic objectForKey:dic[@"postpone"]];
-                
-                
-                
-            }
-                break;
-                
-            case 3:
-            {
-                huiyuanLabel.text = @"申请时间:";
-                huiyuanText.text = dic[@"datetime"];
-                
-                
-                
-            }
-                break;
 
-            default:
-                break;
+            
+        }else{
+            switch (indexPath.row) {
+                    
+                case 0:
+                {
+                    huiyuanLabel.text = @"卡片类型:";
+                    huiyuanText.text = dic[@"card_type"];
+                    
+                    
+                }
+                    break;
+                case 1:
+                {
+                    huiyuanLabel.text = @"卡片级别:";
+                    huiyuanText.text = dic[@"card_level"];
+                    
+                    
+                }
+                    break;
+                case 2:
+                {
+                    huiyuanLabel.text = @"延长期限:";
+                    huiyuanText.text = [self.deadLine_dic objectForKey:dic[@"postpone"]];
+                    
+                    
+                    
+                }
+                    break;
+                    
+                case 3:
+                {
+                    huiyuanLabel.text = @"申请时间:";
+                    huiyuanText.text = dic[@"datetime"];
+                    
+                    
+                    
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+
         }
         
     }

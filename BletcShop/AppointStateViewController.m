@@ -34,7 +34,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (self.data_A.count!=0) {
-        if (self.data_A[section][@"reason"]) {
+        if (self.data_A[section][@"reason"]&&![[NSString getTheNoNullStr:self.data_A[section][@"reason"] andRepalceStr:@""] isEqualToString:@""]) {
             return 4;
         }else{
             return 3;
@@ -69,7 +69,7 @@
         NSDictionary *dic = self.data_A[indexPath.section];
         UILabel *huiyuanLabel = [cell viewWithTag:900];
         UILabel *huiyuanText = [cell viewWithTag:901];
-        if (self.data_A[indexPath.section][@"reason"]) {
+        if (self.data_A[indexPath.section][@"reason"]&&![[NSString getTheNoNullStr:self.data_A[indexPath.section][@"reason"] andRepalceStr:@""] isEqualToString:@""]) {
             switch (indexPath.row) {
                 case 0:
                 {
