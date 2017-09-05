@@ -243,7 +243,8 @@
             UITextField *phoneField = [alertView textFieldAtIndex:1];
             
             if (nameField.text.length==0||phoneField.text.length==0) {
-                
+                [self showHint:@"请输入名字或手机号!"];
+
             }else{
                 
                 

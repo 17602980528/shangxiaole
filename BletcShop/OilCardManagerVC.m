@@ -8,6 +8,8 @@
 
 #import "OilCardManagerVC.h"
 #import "OilManagerCell.h"
+#import "OilCardRechargeVC.h"
+#import "OilCardShareVC.h"
 
 @interface OilCardManagerVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *redImg;
@@ -190,7 +192,14 @@
 
 }
 
-- (IBAction)rechargeORShare:(id)sender {
+- (IBAction)rechargeORShare:(UIButton*)sender {
+    
+    if (sender.tag==0) {
+        PUSH(OilCardRechargeVC)
+    }else if (sender.tag== 1){
+        PUSH(OilCardShareVC)
+        
+    }else
     [self showHint:@"正在开发中..."];
 
 }

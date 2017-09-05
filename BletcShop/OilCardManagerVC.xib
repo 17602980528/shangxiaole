@@ -183,7 +183,7 @@
                 <constraint firstItem="7Ny-UN-UYU" firstAttribute="centerX" secondItem="WWp-xi-BNA" secondAttribute="centerX" id="tk6-Ex-SXD"/>
                 <constraint firstItem="q7w-VQ-wBy" firstAttribute="top" secondItem="cbw-w5-QPd" secondAttribute="bottom" constant="15" id="yQB-b7-7Eb"/>
             </constraints>
-            <point key="canvasLocation" x="-1257" y="-799"/>
+            <point key="canvasLocation" x="-899" y="-816"/>
         </view>
         <view contentMode="scaleToFill" id="VMk-Rj-H4c">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>

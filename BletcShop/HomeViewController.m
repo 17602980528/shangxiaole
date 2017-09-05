@@ -743,6 +743,11 @@ static NSString *headerID = @"headerID";
     }
     _pc.hidesForSinglePage = YES;
     
+    UIImageView *img_bg_top = [[UIImageView alloc]initWithFrame:CGRectMake(0, slipBackView.bottom-8, SCREENWIDTH, 8)];
+    img_bg_top.image = [UIImage imageNamed:@"圆角1"];
+    [back_view addSubview:img_bg_top];
+    
+    
     UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, _smallSV.bottom, SCREENWIDTH, 1)];
     line.backgroundColor =RGB(239,239,244);
     [back_view addSubview:line];

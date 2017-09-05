@@ -38,6 +38,7 @@
     imgV.layer.cornerRadius = imgV.width/2;
     imgV.clipsToBounds = YES;
     imgV.backgroundColor = [UIColor whiteColor];
+    imgV.image = [UIImage imageNamed:@"userHeader"];
     [self.contentView addSubview:imgV];
     self.header_img = imgV;
     
@@ -51,11 +52,13 @@
     UILabel *name_lab = [[UILabel alloc]initWithFrame:CGRectMake(imgV.right+10, 10, SCREENWIDTH,20 )];
     name_lab.textColor = [UIColor blackColor];
     name_lab.font = [UIFont systemFontOfSize:15];
+    name_lab.text = @"索拉卡";
     [self.contentView addSubview:name_lab];
     self.name_lab = name_lab;
     
     UILabel *phone_lab = [[UILabel alloc]initWithFrame:CGRectMake(imgV.right+10, imgV.bottom-20, SCREENWIDTH, 20)];
     phone_lab.textColor = [UIColor grayColor];
+    phone_lab.text = @"13488199077";
     phone_lab.font = [UIFont systemFontOfSize:15];
     [self.contentView addSubview:phone_lab];
     self.phone_lab = phone_lab;

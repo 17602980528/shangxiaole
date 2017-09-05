@@ -933,6 +933,10 @@
 		D9A06B641D8679C30037795B /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A06B551D8679C30037795B /* libopencore-amrnb.a */; };
 		D9A06B651D8679C30037795B /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A06B591D8679C30037795B /* libopencore-amrwb.a */; };
 		D9A06B681D86A73B0037795B /* ToolManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A06B671D86A73B0037795B /* ToolManager.m */; };
+		D9A33E631F5E373E00304F83 /* OilCardRechargeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A33E621F5E373E00304F83 /* OilCardRechargeVC.m */; };
+		D9A33E661F5E37CE00304F83 /* OilCardPayMentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A33E651F5E37CE00304F83 /* OilCardPayMentVC.m */; };
+		D9A33E6A1F5E3DCA00304F83 /* OilCardShareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A33E681F5E3DCA00304F83 /* OilCardShareVC.m */; };
+		D9A33E6B1F5E3DCA00304F83 /* OilCardShareVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9A33E691F5E3DCA00304F83 /* OilCardShareVC.xib */; };
 		D9A8ABE31E0246C200D4597F /* MyRedBagVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A8ABE21E0246C200D4597F /* MyRedBagVC.m */; };
 		D9AA10B91F023BCA00F7EDE8 /* MealCardPayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D9AA10B71F023BCA00F7EDE8 /* MealCardPayVC.m */; };
 		D9AA10BA1F023BCA00F7EDE8 /* MealCardPayVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9AA10B81F023BCA00F7EDE8 /* MealCardPayVC.xib */; };
@@ -2573,6 +2577,13 @@
 		D9A06B591D8679C30037795B /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
 		D9A06B661D86A73B0037795B /* ToolManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolManager.h; sourceTree = "<group>"; };
 		D9A06B671D86A73B0037795B /* ToolManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolManager.m; sourceTree = "<group>"; };
+		D9A33E611F5E373E00304F83 /* OilCardRechargeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilCardRechargeVC.h; sourceTree = "<group>"; };
+		D9A33E621F5E373E00304F83 /* OilCardRechargeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OilCardRechargeVC.m; sourceTree = "<group>"; };
+		D9A33E641F5E37CE00304F83 /* OilCardPayMentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilCardPayMentVC.h; sourceTree = "<group>"; };
+		D9A33E651F5E37CE00304F83 /* OilCardPayMentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OilCardPayMentVC.m; sourceTree = "<group>"; };
+		D9A33E671F5E3DCA00304F83 /* OilCardShareVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilCardShareVC.h; sourceTree = "<group>"; };
+		D9A33E681F5E3DCA00304F83 /* OilCardShareVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OilCardShareVC.m; sourceTree = "<group>"; };
+		D9A33E691F5E3DCA00304F83 /* OilCardShareVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OilCardShareVC.xib; sourceTree = "<group>"; };
 		D9A8ABE11E0246C200D4597F /* MyRedBagVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRedBagVC.h; sourceTree = "<group>"; };
 		D9A8ABE21E0246C200D4597F /* MyRedBagVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRedBagVC.m; sourceTree = "<group>"; };
 		D9AA10B61F023BCA00F7EDE8 /* MealCardPayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealCardPayVC.h; sourceTree = "<group>"; };
@@ -5191,6 +5202,13 @@
 				D97227441F39571B009D0E2A /* OilManagerCell.h */,
 				D97227451F39571B009D0E2A /* OilManagerCell.m */,
 				D97227461F39571B009D0E2A /* OilManagerCell.xib */,
+				D9A33E611F5E373E00304F83 /* OilCardRechargeVC.h */,
+				D9A33E621F5E373E00304F83 /* OilCardRechargeVC.m */,
+				D9A33E641F5E37CE00304F83 /* OilCardPayMentVC.h */,
+				D9A33E651F5E37CE00304F83 /* OilCardPayMentVC.m */,
+				D9A33E671F5E3DCA00304F83 /* OilCardShareVC.h */,
+				D9A33E681F5E3DCA00304F83 /* OilCardShareVC.m */,
+				D9A33E691F5E3DCA00304F83 /* OilCardShareVC.xib */,
 			);
 			name = "加油卡管理";
 			sourceTree = "<group>";
@@ -6562,6 +6580,7 @@
 				D923025A1D152443008FB9A9 /* user_ed.png in Resources */,
 				D9C3A3011E9642890062B17D /* ChouJiangVC.xib in Resources */,
 				D9AB253F1D88E4ED000E9288 /* VoiceSearchFeedback017@2x.png in Resources */,
+				D9A33E6B1F5E3DCA00304F83 /* OilCardShareVC.xib in Resources */,
 				D94DF2641CAE0DB8000D5B69 /* result_small_star_highlight@2x.png in Resources */,
 				1CDA9E011C59FAB300DFE518 /* ad_safe.jpg in Resources */,
 				D94C5F401D9133700063EB27 /* bbbLL.png in Resources */,
@@ -7328,6 +7347,7 @@
 				18148E611F173B67001C86AC /* NewMyPayMentsVC.m in Sources */,
 				18F031F11E5EB8C100ACD261 /* ConvertRecordVC.m in Sources */,
 				189ED0431E8CD53600A762C7 /* KeyChainStore.m in Sources */,
+				D9A33E631F5E373E00304F83 /* OilCardRechargeVC.m in Sources */,
 				18148E5C1F16237B001C86AC /* NewAppriseVC.m in Sources */,
 				D99C11A51DE28CF100E45B64 /* UPgradeVC.m in Sources */,
 				D9B3A5A11D74255700F3F27E /* AdView.m in Sources */,
@@ -7372,6 +7392,7 @@
 				1C0BEF8A1C7DA14400519481 /* SuccessController.m in Sources */,
 				D92ACE071F0F341F00858727 /* ShopDetailCouponsCell.m in Sources */,
 				D947E4861D7D710200F9FEE8 /* FMDatabaseQueue.m in Sources */,
+				D9A33E6A1F5E3DCA00304F83 /* OilCardShareVC.m in Sources */,
 				D9CDFBB51CC4CE5B0054EBE3 /* CustomIOSAlertView.m in Sources */,
 				D958AD6E1E654CF200B0776F /* JHTableChart.m in Sources */,
 				184C720E1EC310CA0065EE65 /* ChangePayPassVC.m in Sources */,
@@ -7509,6 +7530,7 @@
 				D98787371E27517900C7A828 /* NewMessageCell.m in Sources */,
 				D949EC2C1CE192970023B6D6 /* BRecentCityCell.m in Sources */,
 				D99C11A91DE2D3BF00E45B64 /* NewRechargeViewController.m in Sources */,
+				D9A33E661F5E37CE00304F83 /* OilCardPayMentVC.m in Sources */,
 				1CDCCD171C7594040094E70D /* AFHTTPRequestOperation.m in Sources */,
 				180D0D3C1F0DCE2F00A39790 /* ShopProductsDetailsVC.m in Sources */,
 				D98011D31DF7B0DD00CE09CA /* ErrorQRViewController.m in Sources */,
