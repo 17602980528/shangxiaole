@@ -53,6 +53,8 @@
     
     //NSLog(@"----/%@/====/%@/",self.codeTF.text,self.array_code[0]);
     
+    
+    
     if ([self.codeTF.text isEqualToString:self.array_code]) {
         if ([self.whoPush isEqualToString:@"商户"]) {
             [self postShopRequest];
@@ -179,29 +181,16 @@
 
          }else if([result[@"result_code"] integerValue]==1062){
              
-             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-
-             hud.label.text = NSLocalizedString(@"该手机号在平台已存在!", @"HUD message title");
              
-             hud.label.font = [UIFont systemFontOfSize:13];
-             hud.frame = CGRectMake(25, SCREENHEIGHT/2, SCREENWIDTH-50, 100);
-             hud.userInteractionEnabled = YES;
+             [self showHint:@"该手机号在平台已存在!"];
+         
              
-             [hud hideAnimated:YES afterDelay:2.f];
 
          }else{
+             [self showHint:@"请求失败 请重试"];
              
+           
              
-             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-             
-             hud.label.text = NSLocalizedString(@"请求失败 请重试", @"HUD message title");
-             
-             hud.label.font = [UIFont systemFontOfSize:13];
-             //    [hud setColor:[UIColor blackColor]];
-             hud.frame = CGRectMake(25, SCREENHEIGHT/2, SCREENWIDTH-50, 100);
-             hud.userInteractionEnabled = YES;
-             
-             [hud hideAnimated:YES afterDelay:2.f];
          }
          
          
