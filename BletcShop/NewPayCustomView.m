@@ -15,7 +15,7 @@
     if (self) {
         self.backgroundColor=[UIColor colorWithRed:51/255.0f green:51/255.0f blue:51/255.0f alpha:0.3];
         
-        UIView *whiteView=[[UIView alloc]initWithFrame:CGRectMake(53, 140-64, frame.size.width-106, 227)];
+        UIView *whiteView=[[UIView alloc]initWithFrame:CGRectMake(53, SCREENHEIGHT-216-227-40-64, frame.size.width-106, 227)];
         whiteView.backgroundColor=[UIColor whiteColor];
         whiteView.layer.cornerRadius=12.0f;
         whiteView.clipsToBounds=YES;

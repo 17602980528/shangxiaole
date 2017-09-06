@@ -190,6 +190,7 @@
         }else if ([self.moneyString floatValue]>=[text_Field.text floatValue]) {
             //
             payView = [[NewPayCustomView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64)];
+            payView.withdrawCashLable.text=[NSString stringWithFormat:@"%@元",text_Field.text];
             payView.delegate=self;
             [self.view addSubview:payView];
             
