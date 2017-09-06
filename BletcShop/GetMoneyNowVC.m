@@ -12,7 +12,7 @@
 #import "GetMoneyFailVC.h"
 #import "NewPayCustomView.h"
 #import "ChangePayPassVC.h"
-@interface GetMoneyNowVC ()<UITextFieldDelegate,UIAlertViewDelegate,PayCustomViewDelegate>
+@interface GetMoneyNowVC ()<UITextFieldDelegate,PayCustomViewDelegate>
 {
     UILabel *bankName;
     UILabel *bankAccount;
@@ -162,9 +162,23 @@
     
     if ([pay_passwd isEqualToString:@"未设置"]) {
         
-        UIAlertView *alt = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有设置支付密码!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去设置", nil];
-        alt.tag = 888;
-        [alt show];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您还没有设置支付密码!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        
+        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            ChangePayPassVC *vc=[[ChangePayPassVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }];
+        [sureAction setValue:RGB(243, 73, 78) forKey:@"titleTextColor"];
+       // [cancelAction setValue:RGB(243, 73, 78) forKey:@"titleTextColor"];
+         [alert addAction:cancelAction];
+        [alert addAction:sureAction];
+        [self presentViewController:alert animated:YES completion:nil];
         
     }else{
         if ([text_Field.text intValue]==0) {
@@ -313,22 +327,6 @@
     [payView removeFromSuperview];
 }
 
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (alertView.tag ==888) {
-        NSLog(@"去设置");
-        if (buttonIndex==1) {
-            ChangePayPassVC *vc=[[ChangePayPassVC alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-        
-    }else{
-        if (buttonIndex==1) {
-            [self postSocketGetMoney];
-        }
-    }
-   
-}
 -(void)tishi:(NSString *)tishi{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeText;
