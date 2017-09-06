@@ -116,7 +116,7 @@
 
 
 -(void)payRequest{
-    NSString *url = [NSString stringWithFormat:@"%@UserType/ExperienceCard/pay",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@UserType/ExperienceCard/pay_v2",BASEURL];
     
     AppDelegate *app = (AppDelegate*)[UIApplication sharedApplication].delegate;
     
@@ -146,6 +146,8 @@
                 NSMutableDictionary *dictionary=[NSMutableDictionary dictionaryWithDictionary:paramer];
                 [dictionary setObject:self.card_dic[@"store"] forKey:@"store"];
                 [dictionary setObject:[NSString stringWithFormat:@"%@",self.card_dic[@"price"]] forKey:@"oldNeed"];
+                [dictionary setObject:self.card_dic[@"card_type"] forKey:@"cardType"];
+
                 vc.dic=dictionary;
                 [self.navigationController pushViewController:vc animated:YES];
                 

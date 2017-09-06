@@ -248,7 +248,10 @@
         }
         cell.detailTextLabel.textColor=RGB(243, 73, 78);
         if (indexPath.row==7) {
-            if ([cardInfo_dic[@"claim_state"] isEqualToString:@"null"]) {
+            
+            NSString *claim_state  = [NSString getTheNoNullStr:cardInfo_dic[@"claim_state"] andRepalceStr:@""];
+
+            if (claim_state.length==0) {
                 cell.detailTextLabel.text=@"";
             }else if([cardInfo_dic[@"claim_state"] isEqualToString:@"CHECK_FAILED"]){
                 cell.detailTextLabel.text=@"核查失败";
@@ -289,7 +292,9 @@
                 }
             
         }else{
-            if ([cardInfo_dic[@"claim_state"] isEqualToString:@"null"]){
+            NSString *claim_state  = [NSString getTheNoNullStr:cardInfo_dic[@"claim_state"] andRepalceStr:@""];
+
+            if (claim_state.length==0){
                 
                 if (indexPath.row==0) {
                     
@@ -563,8 +568,10 @@
 }
 
 - (IBAction)payBtnClick:(UIButton *)sender {
+    NSString *claim_state  = [NSString getTheNoNullStr:cardInfo_dic[@"claim_state"] andRepalceStr:@""];
+
     
-    if ([cardInfo_dic[@"claim_state"] isEqualToString:@"null"]){
+    if (claim_state.length==0){
         if ([cardInfo_dic[@"card_type"] isEqualToString:@"储值卡"]) {
             PUSH(MoneyPAYViewController)
             vc.refresheDate = ^{

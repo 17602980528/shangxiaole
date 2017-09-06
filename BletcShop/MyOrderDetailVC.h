@@ -10,8 +10,9 @@
 
 @interface MyOrderDetailVC : UIViewController
 @property (nonatomic , strong) NSDictionary *order_dic;// 订单信息
-@property (nonatomic,copy)NSString *allPay;// 支付总额
+//@property (nonatomic,copy)NSString *allPay;// 支付总额
 @property (nonatomic,copy)NSString *pay_type_s;// 消费类型,计次还是金额.
 
+@property (nonatomic , strong) NSArray *data_A;// <#Description#>
 
 @end

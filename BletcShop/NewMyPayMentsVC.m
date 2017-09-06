@@ -62,7 +62,7 @@
     };
       self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:back];
     
-    _apriseOrPublish=0;
+    self.apriseOrPublish=0;
     _tableView.estimatedRowHeight=200;
     _tableView.rowHeight=UITableViewAutomaticDimension;
 }
@@ -92,7 +92,6 @@
         cell.totalCosts.text=[NSString stringWithFormat:@"消费：%@元",_orderArray[indexPath.row][@"sum"]];
         cell.shopName.text=_orderArray[indexPath.row][@"store"];
         
-        //[[[[self.orderArray objectAtIndex:indexPath.row] objectForKey:@"content"] componentsSeparatedByString:PAY_USCS] firstObject];
         NSURL * nurl1=[[NSURL alloc] initWithString:[[SHOPIMAGE_ADDIMAGE stringByAppendingString:[_orderArray[indexPath.row] objectForKey:@"image_url"]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
         [cell.headImageView sd_setImageWithURL:nurl1 placeholderImage:[UIImage imageNamed:@"icon3.png"] options:SDWebImageRetryFailed];
         
@@ -110,74 +109,86 @@
         }
         [cell.delBtn addTarget:self action:@selector(deletePayRecord:) forControlEvents:UIControlEventTouchUpInside];
         //
-        NSString *string = [[[[self.orderArray objectAtIndex:indexPath.row] objectForKey:@"content"] componentsSeparatedByString:PAY_USCS] lastObject];
+//        NSString *string = [[[[self.orderArray objectAtIndex:indexPath.row] objectForKey:@"content"] componentsSeparatedByString:PAY_USCS] lastObject];
         
-        if ([[string substringToIndex:4] isEqualToString:@"结算次数"]||[[string substringToIndex:4] isEqualToString:@"消费次数"]) {
+        
+        NSDictionary *dic =[self.orderArray objectAtIndex:indexPath.row];
+        
+        NSString * ss = [dic objectForKey:@"content"];
+        
+        NSData *data = [ss dataUsingEncoding:NSUTF8StringEncoding];
+        
+      id data_id =  [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        
+        
+        NSArray *arr = data_id;
+        
+        
+        
+        if ([dic[@"card_type"] isEqualToString:@"计次卡"]) {
             
             cell.card_type.text = @"消费卡种：计次卡";
-            NSArray *arr = [NSArray array];
-            arr= [string componentsSeparatedByString:PAY_UORC];
-            for (NSString *stri in arr) {
-                
-                NSString *price = [[stri componentsSeparatedByString:PAY_NP]lastObject];
-                price =  [[price componentsSeparatedByString:@"次"]firstObject];
-                string = [NSString stringWithFormat:@"%d次",[string intValue]+[price intValue]];
-                
-            }
+            
             
             cell.current_price.text = @"";
             cell.original_price.text = @"";
 
-            cell.totalCosts.text=[NSString stringWithFormat:@"消费：%@",string];
+            cell.totalCosts.text=[NSString stringWithFormat:@"消费：%@次",arr[3][@"value"]];
 
-        }else if ([[string substringToIndex:4] isEqualToString:@"结算金额"]||[[string substringToIndex:4] isEqualToString:@"消费金额"]){
+        }
+        
+        if ([dic[@"card_type"] isEqualToString:@"储值卡"]){
             cell.card_type.text = @"消费卡种：储值卡";
 
-            NSArray *arr = [NSArray array];
-            
-            arr= [string componentsSeparatedByString:PAY_UORC];
-            for (NSString *stri in arr) {
-                NSString *price = [[stri componentsSeparatedByString:PAY_NP]lastObject];
-                price =  [[price componentsSeparatedByString:@"元"]firstObject];
-                
-                string = [NSString stringWithFormat:@"%.2f元",[string floatValue]+[price floatValue]];
-                
-            }
-            cell.current_price.text = [NSString stringWithFormat:@"现价：%@",string];
-            cell.totalCosts.text=[NSString stringWithFormat:@"消费：%@",string];
+           
+            cell.current_price.text = [NSString stringWithFormat:@"现价：%@",arr[3][@"value"]];
+            cell.totalCosts.text=[NSString stringWithFormat:@"消费：%@",arr[3][@"value"]];
             
             cell.original_price.text = @"";
 
-
+     
             
-        }else if ([[string substringToIndex:4] isEqualToString:@"项目名称"]){
+        }
+        
+        if ([dic[@"card_type"] isEqualToString:@"套餐卡"]){
             
             cell.card_type.text = @"消费卡种：套餐卡";
+            cell.original_price.text = [NSString stringWithFormat:@"%@: %@",arr[2][@"item"],arr[2][@"value"]];
             cell.current_price.text = @"";
-NSString *myString =@"";
+//            NSString *myString =@"";
             
             
             
-            NSArray *arr = [string componentsSeparatedByString:PAY_UORC];
-            
-            for (int i = 0; i <arr.count/2; i++) {
-                
-                NSString *ss = arr[i*2];
-                
-                NSString *price = [NSString stringWithFormat:@"%@1次",[[ss componentsSeparatedByString:PAY_NP]lastObject]];
 
-                if (myString.length ==0) {
-                    myString = price;
-                }else{
-                    
-                    myString = [[myString stringByAppendingString:@"x"] stringByAppendingString:price];
- 
-                }
-            }
             
-            cell.original_price.text = myString;
+//            for (int i = 0; i <arr.count/2; i++) {
+//                
+//                NSString *ss = arr[i*2];
+//                
+//                NSString *price = [NSString stringWithFormat:@"%@1次",[[ss componentsSeparatedByString:PAY_NP]lastObject]];
+//
+//                if (myString.length ==0) {
+//                    myString = price;
+//                }else{
+//                    
+//                    myString = [[myString stringByAppendingString:@"x"] stringByAppendingString:price];
+// 
+//                }
+//            }
+//            
+//            cell.original_price.text = myString;
+//
+//            cell.totalCosts.text=[NSString stringWithFormat:@"消费：%ld项",arr.count];
 
-            cell.totalCosts.text=[NSString stringWithFormat:@"消费：%ld项",arr.count/2];
+            
+        }
+        if ([dic[@"card_type"] isEqualToString:@"体验卡"]){
+            cell.card_type.text = @"消费卡种：体验卡";
+            cell.current_price.text = @"";
+            cell.original_price.text = @"";
+
+            cell.totalCosts.text=[NSString stringWithFormat:@"消费：%@",arr[2][@"value"]];
+            
 
             
         }
@@ -235,10 +246,8 @@ NSString *myString =@"";
     newAppriseVC.evaluate_dic= self.orderArray[sender.tag];
     [self.navigationController pushViewController:newAppriseVC animated:YES];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-   
-}
+
+
 //获取消费记录---刷卡消费
 #pragma mark ---刷卡消费记录
 -(void)postRequstOrderInfo
@@ -320,43 +329,36 @@ NSString *myString =@"";
         
         NSLog(@"----刷卡消费-");
 
+        NSDictionary *dic =[self.orderArray objectAtIndex:indexPath.row];
+        
+        NSString * ss = [dic objectForKey:@"content"];
+        
+        NSData *data = [ss dataUsingEncoding:NSUTF8StringEncoding];
+        
+        id data_id =  [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        
+        
+        NSArray *arr = data_id;
+
+        
     NSString *pay_tp;
     
     
-    NSString *string = [[[[self.orderArray objectAtIndex:indexPath.row] objectForKey:@"content"] componentsSeparatedByString:PAY_USCS] lastObject];
     
-    if ([[string substringToIndex:4] isEqualToString:@"结算次数"]||[[string substringToIndex:4] isEqualToString:@"消费次数"]) {
+    if ([dic[@"card_type"] isEqualToString:@"计次卡"]) {
         pay_tp = @"计次数量";
-        NSArray *arr = [NSArray array];
-        arr= [string componentsSeparatedByString:PAY_UORC];
-        for (NSString *stri in arr) {
-            
-            NSString *price = [[stri componentsSeparatedByString:PAY_NP]lastObject];
-            price =  [[price componentsSeparatedByString:@"次"]firstObject];
-            string = [NSString stringWithFormat:@"%d次",[string intValue]+[price intValue]];
-            
-            
-        }
+     
         
     }else{
         pay_tp = @"付款金额";
         
-        NSArray *arr = [NSArray array];
-        
-        arr= [string componentsSeparatedByString:PAY_UORC];
-        for (NSString *stri in arr) {
-            NSString *price = [[stri componentsSeparatedByString:PAY_NP]lastObject];
-            price =  [[price componentsSeparatedByString:@"元"]firstObject];
-            
-            string = [NSString stringWithFormat:@"%.2f元",[string floatValue]+[price floatValue]];
-            
-        }
+     
         
     }
     
     MyOrderDetailVC *VC  = [[MyOrderDetailVC alloc]init];
     VC.order_dic = [self.orderArray objectAtIndex:indexPath.row];
-    VC.allPay = string;
+    VC.data_A = arr;
     VC.pay_type_s = pay_tp;
     
     [self.navigationController pushViewController:VC animated:YES];

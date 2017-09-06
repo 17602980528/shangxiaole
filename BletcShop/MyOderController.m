@@ -199,13 +199,13 @@
         }
         
     }
-
-    MyOrderDetailVC *VC  = [[MyOrderDetailVC alloc]init];
-    VC.order_dic = [self.orderArray objectAtIndex:indexPath.row];
-    VC.allPay = string;
-    VC.pay_type_s = pay_tp;
-    
-    [self.navigationController pushViewController:VC animated:YES];
+//
+//    MyOrderDetailVC *VC  = [[MyOrderDetailVC alloc]init];
+//    VC.order_dic = [self.orderArray objectAtIndex:indexPath.row];
+//    VC.allPay = string;
+//    VC.pay_type_s = pay_tp;
+//    
+//    [self.navigationController pushViewController:VC animated:YES];
     
 //    self.selectRow = indexPath.row;
 //    [self NewAlertView];

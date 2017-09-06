@@ -250,7 +250,7 @@
 -(void)postSocketCardPayAction
 {
     
-    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/card/pay",BASEURL];
+    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/card/value_pay",BASEURL];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     

@@ -172,7 +172,7 @@
 
 -(void)payRequest:(NSDictionary*)option_dic{
     NSLog(@"dic======%@",option_dic);
-    NSString *url = [NSString stringWithFormat:@"%@UserType/MealCard/pay",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@UserType/MealCard/pay_v2",BASEURL];
     
     AppDelegate *app = (AppDelegate*)[UIApplication sharedApplication].delegate;
     

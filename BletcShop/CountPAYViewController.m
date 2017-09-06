@@ -221,7 +221,7 @@
 -(void)postSocketCardPayAction
 {
     
-    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/card/pay",BASEURL];
+    NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/card/count_pay",BASEURL];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     [params setObject:self.user forKey:@"uuid"];

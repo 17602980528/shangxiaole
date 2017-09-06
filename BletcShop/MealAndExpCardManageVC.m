@@ -129,9 +129,10 @@ LEFTBACK
 
     }
     cell.detailTextLabel.textColor=RGB(243, 73, 78);
+    NSString *claim_state  = [NSString getTheNoNullStr:_card_dic[@"claim_state"] andRepalceStr:@""];
     
     if (indexPath.row==1) {
-        if ([_card_dic[@"claim_state"] isEqualToString:@"null"]) {
+        if (claim_state.length==0) {
             cell.detailTextLabel.text=@"";
         }else if([_card_dic[@"claim_state"] isEqualToString:@"CHECK_FAILED"]){
             cell.detailTextLabel.text=@"核查失败";
@@ -153,7 +154,9 @@ LEFTBACK
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row==0) {
-        if ([self.card_dic[@"claim_state"] isEqualToString:@"null"]) {
+        NSString *claim_state  = [NSString getTheNoNullStr:_card_dic[@"claim_state"] andRepalceStr:@""];
+
+        if (claim_state.length==0) {
             [self  postRequestOrder];
         }else{
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"会员卡理赔中，不能进行任何操作！" message:@"" preferredStyle:UIAlertControllerStyleAlert];
@@ -351,7 +354,10 @@ LEFTBACK
 
 - (IBAction)payClick:(id)sender {
     
-    if ([self.card_dic[@"claim_state"] isEqualToString:@"null"]) {
+    NSString *claim_state  = [NSString getTheNoNullStr:self.card_dic[@"claim_state"] andRepalceStr:@""];
+
+    
+    if (claim_state.length==0) {
         
         if ([_card_dic[@"card_type"] isEqualToString:@"套餐卡"]){
             
