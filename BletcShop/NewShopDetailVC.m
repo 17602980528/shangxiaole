@@ -89,8 +89,8 @@
 
     [self initFootView];
 
+    [self getVideoId];
     
-    [self postRequestWholeInfo];
 }
 
 -(void)initTableView{
@@ -113,7 +113,7 @@
     __block typeof(self)tempSelf =self;
     _refreshheader.beginRefreshingOperation = ^{
         //请求数据
-        [tempSelf postRequestWholeInfo];
+        [tempSelf getVideoId];
     };
     
     
@@ -1373,7 +1373,40 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telStr]];
     }
 }
+-(void)getVideoId{
+    
+    NSString *url =[[NSString alloc]initWithFormat:@"%@MerchantType/merchant/videoGet",BASEURL];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    //获取商家手机号
+    
+    [params setObject:self.infoDic[@"muid"] forKey:@"muid"];
+    
+    
 
+    
+    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, NSArray* result)
+     {
+         NSLog(@"%@",result);
+         
+         if (result.count>0) {
+             
+             if ([result[0][@"state"] isEqualToString:@"true"]) {
+                 self.videoID=result[0][@"video"];
+                 
+             
+                 
+             }
+             
+         }
+         
+         [self postRequestWholeInfo];
+
+         
+     } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"%@", error);
+     }];
+
+}
 
 
 

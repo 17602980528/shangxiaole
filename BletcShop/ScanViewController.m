@@ -20,6 +20,7 @@
 
 #import "MealCardPayVC.h"
 #import "ExperienceCardGoToPayVC.h"
+#import "NewShopDetailVC.h"
 @interface ScanViewController ()<AVCaptureMetadataOutputObjectsDelegate,UIAlertViewDelegate>
 {
     AVCaptureSession * session;//输入输出的中间桥梁
@@ -435,9 +436,15 @@
         
         if([result[@"num"] intValue]==0){
             
-            ErrorQRViewController *VC = [[ErrorQRViewController alloc]init];
-            VC.errorString = @"您还未拥有该商铺的会员卡!";
-            [self.navigationController pushViewController:VC animated:YES];
+            PUSH(NewShopDetailVC)
+            vc.videoID = @"";
+            
+            NSMutableDictionary *muta_dic = [NSMutableDictionary dictionaryWithDictionary:dic];
+            vc.infoDic = muta_dic;
+            
+//            ErrorQRViewController *VC = [[ErrorQRViewController alloc]init];
+//            VC.errorString = @"您还未拥有该商铺的会员卡!";
+//            [self.navigationController pushViewController:VC animated:YES];
             
         }else
         if ([result[@"num"] intValue] ==1) {

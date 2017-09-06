@@ -291,7 +291,7 @@
     }];
     UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-        NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/user/cnDel",BASEURL];
+        NSString *url =[[NSString alloc]initWithFormat:@"%@UserType/record/payDel",BASEURL];
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         AppDelegate *appdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
         [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
