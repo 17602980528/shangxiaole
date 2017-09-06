@@ -11,7 +11,7 @@
 #import "GetMoneySuccessVC.h"
 #import "GetMoneyFailVC.h"
 #import "NewPayCustomView.h"
-
+#import "ChangePayPassVC.h"
 @interface GetMoneyNowVC ()<UITextFieldDelegate,UIAlertViewDelegate,PayCustomViewDelegate>
 {
     UILabel *bankName;
@@ -156,49 +156,35 @@
 -(void)sureClick{
     NSLog(@"立即提现===%@",text_Field.text);
     [text_Field resignFirstResponder];
+    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     
-    if ([text_Field.text intValue]==0) {
-        [self tishi:@"请输入金额!"];
-       
-
-    }else if(![NSString isPureInt: text_Field.text]&&![NSString isPureFloat: text_Field.text]){
-        [self tishi:@"请输入数字!"];
+    NSString *pay_passwd= [NSString getTheNoNullStr:appdelegate.userInfoDic[@"pay_passwd"] andRepalceStr:@""];
+    
+    if ([pay_passwd isEqualToString:@"未设置"]) {
         
-    }else
+        UIAlertView *alt = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有设置支付密码!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去设置", nil];
+        alt.tag = 888;
+        [alt show];
         
-    if ([self.moneyString floatValue]>=[text_Field.text floatValue]) {
-        //
-        payView = [[NewPayCustomView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64)];
-        payView.delegate=self;
-        [self.view addSubview:payView];
-        
-//        NSString *ss = [NSString stringWithFormat:@"本次提现金额%@元",text_Field.text];
-//        
-//        
-//
-//        
-//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:ss message:@"" preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//            
-//        }];
-//        
-//        UIAlertAction *sure = [UIAlertAction actionWithTitle:@"提现" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//            [self postSocketGetMoney];
-//        }];
-//        [alertController addAction:cancle];
-//        [alertController addAction:sure];
-//        
-//        
-//        [self presentViewController:alertController animated:YES completion:nil];
-        
-        NSLog(@"立即===%@",text_Field.text);
-
-        
-
     }else{
-        [self tishi:@"余额不足!"];
-
-           }
+        if ([text_Field.text intValue]==0) {
+            [self tishi:@"请输入金额!"];
+            
+        }else if(![NSString isPureInt: text_Field.text]&&![NSString isPureFloat: text_Field.text]){
+            [self tishi:@"请输入数字!"];
+            
+        }else if ([self.moneyString floatValue]>=[text_Field.text floatValue]) {
+            //
+            payView = [[NewPayCustomView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64)];
+            payView.delegate=self;
+            [self.view addSubview:payView];
+            
+            NSLog(@"立即===%@",text_Field.text);
+        }else{
+            [self tishi:@"余额不足!"];
+            
+        }
+    }
     
 }
 
@@ -221,8 +207,6 @@
     NSLog(@"----%@",params);
     [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         
-        
-        
         NSLog(@"resultresultresultresultresult%@", result);
         
         if ([result[@"result_code"] intValue]==1) {
@@ -230,17 +214,11 @@
             GetMoneySuccessVC *VC = [[GetMoneySuccessVC alloc]init];
             VC.dic = params;
             [self.navigationController pushViewController:VC animated:YES];
-
-            
-//            [self performSelector:@selector(loadAlterView) withObject:nil afterDelay:0.5];
            
         }else{
             
             GetMoneyFailVC *VC = [[GetMoneyFailVC alloc]init];
             [self.navigationController pushViewController:VC animated:YES];
-
-//            UIAlertView *aletView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"申请失败!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-//            [aletView show];
             
         }
         
@@ -253,8 +231,6 @@
     
 }
 -(void)loadAlterView{
-//    UIAlertView *a_aletView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"申请成功，三个工作日内，将转入您的银行账户" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-//    [a_aletView show];
     
     GetMoneySuccessVC *VC = [[GetMoneySuccessVC alloc]init];
     [self.navigationController pushViewController:VC animated:YES];
@@ -339,9 +315,19 @@
 
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex==1) {
-        [self postSocketGetMoney];
+    if (alertView.tag ==888) {
+        NSLog(@"去设置");
+        if (buttonIndex==1) {
+            ChangePayPassVC *vc=[[ChangePayPassVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
+    }else{
+        if (buttonIndex==1) {
+            [self postSocketGetMoney];
+        }
     }
+   
 }
 -(void)tishi:(NSString *)tishi{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -397,4 +383,5 @@
         
     }];
 }
+
 @end
