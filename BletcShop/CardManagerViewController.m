@@ -299,7 +299,7 @@
                 if (indexPath.row==0) {
                     
                     if ([[NSString getTheNoNullStr:cardInfo_dic[@"display_state"] andRepalceStr:@""] isEqualToString:@"off"]) {
-                        [self tishi:@"不能进行该操作!"];
+                        [self tishi:@"该会员卡已下架，您无法进行该操作!"];
                         
                     }else{
                         [self rechargeAction];
@@ -309,7 +309,7 @@
                     
                     if ([[NSString getTheNoNullStr:cardInfo_dic[@"display_state"] andRepalceStr:@""] isEqualToString:@"off"] ) {
                         
-                        [self tishi:@"不能进行该操作!"];
+                        [self tishi:@"该会员卡已下架，您无法进行该操作!"];
                         
                     }else{
                         [self postRequestUpgrade];
@@ -634,7 +634,7 @@
     // Move to bottm center.
     //    hud.offset = CGPointMake(0.f, );
     hud.frame = CGRectMake(25, SCREENHEIGHT/2, SCREENWIDTH-50, 100);
-    [hud hideAnimated:YES afterDelay:1.f];
+    [hud hideAnimated:YES afterDelay:2.f];
     
 }
 
