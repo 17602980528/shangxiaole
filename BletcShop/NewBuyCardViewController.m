@@ -32,7 +32,7 @@
 @interface NewBuyCardViewController ()<UITableViewDelegate,UITableViewDataSource,ViewControllerBDelegate>
 {
     NSInteger payKind;
-    PayCustomView *view;
+    PayCustomView *paycustomview;
 }
 @property (nonatomic ,assign) float walletRemain;//钱包余额
 @property (nonatomic,strong)NSMutableArray *optionsList_mutab;//项目列表
@@ -380,6 +380,9 @@
             return nil;
         }
     }else
+        if (section>4) {
+            return nil;
+        }else;
     return view;
 }
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -1054,10 +1057,10 @@
                 [self presentViewController:alertVC animated:YES completion:nil];
             }else{
                 
-                view=[[PayCustomView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64)];
-                view.delegate=self;
-                [view.forgotButton addTarget:self action:@selector(forgetPayPass) forControlEvents:UIControlEventTouchUpInside];
-                [self.view addSubview:view];
+                paycustomview=[[PayCustomView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
+                paycustomview.delegate=self;
+                [paycustomview.forgotButton addTarget:self action:@selector(forgetPayPass) forControlEvents:UIControlEventTouchUpInside];
+                [self.view addSubview:paycustomview];
                 
             }
 
@@ -2056,7 +2059,7 @@
         
         NSLog(@"result---_%@",result);
         if ([result[@"result_code"] isEqualToString:@"access"]) {
-            [view removeFromSuperview];
+            [paycustomview removeFromSuperview];
             
             
             if ([self.cardListArray[_selectRow][@"type"] isEqualToString:@"套餐卡"] || [self.cardListArray[_selectRow][@"type"] isEqualToString:@"体验卡"]) {
