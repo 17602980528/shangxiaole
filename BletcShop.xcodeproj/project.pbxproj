@@ -610,6 +610,8 @@
 		D94743A51CE5728000D1D3EE /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D947439B1CE5728000D1D3EE /* BaiduMapAPI_Search.framework */; };
 		D94743A61CE5728000D1D3EE /* BaiduMapAPI_Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D947439C1CE5728000D1D3EE /* BaiduMapAPI_Utils.framework */; };
 		D94756841CF82A2B008356C5 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94756831CF82A2B008356C5 /* FeedBackViewController.m */; };
+		D947888F1F60E55A008891B1 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D947888D1F60E55A008891B1 /* SignViewController.m */; };
+		D94788901F60E55A008891B1 /* SignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D947888E1F60E55A008891B1 /* SignViewController.xib */; };
 		D947E44A1D7D0AB900F9FEE8 /* ChatGroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D947E4491D7D0AB900F9FEE8 /* ChatGroupDetailViewController.m */; };
 		D947E44D1D7D0B5400F9FEE8 /* ContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = D947E44C1D7D0B5400F9FEE8 /* ContactView.m */; };
 		D947E4501D7D0EB100F9FEE8 /* group_participant_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D947E44E1D7D0EB100F9FEE8 /* group_participant_add@2x.png */; };
@@ -2092,6 +2094,9 @@
 		D947439C1CE5728000D1D3EE /* BaiduMapAPI_Utils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Utils.framework; sourceTree = "<group>"; };
 		D94756821CF82A2B008356C5 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
 		D94756831CF82A2B008356C5 /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
+		D947888C1F60E55A008891B1 /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignViewController.h; sourceTree = "<group>"; };
+		D947888D1F60E55A008891B1 /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignViewController.m; sourceTree = "<group>"; };
+		D947888E1F60E55A008891B1 /* SignViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignViewController.xib; sourceTree = "<group>"; };
 		D947E4481D7D0AB900F9FEE8 /* ChatGroupDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupDetailViewController.h; sourceTree = "<group>"; };
 		D947E4491D7D0AB900F9FEE8 /* ChatGroupDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupDetailViewController.m; sourceTree = "<group>"; };
 		D947E44B1D7D0B5400F9FEE8 /* ContactView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactView.h; sourceTree = "<group>"; };
@@ -5022,6 +5027,9 @@
 				D967F9331EB075D300D77ED6 /* 今日头条.png */,
 				D9C0E9561DCC201700FD1199 /* HomeViewController.h */,
 				D9C0E9571DCC201700FD1199 /* HomeViewController.m */,
+				D947888C1F60E55A008891B1 /* SignViewController.h */,
+				D947888D1F60E55A008891B1 /* SignViewController.m */,
+				D947888E1F60E55A008891B1 /* SignViewController.xib */,
 				D90071711F46E8CA003BD522 /* 首页自定义 */,
 				D9C0E95C1DCC886D00FD1199 /* HomeViewCell.h */,
 				D9C0E95D1DCC886D00FD1199 /* HomeViewCell.m */,
@@ -6883,6 +6891,7 @@
 				18F27F021D640E84002DD03A /* 头像-26.png in Resources */,
 				1CF283971C58C48900F3952A /* market.png in Resources */,
 				D93C0D621D251E7B001A1AC1 /* 小标-17.png in Resources */,
+				D94788901F60E55A008891B1 /* SignViewController.xib in Resources */,
 				185A45961F132F5B0033AFE3 /* LZDUserInfoVC.xib in Resources */,
 				D9FF0D941D53304C00443312 /* 图标-06new.png in Resources */,
 				1849A0FE1F38450000483CE8 /* OilMapVC.xib in Resources */,
@@ -7324,6 +7333,7 @@
 				18C0389B1E693C8B005F7AA9 /* HotNewsVC.m in Sources */,
 				18D89C641D51CE1000717B11 /* GoShopViewController.m in Sources */,
 				D97227611F3ABC31009D0E2A /* LZDLoadingView.m in Sources */,
+				D947888F1F60E55A008891B1 /* SignViewController.m in Sources */,
 				1CF283641C5862A200F3952A /* UIViewExt.m in Sources */,
 				D9A06B5C1D8679C30037795B /* EMCDDeviceManager+Media.m in Sources */,
 				D9824F741F2092CE00301076 /* MemberCenterVC.m in Sources */,

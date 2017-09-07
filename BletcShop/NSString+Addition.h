@@ -36,6 +36,11 @@
 - (NSString *)stringByReversed;//字符串倒序
 +(NSString*)getCurrentTimestamp;
 +(NSString *)getSecretStringWithPhone:(NSString *)phone;
+
++(NSString *)getSecretStringWithRandCode:(NSString *)sign  andTimestamp:(NSString*)time;
++(NSString*)getRandomCode;//随机字母数字组合,5~10位;
+
+
 @end
 
 
