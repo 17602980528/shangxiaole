@@ -300,6 +300,8 @@
             }else{
                 return 0.01;
             }
+        }else if(section==5){
+            return 0.01;
         }else
     return 50;
 }
@@ -330,7 +332,7 @@
     }else if (section==4){
         return 3;
     }else
-    return 2;
+    return 0;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 50)];

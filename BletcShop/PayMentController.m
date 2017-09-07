@@ -13,7 +13,8 @@
 #import "Order.h"
 #import "DataSigner.h"
 #import "UPPaymentControl.h"
-
+#import "PayCustomView.h"
+#import "AccessCodeVC.h"
 #import "PaySuccessVc.h"
 
 enum OrderTypes{
@@ -27,10 +28,11 @@ enum PayTypes {
     UPPay,
     WalletPay
 } ;
-@interface PayMentController ()<UITableViewDelegate,UITableViewDataSource,ViewControllerBDelegate,UIAlertViewDelegate>
+@interface PayMentController ()<UITableViewDelegate,UITableViewDataSource,ViewControllerBDelegate,UIAlertViewDelegate,PayCustomViewDelegate>
 {
     NSArray *orderType_A;////1-买卡  2-续卡 3-充值 4-升级
     NSString *Moneymessage;
+    PayCustomView   *secretView;
     
 }
 @property(nonatomic,weak)UITableView*table_view;
@@ -509,7 +511,15 @@ enum PayTypes {
                 
             }];
             UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"去支付" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [self payUseTheWallet];
+                
+                
+         
+                secretView=[[PayCustomView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
+                secretView.delegate=self;
+                [secretView.forgotButton addTarget:self action:@selector(forgetPayPass) forControlEvents:UIControlEventTouchUpInside];
+                [self.view addSubview:secretView];
+                
+                
             }];
             
             
@@ -922,4 +932,51 @@ enum PayTypes {
     }];
     
 }
+-(void)confirmPassRightOrWrong:(NSString *)pass{
+    
+    [self checkPayPassWd:pass];
+}
+
+-(void)checkPayPassWd:(NSString *)payPassWd{
+    
+    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    
+    NSString *url =[[NSString alloc]initWithFormat:@"%@Extra/passwd/checkPayPasswd",BASEURL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    
+    [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
+    [params setObject:payPassWd forKey:@"pay_passwd"];
+    
+    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        
+        NSLog(@"result---_%@",result);
+        if ([result[@"result_code"] isEqualToString:@"access"]) {
+            [secretView removeFromSuperview];
+            
+            [self payUseTheWallet];
+            
+        }else{
+            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.label.text = @"支付密码错误,请重新输入!";
+            hud.mode = MBProgressHUDModeText;
+            hud.label.font =[UIFont systemFontOfSize:13];
+            [hud hideAnimated:YES afterDelay:1.5];
+        }
+        
+        
+        
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+}
+
+-(void)forgetPayPass{
+    AccessCodeVC *vc=[[AccessCodeVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 @end

@@ -45,7 +45,7 @@
 #import "WaterfallColectionLayout.h"
 #import "HomeGridCollectionCell.h"
 
-
+#import "SignViewController.h"
 @interface HomeViewController ()<UITextFieldDelegate,UIScrollViewDelegate,GYChangeTextViewDelegate,JFLocationDelegate,SDCycleScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 {
     
@@ -320,6 +320,15 @@ static NSString *headerID = @"headerID";
     [self getAllIconData];
 
     
+    
+//    LZDButton *btn = [LZDButton creatLZDButton];
+//    btn.frame = CGRectMake(100, 100, 100, 100);
+//    btn.backgroundColor = [UIColor redColor];
+//    btn.block = ^(LZDButton *sender) {
+//      PUSH(SignViewController)
+//    };
+//    [self.view addSubview:btn];
+    
 }
 //创建顶部导航
 -(void)initTopView{
@@ -576,16 +585,17 @@ static NSString *headerID = @"headerID";
     NSString *app_Version = [infoDic objectForKey:@"CFBundleShortVersionString"];
     
     
-    NSString *url = [NSString stringWithFormat:@"%@Extra/source/version",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@Extra/version/check",BASEURL];
     
     NSMutableDictionary *paramer = [NSMutableDictionary dictionary];
-    [paramer setValue:@"ios" forKey:@"type"];
+    [paramer setValue:@"ios" forKey:@"dev"];
+    [paramer setValue:@"user" forKey:@"pro"];
     
     [KKRequestDataService requestWithURL:url params:paramer httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
         NSLog(@"===--%@",result);
-        NSLog(@" app版本  %ld",(long)[app_Version compare:result[@"version"] options:NSNumericSearch]);
+        NSLog(@" app版本  %ld",(long)[app_Version compare:result[@"version_name"] options:NSNumericSearch]);
         
-        if ([app_Version compare:result[@"version"] options:NSNumericSearch] >= 0) {
+        if ([app_Version compare:result[@"version_name"] options:NSNumericSearch] >= 0) {
             
             [self getPopupAdvertise];
                     }
