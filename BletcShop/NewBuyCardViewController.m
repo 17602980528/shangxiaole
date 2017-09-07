@@ -26,17 +26,20 @@
 #import "PaySuccessVc.h"
 
 #import "NewBuyOptionsCell.h"
-
+#import "PayCustomView.h"
+#import "ChangePayPassVC.h"
+#import "AccessCodeVC.h"
 @interface NewBuyCardViewController ()<UITableViewDelegate,UITableViewDataSource,ViewControllerBDelegate>
+{
+    NSInteger payKind;
+    PayCustomView *view;
+}
 @property (nonatomic ,assign) float walletRemain;//钱包余额
 @property (nonatomic,strong)NSMutableArray *optionsList_mutab;//项目列表
 
 @end
 
 @implementation NewBuyCardViewController
-{
-    NSInteger payKind;
-}
 
 -(NSMutableArray *)optionsList_mutab{
     if (!_optionsList_mutab) {
@@ -1025,34 +1028,39 @@
         
         float actMoney1 =[[self.contentLabel.text substringFromIndex:4] floatValue];//实际支付钱
 
+        AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+        
+        NSString *pay_passwd= [NSString getTheNoNullStr:appdelegate.userInfoDic[@"pay_passwd"] andRepalceStr:@""];
         
         if (self.walletRemain >=actMoney1) {
             
-            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"钱包余额充足,是否支付?" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            if ([pay_passwd isEqualToString:@"未设置"]) {
                 
-            }];
-            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"去支付" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
-                
-                //购买套餐卡 OR 体验卡
-                
-                if ([self.cardListArray[_selectRow][@"type"] isEqualToString:@"套餐卡"] || [self.cardListArray[_selectRow][@"type"] isEqualToString:@"体验卡"]) {
+                UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"您还没有设置支付密码!" preferredStyle:UIAlertControllerStyleAlert];
+            
+                UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"去设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     
-                    [self payUseTheWalletBuyMealOrExperienceCard];
-                }else{
-                    [self payUseTheWallet];
+                    ChangePayPassVC *vc=[[ChangePayPassVC alloc]init];
+                    [self.navigationController pushViewController:vc animated:YES];
+                    //购买套餐卡 OR 体验卡
                     
-                }
-
+                    
+                }];
                 
-            }];
+                [alertVC addAction:sureAction];
+                
+                [self presentViewController:alertVC animated:YES completion:nil];
+            }else{
+                
+                view=[[PayCustomView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-64)];
+                view.delegate=self;
+                [view.forgotButton addTarget:self action:@selector(forgetPayPass) forControlEvents:UIControlEventTouchUpInside];
+                [self.view addSubview:view];
+                
+            }
 
             
-            [alertVC addAction:cancelAction];
-            [alertVC addAction:sureAction];
-            
-            [self presentViewController:alertVC animated:YES completion:nil];
+           
             
             
         }else{
@@ -2018,6 +2026,60 @@
 }
 
 
+-(void)forgetPayPass{
+    AccessCodeVC *vc=[[AccessCodeVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+-(void)confirmPassRightOrWrong:(NSString *)pass{
+    
+    [self checkPayPassWd:pass];
+}
+-(void)checkPayPassWd:(NSString *)payPassWd{
+    
+    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    
+    NSString *url =[[NSString alloc]initWithFormat:@"%@Extra/passwd/checkPayPasswd",BASEURL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    
+    [params setObject:appdelegate.userInfoDic[@"uuid"] forKey:@"uuid"];
+    [params setObject:payPassWd forKey:@"pay_passwd"];
+    
+    [KKRequestDataService requestWithURL:url params:params httpMethod:@"POST" finishDidBlock:^(AFHTTPRequestOperation *operation, id result) {
+        
+        
+        
+        
+        NSLog(@"result---_%@",result);
+        if ([result[@"result_code"] isEqualToString:@"access"]) {
+            [view removeFromSuperview];
+            
+            
+            if ([self.cardListArray[_selectRow][@"type"] isEqualToString:@"套餐卡"] || [self.cardListArray[_selectRow][@"type"] isEqualToString:@"体验卡"]) {
+                
+                [self payUseTheWalletBuyMealOrExperienceCard];
+            }else{
+                [self payUseTheWallet];
+                
+            }
+            
+        }else{
+            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.label.text = @"支付密码错误,请重新输入!";
+            hud.mode = MBProgressHUDModeText;
+            hud.label.font =[UIFont systemFontOfSize:13];
+            [hud hideAnimated:YES afterDelay:1.5];
+        }
+        
+        
+        
+    } failuerDidBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+}
 -(void)getOptionsRequets{
     
     NSString *url = [NSString stringWithFormat:@"%@MerchantType/MealCard/showOption",BASEURL];
@@ -2042,7 +2104,6 @@
         
         
     }];
-
+    
 }
-
 @end

@@ -124,7 +124,9 @@
                 
                 if ([dic[@"pri_condition"] floatValue] <= [self.moneyString floatValue]&&![dic[@"coupon_type"] isEqualToString:@"OFFLINE"] && [self.muid isEqualToString:dic[@"muid"]]) {
                     
-                    [self.couponArray addObject:dic];
+                    NSMutableDictionary *newDic=[dic mutableCopy];
+                    [newDic setObject:@"close" forKey:@"turn"];
+                    [self.couponArray addObject:newDic];
                     
                 }
                 
@@ -302,7 +304,7 @@
     
 }
 -(void)openOrClose:(UIButton *)sender{
-    NSMutableDictionary *dic=self.couponArray[sender.tag];
+    NSMutableDictionary *dic=self.couponArray[sender.tag] ;
     if ([dic[@"turn"] isEqualToString:@"close"]) {
         [dic setObject:@"open" forKey:@"turn"];
     }else{
